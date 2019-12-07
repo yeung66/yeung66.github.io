@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="CCF,Python,">
+  <meta name="keywords" content="Python,sql,Mysql,生产力,SQLAlchemy,">
 
 
 
@@ -81,20 +81,18 @@
 
 
 
-<meta name="description" content="Problem问题描述　　给定一段文字，已知单词a1, a2, …, an出现的频率分别t1, t2, …, tn。可以用01串给这些单词编码，即将每个单词与一个01串对应，使得任何一个单词的编码（对应的01串）不是另一个单词编码的前缀，这种编码称为前缀码。　　使用前缀码编码一段文字是指将这段文字中的每个单词依次对应到其编码。一段文字经过前缀编码后的长度为：　　L=a1的编码长度×t1+a2的编码">
-<meta name="keywords" content="CCF,Python">
+<meta name="description" content="近期在收集处理大量的数据，通常是把XML/文本格式的数据转为关系型，结构化的的数据，能够方便导出直接进行分析，尤其是导出能直接被pandas分析的格式（csv/json）。因此需要使用一个在Python下的mysql处理库，既然找了处理库，也干脆一步到位，直接选一个支持ORM的库。于是，就选择了SQLAlchemy。用了一段时间后，写个记录来记下这段时间用到的常用的东西。 SQLAlchemy是P">
+<meta name="keywords" content="Python,sql,Mysql,生产力,SQLAlchemy">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CCF201612-4 压缩编码">
-<meta property="og:url" content="http://scottyeung.club/2019/CCF201612-4-压缩编码/index.html">
+<meta property="og:title" content="Some Notes About SQLAlchemy">
+<meta property="og:url" content="http://scottyeung.club/2019/Some-notes-About-Sqlalchemy/index.html">
 <meta property="og:site_name" content="Scott&#39;s Blog">
-<meta property="og:description" content="Problem问题描述　　给定一段文字，已知单词a1, a2, …, an出现的频率分别t1, t2, …, tn。可以用01串给这些单词编码，即将每个单词与一个01串对应，使得任何一个单词的编码（对应的01串）不是另一个单词编码的前缀，这种编码称为前缀码。　　使用前缀码编码一段文字是指将这段文字中的每个单词依次对应到其编码。一段文字经过前缀编码后的长度为：　　L=a1的编码长度×t1+a2的编码">
+<meta property="og:description" content="近期在收集处理大量的数据，通常是把XML/文本格式的数据转为关系型，结构化的的数据，能够方便导出直接进行分析，尤其是导出能直接被pandas分析的格式（csv/json）。因此需要使用一个在Python下的mysql处理库，既然找了处理库，也干脆一步到位，直接选一个支持ORM的库。于是，就选择了SQLAlchemy。用了一段时间后，写个记录来记下这段时间用到的常用的东西。 SQLAlchemy是P">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://scottyeung.club/2019/CCF201612-4-压缩编码/捕获.JPG">
-<meta property="og:updated_time" content="2019-11-12T14:48:29.979Z">
+<meta property="og:updated_time" content="2019-12-07T03:54:57.221Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CCF201612-4 压缩编码">
-<meta name="twitter:description" content="Problem问题描述　　给定一段文字，已知单词a1, a2, …, an出现的频率分别t1, t2, …, tn。可以用01串给这些单词编码，即将每个单词与一个01串对应，使得任何一个单词的编码（对应的01串）不是另一个单词编码的前缀，这种编码称为前缀码。　　使用前缀码编码一段文字是指将这段文字中的每个单词依次对应到其编码。一段文字经过前缀编码后的长度为：　　L=a1的编码长度×t1+a2的编码">
-<meta name="twitter:image" content="http://scottyeung.club/2019/CCF201612-4-压缩编码/捕获.JPG">
+<meta name="twitter:title" content="Some Notes About SQLAlchemy">
+<meta name="twitter:description" content="近期在收集处理大量的数据，通常是把XML/文本格式的数据转为关系型，结构化的的数据，能够方便导出直接进行分析，尤其是导出能直接被pandas分析的格式（csv/json）。因此需要使用一个在Python下的mysql处理库，既然找了处理库，也干脆一步到位，直接选一个支持ORM的库。于是，就选择了SQLAlchemy。用了一段时间后，写个记录来记下这段时间用到的常用的东西。 SQLAlchemy是P">
 
 
 
@@ -124,14 +122,14 @@
 
 
 
-  <link rel="canonical" href="http://scottyeung.club/2019/CCF201612-4-压缩编码/">
+  <link rel="canonical" href="http://scottyeung.club/2019/Some-notes-About-Sqlalchemy/">
 
 
 
 
 <script data-ad-client="ca-pub-7766364950991401" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
-  <title>CCF201612-4 压缩编码 | Scott's Blog</title>
+  <title>Some Notes About SQLAlchemy | Scott's Blog</title>
   
 
 
@@ -297,7 +295,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://scottyeung.club/2019/CCF201612-4-压缩编码/">
+    <link itemprop="mainEntityOfPage" href="http://scottyeung.club/2019/Some-notes-About-Sqlalchemy/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Scott Yeung">
@@ -314,7 +312,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">CCF201612-4 压缩编码</h1>
+          <h1 class="post-title" itemprop="name headline">Some Notes About SQLAlchemy</h1>
         
 
         <div class="post-meta">
@@ -326,8 +324,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-12T14:15:57+08:00">
-                2019-03-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-07T10:24:35+08:00">
+                2019-12-07
               </time>
             
 
@@ -349,8 +347,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
+                  <a href="/categories/Mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">Mysql</span>
                   </a>
                 </span>
 
@@ -366,7 +364,7 @@
 
           
           
-             <span id="/2019/CCF201612-4-压缩编码/" class="leancloud_visitors" data-flag-title="CCF201612-4 压缩编码">
+             <span id="/2019/Some-notes-About-Sqlalchemy/" class="leancloud_visitors" data-flag-title="Some Notes About SQLAlchemy">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -397,25 +395,41 @@
       
 
       
-        <h1 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h1><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>　　给定一段文字，已知单词<em>a</em>1, <em>a</em>2, …, <em>an</em>出现的频率分别<em>t</em>1, <em>t</em>2, …, <em>tn</em>。可以用01串给这些单词编码，即将每个单词与一个01串对应，使得任何一个单词的编码（对应的01串）不是另一个单词编码的前缀，这种编码称为前缀码。<br>　　使用前缀码编码一段文字是指将这段文字中的每个单词依次对应到其编码。一段文字经过前缀编码后的长度为：<br>　　<em>L</em>=<em>a</em>1的编码长度×<em>t</em>1+<em>a</em>2的编码长度×<em>t</em>2+…+ <em>an</em>的编码长度×<em>tn</em>。<br>　　定义一个前缀编码为字典序编码，指对于1 ≤ <em>i</em> &lt; <em>n</em>，<em>ai</em>的编码（对应的01串）的字典序在<em>ai</em>+1编码之前，即<em>a</em>1, <em>a</em>2, …, <em>an</em>的编码是按字典序升序排列的。<br>　　例如，文字E A E C D E B C C E C B D B E中， 5个单词A、B、C、D、E出现的频率分别为1, 3, 4, 2, 5，则一种可行的编码方案是A:000, B:001, C:01, D:10, E:11，对应的编码后的01串为1100011011011001010111010011000111，对应的长度<em>L</em>为3×1+3×3+2×4+2×2+2×5=34。<br>　　在这个例子中，如果使用哈夫曼(Huffman)编码，对应的编码方案是A:000, B:01, C:10, D:001, E:11，虽然最终文字编码后的总长度只有33，但是这个编码不满足字典序编码的性质，比如C的编码的字典序不在D的编码之前。<br>　　在这个例子中，有些人可能会想的另一个字典序编码是A:000, B:001, C:010, D:011, E:1，编码后的文字长度为35。<br>　　请找出一个字典序编码，使得文字经过编码后的长度<em>L</em>最小。在输出时，你只需要输出最小的长度<em>L</em>，而不需要输出具体的方案。在上面的例子中，最小的长度<em>L</em>为34。</p>
-<a id="more"></a>
-<h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>　　输入的第一行包含一个整数<em>n</em>，表示单词的数量。<br>　　第二行包含<em>n</em>个整数，用空格分隔，分别表示<em>a</em>1, <em>a</em>2, …, <em>an</em>出现的频率，即<em>t</em>1, <em>t</em>2, …, <em>tn</em>。请注意<em>a</em>1, <em>a</em>2, …, <em>an</em>具体是什么单词并不影响本题的解，所以没有输入<em>a</em>1, <em>a</em>2, …, <em>an</em>。</p>
-<h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>　　输出一个整数，表示文字经过编码后的长度<em>L</em>的最小值。</p>
-<h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><p>5<br>1 3 4 2 5</p>
-<h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><p>34</p>
-<h2 id="样例说明"><a href="#样例说明" class="headerlink" title="样例说明"></a>样例说明</h2><p>　　这个样例就是问题描述中的例子。如果你得到了35，说明你算得有问题，请自行检查自己的算法而不要怀疑是样例输出写错了。</p>
-<h2 id="评测用例规模与约定"><a href="#评测用例规模与约定" class="headerlink" title="评测用例规模与约定"></a>评测用例规模与约定</h2><p>　　对于30%的评测用例，1 ≤ <em>n</em> ≤ 10，1 ≤ <em>ti</em> ≤ 20；<br>　　对于60%的评测用例，1 ≤ <em>n</em> ≤ 100，1 ≤ <em>ti</em> ≤ 100；<br>　　对于100%的评测用例，1 ≤ <em>n</em> ≤ 1000，1 ≤ <em>ti</em> ≤ 10000。</p>
-<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><p>乍一眼看上去似乎跟霍夫曼编码相关，虽然题目明确了霍夫曼编码结果不一定是满足字典序的，但估计解法应该是霍夫曼编码的变形。然而还是没什么头绪，上网一搜，发现这是一个经典的dp问题——<a href="https://blog.csdn.net/acdreamers/article/details/18039073" target="_blank" rel="noopener">石子问题</a>。石子问题描述为：有n堆石子，每次合并2堆，合并花费为两堆石子之和，求合成的最小花费。问题可分为三种类型：</p>
+        <p>近期在收集处理大量的数据，通常是把XML/文本格式的数据转为关系型，结构化的的数据，能够方便导出直接进行分析，尤其是导出能直接被pandas分析的格式（csv/json）。因此需要使用一个在Python下的mysql处理库，既然找了处理库，也干脆一步到位，直接选一个支持ORM的库。于是，就选择了SQLAlchemy。用了一段时间后，写个记录来记下这段时间用到的常用的东西。</p>
+<p>SQLAlchemy是Python编程语言下的一款开源软件。提供了SQL工具包及对象关系映射（ORM）工具，主要能满足一下的需求：</p>
+<ul>
+<li>提供对数据库的常用操作：增删改查</li>
+<li>提供ORM功能，可以让操作的单元变为对象，而不用写sql语句进行硬编码/解码解析数据</li>
+</ul>
+<h2 id="数据库连接"><a href="#数据库连接" class="headerlink" title="数据库连接"></a>数据库连接</h2><p>SQLalchemy不能支持操作数据库，因而需要安装额外的数据库驱动，对于不同的数据库与驱动，有着不一样的配置URI，总体格式为<code>dbms://user:pwd@host/dbname</code>。这里用的Mysql+mysqlconnector，具体的连接代码如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">from sqlalchemy import create_engine</span><br><span class="line">from sqlalchemy.orm import sessionmaker</span><br><span class="line"></span><br><span class="line">sql_connection = &apos;mysql+mysqlconnector://root:pwd@localhost:3306/database&apos;</span><br><span class="line">engine = create_engine(sql_connection)</span><br><span class="line"></span><br><span class="line"># 执行sql事务需要使用会话</span><br><span class="line">DBsession = sessionmaker(bind=engine)</span><br><span class="line">session = DBsession()</span><br><span class="line"></span><br><span class="line"># 结束前需要关闭session</span><br><span class="line">session.close()</span><br></pre></td></tr></table></figure></p>
+<h2 id="结构定义"><a href="#结构定义" class="headerlink" title="结构定义"></a>结构定义</h2><p>在SQLalchemy中，ORM通过定义对象进行数据库model的绑定。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">from sqlalchemy.ext.declarative import declarative_base</span><br><span class="line">from sqlalchemy.orm import relation, sessionmaker</span><br><span class="line"></span><br><span class="line">Base = declarative_base()</span><br><span class="line"> </span><br><span class="line">class Movie(Base):</span><br><span class="line">    __tablename__ = &apos;movies&apos;</span><br><span class="line"> </span><br><span class="line">    id = Column(Integer, primary_key=True)</span><br><span class="line">    title = Column(String(255), nullable=False)</span><br><span class="line">    year = Column(Integer)</span><br><span class="line">    directed_by = Column(Integer)</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line">    def __init__(self, title=None, year=None):</span><br><span class="line">        self.title = title</span><br><span class="line">        self.year = year</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>ORM的model类通过继承declarative_base进行定义，通过<code>__tablename__</code>绑定到对应的table</li>
+<li>每一个Column属性为表中的一列，需要设置类型，类型必须要与数据库中列的类型对应，常用类型有Integer，Float， String（对应varchar），Text</li>
+<li>必须设置一个属性/列为<code>primary_key</code></li>
+<li>可以通过<code>Base.metadata.create_all(engine)</code>创建table</li>
+</ul>
+<h2 id="数据操作"><a href="#数据操作" class="headerlink" title="数据操作"></a>数据操作</h2><p>数据使用ORM进行操作，操作的基本单位为对象（也可以直接使用sql语句，但对于常用操作来说没有必要）。除查询外，对数据库有修改的操作都需要commit事务</p>
+<h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">m1 = Movie(&quot;Star Trek&quot;, 2009)</span><br><span class="line">session.add(m1)</span><br><span class="line">session.commit()</span><br></pre></td></tr></table></figure>
 <ol>
-<li>每次任意合并两堆石子（则变成霍夫曼树构造</li>
-<li>每次合并相邻两堆石子（通过确保只合并相邻石子确保满足字典序</li>
-<li>每次合并相邻两堆石子，且石子环形排列（2的升级版</li>
+<li>创建待插入的对象，添加相应的数据属性</li>
+<li>添加进session中</li>
+<li>提交session，提交事务</li>
 </ol>
-<p>这里，我们只讨论第二种情况。状态转移方程如下，<code>dp[i][j]</code>表示合并第i堆到第j堆石子的花费（编码第i个单词到第j个单词的长度花费），<code>sums[i]</code>为前i堆石子（单词）的总花费。实际上是在区间i到j之间寻找一个最优的分界点，左右分别合并，再加上总体的花费。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dp[i][j]=<span class="number">0</span><span class="comment">#i==j</span></span><br><span class="line">dp[i][j]=min(dp[i][j],dp[i][k]+dp[k+<span class="number">1</span>][j]+sums[j]-sums[i<span class="number">-1</span>])<span class="comment">#i!=j and i&lt;=k&lt;=j</span></span><br></pre></td></tr></table></figure>
-<p>容易分析，需要三层循环（i，j，k），时间复杂度为$O(n^3)$。提交后能有60分，显示运行超时，但这个是非Python的操作用时，估计实际考试也能过。针对这种情况，上面博文提到可以使用<a href="https://baike.baidu.com/item/%E5%9B%9B%E8%BE%B9%E5%BD%A2%E4%B8%8D%E7%AD%89%E5%BC%8F?fr=aladdin" target="_blank" rel="noopener">平行四边形优化</a>(百科里写得很烂)，对于像上面的状态转移方程，可设<code>p[i][j]</code>为区间i到j中最优的k值，则有<code>p[i][j-1]&lt;=p[i][j]&lt;=p[i+1][j]</code>因此，我们可以缩小k的遍历范围，可证其复杂度降低了一个数量级，为$O(n^2)$，修改后提交能够获得100分。</p>
-<p>详细代码可<a href="https://github.com/yeung66/codesAboutCCF/blob/master/201612/compresscode.py" target="_blank" rel="noopener">点此</a></p>
-<h2 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h2><p><img src="/2019/CCF201612-4-压缩编码/捕获.JPG" alt></p>
+<h3 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">movies = session.query(Movie).all() # 获取所有数据</span><br><span class="line">movie = session.query(Movie).get(movie_id) # 获取单个记录</span><br><span class="line">filter_movie = session.query(Movie).filter(Movie.id == 1).one()</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查询中query的参数为查询的table/返回的对象</li>
+<li>filter等于where语句，可以对查询结果进行进一步筛选，one返回唯一行，all则返回所有行</li>
+</ul>
+<h3 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h3><p>查询出来的数据，修改属性后重新提交事务即可。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">movie = session.query(Movie).get(id)</span><br><span class="line">movie.year = 1999</span><br><span class="line">session.commit()</span><br></pre></td></tr></table></figure></p>
+<h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">movie = session.query(Movie).get(id)</span><br><span class="line">session.delete()</span><br><span class="line">session.commit()</span><br></pre></td></tr></table></figure>
+<h2 id="some-problems"><a href="#some-problems" class="headerlink" title="some problems"></a>some problems</h2><h3 id="大批量数据插入"><a href="#大批量数据插入" class="headerlink" title="大批量数据插入"></a>大批量数据插入</h3><p>在使用的过程中，遇到一次需要插入三十多万条数据到数据库的情况。在此之前，我一直都是插完数据再一起commit的（几千/几百条），因为每次commit需要写入数据库，会比较慢（磁盘IO制约）。<br>但这次数量过多的话，提交的时候出现错误，提示mysql的连接丢失。估计是写入的时间太多，时间太长超出了其限制，进而断开了连接。于是我选择批量commit，在添加一定数量数据后提交一次（5000/1000/500/100/10），但是没有成功，插入一定量的记录后，提示某一条插入的记录的某一列过长（尽管我那一列是不限长度的Text），显然有问题。<br>上网搜索批量数据插入的方法，但内容基本都是千篇一律，全部都是转载/翻译StackOverflow上的一篇<a href="https://stackoverflow.com/questions/3659142/bulk-insert-with-sqlalchemy-orm" target="_blank" rel="noopener">回答</a>。给出了两种方法</p>
+<ul>
+<li>bulk_save_objects(objects)</li>
+<li>add_all()</li>
+</ul>
+<p>都没有效果，最终还是采取了逐条添加并提交的方法，虽然慢了点，但是能work。</p>
+<p>写这件事只是为了吐槽一下现在用Google搜索一些具体的技术问题是，内容严重同质化的现象，大家都抄来抄去，转来转去。像这一次的搜索，最开始的source是在StackOverflow上的提问，然后有网站翻译成了中文并发布（甚至初创，然后就流传于各个中文网站了，一搜，全是这些内容相同的网页，属实恶心。</p>
 
       
     </div>
@@ -441,11 +455,11 @@
 
         <li class="post-copyright-link">
           <strong>本文链接：</strong>
-          <a href="http://scottyeung.club/2019/CCF201612-4-压缩编码/" title="CCF201612-4 压缩编码">http://scottyeung.club/2019/CCF201612-4-压缩编码/</a>
+          <a href="http://scottyeung.club/2019/Some-notes-About-Sqlalchemy/" title="Some Notes About SQLAlchemy">http://scottyeung.club/2019/Some-notes-About-Sqlalchemy/</a>
         </li>
 
         <li class="post-copyright-date">
-            <strong>发布时间： </strong>2019年3月12日 - 14时03分
+            <strong>发布时间： </strong>2019年12月7日 - 10时12分
         </li>  
 
         <li class="post-copyright-license">
@@ -458,9 +472,15 @@
       
         <div class="post-tags">
           
-            <a href="/tags/CCF/" rel="tag"># CCF</a>
-          
             <a href="/tags/Python/" rel="tag"># Python</a>
+          
+            <a href="/tags/sql/" rel="tag"># sql</a>
+          
+            <a href="/tags/Mysql/" rel="tag"># Mysql</a>
+          
+            <a href="/tags/生产力/" rel="tag"># 生产力</a>
+          
+            <a href="/tags/SQLAlchemy/" rel="tag"># SQLAlchemy</a>
           
         </div>
       
@@ -473,8 +493,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/CCF201412-3-集合竞价/" rel="next" title="CCF201412-3 集合竞价">
-                <i class="fa fa-chevron-left"></i> CCF201412-3 集合竞价
+              <a href="/2019/Summary-of-Automate-the-Boring-Stuff-with-Python/" rel="next" title="Summary of Automate the Boring Stuff with Python">
+                <i class="fa fa-chevron-left"></i> Summary of Automate the Boring Stuff with Python
               </a>
             
           </div>
@@ -482,10 +502,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/CCF201503-4-网络延时/" rel="prev" title="CCF201503-4 网络延时">
-                CCF201503-4 网络延时 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -688,7 +704,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Problem"><span class="nav-number">1.</span> <span class="nav-text">Problem</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题描述"><span class="nav-number">1.1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入格式"><span class="nav-number">1.2.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输出格式"><span class="nav-number">1.3.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#样例输入"><span class="nav-number">1.4.</span> <span class="nav-text">样例输入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#样例输出"><span class="nav-number">1.5.</span> <span class="nav-text">样例输出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#样例说明"><span class="nav-number">1.6.</span> <span class="nav-text">样例说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#评测用例规模与约定"><span class="nav-number">1.7.</span> <span class="nav-text">评测用例规模与约定</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Solution"><span class="nav-number">2.</span> <span class="nav-text">Solution</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#运行结果"><span class="nav-number">2.1.</span> <span class="nav-text">运行结果</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库连接"><span class="nav-number">1.</span> <span class="nav-text">数据库连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结构定义"><span class="nav-number">2.</span> <span class="nav-text">结构定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据操作"><span class="nav-number">3.</span> <span class="nav-text">数据操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#插入"><span class="nav-number">3.1.</span> <span class="nav-text">插入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询"><span class="nav-number">3.2.</span> <span class="nav-text">查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更新"><span class="nav-number">3.3.</span> <span class="nav-text">更新</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除"><span class="nav-number">3.4.</span> <span class="nav-text">删除</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#some-problems"><span class="nav-number">4.</span> <span class="nav-text">some problems</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#大批量数据插入"><span class="nav-number">4.1.</span> <span class="nav-text">大批量数据插入</span></a></li></ol></li></ol></div>
             
 
           </div>

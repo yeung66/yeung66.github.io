@@ -294,6 +294,201 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://scottyeung.club/2019/Some-notes-About-Sqlalchemy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Scott Yeung">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/self.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Scott's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/Some-notes-About-Sqlalchemy/" itemprop="url">Some Notes About SQLAlchemy</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-07T10:24:35+08:00">
+                2019-12-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">Mysql</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/Some-notes-About-Sqlalchemy/" class="leancloud_visitors" data-flag-title="Some Notes About SQLAlchemy">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>近期在收集处理大量的数据，通常是把XML/文本格式的数据转为关系型，结构化的的数据，能够方便导出直接进行分析，尤其是导出能直接被pandas分析的格式（csv/json）。因此需要使用一个在Python下的mysql处理库，既然找了处理库，也干脆一步到位，直接选一个支持ORM的库。于是，就选择了SQLAlchemy。用了一段时间后，写个记录来记下这段时间用到的常用的东西。</p>
+<p>SQLAlchemy是Python编程语言下的一款开源软件。提供了SQL工具包及对象关系映射（ORM）工具，主要能满足一下的需求：</p>
+<ul>
+<li>提供对数据库的常用操作：增删改查</li>
+<li>提供ORM功能，可以让操作的单元变为对象，而不用写sql语句进行硬编码/解码解析数据</li>
+</ul>
+<h2 id="数据库连接"><a href="#数据库连接" class="headerlink" title="数据库连接"></a>数据库连接</h2><p>SQLalchemy不能支持操作数据库，因而需要安装额外的数据库驱动，对于不同的数据库与驱动，有着不一样的配置URI，总体格式为<code>dbms://user:pwd@host/dbname</code>。这里用的Mysql+mysqlconnector，具体的连接代码如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">from sqlalchemy import create_engine</span><br><span class="line">from sqlalchemy.orm import sessionmaker</span><br><span class="line"></span><br><span class="line">sql_connection = &apos;mysql+mysqlconnector://root:pwd@localhost:3306/database&apos;</span><br><span class="line">engine = create_engine(sql_connection)</span><br><span class="line"></span><br><span class="line"># 执行sql事务需要使用会话</span><br><span class="line">DBsession = sessionmaker(bind=engine)</span><br><span class="line">session = DBsession()</span><br><span class="line"></span><br><span class="line"># 结束前需要关闭session</span><br><span class="line">session.close()</span><br></pre></td></tr></table></figure></p>
+<h2 id="结构定义"><a href="#结构定义" class="headerlink" title="结构定义"></a>结构定义</h2><p>在SQLalchemy中，ORM通过定义对象进行数据库model的绑定。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">from sqlalchemy.ext.declarative import declarative_base</span><br><span class="line">from sqlalchemy.orm import relation, sessionmaker</span><br><span class="line"></span><br><span class="line">Base = declarative_base()</span><br><span class="line"> </span><br><span class="line">class Movie(Base):</span><br><span class="line">    __tablename__ = &apos;movies&apos;</span><br><span class="line"> </span><br><span class="line">    id = Column(Integer, primary_key=True)</span><br><span class="line">    title = Column(String(255), nullable=False)</span><br><span class="line">    year = Column(Integer)</span><br><span class="line">    directed_by = Column(Integer)</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line">    def __init__(self, title=None, year=None):</span><br><span class="line">        self.title = title</span><br><span class="line">        self.year = year</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>ORM的model类通过继承declarative_base进行定义，通过<code>__tablename__</code>绑定到对应的table</li>
+<li>每一个Column属性为表中的一列，需要设置类型，类型必须要与数据库中列的类型对应，常用类型有Integer，Float， String（对应varchar），Text</li>
+<li>必须设置一个属性/列为<code>primary_key</code></li>
+<li>可以通过<code>Base.metadata.create_all(engine)</code>创建table</li>
+</ul>
+<h2 id="数据操作"><a href="#数据操作" class="headerlink" title="数据操作"></a>数据操作</h2><p>数据使用ORM进行操作，操作的基本单位为对象（也可以直接使用sql语句，但对于常用操作来说没有必要）。除查询外，对数据库有修改的操作都需要commit事务</p>
+<h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">m1 = Movie(&quot;Star Trek&quot;, 2009)</span><br><span class="line">session.add(m1)</span><br><span class="line">session.commit()</span><br></pre></td></tr></table></figure>
+<ol>
+<li>创建待插入的对象，添加相应的数据属性</li>
+<li>添加进session中</li>
+<li>提交session，提交事务</li>
+</ol>
+<h3 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">movies = session.query(Movie).all() # 获取所有数据</span><br><span class="line">movie = session.query(Movie).get(movie_id) # 获取单个记录</span><br><span class="line">filter_movie = session.query(Movie).filter(Movie.id == 1).one()</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查询中query的参数为查询的table/返回的对象</li>
+<li>filter等于where语句，可以对查询结果进行进一步筛选，one返回唯一行，all则返回所有行</li>
+</ul>
+<h3 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h3><p>查询出来的数据，修改属性后重新提交事务即可。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">movie = session.query(Movie).get(id)</span><br><span class="line">movie.year = 1999</span><br><span class="line">session.commit()</span><br></pre></td></tr></table></figure></p>
+<h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">movie = session.query(Movie).get(id)</span><br><span class="line">session.delete()</span><br><span class="line">session.commit()</span><br></pre></td></tr></table></figure>
+<h2 id="some-problems"><a href="#some-problems" class="headerlink" title="some problems"></a>some problems</h2><h3 id="大批量数据插入"><a href="#大批量数据插入" class="headerlink" title="大批量数据插入"></a>大批量数据插入</h3><p>在使用的过程中，遇到一次需要插入三十多万条数据到数据库的情况。在此之前，我一直都是插完数据再一起commit的（几千/几百条），因为每次commit需要写入数据库，会比较慢（磁盘IO制约）。<br>但这次数量过多的话，提交的时候出现错误，提示mysql的连接丢失。估计是写入的时间太多，时间太长超出了其限制，进而断开了连接。于是我选择批量commit，在添加一定数量数据后提交一次（5000/1000/500/100/10），但是没有成功，插入一定量的记录后，提示某一条插入的记录的某一列过长（尽管我那一列是不限长度的Text），显然有问题。<br>上网搜索批量数据插入的方法，但内容基本都是千篇一律，全部都是转载/翻译StackOverflow上的一篇<a href="https://stackoverflow.com/questions/3659142/bulk-insert-with-sqlalchemy-orm" target="_blank" rel="noopener">回答</a>。给出了两种方法</p>
+<ul>
+<li>bulk_save_objects(objects)</li>
+<li>add_all()</li>
+</ul>
+<p>都没有效果，最终还是采取了逐条添加并提交的方法，虽然慢了点，但是能work。</p>
+<p>写这件事只是为了吐槽一下现在用Google搜索一些具体的技术问题是，内容严重同质化的现象，大家都抄来抄去，转来转去。像这一次的搜索，最开始的source是在StackOverflow上的提问，然后有网站翻译成了中文并发布（甚至初创，然后就流传于各个中文网站了，一搜，全是这些内容相同的网页，属实恶心。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+     <div>    
+      
+  </div>
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    <div>
+		
+	</div>
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://scottyeung.club/2019/Summary-of-Automate-the-Boring-Stuff-with-Python/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1765,176 +1960,6 @@
 	</div>
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://scottyeung.club/2019/并查集/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Scott Yeung">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/self.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Scott's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/并查集/" itemprop="url">并查集</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-19T11:59:22+08:00">
-                2019-06-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2019/并查集/" class="leancloud_visitors" data-flag-title="并查集">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>在计算机科学中，并查集是一种树型的数据结构，用于处理一些不交集（Disjoint Sets）的合并及查询问题。</p>
-<p>有一个联合-查找算法（union-find algorithm）定义了两个用于此数据结构的操作:</p>
-<ul>
-<li>Find：确定元素属于哪一个子集。它可以被用来确定两个元素是否属于同一子集。</li>
-<li>Union：将两个子集合并成同一个集合。</li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/并查集/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-     <div>    
-      
-  </div>
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    <div>
-		
-	</div>
-
-    
   </section>
 
   
@@ -1993,7 +2018,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2015,7 +2040,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">51</span>
+                  <span class="site-state-item-count">53</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2079,12 +2104,7 @@
 
 
 
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <!-- 介绍栏 -->
-    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7766364950991401" data-ad-slot="6832878760" data-ad-format="auto" data-full-width-responsive="true"></ins>
-    <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
+    
     </div>
   </aside>
 
