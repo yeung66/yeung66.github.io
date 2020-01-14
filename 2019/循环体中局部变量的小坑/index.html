@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="前几个晚看《The Go Progromming Language》时，在匿名函数的最后一小节中，发现了一个比较有趣的小坑。大概的场景为：首先创建一些目录，然后对于每一个目录，分别声明一个匿名函数删除目录，样例代码如下： 1234567var rmdirs []func()for _, dir := range tempDirs() &amp;#123;    os.MkdirAll(dir, 0755)">
+<meta name="description" content="前几晚看《The Go Progromming Language》时，在匿名函数的最后一小节中，发现了一个比较有趣的小坑。大概的场景为：首先创建一些目录，然后对于每一个目录，分别声明一个匿名函数删除目录，样例代码如下： 1234567var rmdirs []func()for _, dir := range tempDirs() &amp;#123;    os.MkdirAll(dir, 0755)">
 <meta name="keywords" content="GO,JavaScipt">
 <meta property="og:type" content="article">
 <meta property="og:title" content="循环体中局部变量的小坑">
 <meta property="og:url" content="http://scottyeung.club/2019/循环体中局部变量的小坑/index.html">
 <meta property="og:site_name" content="Scott&#39;s Blog">
-<meta property="og:description" content="前几个晚看《The Go Progromming Language》时，在匿名函数的最后一小节中，发现了一个比较有趣的小坑。大概的场景为：首先创建一些目录，然后对于每一个目录，分别声明一个匿名函数删除目录，样例代码如下： 1234567var rmdirs []func()for _, dir := range tempDirs() &amp;#123;    os.MkdirAll(dir, 0755)">
+<meta property="og:description" content="前几晚看《The Go Progromming Language》时，在匿名函数的最后一小节中，发现了一个比较有趣的小坑。大概的场景为：首先创建一些目录，然后对于每一个目录，分别声明一个匿名函数删除目录，样例代码如下： 1234567var rmdirs []func()for _, dir := range tempDirs() &amp;#123;    os.MkdirAll(dir, 0755)">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-12T14:48:29.990Z">
+<meta property="og:updated_time" content="2020-01-14T06:29:56.453Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="循环体中局部变量的小坑">
-<meta name="twitter:description" content="前几个晚看《The Go Progromming Language》时，在匿名函数的最后一小节中，发现了一个比较有趣的小坑。大概的场景为：首先创建一些目录，然后对于每一个目录，分别声明一个匿名函数删除目录，样例代码如下： 1234567var rmdirs []func()for _, dir := range tempDirs() &amp;#123;    os.MkdirAll(dir, 0755)">
+<meta name="twitter:description" content="前几晚看《The Go Progromming Language》时，在匿名函数的最后一小节中，发现了一个比较有趣的小坑。大概的场景为：首先创建一些目录，然后对于每一个目录，分别声明一个匿名函数删除目录，样例代码如下： 1234567var rmdirs []func()for _, dir := range tempDirs() &amp;#123;    os.MkdirAll(dir, 0755)">
 
 
 
@@ -395,7 +395,7 @@
       
 
       
-        <p>前几个晚看《The Go Progromming Language》时，在<a href="https://yar999.gitbooks.io/gopl-zh/content/ch5/ch5-06.html" target="_blank" rel="noopener">匿名函数</a>的最后一小节中，发现了一个比较有趣的小坑。<br>大概的场景为：首先创建一些目录，然后对于每一个目录，分别声明一个匿名函数删除目录，样例代码如下：</p>
+        <p>前几晚看《The Go Progromming Language》时，在<a href="https://yar999.gitbooks.io/gopl-zh/content/ch5/ch5-06.html" target="_blank" rel="noopener">匿名函数</a>的最后一小节中，发现了一个比较有趣的小坑。<br>大概的场景为：首先创建一些目录，然后对于每一个目录，分别声明一个匿名函数删除目录，样例代码如下：</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> rmdirs []<span class="function"><span class="keyword">func</span><span class="params">()</span></span></span><br><span class="line"><span class="keyword">for</span> _, dir := <span class="keyword">range</span> tempDirs() &#123;</span><br><span class="line">    os.MkdirAll(dir, <span class="number">0755</span>)</span><br><span class="line">    rmdirs = <span class="built_in">append</span>(rmdirs, <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">        os.RemoveAll(dir) </span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>大家可以先自行考虑一下，有没有什么问题，效果会是怎样</p>
 <a id="more"></a>
@@ -407,7 +407,7 @@
 <p>上面的代码是有问题的，运行后<code>rmdirs</code>中每一个函数的效果都是删除最后一个目录。</p>
 <p>为什么没有出现我们预期的效果呢？原因在于循环变量的作用域。</p>
 <blockquote>
-<p>。在上面的程序中，for循环语句引入了新的词法块，循环变量dir在这个词法块中被声明。在该循环中生成的所有函数值都共享相同的循环变量。需要注意，函数值中记录的是循环变量的内存地址，而不是循环变量某一时刻的值。以dir为例，后续的迭代会不断更新dir的值，当删除操作执行时，for循环已完成，dir中存储的值等于最后一次迭代的值。这意味着，每次对os.RemoveAll的调用删除的都是相同的目录。</p>
+<p>在上面的程序中，for循环语句引入了新的词法块，循环变量dir在这个词法块中被声明。在该循环中生成的所有函数值都共享相同的循环变量。需要注意，函数值中记录的是循环变量的内存地址，而不是循环变量某一时刻的值。以dir为例，后续的迭代会不断更新dir的值，当删除操作执行时，for循环已完成，dir中存储的值等于最后一次迭代的值。这意味着，每次对os.RemoveAll的调用删除的都是相同的目录。</p>
 </blockquote>
 <p>正确的代码应该如下修改，通过在块级中声明一个局部临时变量，将其代替循环变量放入匿名函数中。</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> _, dir := <span class="keyword">range</span> tempDirs() &#123;</span><br><span class="line">    dir := dir <span class="comment">// declares inner dir, initialized to outer dir</span></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>

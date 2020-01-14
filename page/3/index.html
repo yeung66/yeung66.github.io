@@ -563,7 +563,7 @@
 
       
         
-          <p>前几个晚看《The Go Progromming Language》时，在<a href="https://yar999.gitbooks.io/gopl-zh/content/ch5/ch5-06.html" target="_blank" rel="noopener">匿名函数</a>的最后一小节中，发现了一个比较有趣的小坑。<br>大概的场景为：首先创建一些目录，然后对于每一个目录，分别声明一个匿名函数删除目录，样例代码如下：</p>
+          <p>前几晚看《The Go Progromming Language》时，在<a href="https://yar999.gitbooks.io/gopl-zh/content/ch5/ch5-06.html" target="_blank" rel="noopener">匿名函数</a>的最后一小节中，发现了一个比较有趣的小坑。<br>大概的场景为：首先创建一些目录，然后对于每一个目录，分别声明一个匿名函数删除目录，样例代码如下：</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> rmdirs []<span class="function"><span class="keyword">func</span><span class="params">()</span></span></span><br><span class="line"><span class="keyword">for</span> _, dir := <span class="keyword">range</span> tempDirs() &#123;</span><br><span class="line">    os.MkdirAll(dir, <span class="number">0755</span>)</span><br><span class="line">    rmdirs = <span class="built_in">append</span>(rmdirs, <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">        os.RemoveAll(dir) </span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>大家可以先自行考虑一下，有没有什么问题，效果会是怎样</p>
           <!--noindex-->
