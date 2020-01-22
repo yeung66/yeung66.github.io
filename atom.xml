@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://scottyeung.club/"/>
-  <updated>2020-01-05T02:17:30.695Z</updated>
+  <updated>2020-01-22T02:32:32.434Z</updated>
   <id>http://scottyeung.club/</id>
   
   <author>
@@ -15,6 +15,40 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Maximum Sum Circular Subarray</title>
+    <link href="http://scottyeung.club/2020/Maximum-Sum-Circular-Subarray/"/>
+    <id>http://scottyeung.club/2020/Maximum-Sum-Circular-Subarray/</id>
+    <published>2020-01-21T11:59:53.000Z</published>
+    <updated>2020-01-22T02:32:32.434Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h1><ul><li>source: <a href="https://leetcode-cn.com/problems/maximum-sum-circular-subarray/" target="_blank" rel="noopener">Maximum Sum Circular Subarray</a></li><li>difficulty: Medium</li></ul><p>Given a circular array C of integers represented by A, find the maximum possible sum of a non-empty subarray of C.</p><p>Here, a circular array means the end of the array connects to the beginning of the array.  (Formally, C[i] = A[i] when 0 &lt;= i &lt; A.length, and C[i+A.length] = C[i] when i &gt;= 0.)</p><p>Also, a subarray may only include each element of the fixed buffer A at most once.  (Formally, for a subarray C[i], C[i+1], …, C[j], there does not exist i &lt;= k1, k2 &lt;= j with k1 % A.length = k2 % A.length.)</p><a id="more"></a><h2 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h2><p>Example 1:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: [1,-2,3,-2]</span><br><span class="line">Output: 3</span><br><span class="line">Explanation: Subarray [3] has maximum sum 3</span><br></pre></td></tr></table></figure><p>Example 2:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: [5,-3,5]</span><br><span class="line">Output: 10</span><br><span class="line">Explanation: Subarray [5,5] has maximum sum 5 + 5 = 10</span><br></pre></td></tr></table></figure></p><p>Example 3:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: [3,-1,2,-1]</span><br><span class="line">Output: 4</span><br><span class="line">Explanation: Subarray [2,-1,3] has maximum sum 2 + (-1) + 3 = 4</span><br></pre></td></tr></table></figure></p><p>Example 4:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: [3,-2,2,-3]</span><br><span class="line">Output: 3</span><br><span class="line">Explanation: Subarray [3] and [3,-2,2] both have maximum sum 3</span><br></pre></td></tr></table></figure></p><p>Example 5:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: [-2,-3,-1]</span><br><span class="line">Output: -1</span><br><span class="line">Explanation: Subarray [-1] has maximum sum -1</span><br></pre></td></tr></table></figure></p><h2 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h2><ol><li>$-30000 &lt;= A[i] &lt;= 30000$</li><li>$1 &lt;= A.length &lt;= 30000$</li></ol><h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><h2 id="暴力法"><a href="#暴力法" class="headerlink" title="暴力法"></a>暴力法</h2><p>因为太久没有做过题了，对题目都没什么感觉了，感觉有点熟悉，可以用DP（发现是暑假的时候在紫书中看过），但是一下不知道怎么用。于是先用暴力法试试水。</p><p>题目当中要求的是最大子段和，所以考虑枚举所有的子段，每个子段包含一个普通的区间和一个首尾相接的连续区间。<br>枚举的情况有$2 * C_n^2$种，每种情况计算子段和可以通过累计前缀和来计算，总复杂度为$O(n^2$)。</p><p>最后结果为超时，大概能过 91 / 109 个样例。</p><h2 id="最大子序列和算法"><a href="#最大子序列和算法" class="headerlink" title="最大子序列和算法"></a>最大子序列和算法</h2><p>暴力法超时后思考无果，上网看看别人的思路。发现求解最大子序列的和有一个很好的算法，就是 <a href="https://zh.wikipedia.org/wiki/%E6%9C%80%E5%A4%A7%E5%AD%90%E6%95%B0%E5%88%97%E9%97%AE%E9%A2%98" target="_blank" rel="noopener">Kadane 算法</a>。很好理解，直接在下面提出代码：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">kadane</span><span class="params">(arr)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> len(arr) == <span class="number">0</span>: <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    ans = cur = arr[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> arr[<span class="number">1</span>:]:</span><br><span class="line">        cur = arr[i] + max(cur, <span class="number">0</span>)</span><br><span class="line">        ans = max(ans, cur)</span><br><span class="line">    <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure><p>源方法来自于DP的化简，设 $dp[i]$ 为数组以元素<code>arr[i]</code>结尾的最大子序列和，则有下列的转移方程。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[i+<span class="number">1</span>] = dp[i] + arr[i+<span class="number">1</span>] <span class="keyword">if</span> dp[i] &gt; <span class="number">0</span> <span class="keyword">else</span> arr[i+<span class="number">1</span>]</span><br></pre></td></tr></table></figure><p>实际使用过程中无需存储dp数组，为了降低空间复杂度，使用数值变量记录数值即可。</p><h2 id="问题进一步分析"><a href="#问题进一步分析" class="headerlink" title="问题进一步分析"></a>问题进一步分析</h2><p>于是问题就变成了在求解数组的最大子序列和的基础上，进一步考虑双向区间的和。原本的子序列，只考虑数组的单向区间，这一块可以通过kadane算法求解，所以所需考虑的问题为怎么求双向区间（一头一尾组成）的子数组和。大致有下面三种方法。</p><h3 id="相邻数组法"><a href="#相邻数组法" class="headerlink" title="相邻数组法"></a>相邻数组法</h3><p>单区间子序列的最大值可以通过Kadane算法直接求出。<br>环形序列的双区间子序列则可分成左右两部分来找出，我们定义<code>maxright[i]</code> 为下标为i的元素右侧的最大子序列和，这个可以通过一次倒序扫描求出。所以双区间最大子序列和为<code>max(leftsums[i] + maxright(i+1) for i in range(N-2))</code></p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fun1</span><span class="params">(A)</span>:</span></span><br><span class="line">    ans = cur = A[<span class="number">0</span>]</span><br><span class="line">    N = len(A)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,N):</span><br><span class="line">        cur = A[i] + max(<span class="number">0</span>,cur)</span><br><span class="line">        ans = max(ans,cur)</span><br><span class="line"></span><br><span class="line">    leftsums = [A[<span class="number">0</span>] <span class="keyword">for</span> _ <span class="keyword">in</span> range(N)]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,N): leftsums[i] = leftsums[i<span class="number">-1</span>] + A[i]</span><br><span class="line"></span><br><span class="line">    rightsums = [A[<span class="number">-1</span>] <span class="keyword">for</span> _ <span class="keyword">in</span> range(N)]</span><br><span class="line">    maxright = [A[<span class="number">-1</span>] <span class="keyword">for</span> _ <span class="keyword">in</span> range(N)]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(N<span class="number">-2</span>,<span class="number">-1</span>,<span class="number">-1</span>):</span><br><span class="line">        rightsums[i] = rightsums[i+<span class="number">1</span>] + A[i]</span><br><span class="line">        maxright[i] = max(maxright[i+<span class="number">1</span>],rightsums[i])</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,N<span class="number">-1</span>):</span><br><span class="line">        ans = max(ans, leftsums[i<span class="number">-1</span>]+maxright[i])</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure><h3 id="变号法"><a href="#变号法" class="headerlink" title="变号法"></a>变号法</h3><p>本方法将双区间的序列和转化为整个数组的总和减去单区间子段和，其值为$S - \sum_{k=i}^jA_k$，该值的最大值为后者取最小值时的值，问题变成求解数组元素i到j的最小值，将数组元素全体乘以-1，则变成求解最大值，可套用kadane算法。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fun2</span><span class="params">(A)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">kadane</span><span class="params">(gen)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> len(gen) == <span class="number">0</span>: <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        ans = cur = gen[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> gen[<span class="number">1</span>:]:</span><br><span class="line">            cur = i + max(cur,<span class="number">0</span>)</span><br><span class="line">            ans = max(ans,cur)</span><br><span class="line">        <span class="keyword">return</span> ans</span><br><span class="line"></span><br><span class="line">    alls = sum(A)</span><br><span class="line">    ans1 = kadane(A)</span><br><span class="line">    ans2 = alls + kadane([-A[i] <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,len(A)<span class="number">-1</span>)])</span><br><span class="line">    print(alls,ans1,ans2)</span><br><span class="line">    <span class="keyword">return</span> max(ans1,ans2)</span><br></pre></td></tr></table></figure><h3 id="前缀和-优先队列"><a href="#前缀和-优先队列" class="headerlink" title="前缀和+优先队列"></a>前缀和+优先队列</h3><p>因为数组A的循环子段必然是数组B=A+A的子段，所以可将数组拼接一次在求单区间的最大子序列和，只需满足子序列长度不超过原数组长度。<br>对于子序列<code>B[i+1:j+1]</code>，其和为<code>P[j]-P[i]</code>，这里我们固定j，找出使P[i]最小的i值，可通过优先队列实现，这里通过在插入元素时比较当前元素与队列末元素的大小进行插入处理，手动实现优先队列。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fun</span><span class="params">(A)</span>:</span></span><br><span class="line">    P = A * <span class="number">2</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,len(P)):</span><br><span class="line">        P[i] = P[i] + P[i<span class="number">-1</span>]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">from</span> collections <span class="keyword">import</span> deque</span><br><span class="line">    queue = deque([<span class="number">0</span>])</span><br><span class="line">    ans = A[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>,len(P)):</span><br><span class="line">        i = queue[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">if</span> j-i &gt; len(A):</span><br><span class="line">            queue.popleft()</span><br><span class="line">            i = queue[<span class="number">0</span>]</span><br><span class="line">        ans = max(ans, P[j]-P[i])</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> queue <span class="keyword">and</span> P[queue[<span class="number">-1</span>]] &gt; P[j]:</span><br><span class="line">            queue.pop()</span><br><span class="line"></span><br><span class="line">        queue.append(j)</span><br><span class="line">    <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Problem&quot;&gt;&lt;a href=&quot;#Problem&quot; class=&quot;headerlink&quot; title=&quot;Problem&quot;&gt;&lt;/a&gt;Problem&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;source: &lt;a href=&quot;https://leetcode-cn.com/problems/maximum-sum-circular-subarray/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Maximum Sum Circular Subarray&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;difficulty: Medium&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Given a circular array C of integers represented by A, find the maximum possible sum of a non-empty subarray of C.&lt;/p&gt;
+&lt;p&gt;Here, a circular array means the end of the array connects to the beginning of the array.  (Formally, C[i] = A[i] when 0 &amp;lt;= i &amp;lt; A.length, and C[i+A.length] = C[i] when i &amp;gt;= 0.)&lt;/p&gt;
+&lt;p&gt;Also, a subarray may only include each element of the fixed buffer A at most once.  (Formally, for a subarray C[i], C[i+1], …, C[j], there does not exist i &amp;lt;= k1, k2 &amp;lt;= j with k1 % A.length = k2 % A.length.)&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="算法" scheme="http://scottyeung.club/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="Python" scheme="http://scottyeung.club/tags/Python/"/>
+    
+      <category term="Leetcode" scheme="http://scottyeung.club/tags/Leetcode/"/>
+    
+      <category term="DP" scheme="http://scottyeung.club/tags/DP/"/>
+    
+      <category term="最大子序列和" scheme="http://scottyeung.club/tags/%E6%9C%80%E5%A4%A7%E5%AD%90%E5%BA%8F%E5%88%97%E5%92%8C/"/>
+    
+  </entry>
   
   <entry>
     <title>谈谈牙齿</title>
@@ -128,9 +162,9 @@
     
       <category term="Mysql" scheme="http://scottyeung.club/tags/Mysql/"/>
     
-      <category term="sql" scheme="http://scottyeung.club/tags/sql/"/>
-    
       <category term="生产力" scheme="http://scottyeung.club/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/"/>
+    
+      <category term="sql" scheme="http://scottyeung.club/tags/sql/"/>
     
       <category term="SQLAlchemy" scheme="http://scottyeung.club/tags/SQLAlchemy/"/>
     
@@ -155,13 +189,13 @@
     
       <category term="Python" scheme="http://scottyeung.club/tags/Python/"/>
     
-      <category term="生产力" scheme="http://scottyeung.club/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/"/>
-    
       <category term="自动化" scheme="http://scottyeung.club/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/"/>
     
       <category term="编程学习" scheme="http://scottyeung.club/tags/%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0/"/>
     
       <category term="summary" scheme="http://scottyeung.club/tags/summary/"/>
+    
+      <category term="生产力" scheme="http://scottyeung.club/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/"/>
     
   </entry>
   
@@ -552,29 +586,6 @@
     
       <category term="机器学习" scheme="http://scottyeung.club/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
-    
-  </entry>
-  
-  <entry>
-    <title>春秋古筮法</title>
-    <link href="http://scottyeung.club/2019/%E6%98%A5%E7%A7%8B%E5%8F%A4%E7%AD%AE%E6%B3%95/"/>
-    <id>http://scottyeung.club/2019/春秋古筮法/</id>
-    <published>2019-04-20T03:18:35.000Z</published>
-    <updated>2019-11-12T14:48:29.990Z</updated>
-    
-    <content type="html"><![CDATA[<p>第一次接触春秋古筮法是在大二上名为中国术数文化的公选课上。当时因为需要按类别选课，不得不选择中国与全国类别的公选课，恰好一直以来都对玄学有着谜之兴趣，就选了这门公选课。当时十几周的课程，现在我的印象就剩下春秋古筮法了，最终也能叫有所收获？</p><p>到了寒假，不知为什么又重新想到了春秋古筮法，然而大体以及忘记了，在重新复习了相关的方法后，为了不至于忘却，我萌生了开发一个春秋古筮法占卜的应用，然后在这个学期里大概花了两个星期的时间，上线了WEB版本，<a href="http://divi.scottyeung.club:8080/" target="_blank" rel="noopener">点此可体验</a>（因为服务器没有备案，所以暂且不能直接上80端口）。在基本完成之后的现在，打算写点东西记录一下。</p><a id="more"></a><h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>在谈什么是古筮法之前，我们先来谈谈，是什么？</p><p>所谓的“占”，指的是解读兆象吉凶，也就是我们现在说的铁口直断的断。</p><p>据《周礼》记载，古代的占法主要有三项：占卜、占筮、占梦。占卜是通过灼烧龟壳得出兆象，占筮则是通过蓍草演算出卦象，占梦则是根据梦境来预测吉凶。然而其中的占卜和占梦的方法都已经失传，现在从周朝流传下来的占法就只有占筮，这就是流传下来的春秋古筮法</p><h1 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h1><p>传统的方法使用的是蓍草，在我们的实操中，使用纸牌也行（课堂上用的就是纸牌）</p><ol start="0"><li>初始选择49张纸牌</li><li>将其随意分成2堆</li><li>随意从1堆中拿出1张单独放置</li><li>两堆牌分别4张4张地数，记录余数，余数为0时记作4</li><li>将余数的牌取出来弃置</li><li>将两堆牌合并后，回到步骤1，合共重复3次</li><li>三次变化之后，牌数除以四，就得出9、8、7、6中的一个，此为一卦六爻中的一爻，分别是变爻阳爻，阴爻，阳爻，变爻阴爻。其中阳爻为<code>-</code>,阴爻为<code>--</code></li><li>上述步骤重复六次，分别得到六爻，此为卦象。卦象中爻的顺序自下到上</li></ol><p>每一爻需要3次变化，求出6爻共需要18次变化，此所谓“十有八变而成卦”。</p><h1 id="解读"><a href="#解读" class="headerlink" title="解读"></a>解读</h1><p>当得出卦象后，我们可以根据《周易》来断卦。周易共分为64节，每一节对应一个卦象，小节中包含卦义卦辞，及各爻爻辞。周易的卦象爻辞解释网上随处可以找到，这里就不直接给出。</p><p>根据卦象变卦数量情况，可分为：</p><ul><li>无变爻：看卦辞卦义</li><li>单变爻：看本卦变爻爻辞</li><li>三变爻：本卦和变卦的卦辞卦义</li><li>五变爻：变卦的卦辞卦义</li></ul><p>以上的规则都是古书里的春秋筮例中归纳出来的，并没有什么确定性的表述或规则，所以如果你问为什么要这样看，或者为什么不那样看，我不能回答你，估计也没有人能回答你。</p><h1 id="程序实现"><a href="#程序实现" class="headerlink" title="程序实现"></a>程序实现</h1><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>整个古筮法分为得出卦象，解卦两方面。<br>碍于变爻需要根据特定情况的分析，且找到的周易卦象解释了没有具体的爻辞解析，所以整个程序忽略的变爻，并直接使用卦象本身卦辞卦义作为解释。</p><h2 id="方法-1"><a href="#方法-1" class="headerlink" title="方法"></a>方法</h2><p>卦象数据的来源为<a href="https://www.eee-learning.com/" target="_blank" rel="noopener">易学网</a>，感觉是一个非常专业而全面的易经学习网站。我使用爬虫爬取了64卦的卦文，运程分析等相关资料。</p><p>卦象的生成为六爻的随机生成组合。并根据相应的卦象返回相应的解读。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;第一次接触春秋古筮法是在大二上名为中国术数文化的公选课上。当时因为需要按类别选课，不得不选择中国与全国类别的公选课，恰好一直以来都对玄学有着谜之兴趣，就选了这门公选课。当时十几周的课程，现在我的印象就剩下春秋古筮法了，最终也能叫有所收获？&lt;/p&gt;
-&lt;p&gt;到了寒假，不知为什么又重新想到了春秋古筮法，然而大体以及忘记了，在重新复习了相关的方法后，为了不至于忘却，我萌生了开发一个春秋古筮法占卜的应用，然后在这个学期里大概花了两个星期的时间，上线了WEB版本，&lt;a href=&quot;http://divi.scottyeung.club:8080/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;点此可体验&lt;/a&gt;（因为服务器没有备案，所以暂且不能直接上80端口）。在基本完成之后的现在，打算写点东西记录一下。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="杂谈" scheme="http://scottyeung.club/categories/%E6%9D%82%E8%B0%88/"/>
-    
-    
-      <category term="玄学" scheme="http://scottyeung.club/tags/%E7%8E%84%E5%AD%A6/"/>
     
   </entry>
   
