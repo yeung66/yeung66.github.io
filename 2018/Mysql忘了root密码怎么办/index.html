@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="引言在准备做Windows程序设计的大作业时，准备用到Mysql，打开了Mysql WorkBench连接本地数据库，却提示要输入密码，试了几个常用密码无果后，因而发现自己再次忘记了Mysql的root密码。没有关系，本人已经习惯了，驾轻就熟地打开百度搜索相关方法，却发现来来去去都是那同一个方法，而且还与实际有些差异，最终还是花费了不少的时间，有点难受，遂写一文记录一下。">
+<meta name="description" content="引言在准备做Windows程序设计的大作业时，需要用到Mysql。打开了Mysql WorkBench连接本地数据库时，提示要输入root密码，试了几个常用密码无果后，发现自己再次忘记了Mysql的root密码。但是没有关系，本人已经习惯忘记各种不太常用的账号密码了，驾轻就熟地打开百度搜索相关方法，却发现来来去去都是那同一个方法，而且还因为版本问题与实际情况有些差异，最终还是花费了不少的时间，有点">
 <meta name="keywords" content="Mysql">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mysql忘了root密码怎么办">
 <meta property="og:url" content="http://scottyeung.club/2018/Mysql忘了root密码怎么办/index.html">
 <meta property="og:site_name" content="YeungYeah 的乱写地">
-<meta property="og:description" content="引言在准备做Windows程序设计的大作业时，准备用到Mysql，打开了Mysql WorkBench连接本地数据库，却提示要输入密码，试了几个常用密码无果后，因而发现自己再次忘记了Mysql的root密码。没有关系，本人已经习惯了，驾轻就熟地打开百度搜索相关方法，却发现来来去去都是那同一个方法，而且还与实际有些差异，最终还是花费了不少的时间，有点难受，遂写一文记录一下。">
+<meta property="og:description" content="引言在准备做Windows程序设计的大作业时，需要用到Mysql。打开了Mysql WorkBench连接本地数据库时，提示要输入root密码，试了几个常用密码无果后，发现自己再次忘记了Mysql的root密码。但是没有关系，本人已经习惯忘记各种不太常用的账号密码了，驾轻就熟地打开百度搜索相关方法，却发现来来去去都是那同一个方法，而且还因为版本问题与实际情况有些差异，最终还是花费了不少的时间，有点">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-12T14:48:29.982Z">
+<meta property="og:updated_time" content="2020-02-16T12:40:27.890Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mysql忘了root密码怎么办">
-<meta name="twitter:description" content="引言在准备做Windows程序设计的大作业时，准备用到Mysql，打开了Mysql WorkBench连接本地数据库，却提示要输入密码，试了几个常用密码无果后，因而发现自己再次忘记了Mysql的root密码。没有关系，本人已经习惯了，驾轻就熟地打开百度搜索相关方法，却发现来来去去都是那同一个方法，而且还与实际有些差异，最终还是花费了不少的时间，有点难受，遂写一文记录一下。">
+<meta name="twitter:description" content="引言在准备做Windows程序设计的大作业时，需要用到Mysql。打开了Mysql WorkBench连接本地数据库时，提示要输入root密码，试了几个常用密码无果后，发现自己再次忘记了Mysql的root密码。但是没有关系，本人已经习惯忘记各种不太常用的账号密码了，驾轻就熟地打开百度搜索相关方法，却发现来来去去都是那同一个方法，而且还因为版本问题与实际情况有些差异，最终还是花费了不少的时间，有点">
 
 
 
@@ -395,9 +395,9 @@
       
 
       
-        <h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>在准备做Windows程序设计的大作业时，准备用到Mysql，打开了Mysql WorkBench连接本地数据库，却提示要输入密码，试了几个常用密码无果后，因而发现自己再次忘记了Mysql的root密码。没有关系，本人已经习惯了，驾轻就熟地打开百度搜索相关方法，却发现来来去去都是那同一个方法，而且还与实际有些差异，最终还是花费了不少的时间，有点难受，遂写一文记录一下。</p>
+        <h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>在准备做Windows程序设计的大作业时，需要用到Mysql。打开了Mysql WorkBench连接本地数据库时，提示要输入root密码，试了几个常用密码无果后，发现自己再次忘记了Mysql的root密码。但是没有关系，本人已经习惯忘记各种不太常用的账号密码了，驾轻就熟地打开百度搜索相关方法，却发现来来去去都是那同一个方法，而且还因为版本问题与实际情况有些差异，最终还是花费了不少的时间，有点难受，遂写一文记录一下。</p>
 <a id="more"></a>
-<h1 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h1><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>纵观百度各种方法，思路均是大致一样：运用mysql的<code>-skip-grant-tables</code>参数，可以使进入mysql时免去密码验证，进入mysql后修改<code>mysql.user</code>用户表中root用户的密码</p>
+<h1 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h1><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>纵观百度各种方法，思路均是大致一样：运用mysql的<code>-skip-grant-tables</code>参数，可以使进入mysql时免去密码验证，进入mysql后修改<code>mysql.user</code>用户表中root用户的密码，以达到解决忘记密码的问题。</p>
 <h2 id="具体步骤"><a href="#具体步骤" class="headerlink" title="具体步骤"></a>具体步骤</h2><ol>
 <li><p>以管理员身份打开cmd，关闭mysql</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net stop mysql</span><br></pre></td></tr></table></figure>
@@ -428,11 +428,11 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">net start mysql</span><br><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<h1 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h1><p>修改root密码方法的教程网上有很多，但是我经过一通操作后，还是无法进入mysql。在进行上文的方法操作时，在通过<code>-skip-grant-tables</code>时我便出现了错误，提示mysql根目录中data目录不存在，搜索网上的教程，建议是自己新建一个data文件夹，新建后便可正常免密码验证进入mysql。但按照后续的步骤操作后，还是无法正常修改root密码，进入mysql。仔细思考，为什么我这里没有data目录，不仅如此，我这里还没有在众多教程中提到的my.ini配置文件，突然想起，自还原电脑后，我好像还没在本系统使用过mysql，我的mysql还没有初始化，其实并不算是忘记root密码的问题（可能是我太经常忘记了，习以为常）。但因为我强行新建data目录，进了mysql，已经打乱了项目的结构，反正里面没什么数据，干脆删了重新装一个mysql了。</p>
+<h1 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h1><p>修改root密码方法的教程网上有很多，但是我经过一通操作后，还是无法进入mysql。在进行上文的方法操作时，在通过<code>-skip-grant-tables</code>时我便出现了错误，提示mysql根目录中data目录不存在，搜索网上的教程，建议是自己新建一个data文件夹，新建后便可正常免密码验证进入mysql。但按照后续的步骤操作后，还是无法正常修改root密码，进入mysql。仔细思考，为什么我这里没有data目录，不仅如此，我这里还没有在众多教程中提到的my.ini配置文件，突然想起，自还原电脑后，我好像还没在本系统使用过mysql，我的mysql还没有初始化，其实并不算是忘记root密码的问题（可能是我太经常忘记了，已经习以为常）。但因为我强行新建了data目录，进入mysql，已经打乱了项目的结构，无法还原。反正里面没什么数据，就打算干脆删了重新装一个mysql。</p>
 <h2 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h2><p>mysql的卸载比较简单，当时我是用Mysql Installer安装的，直接进入Mysql Installer进行卸载即可。如果不是的话，就比较麻烦了，到控制面板把Mysql Server卸载了，再把mysql项目所在文件夹删除，然后再到注册表删除相关项，详情可参照<a href="https://www.jb51.net/article/146050.htm" target="_blank" rel="noopener">这里</a></p>
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>两种方法</p>
 <ul>
-<li><p>一是使用<a href="https://dev.mysql.com/downloads/windows/installer/" target="_blank" rel="noopener">Mysql Installer</a>。使用该在线安装软件非常方便，还可选择安装配套的mysql相关软件，安装完后可直接进入傻瓜式配置，无需进行额外的配置，且后续的卸载也可以在这上面进行，个人比较推荐。但该软件只能运行在Windows上，且只能安装最新版本的mysql8。尝试了一下，在初始化数据库时出现问题，而搜索该问题发现关于新版本mysql的相关信息非常少，遂放弃新版本，放弃该方式</p>
+<li><p>一是使用<a href="https://dev.mysql.com/downloads/windows/installer/" target="_blank" rel="noopener">Mysql Installer</a>。使用该在线安装软件非常方便，还可选择安装配套的mysql相关软件，安装完后可直接进入傻瓜式配置，无需进行额外的配置，且后续的卸载也可以在这上面进行，个人比较推荐。但该软件只能运行在Windows上，且只能安装最新版本的mysql8。尝试了一下，在初始化数据库时出现问题，而搜索该问题发现关于新版本mysql的相关信息非常少，遂放弃新版本，放弃该方式。</p>
 </li>
 <li><p>二是使用<a href="https://dev.mysql.com/downloads/mysql/" target="_blank" rel="noopener">压缩包</a>安装。选择相应的版本下载压缩包解压即可。这种方式则需要手动额外配置。主要步骤有</p>
 <ul>
@@ -638,7 +638,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -660,7 +660,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">65</span>
+                  <span class="site-state-item-count">68</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
