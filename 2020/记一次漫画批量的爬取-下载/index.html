@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="YeungYeah 的乱写地">
 <meta property="og:description" content="背景想找回一部很久之前看的漫画，网上的资源较少，大多都已被封禁，少数能看的网页加载还超级慢，有些图片显示还非常奇怪，影响正常阅读，遂萌生了下载下来在本地看的想法。后来找到一个网页，显示正常，能看，但是速度有点不稳定，于是就选择爬取该网页，将漫画全部下载到电脑上。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-02-28T16:32:59.655Z">
+<meta property="og:updated_time" content="2020-02-28T16:38:32.021Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="记一次漫画批量的爬取&#x2F;下载">
 <meta name="twitter:description" content="背景想找回一部很久之前看的漫画，网上的资源较少，大多都已被封禁，少数能看的网页加载还超级慢，有些图片显示还非常奇怪，影响正常阅读，遂萌生了下载下来在本地看的想法。后来找到一个网页，显示正常，能看，但是速度有点不稳定，于是就选择爬取该网页，将漫画全部下载到电脑上。">
@@ -395,7 +395,7 @@
       
 
       
-        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>想找回一部很久之前看的漫画，网上的资源较少，大多都已被封禁，少数能看的网页加载还超级慢，有些图片显示还非常奇怪，影响正常阅读，遂萌生了下载下来在本地看的想法。后来找到一个网页，显示正常，能看，但是速度有点不稳定，于是就选择爬取该网页，将漫画全部下载到电脑上。</p>
+        <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>想找回一部很久之前看的漫画，网上的资源较少，大多都已被封禁，少数能看的网页加载还超级慢，有些图片显示还非常奇怪，影响正常阅读，遂萌生了下载下来在本地看的想法。后来找到一个网页，显示正常，能看，但是速度有点不稳定，于是就选择爬取该网页，将漫画全部下载到电脑上。</p>
 <a id="more"></a>
 <h1 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h1><p>漫画下载无非就是图片的抓取下载，也算是一种比较简单的爬虫。分析选为抓取来源的网页的URL，发现其URL规律为<code>host/type/漫画的ID+漫画章节号+第几页</code>，可以按照该规律生成所有漫画每一页的URL，则可以根据每一个URL获取里面的漫画图片下载。进一步分析这些页面上漫画图片的URL，发现是跳转到一个ASP页面进行提供，链接为三级ID组成，包括漫画ID，章节号，页码组成。在浏览器直接访问图片的URL，发现会跳转到404页面。根据开发者调试工具的Network栏中拦截的请求，发现图片实则来自另一个URL，并且图片URL的规律十分明显。于是问题就转变成根据规律批量生成图片的URL并下载。</p>
 <h1 id="具体实现：Python"><a href="#具体实现：Python" class="headerlink" title="具体实现：Python"></a>具体实现：Python</h1><p>为了简单，就没有使用任何的轮子。直接使用requests库访问这些URL获取图片资源，并写入到本地文件中保存。</p>
@@ -421,6 +421,7 @@
 <h1 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h1><ul>
 <li>对于网络爬虫/下载，最为制约效率的因素始终是网络因素，这个也是我们最不能把握的。可能是服务器端的接入速率因素，可能是服务器端的处理计算速度因素，可能是链路的传输速度因素，还可能是墙的因素，有很多的可能性。</li>
 <li>在程序刚运行的时候，我想到过多的http请求会不会把那个站点搞崩。一百多话，每画平均25页，接近三千多张图片，需要发三千多个http请求，会不会over了，不过在当前这个速度下显然是想多了。不过这在以后的爬虫获取数据或者资源的时候确实需要考虑，为他人想想，可以考虑加点间隔时间。</li>
+<li>东西不用了就会忘记，技能确实需要是不是拾起来使使。</li>
 </ul>
 
       
@@ -694,7 +695,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#实现思路"><span class="nav-number"></span> <span class="nav-text">实现思路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#具体实现：Python"><span class="nav-number"></span> <span class="nav-text">具体实现：Python</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#v1"><span class="nav-number">1.</span> <span class="nav-text">v1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#效果"><span class="nav-number">1.1.</span> <span class="nav-text">效果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#v2"><span class="nav-number">2.</span> <span class="nav-text">v2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#效果-1"><span class="nav-number">2.1.</span> <span class="nav-text">效果</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#具体实现：Goland"><span class="nav-number"></span> <span class="nav-text">具体实现：Goland</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#v3"><span class="nav-number">1.</span> <span class="nav-text">v3</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#效果-2"><span class="nav-number">1.1.</span> <span class="nav-text">效果</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#思考"><span class="nav-number"></span> <span class="nav-text">思考</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实现思路"><span class="nav-number">2.</span> <span class="nav-text">实现思路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#具体实现：Python"><span class="nav-number">3.</span> <span class="nav-text">具体实现：Python</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#v1"><span class="nav-number">3.1.</span> <span class="nav-text">v1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#效果"><span class="nav-number">3.1.1.</span> <span class="nav-text">效果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#v2"><span class="nav-number">3.2.</span> <span class="nav-text">v2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#效果-1"><span class="nav-number">3.2.1.</span> <span class="nav-text">效果</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#具体实现：Goland"><span class="nav-number">4.</span> <span class="nav-text">具体实现：Goland</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#v3"><span class="nav-number">4.1.</span> <span class="nav-text">v3</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#效果-2"><span class="nav-number">4.1.1.</span> <span class="nav-text">效果</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#思考"><span class="nav-number">5.</span> <span class="nav-text">思考</span></a></li></ol></div>
             
 
           </div>
