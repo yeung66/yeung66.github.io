@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Python,Golang,爬虫,多线程,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="YeungYeah 的乱写地" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="背景想找回一部很久之前看的漫画，网上的资源较少，大多都已被封禁，少数能看的网页加载还超级慢，有些图片显示还非常奇怪，影响正常阅读，遂萌生了下载下来在本地看的想法。后来找到一个网页，显示正常，能看，但是速度有点不稳定，于是就选择爬取该网页，将漫画全部下载到电脑上。">
+<meta name="keywords" content="Python,Golang,爬虫,多线程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记一次漫画批量的爬取&#x2F;下载">
+<meta property="og:url" content="http://scottyeung.club/2020/记一次漫画批量的爬取-下载/index.html">
+<meta property="og:site_name" content="YeungYeah 的乱写地">
+<meta property="og:description" content="背景想找回一部很久之前看的漫画，网上的资源较少，大多都已被封禁，少数能看的网页加载还超级慢，有些图片显示还非常奇怪，影响正常阅读，遂萌生了下载下来在本地看的想法。后来找到一个网页，显示正常，能看，但是速度有点不稳定，于是就选择爬取该网页，将漫画全部下载到电脑上。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-02-28T16:32:59.655Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="记一次漫画批量的爬取&#x2F;下载">
+<meta name="twitter:description" content="背景想找回一部很久之前看的漫画，网上的资源较少，大多都已被封禁，少数能看的网页加载还超级慢，有些图片显示还非常奇怪，影响正常阅读，遂萌生了下载下来在本地看的想法。后来找到一个网页，显示正常，能看，但是速度有点不稳定，于是就选择爬取该网页，将漫画全部下载到电脑上。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://scottyeung.club/2020/记一次漫画批量的爬取-下载/">
+
+
+
+
+<script data-ad-client="ca-pub-7766364950991401" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+  <title>记一次漫画批量的爬取/下载 | YeungYeah 的乱写地</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-151343043-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YeungYeah 的乱写地</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-动态">
+          <a href="/moments" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>
+            
+            动态
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-占卜">
+          <a href="http://divi.scottyeung.club:8080/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>
+            
+            占卜
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://scottyeung.club/2020/记一次漫画批量的爬取-下载/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Scott Yeung">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/self.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YeungYeah 的乱写地">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">记一次漫画批量的爬取/下载</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-28T22:01:33+08:00">
+                2020-02-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Coding记录/" itemprop="url" rel="index">
+                    <span itemprop="name">Coding记录</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2020/记一次漫画批量的爬取-下载/" class="leancloud_visitors" data-flag-title="记一次漫画批量的爬取/下载">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>想找回一部很久之前看的漫画，网上的资源较少，大多都已被封禁，少数能看的网页加载还超级慢，有些图片显示还非常奇怪，影响正常阅读，遂萌生了下载下来在本地看的想法。后来找到一个网页，显示正常，能看，但是速度有点不稳定，于是就选择爬取该网页，将漫画全部下载到电脑上。</p>
+<a id="more"></a>
+<h1 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h1><p>漫画下载无非就是图片的抓取下载，也算是一种比较简单的爬虫。分析选为抓取来源的网页的URL，发现其URL规律为<code>host/type/漫画的ID+漫画章节号+第几页</code>，可以按照该规律生成所有漫画每一页的URL，则可以根据每一个URL获取里面的漫画图片下载。进一步分析这些页面上漫画图片的URL，发现是跳转到一个ASP页面进行提供，链接为三级ID组成，包括漫画ID，章节号，页码组成。在浏览器直接访问图片的URL，发现会跳转到404页面。根据开发者调试工具的Network栏中拦截的请求，发现图片实则来自另一个URL，并且图片URL的规律十分明显。于是问题就转变成根据规律批量生成图片的URL并下载。</p>
+<h1 id="具体实现：Python"><a href="#具体实现：Python" class="headerlink" title="具体实现：Python"></a>具体实现：Python</h1><p>为了简单，就没有使用任何的轮子。直接使用requests库访问这些URL获取图片资源，并写入到本地文件中保存。</p>
+<h2 id="v1"><a href="#v1" class="headerlink" title="v1"></a>v1</h2><p>具体的实现思路大概如下。对于漫画的每一话，先创建目录，然后根据该话的序号和页面生成目标资源URL，发送GET请求获取资源，通过文件写入保存到本地，直到访问的URL不存在漫画图片，跳转到404页面，此处我们通过判断响应首部的内容长度是否等于404图片的大小来判断该话是否结束爬取。根据漫画的总数，对每一话进行下载。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">baseUrl = <span class="string">'https://www.xxxxxx.com/1234/1234/&#123;0:0&gt;3d&#125;/&#123;1:0&gt;3d&#125;.jpg'</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getChapter</span><span class="params">(no)</span>:</span></span><br><span class="line">    <span class="string">'''获取并保存第no话的漫画'''</span></span><br><span class="line">    cnt = <span class="number">1</span></span><br><span class="line">    os.mkdir(saveDir + str(no))</span><br><span class="line">    req = requests.get(baseUrl.format(no,cnt))</span><br><span class="line">    print(req.status_code, req.headers)</span><br><span class="line">    <span class="keyword">while</span> req.status_code == <span class="number">200</span> <span class="keyword">and</span> req.headers[<span class="string">'Content-Length'</span>] != size404:</span><br><span class="line">        <span class="keyword">with</span> open(saveDir + str(no) + <span class="string">'/'</span> + str(cnt)+<span class="string">'.jpg'</span>,<span class="string">'wb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">            f.write(req.content)           </span><br><span class="line">        cnt += <span class="number">1</span></span><br><span class="line">        req = requests.get(baseUrl.format(no,cnt))</span><br><span class="line">    <span class="keyword">return</span> cnt - <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<h3 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h3><p>实在是太慢了！</p>
+<p>尝试着下了一话大概花费半到一分多钟左右，这里总共有一百多话，两个多小时肯定是走不掉了，而且还没考虑网络不稳定的因素。考虑了一下其中效率的制约因素，最主要为：</p>
+<ul>
+<li>网络请求。发请求获取资源需要传输时间。</li>
+<li>IO。图片保存到本地需要写入时间。</li>
+</ul>
+<h2 id="v2"><a href="#v2" class="headerlink" title="v2"></a>v2</h2><p>考虑使用多线程进行并行下载，进而提高速度。虽说Python提供的多线程只是伪多线程，实际上还是只能有一个线程被核心处理，但应该还是可以减少其中的等待时间。采用threading.Thread对象，将下载任务分成若干个patch交由不同的线程完成，每个线程完成20话的下载任务。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getPatch</span><span class="params">(start,size,max_chapter)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(start,min(size,max_chapter)+<span class="number">1</span>):</span><br><span class="line">        print(<span class="string">'save chapter &#123;:0&gt;3d&#125; page &#123;:0&gt;3d&#125;'</span>.format(i,getChapter(i)))</span><br><span class="line"></span><br><span class="line">patch = <span class="number">20</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">7</span>):</span><br><span class="line">    t = threading.Thread(target=getPatch,kwargs=&#123;<span class="string">'start'</span>:i*patch+<span class="number">1</span>,<span class="string">'size'</span>:patch,<span class="string">'max_chapter'</span>:<span class="number">136</span>&#125;)</span><br><span class="line">    t.start()</span><br></pre></td></tr></table></figure>
+<h3 id="效果-1"><a href="#效果-1" class="headerlink" title="效果"></a>效果</h3><p>并没有提升多少速度。感觉这个多线程并没提高多少并行程度，我开了7个线程，但是最开始只创建了4文件夹进行下载，在这4话中进行调度交替下载。也不知道花了多少时间，下完这4话之后，我就强制关掉了，弃掉该方案。</p>
+<h1 id="具体实现：Goland"><a href="#具体实现：Goland" class="headerlink" title="具体实现：Goland"></a>具体实现：Goland</h1><p>说到多线程，最方便的肯定就是Go语言了，直接的关键字支持多线程。于是拾起很久没碰过的Goland，甚至新电脑上还没安装环境，还需要重新安装Go语言，配置环境和开发工具，就下Vscode的插件都花了点功夫。</p>
+<p>实现思路还是同Python版本一样，为了简单不使用任何额外的轮子，直接使用net/http包进行http访问，获取图片，并写入到本地文件。</p>
+<h2 id="v3"><a href="#v3" class="headerlink" title="v3"></a>v3</h2><p>具体的单话下载代码如下。方法跟Python版本的几乎一样，不过Go语言做了额外的错误处理，显得有点冗余。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">downChapter</span><span class="params">(no <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">	page := <span class="number">1</span></span><br><span class="line">	<span class="keyword">for</span> ;; page++ &#123;</span><br><span class="line">		_, err := os.Stat(fmt.Sprintf(saveDir, no))</span><br><span class="line">		<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">			fmt.Println(fmt.Sprintf(saveDir, no))</span><br><span class="line">			os.Mkdir(fmt.Sprintf(saveDir, no), os.ModePerm)</span><br><span class="line">		&#125;</span><br><span class="line">		res, err := http.Get(fmt.Sprintf(baseUrl, no, page))</span><br><span class="line">		<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">			fmt.Println(err.Error())</span><br><span class="line">			<span class="keyword">return</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> res.Header.Get(<span class="string">"Content-Length"</span>) == size404&#123;</span><br><span class="line">			<span class="keyword">break</span></span><br><span class="line">		&#125;</span><br><span class="line">		file, err := os.Create(fmt.Sprintf(saveDir, no) + fmt.Sprintf(postfix, page))</span><br><span class="line">		<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">			fmt.Println(err.Error())</span><br><span class="line">			<span class="keyword">return</span></span><br><span class="line">		&#125;</span><br><span class="line">		io.Copy(file, res.Body)</span><br><span class="line">		<span class="keyword">defer</span> res.Body.Close()</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Printf(<span class="string">"down chapter %3d with %3d pages\n"</span>,no,page)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用Go语言最主要就是要用它的多线程特性。在Go中只需要在调用函数前加上关键字Go就可以开启新的多线程调用函数。将下载任务分成20个为一批的多个patch，开启了7个线程进行下载。此处使用WaitGroup进行多线程的等待，避免主线程提前结束。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">downPatch</span><span class="params">(start, patch, maxChapter <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">	<span class="keyword">defer</span> wg.Done()</span><br><span class="line">	cnt:=<span class="number">0</span></span><br><span class="line">	<span class="keyword">for</span> no:=start;no&lt;=start+patch &amp;&amp; no&lt;=maxChapter;no++&#123;</span><br><span class="line">		downChapter(no)</span><br><span class="line">		cnt++</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Printf(<span class="string">"down patch from %3d to %3d total %d"</span>,start,start+cnt<span class="number">-1</span>,cnt)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">for</span> i:=<span class="number">0</span>;i&lt;maxChapter/patch;i++&#123;</span><br><span class="line">		wg.Add(<span class="number">1</span>)</span><br><span class="line">		<span class="keyword">go</span> downPatch(i * patch,patch,maxChapter)</span><br><span class="line">	&#125;</span><br><span class="line">	wg.Wait()</span><br><span class="line">	fmt.Println(<span class="string">"finish!"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="效果-2"><a href="#效果-2" class="headerlink" title="效果"></a>效果</h3><p>速度确实提升了，但是感觉没有到很快的程度。。。</p>
+<p>直到写文章的此刻，跑了两个半小时，下了大概86话。打开任务管理器看了看情况，CPU占用率一直很低，磁盘读写占用也很低，感觉瓶颈就在网络传输上面。另外，觉得7个线程也开得有点少了，应该多开一点，榨干电脑的性能，而且开多了也不会有很大的浪费。不过似乎制约速率的瓶颈就这网络传输上面，确实没办法。</p>
+<h1 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h1><ul>
+<li>对于网络爬虫/下载，最为制约效率的因素始终是网络因素，这个也是我们最不能把握的。可能是服务器端的接入速率因素，可能是服务器端的处理计算速度因素，可能是链路的传输速度因素，还可能是墙的因素，有很多的可能性。</li>
+<li>在程序刚运行的时候，我想到过多的http请求会不会把那个站点搞崩。一百多话，每画平均25页，接近三千多张图片，需要发三千多个http请求，会不会over了，不过在当前这个速度下显然是想多了。不过这在以后的爬虫获取数据或者资源的时候确实需要考虑，为他人想想，可以考虑加点间隔时间。</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+     <div>    
+      
+      <ul class="post-copyright">
+         <li class="post-copyright-link">
+          <strong>本文作者：</strong>
+          <a href="/" title="欢迎访问 Scott Yeung 的个人博客">Scott Yeung</a>
+        </li>
+
+        <li class="post-copyright-link">
+          <strong>本文链接：</strong>
+          <a href="http://scottyeung.club/2020/记一次漫画批量的爬取-下载/" title="记一次漫画批量的爬取/下载">http://scottyeung.club/2020/记一次漫画批量的爬取-下载/</a>
+        </li>
+
+        <li class="post-copyright-date">
+            <strong>发布时间： </strong>2020年2月28日 - 22时01分
+        </li>  
+
+        <li class="post-copyright-license">
+          <strong>版权声明： </strong>
+          本文由 Scott Yeung 原创，采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="license" target="_blank">CC BY-NC-SA 4.0</a> ,转载请保留以上声明信息！
+        </li>
+      </ul>
+    
+  </div>
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+            <a href="/tags/Golang/" rel="tag"># Golang</a>
+          
+            <a href="/tags/爬虫/" rel="tag"># 爬虫</a>
+          
+            <a href="/tags/多线程/" rel="tag"># 多线程</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/太极拳中的劲/" rel="next" title="太极拳中的劲">
+                <i class="fa fa-chevron-left"></i> 太极拳中的劲
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    <div>
+		
+    	
+      <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+  <div id="gitalk-container"></div> 
+   <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: '3fbabd18c28661657fc3',
+          clientSecret: '612bee6810b05047dd68fc31d19cff6505aa0d91',
+          repo: 'yeung66.github.io',
+          owner: 'yeung66',
+          admin: ['yeung66'],
+          id: md5(location.pathname),
+          distractionFreeMode: 'true'
+        })
+        gitalk.render('gitalk-container')           
+       </script>
+      
+       
+    
+		
+	</div>
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div id="gitalk-container"></div>
+    
+  
+
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 评论区 -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7766364950991401" data-ad-slot="9049152029" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/self.jpg" alt="Scott Yeung">
+            
+              <p class="site-author-name" itemprop="name">Scott Yeung</p>
+              <p class="site-description motion-element" itemprop="description">道亦有道  玄之又玄</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">71</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/yeung66" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:407284292@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://instagram.com/scottyeung6" target="_blank" title="Instagram">
+                      
+                        <i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://music.163.com/#/user/home?id=126931346" target="_blank" title="网易云音乐">
+                      
+                        <i class="fa fa-fw fa-music"></i>网易云音乐</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#实现思路"><span class="nav-number"></span> <span class="nav-text">实现思路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#具体实现：Python"><span class="nav-number"></span> <span class="nav-text">具体实现：Python</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#v1"><span class="nav-number">1.</span> <span class="nav-text">v1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#效果"><span class="nav-number">1.1.</span> <span class="nav-text">效果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#v2"><span class="nav-number">2.</span> <span class="nav-text">v2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#效果-1"><span class="nav-number">2.1.</span> <span class="nav-text">效果</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#具体实现：Goland"><span class="nav-number"></span> <span class="nav-text">具体实现：Goland</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#v3"><span class="nav-number">1.</span> <span class="nav-text">v3</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#效果-2"><span class="nav-number">1.1.</span> <span class="nav-text">效果</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#思考"><span class="nav-number"></span> <span class="nav-text">思考</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+
+
+    
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Scott Yeung</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("2yhfMbsA5oHkrxvqW2t0roxg-gzGzoHsz", "rf7s0pmEmVPJsn68lh7u7QNz");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+  <link rel="stylesheet" href="/dist/APlayer.min.css">
+  <div id="aplayer"></div>
+  <script type="text/javascript" src="/dist/APlayer.min.js"></script>
+  <script type="text/javascript" src="/dist/music.js"></script>
+</body>
+</html>
