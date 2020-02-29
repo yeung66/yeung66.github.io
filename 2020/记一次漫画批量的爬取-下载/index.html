@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"scottyeung.club","root":"/","scheme":"Pisces","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="背景想找回一部很久之前看的漫画，网上的资源较少，大多都已被封禁，少数能看的网页加载还超级慢，有些图片显示还非常奇怪，影响正常阅读，遂萌生了下载下来在本地看的想法。后来找到一个网页，显示正常，能看，但是速度有点不稳定，于是就选择爬取该网页，将漫画全部下载到电脑上。">
+<meta name="keywords" content="Python,Golang,爬虫,多线程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记一次漫画批量的爬取&#x2F;下载">
+<meta property="og:url" content="http://scottyeung.club/2020/记一次漫画批量的爬取-下载/index.html">
+<meta property="og:site_name" content="YeungYeah 的乱写地">
+<meta property="og:description" content="背景想找回一部很久之前看的漫画，网上的资源较少，大多都已被封禁，少数能看的网页加载还超级慢，有些图片显示还非常奇怪，影响正常阅读，遂萌生了下载下来在本地看的想法。后来找到一个网页，显示正常，能看，但是速度有点不稳定，于是就选择爬取该网页，将漫画全部下载到电脑上。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-02-29T04:19:23.985Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="记一次漫画批量的爬取&#x2F;下载">
+<meta name="twitter:description" content="背景想找回一部很久之前看的漫画，网上的资源较少，大多都已被封禁，少数能看的网页加载还超级慢，有些图片显示还非常奇怪，影响正常阅读，遂萌生了下载下来在本地看的想法。后来找到一个网页，显示正常，能看，但是速度有点不稳定，于是就选择爬取该网页，将漫画全部下载到电脑上。">
+
+<link rel="canonical" href="http://scottyeung.club/2020/记一次漫画批量的爬取-下载/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>记一次漫画批量的爬取/下载 | YeungYeah 的乱写地</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151343043-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-151343043-1');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YeungYeah 的乱写地</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-动态">
+
+    <a href="/moments" rel="section"><i class="fa fa-fw fa-calendar"></i>动态</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-占卜">
+
+    <a href="http://divi.scottyeung.club:8080/" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>占卜</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://scottyeung.club/2020/记一次漫画批量的爬取-下载/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.jpg">
+      <meta itemprop="name" content="Scott Yeung">
+      <meta itemprop="description" content="道亦有道  玄之又玄">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YeungYeah 的乱写地">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          记一次漫画批量的爬取/下载
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-28 22:01:33" itemprop="dateCreated datePublished" datetime="2020-02-28T22:01:33+08:00">2020-02-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-29 12:19:23" itemprop="dateModified" datetime="2020-02-29T12:19:23+08:00">2020-02-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Coding记录/" itemprop="url" rel="index"><span itemprop="name">Coding记录</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/记一次漫画批量的爬取-下载/" class="post-meta-item leancloud_visitors" data-flag-title="记一次漫画批量的爬取/下载" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>想找回一部很久之前看的漫画，网上的资源较少，大多都已被封禁，少数能看的网页加载还超级慢，有些图片显示还非常奇怪，影响正常阅读，遂萌生了下载下来在本地看的想法。后来找到一个网页，显示正常，能看，但是速度有点不稳定，于是就选择爬取该网页，将漫画全部下载到电脑上。</p>
+<a id="more"></a>
+<h1 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h1><p>漫画下载无非就是图片的抓取下载，也算是一种比较简单的爬虫。分析选为抓取来源的网页的URL，发现其URL规律为<code>host/type/漫画的ID+漫画章节号+第几页</code>，可以按照该规律生成所有漫画每一页的URL，则可以根据每一个URL获取里面的漫画图片下载。进一步分析这些页面上漫画图片的URL，发现是跳转到一个ASP页面进行提供，链接为三级ID组成，包括漫画ID，章节号，页码组成。在浏览器直接访问图片的URL，发现会跳转到404页面。根据开发者调试工具的Network栏中拦截的请求，发现图片实则来自另一个URL，并且图片URL的规律十分明显。于是问题就转变成根据规律批量生成图片的URL并下载。</p>
+<h1 id="具体实现：Python"><a href="#具体实现：Python" class="headerlink" title="具体实现：Python"></a>具体实现：Python</h1><p>为了简单，就没有使用任何的轮子。直接使用requests库访问这些URL获取图片资源，并写入到本地文件中保存。</p>
+<h2 id="v1"><a href="#v1" class="headerlink" title="v1"></a>v1</h2><p>具体的实现思路大概如下。对于漫画的每一话，先创建目录，然后根据该话的序号和页面生成目标资源URL，发送GET请求获取资源，通过文件写入保存到本地，直到访问的URL不存在漫画图片，跳转到404页面，此处我们通过判断响应首部的内容长度是否等于404图片的大小来判断该话是否结束爬取。根据漫画的总数，对每一话进行下载。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">baseUrl = <span class="string">'https://www.xxxxxx.com/1234/1234/&#123;0:0&gt;3d&#125;/&#123;1:0&gt;3d&#125;.jpg'</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getChapter</span><span class="params">(no)</span>:</span></span><br><span class="line">    <span class="string">'''获取并保存第no话的漫画'''</span></span><br><span class="line">    cnt = <span class="number">1</span></span><br><span class="line">    os.mkdir(saveDir + str(no))</span><br><span class="line">    req = requests.get(baseUrl.format(no,cnt))</span><br><span class="line">    print(req.status_code, req.headers)</span><br><span class="line">    <span class="keyword">while</span> req.status_code == <span class="number">200</span> <span class="keyword">and</span> req.headers[<span class="string">'Content-Length'</span>] != size404:</span><br><span class="line">        <span class="keyword">with</span> open(saveDir + str(no) + <span class="string">'/'</span> + str(cnt)+<span class="string">'.jpg'</span>,<span class="string">'wb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">            f.write(req.content)           </span><br><span class="line">        cnt += <span class="number">1</span></span><br><span class="line">        req = requests.get(baseUrl.format(no,cnt))</span><br><span class="line">    <span class="keyword">return</span> cnt - <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<h3 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h3><p>实在是太慢了！</p>
+<p>尝试着下了一话大概花费半到一分多钟左右，这里总共有一百多话，两个多小时肯定是走不掉了，而且还没考虑网络不稳定的因素。考虑了一下其中效率的制约因素，最主要为：</p>
+<ul>
+<li>网络请求。发请求获取资源需要传输时间。</li>
+<li>IO。图片保存到本地需要写入时间。</li>
+</ul>
+<h2 id="v2"><a href="#v2" class="headerlink" title="v2"></a>v2</h2><p>考虑使用多线程进行并行下载，进而提高速度。虽说Python提供的多线程只是伪多线程，实际上还是只能有一个线程被核心处理，但应该还是可以减少其中的等待时间。采用threading.Thread对象，将下载任务分成若干个patch交由不同的线程完成，每个线程完成20话的下载任务。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getPatch</span><span class="params">(start,size,max_chapter)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(start,min(size,max_chapter)+<span class="number">1</span>):</span><br><span class="line">        print(<span class="string">'save chapter &#123;:0&gt;3d&#125; page &#123;:0&gt;3d&#125;'</span>.format(i,getChapter(i)))</span><br><span class="line"></span><br><span class="line">patch = <span class="number">20</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">7</span>):</span><br><span class="line">    t = threading.Thread(target=getPatch,kwargs=&#123;<span class="string">'start'</span>:i*patch+<span class="number">1</span>,<span class="string">'size'</span>:patch,<span class="string">'max_chapter'</span>:<span class="number">136</span>&#125;)</span><br><span class="line">    t.start()</span><br></pre></td></tr></table></figure>
+<h3 id="效果-1"><a href="#效果-1" class="headerlink" title="效果"></a>效果</h3><p>并没有提升多少速度。感觉这个多线程并没提高多少并行程度，我开了7个线程，但是最开始只创建了4文件夹进行下载，在这4话中进行调度交替下载。也不知道花了多少时间，下完这4话之后，我就强制关掉了，弃掉该方案。</p>
+<h1 id="具体实现：Goland"><a href="#具体实现：Goland" class="headerlink" title="具体实现：Goland"></a>具体实现：Goland</h1><p>说到多线程，最方便的肯定就是Go语言了，直接的关键字支持多线程。于是拾起很久没碰过的Goland，甚至新电脑上还没安装环境，还需要重新安装Go语言，配置环境和开发工具，就下Vscode的插件都花了点功夫。</p>
+<p>实现思路还是同Python版本一样，为了简单不使用任何额外的轮子，直接使用net/http包进行http访问，获取图片，并写入到本地文件。</p>
+<h2 id="v3"><a href="#v3" class="headerlink" title="v3"></a>v3</h2><p>具体的单话下载代码如下。方法跟Python版本的几乎一样，不过Go语言做了额外的错误处理，显得有点冗余。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">downChapter</span><span class="params">(no <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">	page := <span class="number">1</span></span><br><span class="line">	<span class="keyword">for</span> ;; page++ &#123;</span><br><span class="line">		_, err := os.Stat(fmt.Sprintf(saveDir, no))</span><br><span class="line">		<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">			fmt.Println(fmt.Sprintf(saveDir, no))</span><br><span class="line">			os.Mkdir(fmt.Sprintf(saveDir, no), os.ModePerm)</span><br><span class="line">		&#125;</span><br><span class="line">		res, err := http.Get(fmt.Sprintf(baseUrl, no, page))</span><br><span class="line">		<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">			fmt.Println(err.Error())</span><br><span class="line">			<span class="keyword">return</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> res.Header.Get(<span class="string">"Content-Length"</span>) == size404&#123;</span><br><span class="line">			<span class="keyword">break</span></span><br><span class="line">		&#125;</span><br><span class="line">		file, err := os.Create(fmt.Sprintf(saveDir, no) + fmt.Sprintf(postfix, page))</span><br><span class="line">		<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">			fmt.Println(err.Error())</span><br><span class="line">			<span class="keyword">return</span></span><br><span class="line">		&#125;</span><br><span class="line">		io.Copy(file, res.Body)</span><br><span class="line">		<span class="keyword">defer</span> res.Body.Close()</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Printf(<span class="string">"down chapter %3d with %3d pages\n"</span>,no,page)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用Go语言最主要就是要用它的多线程特性。在Go中只需要在调用函数前加上关键字Go就可以开启新的多线程调用函数。将下载任务分成20个为一批的多个patch，开启了7个线程进行下载。此处使用WaitGroup进行多线程的等待，避免主线程提前结束。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">downPatch</span><span class="params">(start, patch, maxChapter <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">	<span class="keyword">defer</span> wg.Done()</span><br><span class="line">	cnt:=<span class="number">0</span></span><br><span class="line">	<span class="keyword">for</span> no:=start;no&lt;=start+patch &amp;&amp; no&lt;=maxChapter;no++&#123;</span><br><span class="line">		downChapter(no)</span><br><span class="line">		cnt++</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Printf(<span class="string">"down patch from %3d to %3d total %d"</span>,start,start+cnt<span class="number">-1</span>,cnt)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">for</span> i:=<span class="number">0</span>;i&lt;maxChapter/patch;i++&#123;</span><br><span class="line">		wg.Add(<span class="number">1</span>)</span><br><span class="line">		<span class="keyword">go</span> downPatch(i * patch,patch,maxChapter)</span><br><span class="line">	&#125;</span><br><span class="line">	wg.Wait()</span><br><span class="line">	fmt.Println(<span class="string">"finish!"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="效果-2"><a href="#效果-2" class="headerlink" title="效果"></a>效果</h3><p>速度确实提升了，但是感觉没有到很快的程度。。。</p>
+<p>直到写文章的此刻，跑了两个半小时，下了大概86话。打开任务管理器看了看情况，CPU占用率一直很低，磁盘读写占用也很低，感觉瓶颈就在网络传输上面。另外，觉得7个线程也开得有点少了，应该多开一点，榨干电脑的性能，而且开多了也不会有很大的浪费。不过似乎制约速率的瓶颈就这网络传输上面，确实没办法。</p>
+<h1 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h1><ul>
+<li>对于网络爬虫/下载，最为制约效率的因素始终是网络因素，这个也是我们最不能把握的。可能是服务器端的接入速率因素，可能是服务器端的处理计算速度因素，可能是链路的传输速度因素，还可能是墙的因素，有很多的可能性。</li>
+<li>在程序刚运行的时候，我想到过多的http请求会不会把那个站点搞崩。一百多话，每画平均25页，接近三千多张图片，需要发三千多个http请求，会不会over了，不过在当前这个速度下显然是想多了。不过这在以后的爬虫获取数据或者资源的时候确实需要考虑，为他人想想，可以考虑加点间隔时间。</li>
+<li>东西不用了就会忘记，技能确实需要是不是拾起来使使。</li>
+<li>有时候问题并不是在选择的方法或工具上面，可能只是简单的自己做错了/做得不够，或者当时的环境不行。</li>
+</ul>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>最终因为电脑在休眠的时候自动更新，强行重启了，最终还是没下完，大概下了120话，花了4个半小时，远远超出我的预期。大概原因为</p>
+<ul>
+<li>线程设置有误。原本想设置7个线程，但没考虑到Go里面除法取整，少了一个线程，最后一个patch的任务没有执行，实际是六线程运行。</li>
+<li>代码存在一些不合理的地方，造成了操作上的重复。如判断在每一话当中判断文件夹是否存在，我把他放到了循环当中，每下载一页的图片前都会判断；还有设置patch的时候没有考虑开闭区间，且下载的时候没有判断文件是否已经下载，导致首尾的漫画重复下载。</li>
+<li>后期漫画的图片质量上去了，由前面的一百几十kb提升到后面的四五百kb，所以负责后面漫画下载的线程速度较慢，速度没有达到预期。</li>
+<li>网络问题。可能昨天晚上的网确实不行，也可能是频繁访问被制约了网速。</li>
+</ul>
+<p>今天早上用Python把剩下的十几话下载下来，发现其实昨天的多线程代码有问题，修改了一下，顺利下载，而且速度还不错，我开了6个线程，下18话用了不到20分钟。看来还是网络的问题，难顶。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Python/" rel="tag"># Python</a>
+              <a href="/tags/Golang/" rel="tag"># Golang</a>
+              <a href="/tags/爬虫/" rel="tag"># 爬虫</a>
+              <a href="/tags/多线程/" rel="tag"># 多线程</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/太极拳中的劲/" rel="prev" title="太极拳中的劲">
+      <i class="fa fa-chevron-left"></i> 太极拳中的劲
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实现思路"><span class="nav-number">2.</span> <span class="nav-text">实现思路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#具体实现：Python"><span class="nav-number">3.</span> <span class="nav-text">具体实现：Python</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#v1"><span class="nav-number">3.1.</span> <span class="nav-text">v1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#效果"><span class="nav-number">3.1.1.</span> <span class="nav-text">效果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#v2"><span class="nav-number">3.2.</span> <span class="nav-text">v2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#效果-1"><span class="nav-number">3.2.1.</span> <span class="nav-text">效果</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#具体实现：Goland"><span class="nav-number">4.</span> <span class="nav-text">具体实现：Goland</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#v3"><span class="nav-number">4.1.</span> <span class="nav-text">v3</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#效果-2"><span class="nav-number">4.1.1.</span> <span class="nav-text">效果</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#思考"><span class="nav-number">5.</span> <span class="nav-text">思考</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#后记"><span class="nav-number">6.</span> <span class="nav-text">后记</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Scott Yeung"
+      src="/images/self.jpg">
+  <p class="site-author-name" itemprop="name">Scott Yeung</p>
+  <div class="site-description" itemprop="description">道亦有道  玄之又玄</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">71</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yeung66" title="GitHub → https://github.com/yeung66" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:407284292@qq.com" title="E-Mail → mailto:407284292@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/scottyeung6" title="Instagram → https://instagram.com/scottyeung6" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://music.163.com/#/user/home?id=126931346" title="网易云音乐 → https://music.163.com/#/user/home?id=126931346" rel="noopener" target="_blank"><i class="fa fa-fw fa-music"></i>网易云音乐</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Scott Yeung</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.1
+  </div>
+
+        
+
+
+
+
+
+
+  <script>
+  function leancloudSelector(url) {
+    url = encodeURI(url);
+    return document.getElementById(url).querySelector('.leancloud-visitors-count');
+  }
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.getAttribute('id'));
+      var title = visitors.getAttribute('data-flag-title');
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .then(response => response.json())
+              .then(() => {
+                leancloudSelector(url).innerText = counter.time + 1;
+              })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              })
+          } else {
+              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.getAttribute('id'));
+      });
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url: { '$in': entries } })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length === 0) {
+            document.querySelectorAll('.leancloud_visitors .leancloud-visitors-count').forEach(element => {
+              element.innerText = 0;
+            });
+            return;
+          }
+          for (let item of results) {
+            let { url, time } = item;
+            leancloudSelector(url).innerText = time;
+          }
+          for (let url of entries) {
+            var element = leancloudSelector(url);
+            if (element.innerText == '') {
+              element.innerText = 0;
+            }
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+  }
+
+  fetch('https://app-router.leancloud.cn/2/route?appId=2yhfMbsA5oHkrxvqW2t0roxg-gzGzoHsz')
+    .then(response => response.json())
+    .then(({ api_server }) => {
+      var Counter = (method, url, data) => {
+        return fetch(`https://${api_server}/1.1${url}`, {
+          method: method,
+          headers: {
+            'X-LC-Id'     : '2yhfMbsA5oHkrxvqW2t0roxg-gzGzoHsz',
+            'X-LC-Key'    : 'rf7s0pmEmVPJsn68lh7u7QNz',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

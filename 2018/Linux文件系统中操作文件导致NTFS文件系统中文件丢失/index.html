@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"scottyeung.club","root":"/","scheme":"Pisces","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="背景在上周的时候，打算在Ubuntu下查看在Windows下QQ接受到的项目代码，然后顺便就整理了一下目录，新建了一个文件夹，将实验室相关的文件剪切复制到该文件夹。后切换回Windows，发现文件夹没有建成功，而刚才剪切的文件不见了。 无独有偶，本周一上课纪录模式识别笔记时，顺手归档了一下这门课文件夹下的作业，课件，笔记（在Windows下的Ntfs分区中），然后周二上课打开Windows系统后，">
+<meta name="keywords" content="Linux,文件系统,Ubuntu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux文件系统中操作文件导致NTFS文件系统中文件丢失">
+<meta property="og:url" content="http://scottyeung.club/2018/Linux文件系统中操作文件导致NTFS文件系统中文件丢失/index.html">
+<meta property="og:site_name" content="YeungYeah 的乱写地">
+<meta property="og:description" content="背景在上周的时候，打算在Ubuntu下查看在Windows下QQ接受到的项目代码，然后顺便就整理了一下目录，新建了一个文件夹，将实验室相关的文件剪切复制到该文件夹。后切换回Windows，发现文件夹没有建成功，而刚才剪切的文件不见了。 无独有偶，本周一上课纪录模式识别笔记时，顺手归档了一下这门课文件夹下的作业，课件，笔记（在Windows下的Ntfs分区中），然后周二上课打开Windows系统后，">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-11-12T14:48:29.981Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux文件系统中操作文件导致NTFS文件系统中文件丢失">
+<meta name="twitter:description" content="背景在上周的时候，打算在Ubuntu下查看在Windows下QQ接受到的项目代码，然后顺便就整理了一下目录，新建了一个文件夹，将实验室相关的文件剪切复制到该文件夹。后切换回Windows，发现文件夹没有建成功，而刚才剪切的文件不见了。 无独有偶，本周一上课纪录模式识别笔记时，顺手归档了一下这门课文件夹下的作业，课件，笔记（在Windows下的Ntfs分区中），然后周二上课打开Windows系统后，">
+
+<link rel="canonical" href="http://scottyeung.club/2018/Linux文件系统中操作文件导致NTFS文件系统中文件丢失/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>Linux文件系统中操作文件导致NTFS文件系统中文件丢失 | YeungYeah 的乱写地</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151343043-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-151343043-1');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YeungYeah 的乱写地</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-动态">
+
+    <a href="/moments" rel="section"><i class="fa fa-fw fa-calendar"></i>动态</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-占卜">
+
+    <a href="http://divi.scottyeung.club:8080/" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>占卜</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://scottyeung.club/2018/Linux文件系统中操作文件导致NTFS文件系统中文件丢失/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.jpg">
+      <meta itemprop="name" content="Scott Yeung">
+      <meta itemprop="description" content="道亦有道  玄之又玄">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YeungYeah 的乱写地">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Linux文件系统中操作文件导致NTFS文件系统中文件丢失
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-10-30 19:07:39" itemprop="dateCreated datePublished" datetime="2018-10-30T19:07:39+08:00">2018-10-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-12 22:48:29" itemprop="dateModified" datetime="2019-11-12T22:48:29+08:00">2019-11-12</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2018/Linux文件系统中操作文件导致NTFS文件系统中文件丢失/" class="post-meta-item leancloud_visitors" data-flag-title="Linux文件系统中操作文件导致NTFS文件系统中文件丢失" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>在上周的时候，打算在Ubuntu下查看在Windows下QQ接受到的项目代码，然后顺便就整理了一下目录，新建了一个文件夹，将实验室相关的文件剪切复制到该文件夹。后切换回Windows，发现文件夹没有建成功，而刚才剪切的文件不见了。</p>
+<p>无独有偶，本周一上课纪录模式识别笔记时，顺手归档了一下这门课文件夹下的作业，课件，笔记（在Windows下的Ntfs分区中），然后周二上课打开Windows系统后，发现文件丢失，新建的归档文件夹也不见了，然后昨天修改的markdown笔记也损坏无法打开。</p>
+<a id="more"></a>
+<h1 id="思考过程"><a href="#思考过程" class="headerlink" title="思考过程"></a>思考过程</h1><h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>由于两次的文件丢失均在两系统中操作（剪切）文件时发生，遂打算在Linux系统中对Windows系统的文件进行不同操作，以观察有无发生文件丢失现象，找出触发原因，后续避免。</p>
+<ul>
+<li>在NTFS分区中创建文件，在另一系统中无丢失。</li>
+<li>修改NTFS分区中的文件内容，在另一系统中能正常显示</li>
+<li>复制NTFS分区中文件，文件正常</li>
+<li>剪切NTFS分区中文件，文件正常</li>
+</ul>
+<p>也不知道幸运与否，测试了数次均没有出现文件丢失问题，无法找到直接的触发原因。</p>
+<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>在第一次出现问题后，马上去百度查询剪切文件丢失，被告知是剪切过程极不稳定，容易发生错误导致文件丢失，但感到很不靠谱，剪切错误后应该会马上有告知信息，而我剪切后在已经能够在Ubuntu的文件系统中看到粘贴后结果。但心急于恢复文件，还是采用了所提供的一些方法，将其当作误删文件来恢复。</p>
+<p>第二次出现问题后，因为有第一次的经验，很熟练地就恢复文件了。结合上一次的经历来看，个人猜想应该是两个文件系统不一致所导致（然而上面的测试已经告诉我们是可以的）。到Google上搜了一下，相关的信息还是很少，然后换成用英语搜，终于见到几个出现相同的状况了（所以是中国人都没有遇到这个问题吗2333）。然而也没有给出一个确定的解释，不过其中有一个解释感觉挺靠谱的（<a href="https://askubuntu.com/questions/49000/files-disappear-on-ntfs-partition" target="_blank" rel="noopener">链接在此</a>)，其解释是在使用Linux系统时，Windows系统未完全关闭（处于睡眠状态），Linux的文件系统修改文件后，WIndows系统启动后又再次修改该文件以修复，导致文件崩溃。然而，我的Windows似乎是关机的，甚至我还不知道怎么睡眠一个系统切换到另一系统，但说得很有道理，姑且先接受。</p>
+<p>所以，到最后也没有找到确定的原因导致文件的丢失，只能说在Linux下想ntfs文件系统有可能会出错，换而言之，还是不知道怎么避免（除非不用）。但文件丢失后的解决方法还是有的，虽然不一定能全复原：</p>
+<ul>
+<li>采用文件恢复软件。将其当初误删文件处理，成功率还不错。本人使用的是DiskGenius专业版（非专业版限制恢复文件的大小，略坑），成功找回了两次丢失的文件，但该软件复原时需全盘扫描，速度较慢。</li>
+<li>在Windows系统中使用<code>chkdsk</code>命令，进行文件系统的检查修复。该方法在Google过程中看到，多人推荐，感觉应该也可以。</li>
+</ul>
+<h2 id="警示"><a href="#警示" class="headerlink" title="警示"></a>警示</h2><p>虽然文件最后都找回来了，但文件丢失还是一件很恐怖的事，应该留点教训的。</p>
+<ul>
+<li>备份。自己一直都没有备份的习惯，所有的重要的文件（如学习资源）等都只存在了电脑的硬盘上，万一出事，如电脑坏了，丢了，直接GG。某些大作业或项目直接爆炸，就好像这学期的编译器。</li>
+<li>时常留意文件状况。好像这两次的文件丢失，幸好发现得早，能够及早恢复，如果再晚一点，对硬盘进行了新的写入，就难以恢复，甚至可能自己的忘了有什么文件，有没有丢失，需要恢复什么。</li>
+<li>少做跨文件系统的文件写入操作。虽然好像跟操作本身是没有关系，但很多事都是可以做，但没有必要。如剪切移动等，通过复制等较低风险进行代替，最好是以读为主。</li>
+<li>还有一个也是很有趣的，当遇到问题去搜索时，总是习惯先百度再Google，都搜不到了，便听天由命。但这次，换了个语言，便发现未到尽头。感觉自己还是被语言束缚限制住了。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+              <a href="/tags/文件系统/" rel="tag"># 文件系统</a>
+              <a href="/tags/Ubuntu/" rel="tag"># Ubuntu</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/我为什么要开这个博客/" rel="prev" title="我为什么要开这个博客">
+      <i class="fa fa-chevron-left"></i> 我为什么要开这个博客
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/Maximum-Product-of-Word-Lengths/" rel="next" title="Maximum Product of Word Lengths">
+      Maximum Product of Word Lengths <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#思考过程"><span class="nav-number">2.</span> <span class="nav-text">思考过程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#测试"><span class="nav-number">2.1.</span> <span class="nav-text">测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决"><span class="nav-number">2.2.</span> <span class="nav-text">解决</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#警示"><span class="nav-number">2.3.</span> <span class="nav-text">警示</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Scott Yeung"
+      src="/images/self.jpg">
+  <p class="site-author-name" itemprop="name">Scott Yeung</p>
+  <div class="site-description" itemprop="description">道亦有道  玄之又玄</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">71</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yeung66" title="GitHub → https://github.com/yeung66" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:407284292@qq.com" title="E-Mail → mailto:407284292@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/scottyeung6" title="Instagram → https://instagram.com/scottyeung6" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://music.163.com/#/user/home?id=126931346" title="网易云音乐 → https://music.163.com/#/user/home?id=126931346" rel="noopener" target="_blank"><i class="fa fa-fw fa-music"></i>网易云音乐</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Scott Yeung</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.1
+  </div>
+
+        
+
+
+
+
+
+
+  <script>
+  function leancloudSelector(url) {
+    url = encodeURI(url);
+    return document.getElementById(url).querySelector('.leancloud-visitors-count');
+  }
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.getAttribute('id'));
+      var title = visitors.getAttribute('data-flag-title');
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .then(response => response.json())
+              .then(() => {
+                leancloudSelector(url).innerText = counter.time + 1;
+              })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              })
+          } else {
+              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.getAttribute('id'));
+      });
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url: { '$in': entries } })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length === 0) {
+            document.querySelectorAll('.leancloud_visitors .leancloud-visitors-count').forEach(element => {
+              element.innerText = 0;
+            });
+            return;
+          }
+          for (let item of results) {
+            let { url, time } = item;
+            leancloudSelector(url).innerText = time;
+          }
+          for (let url of entries) {
+            var element = leancloudSelector(url);
+            if (element.innerText == '') {
+              element.innerText = 0;
+            }
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+  }
+
+  fetch('https://app-router.leancloud.cn/2/route?appId=2yhfMbsA5oHkrxvqW2t0roxg-gzGzoHsz')
+    .then(response => response.json())
+    .then(({ api_server }) => {
+      var Counter = (method, url, data) => {
+        return fetch(`https://${api_server}/1.1${url}`, {
+          method: method,
+          headers: {
+            'X-LC-Id'     : '2yhfMbsA5oHkrxvqW2t0roxg-gzGzoHsz',
+            'X-LC-Key'    : 'rf7s0pmEmVPJsn68lh7u7QNz',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

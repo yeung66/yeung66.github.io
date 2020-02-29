@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"scottyeung.club","root":"/","scheme":"Pisces","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="前几晚看《The Go Progromming Language》时，在匿名函数的最后一小节中，发现了一个比较有趣的小坑。大概的场景为：首先创建一些目录，然后对于每一个目录，分别声明一个匿名函数删除目录，样例代码如下： 1234567var rmdirs []func()for _, dir := range tempDirs() &amp;#123;    os.MkdirAll(dir, 0755)">
+<meta name="keywords" content="GO,JavaScipt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="循环体中局部变量的小坑">
+<meta property="og:url" content="http://scottyeung.club/2019/循环体中局部变量的小坑/index.html">
+<meta property="og:site_name" content="YeungYeah 的乱写地">
+<meta property="og:description" content="前几晚看《The Go Progromming Language》时，在匿名函数的最后一小节中，发现了一个比较有趣的小坑。大概的场景为：首先创建一些目录，然后对于每一个目录，分别声明一个匿名函数删除目录，样例代码如下： 1234567var rmdirs []func()for _, dir := range tempDirs() &amp;#123;    os.MkdirAll(dir, 0755)">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-01-14T06:29:56.453Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="循环体中局部变量的小坑">
+<meta name="twitter:description" content="前几晚看《The Go Progromming Language》时，在匿名函数的最后一小节中，发现了一个比较有趣的小坑。大概的场景为：首先创建一些目录，然后对于每一个目录，分别声明一个匿名函数删除目录，样例代码如下： 1234567var rmdirs []func()for _, dir := range tempDirs() &amp;#123;    os.MkdirAll(dir, 0755)">
+
+<link rel="canonical" href="http://scottyeung.club/2019/循环体中局部变量的小坑/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>循环体中局部变量的小坑 | YeungYeah 的乱写地</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151343043-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-151343043-1');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YeungYeah 的乱写地</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-动态">
+
+    <a href="/moments" rel="section"><i class="fa fa-fw fa-calendar"></i>动态</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-占卜">
+
+    <a href="http://divi.scottyeung.club:8080/" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>占卜</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://scottyeung.club/2019/循环体中局部变量的小坑/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.jpg">
+      <meta itemprop="name" content="Scott Yeung">
+      <meta itemprop="description" content="道亦有道  玄之又玄">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YeungYeah 的乱写地">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          循环体中局部变量的小坑
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-04-12 19:37:42" itemprop="dateCreated datePublished" datetime="2019-04-12T19:37:42+08:00">2019-04-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-01-14 14:29:56" itemprop="dateModified" datetime="2020-01-14T14:29:56+08:00">2020-01-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Go/" itemprop="url" rel="index"><span itemprop="name">Go</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2019/循环体中局部变量的小坑/" class="post-meta-item leancloud_visitors" data-flag-title="循环体中局部变量的小坑" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>前几晚看《The Go Progromming Language》时，在<a href="https://yar999.gitbooks.io/gopl-zh/content/ch5/ch5-06.html" target="_blank" rel="noopener">匿名函数</a>的最后一小节中，发现了一个比较有趣的小坑。<br>大概的场景为：首先创建一些目录，然后对于每一个目录，分别声明一个匿名函数删除目录，样例代码如下：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> rmdirs []<span class="function"><span class="keyword">func</span><span class="params">()</span></span></span><br><span class="line"><span class="keyword">for</span> _, dir := <span class="keyword">range</span> tempDirs() &#123;</span><br><span class="line">    os.MkdirAll(dir, <span class="number">0755</span>)</span><br><span class="line">    rmdirs = <span class="built_in">append</span>(rmdirs, <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">        os.RemoveAll(dir) </span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>大家可以先自行考虑一下，有没有什么问题，效果会是怎样</p>
+<a id="more"></a>
+<h1 id="警告：捕获迭代变量"><a href="#警告：捕获迭代变量" class="headerlink" title="警告：捕获迭代变量"></a>警告：捕获迭代变量</h1><blockquote>
+<blockquote>
+<p>（颇为中二的标题名字是从书上搬过来的</p>
+</blockquote>
+</blockquote>
+<p>上面的代码是有问题的，运行后<code>rmdirs</code>中每一个函数的效果都是删除最后一个目录。</p>
+<p>为什么没有出现我们预期的效果呢？原因在于循环变量的作用域。</p>
+<blockquote>
+<p>在上面的程序中，for循环语句引入了新的词法块，循环变量dir在这个词法块中被声明。在该循环中生成的所有函数值都共享相同的循环变量。需要注意，函数值中记录的是循环变量的内存地址，而不是循环变量某一时刻的值。以dir为例，后续的迭代会不断更新dir的值，当删除操作执行时，for循环已完成，dir中存储的值等于最后一次迭代的值。这意味着，每次对os.RemoveAll的调用删除的都是相同的目录。</p>
+</blockquote>
+<p>正确的代码应该如下修改，通过在块级中声明一个局部临时变量，将其代替循环变量放入匿名函数中。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> _, dir := <span class="keyword">range</span> tempDirs() &#123;</span><br><span class="line">    dir := dir <span class="comment">// declares inner dir, initialized to outer dir</span></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>为什么这个修改是可行的？原因很简单，我们在匿名函数内部使用的是一个局部的临时变量，因为是临时的，块级代码结束时，变量地址指向内容很可能要回收，所以不能存储地址，只能够存储变量的值。<br>那为什么前者的代码匿名函数值中记录的就是变量的内存地址？循环变量不也属于这个词法块吗？还真不太一样。循环变量虽说也是由循环词法块被声明，但是相对于词法块内的代码，它实质上是一个全局变量的地位，它对于代码块的每一次执行都是一样的地位，一样的地址,所以实际存储的是变量的地址。</p>
+<h1 id="JavaScript中的循环变量"><a href="#JavaScript中的循环变量" class="headerlink" title="JavaScript中的循环变量"></a>JavaScript中的循环变量</h1><p>当时看到书，我第一时间就想到了JavaScript中也有着同样的情况，我之前还遇到过类似的问题：给一系列的控件绑定事件触发函数，每个函数中根据循环变量设定条件，然后出现了相似的问题。当时采用的解决方法是提到了参数处理的，治标不治本。</p>
+<p>看到这里后，我马上就用JavaScript复现了这个问题</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">arr = []</span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">5</span>;i++)&#123;</span><br><span class="line">    arr.push(<span class="function"><span class="params">()</span>=&gt;</span>&#123;<span class="built_in">console</span>.log(i)&#125;)</span><br><span class="line">&#125;</span><br><span class="line">arr.forEach(<span class="function">(<span class="params">f</span>)=&gt;</span>&#123;f()&#125;)</span><br></pre></td></tr></table></figure>
+<p>结果就如同预期一样，输出了5个4，没有达到预期。然后用跟在Go一样的思路，在循环体内部中使用一个临时局部变量代替，运行后出现预期效果。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">arr = []</span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">5</span>;i++)&#123;</span><br><span class="line">    <span class="keyword">let</span> j=i</span><br><span class="line">    arr.push(<span class="function"><span class="params">()</span>=&gt;</span>&#123;<span class="built_in">console</span>.log(j)&#125;)</span><br><span class="line">&#125;</span><br><span class="line">arr.forEach(<span class="function">(<span class="params">f</span>)=&gt;</span>&#123;f()&#125;)</span><br></pre></td></tr></table></figure>
+<p>注意到这里用的是<code>let</code>而不是<code>var</code>。使用 let 语句声明一个变量，该变量的范围限于声明它的块中。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/GO/" rel="tag"># GO</a>
+              <a href="/tags/JavaScipt/" rel="tag"># JavaScipt</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/图论常见题目及算法/" rel="prev" title="图论常见题目及算法">
+      <i class="fa fa-chevron-left"></i> 图论常见题目及算法
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/CCF-201903/" rel="next" title="CCF 201903">
+      CCF 201903 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#警告：捕获迭代变量"><span class="nav-number">1.</span> <span class="nav-text">警告：捕获迭代变量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JavaScript中的循环变量"><span class="nav-number">2.</span> <span class="nav-text">JavaScript中的循环变量</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Scott Yeung"
+      src="/images/self.jpg">
+  <p class="site-author-name" itemprop="name">Scott Yeung</p>
+  <div class="site-description" itemprop="description">道亦有道  玄之又玄</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">71</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yeung66" title="GitHub → https://github.com/yeung66" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:407284292@qq.com" title="E-Mail → mailto:407284292@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/scottyeung6" title="Instagram → https://instagram.com/scottyeung6" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://music.163.com/#/user/home?id=126931346" title="网易云音乐 → https://music.163.com/#/user/home?id=126931346" rel="noopener" target="_blank"><i class="fa fa-fw fa-music"></i>网易云音乐</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Scott Yeung</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.1
+  </div>
+
+        
+
+
+
+
+
+
+  <script>
+  function leancloudSelector(url) {
+    url = encodeURI(url);
+    return document.getElementById(url).querySelector('.leancloud-visitors-count');
+  }
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.getAttribute('id'));
+      var title = visitors.getAttribute('data-flag-title');
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .then(response => response.json())
+              .then(() => {
+                leancloudSelector(url).innerText = counter.time + 1;
+              })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              })
+          } else {
+              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.getAttribute('id'));
+      });
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url: { '$in': entries } })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length === 0) {
+            document.querySelectorAll('.leancloud_visitors .leancloud-visitors-count').forEach(element => {
+              element.innerText = 0;
+            });
+            return;
+          }
+          for (let item of results) {
+            let { url, time } = item;
+            leancloudSelector(url).innerText = time;
+          }
+          for (let url of entries) {
+            var element = leancloudSelector(url);
+            if (element.innerText == '') {
+              element.innerText = 0;
+            }
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+  }
+
+  fetch('https://app-router.leancloud.cn/2/route?appId=2yhfMbsA5oHkrxvqW2t0roxg-gzGzoHsz')
+    .then(response => response.json())
+    .then(({ api_server }) => {
+      var Counter = (method, url, data) => {
+        return fetch(`https://${api_server}/1.1${url}`, {
+          method: method,
+          headers: {
+            'X-LC-Id'     : '2yhfMbsA5oHkrxvqW2t0roxg-gzGzoHsz',
+            'X-LC-Key'    : 'rf7s0pmEmVPJsn68lh7u7QNz',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

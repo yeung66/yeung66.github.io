@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"scottyeung.club","root":"/","scheme":"Pisces","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Problem问题描述　　给定一段文字，已知单词a1, a2, …, an出现的频率分别t1, t2, …, tn。可以用01串给这些单词编码，即将每个单词与一个01串对应，使得任何一个单词的编码（对应的01串）不是另一个单词编码的前缀，这种编码称为前缀码。　　使用前缀码编码一段文字是指将这段文字中的每个单词依次对应到其编码。一段文字经过前缀编码后的长度为：　　L=a1的编码长度×t1+a2的编码">
+<meta name="keywords" content="CCF,Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CCF201612-4 压缩编码">
+<meta property="og:url" content="http://scottyeung.club/2019/CCF201612-4-压缩编码/index.html">
+<meta property="og:site_name" content="YeungYeah 的乱写地">
+<meta property="og:description" content="Problem问题描述　　给定一段文字，已知单词a1, a2, …, an出现的频率分别t1, t2, …, tn。可以用01串给这些单词编码，即将每个单词与一个01串对应，使得任何一个单词的编码（对应的01串）不是另一个单词编码的前缀，这种编码称为前缀码。　　使用前缀码编码一段文字是指将这段文字中的每个单词依次对应到其编码。一段文字经过前缀编码后的长度为：　　L=a1的编码长度×t1+a2的编码">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://scottyeung.club/2019/CCF201612-4-压缩编码/捕获.JPG">
+<meta property="og:updated_time" content="2019-11-12T14:48:29.979Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CCF201612-4 压缩编码">
+<meta name="twitter:description" content="Problem问题描述　　给定一段文字，已知单词a1, a2, …, an出现的频率分别t1, t2, …, tn。可以用01串给这些单词编码，即将每个单词与一个01串对应，使得任何一个单词的编码（对应的01串）不是另一个单词编码的前缀，这种编码称为前缀码。　　使用前缀码编码一段文字是指将这段文字中的每个单词依次对应到其编码。一段文字经过前缀编码后的长度为：　　L=a1的编码长度×t1+a2的编码">
+<meta name="twitter:image" content="http://scottyeung.club/2019/CCF201612-4-压缩编码/捕获.JPG">
+
+<link rel="canonical" href="http://scottyeung.club/2019/CCF201612-4-压缩编码/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>CCF201612-4 压缩编码 | YeungYeah 的乱写地</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151343043-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-151343043-1');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YeungYeah 的乱写地</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-动态">
+
+    <a href="/moments" rel="section"><i class="fa fa-fw fa-calendar"></i>动态</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-占卜">
+
+    <a href="http://divi.scottyeung.club:8080/" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>占卜</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://scottyeung.club/2019/CCF201612-4-压缩编码/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.jpg">
+      <meta itemprop="name" content="Scott Yeung">
+      <meta itemprop="description" content="道亦有道  玄之又玄">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YeungYeah 的乱写地">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CCF201612-4 压缩编码
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-03-12 14:15:57" itemprop="dateCreated datePublished" datetime="2019-03-12T14:15:57+08:00">2019-03-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-12 22:48:29" itemprop="dateModified" datetime="2019-11-12T22:48:29+08:00">2019-11-12</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2019/CCF201612-4-压缩编码/" class="post-meta-item leancloud_visitors" data-flag-title="CCF201612-4 压缩编码" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h1><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>　　给定一段文字，已知单词<em>a</em>1, <em>a</em>2, …, <em>an</em>出现的频率分别<em>t</em>1, <em>t</em>2, …, <em>tn</em>。可以用01串给这些单词编码，即将每个单词与一个01串对应，使得任何一个单词的编码（对应的01串）不是另一个单词编码的前缀，这种编码称为前缀码。<br>　　使用前缀码编码一段文字是指将这段文字中的每个单词依次对应到其编码。一段文字经过前缀编码后的长度为：<br>　　<em>L</em>=<em>a</em>1的编码长度×<em>t</em>1+<em>a</em>2的编码长度×<em>t</em>2+…+ <em>an</em>的编码长度×<em>tn</em>。<br>　　定义一个前缀编码为字典序编码，指对于1 ≤ <em>i</em> &lt; <em>n</em>，<em>ai</em>的编码（对应的01串）的字典序在<em>ai</em>+1编码之前，即<em>a</em>1, <em>a</em>2, …, <em>an</em>的编码是按字典序升序排列的。<br>　　例如，文字E A E C D E B C C E C B D B E中， 5个单词A、B、C、D、E出现的频率分别为1, 3, 4, 2, 5，则一种可行的编码方案是A:000, B:001, C:01, D:10, E:11，对应的编码后的01串为1100011011011001010111010011000111，对应的长度<em>L</em>为3×1+3×3+2×4+2×2+2×5=34。<br>　　在这个例子中，如果使用哈夫曼(Huffman)编码，对应的编码方案是A:000, B:01, C:10, D:001, E:11，虽然最终文字编码后的总长度只有33，但是这个编码不满足字典序编码的性质，比如C的编码的字典序不在D的编码之前。<br>　　在这个例子中，有些人可能会想的另一个字典序编码是A:000, B:001, C:010, D:011, E:1，编码后的文字长度为35。<br>　　请找出一个字典序编码，使得文字经过编码后的长度<em>L</em>最小。在输出时，你只需要输出最小的长度<em>L</em>，而不需要输出具体的方案。在上面的例子中，最小的长度<em>L</em>为34。</p>
+<a id="more"></a>
+<h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>　　输入的第一行包含一个整数<em>n</em>，表示单词的数量。<br>　　第二行包含<em>n</em>个整数，用空格分隔，分别表示<em>a</em>1, <em>a</em>2, …, <em>an</em>出现的频率，即<em>t</em>1, <em>t</em>2, …, <em>tn</em>。请注意<em>a</em>1, <em>a</em>2, …, <em>an</em>具体是什么单词并不影响本题的解，所以没有输入<em>a</em>1, <em>a</em>2, …, <em>an</em>。</p>
+<h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>　　输出一个整数，表示文字经过编码后的长度<em>L</em>的最小值。</p>
+<h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><p>5<br>1 3 4 2 5</p>
+<h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><p>34</p>
+<h2 id="样例说明"><a href="#样例说明" class="headerlink" title="样例说明"></a>样例说明</h2><p>　　这个样例就是问题描述中的例子。如果你得到了35，说明你算得有问题，请自行检查自己的算法而不要怀疑是样例输出写错了。</p>
+<h2 id="评测用例规模与约定"><a href="#评测用例规模与约定" class="headerlink" title="评测用例规模与约定"></a>评测用例规模与约定</h2><p>　　对于30%的评测用例，1 ≤ <em>n</em> ≤ 10，1 ≤ <em>ti</em> ≤ 20；<br>　　对于60%的评测用例，1 ≤ <em>n</em> ≤ 100，1 ≤ <em>ti</em> ≤ 100；<br>　　对于100%的评测用例，1 ≤ <em>n</em> ≤ 1000，1 ≤ <em>ti</em> ≤ 10000。</p>
+<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><p>乍一眼看上去似乎跟霍夫曼编码相关，虽然题目明确了霍夫曼编码结果不一定是满足字典序的，但估计解法应该是霍夫曼编码的变形。然而还是没什么头绪，上网一搜，发现这是一个经典的dp问题——<a href="https://blog.csdn.net/acdreamers/article/details/18039073" target="_blank" rel="noopener">石子问题</a>。石子问题描述为：有n堆石子，每次合并2堆，合并花费为两堆石子之和，求合成的最小花费。问题可分为三种类型：</p>
+<ol>
+<li>每次任意合并两堆石子（则变成霍夫曼树构造</li>
+<li>每次合并相邻两堆石子（通过确保只合并相邻石子确保满足字典序</li>
+<li>每次合并相邻两堆石子，且石子环形排列（2的升级版</li>
+</ol>
+<p>这里，我们只讨论第二种情况。状态转移方程如下，<code>dp[i][j]</code>表示合并第i堆到第j堆石子的花费（编码第i个单词到第j个单词的长度花费），<code>sums[i]</code>为前i堆石子（单词）的总花费。实际上是在区间i到j之间寻找一个最优的分界点，左右分别合并，再加上总体的花费。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dp[i][j]=<span class="number">0</span><span class="comment">#i==j</span></span><br><span class="line">dp[i][j]=min(dp[i][j],dp[i][k]+dp[k+<span class="number">1</span>][j]+sums[j]-sums[i<span class="number">-1</span>])<span class="comment">#i!=j and i&lt;=k&lt;=j</span></span><br></pre></td></tr></table></figure>
+<p>容易分析，需要三层循环（i，j，k），时间复杂度为$O(n^3)$。提交后能有60分，显示运行超时，但这个是非Python的操作用时，估计实际考试也能过。针对这种情况，上面博文提到可以使用<a href="https://baike.baidu.com/item/%E5%9B%9B%E8%BE%B9%E5%BD%A2%E4%B8%8D%E7%AD%89%E5%BC%8F?fr=aladdin" target="_blank" rel="noopener">平行四边形优化</a>(百科里写得很烂)，对于像上面的状态转移方程，可设<code>p[i][j]</code>为区间i到j中最优的k值，则有<code>p[i][j-1]&lt;=p[i][j]&lt;=p[i+1][j]</code>因此，我们可以缩小k的遍历范围，可证其复杂度降低了一个数量级，为$O(n^2)$，修改后提交能够获得100分。</p>
+<p>详细代码可<a href="https://github.com/yeung66/codesAboutCCF/blob/master/201612/compresscode.py" target="_blank" rel="noopener">点此</a></p>
+<h2 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h2><p><img src="/2019/CCF201612-4-压缩编码/捕获.JPG" alt></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/CCF/" rel="tag"># CCF</a>
+              <a href="/tags/Python/" rel="tag"># Python</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/CCF201412-3-集合竞价/" rel="prev" title="CCF201412-3 集合竞价">
+      <i class="fa fa-chevron-left"></i> CCF201412-3 集合竞价
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/CCF201503-4-网络延时/" rel="next" title="CCF201503-4 网络延时">
+      CCF201503-4 网络延时 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Problem"><span class="nav-number">1.</span> <span class="nav-text">Problem</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题描述"><span class="nav-number">1.1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入格式"><span class="nav-number">1.2.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输出格式"><span class="nav-number">1.3.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#样例输入"><span class="nav-number">1.4.</span> <span class="nav-text">样例输入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#样例输出"><span class="nav-number">1.5.</span> <span class="nav-text">样例输出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#样例说明"><span class="nav-number">1.6.</span> <span class="nav-text">样例说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#评测用例规模与约定"><span class="nav-number">1.7.</span> <span class="nav-text">评测用例规模与约定</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Solution"><span class="nav-number">2.</span> <span class="nav-text">Solution</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#运行结果"><span class="nav-number">2.1.</span> <span class="nav-text">运行结果</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Scott Yeung"
+      src="/images/self.jpg">
+  <p class="site-author-name" itemprop="name">Scott Yeung</p>
+  <div class="site-description" itemprop="description">道亦有道  玄之又玄</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">71</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yeung66" title="GitHub → https://github.com/yeung66" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:407284292@qq.com" title="E-Mail → mailto:407284292@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/scottyeung6" title="Instagram → https://instagram.com/scottyeung6" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://music.163.com/#/user/home?id=126931346" title="网易云音乐 → https://music.163.com/#/user/home?id=126931346" rel="noopener" target="_blank"><i class="fa fa-fw fa-music"></i>网易云音乐</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Scott Yeung</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.1
+  </div>
+
+        
+
+
+
+
+
+
+  <script>
+  function leancloudSelector(url) {
+    url = encodeURI(url);
+    return document.getElementById(url).querySelector('.leancloud-visitors-count');
+  }
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.getAttribute('id'));
+      var title = visitors.getAttribute('data-flag-title');
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .then(response => response.json())
+              .then(() => {
+                leancloudSelector(url).innerText = counter.time + 1;
+              })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              })
+          } else {
+              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.getAttribute('id'));
+      });
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url: { '$in': entries } })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length === 0) {
+            document.querySelectorAll('.leancloud_visitors .leancloud-visitors-count').forEach(element => {
+              element.innerText = 0;
+            });
+            return;
+          }
+          for (let item of results) {
+            let { url, time } = item;
+            leancloudSelector(url).innerText = time;
+          }
+          for (let url of entries) {
+            var element = leancloudSelector(url);
+            if (element.innerText == '') {
+              element.innerText = 0;
+            }
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+  }
+
+  fetch('https://app-router.leancloud.cn/2/route?appId=2yhfMbsA5oHkrxvqW2t0roxg-gzGzoHsz')
+    .then(response => response.json())
+    .then(({ api_server }) => {
+      var Counter = (method, url, data) => {
+        return fetch(`https://${api_server}/1.1${url}`, {
+          method: method,
+          headers: {
+            'X-LC-Id'     : '2yhfMbsA5oHkrxvqW2t0roxg-gzGzoHsz',
+            'X-LC-Key'    : 'rf7s0pmEmVPJsn68lh7u7QNz',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
