@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"scottyeung.club","root":"/","scheme":"Pisces","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+<script data-ad-client="ca-pub-7766364950991401" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <meta name="description" content="尽管Python当中有着GIL（Global Interpreter Lock）的限制，在同一时间当中一个进程只能由GIL解释单个线程的代码，但是合理地进行并发编程，仍然可以解决不少的性能瓶颈问题，大大提高效率。尤其是在看完Fluent Python之后，对于Python的并发编程有了更加深厚的了解。以下介绍几种可用的并发编程方式，以及它们相关的概念和使用的基本方法。">
+<meta name="keywords" content="Python,并发编程,Concurrency,asyncio,summary">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python中的并发编程">
+<meta property="og:url" content="http://scottyeung.club/2020/Python中的并发编程/index.html">
+<meta property="og:site_name" content="YeungYeah 的乱写地">
+<meta property="og:description" content="尽管Python当中有着GIL（Global Interpreter Lock）的限制，在同一时间当中一个进程只能由GIL解释单个线程的代码，但是合理地进行并发编程，仍然可以解决不少的性能瓶颈问题，大大提高效率。尤其是在看完Fluent Python之后，对于Python的并发编程有了更加深厚的了解。以下介绍几种可用的并发编程方式，以及它们相关的概念和使用的基本方法。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-03-10T03:11:13.304Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python中的并发编程">
+<meta name="twitter:description" content="尽管Python当中有着GIL（Global Interpreter Lock）的限制，在同一时间当中一个进程只能由GIL解释单个线程的代码，但是合理地进行并发编程，仍然可以解决不少的性能瓶颈问题，大大提高效率。尤其是在看完Fluent Python之后，对于Python的并发编程有了更加深厚的了解。以下介绍几种可用的并发编程方式，以及它们相关的概念和使用的基本方法。">
+
+<link rel="canonical" href="http://scottyeung.club/2020/Python中的并发编程/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>Python中的并发编程 | YeungYeah 的乱写地</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151343043-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-151343043-1');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YeungYeah 的乱写地</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-动态">
+
+    <a href="/moments" rel="section"><i class="fa fa-fw fa-calendar"></i>动态</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-占卜">
+
+    <a href="http://divi.scottyeung.club:8080/" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>占卜</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://scottyeung.club/2020/Python中的并发编程/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.jpg">
+      <meta itemprop="name" content="Scott Yeung">
+      <meta itemprop="description" content="道亦有道  玄之又玄">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YeungYeah 的乱写地">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Python中的并发编程
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-09 20:51:07" itemprop="dateCreated datePublished" datetime="2020-03-09T20:51:07+08:00">2020-03-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-10 11:11:13" itemprop="dateModified" datetime="2020-03-10T11:11:13+08:00">2020-03-10</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/Python中的并发编程/" class="post-meta-item leancloud_visitors" data-flag-title="Python中的并发编程" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/Python中的并发编程/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/Python中的并发编程/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>8 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>尽管Python当中有着GIL（Global Interpreter Lock）的限制，在同一时间当中一个进程只能由GIL解释单个线程的代码，但是合理地进行并发编程，仍然可以解决不少的性能瓶颈问题，大大提高效率。尤其是在看完Fluent Python之后，对于Python的并发编程有了更加深厚的了解。<br>以下介绍几种可用的并发编程方式，以及它们相关的概念和使用的基本方法。</p>
+<a id="more"></a>
+<p>以下只考虑Python3的状况。</p>
+<h2 id="Threading-Multiprocession"><a href="#Threading-Multiprocession" class="headerlink" title="Threading / Multiprocession"></a>Threading / Multiprocession</h2><p>最简单的并发编程形式，莫过于直接开启新的线程或者进程来执行代码。</p>
+<ul>
+<li><code>threading.Thread(group=None, target=None, name=None, args=(), kwargs={}, *, daemon=None)</code><br>通过调用该方法可以直接创建线程对象，其中target为需要执行的目标函数，args和kwargs为该目标函数的参数，创建后，通过<ul>
+<li>调用start方法以开启线程，进行调度执行target函数</li>
+<li>线程开启调度后，调用<code>join(timeout=None)</code>方法可以阻塞调用线程，等待线程结束或者超时</li>
+<li>使用threading进行多线程编程实现并发的话，仍然受到GIL的限制，但仍可以避免因等待IO完成的阻塞</li>
+</ul>
+</li>
+<li><code>multiprocessing.Process(group=None, target=None, name=None, args=(), kwargs={}, *, daemon=None)</code><br>类似于线程的创建，创建进程实现多线程可以避免GIL的限制从而利用到CPU的多个核心，在CPU密集的代码中非常有用。<ul>
+<li>类似于线程的使用，通过start方法开启进程任务调度，调用join方法等待完成</li>
+<li>除此以外，可以调用进程池Pool进行多个任务的调度处理，通过map或者apply方法，开启多个进程处理多个任务</li>
+</ul>
+</li>
+</ul>
+<p>直接创建线程/进程这种方式简单、直接、粗暴，不过大多时候需要自己进行任务的调度，需要自己安排怎样创建进程，怎样完成任务。在之前尝试<a href="http://scottyeung.club/2020/%E8%AE%B0%E4%B8%80%E6%AC%A1%E6%BC%AB%E7%94%BB%E6%89%B9%E9%87%8F%E7%9A%84%E7%88%AC%E5%8F%96-%E4%B8%8B%E8%BD%BD/">批量下载漫画</a>的过程中，使用的就是threading方法，就需要自己进行任务的安排，进而安排线程的创建和执行。当时还不知道怎么合理地分配调度任务，就只能将任务分为若干子集，每个子集开启独立的线程来完成下载任务，但是仍然无法避免下载过程中网络访问和文件保存的IO阻塞。另外，线程创建之后就是独立运行的线程，除了等待结束返回之后，无法传输数据进行额外的控制。</p>
+<h2 id="concurrent-futures"><a href="#concurrent-futures" class="headerlink" title="concurrent.futures"></a>concurrent.futures</h2><p>它在Python3.2中被引入，提供了高层次的异步可调用对象执行的接口。我们可以通过ThreadPoolExecutor在线程级别上进行异步执行，或者通过ProcessPoolExecutor在不同的进程中实现。两者实现相同的抽象接口类Excutor，因而具有一样的调用方法，便于进行转换。</p>
+<h3 id="Executor"><a href="#Executor" class="headerlink" title="Executor"></a>Executor</h3><ul>
+<li><code>submit(fn, *args, **kwargs)</code> 提交任务进行调度，返回Future对象</li>
+<li><code>map(func, *iterables, timeout=None, chunksize=1)</code> 类似于map方法，对于iter里面的每一个对象都会异步地调用func，当任务结束时返回各个函数返回结果的迭代器</li>
+</ul>
+<h3 id="Future"><a href="#Future" class="headerlink" title="Future"></a>Future</h3><p>在futures里面具体的任务类，由submit方法创建。</p>
+<ul>
+<li>result 获取任务的返回结果，若未结束则阻塞至结束或超时</li>
+<li>cancel 关闭任务</li>
+<li>canceled 是否关闭</li>
+<li>done 是否结束</li>
+</ul>
+<h3 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h3><ol>
+<li><p>通过submit提交任务创建获取任务的future对象，再通过as_completed等待future对象结束，获取结果。as_completed接收future对象的迭代器。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> concurrent.futures.ThreadPoolExecutor(max_workers=<span class="number">5</span>) <span class="keyword">as</span> executor:</span><br><span class="line">    <span class="comment"># Start the load operations and mark each future with its URL</span></span><br><span class="line">    future_to_url = &#123;executor.submit(load_url, url, <span class="number">60</span>): url <span class="keyword">for</span> url <span class="keyword">in</span> URLS&#125;</span><br><span class="line">    <span class="keyword">for</span> future <span class="keyword">in</span> concurrent.futures.as_completed(future_to_url):</span><br><span class="line">        url = future_to_url[future]</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            data = future.result()</span><br><span class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> exc:</span><br><span class="line">            print(<span class="string">'%r generated an exception: %s'</span> % (url, exc))</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(<span class="string">'%r page is %d bytes'</span> % (url, len(data)))</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通过map方法批量执行任务，再获取结果。但是map方法返回结果的顺序与调用顺序即传入的迭代对象的顺序一样，若前面的任务耗时过长会阻塞后面执行快的任务返回。</p>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> concurrent.futures.ProcessPoolExecutor() <span class="keyword">as</span> executor:</span><br><span class="line">        <span class="keyword">for</span> number, prime <span class="keyword">in</span> zip(PRIMES, executor.map(is_prime, PRIMES)):</span><br><span class="line">            print(<span class="string">'%d is prime: %s'</span> % (number, prime))</span><br></pre></td></tr></table></figure>
+<h2 id="asyncio"><a href="#asyncio" class="headerlink" title="asyncio"></a>asyncio</h2><p>asyncio采用event loop的事件驱动型的异步调度执行。</p>
+<h3 id="coroutine"><a href="#coroutine" class="headerlink" title="coroutine"></a>coroutine</h3><p>coroutine（协程）从定义上来说，指的是包含yield/yield from语句的函数（在Python3.5引入async和await之前）。在此之前，我们可以通过生成器的形式来实现，样例如下。首先可以调用函数获得生成器对象，然后调用next方法或send(None)的方法开启coroutine，开启后，函数执行到yield位置，返回yield右侧的表达式后则挂起自己，将控制流交回给主线程。当再次调用send方法时，可以传输数据并激活协程，继续执行至结束或者下一个yield语句处。该样例则是一个计算累计输入的平均值协程。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string"># BEGIN CORO_AVERAGER_TEST</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; coro_avg = averager()  # &lt;1&gt;</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; next(coro_avg)  # &lt;2&gt;</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; coro_avg.send(10)  # &lt;3&gt;</span></span><br><span class="line"><span class="string">    10.0</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; coro_avg.send(30)</span></span><br><span class="line"><span class="string">    20.0</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; coro_avg.send(5)</span></span><br><span class="line"><span class="string">    15.0</span></span><br><span class="line"><span class="string"># END CORO_AVERAGER_TEST</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">averager</span><span class="params">()</span>:</span></span><br><span class="line">    total = <span class="number">0.0</span></span><br><span class="line">    count = <span class="number">0</span></span><br><span class="line">    average = <span class="literal">None</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:  <span class="comment"># &lt;1&gt;</span></span><br><span class="line">        term = <span class="keyword">yield</span> average  <span class="comment"># &lt;2&gt;</span></span><br><span class="line">        total += term</span><br><span class="line">        count += <span class="number">1</span></span><br><span class="line">        average = total/count</span><br></pre></td></tr></table></figure>
+<p>当coroutine运行结束时，会抛出一个StopIteration的异常，告知协程结束。若协程函数有返回值，也会被存在StopIteration.value中随着异常返回。如果我们要获得返回值，必须要捕获异常。另外，在使用coroutine的过程中，我们还需要手动调用next方法来开启coroutine。这些不方便之处，使我们通常会使用一个delegating generator来进行中间的调用操作。在delegation generator当中，通过yield from来调用subgenerator，并可以直接获取返回值，且delegating generator可以处理subgenerator抛出的异常。</p>
+<h3 id="使用方式-1"><a href="#使用方式-1" class="headerlink" title="使用方式"></a>使用方式</h3><p>asyncio库则是通过协程的方式，引入事件循环（event loop）的方式，通过事件轮询与回调的方式进行异步编程。具体的使用方式通过书中一个具体的例子来说明。这个例子是批量从网上下载不同国家国旗的图片，通过将每一个国家国旗的下载任务封装为一个协程，进行并发编程。在协程中，对于每一个可能会发生阻塞，需要等待的操作，均使用yield from进行调用。当运行到此处时，程序会交出当前的控制权，异步调用并执行coroutine，当运行完返回之后才会将控制权交回给之前的线程。</p>
+<p>当编写完协程函数之后，通过list comprehension批量生成协程对象，通过wait方法开启新的协程，来调用开启所有的任务协程对象。在通过loop.run_until_complete等待所有协程完成。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@asyncio.coroutine  # &lt;3&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_flag</span><span class="params">(cc)</span>:</span></span><br><span class="line">    url = <span class="string">'&#123;&#125;/&#123;cc&#125;/&#123;cc&#125;.gif'</span>.format(BASE_URL, cc=cc.lower())</span><br><span class="line">    resp = <span class="keyword">yield</span> <span class="keyword">from</span> aiohttp.request(<span class="string">'GET'</span>, url)  <span class="comment"># &lt;4&gt;</span></span><br><span class="line">    image = <span class="keyword">yield</span> <span class="keyword">from</span> resp.read()  <span class="comment"># &lt;5&gt;</span></span><br><span class="line">    <span class="keyword">return</span> image</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@asyncio.coroutine</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">download_one</span><span class="params">(cc)</span>:</span>  <span class="comment"># &lt;6&gt;</span></span><br><span class="line">    image = <span class="keyword">yield</span> <span class="keyword">from</span> get_flag(cc)  <span class="comment"># &lt;7&gt;</span></span><br><span class="line">    show(cc)</span><br><span class="line">    save_flag(image, cc.lower() + <span class="string">'.gif'</span>)</span><br><span class="line">    <span class="keyword">return</span> cc</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">download_many</span><span class="params">(cc_list)</span>:</span></span><br><span class="line">    loop = asyncio.get_event_loop()  <span class="comment"># &lt;8&gt;</span></span><br><span class="line">    to_do = [download_one(cc) <span class="keyword">for</span> cc <span class="keyword">in</span> sorted(cc_list)]  <span class="comment"># &lt;9&gt;</span></span><br><span class="line">    wait_coro = asyncio.wait(to_do)  <span class="comment"># &lt;10&gt;</span></span><br><span class="line">    res, _ = loop.run_until_complete(wait_coro)  <span class="comment"># &lt;11&gt;</span></span><br><span class="line">    loop.close() <span class="comment"># &lt;12&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> len(res)</span><br></pre></td></tr></table></figure>
+<p>PS：</p>
+<ol>
+<li>可能会出现的阻塞应该全部使用异步调用。因为这里采用的是event loop，其实还是在同一个线程，如果使用了线程阻塞的操作，依然会阻塞其余所有的操作。因而应该使用异步调用的方式，如aiohttp进行http请求，或者asyncio.sleep进行休眠操作，当会发生阻塞的时候，抛出控制权给回event loop</li>
+<li>此处调用wait后再调用run_until_complete，需要等到全部协程完成时才会一并返回结果，不利于判断完成情况。可以利用asyncio.as_completed进行代替，可以马上返回以及完成的任务</li>
+<li>只有通过loop或async中相关的run方法，任务才会被执行</li>
+</ol>
+<h3 id="update"><a href="#update" class="headerlink" title="update"></a>update</h3><p>在Python3.5中，引入了关键字async和await，以及coroutine类型。可以更加清晰地使用asyncio进行并发编程。其中async等价于装饰器<a href="mailto:`@asyncio.coroutine" target="_blank" rel="noopener">`@asyncio.coroutine</a>`，可以将函数声明为coroutine对象。await关键字则可以取代yield from关键字，进行异步函数的调用。看了看变化还挺大的，尽管核心的思想没变，还是需要重新看看。具体的文档<a href="https://docs.python.org/3/library/asyncio.html" target="_blank" rel="noopener">见此</a></p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Scott Yeung
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://scottyeung.club/2020/Python中的并发编程/" title="Python中的并发编程">http://scottyeung.club/2020/Python中的并发编程/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Python/" rel="tag"># Python</a>
+              <a href="/tags/并发编程/" rel="tag"># 并发编程</a>
+              <a href="/tags/Concurrency/" rel="tag"># Concurrency</a>
+              <a href="/tags/asyncio/" rel="tag"># asyncio</a>
+              <a href="/tags/summary/" rel="tag"># summary</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/记一次漫画批量的爬取-下载/" rel="prev" title="记一次漫画批量的爬取/下载">
+      <i class="fa fa-chevron-left"></i> 记一次漫画批量的爬取/下载
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Threading-Multiprocession"><span class="nav-number">1.</span> <span class="nav-text">Threading / Multiprocession</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#concurrent-futures"><span class="nav-number">2.</span> <span class="nav-text">concurrent.futures</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Executor"><span class="nav-number">2.1.</span> <span class="nav-text">Executor</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Future"><span class="nav-number">2.2.</span> <span class="nav-text">Future</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用方式"><span class="nav-number">2.3.</span> <span class="nav-text">使用方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#asyncio"><span class="nav-number">3.</span> <span class="nav-text">asyncio</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#coroutine"><span class="nav-number">3.1.</span> <span class="nav-text">coroutine</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用方式-1"><span class="nav-number">3.2.</span> <span class="nav-text">使用方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#update"><span class="nav-number">3.3.</span> <span class="nav-text">update</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Scott Yeung"
+      src="/images/self.jpg">
+  <p class="site-author-name" itemprop="name">Scott Yeung</p>
+  <div class="site-description" itemprop="description">道亦有道  玄之又玄</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">38</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">74</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yeung66" title="GitHub → https://github.com/yeung66" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:407284292@qq.com" title="E-Mail → mailto:407284292@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/scottyeung6" title="Instagram → https://instagram.com/scottyeung6" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://music.163.com/#/user/home?id=126931346" title="网易云音乐 → https://music.163.com/#/user/home?id=126931346" rel="noopener" target="_blank"><i class="fa fa-fw fa-music"></i>网易云音乐</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → /atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Scott Yeung</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">80k</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.1
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : true,
+      appId      : '2yhfMbsA5oHkrxvqW2t0roxg-gzGzoHsz',
+      appKey     : 'rf7s0pmEmVPJsn68lh7u7QNz',
+      placeholder: "欢迎留言~",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
