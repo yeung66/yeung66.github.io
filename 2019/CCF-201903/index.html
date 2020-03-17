@@ -21,18 +21,18 @@
   </script>
 
 <script data-ad-client="ca-pub-7766364950991401" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <meta name="description" content="最后一次的认证，事前准备了差不多一个月，都觉得没什么问题了，考的时候还做出了四道题，觉得三百分是稳的。然后一查成绩，居然比第一次基本没怎么准备还低（第一次270），不甘心，又无奈。 于是等到网上出了题后，把当时提交的题重新做一遍，提交一遍，重新看看问题在哪，写一写题解。也不是想要证明什么，只是觉得努力不应该被白费？代码链接点此">
+  <meta name="description" content="最后一次的认证，事前准备了差不多一个月，都觉得没什么问题了，考的时候还做出了四道题，觉得三百分是稳的。然后一查成绩，居然比第一次基本没怎么准备还低（第一次270），不甘心，又无奈。 于是等到网上出了题后，把当时提交的题重新做一遍，提交一遍，重新看看问题在哪，写一写题解。也不是想要证明什么，只是觉得努力不应该被白费？ 代码链接点此">
 <meta name="keywords" content="CCF,Python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CCF 201903">
 <meta property="og:url" content="http://scottyeung.club/2019/CCF-201903/index.html">
 <meta property="og:site_name" content="YeungYeah 的乱写地">
-<meta property="og:description" content="最后一次的认证，事前准备了差不多一个月，都觉得没什么问题了，考的时候还做出了四道题，觉得三百分是稳的。然后一查成绩，居然比第一次基本没怎么准备还低（第一次270），不甘心，又无奈。 于是等到网上出了题后，把当时提交的题重新做一遍，提交一遍，重新看看问题在哪，写一写题解。也不是想要证明什么，只是觉得努力不应该被白费？代码链接点此">
+<meta property="og:description" content="最后一次的认证，事前准备了差不多一个月，都觉得没什么问题了，考的时候还做出了四道题，觉得三百分是稳的。然后一查成绩，居然比第一次基本没怎么准备还低（第一次270），不甘心，又无奈。 于是等到网上出了题后，把当时提交的题重新做一遍，提交一遍，重新看看问题在哪，写一写题解。也不是想要证明什么，只是觉得努力不应该被白费？ 代码链接点此">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-11-12T14:48:29.974Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CCF 201903">
-<meta name="twitter:description" content="最后一次的认证，事前准备了差不多一个月，都觉得没什么问题了，考的时候还做出了四道题，觉得三百分是稳的。然后一查成绩，居然比第一次基本没怎么准备还低（第一次270），不甘心，又无奈。 于是等到网上出了题后，把当时提交的题重新做一遍，提交一遍，重新看看问题在哪，写一写题解。也不是想要证明什么，只是觉得努力不应该被白费？代码链接点此">
+<meta name="twitter:description" content="最后一次的认证，事前准备了差不多一个月，都觉得没什么问题了，考的时候还做出了四道题，觉得三百分是稳的。然后一查成绩，居然比第一次基本没怎么准备还低（第一次270），不甘心，又无奈。 于是等到网上出了题后，把当时提交的题重新做一遍，提交一遍，重新看看问题在哪，写一写题解。也不是想要证明什么，只是觉得努力不应该被白费？ 代码链接点此">
 
 <link rel="canonical" href="http://scottyeung.club/2019/CCF-201903/">
 
@@ -273,24 +273,29 @@
 
       
         <p>最后一次的认证，事前准备了差不多一个月，都觉得没什么问题了，考的时候还做出了四道题，觉得三百分是稳的。然后一查成绩，居然比第一次基本没怎么准备还低（第一次270），不甘心，又无奈。</p>
-<p>于是等到网上出了题后，把当时提交的题重新做一遍，提交一遍，重新看看问题在哪，写一写题解。也不是想要证明什么，只是觉得努力不应该被白费？<br>代码链接<a href="https://github.com/yeung66/codesAboutCCF/tree/master/201903" target="_blank" rel="noopener">点此</a><br><a id="more"></a></p>
-<h2 id="小中大"><a href="#小中大" class="headerlink" title="小中大"></a>小中大</h2><p>题目为有序序列中找最大值，最小值和中位数，并按大到小的顺序输出。</p>
+<p>于是等到网上出了题后，把当时提交的题重新做一遍，提交一遍，重新看看问题在哪，写一写题解。也不是想要证明什么，只是觉得努力不应该被白费？ 代码链接<a href="https://github.com/yeung66/codesAboutCCF/tree/master/201903" target="_blank" rel="noopener">点此</a> <a id="more"></a></p>
+<h2 id="小中大">小中大</h2>
+<p>题目为有序序列中找最大值，最小值和中位数，并按大到小的顺序输出。</p>
 <p>非常简单，最大最小值直接按索引取值即可，中位数则需要根据个数的奇偶性判断要不要取均值。</p>
 <p>然而，第一道题的输入样例就给错了，样例2的输入并不是有序的，这就引发了我一个非常关键的问题：最值怎么取？是根据他说的原本有序取两侧，还是取实际的最值？我当时想的是前者，这就又引发出了另一个问题，中位数可能比最大值大或者比最小值小，所以三者又做了额外的排序，耽误了一定的时间。</p>
 <p>最后直到我第二题都差不多做完，才通知说题目有误，改了样例。而我上面的代码一样符合它的思路，只是做多了额外功夫，测试了一下新样例就完事了。</p>
 <p>最后这题拿了100分</p>
-<h2 id="二十四点"><a href="#二十四点" class="headerlink" title="二十四点"></a>二十四点</h2><p>题目为根据输入表达式判断结果是否等于24。</p>
+<h2 id="二十四点">二十四点</h2>
+<p>题目为根据输入表达式判断结果是否等于24。</p>
 <p>对于有着eval的Python的选手来说，非常简单，处理一下输入调用<code>eval</code>即可。考试时注意到除法为整除，而Python3已经将整除变为<code>//</code>所以先用replace替换一下除号即可。</p>
 <p>然而这道题我拿了40分，考后提交发现运行错误。细看题，发现题目中给出的乘号居然是小写字母<code>x</code>来表示。为什么会发现不了？当时因为第一题题目本身有问题，耽误了一点时间，所以做得比较快，而且最关键的是，<strong>这一次全部题面都用了图片，包括输入样例！！！</strong>我们只能一个个手敲输入样例，因为是手敲样例的缘故，自己就直接先入为主当成*号了，发现不了看错题的情况，血崩。</p>
 <p>发现问题后对乘法做一个处理，将x替换成*，问题解决，100分。</p>
-<h2 id="损坏的RAID5"><a href="#损坏的RAID5" class="headerlink" title="损坏的RAID5"></a>损坏的RAID5</h2><p>麻烦模拟题</p>
+<h2 id="损坏的raid5">损坏的RAID5</h2>
+<p>麻烦模拟题</p>
 <p>待续</p>
-<h2 id="消息传递接口"><a href="#消息传递接口" class="headerlink" title="消息传递接口"></a>消息传递接口</h2><p>一个比较典型的死锁问题，感觉可以用信号量去解决。</p>
+<h2 id="消息传递接口">消息传递接口</h2>
+<p>一个比较典型的死锁问题，感觉可以用信号量去解决。</p>
 <p>当时跳了这道题没做，现在估计也不会去做。</p>
-<h2 id="317号子任务"><a href="#317号子任务" class="headerlink" title="317号子任务"></a>317号子任务</h2><p>多源点最短路径问题</p>
+<h2 id="号子任务">317号子任务</h2>
+<p>多源点最短路径问题</p>
 <p>题目要求给出图中每一个点到k个特定类型的点的最短路径和。</p>
-<p>对于图论题我一直都是抱着能拿分就拿分的态度，超时的话一般都不考虑，于是直接采用最为暴力直接的方法——弗洛伊德算法，直接求出多源点最短路径，复杂度为$O(n^3)$，求出后直接找每个点到特定点的距离，排序后取前k个求和即可。</p>
-<p>考试时，这道题我得了0分，现在重新提交，显示运行超时。运行超时我并不感到意外，但是超时到连第一个样例都过不了？？？重新看数据规模，发现这里第一档的数据（30%的数据），点的规模就已经到了500，重新翻了翻以往的图论题，别的单源最短路径或者最小生成树的问题第一档数据规模一般都是$10$,今年因为放到了第五题，强行通过数据规模提高难度，也是醉了。但是即使如此，现在的模拟提交因为时间只有1秒超时，在考试的时候时间上限是10s，10s也不能跑完第一档的数据？很奇怪。</p>
+<p>对于图论题我一直都是抱着能拿分就拿分的态度，超时的话一般都不考虑，于是直接采用最为暴力直接的方法——弗洛伊德算法，直接求出多源点最短路径，复杂度为<span class="math inline">\(O(n^3)\)</span>，求出后直接找每个点到特定点的距离，排序后取前k个求和即可。</p>
+<p>考试时，这道题我得了0分，现在重新提交，显示运行超时。运行超时我并不感到意外，但是超时到连第一个样例都过不了？？？重新看数据规模，发现这里第一档的数据（30%的数据），点的规模就已经到了500，重新翻了翻以往的图论题，别的单源最短路径或者最小生成树的问题第一档数据规模一般都是<span class="math inline">\(10\)</span>,今年因为放到了第五题，强行通过数据规模提高难度，也是醉了。但是即使如此，现在的模拟提交因为时间只有1秒超时，在考试的时候时间上限是10s，10s也不能跑完第一档的数据？很奇怪。</p>
 <p>换用了C++重新写了一个C++版本的弗洛伊德算法，还是超时0分。上网搜了一下，相关题解只有<a href="https://www.cnblogs.com/brainm/p/10548893.html" target="_blank" rel="noopener">一个</a>，而且也是用弗洛伊德算法。将其直接复制提交，提示错误，这次不超时了，但是时间也接近界限了。一样的方法为什么它可以不超时？我一直贴近它的代码修改我的，可是我的代码还是一直超时，莫得办法。看它的代码，没有考虑重边和自环。修改后还是错误。暂时只能放弃。</p>
 
     </div>
@@ -395,7 +400,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#小中大"><span class="nav-number">1.</span> <span class="nav-text">小中大</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二十四点"><span class="nav-number">2.</span> <span class="nav-text">二十四点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#损坏的RAID5"><span class="nav-number">3.</span> <span class="nav-text">损坏的RAID5</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消息传递接口"><span class="nav-number">4.</span> <span class="nav-text">消息传递接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#317号子任务"><span class="nav-number">5.</span> <span class="nav-text">317号子任务</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#小中大"><span class="nav-number">1.</span> <span class="nav-text">小中大</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二十四点"><span class="nav-number">2.</span> <span class="nav-text">二十四点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#损坏的raid5"><span class="nav-number">3.</span> <span class="nav-text">损坏的RAID5</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消息传递接口"><span class="nav-number">4.</span> <span class="nav-text">消息传递接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#号子任务"><span class="nav-number">5.</span> <span class="nav-text">317号子任务</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

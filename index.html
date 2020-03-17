@@ -240,7 +240,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>5.2k</span>
+              <span>5.3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -259,7 +259,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>尽管Python当中有着GIL（Global Interpreter Lock）的限制，在同一时间当中一个进程只能由GIL解释单个线程的代码，但是合理地进行并发编程，仍然可以解决不少的性能瓶颈问题，大大提高效率。尤其是在看完Fluent Python之后，对于Python的并发编程有了更加深厚的了解。<br>以下介绍几种可用的并发编程方式，以及它们相关的概念和使用的基本方法。</p>
+          <p>尽管Python当中有着GIL（Global Interpreter Lock）的限制，在同一时间当中一个进程只能由GIL解释单个线程的代码，但是合理地进行并发编程，仍然可以解决不少的性能瓶颈问题，大大提高效率。尤其是在看完Fluent Python之后，对于Python的并发编程有了更加深厚的了解。 以下介绍几种可用的并发编程方式，以及它们相关的概念和使用的基本方法。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2020/Python中的并发编程/#more" rel="contents">
@@ -363,7 +363,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>想找回一部很久之前看的漫画，网上的资源较少，大多都已被封禁，少数能看的网页加载还超级慢，有些图片显示还非常奇怪，影响正常阅读，遂萌生了下载下来在本地看的想法。后来找到一个网页，显示正常，能看，但是速度有点不稳定，于是就选择爬取该网页，将漫画全部下载到电脑上。</p>
+          <h1 id="背景">背景</h1>
+<p>想找回一部很久之前看的漫画，网上的资源较少，大多都已被封禁，少数能看的网页加载还超级慢，有些图片显示还非常奇怪，影响正常阅读，遂萌生了下载下来在本地看的想法。后来找到一个网页，显示正常，能看，但是速度有点不稳定，于是就选择爬取该网页，将漫画全部下载到电脑上。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2020/记一次漫画批量的爬取-下载/#more" rel="contents">
@@ -656,7 +657,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3k</span>
+              <span>3.1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -675,13 +676,14 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h1><ul>
+          <h1 id="problem">Problem</h1>
+<ul>
 <li>source: <a href="https://leetcode-cn.com/problems/maximum-sum-circular-subarray/" target="_blank" rel="noopener">Maximum Sum Circular Subarray</a></li>
 <li>difficulty: Medium</li>
 </ul>
-<p>Given a circular array C of integers represented by A, find the maximum possible sum of a non-empty subarray of C.</p>
-<p>Here, a circular array means the end of the array connects to the beginning of the array.  (Formally, <code>C[i] = A[i] when 0 &lt;= i &lt; A.length</code>, and <code>C[i+A.length] = C[i] when i &gt;= 0</code>.)</p>
-<p>Also, a subarray may only include each element of the fixed buffer A at most once.  (Formally, for a subarray $C[i], C[i+1], …, C[j]$, there does not exist $i &lt;= k_1, k_2 &lt;= j$ with$k_1 mod A.length = k_2 mod A.length $.)</p>
+<p>Given a circular array C of integers represented by A, find the maximum possible sum of a non-empty subarray of C.</p>
+<p>Here, a circular array means the end of the array connects to the beginning of the array.  (Formally, <code>C[i] = A[i] when 0 &lt;= i &lt; A.length</code>, and <code>C[i+A.length] = C[i] when i &gt;= 0</code>.)</p>
+<p>Also, a subarray may only include each element of the fixed buffer A at most once.  (Formally, for a subarray <span class="math inline">\(C[i], C[i+1], ..., C[j]\)</span>, there does not exist <span class="math inline">\(i &lt;= k_1, k_2 &lt;= j\)</span> with$k_1 mod A.length = k_2 mod A.length $.)</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2020/Maximum-Sum-Circular-Subarray/#more" rel="contents">
@@ -1081,11 +1083,7 @@
 
       
           <p>近期在收集处理大量的数据，通常是把XML/文本格式的数据转为关系型，结构化的的数据，能够方便导出直接进行分析，尤其是导出能直接被pandas分析的格式（csv/json）。因此需要使用一个在Python下的mysql处理库，既然找了处理库，也干脆一步到位，直接选一个支持ORM的库。于是，就选择了SQLAlchemy。用了一段时间后，写个记录来记下这段时间用到的常用的东西。</p>
-<p>SQLAlchemy是Python编程语言下的一款开源软件。提供了SQL工具包及对象关系映射（ORM）工具，主要能满足一下的需求：</p>
-<ul>
-<li>提供对数据库的常用操作：增删改查</li>
-<li>提供ORM功能，可以让操作的单元变为对象，而不用写sql语句进行硬编码/解码解析数据</li>
-</ul>
+<p>SQLAlchemy是Python编程语言下的一款开源软件。提供了SQL工具包及对象关系映射（ORM）工具，主要能满足一下的需求： - 提供对数据库的常用操作：增删改查 - 提供ORM功能，可以让操作的单元变为对象，而不用写sql语句进行硬编码/解码解析数据</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2019/Some-notes-About-Sqlalchemy/#more" rel="contents">

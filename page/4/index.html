@@ -259,12 +259,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h1><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>　　某股票交易所请你编写一个程序，根据开盘前客户提交的订单来确定某特定股票的开盘价和开盘成交量。<br>　　该程序的输入由很多行构成，每一行为一条记录，记录可能有以下几种：</p>
-<ol>
-<li>buy p s 表示一个购买股票的买单，每手出价为p，购买股数为s。</li>
-<li>sell p s 表示一个出售股票的卖单，每手出价为p，出售股数为s。</li>
-<li>cancel i表示撤销第i行的记录。<br>  如果开盘价为p0，则系统可以将所有出价至少为p0的买单和所有出价至多为p0的卖单进行匹配。因此，此时的开盘成交量为出价至少为p0的买单的总股数和所有出价至多为p0的卖单的总股数之间的较小值。<br>  　　你的程序需要确定一个开盘价，使得开盘成交量尽可能地大。如果有多个符合条件的开盘价，你的程序应当输出最高的那一个。</li>
-</ol>
+          <h1 id="problem">Problem</h1>
+<h2 id="问题描述">问题描述</h2>
+<p>　　某股票交易所请你编写一个程序，根据开盘前客户提交的订单来确定某特定股票的开盘价和开盘成交量。 　　该程序的输入由很多行构成，每一行为一条记录，记录可能有以下几种： 1. buy p s 表示一个购买股票的买单，每手出价为p，购买股数为s。 2. sell p s 表示一个出售股票的卖单，每手出价为p，出售股数为s。 3. cancel i表示撤销第i行的记录。 如果开盘价为p0，则系统可以将所有出价至少为p0的买单和所有出价至多为p0的卖单进行匹配。因此，此时的开盘成交量为出价至少为p0的买单的总股数和所有出价至多为p0的卖单的总股数之间的较小值。 　　你的程序需要确定一个开盘价，使得开盘成交量尽可能地大。如果有多个符合条件的开盘价，你的程序应当输出最高的那一个。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2019/CCF201412-3-集合竞价/#more" rel="contents">
@@ -368,13 +365,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h1><ul>
-<li><p>source: <a href="https://leetcode-cn.com/problems/wildcard-matching/" target="_blank" rel="noopener">Wildcard Matching</a></p>
-</li>
-<li><p>difficulty: hard</p>
-</li>
+          <h1 id="problem">Problem</h1>
+<ul>
+<li><p>source: <a href="https://leetcode-cn.com/problems/wildcard-matching/" target="_blank" rel="noopener">Wildcard Matching</a></p></li>
+<li><p>difficulty: hard</p></li>
 </ul>
-<p>Given an input string (<code>s</code>) and a pattern (<code>p</code>), implement wildcard pattern matching with support for <code>&#39;?&#39;</code>and <code>&#39;*&#39;</code>.</p>
+<p>Given an input string (<code>s</code>) and a pattern (<code>p</code>), implement wildcard pattern matching with support for <code>'?'</code>and <code>'*'</code>.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&apos;?&apos; Matches any single character.</span><br><span class="line">&apos;*&apos; Matches any sequence of characters (including the empty sequence).</span><br></pre></td></tr></table></figure>
 <p>The matching should cover the <strong>entire</strong> input string (not partial).</p>
           <!--noindex-->
@@ -480,7 +476,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h1><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>　　俄罗斯方块是俄罗斯人阿列克谢·帕基特诺夫发明的一款休闲游戏。<br>　　游戏在一个15行10列的方格图上进行，方格图上的每一个格子可能已经放置了方块，或者没有放置方块。每一轮，都会有一个新的由4个小方块组成的板块从方格图的上方落下，玩家可以操作板块左右移动放到合适的位置，当板块中某一个方块的下边缘与方格图上的方块上边缘重合或者达到下边界时，板块不再移动，如果此时方格图的某一行全放满了方块，则该行被消除并得分。<br>　　在这个问题中，你需要写一个程序来模拟板块下落，你不需要处理玩家的操作，也不需要处理消行和得分。<br>　　具体的，给定一个初始的方格图，以及一个板块的形状和它下落的初始位置，你要给出最终的方格图。</p>
+          <h1 id="problem">Problem</h1>
+<h2 id="问题描述">问题描述</h2>
+<p>　　俄罗斯方块是俄罗斯人阿列克谢·帕基特诺夫发明的一款休闲游戏。 　　游戏在一个15行10列的方格图上进行，方格图上的每一个格子可能已经放置了方块，或者没有放置方块。每一轮，都会有一个新的由4个小方块组成的板块从方格图的上方落下，玩家可以操作板块左右移动放到合适的位置，当板块中某一个方块的下边缘与方格图上的方块上边缘重合或者达到下边界时，板块不再移动，如果此时方格图的某一行全放满了方块，则该行被消除并得分。 　　在这个问题中，你需要写一个程序来模拟板块下落，你不需要处理玩家的操作，也不需要处理消行和得分。 　　具体的，给定一个初始的方格图，以及一个板块的形状和它下落的初始位置，你要给出最终的方格图。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2019/CCF201604-2-俄罗斯方块/#more" rel="contents">
@@ -584,7 +582,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h1><ul>
+          <h1 id="problem">Problem</h1>
+<ul>
 <li>Source: <a href="https://leetcode-cn.com/problems/merge-k-sorted-lists/" target="_blank" rel="noopener">Merge K Sorted Lists</a></li>
 <li>difficulty: hard</li>
 </ul>
@@ -692,7 +691,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>在准备做Windows程序设计的大作业时，需要用到Mysql。打开了Mysql WorkBench连接本地数据库时，提示要输入root密码，试了几个常用密码无果后，发现自己再次忘记了Mysql的root密码。但是没有关系，本人已经习惯忘记各种不太常用的账号密码了，驾轻就熟地打开百度搜索相关方法，却发现来来去去都是那同一个方法，而且还因为版本问题与实际情况有些差异，最终还是花费了不少的时间，有点难受，遂写一文记录一下。</p>
+          <h1 id="引言">引言</h1>
+<p>在准备做Windows程序设计的大作业时，需要用到Mysql。打开了Mysql WorkBench连接本地数据库时，提示要输入root密码，试了几个常用密码无果后，发现自己再次忘记了Mysql的root密码。但是没有关系，本人已经习惯忘记各种不太常用的账号密码了，驾轻就熟地打开百度搜索相关方法，却发现来来去去都是那同一个方法，而且还因为版本问题与实际情况有些差异，最终还是花费了不少的时间，有点难受，遂写一文记录一下。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2018/Mysql忘了root密码怎么办/#more" rel="contents">
@@ -796,7 +796,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h1><p>Given a string array <code>words</code>, find the maximum value of <code>length(word[i]) * length(word[j])</code> where the two words do not share common letters. You may assume that each word will contain only lower case letters. If no such two words exist, return 0.</p>
+          <h1 id="problem">Problem</h1>
+<p>Given a string array <code>words</code>, find the maximum value of <code>length(word[i]) * length(word[j])</code> where the two words do not share common letters. You may assume that each word will contain only lower case letters. If no such two words exist, return 0.</p>
 <p><strong>Example 1:</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: [&quot;abcw&quot;,&quot;baz&quot;,&quot;foo&quot;,&quot;bar&quot;,&quot;xtfn&quot;,&quot;abcdef&quot;]</span><br><span class="line">Output: 16 </span><br><span class="line">Explanation: The two words can be &quot;abcw&quot;, &quot;xtfn&quot;.</span><br></pre></td></tr></table></figure>
           <!--noindex-->
@@ -902,7 +903,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>在上周的时候，打算在Ubuntu下查看在Windows下QQ接受到的项目代码，然后顺便就整理了一下目录，新建了一个文件夹，将实验室相关的文件剪切复制到该文件夹。后切换回Windows，发现文件夹没有建成功，而刚才剪切的文件不见了。</p>
+          <h1 id="背景">背景</h1>
+<p>在上周的时候，打算在Ubuntu下查看在Windows下QQ接受到的项目代码，然后顺便就整理了一下目录，新建了一个文件夹，将实验室相关的文件剪切复制到该文件夹。后切换回Windows，发现文件夹没有建成功，而刚才剪切的文件不见了。</p>
 <p>无独有偶，本周一上课纪录模式识别笔记时，顺手归档了一下这门课文件夹下的作业，课件，笔记（在Windows下的Ntfs分区中），然后周二上课打开Windows系统后，发现文件丢失，新建的归档文件夹也不见了，然后昨天修改的markdown笔记也损坏无法打开。</p>
           <!--noindex-->
             <div class="post-button">
@@ -1007,7 +1009,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>心心念念很久的博客终于开通了，距离产生这个想法的大一下学期，已经过去一年半了。在这段时间当中虽然也有过不少的努力和尝试进行博客这个想法的实现，甚至还在大一下学期期末的时候还真的跟着某篇博客用Django倒腾出了一个算是能够用的博客，还部署到了服务器上，上了域名，然而最后死于没有文章产出，真的惭愧。</p>
+          <h2 id="正文">正文</h2>
+<p>心心念念很久的博客终于开通了，距离产生这个想法的大一下学期，已经过去一年半了。在这段时间当中虽然也有过不少的努力和尝试进行博客这个想法的实现，甚至还在大一下学期期末的时候还真的跟着某篇博客用Django倒腾出了一个算是能够用的博客，还部署到了服务器上，上了域名，然而最后死于没有文章产出，真的惭愧。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2018/我为什么要开这个博客/#more" rel="contents">

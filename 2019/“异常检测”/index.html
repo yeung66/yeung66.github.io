@@ -21,17 +21,17 @@
   </script>
 
 <script data-ad-client="ca-pub-7766364950991401" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <meta name="description" content="一般的异常检测问题为：对于给定的一系列样本，给出一个新的测试样本，判断该测试样本是否属于这系列已知样本/该样本是否异常样本。异常检测为无监督学习方法。 例如：对于一批正常的引擎，监测带有一系列的数据（散热，震动强度），对于一个新的引擎，测得相关的数据，判断其是否异常引擎。">
+  <meta name="description" content="一般的异常检测问题为：对于给定的一系列样本，给出一个新的测试样本，判断该测试样本是否属于这系列已知样本/该样本是否异常样本。异常检测为无监督学习方法。 例如：对于一批正常的引擎，监测带有一系列的数据（散热，震动强度），对于一个新的引擎，测得相关的数据，判断其是否异常引擎。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="异常检测">
 <meta property="og:url" content="http://scottyeung.club/2019/“异常检测”/index.html">
 <meta property="og:site_name" content="YeungYeah 的乱写地">
-<meta property="og:description" content="一般的异常检测问题为：对于给定的一系列样本，给出一个新的测试样本，判断该测试样本是否属于这系列已知样本/该样本是否异常样本。异常检测为无监督学习方法。 例如：对于一批正常的引擎，监测带有一系列的数据（散热，震动强度），对于一个新的引擎，测得相关的数据，判断其是否异常引擎。">
+<meta property="og:description" content="一般的异常检测问题为：对于给定的一系列样本，给出一个新的测试样本，判断该测试样本是否属于这系列已知样本/该样本是否异常样本。异常检测为无监督学习方法。 例如：对于一批正常的引擎，监测带有一系列的数据（散热，震动强度），对于一个新的引擎，测得相关的数据，判断其是否异常引擎。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-11-12T14:48:29.985Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="异常检测">
-<meta name="twitter:description" content="一般的异常检测问题为：对于给定的一系列样本，给出一个新的测试样本，判断该测试样本是否属于这系列已知样本/该样本是否异常样本。异常检测为无监督学习方法。 例如：对于一批正常的引擎，监测带有一系列的数据（散热，震动强度），对于一个新的引擎，测得相关的数据，判断其是否异常引擎。">
+<meta name="twitter:description" content="一般的异常检测问题为：对于给定的一系列样本，给出一个新的测试样本，判断该测试样本是否属于这系列已知样本/该样本是否异常样本。异常检测为无监督学习方法。 例如：对于一批正常的引擎，监测带有一系列的数据（散热，震动强度），对于一个新的引擎，测得相关的数据，判断其是否异常引擎。">
 
 <link rel="canonical" href="http://scottyeung.club/2019/“异常检测”/">
 
@@ -274,69 +274,79 @@
         <p>一般的异常检测问题为：对于给定的一系列样本，给出一个新的测试样本，判断该测试样本是否属于这系列已知样本/该样本是否异常样本。异常检测为无监督学习方法。</p>
 <p>例如：对于一批正常的引擎，监测带有一系列的数据（散热，震动强度），对于一个新的引擎，测得相关的数据，判断其是否异常引擎。</p>
 <a id="more"></a>
-<h1 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h1><p>利用统计学知识，建立数据分布模型，并用已知样本进行参数估计。然后利用分布模型继续概率估计。一般选择使用高斯分布。</p>
-<h2 id="高斯分布"><a href="#高斯分布" class="headerlink" title="高斯分布"></a>高斯分布</h2><p>单元高斯分布<br>$$p(x;\mu;\sigma)={1\over \sqrt{2\pi \sigma}}e^{(x-\mu)^2\over 2\sigma^2}$$</p>
+<h1 id="方法">方法</h1>
+<p>利用统计学知识，建立数据分布模型，并用已知样本进行参数估计。然后利用分布模型继续概率估计。一般选择使用高斯分布。</p>
+<h2 id="高斯分布">高斯分布</h2>
+<p>单元高斯分布 <span class="math display">\[p(x;\mu;\sigma)={1\over \sqrt{2\pi \sigma}}e^{(x-\mu)^2\over 2\sigma^2}\]</span></p>
 <ul>
-<li>$\mu$为平均值，影响分布的对称轴</li>
-<li>$\sigma^2$为方差，影响图形的胖瘦</li>
+<li><span class="math inline">\(\mu\)</span>为平均值，影响分布的对称轴</li>
+<li><span class="math inline">\(\sigma^2\)</span>为方差，影响图形的胖瘦</li>
 </ul>
-<h3 id="参数估计"><a href="#参数估计" class="headerlink" title="参数估计"></a>参数估计</h3><ul>
-<li>$\mu = {1\over m}\sum_{i=1}^mx^{(i)}$</li>
-<li>$\sigma^2= {1\over m}\sum_{i=1}^m(x^{(i)}-\mu)^2$</li>
+<h3 id="参数估计">参数估计</h3>
+<ul>
+<li><span class="math inline">\(\mu = {1\over m}\sum_{i=1}^mx^{(i)}\)</span></li>
+<li><span class="math inline">\(\sigma^2= {1\over m}\sum_{i=1}^m(x^{(i)}-\mu)^2\)</span></li>
 </ul>
-<h1 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h1><ol>
+<h1 id="算法">算法</h1>
+<ol type="1">
 <li>对于给定的训练集，从中选择能够反映出是否异常的特征</li>
 <li>对于每一个特征，进行参数估计</li>
-<li>得出模型$$p(x)=\prod_{j=1}^n p(x_j;\mu_j;\sigma_j)=\prod_{j=1}^n{1\over \sqrt{2\pi \sigma_j}}e^{(x-\mu_j)^2\over 2\sigma_j^2}$$</li>
-<li>对于测试样本，如果$p(x)&lt;\varepsilon$,则为异常</li>
+<li>得出模型<span class="math display">\[p(x)=\prod_{j=1}^n p(x_j;\mu_j;\sigma_j)=\prod_{j=1}^n{1\over \sqrt{2\pi \sigma_j}}e^{(x-\mu_j)^2\over 2\sigma_j^2}\]</span></li>
+<li>对于测试样本，如果<span class="math inline">\(p(x)&lt;\varepsilon\)</span>,则为异常</li>
 </ol>
-<h2 id="选择特征"><a href="#选择特征" class="headerlink" title="选择特征"></a>选择特征</h2><ol>
+<h2 id="选择特征">选择特征</h2>
+<ol type="1">
 <li>满足高斯分布，不满足的可以通过变形生成满足高斯分布的特征</li>
 <li>由异常样本出发找特征</li>
 <li>相关的特征可以构造新特征</li>
 </ol>
-<h1 id="评估"><a href="#评估" class="headerlink" title="评估"></a>评估</h1><p>同一般的机器学习，我们将样本分成训练集、CV集、测试集，其中训练集不含异常样本。</p>
-<h2 id="评估指标"><a href="#评估指标" class="headerlink" title="评估指标"></a>评估指标</h2><p>因为样本为偏斜集（skewed class)，所以不能直接计算准确率，我们采用<br>$$F_1score={PR\over P+R}$$</p>
+<h1 id="评估">评估</h1>
+<p>同一般的机器学习，我们将样本分成训练集、CV集、测试集，其中训练集不含异常样本。</p>
+<h2 id="评估指标">评估指标</h2>
+<p>因为样本为偏斜集（skewed class)，所以不能直接计算准确率，我们采用 <span class="math display">\[F_1score={PR\over P+R}\]</span></p>
 <ul>
 <li>P:Precision 预测的准确率</li>
 <li>R:Recall 召回率=真阳性/实际阳性</li>
 </ul>
-<h1 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h1><p>因为其在测试时使用了带label的数据，类似于监督学习。</p>
-<h2 id="使用条件"><a href="#使用条件" class="headerlink" title="使用条件"></a>使用条件</h2><ul>
-<li><p>异常检测：</p>
+<h1 id="对比">对比</h1>
+<p>因为其在测试时使用了带label的数据，类似于监督学习。</p>
+<h2 id="使用条件">使用条件</h2>
+<ul>
+<li>异常检测：
 <ul>
 <li>异常样本数量很少，正常样本数量多</li>
 <li>异常的类型很多</li>
 <li>未来的异常类型不确定</li>
-</ul>
-</li>
-<li><p>监督学习：</p>
+</ul></li>
+<li>监督学习：
 <ul>
 <li>正常异常样本都很多</li>
 <li>异常样本数量足够多到能够了解异常样本是什么样的</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><ul>
-<li>异常检测<ul>
+<h2 id="应用">应用</h2>
+<ul>
+<li>异常检测
+<ul>
 <li>欺诈检测</li>
 <li>制造业</li>
 <li>监控设备</li>
-</ul>
-</li>
-<li>监督学习<ul>
+</ul></li>
+<li>监督学习
+<ul>
 <li>垃圾邮件过滤</li>
 <li>天气预测</li>
 <li>癌症分类</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h1 id="多元高斯分布"><a href="#多元高斯分布" class="headerlink" title="多元高斯分布"></a>多元高斯分布</h1><p>$$p(x;\mu;\Sigma)={1\over {(2\pi)^{n\over2} |\Sigma|^{1\over 2}}}e^{(x-\mu)^T\Sigma^{-1} (x-\mu)}$$</p>
+<h1 id="多元高斯分布">多元高斯分布</h1>
+<p><span class="math display">\[p(x;\mu;\Sigma)={1\over {(2\pi)^{n\over2} |\Sigma|^{1\over 2}}}e^{(x-\mu)^T\Sigma^{-1} (x-\mu)}\]</span></p>
 <p>多元高斯分布可以直接得出特征之间的相关性</p>
-<h2 id="对比-1"><a href="#对比-1" class="headerlink" title="对比"></a>对比</h2><ul>
+<h2 id="对比-1">对比</h2>
+<ul>
 <li>多元高斯分布可以直接得出特征之间的相关性</li>
 <li>计算复杂</li>
-<li>必须满足$m&gt;n$,且$\Sigma$可逆</li>
+<li>必须满足<span class="math inline">\(m&gt;n\)</span>,且<span class="math inline">\(\Sigma\)</span>可逆</li>
 </ul>
 
     </div>

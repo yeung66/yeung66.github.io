@@ -21,18 +21,18 @@
   </script>
 
 <script data-ad-client="ca-pub-7766364950991401" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <meta name="description" content="背景近来都在刷CCF的题，准备认证考试。最近几天开始刷其中的第四题，一般而言，CCF的第四题都是图论题。对于我这样之前没怎么刷题的人来说，图论题看上去就感觉很难，主要是感觉到很陌生，因为在实际的开发过程中比较少用到图这样的数据结构，都是线性的数据结构，连树都比较少用。 但是在刷得比较多的图论题后，发现其实图论题好像也就那么回事，也不是说简单，主要感觉来来去去都是考那几个东西，如果是没有接触过或者不">
+  <meta name="description" content="背景 近来都在刷CCF的题，准备认证考试。最近几天开始刷其中的第四题，一般而言，CCF的第四题都是图论题。对于我这样之前没怎么刷题的人来说，图论题看上去就感觉很难，主要是感觉到很陌生，因为在实际的开发过程中比较少用到图这样的数据结构，都是线性的数据结构，连树都比较少用。 但是在刷得比较多的图论题后，发现其实图论题好像也就那么回事，也不是说简单，主要感觉来来去去都是考那几个东西，如果是没有接触过">
 <meta name="keywords" content="CCF,图论">
 <meta property="og:type" content="article">
 <meta property="og:title" content="图论常见题目及算法">
 <meta property="og:url" content="http://scottyeung.club/2019/图论常见题目及算法/index.html">
 <meta property="og:site_name" content="YeungYeah 的乱写地">
-<meta property="og:description" content="背景近来都在刷CCF的题，准备认证考试。最近几天开始刷其中的第四题，一般而言，CCF的第四题都是图论题。对于我这样之前没怎么刷题的人来说，图论题看上去就感觉很难，主要是感觉到很陌生，因为在实际的开发过程中比较少用到图这样的数据结构，都是线性的数据结构，连树都比较少用。 但是在刷得比较多的图论题后，发现其实图论题好像也就那么回事，也不是说简单，主要感觉来来去去都是考那几个东西，如果是没有接触过或者不">
+<meta property="og:description" content="背景 近来都在刷CCF的题，准备认证考试。最近几天开始刷其中的第四题，一般而言，CCF的第四题都是图论题。对于我这样之前没怎么刷题的人来说，图论题看上去就感觉很难，主要是感觉到很陌生，因为在实际的开发过程中比较少用到图这样的数据结构，都是线性的数据结构，连树都比较少用。 但是在刷得比较多的图论题后，发现其实图论题好像也就那么回事，也不是说简单，主要感觉来来去去都是考那几个东西，如果是没有接触过">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-11-12T14:48:29.988Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="图论常见题目及算法">
-<meta name="twitter:description" content="背景近来都在刷CCF的题，准备认证考试。最近几天开始刷其中的第四题，一般而言，CCF的第四题都是图论题。对于我这样之前没怎么刷题的人来说，图论题看上去就感觉很难，主要是感觉到很陌生，因为在实际的开发过程中比较少用到图这样的数据结构，都是线性的数据结构，连树都比较少用。 但是在刷得比较多的图论题后，发现其实图论题好像也就那么回事，也不是说简单，主要感觉来来去去都是考那几个东西，如果是没有接触过或者不">
+<meta name="twitter:description" content="背景 近来都在刷CCF的题，准备认证考试。最近几天开始刷其中的第四题，一般而言，CCF的第四题都是图论题。对于我这样之前没怎么刷题的人来说，图论题看上去就感觉很难，主要是感觉到很陌生，因为在实际的开发过程中比较少用到图这样的数据结构，都是线性的数据结构，连树都比较少用。 但是在刷得比较多的图论题后，发现其实图论题好像也就那么回事，也不是说简单，主要感觉来来去去都是考那几个东西，如果是没有接触过">
 
 <link rel="canonical" href="http://scottyeung.club/2019/图论常见题目及算法/">
 
@@ -272,86 +272,80 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>近来都在刷CCF的题，准备认证考试。最近几天开始刷其中的第四题，一般而言，CCF的第四题都是图论题。对于我这样之前没怎么刷题的人来说，图论题看上去就感觉很难，主要是感觉到很陌生，因为在实际的开发过程中比较少用到图这样的数据结构，都是线性的数据结构，连树都比较少用。</p>
+        <h1 id="背景">背景</h1>
+<p>近来都在刷CCF的题，准备认证考试。最近几天开始刷其中的第四题，一般而言，CCF的第四题都是图论题。对于我这样之前没怎么刷题的人来说，图论题看上去就感觉很难，主要是感觉到很陌生，因为在实际的开发过程中比较少用到图这样的数据结构，都是线性的数据结构，连树都比较少用。</p>
 <p>但是在刷得比较多的图论题后，发现其实图论题好像也就那么回事，也不是说简单，主要感觉来来去去都是考那几个东西，如果是没有接触过或者不会做的话，可能有点难，但是只要接触过相似的，直接套板子修改就行了（当然也有可能是我还接触的不够多XD），另外，就是感觉没有什么题是DFS/BFS不能破，只是会不会超时，能拿多少的分的问题（对于CCF认证只想拿300分而言，有几十分就够了），其实很多算法的核心也就是DFS与BFS。</p>
 <p>所以在今晚刷完了CCF往年所有的第四题后，总结一下最近接触的图论问题及解法。</p>
 <a id="more"></a>
-<h1 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h1><p>首先，在解决问题之前，我们要先做好图论输入的模拟，图可以分为有向无向，有无权值。一般是以邻接矩阵或者邻接表的形式表示。</p>
+<h1 id="数据结构">数据结构</h1>
+<p>首先，在解决问题之前，我们要先做好图论输入的模拟，图可以分为有向无向，有无权值。一般是以邻接矩阵或者邻接表的形式表示。</p>
 <ul>
 <li>邻接矩阵 :<code>graph = [[INF/False for _ in range(n+1)] for _ in range(n+1)] #带权值或无权图</code></li>
 <li>邻接表：<code>graph = [{}/[] for _ in range(n+1)] # 带权值或无权图</code></li>
 </ul>
 <p>一般来说，邻接矩阵表示比较简单，但是时间空间成本都比较高，选用邻接表比较好，不过在CCF的认证似乎差别不大（样例水</p>
-<h1 id="问题及解法"><a href="#问题及解法" class="headerlink" title="问题及解法"></a>问题及解法</h1><h2 id="最小生成树"><a href="#最小生成树" class="headerlink" title="最小生成树"></a>最小生成树</h2><ul>
-<li><p>问题：给一个无向带权图，选取其中一定数量的边生成一个包含所有点的树，且权值最小</p>
-</li>
-<li><p>方法：</p>
+<h1 id="问题及解法">问题及解法</h1>
+<h2 id="最小生成树">最小生成树</h2>
+<ul>
+<li><p>问题：给一个无向带权图，选取其中一定数量的边生成一个包含所有点的树，且权值最小</p></li>
+<li>方法：
 <ul>
 <li>Prim算法：优先队列+BFS 每次弹出距生成树距离最小的未加入生成树的点</li>
 <li>Kruskal算法：边排序+并查集</li>
-</ul>
-</li>
-<li><p>实例：</p>
-<ol>
+</ul></li>
+<li>实例：
+<ol type="1">
 <li>最优灌溉</li>
 <li>数据中心</li>
-</ol>
-</li>
+</ol></li>
 </ul>
-<h2 id="最短路径"><a href="#最短路径" class="headerlink" title="最短路径"></a>最短路径</h2><ul>
-<li>对于一个图，指定两点间的最短距离，或者是指定一点的最长路径长度</li>
-<li><p>方法：</p>
+<h2 id="最短路径">最短路径</h2>
 <ul>
-<li><p>迪杰斯特拉算法：优先队列 每次弹出到源点距离最小的点，并修改邻接的未确定点，记录确定情况</p>
-</li>
-<li><p>spfa：队列 将源点入队列，每次弹出点后，修改邻接的点的距离，若修改且未入队则加入队列，记录入队列情况</p>
-</li>
+<li>对于一个图，指定两点间的最短距离，或者是指定一点的最长路径长度</li>
+<li>方法：
+<ul>
+<li><p>迪杰斯特拉算法：优先队列 每次弹出到源点距离最小的点，并修改邻接的未确定点，记录确定情况</p></li>
+<li><p>spfa：队列 将源点入队列，每次弹出点后，修改邻接的点的距离，若修改且未入队则加入队列，记录入队列情况</p></li>
 <li><p>floyd算法：求多源最短路径问题</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> k <span class="keyword">in</span> range(<span class="number">1</span>,n+<span class="number">1</span>):</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,n+<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>,n+<span class="number">1</span>):</span><br><span class="line">            dis[i][j]=min(dis[i][j],dis[i][k]+dis[k][j])</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>变形：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> k <span class="keyword">in</span> range(<span class="number">1</span>,n+<span class="number">1</span>):</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,n+<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>,n+<span class="number">1</span>):</span><br><span class="line">            dis[i][j]=min(dis[i][j],dis[i][k]+dis[k][j])</span><br></pre></td></tr></table></figure></li>
+</ul></li>
+<li>变形：
 <ul>
 <li>最短路径中对特殊点有数量限制：spfa中将数量记录放入队列 开二维dp数组</li>
 <li>大路小路问题（小路的权值为连续小路权值的平方）：floyd算法生成新的小路边 开两个dp数组进行spfa</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="强连通分量"><a href="#强连通分量" class="headerlink" title="强连通分量"></a>强连通分量</h2><ul>
-<li><p>在有向图中，两个点互相可达称为强连通，任意两点均为强连通的子图称为强连通分量</p>
-</li>
+<h2 id="强连通分量">强连通分量</h2>
+<ul>
+<li><p>在有向图中，两个点互相可达称为强连通，任意两点均为强连通的子图称为强连通分量</p></li>
 <li><p>方法：</p>
 <ul>
 <li><p>Tarjar算法：记录节点访问时间及最短时间，深度遍历邻接点并入栈，更新最短时间。当出现访问时间等于最短时间时，栈顶到该节点构成一个强连通分量</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">tarjan</span><span class="params">(i)</span>:</span></span><br><span class="line">    <span class="keyword">global</span> ans,time</span><br><span class="line">    time+=<span class="number">1</span></span><br><span class="line">    DNF[i]=LOW[i]=time</span><br><span class="line">    stack.append(i)</span><br><span class="line">    instack[i]=<span class="literal">True</span></span><br><span class="line">    visited[i]=<span class="literal">True</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> edges[i]:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> visited[j]:</span><br><span class="line">            tarjan(j)</span><br><span class="line">            LOW[i]=min(LOW[j],LOW[i])</span><br><span class="line">        <span class="keyword">elif</span> instack[j]:</span><br><span class="line">            LOW[i]=min(LOW[j],LOW[i])</span><br><span class="line">    <span class="keyword">if</span> DNF[i]==LOW[i]:</span><br><span class="line">        count=<span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            node = stack.pop()</span><br><span class="line">            instack[node]=<span class="literal">False</span></span><br><span class="line">            </span><br><span class="line">            count+=<span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> node==i:<span class="keyword">break</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">tarjan</span><span class="params">(i)</span>:</span></span><br><span class="line">    <span class="keyword">global</span> ans,time</span><br><span class="line">    time+=<span class="number">1</span></span><br><span class="line">    DNF[i]=LOW[i]=time</span><br><span class="line">    stack.append(i)</span><br><span class="line">    instack[i]=<span class="literal">True</span></span><br><span class="line">    visited[i]=<span class="literal">True</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> edges[i]:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> visited[j]:</span><br><span class="line">            tarjan(j)</span><br><span class="line">            LOW[i]=min(LOW[j],LOW[i])</span><br><span class="line">        <span class="keyword">elif</span> instack[j]:</span><br><span class="line">            LOW[i]=min(LOW[j],LOW[i])</span><br><span class="line">    <span class="keyword">if</span> DNF[i]==LOW[i]:</span><br><span class="line">        count=<span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            node = stack.pop()</span><br><span class="line">            instack[node]=<span class="literal">False</span></span><br><span class="line">            </span><br><span class="line">            count+=<span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> node==i:<span class="keyword">break</span></span><br></pre></td></tr></table></figure></li>
+</ul></li>
 <li><p>变形：</p>
 <ul>
 <li>如果只是求强连通的点的对数，也可直接每一个点分别BFS/DFS，确定单向可达性</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="树的直径"><a href="#树的直径" class="headerlink" title="树的直径"></a>树的直径</h2><ul>
+<h2 id="树的直径">树的直径</h2>
+<ul>
 <li>在树中，任意两个叶子节点的最长路径为树的直径</li>
 <li>方法：当成图两次BFS，第一次任一点开始，第二次由第一次结果开始</li>
-<li>实例：<ul>
+<li>实例：
+<ul>
 <li><a href="http://scottyeung.club/2019/03/14/CCF201503-4-%E7%BD%91%E7%BB%9C%E5%BB%B6%E6%97%B6/">网络延时</a></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="欧拉路径"><a href="#欧拉路径" class="headerlink" title="欧拉路径"></a>欧拉路径</h2><ul>
-<li><p>一个图如果能从一个点出发，每条边都经过一次后回到起始点，则这个图为欧拉图，这个遍历的路径为欧拉路径</p>
-</li>
-<li><p>方法：</p>
-<ol>
+<h2 id="欧拉路径">欧拉路径</h2>
+<ul>
+<li><p>一个图如果能从一个点出发，每条边都经过一次后回到起始点，则这个图为欧拉图，这个遍历的路径为欧拉路径</p></li>
+<li>方法：
+<ol type="1">
 <li>检查连通性：并查集 find union 检测是否每一个点都属于同一集合</li>
 <li>检查是否存在欧拉路径：每个点的度数均为偶数，或只有两个点度数为奇数且这两个点为起点终点</li>
 <li>确定存在欧拉路径后，直接DFS遍历，记录访问过的边</li>
-</ol>
-</li>
+</ol></li>
 </ul>
 
     </div>

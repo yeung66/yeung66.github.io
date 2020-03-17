@@ -21,18 +21,18 @@
   </script>
 
 <script data-ad-client="ca-pub-7766364950991401" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <meta name="description" content="Problem source: Wildcard Matching  difficulty: hard   Given an input string (s) and a pattern (p), implement wildcard pattern matching with support for &amp;#39;?&amp;#39;and &amp;#39;*&amp;#39;. 12&amp;apos;?&amp;apos; Matc">
+  <meta name="description" content="Problem  source: Wildcard Matching difficulty: hard  Given an input string (s) and a pattern (p), implement wildcard pattern matching with support for &apos;?&apos;and &apos;*&apos;. 12&amp;apos;?&amp;apos; Matches any sin">
 <meta name="keywords" content="Python,LeetCode">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Wildcard Matching">
 <meta property="og:url" content="http://scottyeung.club/2019/Wildcard-Matching/index.html">
 <meta property="og:site_name" content="YeungYeah 的乱写地">
-<meta property="og:description" content="Problem source: Wildcard Matching  difficulty: hard   Given an input string (s) and a pattern (p), implement wildcard pattern matching with support for &amp;#39;?&amp;#39;and &amp;#39;*&amp;#39;. 12&amp;apos;?&amp;apos; Matc">
+<meta property="og:description" content="Problem  source: Wildcard Matching difficulty: hard  Given an input string (s) and a pattern (p), implement wildcard pattern matching with support for &apos;?&apos;and &apos;*&apos;. 12&amp;apos;?&amp;apos; Matches any sin">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2020-02-06T04:42:54.531Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Wildcard Matching">
-<meta name="twitter:description" content="Problem source: Wildcard Matching  difficulty: hard   Given an input string (s) and a pattern (p), implement wildcard pattern matching with support for &amp;#39;?&amp;#39;and &amp;#39;*&amp;#39;. 12&amp;apos;?&amp;apos; Matc">
+<meta name="twitter:description" content="Problem  source: Wildcard Matching difficulty: hard  Given an input string (s) and a pattern (p), implement wildcard pattern matching with support for &apos;?&apos;and &apos;*&apos;. 12&amp;apos;?&amp;apos; Matches any sin">
 
 <link rel="canonical" href="http://scottyeung.club/2019/Wildcard-Matching/">
 
@@ -272,13 +272,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h1><ul>
-<li><p>source: <a href="https://leetcode-cn.com/problems/wildcard-matching/" target="_blank" rel="noopener">Wildcard Matching</a></p>
-</li>
-<li><p>difficulty: hard</p>
-</li>
+        <h1 id="problem">Problem</h1>
+<ul>
+<li><p>source: <a href="https://leetcode-cn.com/problems/wildcard-matching/" target="_blank" rel="noopener">Wildcard Matching</a></p></li>
+<li><p>difficulty: hard</p></li>
 </ul>
-<p>Given an input string (<code>s</code>) and a pattern (<code>p</code>), implement wildcard pattern matching with support for <code>&#39;?&#39;</code>and <code>&#39;*&#39;</code>.</p>
+<p>Given an input string (<code>s</code>) and a pattern (<code>p</code>), implement wildcard pattern matching with support for <code>'?'</code>and <code>'*'</code>.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&apos;?&apos; Matches any single character.</span><br><span class="line">&apos;*&apos; Matches any sequence of characters (including the empty sequence).</span><br></pre></td></tr></table></figure>
 <p>The matching should cover the <strong>entire</strong> input string (not partial).</p>
 <a id="more"></a>
@@ -297,11 +296,14 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">s = &quot;adceb&quot;</span><br><span class="line">p = &quot;*a*b&quot;</span><br><span class="line">Output: true</span><br><span class="line">Explanation: The first &apos;*&apos; matches the empty sequence, while the second &apos;*&apos; matches the substring &quot;dce&quot;.</span><br></pre></td></tr></table></figure>
 <p><strong>Example 5:</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input:</span><br><span class="line">s = &quot;acdcb&quot;</span><br><span class="line">p = &quot;a*c?b&quot;</span><br><span class="line">Output: false</span><br></pre></td></tr></table></figure>
-<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><h2 id="函数递归调用"><a href="#函数递归调用" class="headerlink" title="函数递归调用"></a>函数递归调用</h2><p>这道题好像在不知道哪里见过，第一反应就是可以递归解决。</p>
+<h1 id="solution">Solution</h1>
+<h2 id="函数递归调用">函数递归调用</h2>
+<p>这道题好像在不知道哪里见过，第一反应就是可以递归解决。</p>
 <p>实际上，我们需要特别考虑的，就是这个<code>*</code>的匹配情况，对于当前两个字符串，<code>*</code>可以匹配空字符，也可以匹配一个字符，核心的递归式如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">isMatch(s,p)=isMatch(s,p[<span class="number">1</span>:]) <span class="keyword">or</span> isMatch(s[<span class="number">1</span>:],p) <span class="keyword">if</span> p[<span class="number">0</span>]==<span class="string">'*'</span> <span class="keyword">else</span></span><br><span class="line">				p[<span class="number">0</span>] <span class="keyword">in</span> (s[<span class="number">0</span>],<span class="string">'?'</span>) <span class="keyword">and</span> isMatch(s[<span class="number">1</span>:],p[<span class="number">1</span>:])</span><br></pre></td></tr></table></figure>
 <p>方法简单可行，实际上是一个DFS，但是在leetcode上面会超时，用上一个cache缓存后勉强ac。虽然思路简单很容易想到，但递归次数太多，太慢，不是一个好方法。</p>
-<h2 id="DP"><a href="#DP" class="headerlink" title="DP"></a>DP</h2><p>根据子字符串与子pattern的匹配情况从前往后进行计算.</p>
+<h2 id="dp">DP</h2>
+<p>根据子字符串与子pattern的匹配情况从前往后进行计算.</p>
 <p>设dp[i][j]表示前i个匹配pattern可否匹配前j个待匹配字符串</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> p[i<span class="number">-1</span>]==<span class="string">'*'</span>:</span><br><span class="line">    dp[i][<span class="number">0</span>]=dp[i<span class="number">-1</span>][<span class="number">0</span>]<span class="comment">#能否匹配空字符串取决于前面的pattern</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>,len(s)+<span class="number">1</span>):</span><br><span class="line">        dp[i][j]=dp[i<span class="number">-1</span>][j] <span class="keyword">or</span> dp[i][j<span class="number">-1</span>] <span class="keyword">or</span> dp[i<span class="number">-1</span>][j<span class="number">-1</span>]</span><br><span class="line"><span class="keyword">elif</span> p[i]==<span class="string">'?'</span>:</span><br><span class="line">    dp[i][<span class="number">0</span>]=<span class="literal">False</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>,len(s)+<span class="number">1</span>):</span><br><span class="line">        dp[i][j]=dp[i<span class="number">-1</span>][j<span class="number">-1</span>]</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    dp[i][<span class="number">0</span>]=<span class="literal">False</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>,len(s)+<span class="number">1</span>):</span><br><span class="line">        dp[i][j]=s[j<span class="number">-1</span>]==p[i<span class="number">-1</span>] <span class="keyword">and</span> dp[i<span class="number">-1</span>][j<span class="number">-1</span>]</span><br></pre></td></tr></table></figure>
 <p>比较标准的dp方法，运算时间比上面函数递归调用方法快了一半，但执行时间还是很久</p>
@@ -408,7 +410,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Problem"><span class="nav-number">1.</span> <span class="nav-text">Problem</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Solution"><span class="nav-number">2.</span> <span class="nav-text">Solution</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#函数递归调用"><span class="nav-number">2.1.</span> <span class="nav-text">函数递归调用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DP"><span class="nav-number">2.2.</span> <span class="nav-text">DP</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#problem"><span class="nav-number">1.</span> <span class="nav-text">Problem</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#solution"><span class="nav-number">2.</span> <span class="nav-text">Solution</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#函数递归调用"><span class="nav-number">2.1.</span> <span class="nav-text">函数递归调用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dp"><span class="nav-number">2.2.</span> <span class="nav-text">DP</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
