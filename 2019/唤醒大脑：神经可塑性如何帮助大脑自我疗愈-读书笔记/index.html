@@ -22,7 +22,7 @@
 
 <script data-ad-client="ca-pub-7766364950991401" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <meta name="description" content="本书主要介绍如何通过一些物理方式（非药物），利用神经可塑性，帮助大脑进行自我疗愈。本书主要通过介绍作者遇到的病例，或者当前进行过的相关实验，来说明什么是神经可塑性，怎么利用神经可塑性帮助大脑疗愈，有什么具体的方式帮助了特定的什么疾病的恢复。整本书下来，其实作者并没有明确地输出什么理论/观点，同时通过摆出例子，使用春秋笔法来告诉大家，什么对什么有帮助，这样一来，可以避免放出研究的数据/实验支撑的需要">
-<meta name="keywords" content="健康,大脑,神经,疗愈,疼痛">
+<meta name="keywords" content="大脑,神经,疗愈,健康,疼痛">
 <meta property="og:type" content="article">
 <meta property="og:title" content="&lt;唤醒大脑：神经可塑性如何帮助大脑自我疗愈&gt; 读书笔记">
 <meta property="og:url" content="http://scottyeung.club/2019/唤醒大脑：神经可塑性如何帮助大脑自我疗愈-读书笔记/index.html">
@@ -314,10 +314,10 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/健康/" rel="tag"># 健康</a>
               <a href="/tags/大脑/" rel="tag"># 大脑</a>
               <a href="/tags/神经/" rel="tag"># 神经</a>
               <a href="/tags/疗愈/" rel="tag"># 疗愈</a>
+              <a href="/tags/健康/" rel="tag"># 健康</a>
               <a href="/tags/疼痛/" rel="tag"># 疼痛</a>
           </div>
 
@@ -557,6 +557,59 @@
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
