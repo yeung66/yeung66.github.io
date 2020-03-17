@@ -36,13 +36,13 @@
     
       <category term="Python" scheme="http://scottyeung.club/tags/Python/"/>
     
-      <category term="summary" scheme="http://scottyeung.club/tags/summary/"/>
-    
       <category term="并发编程" scheme="http://scottyeung.club/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
     
       <category term="Concurrency" scheme="http://scottyeung.club/tags/Concurrency/"/>
     
       <category term="asyncio" scheme="http://scottyeung.club/tags/asyncio/"/>
+    
+      <category term="summary" scheme="http://scottyeung.club/tags/summary/"/>
     
   </entry>
   
@@ -274,9 +274,9 @@
     
       <category term="Mysql" scheme="http://scottyeung.club/tags/Mysql/"/>
     
-      <category term="生产力" scheme="http://scottyeung.club/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/"/>
-    
       <category term="sql" scheme="http://scottyeung.club/tags/sql/"/>
+    
+      <category term="生产力" scheme="http://scottyeung.club/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/"/>
     
       <category term="SQLAlchemy" scheme="http://scottyeung.club/tags/SQLAlchemy/"/>
     
@@ -301,13 +301,13 @@
     
       <category term="Python" scheme="http://scottyeung.club/tags/Python/"/>
     
-      <category term="自动化" scheme="http://scottyeung.club/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/"/>
-    
-      <category term="编程学习" scheme="http://scottyeung.club/tags/%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0/"/>
+      <category term="生产力" scheme="http://scottyeung.club/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/"/>
     
       <category term="summary" scheme="http://scottyeung.club/tags/summary/"/>
     
-      <category term="生产力" scheme="http://scottyeung.club/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/"/>
+      <category term="自动化" scheme="http://scottyeung.club/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/"/>
+    
+      <category term="编程学习" scheme="http://scottyeung.club/tags/%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
@@ -743,9 +743,9 @@
       <category term="算法" scheme="http://scottyeung.club/categories/%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="CCF" scheme="http://scottyeung.club/tags/CCF/"/>
-    
       <category term="Python" scheme="http://scottyeung.club/tags/Python/"/>
+    
+      <category term="CCF" scheme="http://scottyeung.club/tags/CCF/"/>
     
   </entry>
   
@@ -822,9 +822,9 @@
       <category term="算法" scheme="http://scottyeung.club/categories/%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="CCF" scheme="http://scottyeung.club/tags/CCF/"/>
-    
       <category term="Python" scheme="http://scottyeung.club/tags/Python/"/>
+    
+      <category term="CCF" scheme="http://scottyeung.club/tags/CCF/"/>
     
   </entry>
   
@@ -848,9 +848,9 @@
       <category term="算法" scheme="http://scottyeung.club/categories/%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="CCF" scheme="http://scottyeung.club/tags/CCF/"/>
-    
       <category term="Python" scheme="http://scottyeung.club/tags/Python/"/>
+    
+      <category term="CCF" scheme="http://scottyeung.club/tags/CCF/"/>
     
   </entry>
   
