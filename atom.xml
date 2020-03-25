@@ -5,9 +5,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://scottyeung.club/"/>
-  <updated>2020-03-11T05:18:29.694Z</updated>
-  <id>http://scottyeung.club/</id>
+  <link href="http://scottyeung.top/"/>
+  <updated>2020-03-25T07:09:16.016Z</updated>
+  <id>http://scottyeung.top/</id>
   
   <author>
     <name>Scott Yeung</name>
@@ -17,13 +17,44 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>博客域名迁移</title>
+    <link href="http://scottyeung.top/2020/%E5%8D%9A%E5%AE%A2%E5%9F%9F%E5%90%8D%E8%BF%81%E7%A7%BB/"/>
+    <id>http://scottyeung.top/2020/博客域名迁移/</id>
+    <published>2020-03-25T03:56:16.000Z</published>
+    <updated>2020-03-25T07:09:16.016Z</updated>
+    
+    <content type="html"><![CDATA[<p>一早起来，发现使用两年的域名还有一个月就要到期了，提醒续费。在处理完一些事情后去续费，发现续费需要每年72元，震惊，当时开通的时候也就几块钱，第一年续费也就二三十块，变动也未免太大了，而且对于我这种个人小站来说确实贵。上去查了一下现在域名的价格，发现club后缀的价格确实是独一档的贵，甚至比一些cn后缀的都贵，有点离谱。于是果断选择转换回去最早使用的top域名，续费也才25一年，加上首年优惠三年才花了60不到。</p><p>另一方面，转域名也是有着不少的成本，而且是越用的久，沉没成本就越高。积累的seo和RSS订阅都难以跟随域名转换而跟着转化过来，又可能要重新积累，各种的统计分析也可能需要废弃。但还是需要去做，毕竟互联网的特点就应该是开放而自由，不应该受到过多的枷锁。</p><p>本站现已迁移到域名 <strong><a href></a></strong></p><p>以下是迁移域名做的一些工作：</p><h2 id="博客内">博客内</h2><ul><li>[] Github Pages 切换解析到新域名</li></ul><h2 id="博客外">博客外</h2><ul><li>Google Analyst</li><li>Google Adsense</li><li>Google Search</li><li>LeanCloud 统计</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;一早起来，发现使用两年的域名还有一个月就要到期了，提醒续费。在处理完一些事情后去续费，发现续费需要每年72元，震惊，当时开通的时候也就几块钱，第一年续费也就二三十块，变动也未免太大了，而且对于我这种个人小站来说确实贵。上去查了一下现在域名的价格，发现club后缀的价格确实是
+      
+    
+    </summary>
+    
+      <category term="杂谈" scheme="http://scottyeung.top/categories/%E6%9D%82%E8%B0%88/"/>
+    
+    
+      <category term="域名" scheme="http://scottyeung.top/tags/%E5%9F%9F%E5%90%8D/"/>
+    
+      <category term="腾讯云" scheme="http://scottyeung.top/tags/%E8%85%BE%E8%AE%AF%E4%BA%91/"/>
+    
+      <category term="博客" scheme="http://scottyeung.top/tags/%E5%8D%9A%E5%AE%A2/"/>
+    
+      <category term="迁移" scheme="http://scottyeung.top/tags/%E8%BF%81%E7%A7%BB/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Python中的并发编程</title>
-    <link href="http://scottyeung.club/2020/Python%E4%B8%AD%E7%9A%84%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
-    <id>http://scottyeung.club/2020/Python中的并发编程/</id>
+    <link href="http://scottyeung.top/2020/Python%E4%B8%AD%E7%9A%84%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
+    <id>http://scottyeung.top/2020/Python中的并发编程/</id>
     <published>2020-03-09T12:51:07.000Z</published>
     <updated>2020-03-11T05:18:29.694Z</updated>
     
-    <content type="html"><![CDATA[<p>尽管Python当中有着GIL（Global Interpreter Lock）的限制，在同一时间当中一个进程只能由GIL解释单个线程的代码，但是合理地进行并发编程，仍然可以解决不少的性能瓶颈问题，大大提高效率。尤其是在看完Fluent Python之后，对于Python的并发编程有了更加深厚的了解。 以下介绍几种可用的并发编程方式，以及它们相关的概念和使用的基本方法。</p><a id="more"></a><p>以下只考虑Python3的状况。</p><h2 id="threading-multiprocessing">Threading / Multiprocessing</h2><p>最简单的并发编程形式，莫过于直接开启新的线程或者进程来执行代码。</p><ul><li><code>threading.Thread(group=None, target=None, name=None, args=(), kwargs={}, *, daemon=None)</code> 通过调用该方法可以直接创建线程对象，其中target为需要执行的目标函数，args和kwargs为该目标函数的参数，创建后，通过<ul><li>调用start方法以开启线程，进行调度执行target函数</li><li>线程开启调度后，调用<code>join(timeout=None)</code>方法可以阻塞调用线程，等待线程结束或者超时</li><li>使用threading进行多线程编程实现并发的话，仍然受到GIL的限制，但仍可以避免因等待IO完成的阻塞</li></ul></li><li><code>multiprocessing.Process(group=None, target=None, name=None, args=(), kwargs={}, *, daemon=None)</code> 类似于线程的创建，创建进程实现多线程可以避免GIL的限制从而利用到CPU的多个核心，在CPU密集的代码中非常有用。<ul><li>类似于线程的使用，通过start方法开启进程任务调度，调用join方法等待完成</li><li>除此以外，可以调用进程池Pool进行多个任务的调度处理，通过map或者apply方法，开启多个进程处理多个任务</li></ul></li></ul><p>直接创建线程/进程这种方式简单、直接、粗暴，不过大多时候需要自己进行任务的调度，需要自己安排怎样创建进程，怎样完成任务。在之前尝试<a href="http://scottyeung.club/2020/%E8%AE%B0%E4%B8%80%E6%AC%A1%E6%BC%AB%E7%94%BB%E6%89%B9%E9%87%8F%E7%9A%84%E7%88%AC%E5%8F%96-%E4%B8%8B%E8%BD%BD/">批量下载漫画</a>的过程中，使用的就是threading方法，就需要自己进行任务的安排，进而安排线程的创建和执行。当时还不知道怎么合理地分配调度任务，就只能将任务分为若干子集，每个子集开启独立的线程来完成下载任务，但是仍然无法避免下载过程中网络访问和文件保存的IO阻塞。另外，线程创建之后就是独立运行的线程，除了等待结束返回之后，无法传输数据进行额外的控制。</p><h2 id="concurrent.futures">concurrent.futures</h2><p>它在Python3.2中被引入，提供了高层次的异步可调用对象执行的接口。我们可以通过ThreadPoolExecutor在线程级别上进行异步执行，或者通过ProcessPoolExecutor在不同的进程中实现。两者实现相同的抽象接口类Excutor，因而具有一样的调用方法，便于进行转换。</p><h3 id="executor">Executor</h3><ul><li><code>submit(fn, *args, **kwargs)</code> 提交任务进行调度，返回Future对象</li><li><code>map(func, *iterables, timeout=None, chunksize=1)</code> 类似于map方法，对于iter里面的每一个对象都会异步地调用func，当任务结束时返回各个函数返回结果的迭代器</li></ul><h3 id="future">Future</h3><p>在futures里面具体的任务类，由submit方法创建。</p><ul><li>result 获取任务的返回结果，若未结束则阻塞至结束或超时</li><li>cancel 关闭任务</li><li>canceled 是否关闭</li><li>done 是否结束</li></ul><h3 id="使用方式">使用方式</h3><ol type="1"><li><p>通过submit提交任务创建获取任务的future对象，再通过as_completed等待future对象结束，获取结果。as_completed接收future对象的迭代器。 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> concurrent.futures.ThreadPoolExecutor(max_workers=<span class="number">5</span>) <span class="keyword">as</span> executor:</span><br><span class="line">    <span class="comment"># Start the load operations and mark each future with its URL</span></span><br><span class="line">    future_to_url = &#123;executor.submit(load_url, url, <span class="number">60</span>): url <span class="keyword">for</span> url <span class="keyword">in</span> URLS&#125;</span><br><span class="line">    <span class="keyword">for</span> future <span class="keyword">in</span> concurrent.futures.as_completed(future_to_url):</span><br><span class="line">        url = future_to_url[future]</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            data = future.result()</span><br><span class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> exc:</span><br><span class="line">            print(<span class="string">'%r generated an exception: %s'</span> % (url, exc))</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(<span class="string">'%r page is %d bytes'</span> % (url, len(data)))</span><br></pre></td></tr></table></figure></p></li><li><p>通过map方法批量执行任务，再获取结果。但是map方法返回结果的顺序与调用顺序即传入的迭代对象的顺序一样，若前面的任务耗时过长会阻塞后面执行快的任务返回。</p></li></ol><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> concurrent.futures.ProcessPoolExecutor() <span class="keyword">as</span> executor:</span><br><span class="line">        <span class="keyword">for</span> number, prime <span class="keyword">in</span> zip(PRIMES, executor.map(is_prime, PRIMES)):</span><br><span class="line">            print(<span class="string">'%d is prime: %s'</span> % (number, prime))</span><br></pre></td></tr></table></figure><h2 id="asyncio">asyncio</h2><p>asyncio采用event loop的事件驱动型的异步调度执行。</p><h3 id="coroutine">coroutine</h3><p>coroutine（协程）从定义上来说，指的是包含yield/yield from语句的函数（在Python3.5引入async和await之前）。在此之前，我们可以通过生成器的形式来实现，样例如下。首先可以调用函数获得生成器对象，然后调用next方法或send(None)的方法开启coroutine，开启后，函数执行到yield位置，返回yield右侧的表达式后则挂起自己，将控制流交回给主线程。当再次调用send方法时，可以传输数据并激活协程，继续执行至结束或者下一个yield语句处。该样例则是一个计算累计输入的平均值协程。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string"># BEGIN CORO_AVERAGER_TEST</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; coro_avg = averager()  # &lt;1&gt;</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; next(coro_avg)  # &lt;2&gt;</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; coro_avg.send(10)  # &lt;3&gt;</span></span><br><span class="line"><span class="string">    10.0</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; coro_avg.send(30)</span></span><br><span class="line"><span class="string">    20.0</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; coro_avg.send(5)</span></span><br><span class="line"><span class="string">    15.0</span></span><br><span class="line"><span class="string"># END CORO_AVERAGER_TEST</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">averager</span><span class="params">()</span>:</span></span><br><span class="line">    total = <span class="number">0.0</span></span><br><span class="line">    count = <span class="number">0</span></span><br><span class="line">    average = <span class="literal">None</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:  <span class="comment"># &lt;1&gt;</span></span><br><span class="line">        term = <span class="keyword">yield</span> average  <span class="comment"># &lt;2&gt;</span></span><br><span class="line">        total += term</span><br><span class="line">        count += <span class="number">1</span></span><br><span class="line">        average = total/count</span><br></pre></td></tr></table></figure><p>当coroutine运行结束时，会抛出一个StopIteration的异常，告知协程结束。若协程函数有返回值，也会被存在StopIteration.value中随着异常返回。如果我们要获得返回值，必须要捕获异常。另外，在使用coroutine的过程中，我们还需要手动调用next方法来开启coroutine。这些不方便之处，使我们通常会使用一个delegating generator来进行中间的调用操作。在delegation generator当中，通过yield from来调用subgenerator，并可以直接获取返回值，且delegating generator可以处理subgenerator抛出的异常。</p><h3 id="使用方式-1">使用方式</h3><p>asyncio库则是通过协程的方式，引入事件循环（event loop）的方式，通过事件轮询与回调的方式进行异步编程。具体的使用方式通过书中一个具体的例子来说明。这个例子是批量从网上下载不同国家国旗的图片，通过将每一个国家国旗的下载任务封装为一个协程，进行并发编程。在协程中，对于每一个可能会发生阻塞，需要等待的操作，均使用yield from进行调用。当运行到此处时，程序会交出当前的控制权，异步调用并执行coroutine，当运行完返回之后才会将控制权交回给之前的线程。</p><p>当编写完协程函数之后，通过list comprehension批量生成协程对象，通过wait方法开启新的协程，来调用开启所有的任务协程对象。在通过loop.run_until_complete等待所有协程完成。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@asyncio.coroutine  # &lt;3&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_flag</span><span class="params">(cc)</span>:</span></span><br><span class="line">    url = <span class="string">'&#123;&#125;/&#123;cc&#125;/&#123;cc&#125;.gif'</span>.format(BASE_URL, cc=cc.lower())</span><br><span class="line">    resp = <span class="keyword">yield</span> <span class="keyword">from</span> aiohttp.request(<span class="string">'GET'</span>, url)  <span class="comment"># &lt;4&gt;</span></span><br><span class="line">    image = <span class="keyword">yield</span> <span class="keyword">from</span> resp.read()  <span class="comment"># &lt;5&gt;</span></span><br><span class="line">    <span class="keyword">return</span> image</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@asyncio.coroutine</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">download_one</span><span class="params">(cc)</span>:</span>  <span class="comment"># &lt;6&gt;</span></span><br><span class="line">    image = <span class="keyword">yield</span> <span class="keyword">from</span> get_flag(cc)  <span class="comment"># &lt;7&gt;</span></span><br><span class="line">    show(cc)</span><br><span class="line">    save_flag(image, cc.lower() + <span class="string">'.gif'</span>)</span><br><span class="line">    <span class="keyword">return</span> cc</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">download_many</span><span class="params">(cc_list)</span>:</span></span><br><span class="line">    loop = asyncio.get_event_loop()  <span class="comment"># &lt;8&gt;</span></span><br><span class="line">    to_do = [download_one(cc) <span class="keyword">for</span> cc <span class="keyword">in</span> sorted(cc_list)]  <span class="comment"># &lt;9&gt;</span></span><br><span class="line">    wait_coro = asyncio.wait(to_do)  <span class="comment"># &lt;10&gt;</span></span><br><span class="line">    res, _ = loop.run_until_complete(wait_coro)  <span class="comment"># &lt;11&gt;</span></span><br><span class="line">    loop.close() <span class="comment"># &lt;12&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> len(res)</span><br></pre></td></tr></table></figure><p>PS： 1. 可能会出现的阻塞应该全部使用异步调用。因为这里采用的是event loop，其实还是在同一个线程，如果使用了线程阻塞的操作，依然会阻塞其余所有的操作。因而应该使用异步调用的方式，如aiohttp进行http请求，或者asyncio.sleep进行休眠操作，当会发生阻塞的时候，抛出控制权给回event loop 2. 此处调用wait后再调用run_until_complete，需要等到全部协程完成时才会一并返回结果，不利于判断完成情况。可以利用asyncio.as_completed进行代替，可以马上返回以及完成的任务 3. 只有通过loop或async中相关的run方法，任务才会被执行</p><h3 id="update">update</h3><p>在Python3.5中，引入了关键字async和await，以及coroutine类型。可以更加清晰地使用asyncio进行并发编程。其中async等价于装饰器<code>@asyncio.coroutine</code>，可以将函数声明为coroutine对象。await关键字则可以取代yield from关键字，进行异步函数的调用。看了看变化还挺大的，尽管核心的思想没变，还是需要重新看看。具体的文档<a href="https://docs.python.org/3/library/asyncio.html" target="_blank" rel="noopener">见此</a></p><h2 id="后记">后记</h2><p>在学习了Fluent Python中的并发编程之后，突发兴趣打算使用asyncio和concurreny.futures来重写之前的漫画下载任务，来看看实际的效果提升。尽管在看书的过程中，感觉自己掌握得好像还行，对于样例代码也能一看就可以理解，而且目标任务也比较简单，应该可以比较快就实现目标任务。然而实际操作编写代码就发现并不是这么简单。首先，书中的代码有些已经落后（如async和await关键字没有引入），越看文档就越能发现新的features，有些还与书中的样例代码有所出入。其次，现实中代码的实际运行状况远比书中的理想状况复杂。就错误处理而言，一开始并没有做错误处理，导致出错后就静静地挂起，没有提示，也不会结束。后面做了简单的错误处理后发现，异常类型真可谓各式各样。最后，就是书中不能对全部状况状况作出全面的介绍，存在着许多未知的状况。发现很多错误也还好，最怕的是发现不了错误，或者知道有问题但是找不出来，还没有信息。</p><p>coding还是需要多动手实践，从具体的代码编写入手，这样才能真正提高所谓的coding 能力，否则只看书的话，很容易就会陷入一种我都会了的感觉，但这其实只是我都知道的状态，并不代表我都会用，我都能用，我都可以用好。看书更多的是留下一种对某方面知识或技能的印象，当需要的时候能够根据这些印象进行快速的索引和学习，重新获取知识。两者都很重要，缺一不可。</p>]]></content>
+    <content type="html"><![CDATA[<p>尽管Python当中有着GIL（Global Interpreter Lock）的限制，在同一时间当中一个进程只能由GIL解释单个线程的代码，但是合理地进行并发编程，仍然可以解决不少的性能瓶颈问题，大大提高效率。尤其是在看完Fluent Python之后，对于Python的并发编程有了更加深厚的了解。 以下介绍几种可用的并发编程方式，以及它们相关的概念和使用的基本方法。</p><a id="more"></a><p>以下只考虑Python3的状况。</p><h2 id="threading-multiprocessing">Threading / Multiprocessing</h2><p>最简单的并发编程形式，莫过于直接开启新的线程或者进程来执行代码。</p><ul><li><code>threading.Thread(group=None, target=None, name=None, args=(), kwargs={}, *, daemon=None)</code> 通过调用该方法可以直接创建线程对象，其中target为需要执行的目标函数，args和kwargs为该目标函数的参数，创建后，通过<ul><li>调用start方法以开启线程，进行调度执行target函数</li><li>线程开启调度后，调用<code>join(timeout=None)</code>方法可以阻塞调用线程，等待线程结束或者超时</li><li>使用threading进行多线程编程实现并发的话，仍然受到GIL的限制，但仍可以避免因等待IO完成的阻塞</li></ul></li><li><code>multiprocessing.Process(group=None, target=None, name=None, args=(), kwargs={}, *, daemon=None)</code> 类似于线程的创建，创建进程实现多线程可以避免GIL的限制从而利用到CPU的多个核心，在CPU密集的代码中非常有用。<ul><li>类似于线程的使用，通过start方法开启进程任务调度，调用join方法等待完成</li><li>除此以外，可以调用进程池Pool进行多个任务的调度处理，通过map或者apply方法，开启多个进程处理多个任务</li></ul></li></ul><p>直接创建线程/进程这种方式简单、直接、粗暴，不过大多时候需要自己进行任务的调度，需要自己安排怎样创建进程，怎样完成任务。在之前尝试<a href="http://scottyeung.club/2020/%E8%AE%B0%E4%B8%80%E6%AC%A1%E6%BC%AB%E7%94%BB%E6%89%B9%E9%87%8F%E7%9A%84%E7%88%AC%E5%8F%96-%E4%B8%8B%E8%BD%BD/" target="_blank" rel="noopener">批量下载漫画</a>的过程中，使用的就是threading方法，就需要自己进行任务的安排，进而安排线程的创建和执行。当时还不知道怎么合理地分配调度任务，就只能将任务分为若干子集，每个子集开启独立的线程来完成下载任务，但是仍然无法避免下载过程中网络访问和文件保存的IO阻塞。另外，线程创建之后就是独立运行的线程，除了等待结束返回之后，无法传输数据进行额外的控制。</p><h2 id="concurrent.futures">concurrent.futures</h2><p>它在Python3.2中被引入，提供了高层次的异步可调用对象执行的接口。我们可以通过ThreadPoolExecutor在线程级别上进行异步执行，或者通过ProcessPoolExecutor在不同的进程中实现。两者实现相同的抽象接口类Excutor，因而具有一样的调用方法，便于进行转换。</p><h3 id="executor">Executor</h3><ul><li><code>submit(fn, *args, **kwargs)</code> 提交任务进行调度，返回Future对象</li><li><code>map(func, *iterables, timeout=None, chunksize=1)</code> 类似于map方法，对于iter里面的每一个对象都会异步地调用func，当任务结束时返回各个函数返回结果的迭代器</li></ul><h3 id="future">Future</h3><p>在futures里面具体的任务类，由submit方法创建。</p><ul><li>result 获取任务的返回结果，若未结束则阻塞至结束或超时</li><li>cancel 关闭任务</li><li>canceled 是否关闭</li><li>done 是否结束</li></ul><h3 id="使用方式">使用方式</h3><ol type="1"><li><p>通过submit提交任务创建获取任务的future对象，再通过as_completed等待future对象结束，获取结果。as_completed接收future对象的迭代器。 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> concurrent.futures.ThreadPoolExecutor(max_workers=<span class="number">5</span>) <span class="keyword">as</span> executor:</span><br><span class="line">    <span class="comment"># Start the load operations and mark each future with its URL</span></span><br><span class="line">    future_to_url = &#123;executor.submit(load_url, url, <span class="number">60</span>): url <span class="keyword">for</span> url <span class="keyword">in</span> URLS&#125;</span><br><span class="line">    <span class="keyword">for</span> future <span class="keyword">in</span> concurrent.futures.as_completed(future_to_url):</span><br><span class="line">        url = future_to_url[future]</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            data = future.result()</span><br><span class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> exc:</span><br><span class="line">            print(<span class="string">'%r generated an exception: %s'</span> % (url, exc))</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(<span class="string">'%r page is %d bytes'</span> % (url, len(data)))</span><br></pre></td></tr></table></figure></p></li><li><p>通过map方法批量执行任务，再获取结果。但是map方法返回结果的顺序与调用顺序即传入的迭代对象的顺序一样，若前面的任务耗时过长会阻塞后面执行快的任务返回。</p></li></ol><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> concurrent.futures.ProcessPoolExecutor() <span class="keyword">as</span> executor:</span><br><span class="line">        <span class="keyword">for</span> number, prime <span class="keyword">in</span> zip(PRIMES, executor.map(is_prime, PRIMES)):</span><br><span class="line">            print(<span class="string">'%d is prime: %s'</span> % (number, prime))</span><br></pre></td></tr></table></figure><h2 id="asyncio">asyncio</h2><p>asyncio采用event loop的事件驱动型的异步调度执行。</p><h3 id="coroutine">coroutine</h3><p>coroutine（协程）从定义上来说，指的是包含yield/yield from语句的函数（在Python3.5引入async和await之前）。在此之前，我们可以通过生成器的形式来实现，样例如下。首先可以调用函数获得生成器对象，然后调用next方法或send(None)的方法开启coroutine，开启后，函数执行到yield位置，返回yield右侧的表达式后则挂起自己，将控制流交回给主线程。当再次调用send方法时，可以传输数据并激活协程，继续执行至结束或者下一个yield语句处。该样例则是一个计算累计输入的平均值协程。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string"># BEGIN CORO_AVERAGER_TEST</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; coro_avg = averager()  # &lt;1&gt;</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; next(coro_avg)  # &lt;2&gt;</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; coro_avg.send(10)  # &lt;3&gt;</span></span><br><span class="line"><span class="string">    10.0</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; coro_avg.send(30)</span></span><br><span class="line"><span class="string">    20.0</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; coro_avg.send(5)</span></span><br><span class="line"><span class="string">    15.0</span></span><br><span class="line"><span class="string"># END CORO_AVERAGER_TEST</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">averager</span><span class="params">()</span>:</span></span><br><span class="line">    total = <span class="number">0.0</span></span><br><span class="line">    count = <span class="number">0</span></span><br><span class="line">    average = <span class="literal">None</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:  <span class="comment"># &lt;1&gt;</span></span><br><span class="line">        term = <span class="keyword">yield</span> average  <span class="comment"># &lt;2&gt;</span></span><br><span class="line">        total += term</span><br><span class="line">        count += <span class="number">1</span></span><br><span class="line">        average = total/count</span><br></pre></td></tr></table></figure><p>当coroutine运行结束时，会抛出一个StopIteration的异常，告知协程结束。若协程函数有返回值，也会被存在StopIteration.value中随着异常返回。如果我们要获得返回值，必须要捕获异常。另外，在使用coroutine的过程中，我们还需要手动调用next方法来开启coroutine。这些不方便之处，使我们通常会使用一个delegating generator来进行中间的调用操作。在delegation generator当中，通过yield from来调用subgenerator，并可以直接获取返回值，且delegating generator可以处理subgenerator抛出的异常。</p><h3 id="使用方式-1">使用方式</h3><p>asyncio库则是通过协程的方式，引入事件循环（event loop）的方式，通过事件轮询与回调的方式进行异步编程。具体的使用方式通过书中一个具体的例子来说明。这个例子是批量从网上下载不同国家国旗的图片，通过将每一个国家国旗的下载任务封装为一个协程，进行并发编程。在协程中，对于每一个可能会发生阻塞，需要等待的操作，均使用yield from进行调用。当运行到此处时，程序会交出当前的控制权，异步调用并执行coroutine，当运行完返回之后才会将控制权交回给之前的线程。</p><p>当编写完协程函数之后，通过list comprehension批量生成协程对象，通过wait方法开启新的协程，来调用开启所有的任务协程对象。在通过loop.run_until_complete等待所有协程完成。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@asyncio.coroutine  # &lt;3&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_flag</span><span class="params">(cc)</span>:</span></span><br><span class="line">    url = <span class="string">'&#123;&#125;/&#123;cc&#125;/&#123;cc&#125;.gif'</span>.format(BASE_URL, cc=cc.lower())</span><br><span class="line">    resp = <span class="keyword">yield</span> <span class="keyword">from</span> aiohttp.request(<span class="string">'GET'</span>, url)  <span class="comment"># &lt;4&gt;</span></span><br><span class="line">    image = <span class="keyword">yield</span> <span class="keyword">from</span> resp.read()  <span class="comment"># &lt;5&gt;</span></span><br><span class="line">    <span class="keyword">return</span> image</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@asyncio.coroutine</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">download_one</span><span class="params">(cc)</span>:</span>  <span class="comment"># &lt;6&gt;</span></span><br><span class="line">    image = <span class="keyword">yield</span> <span class="keyword">from</span> get_flag(cc)  <span class="comment"># &lt;7&gt;</span></span><br><span class="line">    show(cc)</span><br><span class="line">    save_flag(image, cc.lower() + <span class="string">'.gif'</span>)</span><br><span class="line">    <span class="keyword">return</span> cc</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">download_many</span><span class="params">(cc_list)</span>:</span></span><br><span class="line">    loop = asyncio.get_event_loop()  <span class="comment"># &lt;8&gt;</span></span><br><span class="line">    to_do = [download_one(cc) <span class="keyword">for</span> cc <span class="keyword">in</span> sorted(cc_list)]  <span class="comment"># &lt;9&gt;</span></span><br><span class="line">    wait_coro = asyncio.wait(to_do)  <span class="comment"># &lt;10&gt;</span></span><br><span class="line">    res, _ = loop.run_until_complete(wait_coro)  <span class="comment"># &lt;11&gt;</span></span><br><span class="line">    loop.close() <span class="comment"># &lt;12&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> len(res)</span><br></pre></td></tr></table></figure><p>PS： 1. 可能会出现的阻塞应该全部使用异步调用。因为这里采用的是event loop，其实还是在同一个线程，如果使用了线程阻塞的操作，依然会阻塞其余所有的操作。因而应该使用异步调用的方式，如aiohttp进行http请求，或者asyncio.sleep进行休眠操作，当会发生阻塞的时候，抛出控制权给回event loop 2. 此处调用wait后再调用run_until_complete，需要等到全部协程完成时才会一并返回结果，不利于判断完成情况。可以利用asyncio.as_completed进行代替，可以马上返回以及完成的任务 3. 只有通过loop或async中相关的run方法，任务才会被执行</p><h3 id="update">update</h3><p>在Python3.5中，引入了关键字async和await，以及coroutine类型。可以更加清晰地使用asyncio进行并发编程。其中async等价于装饰器<code>@asyncio.coroutine</code>，可以将函数声明为coroutine对象。await关键字则可以取代yield from关键字，进行异步函数的调用。看了看变化还挺大的，尽管核心的思想没变，还是需要重新看看。具体的文档<a href="https://docs.python.org/3/library/asyncio.html" target="_blank" rel="noopener">见此</a></p><h2 id="后记">后记</h2><p>在学习了Fluent Python中的并发编程之后，突发兴趣打算使用asyncio和concurreny.futures来重写之前的漫画下载任务，来看看实际的效果提升。尽管在看书的过程中，感觉自己掌握得好像还行，对于样例代码也能一看就可以理解，而且目标任务也比较简单，应该可以比较快就实现目标任务。然而实际操作编写代码就发现并不是这么简单。首先，书中的代码有些已经落后（如async和await关键字没有引入），越看文档就越能发现新的features，有些还与书中的样例代码有所出入。其次，现实中代码的实际运行状况远比书中的理想状况复杂。就错误处理而言，一开始并没有做错误处理，导致出错后就静静地挂起，没有提示，也不会结束。后面做了简单的错误处理后发现，异常类型真可谓各式各样。最后，就是书中不能对全部状况状况作出全面的介绍，存在着许多未知的状况。发现很多错误也还好，最怕的是发现不了错误，或者知道有问题但是找不出来，还没有信息。</p><p>coding还是需要多动手实践，从具体的代码编写入手，这样才能真正提高所谓的coding 能力，否则只看书的话，很容易就会陷入一种我都会了的感觉，但这其实只是我都知道的状态，并不代表我都会用，我都能用，我都可以用好。看书更多的是留下一种对某方面知识或技能的印象，当需要的时候能够根据这些印象进行快速的索引和学习，重新获取知识。两者都很重要，缺一不可。</p>]]></content>
     
     <summary type="html">
     
@@ -31,25 +62,25 @@
     
     </summary>
     
-      <category term="Python" scheme="http://scottyeung.club/categories/Python/"/>
+      <category term="Python" scheme="http://scottyeung.top/categories/Python/"/>
     
     
-      <category term="Python" scheme="http://scottyeung.club/tags/Python/"/>
+      <category term="Python" scheme="http://scottyeung.top/tags/Python/"/>
     
-      <category term="并发编程" scheme="http://scottyeung.club/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
+      <category term="并发编程" scheme="http://scottyeung.top/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
     
-      <category term="Concurrency" scheme="http://scottyeung.club/tags/Concurrency/"/>
+      <category term="Concurrency" scheme="http://scottyeung.top/tags/Concurrency/"/>
     
-      <category term="asyncio" scheme="http://scottyeung.club/tags/asyncio/"/>
+      <category term="asyncio" scheme="http://scottyeung.top/tags/asyncio/"/>
     
-      <category term="summary" scheme="http://scottyeung.club/tags/summary/"/>
+      <category term="summary" scheme="http://scottyeung.top/tags/summary/"/>
     
   </entry>
   
   <entry>
     <title>记一次漫画批量的爬取/下载</title>
-    <link href="http://scottyeung.club/2020/%E8%AE%B0%E4%B8%80%E6%AC%A1%E6%BC%AB%E7%94%BB%E6%89%B9%E9%87%8F%E7%9A%84%E7%88%AC%E5%8F%96-%E4%B8%8B%E8%BD%BD/"/>
-    <id>http://scottyeung.club/2020/记一次漫画批量的爬取-下载/</id>
+    <link href="http://scottyeung.top/2020/%E8%AE%B0%E4%B8%80%E6%AC%A1%E6%BC%AB%E7%94%BB%E6%89%B9%E9%87%8F%E7%9A%84%E7%88%AC%E5%8F%96-%E4%B8%8B%E8%BD%BD/"/>
+    <id>http://scottyeung.top/2020/记一次漫画批量的爬取-下载/</id>
     <published>2020-02-28T14:01:33.000Z</published>
     <updated>2020-02-29T04:19:23.985Z</updated>
     
@@ -62,23 +93,23 @@
     
     </summary>
     
-      <category term="Coding记录" scheme="http://scottyeung.club/categories/Coding%E8%AE%B0%E5%BD%95/"/>
+      <category term="Coding记录" scheme="http://scottyeung.top/categories/Coding%E8%AE%B0%E5%BD%95/"/>
     
     
-      <category term="Python" scheme="http://scottyeung.club/tags/Python/"/>
+      <category term="Python" scheme="http://scottyeung.top/tags/Python/"/>
     
-      <category term="Golang" scheme="http://scottyeung.club/tags/Golang/"/>
+      <category term="Golang" scheme="http://scottyeung.top/tags/Golang/"/>
     
-      <category term="爬虫" scheme="http://scottyeung.club/tags/%E7%88%AC%E8%99%AB/"/>
+      <category term="爬虫" scheme="http://scottyeung.top/tags/%E7%88%AC%E8%99%AB/"/>
     
-      <category term="多线程" scheme="http://scottyeung.club/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+      <category term="多线程" scheme="http://scottyeung.top/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
     
   </entry>
   
   <entry>
     <title>太极拳中的劲</title>
-    <link href="http://scottyeung.club/2020/%E5%A4%AA%E6%9E%81%E6%8B%B3%E4%B8%AD%E7%9A%84%E5%8A%B2/"/>
-    <id>http://scottyeung.club/2020/太极拳中的劲/</id>
+    <link href="http://scottyeung.top/2020/%E5%A4%AA%E6%9E%81%E6%8B%B3%E4%B8%AD%E7%9A%84%E5%8A%B2/"/>
+    <id>http://scottyeung.top/2020/太极拳中的劲/</id>
     <published>2020-02-16T14:59:05.000Z</published>
     <updated>2020-02-17T13:18:54.320Z</updated>
     
@@ -90,27 +121,27 @@
     
     </summary>
     
-      <category term="杂谈" scheme="http://scottyeung.club/categories/%E6%9D%82%E8%B0%88/"/>
+      <category term="杂谈" scheme="http://scottyeung.top/categories/%E6%9D%82%E8%B0%88/"/>
     
     
-      <category term="健康" scheme="http://scottyeung.club/tags/%E5%81%A5%E5%BA%B7/"/>
+      <category term="健康" scheme="http://scottyeung.top/tags/%E5%81%A5%E5%BA%B7/"/>
     
-      <category term="养生" scheme="http://scottyeung.club/tags/%E5%85%BB%E7%94%9F/"/>
+      <category term="养生" scheme="http://scottyeung.top/tags/%E5%85%BB%E7%94%9F/"/>
     
-      <category term="太极" scheme="http://scottyeung.club/tags/%E5%A4%AA%E6%9E%81/"/>
+      <category term="太极" scheme="http://scottyeung.top/tags/%E5%A4%AA%E6%9E%81/"/>
     
-      <category term="运动" scheme="http://scottyeung.club/tags/%E8%BF%90%E5%8A%A8/"/>
+      <category term="运动" scheme="http://scottyeung.top/tags/%E8%BF%90%E5%8A%A8/"/>
     
-      <category term="内家拳" scheme="http://scottyeung.club/tags/%E5%86%85%E5%AE%B6%E6%8B%B3/"/>
+      <category term="内家拳" scheme="http://scottyeung.top/tags/%E5%86%85%E5%AE%B6%E6%8B%B3/"/>
     
-      <category term="玄学" scheme="http://scottyeung.club/tags/%E7%8E%84%E5%AD%A6/"/>
+      <category term="玄学" scheme="http://scottyeung.top/tags/%E7%8E%84%E5%AD%A6/"/>
     
   </entry>
   
   <entry>
     <title>就医当中的医疗选择——《最好的抉择》读书总结</title>
-    <link href="http://scottyeung.club/2020/%E5%B0%B1%E5%8C%BB%E5%BD%93%E4%B8%AD%E7%9A%84%E5%8C%BB%E7%96%97%E9%80%89%E6%8B%A9%E2%80%94%E2%80%94%E3%80%8A%E6%9C%80%E5%A5%BD%E7%9A%84%E6%8A%89%E6%8B%A9%E3%80%8B%E8%AF%BB%E4%B9%A6%E6%80%BB%E7%BB%93/"/>
-    <id>http://scottyeung.club/2020/就医当中的医疗选择——《最好的抉择》读书总结/</id>
+    <link href="http://scottyeung.top/2020/%E5%B0%B1%E5%8C%BB%E5%BD%93%E4%B8%AD%E7%9A%84%E5%8C%BB%E7%96%97%E9%80%89%E6%8B%A9%E2%80%94%E2%80%94%E3%80%8A%E6%9C%80%E5%A5%BD%E7%9A%84%E6%8A%89%E6%8B%A9%E3%80%8B%E8%AF%BB%E4%B9%A6%E6%80%BB%E7%BB%93/"/>
+    <id>http://scottyeung.top/2020/就医当中的医疗选择——《最好的抉择》读书总结/</id>
     <published>2020-02-01T09:20:32.000Z</published>
     <updated>2020-02-02T04:02:36.978Z</updated>
     
@@ -122,19 +153,19 @@
     
     </summary>
     
-      <category term="读书总结" scheme="http://scottyeung.club/categories/%E8%AF%BB%E4%B9%A6%E6%80%BB%E7%BB%93/"/>
+      <category term="读书总结" scheme="http://scottyeung.top/categories/%E8%AF%BB%E4%B9%A6%E6%80%BB%E7%BB%93/"/>
     
     
-      <category term="健康" scheme="http://scottyeung.club/tags/%E5%81%A5%E5%BA%B7/"/>
+      <category term="健康" scheme="http://scottyeung.top/tags/%E5%81%A5%E5%BA%B7/"/>
     
-      <category term="医学" scheme="http://scottyeung.club/tags/%E5%8C%BB%E5%AD%A6/"/>
+      <category term="医学" scheme="http://scottyeung.top/tags/%E5%8C%BB%E5%AD%A6/"/>
     
   </entry>
   
   <entry>
     <title>Maximum Sum Circular Subarray</title>
-    <link href="http://scottyeung.club/2020/Maximum-Sum-Circular-Subarray/"/>
-    <id>http://scottyeung.club/2020/Maximum-Sum-Circular-Subarray/</id>
+    <link href="http://scottyeung.top/2020/Maximum-Sum-Circular-Subarray/"/>
+    <id>http://scottyeung.top/2020/Maximum-Sum-Circular-Subarray/</id>
     <published>2020-01-21T11:59:53.000Z</published>
     <updated>2020-02-06T04:43:03.600Z</updated>
     
@@ -153,23 +184,23 @@
     
     </summary>
     
-      <category term="算法" scheme="http://scottyeung.club/categories/%E7%AE%97%E6%B3%95/"/>
+      <category term="算法" scheme="http://scottyeung.top/categories/%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="Python" scheme="http://scottyeung.club/tags/Python/"/>
+      <category term="Python" scheme="http://scottyeung.top/tags/Python/"/>
     
-      <category term="LeetCode" scheme="http://scottyeung.club/tags/LeetCode/"/>
+      <category term="LeetCode" scheme="http://scottyeung.top/tags/LeetCode/"/>
     
-      <category term="DP" scheme="http://scottyeung.club/tags/DP/"/>
+      <category term="DP" scheme="http://scottyeung.top/tags/DP/"/>
     
-      <category term="最大子序列和" scheme="http://scottyeung.club/tags/%E6%9C%80%E5%A4%A7%E5%AD%90%E5%BA%8F%E5%88%97%E5%92%8C/"/>
+      <category term="最大子序列和" scheme="http://scottyeung.top/tags/%E6%9C%80%E5%A4%A7%E5%AD%90%E5%BA%8F%E5%88%97%E5%92%8C/"/>
     
   </entry>
   
   <entry>
     <title>谈谈牙齿</title>
-    <link href="http://scottyeung.club/2020/%E8%B0%88%E8%B0%88%E7%89%99%E9%BD%BF/"/>
-    <id>http://scottyeung.club/2020/谈谈牙齿/</id>
+    <link href="http://scottyeung.top/2020/%E8%B0%88%E8%B0%88%E7%89%99%E9%BD%BF/"/>
+    <id>http://scottyeung.top/2020/谈谈牙齿/</id>
     <published>2020-01-03T11:43:59.000Z</published>
     <updated>2020-01-05T02:17:30.695Z</updated>
     
@@ -181,21 +212,21 @@
     
     </summary>
     
-      <category term="个人随笔" scheme="http://scottyeung.club/categories/%E4%B8%AA%E4%BA%BA%E9%9A%8F%E7%AC%94/"/>
+      <category term="个人随笔" scheme="http://scottyeung.top/categories/%E4%B8%AA%E4%BA%BA%E9%9A%8F%E7%AC%94/"/>
     
     
-      <category term="健康" scheme="http://scottyeung.club/tags/%E5%81%A5%E5%BA%B7/"/>
+      <category term="健康" scheme="http://scottyeung.top/tags/%E5%81%A5%E5%BA%B7/"/>
     
-      <category term="生活" scheme="http://scottyeung.club/tags/%E7%94%9F%E6%B4%BB/"/>
+      <category term="生活" scheme="http://scottyeung.top/tags/%E7%94%9F%E6%B4%BB/"/>
     
-      <category term="牙齿" scheme="http://scottyeung.club/tags/%E7%89%99%E9%BD%BF/"/>
+      <category term="牙齿" scheme="http://scottyeung.top/tags/%E7%89%99%E9%BD%BF/"/>
     
   </entry>
   
   <entry>
     <title>&lt;唤醒大脑：神经可塑性如何帮助大脑自我疗愈&gt; 读书笔记</title>
-    <link href="http://scottyeung.club/2019/%E5%94%A4%E9%86%92%E5%A4%A7%E8%84%91%EF%BC%9A%E7%A5%9E%E7%BB%8F%E5%8F%AF%E5%A1%91%E6%80%A7%E5%A6%82%E4%BD%95%E5%B8%AE%E5%8A%A9%E5%A4%A7%E8%84%91%E8%87%AA%E6%88%91%E7%96%97%E6%84%88-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
-    <id>http://scottyeung.club/2019/唤醒大脑：神经可塑性如何帮助大脑自我疗愈-读书笔记/</id>
+    <link href="http://scottyeung.top/2019/%E5%94%A4%E9%86%92%E5%A4%A7%E8%84%91%EF%BC%9A%E7%A5%9E%E7%BB%8F%E5%8F%AF%E5%A1%91%E6%80%A7%E5%A6%82%E4%BD%95%E5%B8%AE%E5%8A%A9%E5%A4%A7%E8%84%91%E8%87%AA%E6%88%91%E7%96%97%E6%84%88-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    <id>http://scottyeung.top/2019/唤醒大脑：神经可塑性如何帮助大脑自我疗愈-读书笔记/</id>
     <published>2019-12-30T09:53:48.000Z</published>
     <updated>2019-12-30T09:55:01.194Z</updated>
     
@@ -207,25 +238,25 @@
     
     </summary>
     
-      <category term="读书总结" scheme="http://scottyeung.club/categories/%E8%AF%BB%E4%B9%A6%E6%80%BB%E7%BB%93/"/>
+      <category term="读书总结" scheme="http://scottyeung.top/categories/%E8%AF%BB%E4%B9%A6%E6%80%BB%E7%BB%93/"/>
     
     
-      <category term="健康" scheme="http://scottyeung.club/tags/%E5%81%A5%E5%BA%B7/"/>
+      <category term="健康" scheme="http://scottyeung.top/tags/%E5%81%A5%E5%BA%B7/"/>
     
-      <category term="大脑" scheme="http://scottyeung.club/tags/%E5%A4%A7%E8%84%91/"/>
+      <category term="大脑" scheme="http://scottyeung.top/tags/%E5%A4%A7%E8%84%91/"/>
     
-      <category term="神经" scheme="http://scottyeung.club/tags/%E7%A5%9E%E7%BB%8F/"/>
+      <category term="神经" scheme="http://scottyeung.top/tags/%E7%A5%9E%E7%BB%8F/"/>
     
-      <category term="疗愈" scheme="http://scottyeung.club/tags/%E7%96%97%E6%84%88/"/>
+      <category term="疗愈" scheme="http://scottyeung.top/tags/%E7%96%97%E6%84%88/"/>
     
-      <category term="疼痛" scheme="http://scottyeung.club/tags/%E7%96%BC%E7%97%9B/"/>
+      <category term="疼痛" scheme="http://scottyeung.top/tags/%E7%96%BC%E7%97%9B/"/>
     
   </entry>
   
   <entry>
     <title>&lt;被讨厌的勇气&gt;读书体会与摘要</title>
-    <link href="http://scottyeung.club/2019/%E8%A2%AB%E8%AE%A8%E5%8E%8C%E7%9A%84%E5%8B%87%E6%B0%94-%E8%AF%BB%E4%B9%A6%E4%BD%93%E4%BC%9A%E4%B8%8E%E6%91%98%E8%A6%81/"/>
-    <id>http://scottyeung.club/2019/被讨厌的勇气-读书体会与摘要/</id>
+    <link href="http://scottyeung.top/2019/%E8%A2%AB%E8%AE%A8%E5%8E%8C%E7%9A%84%E5%8B%87%E6%B0%94-%E8%AF%BB%E4%B9%A6%E4%BD%93%E4%BC%9A%E4%B8%8E%E6%91%98%E8%A6%81/"/>
+    <id>http://scottyeung.top/2019/被讨厌的勇气-读书体会与摘要/</id>
     <published>2019-12-19T04:08:40.000Z</published>
     <updated>2019-12-19T04:36:19.867Z</updated>
     
@@ -238,23 +269,23 @@
     
     </summary>
     
-      <category term="读书总结" scheme="http://scottyeung.club/categories/%E8%AF%BB%E4%B9%A6%E6%80%BB%E7%BB%93/"/>
+      <category term="读书总结" scheme="http://scottyeung.top/categories/%E8%AF%BB%E4%B9%A6%E6%80%BB%E7%BB%93/"/>
     
     
-      <category term="心理学" scheme="http://scottyeung.club/tags/%E5%BF%83%E7%90%86%E5%AD%A6/"/>
+      <category term="心理学" scheme="http://scottyeung.top/tags/%E5%BF%83%E7%90%86%E5%AD%A6/"/>
     
-      <category term="幸福" scheme="http://scottyeung.club/tags/%E5%B9%B8%E7%A6%8F/"/>
+      <category term="幸福" scheme="http://scottyeung.top/tags/%E5%B9%B8%E7%A6%8F/"/>
     
-      <category term="阿德勒" scheme="http://scottyeung.club/tags/%E9%98%BF%E5%BE%B7%E5%8B%92/"/>
+      <category term="阿德勒" scheme="http://scottyeung.top/tags/%E9%98%BF%E5%BE%B7%E5%8B%92/"/>
     
-      <category term="人生" scheme="http://scottyeung.club/tags/%E4%BA%BA%E7%94%9F/"/>
+      <category term="人生" scheme="http://scottyeung.top/tags/%E4%BA%BA%E7%94%9F/"/>
     
   </entry>
   
   <entry>
     <title>Some Notes About SQLAlchemy</title>
-    <link href="http://scottyeung.club/2019/Some-notes-About-Sqlalchemy/"/>
-    <id>http://scottyeung.club/2019/Some-notes-About-Sqlalchemy/</id>
+    <link href="http://scottyeung.top/2019/Some-notes-About-Sqlalchemy/"/>
+    <id>http://scottyeung.top/2019/Some-notes-About-Sqlalchemy/</id>
     <published>2019-12-07T02:24:35.000Z</published>
     <updated>2019-12-07T04:00:53.159Z</updated>
     
@@ -267,25 +298,25 @@
     
     </summary>
     
-      <category term="Mysql" scheme="http://scottyeung.club/categories/Mysql/"/>
+      <category term="Mysql" scheme="http://scottyeung.top/categories/Mysql/"/>
     
     
-      <category term="Python" scheme="http://scottyeung.club/tags/Python/"/>
+      <category term="Python" scheme="http://scottyeung.top/tags/Python/"/>
     
-      <category term="Mysql" scheme="http://scottyeung.club/tags/Mysql/"/>
+      <category term="Mysql" scheme="http://scottyeung.top/tags/Mysql/"/>
     
-      <category term="sql" scheme="http://scottyeung.club/tags/sql/"/>
+      <category term="sql" scheme="http://scottyeung.top/tags/sql/"/>
     
-      <category term="生产力" scheme="http://scottyeung.club/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/"/>
+      <category term="生产力" scheme="http://scottyeung.top/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/"/>
     
-      <category term="SQLAlchemy" scheme="http://scottyeung.club/tags/SQLAlchemy/"/>
+      <category term="SQLAlchemy" scheme="http://scottyeung.top/tags/SQLAlchemy/"/>
     
   </entry>
   
   <entry>
     <title>Summary of Automate the Boring Stuff with Python</title>
-    <link href="http://scottyeung.club/2019/Summary-of-Automate-the-Boring-Stuff-with-Python/"/>
-    <id>http://scottyeung.club/2019/Summary-of-Automate-the-Boring-Stuff-with-Python/</id>
+    <link href="http://scottyeung.top/2019/Summary-of-Automate-the-Boring-Stuff-with-Python/"/>
+    <id>http://scottyeung.top/2019/Summary-of-Automate-the-Boring-Stuff-with-Python/</id>
     <published>2019-11-04T08:15:25.000Z</published>
     <updated>2019-11-12T14:48:29.983Z</updated>
     
@@ -299,22 +330,22 @@
     </summary>
     
     
-      <category term="Python" scheme="http://scottyeung.club/tags/Python/"/>
+      <category term="Python" scheme="http://scottyeung.top/tags/Python/"/>
     
-      <category term="summary" scheme="http://scottyeung.club/tags/summary/"/>
+      <category term="summary" scheme="http://scottyeung.top/tags/summary/"/>
     
-      <category term="生产力" scheme="http://scottyeung.club/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/"/>
+      <category term="生产力" scheme="http://scottyeung.top/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/"/>
     
-      <category term="自动化" scheme="http://scottyeung.club/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/"/>
+      <category term="自动化" scheme="http://scottyeung.top/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/"/>
     
-      <category term="编程学习" scheme="http://scottyeung.club/tags/%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0/"/>
+      <category term="编程学习" scheme="http://scottyeung.top/tags/%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
   <entry>
     <title>summary of &lt;斯坦福高效睡眠法&gt;</title>
-    <link href="http://scottyeung.club/2019/summary-of-%E6%96%AF%E5%9D%A6%E7%A6%8F%E9%AB%98%E6%95%88%E7%9D%A1%E7%9C%A0%E6%B3%95/"/>
-    <id>http://scottyeung.club/2019/summary-of-斯坦福高效睡眠法/</id>
+    <link href="http://scottyeung.top/2019/summary-of-%E6%96%AF%E5%9D%A6%E7%A6%8F%E9%AB%98%E6%95%88%E7%9D%A1%E7%9C%A0%E6%B3%95/"/>
+    <id>http://scottyeung.top/2019/summary-of-斯坦福高效睡眠法/</id>
     <published>2019-10-28T04:06:02.000Z</published>
     <updated>2019-11-12T14:48:29.984Z</updated>
     
@@ -338,23 +369,23 @@
     
     </summary>
     
-      <category term="读书总结" scheme="http://scottyeung.club/categories/%E8%AF%BB%E4%B9%A6%E6%80%BB%E7%BB%93/"/>
+      <category term="读书总结" scheme="http://scottyeung.top/categories/%E8%AF%BB%E4%B9%A6%E6%80%BB%E7%BB%93/"/>
     
     
-      <category term="睡眠" scheme="http://scottyeung.club/tags/%E7%9D%A1%E7%9C%A0/"/>
+      <category term="睡眠" scheme="http://scottyeung.top/tags/%E7%9D%A1%E7%9C%A0/"/>
     
-      <category term="读书" scheme="http://scottyeung.club/tags/%E8%AF%BB%E4%B9%A6/"/>
+      <category term="读书" scheme="http://scottyeung.top/tags/%E8%AF%BB%E4%B9%A6/"/>
     
-      <category term="健康" scheme="http://scottyeung.club/tags/%E5%81%A5%E5%BA%B7/"/>
+      <category term="健康" scheme="http://scottyeung.top/tags/%E5%81%A5%E5%BA%B7/"/>
     
-      <category term="生活质量" scheme="http://scottyeung.club/tags/%E7%94%9F%E6%B4%BB%E8%B4%A8%E9%87%8F/"/>
+      <category term="生活质量" scheme="http://scottyeung.top/tags/%E7%94%9F%E6%B4%BB%E8%B4%A8%E9%87%8F/"/>
     
   </entry>
   
   <entry>
     <title>如何克服过于在意别人想法的心理</title>
-    <link href="http://scottyeung.club/2019/%E5%A6%82%E4%BD%95%E5%85%8B%E6%9C%8D%E8%BF%87%E4%BA%8E%E5%9C%A8%E6%84%8F%E5%88%AB%E4%BA%BA%E6%83%B3%E6%B3%95%E7%9A%84%E5%BF%83%E7%90%86/"/>
-    <id>http://scottyeung.club/2019/如何克服过于在意别人想法的心理/</id>
+    <link href="http://scottyeung.top/2019/%E5%A6%82%E4%BD%95%E5%85%8B%E6%9C%8D%E8%BF%87%E4%BA%8E%E5%9C%A8%E6%84%8F%E5%88%AB%E4%BA%BA%E6%83%B3%E6%B3%95%E7%9A%84%E5%BF%83%E7%90%86/"/>
+    <id>http://scottyeung.top/2019/如何克服过于在意别人想法的心理/</id>
     <published>2019-10-23T01:24:35.000Z</published>
     <updated>2019-11-12T14:48:29.988Z</updated>
     
@@ -366,25 +397,25 @@
     
     </summary>
     
-      <category term="方法" scheme="http://scottyeung.club/categories/%E6%96%B9%E6%B3%95/"/>
+      <category term="方法" scheme="http://scottyeung.top/categories/%E6%96%B9%E6%B3%95/"/>
     
     
-      <category term="summary" scheme="http://scottyeung.club/tags/summary/"/>
+      <category term="summary" scheme="http://scottyeung.top/tags/summary/"/>
     
-      <category term="心态" scheme="http://scottyeung.club/tags/%E5%BF%83%E6%80%81/"/>
+      <category term="心态" scheme="http://scottyeung.top/tags/%E5%BF%83%E6%80%81/"/>
     
-      <category term="心理学" scheme="http://scottyeung.club/tags/%E5%BF%83%E7%90%86%E5%AD%A6/"/>
+      <category term="心理学" scheme="http://scottyeung.top/tags/%E5%BF%83%E7%90%86%E5%AD%A6/"/>
     
-      <category term="overcome" scheme="http://scottyeung.club/tags/overcome/"/>
+      <category term="overcome" scheme="http://scottyeung.top/tags/overcome/"/>
     
-      <category term="他人评价" scheme="http://scottyeung.club/tags/%E4%BB%96%E4%BA%BA%E8%AF%84%E4%BB%B7/"/>
+      <category term="他人评价" scheme="http://scottyeung.top/tags/%E4%BB%96%E4%BA%BA%E8%AF%84%E4%BB%B7/"/>
     
   </entry>
   
   <entry>
     <title>组会谈话启示录（一）</title>
-    <link href="http://scottyeung.club/2019/%E7%BB%84%E4%BC%9A%E8%B0%88%E8%AF%9D%E5%90%AF%E7%A4%BA%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89/"/>
-    <id>http://scottyeung.club/2019/组会谈话启示录（一）/</id>
+    <link href="http://scottyeung.top/2019/%E7%BB%84%E4%BC%9A%E8%B0%88%E8%AF%9D%E5%90%AF%E7%A4%BA%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89/"/>
+    <id>http://scottyeung.top/2019/组会谈话启示录（一）/</id>
     <published>2019-10-16T07:50:35.000Z</published>
     <updated>2019-11-12T14:48:29.991Z</updated>
     
@@ -396,23 +427,23 @@
     
     </summary>
     
-      <category term="科研" scheme="http://scottyeung.club/categories/%E7%A7%91%E7%A0%94/"/>
+      <category term="科研" scheme="http://scottyeung.top/categories/%E7%A7%91%E7%A0%94/"/>
     
     
-      <category term="summary" scheme="http://scottyeung.club/tags/summary/"/>
+      <category term="summary" scheme="http://scottyeung.top/tags/summary/"/>
     
-      <category term="科研" scheme="http://scottyeung.club/tags/%E7%A7%91%E7%A0%94/"/>
+      <category term="科研" scheme="http://scottyeung.top/tags/%E7%A7%91%E7%A0%94/"/>
     
-      <category term="paper" scheme="http://scottyeung.club/tags/paper/"/>
+      <category term="paper" scheme="http://scottyeung.top/tags/paper/"/>
     
-      <category term="经验" scheme="http://scottyeung.club/tags/%E7%BB%8F%E9%AA%8C/"/>
+      <category term="经验" scheme="http://scottyeung.top/tags/%E7%BB%8F%E9%AA%8C/"/>
     
   </entry>
   
   <entry>
     <title>Summary of Ultralearning</title>
-    <link href="http://scottyeung.club/2019/Summary-of-Ultralearning/"/>
-    <id>http://scottyeung.club/2019/Summary-of-Ultralearning/</id>
+    <link href="http://scottyeung.top/2019/Summary-of-Ultralearning/"/>
+    <id>http://scottyeung.top/2019/Summary-of-Ultralearning/</id>
     <published>2019-10-15T12:51:31.000Z</published>
     <updated>2020-01-14T06:44:33.276Z</updated>
     
@@ -435,31 +466,31 @@
     
     </summary>
     
-      <category term="读书总结" scheme="http://scottyeung.club/categories/%E8%AF%BB%E4%B9%A6%E6%80%BB%E7%BB%93/"/>
+      <category term="读书总结" scheme="http://scottyeung.top/categories/%E8%AF%BB%E4%B9%A6%E6%80%BB%E7%BB%93/"/>
     
     
-      <category term="学习" scheme="http://scottyeung.club/tags/%E5%AD%A6%E4%B9%A0/"/>
+      <category term="学习" scheme="http://scottyeung.top/tags/%E5%AD%A6%E4%B9%A0/"/>
     
-      <category term="meta-learning" scheme="http://scottyeung.club/tags/meta-learning/"/>
+      <category term="meta-learning" scheme="http://scottyeung.top/tags/meta-learning/"/>
     
-      <category term="ultralearning" scheme="http://scottyeung.club/tags/ultralearning/"/>
+      <category term="ultralearning" scheme="http://scottyeung.top/tags/ultralearning/"/>
     
-      <category term="improvement" scheme="http://scottyeung.club/tags/improvement/"/>
+      <category term="improvement" scheme="http://scottyeung.top/tags/improvement/"/>
     
-      <category term="方法论" scheme="http://scottyeung.club/tags/%E6%96%B9%E6%B3%95%E8%AE%BA/"/>
+      <category term="方法论" scheme="http://scottyeung.top/tags/%E6%96%B9%E6%B3%95%E8%AE%BA/"/>
     
-      <category term="Scott H Young" scheme="http://scottyeung.club/tags/Scott-H-Young/"/>
+      <category term="Scott H Young" scheme="http://scottyeung.top/tags/Scott-H-Young/"/>
     
   </entry>
   
   <entry>
     <title>保研之路</title>
-    <link href="http://scottyeung.club/2019/%E4%BF%9D%E7%A0%94%E4%B9%8B%E8%B7%AF/"/>
-    <id>http://scottyeung.club/2019/保研之路/</id>
+    <link href="http://scottyeung.top/2019/%E4%BF%9D%E7%A0%94%E4%B9%8B%E8%B7%AF/"/>
+    <id>http://scottyeung.top/2019/保研之路/</id>
     <published>2019-10-01T08:38:20.000Z</published>
     <updated>2020-01-14T07:23:40.792Z</updated>
     
-    <content type="html"><![CDATA[<p>在国庆前夕，保研的事情尘埃落定，最终被南大计科录取，将进入软件质量研究所，内心的失学焦虑才得以缓解大部分。在国家推免系统接受拟录取的时候，我与绝大多数保研党一样，内心异常兴奋，而到了第二天之后，这种兴奋已经变成了平静以及后续事情的焦虑。为了以后不至于忘却这一件重大的事，遂打算写下一篇流水账来回顾一下这段保研的历程，抒发一下相关的情感，另外也可作为后来人的一点经验和参考。大家可以当作故事来看看（主要是给自己看看），不想看的可以跳到最后看看经验。</p><a id="more"></a><figure><img src="/2019/保研之路/p1.JPG" alt="来自深夜的拟录取通知"><figcaption>来自深夜的拟录取通知</figcaption></figure><h2 id="开始阶段">开始阶段</h2><p>最初诞生保研的想法是在大二上学期，那个时候我的一个同高中的直系学长刚好要保研到中科院软件所，在和他交谈时，我第一次接触到了保研这个概念，在此之前，我一直都是抱着早点跑去实习搬砖赚钱的想法的。后来我看到了学院的推免名单和细则出来后，我看好像主要还是看GPA，那些加分都比较无关紧要（在国软的细则里，一个奖项可能就加零点零零几或者零点几，还要在乘以一个百分之十，真的算是无关紧要）。结合我当时的绩点，以及刚进行的奖学金评比看到的成绩排名，觉得还是挺稳的，当时甚至还会时不时地幻想保研到哪个学校。不过还是没有下定很大的决心，内心还是想着就业的。 在这种背景下，似乎保研也不需要付出额外的力气来准备，继续保持当时的状态，继续好好学习，保持绩点就行了，同时，根据细则的要求，只看必修课的绩点，我还可以集中精力在必修课，可以减少在一些选修课的投入精力和时间。</p><h2 id="突生变化">突生变化</h2><p>在大二下学期的时候，发生了一件挺突然的事情：我们学院（国际软件学院）和计算机学院合并了。在上学期的时候部分老师就在有意无意的放出风声，但是就是没有人给出一个确定的说法，我们也只是当一个谣言对待，然后最后就真合并了，而且最后也没有给出一个官方的说法。每次提起这件事，我的内心其实都有点不爽，不过结合在计院待的这一年来说，计院的行政也就是这样，无从吐槽。 合并了对保研有什么影响呢？首先推免细则变了，可能会按照计院的来执行；其次推免的名额可能会有变化；最后，换了一批行政人员，很可能使使事情变麻烦。当时我还挺天真的，心里想着改革不会也不应该影响到当前的学生。现在回看，当真是naive，<del>学校改革哪管学生死活</del>。抱着这种想法，我对保研的准备还是没什么变化，好好学习，好好准备必修课的考试，继续保持高绩点。 同时，在这一年了为了锻炼代码能力，尝试加入实验室/找老师做项目，但因为自身原因或老师原因，两次都无疾而终，甚至让我对实验室留下了一种不好的印象，对实验室有所抗拒，这导致了我在暑期实训时没有找老师进实验室，而选择跟学校实训。回顾这几次过程，大致可得出几个教训： 1. 机会是需要靠自己主动争取的。上面提到的几次机会都是我偶然看到的消息才去找的，这导致了可选择的选项不多，并且quit了之后就无事可做。 2. 驱使你做选择的因素不应该是有无机会，更应该看机会是否适合，是否好。 3. 好老师/好实验室的影响很大，同理如果不好，影响也很大。</p><h2 id="关键阶段">关键阶段</h2><p>进入大三之后，距离保研的夏令营就只剩不到一年时间，上学期可谓是关键阶段。在上学期，我把能修的课都修满了，提前就修完了专选课和公选课（但到了下学期还是有点担心部分学分而再修了额外的课）。那段时间可以说是最忙的时候了，几乎是满课，有时真的下午下课后吃完饭顶不住，回来需要睡上一觉，晚上再去上课。另外，为了丰富科研经历，我主动发了邮件给老师说要进实验室，那段经历也是挺可怕的，在此期间，我得了组会恐惧症，每次组会开始前我内心都很焦虑，一方面没做什么，而另一方面又要想怎么回复，导致每次组会结束后，我几乎都会去大吃大喝，缓解压力，最终也没有任何产出/收获。 另外，15级新的保研细则也出了，成绩计算还是只算必修课，但是变成了相对赋分，而加分也是，且增加了很多的加分项（如班干部任职，CCF认证等）。看到这个新的细则，内心有点慌，因为还没有任何加分，而在相对赋分的情况下，可以拉很多分（如绩点3.6+凭借加分第一名，3.5+第二名），但另一方面，保研名额似乎也变多了，最低裸绩点3.4都保上了。 最终，在大三上学期，除了把课程几乎修完以外，几乎没有任何收获。绩点也因为nc的暑期实训拉低了0.1，科研方面也没有任何产出，且没有后续了。</p><h2 id="最后冲刺">最后冲刺</h2><p>到了大三下，课程基本不多，一周其实就两三天课，可谓是全力备战保研的时候了。在这个学期我因为担忧没有保研加分拿不到推免资格（其实是多余的焦虑），所以选择刷点加分。我选择的是CCF和全国大学生英语竞赛。前者我第一次近乎裸考就拿了270分，而300分就可以有加分。后者则是获奖比例高达80%。然而，前者出乎意料地翻车(<a href="http://scottyeung.club/2019/CCF-201903/">CCF-201903</a>)，后者则是在准备的时候就觉得自己已经没有希望了（虽然比例高，但基数小，参加的人都太厉害了），最终也没有拿到任何加分。 除了准备加分，我还在准备专业课知识的复习。专业课知识大体分为两部分，一部分是比较硬的，看重能力的，如数学，算法，这些需要的时间比较长，不太能速成；另一部分则是偏概念，偏背诵的。这个学期开始，我就在学堂在线刷数据结构和线性代数，并在五月底前完成。进入五月，开始收集各个学校的夏令营消息并准备相应的材料。六月份确定参加的夏令营后则根据网上查询到的信息进行针对性的准备与学习，最终只参加了本校和南大计科的夏令营，北航和南大软院也进了，拒了，而七月中的时候收到了软件所软件中心的面试通知，也没去。本校夏令营没做什么准备就拿到了比较靠前的优秀营员名额，而南大夏令营相关情况<a href="http://scottyeung.club/2019/%E8%AE%B02019%E5%8D%97%E4%BA%AC%E5%A4%A7%E5%AD%A6%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E5%A4%8F%E4%BB%A4%E8%90%A5/">可点此查看</a>，开放日结束过几天就被老师告知考核通过，可录学硕。</p><h2 id="最终结果">最终结果</h2><p>开放日结束后，还需要回学校搬砖，做一个微信小程序，不知道什么时候能走。但因为手里已经拿到一个比较满意的offer，内心也已经放轻松了，就没有做后续的准备，包括软件所的考核以及九推的准备。唯一有点烦的，就是这个实训不知道什么时候结束，组员都不想做，但是又还没出分，不敢造次，担心影响到GPA。最终这个工作一直持续到开学，幸好给分还行。 开学第一周周五就进行推免申请工作，最终没有任何加分，GPA 3.85+，排名11，然后今年形势也非常有趣，科研加分最高也才13分，导致3分加分就大于0.1绩点，就等于当一年班干部就涨了0.1绩点，反正我也不准备九推，其实与我无关。我最终的综排18，也算还行，然后今年的名额暴涨，最低好像裸绩点3.4+也保上研了。所以前面的焦虑好像是多余的？</p><h2 id="经验教训">经验教训</h2><p>前面说了如此多无聊的流水账，下面就说一点有用的干货弥补一下吧。 - 成绩很重要。某个学长说过，成绩决定下限，从我本人的申请情况以及推免名额的获取情况来看，的确如此。部分学校筛人直接就根据排名筛掉，没有成绩直接就没有后续，除非你其它方面（科研/竞赛）特别强，我去体检的时候碰到一个弘毅班的老哥就说他一开始就因为排名被南大计科筛了。 - 科研/竞赛要有但不用多。有奖项或论文产出固然是好，但没有也不要紧，因为有的只是少数人，但相关的经历还是需要有的，这在面试中可是一个回答利器，一方面可能面试官会直接发问，另一方面，也可以通过这些经历展示你的相关技能，研究能力和研究兴趣。这些经历可以通过进入实验室获得。 - 尽早研究推免细则，寻找加分机会。很多的加分其实获得难度是很低的，如软考，CCF或是当班干部，这些不仅难度不高，而且需要时间也不长，另外，参加竞赛或者大创，这就需要早一点准备了，但其实也不算难。像大创，找对老师指导就保底一个校级大创了。 - 做好信息收集。信息收集非常重要，保研不同于高考，每个人考完根据分数排名投志愿就录取了。信息的收集影响到你学校院系的选择，考核内容的准备，实验室导师的选择。 - 做好自身实力定位，不妄自菲薄。所谓的实力定位，主要是看自己的成绩，看自己在哪一档，然后根据此可以选择同档次学校或高一档的学校。要记住机会总是有可能有的，不妨海投试试。</p>]]></content>
+    <content type="html"><![CDATA[<p>在国庆前夕，保研的事情尘埃落定，最终被南大计科录取，将进入软件质量研究所，内心的失学焦虑才得以缓解大部分。在国家推免系统接受拟录取的时候，我与绝大多数保研党一样，内心异常兴奋，而到了第二天之后，这种兴奋已经变成了平静以及后续事情的焦虑。为了以后不至于忘却这一件重大的事，遂打算写下一篇流水账来回顾一下这段保研的历程，抒发一下相关的情感，另外也可作为后来人的一点经验和参考。大家可以当作故事来看看（主要是给自己看看），不想看的可以跳到最后看看经验。</p><a id="more"></a><figure><img src="/2019/保研之路/p1.JPG" alt="来自深夜的拟录取通知"><figcaption>来自深夜的拟录取通知</figcaption></figure><h2 id="开始阶段">开始阶段</h2><p>最初诞生保研的想法是在大二上学期，那个时候我的一个同高中的直系学长刚好要保研到中科院软件所，在和他交谈时，我第一次接触到了保研这个概念，在此之前，我一直都是抱着早点跑去实习搬砖赚钱的想法的。后来我看到了学院的推免名单和细则出来后，我看好像主要还是看GPA，那些加分都比较无关紧要（在国软的细则里，一个奖项可能就加零点零零几或者零点几，还要在乘以一个百分之十，真的算是无关紧要）。结合我当时的绩点，以及刚进行的奖学金评比看到的成绩排名，觉得还是挺稳的，当时甚至还会时不时地幻想保研到哪个学校。不过还是没有下定很大的决心，内心还是想着就业的。 在这种背景下，似乎保研也不需要付出额外的力气来准备，继续保持当时的状态，继续好好学习，保持绩点就行了，同时，根据细则的要求，只看必修课的绩点，我还可以集中精力在必修课，可以减少在一些选修课的投入精力和时间。</p><h2 id="突生变化">突生变化</h2><p>在大二下学期的时候，发生了一件挺突然的事情：我们学院（国际软件学院）和计算机学院合并了。在上学期的时候部分老师就在有意无意的放出风声，但是就是没有人给出一个确定的说法，我们也只是当一个谣言对待，然后最后就真合并了，而且最后也没有给出一个官方的说法。每次提起这件事，我的内心其实都有点不爽，不过结合在计院待的这一年来说，计院的行政也就是这样，无从吐槽。 合并了对保研有什么影响呢？首先推免细则变了，可能会按照计院的来执行；其次推免的名额可能会有变化；最后，换了一批行政人员，很可能使使事情变麻烦。当时我还挺天真的，心里想着改革不会也不应该影响到当前的学生。现在回看，当真是naive，<del>学校改革哪管学生死活</del>。抱着这种想法，我对保研的准备还是没什么变化，好好学习，好好准备必修课的考试，继续保持高绩点。 同时，在这一年了为了锻炼代码能力，尝试加入实验室/找老师做项目，但因为自身原因或老师原因，两次都无疾而终，甚至让我对实验室留下了一种不好的印象，对实验室有所抗拒，这导致了我在暑期实训时没有找老师进实验室，而选择跟学校实训。回顾这几次过程，大致可得出几个教训： 1. 机会是需要靠自己主动争取的。上面提到的几次机会都是我偶然看到的消息才去找的，这导致了可选择的选项不多，并且quit了之后就无事可做。 2. 驱使你做选择的因素不应该是有无机会，更应该看机会是否适合，是否好。 3. 好老师/好实验室的影响很大，同理如果不好，影响也很大。</p><h2 id="关键阶段">关键阶段</h2><p>进入大三之后，距离保研的夏令营就只剩不到一年时间，上学期可谓是关键阶段。在上学期，我把能修的课都修满了，提前就修完了专选课和公选课（但到了下学期还是有点担心部分学分而再修了额外的课）。那段时间可以说是最忙的时候了，几乎是满课，有时真的下午下课后吃完饭顶不住，回来需要睡上一觉，晚上再去上课。另外，为了丰富科研经历，我主动发了邮件给老师说要进实验室，那段经历也是挺可怕的，在此期间，我得了组会恐惧症，每次组会开始前我内心都很焦虑，一方面没做什么，而另一方面又要想怎么回复，导致每次组会结束后，我几乎都会去大吃大喝，缓解压力，最终也没有任何产出/收获。 另外，15级新的保研细则也出了，成绩计算还是只算必修课，但是变成了相对赋分，而加分也是，且增加了很多的加分项（如班干部任职，CCF认证等）。看到这个新的细则，内心有点慌，因为还没有任何加分，而在相对赋分的情况下，可以拉很多分（如绩点3.6+凭借加分第一名，3.5+第二名），但另一方面，保研名额似乎也变多了，最低裸绩点3.4都保上了。 最终，在大三上学期，除了把课程几乎修完以外，几乎没有任何收获。绩点也因为nc的暑期实训拉低了0.1，科研方面也没有任何产出，且没有后续了。</p><h2 id="最后冲刺">最后冲刺</h2><p>到了大三下，课程基本不多，一周其实就两三天课，可谓是全力备战保研的时候了。在这个学期我因为担忧没有保研加分拿不到推免资格（其实是多余的焦虑），所以选择刷点加分。我选择的是CCF和全国大学生英语竞赛。前者我第一次近乎裸考就拿了270分，而300分就可以有加分。后者则是获奖比例高达80%。然而，前者出乎意料地翻车(<a href="http://scottyeung.club/2019/CCF-201903/" target="_blank" rel="noopener">CCF-201903</a>)，后者则是在准备的时候就觉得自己已经没有希望了（虽然比例高，但基数小，参加的人都太厉害了），最终也没有拿到任何加分。 除了准备加分，我还在准备专业课知识的复习。专业课知识大体分为两部分，一部分是比较硬的，看重能力的，如数学，算法，这些需要的时间比较长，不太能速成；另一部分则是偏概念，偏背诵的。这个学期开始，我就在学堂在线刷数据结构和线性代数，并在五月底前完成。进入五月，开始收集各个学校的夏令营消息并准备相应的材料。六月份确定参加的夏令营后则根据网上查询到的信息进行针对性的准备与学习，最终只参加了本校和南大计科的夏令营，北航和南大软院也进了，拒了，而七月中的时候收到了软件所软件中心的面试通知，也没去。本校夏令营没做什么准备就拿到了比较靠前的优秀营员名额，而南大夏令营相关情况<a href="http://scottyeung.club/2019/%E8%AE%B02019%E5%8D%97%E4%BA%AC%E5%A4%A7%E5%AD%A6%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E5%A4%8F%E4%BB%A4%E8%90%A5/" target="_blank" rel="noopener">可点此查看</a>，开放日结束过几天就被老师告知考核通过，可录学硕。</p><h2 id="最终结果">最终结果</h2><p>开放日结束后，还需要回学校搬砖，做一个微信小程序，不知道什么时候能走。但因为手里已经拿到一个比较满意的offer，内心也已经放轻松了，就没有做后续的准备，包括软件所的考核以及九推的准备。唯一有点烦的，就是这个实训不知道什么时候结束，组员都不想做，但是又还没出分，不敢造次，担心影响到GPA。最终这个工作一直持续到开学，幸好给分还行。 开学第一周周五就进行推免申请工作，最终没有任何加分，GPA 3.85+，排名11，然后今年形势也非常有趣，科研加分最高也才13分，导致3分加分就大于0.1绩点，就等于当一年班干部就涨了0.1绩点，反正我也不准备九推，其实与我无关。我最终的综排18，也算还行，然后今年的名额暴涨，最低好像裸绩点3.4+也保上研了。所以前面的焦虑好像是多余的？</p><h2 id="经验教训">经验教训</h2><p>前面说了如此多无聊的流水账，下面就说一点有用的干货弥补一下吧。 - 成绩很重要。某个学长说过，成绩决定下限，从我本人的申请情况以及推免名额的获取情况来看，的确如此。部分学校筛人直接就根据排名筛掉，没有成绩直接就没有后续，除非你其它方面（科研/竞赛）特别强，我去体检的时候碰到一个弘毅班的老哥就说他一开始就因为排名被南大计科筛了。 - 科研/竞赛要有但不用多。有奖项或论文产出固然是好，但没有也不要紧，因为有的只是少数人，但相关的经历还是需要有的，这在面试中可是一个回答利器，一方面可能面试官会直接发问，另一方面，也可以通过这些经历展示你的相关技能，研究能力和研究兴趣。这些经历可以通过进入实验室获得。 - 尽早研究推免细则，寻找加分机会。很多的加分其实获得难度是很低的，如软考，CCF或是当班干部，这些不仅难度不高，而且需要时间也不长，另外，参加竞赛或者大创，这就需要早一点准备了，但其实也不算难。像大创，找对老师指导就保底一个校级大创了。 - 做好信息收集。信息收集非常重要，保研不同于高考，每个人考完根据分数排名投志愿就录取了。信息的收集影响到你学校院系的选择，考核内容的准备，实验室导师的选择。 - 做好自身实力定位，不妄自菲薄。所谓的实力定位，主要是看自己的成绩，看自己在哪一档，然后根据此可以选择同档次学校或高一档的学校。要记住机会总是有可能有的，不妨海投试试。</p>]]></content>
     
     <summary type="html">
     
@@ -467,17 +498,17 @@
     
     </summary>
     
-      <category term="保研经验" scheme="http://scottyeung.club/categories/%E4%BF%9D%E7%A0%94%E7%BB%8F%E9%AA%8C/"/>
+      <category term="保研经验" scheme="http://scottyeung.top/categories/%E4%BF%9D%E7%A0%94%E7%BB%8F%E9%AA%8C/"/>
     
     
-      <category term="流水账" scheme="http://scottyeung.club/tags/%E6%B5%81%E6%B0%B4%E8%B4%A6/"/>
+      <category term="流水账" scheme="http://scottyeung.top/tags/%E6%B5%81%E6%B0%B4%E8%B4%A6/"/>
     
   </entry>
   
   <entry>
     <title>云计算与软件工程</title>
-    <link href="http://scottyeung.club/2019/%E4%BA%91%E8%AE%A1%E7%AE%97%E4%B8%8E%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
-    <id>http://scottyeung.club/2019/云计算与软件工程/</id>
+    <link href="http://scottyeung.top/2019/%E4%BA%91%E8%AE%A1%E7%AE%97%E4%B8%8E%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
+    <id>http://scottyeung.top/2019/云计算与软件工程/</id>
     <published>2019-08-08T04:23:26.000Z</published>
     <updated>2019-11-12T14:48:29.985Z</updated>
     
@@ -489,19 +520,19 @@
     
     </summary>
     
-      <category term="课程笔记" scheme="http://scottyeung.club/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/"/>
+      <category term="课程笔记" scheme="http://scottyeung.top/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/"/>
     
     
-      <category term="软件工程" scheme="http://scottyeung.club/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
+      <category term="软件工程" scheme="http://scottyeung.top/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
     
-      <category term="云计算" scheme="http://scottyeung.club/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/"/>
+      <category term="云计算" scheme="http://scottyeung.top/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/"/>
     
   </entry>
   
   <entry>
     <title>记2019南京大学计算机系开放日</title>
-    <link href="http://scottyeung.club/2019/%E8%AE%B02019%E5%8D%97%E4%BA%AC%E5%A4%A7%E5%AD%A6%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E5%A4%8F%E4%BB%A4%E8%90%A5/"/>
-    <id>http://scottyeung.club/2019/记2019南京大学计算机系夏令营/</id>
+    <link href="http://scottyeung.top/2019/%E8%AE%B02019%E5%8D%97%E4%BA%AC%E5%A4%A7%E5%AD%A6%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E5%A4%8F%E4%BB%A4%E8%90%A5/"/>
+    <id>http://scottyeung.top/2019/记2019南京大学计算机系夏令营/</id>
     <published>2019-07-26T02:45:34.000Z</published>
     <updated>2020-01-14T07:30:13.148Z</updated>
     
@@ -513,25 +544,25 @@
     
     </summary>
     
-      <category term="保研" scheme="http://scottyeung.club/categories/%E4%BF%9D%E7%A0%94/"/>
+      <category term="保研" scheme="http://scottyeung.top/categories/%E4%BF%9D%E7%A0%94/"/>
     
     
-      <category term="南京大学" scheme="http://scottyeung.club/tags/%E5%8D%97%E4%BA%AC%E5%A4%A7%E5%AD%A6/"/>
+      <category term="南京大学" scheme="http://scottyeung.top/tags/%E5%8D%97%E4%BA%AC%E5%A4%A7%E5%AD%A6/"/>
     
-      <category term="计算机系" scheme="http://scottyeung.club/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB/"/>
+      <category term="计算机系" scheme="http://scottyeung.top/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB/"/>
     
-      <category term="夏令营" scheme="http://scottyeung.club/tags/%E5%A4%8F%E4%BB%A4%E8%90%A5/"/>
+      <category term="夏令营" scheme="http://scottyeung.top/tags/%E5%A4%8F%E4%BB%A4%E8%90%A5/"/>
     
-      <category term="开放日" scheme="http://scottyeung.club/tags/%E5%BC%80%E6%94%BE%E6%97%A5/"/>
+      <category term="开放日" scheme="http://scottyeung.top/tags/%E5%BC%80%E6%94%BE%E6%97%A5/"/>
     
-      <category term="算法" scheme="http://scottyeung.club/tags/%E7%AE%97%E6%B3%95/"/>
+      <category term="算法" scheme="http://scottyeung.top/tags/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
   <entry>
     <title>枚举排列</title>
-    <link href="http://scottyeung.club/2019/%E6%9E%9A%E4%B8%BE%E6%8E%92%E5%88%97/"/>
-    <id>http://scottyeung.club/2019/枚举排列/</id>
+    <link href="http://scottyeung.top/2019/%E6%9E%9A%E4%B8%BE%E6%8E%92%E5%88%97/"/>
+    <id>http://scottyeung.top/2019/枚举排列/</id>
     <published>2019-07-03T02:21:44.000Z</published>
     <updated>2019-11-12T14:48:29.991Z</updated>
     
@@ -543,19 +574,19 @@
     
     </summary>
     
-      <category term="算法" scheme="http://scottyeung.club/categories/%E7%AE%97%E6%B3%95/"/>
+      <category term="算法" scheme="http://scottyeung.top/categories/%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="C++" scheme="http://scottyeung.club/tags/C/"/>
+      <category term="C++" scheme="http://scottyeung.top/tags/C/"/>
     
-      <category term="排列组合" scheme="http://scottyeung.club/tags/%E6%8E%92%E5%88%97%E7%BB%84%E5%90%88/"/>
+      <category term="排列组合" scheme="http://scottyeung.top/tags/%E6%8E%92%E5%88%97%E7%BB%84%E5%90%88/"/>
     
   </entry>
   
   <entry>
     <title>并查集</title>
-    <link href="http://scottyeung.club/2019/%E5%B9%B6%E6%9F%A5%E9%9B%86/"/>
-    <id>http://scottyeung.club/2019/并查集/</id>
+    <link href="http://scottyeung.top/2019/%E5%B9%B6%E6%9F%A5%E9%9B%86/"/>
+    <id>http://scottyeung.top/2019/并查集/</id>
     <published>2019-06-19T03:59:22.000Z</published>
     <updated>2019-11-12T14:48:29.989Z</updated>
     
@@ -568,19 +599,19 @@
     
     </summary>
     
-      <category term="算法" scheme="http://scottyeung.club/categories/%E7%AE%97%E6%B3%95/"/>
+      <category term="算法" scheme="http://scottyeung.top/categories/%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="C++" scheme="http://scottyeung.club/tags/C/"/>
+      <category term="C++" scheme="http://scottyeung.top/tags/C/"/>
     
-      <category term="集合" scheme="http://scottyeung.club/tags/%E9%9B%86%E5%90%88/"/>
+      <category term="集合" scheme="http://scottyeung.top/tags/%E9%9B%86%E5%90%88/"/>
     
   </entry>
   
   <entry>
     <title>Windows快捷键</title>
-    <link href="http://scottyeung.club/2019/Windows%E5%BF%AB%E6%8D%B7%E9%94%AE/"/>
-    <id>http://scottyeung.club/2019/Windows快捷键/</id>
+    <link href="http://scottyeung.top/2019/Windows%E5%BF%AB%E6%8D%B7%E9%94%AE/"/>
+    <id>http://scottyeung.top/2019/Windows快捷键/</id>
     <published>2019-06-13T12:07:11.000Z</published>
     <updated>2019-11-12T14:48:29.984Z</updated>
     
@@ -593,19 +624,19 @@
     
     </summary>
     
-      <category term="生产力" scheme="http://scottyeung.club/categories/%E7%94%9F%E4%BA%A7%E5%8A%9B/"/>
+      <category term="生产力" scheme="http://scottyeung.top/categories/%E7%94%9F%E4%BA%A7%E5%8A%9B/"/>
     
     
-      <category term="Windows" scheme="http://scottyeung.club/tags/Windows/"/>
+      <category term="Windows" scheme="http://scottyeung.top/tags/Windows/"/>
     
-      <category term="shortcut" scheme="http://scottyeung.club/tags/shortcut/"/>
+      <category term="shortcut" scheme="http://scottyeung.top/tags/shortcut/"/>
     
   </entry>
   
   <entry>
     <title>如何减少焦虑</title>
-    <link href="http://scottyeung.club/2019/%E5%A6%82%E4%BD%95%E5%87%8F%E5%B0%91%E7%84%A6%E8%99%91/"/>
-    <id>http://scottyeung.club/2019/如何减少焦虑/</id>
+    <link href="http://scottyeung.top/2019/%E5%A6%82%E4%BD%95%E5%87%8F%E5%B0%91%E7%84%A6%E8%99%91/"/>
+    <id>http://scottyeung.top/2019/如何减少焦虑/</id>
     <published>2019-06-07T09:20:09.000Z</published>
     <updated>2020-02-16T12:25:07.065Z</updated>
     
@@ -617,21 +648,21 @@
     
     </summary>
     
-      <category term="方法" scheme="http://scottyeung.club/categories/%E6%96%B9%E6%B3%95/"/>
+      <category term="方法" scheme="http://scottyeung.top/categories/%E6%96%B9%E6%B3%95/"/>
     
     
-      <category term="状态调节" scheme="http://scottyeung.club/tags/%E7%8A%B6%E6%80%81%E8%B0%83%E8%8A%82/"/>
+      <category term="状态调节" scheme="http://scottyeung.top/tags/%E7%8A%B6%E6%80%81%E8%B0%83%E8%8A%82/"/>
     
-      <category term="焦虑" scheme="http://scottyeung.club/tags/%E7%84%A6%E8%99%91/"/>
+      <category term="焦虑" scheme="http://scottyeung.top/tags/%E7%84%A6%E8%99%91/"/>
     
-      <category term="心理" scheme="http://scottyeung.club/tags/%E5%BF%83%E7%90%86/"/>
+      <category term="心理" scheme="http://scottyeung.top/tags/%E5%BF%83%E7%90%86/"/>
     
   </entry>
   
   <entry>
     <title>C++ std::set</title>
-    <link href="http://scottyeung.club/2019/C-std-set/"/>
-    <id>http://scottyeung.club/2019/C-std-set/</id>
+    <link href="http://scottyeung.top/2019/C-std-set/"/>
+    <id>http://scottyeung.top/2019/C-std-set/</id>
     <published>2019-05-21T04:40:46.000Z</published>
     <updated>2019-11-12T14:48:29.973Z</updated>
     
@@ -643,19 +674,19 @@
     
     </summary>
     
-      <category term="C++" scheme="http://scottyeung.club/categories/C/"/>
+      <category term="C++" scheme="http://scottyeung.top/categories/C/"/>
     
     
-      <category term="C++" scheme="http://scottyeung.club/tags/C/"/>
+      <category term="C++" scheme="http://scottyeung.top/tags/C/"/>
     
-      <category term="std" scheme="http://scottyeung.club/tags/std/"/>
+      <category term="std" scheme="http://scottyeung.top/tags/std/"/>
     
   </entry>
   
   <entry>
     <title>判断二分图</title>
-    <link href="http://scottyeung.club/2019/%E5%88%A4%E6%96%AD%E4%BA%8C%E5%88%86%E5%9B%BE/"/>
-    <id>http://scottyeung.club/2019/判断二分图/</id>
+    <link href="http://scottyeung.top/2019/%E5%88%A4%E6%96%AD%E4%BA%8C%E5%88%86%E5%9B%BE/"/>
+    <id>http://scottyeung.top/2019/判断二分图/</id>
     <published>2019-05-17T02:40:52.000Z</published>
     <updated>2019-11-12T14:48:29.987Z</updated>
     
@@ -669,21 +700,21 @@
     
     </summary>
     
-      <category term="算法" scheme="http://scottyeung.club/categories/%E7%AE%97%E6%B3%95/"/>
+      <category term="算法" scheme="http://scottyeung.top/categories/%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="C++" scheme="http://scottyeung.club/tags/C/"/>
+      <category term="C++" scheme="http://scottyeung.top/tags/C/"/>
     
-      <category term="LeetCode" scheme="http://scottyeung.club/tags/LeetCode/"/>
+      <category term="LeetCode" scheme="http://scottyeung.top/tags/LeetCode/"/>
     
-      <category term="图论" scheme="http://scottyeung.club/tags/%E5%9B%BE%E8%AE%BA/"/>
+      <category term="图论" scheme="http://scottyeung.top/tags/%E5%9B%BE%E8%AE%BA/"/>
     
   </entry>
   
   <entry>
     <title>异常检测</title>
-    <link href="http://scottyeung.club/2019/%E2%80%9C%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B%E2%80%9D/"/>
-    <id>http://scottyeung.club/2019/“异常检测”/</id>
+    <link href="http://scottyeung.top/2019/%E2%80%9C%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B%E2%80%9D/"/>
+    <id>http://scottyeung.top/2019/“异常检测”/</id>
     <published>2019-05-03T05:30:38.000Z</published>
     <updated>2019-11-12T14:48:29.985Z</updated>
     
@@ -696,15 +727,15 @@
     
     </summary>
     
-      <category term="机器学习" scheme="http://scottyeung.club/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+      <category term="机器学习" scheme="http://scottyeung.top/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
     
   </entry>
   
   <entry>
     <title>春秋古筮法</title>
-    <link href="http://scottyeung.club/2019/%E6%98%A5%E7%A7%8B%E5%8F%A4%E7%AD%AE%E6%B3%95/"/>
-    <id>http://scottyeung.club/2019/春秋古筮法/</id>
+    <link href="http://scottyeung.top/2019/%E6%98%A5%E7%A7%8B%E5%8F%A4%E7%AD%AE%E6%B3%95/"/>
+    <id>http://scottyeung.top/2019/春秋古筮法/</id>
     <published>2019-04-20T03:18:35.000Z</published>
     <updated>2019-11-12T14:48:29.990Z</updated>
     
@@ -717,17 +748,17 @@
     
     </summary>
     
-      <category term="杂谈" scheme="http://scottyeung.club/categories/%E6%9D%82%E8%B0%88/"/>
+      <category term="杂谈" scheme="http://scottyeung.top/categories/%E6%9D%82%E8%B0%88/"/>
     
     
-      <category term="玄学" scheme="http://scottyeung.club/tags/%E7%8E%84%E5%AD%A6/"/>
+      <category term="玄学" scheme="http://scottyeung.top/tags/%E7%8E%84%E5%AD%A6/"/>
     
   </entry>
   
   <entry>
     <title>CCF 201903</title>
-    <link href="http://scottyeung.club/2019/CCF-201903/"/>
-    <id>http://scottyeung.club/2019/CCF-201903/</id>
+    <link href="http://scottyeung.top/2019/CCF-201903/"/>
+    <id>http://scottyeung.top/2019/CCF-201903/</id>
     <published>2019-04-18T03:34:47.000Z</published>
     <updated>2019-11-12T14:48:29.974Z</updated>
     
@@ -740,19 +771,19 @@
     
     </summary>
     
-      <category term="算法" scheme="http://scottyeung.club/categories/%E7%AE%97%E6%B3%95/"/>
+      <category term="算法" scheme="http://scottyeung.top/categories/%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="CCF" scheme="http://scottyeung.club/tags/CCF/"/>
+      <category term="CCF" scheme="http://scottyeung.top/tags/CCF/"/>
     
-      <category term="Python" scheme="http://scottyeung.club/tags/Python/"/>
+      <category term="Python" scheme="http://scottyeung.top/tags/Python/"/>
     
   </entry>
   
   <entry>
     <title>循环体中局部变量的小坑</title>
-    <link href="http://scottyeung.club/2019/%E5%BE%AA%E7%8E%AF%E4%BD%93%E4%B8%AD%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E7%9A%84%E5%B0%8F%E5%9D%91/"/>
-    <id>http://scottyeung.club/2019/循环体中局部变量的小坑/</id>
+    <link href="http://scottyeung.top/2019/%E5%BE%AA%E7%8E%AF%E4%BD%93%E4%B8%AD%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E7%9A%84%E5%B0%8F%E5%9D%91/"/>
+    <id>http://scottyeung.top/2019/循环体中局部变量的小坑/</id>
     <published>2019-04-12T11:37:42.000Z</published>
     <updated>2020-01-14T06:29:56.453Z</updated>
     
@@ -766,23 +797,23 @@
     
     </summary>
     
-      <category term="Go" scheme="http://scottyeung.club/categories/Go/"/>
+      <category term="Go" scheme="http://scottyeung.top/categories/Go/"/>
     
     
-      <category term="GO" scheme="http://scottyeung.club/tags/GO/"/>
+      <category term="GO" scheme="http://scottyeung.top/tags/GO/"/>
     
-      <category term="JavaScipt" scheme="http://scottyeung.club/tags/JavaScipt/"/>
+      <category term="JavaScipt" scheme="http://scottyeung.top/tags/JavaScipt/"/>
     
   </entry>
   
   <entry>
     <title>图论常见题目及算法</title>
-    <link href="http://scottyeung.club/2019/%E5%9B%BE%E8%AE%BA%E5%B8%B8%E8%A7%81%E9%A2%98%E7%9B%AE%E5%8F%8A%E7%AE%97%E6%B3%95/"/>
-    <id>http://scottyeung.club/2019/图论常见题目及算法/</id>
+    <link href="http://scottyeung.top/2019/%E5%9B%BE%E8%AE%BA%E5%B8%B8%E8%A7%81%E9%A2%98%E7%9B%AE%E5%8F%8A%E7%AE%97%E6%B3%95/"/>
+    <id>http://scottyeung.top/2019/图论常见题目及算法/</id>
     <published>2019-03-14T13:00:07.000Z</published>
     <updated>2019-11-12T14:48:29.988Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="背景">背景</h1><p>近来都在刷CCF的题，准备认证考试。最近几天开始刷其中的第四题，一般而言，CCF的第四题都是图论题。对于我这样之前没怎么刷题的人来说，图论题看上去就感觉很难，主要是感觉到很陌生，因为在实际的开发过程中比较少用到图这样的数据结构，都是线性的数据结构，连树都比较少用。</p><p>但是在刷得比较多的图论题后，发现其实图论题好像也就那么回事，也不是说简单，主要感觉来来去去都是考那几个东西，如果是没有接触过或者不会做的话，可能有点难，但是只要接触过相似的，直接套板子修改就行了（当然也有可能是我还接触的不够多XD），另外，就是感觉没有什么题是DFS/BFS不能破，只是会不会超时，能拿多少的分的问题（对于CCF认证只想拿300分而言，有几十分就够了），其实很多算法的核心也就是DFS与BFS。</p><p>所以在今晚刷完了CCF往年所有的第四题后，总结一下最近接触的图论问题及解法。</p><a id="more"></a><h1 id="数据结构">数据结构</h1><p>首先，在解决问题之前，我们要先做好图论输入的模拟，图可以分为有向无向，有无权值。一般是以邻接矩阵或者邻接表的形式表示。</p><ul><li>邻接矩阵 :<code>graph = [[INF/False for _ in range(n+1)] for _ in range(n+1)] #带权值或无权图</code></li><li>邻接表：<code>graph = [{}/[] for _ in range(n+1)] # 带权值或无权图</code></li></ul><p>一般来说，邻接矩阵表示比较简单，但是时间空间成本都比较高，选用邻接表比较好，不过在CCF的认证似乎差别不大（样例水</p><h1 id="问题及解法">问题及解法</h1><h2 id="最小生成树">最小生成树</h2><ul><li><p>问题：给一个无向带权图，选取其中一定数量的边生成一个包含所有点的树，且权值最小</p></li><li>方法：<ul><li>Prim算法：优先队列+BFS 每次弹出距生成树距离最小的未加入生成树的点</li><li>Kruskal算法：边排序+并查集</li></ul></li><li>实例：<ol type="1"><li>最优灌溉</li><li>数据中心</li></ol></li></ul><h2 id="最短路径">最短路径</h2><ul><li>对于一个图，指定两点间的最短距离，或者是指定一点的最长路径长度</li><li>方法：<ul><li><p>迪杰斯特拉算法：优先队列 每次弹出到源点距离最小的点，并修改邻接的未确定点，记录确定情况</p></li><li><p>spfa：队列 将源点入队列，每次弹出点后，修改邻接的点的距离，若修改且未入队则加入队列，记录入队列情况</p></li><li><p>floyd算法：求多源最短路径问题</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> k <span class="keyword">in</span> range(<span class="number">1</span>,n+<span class="number">1</span>):</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,n+<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>,n+<span class="number">1</span>):</span><br><span class="line">            dis[i][j]=min(dis[i][j],dis[i][k]+dis[k][j])</span><br></pre></td></tr></table></figure></li></ul></li><li>变形：<ul><li>最短路径中对特殊点有数量限制：spfa中将数量记录放入队列 开二维dp数组</li><li>大路小路问题（小路的权值为连续小路权值的平方）：floyd算法生成新的小路边 开两个dp数组进行spfa</li></ul></li></ul><h2 id="强连通分量">强连通分量</h2><ul><li><p>在有向图中，两个点互相可达称为强连通，任意两点均为强连通的子图称为强连通分量</p></li><li><p>方法：</p><ul><li><p>Tarjar算法：记录节点访问时间及最短时间，深度遍历邻接点并入栈，更新最短时间。当出现访问时间等于最短时间时，栈顶到该节点构成一个强连通分量</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">tarjan</span><span class="params">(i)</span>:</span></span><br><span class="line">    <span class="keyword">global</span> ans,time</span><br><span class="line">    time+=<span class="number">1</span></span><br><span class="line">    DNF[i]=LOW[i]=time</span><br><span class="line">    stack.append(i)</span><br><span class="line">    instack[i]=<span class="literal">True</span></span><br><span class="line">    visited[i]=<span class="literal">True</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> edges[i]:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> visited[j]:</span><br><span class="line">            tarjan(j)</span><br><span class="line">            LOW[i]=min(LOW[j],LOW[i])</span><br><span class="line">        <span class="keyword">elif</span> instack[j]:</span><br><span class="line">            LOW[i]=min(LOW[j],LOW[i])</span><br><span class="line">    <span class="keyword">if</span> DNF[i]==LOW[i]:</span><br><span class="line">        count=<span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            node = stack.pop()</span><br><span class="line">            instack[node]=<span class="literal">False</span></span><br><span class="line">            </span><br><span class="line">            count+=<span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> node==i:<span class="keyword">break</span></span><br></pre></td></tr></table></figure></li></ul></li><li><p>变形：</p><ul><li>如果只是求强连通的点的对数，也可直接每一个点分别BFS/DFS，确定单向可达性</li></ul></li></ul><h2 id="树的直径">树的直径</h2><ul><li>在树中，任意两个叶子节点的最长路径为树的直径</li><li>方法：当成图两次BFS，第一次任一点开始，第二次由第一次结果开始</li><li>实例：<ul><li><a href="http://scottyeung.club/2019/03/14/CCF201503-4-%E7%BD%91%E7%BB%9C%E5%BB%B6%E6%97%B6/">网络延时</a></li></ul></li></ul><h2 id="欧拉路径">欧拉路径</h2><ul><li><p>一个图如果能从一个点出发，每条边都经过一次后回到起始点，则这个图为欧拉图，这个遍历的路径为欧拉路径</p></li><li>方法：<ol type="1"><li>检查连通性：并查集 find union 检测是否每一个点都属于同一集合</li><li>检查是否存在欧拉路径：每个点的度数均为偶数，或只有两个点度数为奇数且这两个点为起点终点</li><li>确定存在欧拉路径后，直接DFS遍历，记录访问过的边</li></ol></li></ul>]]></content>
+    <content type="html"><![CDATA[<h1 id="背景">背景</h1><p>近来都在刷CCF的题，准备认证考试。最近几天开始刷其中的第四题，一般而言，CCF的第四题都是图论题。对于我这样之前没怎么刷题的人来说，图论题看上去就感觉很难，主要是感觉到很陌生，因为在实际的开发过程中比较少用到图这样的数据结构，都是线性的数据结构，连树都比较少用。</p><p>但是在刷得比较多的图论题后，发现其实图论题好像也就那么回事，也不是说简单，主要感觉来来去去都是考那几个东西，如果是没有接触过或者不会做的话，可能有点难，但是只要接触过相似的，直接套板子修改就行了（当然也有可能是我还接触的不够多XD），另外，就是感觉没有什么题是DFS/BFS不能破，只是会不会超时，能拿多少的分的问题（对于CCF认证只想拿300分而言，有几十分就够了），其实很多算法的核心也就是DFS与BFS。</p><p>所以在今晚刷完了CCF往年所有的第四题后，总结一下最近接触的图论问题及解法。</p><a id="more"></a><h1 id="数据结构">数据结构</h1><p>首先，在解决问题之前，我们要先做好图论输入的模拟，图可以分为有向无向，有无权值。一般是以邻接矩阵或者邻接表的形式表示。</p><ul><li>邻接矩阵 :<code>graph = [[INF/False for _ in range(n+1)] for _ in range(n+1)] #带权值或无权图</code></li><li>邻接表：<code>graph = [{}/[] for _ in range(n+1)] # 带权值或无权图</code></li></ul><p>一般来说，邻接矩阵表示比较简单，但是时间空间成本都比较高，选用邻接表比较好，不过在CCF的认证似乎差别不大（样例水</p><h1 id="问题及解法">问题及解法</h1><h2 id="最小生成树">最小生成树</h2><ul><li><p>问题：给一个无向带权图，选取其中一定数量的边生成一个包含所有点的树，且权值最小</p></li><li>方法：<ul><li>Prim算法：优先队列+BFS 每次弹出距生成树距离最小的未加入生成树的点</li><li>Kruskal算法：边排序+并查集</li></ul></li><li>实例：<ol type="1"><li>最优灌溉</li><li>数据中心</li></ol></li></ul><h2 id="最短路径">最短路径</h2><ul><li>对于一个图，指定两点间的最短距离，或者是指定一点的最长路径长度</li><li>方法：<ul><li><p>迪杰斯特拉算法：优先队列 每次弹出到源点距离最小的点，并修改邻接的未确定点，记录确定情况</p></li><li><p>spfa：队列 将源点入队列，每次弹出点后，修改邻接的点的距离，若修改且未入队则加入队列，记录入队列情况</p></li><li><p>floyd算法：求多源最短路径问题</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> k <span class="keyword">in</span> range(<span class="number">1</span>,n+<span class="number">1</span>):</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,n+<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>,n+<span class="number">1</span>):</span><br><span class="line">            dis[i][j]=min(dis[i][j],dis[i][k]+dis[k][j])</span><br></pre></td></tr></table></figure></li></ul></li><li>变形：<ul><li>最短路径中对特殊点有数量限制：spfa中将数量记录放入队列 开二维dp数组</li><li>大路小路问题（小路的权值为连续小路权值的平方）：floyd算法生成新的小路边 开两个dp数组进行spfa</li></ul></li></ul><h2 id="强连通分量">强连通分量</h2><ul><li><p>在有向图中，两个点互相可达称为强连通，任意两点均为强连通的子图称为强连通分量</p></li><li><p>方法：</p><ul><li><p>Tarjar算法：记录节点访问时间及最短时间，深度遍历邻接点并入栈，更新最短时间。当出现访问时间等于最短时间时，栈顶到该节点构成一个强连通分量</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">tarjan</span><span class="params">(i)</span>:</span></span><br><span class="line">    <span class="keyword">global</span> ans,time</span><br><span class="line">    time+=<span class="number">1</span></span><br><span class="line">    DNF[i]=LOW[i]=time</span><br><span class="line">    stack.append(i)</span><br><span class="line">    instack[i]=<span class="literal">True</span></span><br><span class="line">    visited[i]=<span class="literal">True</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> edges[i]:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> visited[j]:</span><br><span class="line">            tarjan(j)</span><br><span class="line">            LOW[i]=min(LOW[j],LOW[i])</span><br><span class="line">        <span class="keyword">elif</span> instack[j]:</span><br><span class="line">            LOW[i]=min(LOW[j],LOW[i])</span><br><span class="line">    <span class="keyword">if</span> DNF[i]==LOW[i]:</span><br><span class="line">        count=<span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            node = stack.pop()</span><br><span class="line">            instack[node]=<span class="literal">False</span></span><br><span class="line">            </span><br><span class="line">            count+=<span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> node==i:<span class="keyword">break</span></span><br></pre></td></tr></table></figure></li></ul></li><li><p>变形：</p><ul><li>如果只是求强连通的点的对数，也可直接每一个点分别BFS/DFS，确定单向可达性</li></ul></li></ul><h2 id="树的直径">树的直径</h2><ul><li>在树中，任意两个叶子节点的最长路径为树的直径</li><li>方法：当成图两次BFS，第一次任一点开始，第二次由第一次结果开始</li><li>实例：<ul><li><a href="http://scottyeung.club/2019/03/14/CCF201503-4-%E7%BD%91%E7%BB%9C%E5%BB%B6%E6%97%B6/" target="_blank" rel="noopener">网络延时</a></li></ul></li></ul><h2 id="欧拉路径">欧拉路径</h2><ul><li><p>一个图如果能从一个点出发，每条边都经过一次后回到起始点，则这个图为欧拉图，这个遍历的路径为欧拉路径</p></li><li>方法：<ol type="1"><li>检查连通性：并查集 find union 检测是否每一个点都属于同一集合</li><li>检查是否存在欧拉路径：每个点的度数均为偶数，或只有两个点度数为奇数且这两个点为起点终点</li><li>确定存在欧拉路径后，直接DFS遍历，记录访问过的边</li></ol></li></ul>]]></content>
     
     <summary type="html">
     
@@ -793,19 +824,19 @@
     
     </summary>
     
-      <category term="算法" scheme="http://scottyeung.club/categories/%E7%AE%97%E6%B3%95/"/>
+      <category term="算法" scheme="http://scottyeung.top/categories/%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="CCF" scheme="http://scottyeung.club/tags/CCF/"/>
+      <category term="CCF" scheme="http://scottyeung.top/tags/CCF/"/>
     
-      <category term="图论" scheme="http://scottyeung.club/tags/%E5%9B%BE%E8%AE%BA/"/>
+      <category term="图论" scheme="http://scottyeung.top/tags/%E5%9B%BE%E8%AE%BA/"/>
     
   </entry>
   
   <entry>
     <title>CCF201503-4 网络延时</title>
-    <link href="http://scottyeung.club/2019/CCF201503-4-%E7%BD%91%E7%BB%9C%E5%BB%B6%E6%97%B6/"/>
-    <id>http://scottyeung.club/2019/CCF201503-4-网络延时/</id>
+    <link href="http://scottyeung.top/2019/CCF201503-4-%E7%BD%91%E7%BB%9C%E5%BB%B6%E6%97%B6/"/>
+    <id>http://scottyeung.top/2019/CCF201503-4-网络延时/</id>
     <published>2019-03-14T10:35:19.000Z</published>
     <updated>2019-11-12T14:48:29.977Z</updated>
     
@@ -819,38 +850,12 @@
     
     </summary>
     
-      <category term="算法" scheme="http://scottyeung.club/categories/%E7%AE%97%E6%B3%95/"/>
+      <category term="算法" scheme="http://scottyeung.top/categories/%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="CCF" scheme="http://scottyeung.club/tags/CCF/"/>
+      <category term="CCF" scheme="http://scottyeung.top/tags/CCF/"/>
     
-      <category term="Python" scheme="http://scottyeung.club/tags/Python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CCF201612-4 压缩编码</title>
-    <link href="http://scottyeung.club/2019/CCF201612-4-%E5%8E%8B%E7%BC%A9%E7%BC%96%E7%A0%81/"/>
-    <id>http://scottyeung.club/2019/CCF201612-4-压缩编码/</id>
-    <published>2019-03-12T06:15:57.000Z</published>
-    <updated>2019-11-12T14:48:29.979Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="problem">Problem</h1><h2 id="问题描述">问题描述</h2><p>　　给定一段文字，已知单词<em>a</em>1, <em>a</em>2, …, <em>an</em>出现的频率分别<em>t</em>1, <em>t</em>2, …, <em>tn</em>。可以用01串给这些单词编码，即将每个单词与一个01串对应，使得任何一个单词的编码（对应的01串）不是另一个单词编码的前缀，这种编码称为前缀码。 　　使用前缀码编码一段文字是指将这段文字中的每个单词依次对应到其编码。一段文字经过前缀编码后的长度为： 　　<em>L</em>=<em>a</em>1的编码长度×<em>t</em>1+<em>a</em>2的编码长度×<em>t</em>2+…+ <em>an</em>的编码长度×<em>tn</em>。 　　定义一个前缀编码为字典序编码，指对于1 ≤ <em>i</em> &lt; <em>n</em>，<em>ai</em>的编码（对应的01串）的字典序在<em>ai</em>+1编码之前，即<em>a</em>1, <em>a</em>2, …, <em>an</em>的编码是按字典序升序排列的。 　　例如，文字E A E C D E B C C E C B D B E中， 5个单词A、B、C、D、E出现的频率分别为1, 3, 4, 2, 5，则一种可行的编码方案是A:000, B:001, C:01, D:10, E:11，对应的编码后的01串为1100011011011001010111010011000111，对应的长度<em>L</em>为3×1+3×3+2×4+2×2+2×5=34。 　　在这个例子中，如果使用哈夫曼(Huffman)编码，对应的编码方案是A:000, B:01, C:10, D:001, E:11，虽然最终文字编码后的总长度只有33，但是这个编码不满足字典序编码的性质，比如C的编码的字典序不在D的编码之前。 　　在这个例子中，有些人可能会想的另一个字典序编码是A:000, B:001, C:010, D:011, E:1，编码后的文字长度为35。 　　请找出一个字典序编码，使得文字经过编码后的长度<em>L</em>最小。在输出时，你只需要输出最小的长度<em>L</em>，而不需要输出具体的方案。在上面的例子中，最小的长度<em>L</em>为34。</p><a id="more"></a><h2 id="输入格式">输入格式</h2><p>　　输入的第一行包含一个整数<em>n</em>，表示单词的数量。 　　第二行包含<em>n</em>个整数，用空格分隔，分别表示<em>a</em>1, <em>a</em>2, …, <em>an</em>出现的频率，即<em>t</em>1, <em>t</em>2, …, <em>tn</em>。请注意<em>a</em>1, <em>a</em>2, …, <em>an</em>具体是什么单词并不影响本题的解，所以没有输入<em>a</em>1, <em>a</em>2, …, <em>an</em>。</p><h2 id="输出格式">输出格式</h2><p>　　输出一个整数，表示文字经过编码后的长度<em>L</em>的最小值。</p><h2 id="样例输入">样例输入</h2><p>5 1 3 4 2 5</p><h2 id="样例输出">样例输出</h2><p>34</p><h2 id="样例说明">样例说明</h2><p>　　这个样例就是问题描述中的例子。如果你得到了35，说明你算得有问题，请自行检查自己的算法而不要怀疑是样例输出写错了。</p><h2 id="评测用例规模与约定">评测用例规模与约定</h2><p>　　对于30%的评测用例，1 ≤ <em>n</em> ≤ 10，1 ≤ <em>ti</em> ≤ 20； 　　对于60%的评测用例，1 ≤ <em>n</em> ≤ 100，1 ≤ <em>ti</em> ≤ 100； 　　对于100%的评测用例，1 ≤ <em>n</em> ≤ 1000，1 ≤ <em>ti</em> ≤ 10000。</p><h1 id="solution">Solution</h1><p>乍一眼看上去似乎跟霍夫曼编码相关，虽然题目明确了霍夫曼编码结果不一定是满足字典序的，但估计解法应该是霍夫曼编码的变形。然而还是没什么头绪，上网一搜，发现这是一个经典的dp问题——<a href="https://blog.csdn.net/acdreamers/article/details/18039073" target="_blank" rel="noopener">石子问题</a>。石子问题描述为：有n堆石子，每次合并2堆，合并花费为两堆石子之和，求合成的最小花费。问题可分为三种类型：</p><ol type="1"><li>每次任意合并两堆石子（则变成霍夫曼树构造</li><li>每次合并相邻两堆石子（通过确保只合并相邻石子确保满足字典序</li><li>每次合并相邻两堆石子，且石子环形排列（2的升级版</li></ol><p>这里，我们只讨论第二种情况。状态转移方程如下，<code>dp[i][j]</code>表示合并第i堆到第j堆石子的花费（编码第i个单词到第j个单词的长度花费），<code>sums[i]</code>为前i堆石子（单词）的总花费。实际上是在区间i到j之间寻找一个最优的分界点，左右分别合并，再加上总体的花费。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dp[i][j]=<span class="number">0</span><span class="comment">#i==j</span></span><br><span class="line">dp[i][j]=min(dp[i][j],dp[i][k]+dp[k+<span class="number">1</span>][j]+sums[j]-sums[i<span class="number">-1</span>])<span class="comment">#i!=j and i&lt;=k&lt;=j</span></span><br></pre></td></tr></table></figure><p>容易分析，需要三层循环（i，j，k），时间复杂度为<span class="math inline">\(O(n^3)\)</span>。提交后能有60分，显示运行超时，但这个是非Python的操作用时，估计实际考试也能过。针对这种情况，上面博文提到可以使用<a href="https://baike.baidu.com/item/%E5%9B%9B%E8%BE%B9%E5%BD%A2%E4%B8%8D%E7%AD%89%E5%BC%8F?fr=aladdin" target="_blank" rel="noopener">平行四边形优化</a>(百科里写得很烂)，对于像上面的状态转移方程，可设<code>p[i][j]</code>为区间i到j中最优的k值，则有<code>p[i][j-1]&lt;=p[i][j]&lt;=p[i+1][j]</code>因此，我们可以缩小k的遍历范围，可证其复杂度降低了一个数量级，为<span class="math inline">\(O(n^2)\)</span>，修改后提交能够获得100分。</p><p>详细代码可<a href="https://github.com/yeung66/codesAboutCCF/blob/master/201612/compresscode.py" target="_blank" rel="noopener">点此</a></p><h2 id="运行结果">运行结果</h2><p><img src="/2019/CCF201612-4-压缩编码/捕获.JPG"></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;problem&quot;&gt;Problem&lt;/h1&gt;
-&lt;h2 id=&quot;问题描述&quot;&gt;问题描述&lt;/h2&gt;
-&lt;p&gt;　　给定一段文字，已知单词&lt;em&gt;a&lt;/em&gt;1, &lt;em&gt;a&lt;/em&gt;2, …, &lt;em&gt;an&lt;/em&gt;出现的频率分别&lt;em&gt;t&lt;/em&gt;1, &lt;em&gt;t&lt;/em&gt;2, …, &lt;em&gt;tn&lt;/em&gt;。可以用01串给这些单词编码，即将每个单词与一个01串对应，使得任何一个单词的编码（对应的01串）不是另一个单词编码的前缀，这种编码称为前缀码。 　　使用前缀码编码一段文字是指将这段文字中的每个单词依次对应到其编码。一段文字经过前缀编码后的长度为： 　　&lt;em&gt;L&lt;/em&gt;=&lt;em&gt;a&lt;/em&gt;1的编码长度×&lt;em&gt;t&lt;/em&gt;1+&lt;em&gt;a&lt;/em&gt;2的编码长度×&lt;em&gt;t&lt;/em&gt;2+…+ &lt;em&gt;an&lt;/em&gt;的编码长度×&lt;em&gt;tn&lt;/em&gt;。 　　定义一个前缀编码为字典序编码，指对于1 ≤ &lt;em&gt;i&lt;/em&gt; &amp;lt; &lt;em&gt;n&lt;/em&gt;，&lt;em&gt;ai&lt;/em&gt;的编码（对应的01串）的字典序在&lt;em&gt;ai&lt;/em&gt;+1编码之前，即&lt;em&gt;a&lt;/em&gt;1, &lt;em&gt;a&lt;/em&gt;2, …, &lt;em&gt;an&lt;/em&gt;的编码是按字典序升序排列的。 　　例如，文字E A E C D E B C C E C B D B E中， 5个单词A、B、C、D、E出现的频率分别为1, 3, 4, 2, 5，则一种可行的编码方案是A:000, B:001, C:01, D:10, E:11，对应的编码后的01串为1100011011011001010111010011000111，对应的长度&lt;em&gt;L&lt;/em&gt;为3×1+3×3+2×4+2×2+2×5=34。 　　在这个例子中，如果使用哈夫曼(Huffman)编码，对应的编码方案是A:000, B:01, C:10, D:001, E:11，虽然最终文字编码后的总长度只有33，但是这个编码不满足字典序编码的性质，比如C的编码的字典序不在D的编码之前。 　　在这个例子中，有些人可能会想的另一个字典序编码是A:000, B:001, C:010, D:011, E:1，编码后的文字长度为35。 　　请找出一个字典序编码，使得文字经过编码后的长度&lt;em&gt;L&lt;/em&gt;最小。在输出时，你只需要输出最小的长度&lt;em&gt;L&lt;/em&gt;，而不需要输出具体的方案。在上面的例子中，最小的长度&lt;em&gt;L&lt;/em&gt;为34。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="算法" scheme="http://scottyeung.club/categories/%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="CCF" scheme="http://scottyeung.club/tags/CCF/"/>
-    
-      <category term="Python" scheme="http://scottyeung.club/tags/Python/"/>
+      <category term="Python" scheme="http://scottyeung.top/tags/Python/"/>
     
   </entry>
   
