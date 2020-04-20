@@ -51,9 +51,9 @@
     <link href="http://scottyeung.top/2020/%E5%8D%9A%E5%AE%A2%E5%9F%9F%E5%90%8D%E8%BF%81%E7%A7%BB/"/>
     <id>http://scottyeung.top/2020/博客域名迁移/</id>
     <published>2020-03-25T03:56:16.000Z</published>
-    <updated>2020-04-18T03:52:37.483Z</updated>
+    <updated>2020-04-20T09:41:53.405Z</updated>
     
-    <content type="html"><![CDATA[<p>一早起来，发现使用两年的域名还有一个月就要到期了，提醒续费。在处理完一些事情后去续费，发现续费需要每年72元，震惊，当时开通的时候也就几块钱，第一年续费也就二三十块，变动也未免太大了，而且对于我这种个人小站来说确实贵。上去查了一下现在域名的价格，发现club后缀的价格确实是独一档的贵，甚至比一些cn后缀的都贵，有点离谱。于是果断选择转换回去最早使用的top域名，续费也才25一年，加上首年优惠三年才花了60不到。</p><p>另一方面，转域名也是有着不少的成本，而且是越用的久，沉没成本就越高。积累的SEO和RSS订阅都难以跟随域名转换而跟着转化过来，又可能要重新积累，各种的统计分析也可能需要废弃。但还是需要去做，毕竟互联网的特点就应该是开放而自由，不应该受到过多的枷锁。</p><p>本站现已迁移到域名 <strong><a href="http://scottyeung.top/" class="uri">http://scottyeung.top/</a></strong></p><a id="more"></a><h2 id="相关工作">相关工作</h2><p>以下是迁移域名做的一些工作：</p><ul><li><span class="github-emoji" data-alias="white_check_mark" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2705.png?v8">✅</span> Github Pages 切换解析到新域名<ul><li>域名添加DNS解析，两个A记录指向Github的ip地址，一个cname绑在二级域名www上指向博客的源地址</li><li>Github Repo修改Github Pages的Custom domain</li><li>修改public文件夹当中的CNAME文件的内容为新域名（我已经忘了这个的作用了2333</li></ul></li><li><span class="github-emoji" data-alias="white_check_mark" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2705.png?v8">✅</span> Coding.net 添加解析（现在已经感觉完全归属到腾讯了）。原本是当作国内百度搜索引擎的专用解析，但因为下面的Google Search 需要旧网址跳转，遂暂时使用它来提供Pages服务。</li><li><p><span class="github-emoji" data-alias="white_check_mark" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2705.png?v8">✅</span> LeanCloud修改安全域名，添加对新域名的支持。发现可以直接使用过往的阅读量数据和评论数据</p></li><li><span class="github-emoji" data-alias="white_check_mark" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2705.png?v8">✅</span> Google Analytics： 修改监测网址即可。</li><li><span class="github-emoji" data-alias="zzz" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4a4.png?v8">💤</span> Google Adsense： 添加新网址即可，需要重新进行审核，等待通过中。<ul><li><span class="github-emoji" data-alias="x" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/274c.png?v8">❌</span> 因为疫情的原因，拒了我两次，原因居然是因为疫情而无法审核</li><li><span class="github-emoji" data-alias="x" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/274c.png?v8">❌</span> 莫名奇妙说我的网站无法访问，又拒了我一次</li><li><span class="github-emoji" data-alias="zzz" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4a4.png?v8">💤</span> 第四次审核中</li></ul></li><li><span class="github-emoji" data-alias="zzz" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4a4.png?v8">💤</span> Google Search<ul><li>添加新域名并进行所有权验证</li><li>新域名添加站点地图抓取</li><li>尝试将旧网站的索引的SEO资源继承到新域名中，Google Search Console中的确有网站转移的功能，要求旧网址发301响应重定向到新网站。可选的方法有：旧域名DNS解析中添加显式URL跳转，跳转到新域名，但是目标跳转域名需要备案。选择支持绑定多个域名的Pages服务提供商，如coding.net，可以绑定多个域名，然后选择一个首选域名，其它域名跳转到该域名，浏览器调试验证确实可行，但Google Search Console不知道为啥通不过，暂时放弃。过了一个多小时又可以了，不过需要一段时间来处理，不知道要多久，然而提示最好保留重定向180天，旧域名只剩下一个月，如果不能在一个月之内迁移成功旧白干了。</li></ul></li><li><span class="github-emoji" data-alias="white_check_mark" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2705.png?v8">✅</span> 百度站长工具：类似于Google Search，添加新的网址进行所有权认证即可。依然采用主动推送和sitemap的方式来提交链接。</li><li><p><span class="github-emoji" data-alias="white_check_mark" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2705.png?v8">✅</span> 360站长工具：同上，操作简单，不过连同上周其实没有期望多大的效果。</p></li></ul><h2 id="数据损失">数据损失</h2><p>因为转换域名而无法继承的数据造成的损失：</p><ul><li><span class="github-emoji" data-alias="x" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/274c.png?v8">❌</span> 卜算子站点统计。因为它的统计似乎是以站点网址作为键值来进行统计的，更换后直接重新进行统计。（服务开启得太过简单的后果就是维护性/扩展性的牺牲</li></ul><h2 id="信息修改">信息修改</h2><p>此处是一些记录下我网址的需要改过来的地方</p><ul><li><span class="github-emoji" data-alias="white_check_mark" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2705.png?v8">✅</span> GitHub上博客的repo简介和个人简介</li><li><span class="github-emoji" data-alias="white_check_mark" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2705.png?v8">✅</span> 中文独立博客repo中的博客列表需要修改网址，发PR来改</li><li><span class="github-emoji" data-alias="white_check_mark" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2705.png?v8">✅</span> twitter上面写的个人网址</li></ul>]]></content>
+    <content type="html"><![CDATA[<p>一早起来，发现使用两年的域名还有一个月就要到期了，提醒续费。在处理完一些事情后去续费，发现续费需要每年72元，震惊，当时开通的时候也就几块钱，第一年续费也就二三十块，变动也未免太大了，而且对于我这种个人小站来说确实贵。上去查了一下现在域名的价格，发现club后缀的价格确实是独一档的贵，甚至比一些cn后缀的都贵，有点离谱。于是果断选择转换回去最早使用的top域名，续费也才25一年，加上首年优惠三年才花了60不到。</p><p>另一方面，转域名也是有着不少的成本，而且是越用的久，沉没成本就越高。积累的SEO和RSS订阅都难以跟随域名转换而跟着转化过来，又可能要重新积累，各种的统计分析也可能需要废弃。但还是需要去做，毕竟互联网的特点就应该是开放而自由，不应该受到过多的枷锁。</p><p>本站现已迁移到域名 <strong><a href="http://scottyeung.top/" class="uri">http://scottyeung.top/</a></strong></p><a id="more"></a><h2 id="相关工作">相关工作</h2><p>以下是迁移域名做的一些工作：</p><ul><li><span class="github-emoji" data-alias="white_check_mark" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2705.png?v8">✅</span> Github Pages 切换解析到新域名<ul><li>域名添加DNS解析，两个A记录指向Github的ip地址，一个cname绑在二级域名www上指向博客的源地址</li><li>Github Repo修改Github Pages的Custom domain</li><li>修改public文件夹当中的CNAME文件的内容为新域名（我已经忘了这个的作用了2333</li></ul></li><li><span class="github-emoji" data-alias="white_check_mark" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2705.png?v8">✅</span> Coding.net 添加解析（现在已经感觉完全归属到腾讯了）。原本是当作国内百度搜索引擎的专用解析，但因为下面的Google Search 需要旧网址跳转，遂暂时使用它来提供Pages服务。</li><li><p><span class="github-emoji" data-alias="white_check_mark" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2705.png?v8">✅</span> LeanCloud修改安全域名，添加对新域名的支持。发现可以直接使用过往的阅读量数据和评论数据</p></li><li><span class="github-emoji" data-alias="white_check_mark" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2705.png?v8">✅</span> Google Analytics： 修改监测网址即可。</li><li><span class="github-emoji" data-alias="zzz" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4a4.png?v8">💤</span> Google Adsense： 添加新网址即可，需要重新进行审核，等待通过中。<ul><li><span class="github-emoji" data-alias="x" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/274c.png?v8">❌</span> 因为疫情的原因，拒了我两次，原因居然是因为疫情而无法审核</li><li><span class="github-emoji" data-alias="x" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/274c.png?v8">❌</span> 两次都说我的网站已经下线或无法访问，上网搜了一下，发现一些人也有这个问题，可能是DNS对于域名国外访问的解析出了问题，建议添加额外的国外线路解析。当时我是使用 coding.net 提供的 pages 服务，好像这个是国内的服务（存疑），全部的解析到转到了那里。</li><li><span class="github-emoji" data-alias="zzz" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4a4.png?v8">💤</span> 第五次审核中。添加了额外的海外线路解析到 Github Pages。海外线路走Github，国内访问走 coding.net.</li></ul></li><li><span class="github-emoji" data-alias="zzz" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4a4.png?v8">💤</span> Google Search<ul><li>添加新域名并进行所有权验证</li><li>新域名添加站点地图抓取</li><li>尝试将旧网站的索引的SEO资源继承到新域名中，Google Search Console中的确有网站转移的功能，要求旧网址发301响应重定向到新网站。可选的方法有：旧域名DNS解析中添加显式URL跳转，跳转到新域名，但是目标跳转域名需要备案。选择支持绑定多个域名的Pages服务提供商，如coding.net，可以绑定多个域名，然后选择一个首选域名，其它域名跳转到该域名，浏览器调试验证确实可行，但Google Search Console不知道为啥通不过，暂时放弃。过了一个多小时又可以了，不过需要一段时间来处理，不知道要多久，然而提示最好保留重定向180天，旧域名只剩下一个月，如果不能在一个月之内迁移成功旧白干了。</li></ul></li><li><span class="github-emoji" data-alias="white_check_mark" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2705.png?v8">✅</span> 百度站长工具：类似于Google Search，添加新的网址进行所有权认证即可。依然采用主动推送和sitemap的方式来提交链接。</li><li><p><span class="github-emoji" data-alias="white_check_mark" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2705.png?v8">✅</span> 360站长工具：同上，操作简单，不过连同上周其实没有期望多大的效果。</p></li></ul><h2 id="数据损失">数据损失</h2><p>因为转换域名而无法继承的数据造成的损失：</p><ul><li><span class="github-emoji" data-alias="x" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/274c.png?v8">❌</span> 卜算子站点统计。因为它的统计似乎是以站点网址作为键值来进行统计的，更换后直接重新进行统计。（服务开启得太过简单的后果就是维护性/扩展性的牺牲</li></ul><h2 id="信息修改">信息修改</h2><p>此处是一些记录下我网址的需要改过来的地方</p><ul><li><span class="github-emoji" data-alias="white_check_mark" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2705.png?v8">✅</span> GitHub上博客的repo简介和个人简介</li><li><span class="github-emoji" data-alias="white_check_mark" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2705.png?v8">✅</span> 中文独立博客repo中的博客列表需要修改网址，发PR来改</li><li><span class="github-emoji" data-alias="white_check_mark" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2705.png?v8">✅</span> twitter上面写的个人网址</li></ul>]]></content>
     
     <summary type="html">
     
@@ -98,13 +98,13 @@
     
       <category term="Python" scheme="http://scottyeung.top/tags/Python/"/>
     
+      <category term="summary" scheme="http://scottyeung.top/tags/summary/"/>
+    
       <category term="并发编程" scheme="http://scottyeung.top/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
     
       <category term="Concurrency" scheme="http://scottyeung.top/tags/Concurrency/"/>
     
       <category term="asyncio" scheme="http://scottyeung.top/tags/asyncio/"/>
-    
-      <category term="summary" scheme="http://scottyeung.top/tags/summary/"/>
     
   </entry>
   
@@ -334,11 +334,11 @@
     
       <category term="Python" scheme="http://scottyeung.top/tags/Python/"/>
     
+      <category term="生产力" scheme="http://scottyeung.top/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/"/>
+    
       <category term="Mysql" scheme="http://scottyeung.top/tags/Mysql/"/>
     
       <category term="sql" scheme="http://scottyeung.top/tags/sql/"/>
-    
-      <category term="生产力" scheme="http://scottyeung.top/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/"/>
     
       <category term="SQLAlchemy" scheme="http://scottyeung.top/tags/SQLAlchemy/"/>
     
@@ -363,13 +363,13 @@
     
       <category term="Python" scheme="http://scottyeung.top/tags/Python/"/>
     
-      <category term="summary" scheme="http://scottyeung.top/tags/summary/"/>
-    
-      <category term="生产力" scheme="http://scottyeung.top/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/"/>
-    
       <category term="自动化" scheme="http://scottyeung.top/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/"/>
     
       <category term="编程学习" scheme="http://scottyeung.top/tags/%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="summary" scheme="http://scottyeung.top/tags/summary/"/>
+    
+      <category term="生产力" scheme="http://scottyeung.top/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/"/>
     
   </entry>
   
