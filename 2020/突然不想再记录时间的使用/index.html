@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"scottyeung.top","root":"/","scheme":"Pisces","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+
+  <meta name="description" content="一直以来，都有着记录自己日常时间的使用情况，可能是因为很喜欢回顾这些历史数据，回望过去的事情。通过简单的记录，已经留下了不少珍贵的记录数据。">
+<meta name="keywords" content="时间管理,Forest,Toggl,时间记录">
+<meta property="og:type" content="article">
+<meta property="og:title" content="突然不想再记录时间的使用">
+<meta property="og:url" content="http://scottyeung.top/2020/突然不想再记录时间的使用/index.html">
+<meta property="og:site_name" content="YeungYeah 的乱写地">
+<meta property="og:description" content="一直以来，都有着记录自己日常时间的使用情况，可能是因为很喜欢回顾这些历史数据，回望过去的事情。通过简单的记录，已经留下了不少珍贵的记录数据。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-05-03T07:48:04.112Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="突然不想再记录时间的使用">
+<meta name="twitter:description" content="一直以来，都有着记录自己日常时间的使用情况，可能是因为很喜欢回顾这些历史数据，回望过去的事情。通过简单的记录，已经留下了不少珍贵的记录数据。">
+
+<link rel="canonical" href="http://scottyeung.top/2020/突然不想再记录时间的使用/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>突然不想再记录时间的使用 | YeungYeah 的乱写地</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151343043-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-151343043-1');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YeungYeah 的乱写地</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-动态">
+
+    <a href="/moments" rel="section"><i class="fa fa-fw fa-calendar"></i>动态</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-占卜">
+
+    <a href="http://divi.scottyeung.top:8080/" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>占卜</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://scottyeung.top/2020/突然不想再记录时间的使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.jpg">
+      <meta itemprop="name" content="Scott Yeung">
+      <meta itemprop="description" content="道亦有道  玄之又玄">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YeungYeah 的乱写地">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          突然不想再记录时间的使用
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-05-03 11:55:30 / 修改时间：15:48:04" itemprop="dateCreated datePublished" datetime="2020-05-03T11:55:30+08:00">2020-05-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/个人随笔/" itemprop="url" rel="index"><span itemprop="name">个人随笔</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/突然不想再记录时间的使用/" class="post-meta-item leancloud_visitors" data-flag-title="突然不想再记录时间的使用" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/突然不想再记录时间的使用/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/突然不想再记录时间的使用/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>一直以来，都有着记录自己日常时间的使用情况，可能是因为很喜欢回顾这些历史数据，回望过去的事情。通过简单的记录，已经留下了不少珍贵的记录数据。</p>
+<a id="more"></a>
+<p>最早在高三的时候，我就会用一个小本子，在每天晚自习开始之前写上今晚想要完成的任务，开始时写上开始的时间，结束时打上一个勾并写上完成时间，通过这种简单的方式，来记录自己的学习时间分布和任务完成情况。</p>
+<p>上了大学之后，时间变得充足了许多，人也有时会悠闲起来，对于时间的使用就没那么敏感了，所以一度没有记录时间的使用情况，只是通过手机中的便签，来记录需要完成的任务以及它们的完成状况。在大一大二时，尚有着较多课程和活动的约束，很多需要完成的任务和事情，自然而然地就会被它们的 ddl 推动着，只要记下了某个任务，而该任务确实是需要完成的，自然会去完成。</p>
+<p>到了大三下学期，课变少了，空闲的时间更多了，人也懒散了下来，对于时间的把控似乎有点糟糕。主要原因是，当时没有一个具体而迫近的任务来推动自己。当时的打算是提早做好保研夏令营的准备，提前准备材料和复习专业课知识。然而这些任务普遍不够明确和具体，准备什么材料，复习什么内容，复习到什么程度，都很难把握。尤其是复习，有些专业课的内容比较多，时间跨度自然容易长，时间一长效率就低。为了更好地推动自己，我使用了 Forest 来进行时间记录。一方面是为了让自己学习或工作能够持续一定的时间不被中断，另一方面，则是为了记录自己在学习上的时间使用，通过每日学习时间的数据反馈来推动自己。</p>
+<p>在使用了 Forest 进行时间记录之后，就会发现，其实自己并没有多么的努力，看似学习了一天，非常充实，实际的学习时间却只有三四个小时。虽然说上午下午甚至晚上都有在学习，但实际情况却可能是，睡到九点多才起床，吃完早餐后要差不多十点多才能开始学习，学一个多小时就要结束，去吃午饭并午休。下午睡到两点多才醒，三点多才在图书馆找到位置开始学习，学个一个多小时就五点多，要去吃晚饭了。吃完晚饭回宿舍休息，状态好的话或许能够再战一小时，状态不好的话，就直接开始娱乐了。要注意到，这里说的学习一小时，并不是说你去学习，从坐下开始到结束起来离开的时间有一小时，而是真真切切的学习一个小时，中途的任何休息，包括打水去厕所看手机，都会中断而不计时。所以数据很真实：去了一个上午，两个多小时，实际学了可能 100 分钟不到。这样的时间管理确确实实地使我明白到自己其实并没有做多少事情，对于自身的能力有一个更加真实的判断，这样的反馈或多或少地推动了我更加努力地前进。</p>
+<p>除了让时间记录的数据推动自己以外，这样的记录还有的珍贵价值，就是可以让自己回顾过去的努力和付出。尽管有些时候工作的时间并不如自己的预期，但是还是有一些值得回味的记录的。例如在准备保研和实训的六月份，每天基本保持长达 300 分钟以上的高强度工作，还有在准备软工期末考试前夕的学习了 600 分钟的一天，都是珍贵的回忆。</p>
+<p>在 Forest 上面种了差不多一年的树，记录了 50000+ 的专注时间，真实的树苗也在上面种了一棵。说实话，这样的数据是很能给到人触动的，尤其是回过头来重温当时的某段努力的时光，看着图上树木繁多的森林，总能够给人一种自身努力过的痕迹。</p>
+<p>然而，在三月中的时候，可能是因为疫情原因导致时间上更加空闲的缘故，我似乎有更多的时间和精力来记录时间，收集更好看的数据，原有的 Forest 只有一个简单的类别标签，没有办法记录该段时间做了什么具体内容。另外，Forest 无法记录回过去忘记记录的时间，也是让我有点不满。刚好在某个推送上面看到了有时间管理工具的介绍，就转而使用 Toggl 进行时间记录。</p>
+<p>Toggl 的时间记录方式比较自由，也比较专业，毕竟 Forest 始终都是一个帮助人专注的工具，在单纯的时间记录上面，Toggl 远胜于 Forest。Toggl 可以使用计时模式，也可以手动输入时间数据，对于过往的数据，也能够很容易地就修改。另一方面，每一条时间记录，可以添加 Project 和若干个 tag，便于进行聚类统计分析。</p>
+<p>虽然工具很好，但是在用了一个来月之后，我却不想再用了。就在这两天，有一种不再想记录时间使用情况的想法。时间记录得太细，太过频繁，太过复杂，越令我萌生出一种很不耐烦，很功利的感觉。尤其是这几天在做的数据分类的工作，尽管我感觉只是在做无聊而重复的无意义的工作，但是，为了记录下时间的使用，让时间的使用显得更有价值，我还是记录了下来，美其名曰科研数据处理，甚至连几分钟的空闲间隙时间也不放过，一天能够记上差不多十条的记录。我觉得很没意思。</p>
+<p>另外，还有一件很可怕的事情是，这样子记录时间，有点助长自己对于时间利用的功利性，事事都想记录下来，证明自己是有做事情的，是没有浪费时间的。但我们的人生真的可能时时刻刻都被妥善利用在所谓的有意义的事情上面吗？可能有这样的人，但个性闲散的我并不是这样的人。因为发现记录下来的时间并不满足自己的预期，心里受到了落差与打击，时常都会出现自己不过如此的感觉。为了抵消这种错觉，我便变得将日常所做的所有事情的一一记录，甚至夸大了从事某些事情的时间，以营造出我很努力的感觉，来抵消自己的愧疚。事实上，这样只会让自己错误地判断自己的工作和学习状况，对所能完成的任务和事情的预期产生错误的判断，当某些目标完成得不如预期时，又或者某天的记录回归正常时，就会产生出自身能力在现实和设想的落差，进而导致不自信和愧疚。</p>
+<p>尽管如此，我还是忍受不了这种诱人的历史数据的引诱，在写这篇文章的时候，我都还是用回了 Forest 进行时间记录。不过为了进一步减少这样功利感，还是使用回这样的比较简单的工具好一点，起码这样我就不能够修改我的时间记录，而产生虚伪的结果。另外，对于一些小的碎片时间，也不应该太过执着于记录，毕竟<strong>时间的本质是为了我们的使用而服务，而不是为了被我们记录</strong>。</p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>佛系求打赏</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/weixin.png" alt="Scott Yeung 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/zfb.jpg" alt="Scott Yeung 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Scott Yeung
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://scottyeung.top/2020/突然不想再记录时间的使用/" title="突然不想再记录时间的使用">http://scottyeung.top/2020/突然不想再记录时间的使用/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/随笔/" rel="tag"># 随笔</a>
+              <a href="/tags/每日千字/" rel="tag"># 每日千字</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/shell-脚本入门/" rel="prev" title="shell 脚本入门">
+      <i class="fa fa-chevron-left"></i> shell 脚本入门
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Scott Yeung"
+      src="/images/self.jpg">
+  <p class="site-author-name" itemprop="name">Scott Yeung</p>
+  <div class="site-description" itemprop="description">道亦有道  玄之又玄</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yeung66" title="GitHub → https://github.com/yeung66" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:407284292@qq.com" title="E-Mail → mailto:407284292@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/scottyeung6" title="Instagram → https://instagram.com/scottyeung6" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://music.163.com/#/user/home?id=126931346" title="网易云音乐 → https://music.163.com/#/user/home?id=126931346" rel="noopener" target="_blank"><i class="fa fa-fw fa-music"></i>网易云音乐</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → /atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Scott Yeung</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">88k</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.1
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : true,
+      notify     : false,
+      appId      : '2yhfMbsA5oHkrxvqW2t0roxg-gzGzoHsz',
+      appKey     : 'rf7s0pmEmVPJsn68lh7u7QNz',
+      placeholder: "欢迎留言~",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
