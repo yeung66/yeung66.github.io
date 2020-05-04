@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"scottyeung.top","root":"/","scheme":"Pisces","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+
+  <meta name="description" content="早在大三上系统级程序设计课程的时候，就通过老师的演示了解到 Windows 的新产品—— Windows Subsystem for Linux(WSL), 可以在 Windows 系统下运行 Linux 系统的程序或命令。不过当时我的旧电脑上装了 Ubuntu 的双系统，所以一直没有尝试。现在换了新电脑之后，一直没有装回 Linux 系统，一是怕麻烦不太想折腾，二是不太想划分硬盘空间。于是干脆就">
+<meta name="keywords" content="Windows,Ubuntu,zsh,WSL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WSL环境安装配置">
+<meta property="og:url" content="http://scottyeung.top/2020/WSL环境安装配置/index.html">
+<meta property="og:site_name" content="YeungYeah 的乱写地">
+<meta property="og:description" content="早在大三上系统级程序设计课程的时候，就通过老师的演示了解到 Windows 的新产品—— Windows Subsystem for Linux(WSL), 可以在 Windows 系统下运行 Linux 系统的程序或命令。不过当时我的旧电脑上装了 Ubuntu 的双系统，所以一直没有尝试。现在换了新电脑之后，一直没有装回 Linux 系统，一是怕麻烦不太想折腾，二是不太想划分硬盘空间。于是干脆就">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://scottyeung.top/2020/WSL环境安装配置/image-20200504120230327.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/2618447/6316862/70f58fb6-ba03-11e4-82c9-c083bf9a6574.png">
+<meta property="og:image" content="http://scottyeung.top/2020/WSL环境安装配置/image-20200504173113601.png">
+<meta property="og:image" content="http://scottyeung.top/2020/WSL环境安装配置/image-20200504173241135.png">
+<meta property="og:updated_time" content="2020-05-04T15:19:45.140Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WSL环境安装配置">
+<meta name="twitter:description" content="早在大三上系统级程序设计课程的时候，就通过老师的演示了解到 Windows 的新产品—— Windows Subsystem for Linux(WSL), 可以在 Windows 系统下运行 Linux 系统的程序或命令。不过当时我的旧电脑上装了 Ubuntu 的双系统，所以一直没有尝试。现在换了新电脑之后，一直没有装回 Linux 系统，一是怕麻烦不太想折腾，二是不太想划分硬盘空间。于是干脆就">
+<meta name="twitter:image" content="http://scottyeung.top/2020/WSL环境安装配置/image-20200504120230327.png">
+
+<link rel="canonical" href="http://scottyeung.top/2020/WSL环境安装配置/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>WSL环境安装配置 | YeungYeah 的乱写地</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151343043-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-151343043-1');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YeungYeah 的乱写地</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-动态">
+
+    <a href="/moments" rel="section"><i class="fa fa-fw fa-calendar"></i>动态</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-占卜">
+
+    <a href="http://divi.scottyeung.top:8080/" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>占卜</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://scottyeung.top/2020/WSL环境安装配置/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/self.jpg">
+      <meta itemprop="name" content="Scott Yeung">
+      <meta itemprop="description" content="道亦有道  玄之又玄">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YeungYeah 的乱写地">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          WSL环境安装配置
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-05-04 10:56:45 / 修改时间：23:19:45" itemprop="dateCreated datePublished" datetime="2020-05-04T10:56:45+08:00">2020-05-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/WSL环境安装配置/" class="post-meta-item leancloud_visitors" data-flag-title="WSL环境安装配置" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/WSL环境安装配置/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/WSL环境安装配置/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>8 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>早在大三上系统级程序设计课程的时候，就通过老师的演示了解到 Windows 的新产品—— Windows Subsystem for Linux(WSL), 可以在 Windows 系统下运行 Linux 系统的程序或命令。不过当时我的旧电脑上装了 Ubuntu 的双系统，所以一直没有尝试。现在换了新电脑之后，一直没有装回 Linux 系统，一是怕麻烦不太想折腾，二是不太想划分硬盘空间。于是干脆就装一个 WSL 吧，尽管现在还没算命使用 Linux 系统的需要，不过就暂时当一个玩具吧。</p>
+<a id="more"></a>
+<h2 id="优点">优点</h2>
+<p>WSL 还是挺爽的，还没用就感觉优点满满： 1. 安装简单。简直是傻瓜式的操作，就在系统设置中开启一下，在商店中搜索下载即可，跟在应用商店下个 app 差别不大，而且 Windows Store 的下载速度惊人，非常快就能装好。另外，也不需要考虑任何的驱动兼容问题，少了很多奇奇怪怪的问题。 2. 空间友好。我下的 Ubuntu 系统才 200+MB,相比于普通的带 GUI 的 Linux 操作系统，可谓是不占空间一样。另外最关键的一点是，WSL 系统的所有文件都是放在系统盘中，不需要自己另行划分磁盘空间来放置系统。这个点我觉得太赞了，之前装 Linux 双系统最为麻烦的一点就是要专门划分空间，从原有的磁盘中分出空闲空间来专门服务于 Linux 系统，怎么分，分到少，都需要一番思考和设置。分得多吧又感觉浪费，分得少又会不够，到时加空间比较麻烦。 3. 协同方便。因为 WSL 系统在 Windows 当中，两系统当中的文件都能够轻易地传输使用。之前的话，Linux确实可以通过挂载的方式访问 Windows 的文件，但反过来却不行，而且操作还有<a href="http://scottyeung.top/2018/Linux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E4%B8%AD%E6%93%8D%E4%BD%9C%E6%96%87%E4%BB%B6%E5%AF%BC%E8%87%B4NTFS%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E4%B8%AD%E6%96%87%E4%BB%B6%E4%B8%A2%E5%A4%B1/">风险</a>。当时有访问跨系统文件的需要时，还需要专门重启一下切换系统，又或者通过网页微信传输文件到手机作为中转。</p>
+<h2 id="安装">安装</h2>
+<p>安装还是挺简单的，只要本机的 Windows 版本支持 WSL功能即可。</p>
+<ol type="1">
+<li><p>打开“启用或关闭 Windows 功能”，开启适用于 Linux 的 WIndows 子系统。这个可以通过在开始菜单搜索启用（qiyong）的拼音就出现了。<img src="/2020/WSL环境安装配置/image-20200504120230327.png" alt="image-20200504120230327"></p></li>
+<li><p>打开 Microsoft Store，搜索 WSL 则可以看到支持的所有 Linux 版本。选择其中一个，获取安装即可。安装后可以在开始菜单找到并打开，会自动开启该系统下的 bash 命令行界面。</p></li>
+</ol>
+<h2 id="配置">配置</h2>
+<p>一个完美的开发运行系统，最关键的还是各种的软件或系统的配置，参考了网上的各种各样的文章，主要有下面的方面需要配置。我使用的是 Ubuntu 系统，不同的系统可能配置的具体方式会有出入。</p>
+<h3 id="软件源更新">软件源更新</h3>
+<p>Ubuntu 软件安装/更新源均在国外，下载速度感人，所以可以将所有软件源更换为国内的镜像。这里选择的是阿里云的源。首先将原来的源文件备份，然后更改源文件，将内容换成阿里云的源链接。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo cp /etc/apt/sources.list  /etc/apt/sources.list.bak</span><br><span class="line">sudo vim /etc/apt/sources.list</span><br></pre></td></tr></table></figure>
+<p>通过 vim 修改源文件，将文件内容更改为下面内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse </span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse </span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse </span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse </span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse </span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse </span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse </span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse </span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse </span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse</span><br></pre></td></tr></table></figure>
+<p>保存后更新</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt upgrade</span><br></pre></td></tr></table></figure>
+<h3 id="nodejs">Nodejs</h3>
+<p>安装方法可以参考<a href="https://www.runoob.com/nodejs/nodejs-install-setup.html" target="_blank" rel="noopener">这里</a>。Linux 上面有三个方法，一是直接下载编译后的包来使用，下载后建立链接；二是通过下载源代码来编译构建；三则是使用 apt-get 命令直接安装。我当然是选择了最简单的 apt-get 命令安装大法。两行命令搞定。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install nodejs</span><br><span class="line">sudo apt-get install npm</span><br></pre></td></tr></table></figure>
+<p>安装后可以通过查看版本号测试是否成功</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> node -v</span></span><br><span class="line">v0.10.25</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> npm -v</span></span><br></pre></td></tr></table></figure>
+<p>我的 node 的确成功安装并测试，但是 npm 却没有，输入命令时提示如下，似乎是命令调用错误，通过 which 命令查看时发现调用的是在 Windows 系统的 npm，着实奇怪。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> npm -v</span></span><br><span class="line">: not foundjs//npm: 3: /mnt/d/nodejs//npm:</span><br><span class="line">: not foundjs//npm: 5: /mnt/d/nodejs//npm:</span><br><span class="line">/mnt/d/nodejs//npm: 6: /mnt/d/nodejs//npm: Syntax error: word unexpected (expecting "in")</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">which</span> npm</span></span><br><span class="line">/mnt/d/nodejs//npm</span><br></pre></td></tr></table></figure>
+<p>网上搜索了一下也很多人有类似的问题，GitHub 上面也很多人提了 issue，尝试无果，最终选择换了个方式重新安装，随后解决。</p>
+<ul>
+<li><p><a href="https://github.com/microsoft/WSL/issues/1512#issuecomment-303517504" target="_blank" rel="noopener">GitHub issue</a> ：这里提到的方法主要是修改环境变量的顺序，确保先查找 WSL 安装的 npm 先被搜索到，尝试了一下没有用，which 命令测试也没有变化。</p></li>
+<li><p>StackOverflow 上的<a href="https://stackoverflow.com/questions/45853530/npm-install-error-not-foundram-files-nodejs-npm-3-mnt-c-program-files-nodejs" target="_blank" rel="noopener">重装大法</a> ：将旧的移除后，用新建源的方法重新使用 apt-get 来安装。重新安装后测试成功</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get --purge remove nodejs</span><br><span class="line"></span><br><span class="line">curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -</span><br><span class="line">sudo apt-get install -y nodejs</span><br><span class="line">sudo apt-get install -y build-essential</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="zsh-and-oh-my-zsh">zsh and oh-my-zsh</h3>
+<p>之前各种的 Linux 系统，无论是服务器还是桌面系统，都是使用自带的 bash，但是大家都说别的 shell 终端更好，于是就干脆试试大家都在推荐的 zsh。</p>
+<ol type="1">
+<li>可以通过命令<code>cat /etc/shells</code>查看本机是否有 zsh，有的话可以直接跳到 3</li>
+<li>如果没有的话，使用 apt-get 安装即可 <code>sudo apt-get install zsh</code></li>
+<li><code>chsh -s /usr/bin/zsh</code> 通过命令切换到 zsh，重启终端即可</li>
+<li>初次进入 zsh 会提示你需要进行配置文件的创建与配置，我们这里使用 oh-my-zsh 来提供配置</li>
+</ol>
+<p>获取 oh-my-zsh 的方法则比较简单，通过 curl 或者 wget 的方式获取 shell 脚本后执行即可。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> or</span></span><br><span class="line"></span><br><span class="line">sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"</span><br></pre></td></tr></table></figure>
+<p>但这里我怎么也搞不下来，两种方式都不能建立链接，获取不到这个脚本，自然无法进行后续的安装处理。原因似乎是国内的网络环境因为你懂的原因无法访问这个网址 ，估计走代理的话应该可以解决。所以我采用的方法是在 WIndows 系统下好这个 shell 脚本，然后在 WSL 里面运行，问题解决。之后就可以通过在配置文件 <code>~/.zshrc</code>里面设置主题里，可选的主题及效果可以<a href="https://github.com/ohmyzsh/ohmyzsh/wiki/Themes" target="_blank" rel="noopener">点此选择</a>。</p>
+<p>我选的是 ys，这里要吐槽一句，不知道为什么网上看到的预览图片，跟我实际使用的效果相差太大了，有些甚至对使用造成了影响，例如主题 agnoster ，显示的实际颜色与下面的样例图出入太大了，在 WSL 里面打开就是目录显示的是深蓝色，深到看不清楚里面的字那种，尽管我挺喜欢这种风格的，但因为影响到实际使用了，只能放弃。</p>
+<figure>
+<img src="https://cloud.githubusercontent.com/assets/2618447/6316862/70f58fb6-ba03-11e4-82c9-c083bf9a6574.png" alt="agnoster"><figcaption>agnoster</figcaption>
+</figure>
+<p>这是我用主题 agnoster 的效果图。<img src="/2020/WSL环境安装配置/image-20200504173113601.png" alt="image-20200504173113601"></p>
+<p>这是我最终选择的主题 ys 的效果<img src="/2020/WSL环境安装配置/image-20200504173241135.png" alt="image-20200504173241135"></p>
+<h4 id="oh-my-zsh插件">oh-my-zsh插件</h4>
+<p>自带的插件只需要在配置文件中添加即可，我这里添加了：</p>
+<ul>
+<li>z：路径自动推测跳转 <code>z dir</code></li>
+<li>extract：解压所有类型文件 <code>x file</code></li>
+<li>git：简化了 git 的常用命令</li>
+<li>npm：npm 命令的自动补全</li>
+</ul>
+<p>额外下载的插件则需要下载源代码到 <code>${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins</code>目录下面</p>
+<ul>
+<li>zsh-syntax-highlighting：自动语法高亮</li>
+<li>zsh-autosuggestions：自动补全建议</li>
+<li>git-open：打开 git remote</li>
+</ul>
+<h3 id="代理">代理</h3>
+<p>因为我国的独特网络环境，在访问某些网站的时候速度比较感人，有些时候甚至还不能访问，因而需要一些比较科学的方法来访问互联网，这里设置的代理，本质还是让网络请求通过本机（Windows 系统）的工具进行网络请求。在 zsh 的配置脚本<code>~/.zshrc</code>中添加下面别名即可，里面的端口和协议根据自己的工具具体设置。设置后添加别名 proxy 开启，通过 unproxy 关闭。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">alias proxy='export http_proxy=socks5://127.0.0.1:1080; export https_proxy=socks5://127.0.0.1:1080'</span><br><span class="line">alias unproxy='unset http_proxy; unset https_proxy'</span><br></pre></td></tr></table></figure>
+<p>添加后通过<code>source  ~/.zshrc</code>激活，输入 proxy 后即可打开某些不可访问的网站测试一下。</p>
+<h3 id="待填坑">待填坑</h3>
+<ul>
+<li><span class="github-emoji" data-alias="zzz" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4a4.png?v8">💤</span> Python。Ubuntu18 自带了 Python2 和 Python3。我已经不再使用 Python2 了，而 Python2 把 Python和 pip 的命令默认调用都占用了，考虑移除 Python2，或者搞一个 Anoconda 来做环境管理。</li>
+<li><span class="github-emoji" data-alias="zzz" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4a4.png?v8">💤</span> C/C++ 环境​。想好好学习一下 C++，之前因为 Windows 环境的原因，不得不装了个巨占空间的 Visual Studio，然后到现在还没写过一行 C++ 代码。有点想把它删了，在这里搞个 LLVM/clang 编译器。</li>
+</ul>
+<h2 id="命令与快捷键">命令与快捷键</h2>
+<p>记录一下一些较为常用和实用的命令和快捷键这里</p>
+<h3 id="命令">命令</h3>
+<ul>
+<li><code>x file</code>：解压任意类型文件（需要添加 extract 插件</li>
+<li><code>z dir</code>：根据给出的目录进行跳转
+<ul>
+<li>不一定是完整的，可能只是最后一级</li>
+<li>效果感觉一般，感觉需要吃历史记录的，很多新目录访问都完成不了</li>
+<li>看了一些分析，说是要经过过往的 cd 跳转来获取经验的</li>
+</ul></li>
+</ul>
+<h3 id="快捷键">快捷键</h3>
+<p>好像是仅适用于 zsh</p>
+<ul>
+<li>ctrl + u：清空当前行命令</li>
+<li>ctrl + a：跳到行首</li>
+<li>ctrl + e：跳到行尾</li>
+<li>ctrl + k：删除光标到行尾内容</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>佛系求打赏</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/weixin.png" alt="Scott Yeung 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/zfb.jpg" alt="Scott Yeung 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Scott Yeung
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://scottyeung.top/2020/WSL环境安装配置/" title="WSL环境安装配置">http://scottyeung.top/2020/WSL环境安装配置/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Ubuntu/" rel="tag"># Ubuntu</a>
+              <a href="/tags/Windows/" rel="tag"># Windows</a>
+              <a href="/tags/shell/" rel="tag"># shell</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/突然不想再记录时间的使用/" rel="prev" title="突然不想再记录时间的使用">
+      <i class="fa fa-chevron-left"></i> 突然不想再记录时间的使用
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#优点"><span class="nav-number">1.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置"><span class="nav-number">3.</span> <span class="nav-text">配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#软件源更新"><span class="nav-number">3.1.</span> <span class="nav-text">软件源更新</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nodejs"><span class="nav-number">3.2.</span> <span class="nav-text">Nodejs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zsh-and-oh-my-zsh"><span class="nav-number">3.3.</span> <span class="nav-text">zsh and oh-my-zsh</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#oh-my-zsh插件"><span class="nav-number">3.3.1.</span> <span class="nav-text">oh-my-zsh插件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代理"><span class="nav-number">3.4.</span> <span class="nav-text">代理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#待填坑"><span class="nav-number">3.5.</span> <span class="nav-text">待填坑</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命令与快捷键"><span class="nav-number">4.</span> <span class="nav-text">命令与快捷键</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#命令"><span class="nav-number">4.1.</span> <span class="nav-text">命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#快捷键"><span class="nav-number">4.2.</span> <span class="nav-text">快捷键</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Scott Yeung"
+      src="/images/self.jpg">
+  <p class="site-author-name" itemprop="name">Scott Yeung</p>
+  <div class="site-description" itemprop="description">道亦有道  玄之又玄</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yeung66" title="GitHub → https://github.com/yeung66" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:407284292@qq.com" title="E-Mail → mailto:407284292@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/scottyeung6" title="Instagram → https://instagram.com/scottyeung6" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://music.163.com/#/user/home?id=126931346" title="网易云音乐 → https://music.163.com/#/user/home?id=126931346" rel="noopener" target="_blank"><i class="fa fa-fw fa-music"></i>网易云音乐</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → /atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Scott Yeung</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">93k</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.1
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : true,
+      notify     : false,
+      appId      : '2yhfMbsA5oHkrxvqW2t0roxg-gzGzoHsz',
+      appKey     : 'rf7s0pmEmVPJsn68lh7u7QNz',
+      placeholder: "欢迎留言~",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
