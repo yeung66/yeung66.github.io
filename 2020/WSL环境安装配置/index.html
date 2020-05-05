@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://cloud.githubusercontent.com/assets/2618447/6316862/70f58fb6-ba03-11e4-82c9-c083bf9a6574.png">
 <meta property="og:image" content="http://scottyeung.top/2020/WSL环境安装配置/image-20200504173113601.png">
 <meta property="og:image" content="http://scottyeung.top/2020/WSL环境安装配置/image-20200504173241135.png">
-<meta property="og:updated_time" content="2020-05-04T15:19:45.140Z">
+<meta property="og:updated_time" content="2020-05-05T02:12:48.750Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="WSL环境安装配置">
 <meta name="twitter:description" content="早在大三上系统级程序设计课程的时候，就通过老师的演示了解到 Windows 的新产品—— Windows Subsystem for Linux(WSL), 可以在 Windows 系统下运行 Linux 系统的程序或命令。不过当时我的旧电脑上装了 Ubuntu 的双系统，所以一直没有尝试。现在换了新电脑之后，一直没有装回 Linux 系统，一是怕麻烦不太想折腾，二是不太想划分硬盘空间。于是干脆就">
@@ -211,10 +211,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-05-04 10:56:45 / 修改时间：23:19:45" itemprop="dateCreated datePublished" datetime="2020-05-04T10:56:45+08:00">2020-05-04</time>
+              <time title="创建时间：2020-05-04 10:56:45" itemprop="dateCreated datePublished" datetime="2020-05-04T10:56:45+08:00">2020-05-04</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-05 10:12:48" itemprop="dateModified" datetime="2020-05-05T10:12:48+08:00">2020-05-05</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -252,7 +258,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>4.8k</span>
+              <span>4.9k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -271,10 +277,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>早在大三上系统级程序设计课程的时候，就通过老师的演示了解到 Windows 的新产品—— Windows Subsystem for Linux(WSL), 可以在 Windows 系统下运行 Linux 系统的程序或命令。不过当时我的旧电脑上装了 Ubuntu 的双系统，所以一直没有尝试。现在换了新电脑之后，一直没有装回 Linux 系统，一是怕麻烦不太想折腾，二是不太想划分硬盘空间。于是干脆就装一个 WSL 吧，尽管现在还没算命使用 Linux 系统的需要，不过就暂时当一个玩具吧。</p>
+        <p>早在大三上系统级程序设计课程的时候，就通过老师的演示了解到 Windows 的新产品—— Windows Subsystem for Linux(WSL), 可以在 Windows 系统下运行 Linux 系统的程序或命令。不过当时我的旧电脑上装了 Ubuntu 的双系统，所以一直没有尝试。现在换了新电脑之后，一直没有装回 Linux 系统，一是怕麻烦不太想折腾，二是不太想划分硬盘空间。于是干脆就装一个 WSL 吧，尽管现在还没实际使用 Linux 系统的需要，不过就暂时当一个玩具吧。</p>
 <a id="more"></a>
 <h2 id="优点">优点</h2>
-<p>WSL 还是挺爽的，还没用就感觉优点满满： 1. 安装简单。简直是傻瓜式的操作，就在系统设置中开启一下，在商店中搜索下载即可，跟在应用商店下个 app 差别不大，而且 Windows Store 的下载速度惊人，非常快就能装好。另外，也不需要考虑任何的驱动兼容问题，少了很多奇奇怪怪的问题。 2. 空间友好。我下的 Ubuntu 系统才 200+MB,相比于普通的带 GUI 的 Linux 操作系统，可谓是不占空间一样。另外最关键的一点是，WSL 系统的所有文件都是放在系统盘中，不需要自己另行划分磁盘空间来放置系统。这个点我觉得太赞了，之前装 Linux 双系统最为麻烦的一点就是要专门划分空间，从原有的磁盘中分出空闲空间来专门服务于 Linux 系统，怎么分，分到少，都需要一番思考和设置。分得多吧又感觉浪费，分得少又会不够，到时加空间比较麻烦。 3. 协同方便。因为 WSL 系统在 Windows 当中，两系统当中的文件都能够轻易地传输使用。之前的话，Linux确实可以通过挂载的方式访问 Windows 的文件，但反过来却不行，而且操作还有<a href="http://scottyeung.top/2018/Linux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E4%B8%AD%E6%93%8D%E4%BD%9C%E6%96%87%E4%BB%B6%E5%AF%BC%E8%87%B4NTFS%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E4%B8%AD%E6%96%87%E4%BB%B6%E4%B8%A2%E5%A4%B1/">风险</a>。当时有访问跨系统文件的需要时，还需要专门重启一下切换系统，又或者通过网页微信传输文件到手机作为中转。</p>
+<p>WSL 还是挺爽的，还没用就感觉优点满满：</p>
+<ol type="1">
+<li>安装简单。简直是傻瓜式的操作，就在系统设置中开启一下，在商店中搜索下载即可，跟在应用商店下个 app 差别不大，而且 Windows Store 的下载速度惊人，非常快就能装好。另外，也不需要考虑任何的驱动兼容问题，少了很多奇奇怪怪的问题。</li>
+<li>空间友好。我下的 Ubuntu 系统才 200+MB, 相比于普通的带 GUI 的 Linux 操作系统，可谓是不占空间一样。另外最关键的一点是，WSL 系统的所有文件都是放在系统盘中，不需要自己另行划分磁盘空间来放置系统。这个点我觉得太赞了，之前装 Linux 双系统最为麻烦的一点就是要专门划分空间，从原有的磁盘中分出空闲空间来专门服务于 Linux 系统，怎么分，分多少，都需要一番思考和设置。分得多吧又感觉浪费，分得少又会不够，到时加空间比较麻烦。</li>
+<li>协同方便。因为 WSL 系统在 Windows 当中，两系统当中的文件都能够轻易地传输使用。之前的话，Linux确实可以通过挂载的方式访问 Windows 的文件，但反过来却不行，而且操作还有<a href="http://scottyeung.top/2018/Linux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E4%B8%AD%E6%93%8D%E4%BD%9C%E6%96%87%E4%BB%B6%E5%AF%BC%E8%87%B4NTFS%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E4%B8%AD%E6%96%87%E4%BB%B6%E4%B8%A2%E5%A4%B1/">风险</a>。当时有访问跨系统文件的需要时，还需要专门重启一下切换系统，又或者通过网页微信传输文件到手机作为中转。</li>
+</ol>
 <h2 id="安装">安装</h2>
 <p>安装还是挺简单的，只要本机的 Windows 版本支持 WSL功能即可。</p>
 <ol type="1">
@@ -315,9 +326,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> or</span></span><br><span class="line"></span><br><span class="line">sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"</span><br></pre></td></tr></table></figure>
 <p>但这里我怎么也搞不下来，两种方式都不能建立链接，获取不到这个脚本，自然无法进行后续的安装处理。原因似乎是国内的网络环境因为你懂的原因无法访问这个网址 ，估计走代理的话应该可以解决。所以我采用的方法是在 WIndows 系统下好这个 shell 脚本，然后在 WSL 里面运行，问题解决。之后就可以通过在配置文件 <code>~/.zshrc</code>里面设置主题里，可选的主题及效果可以<a href="https://github.com/ohmyzsh/ohmyzsh/wiki/Themes" target="_blank" rel="noopener">点此选择</a>。</p>
 <p>我选的是 ys，这里要吐槽一句，不知道为什么网上看到的预览图片，跟我实际使用的效果相差太大了，有些甚至对使用造成了影响，例如主题 agnoster ，显示的实际颜色与下面的样例图出入太大了，在 WSL 里面打开就是目录显示的是深蓝色，深到看不清楚里面的字那种，尽管我挺喜欢这种风格的，但因为影响到实际使用了，只能放弃。</p>
-<figure>
-<img src="https://cloud.githubusercontent.com/assets/2618447/6316862/70f58fb6-ba03-11e4-82c9-c083bf9a6574.png" alt="agnoster"><figcaption>agnoster</figcaption>
-</figure>
+<p>官方网站以及大多数经验分享文章中的 agnoster 主题效果 <img src="https://cloud.githubusercontent.com/assets/2618447/6316862/70f58fb6-ba03-11e4-82c9-c083bf9a6574.png"></p>
 <p>这是我用主题 agnoster 的效果图。<img src="/2020/WSL环境安装配置/image-20200504173113601.png" alt="image-20200504173113601"></p>
 <p>这是我最终选择的主题 ys 的效果<img src="/2020/WSL环境安装配置/image-20200504173241135.png" alt="image-20200504173241135"></p>
 <h4 id="oh-my-zsh插件">oh-my-zsh插件</h4>
@@ -409,6 +418,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
+              <a href="/tags/notes/" rel="tag"># notes</a>
               <a href="/tags/Ubuntu/" rel="tag"># Ubuntu</a>
               <a href="/tags/Windows/" rel="tag"># Windows</a>
               <a href="/tags/shell/" rel="tag"># shell</a>
