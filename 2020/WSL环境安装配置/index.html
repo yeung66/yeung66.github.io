@@ -22,7 +22,7 @@
 
 
   <meta name="description" content="早在大三上系统级程序设计课程的时候，就通过老师的演示了解到 Windows 的新产品—— Windows Subsystem for Linux(WSL), 可以在 Windows 系统下运行 Linux 系统的程序或命令。不过当时我的旧电脑上装了 Ubuntu 的双系统，所以一直没有尝试。现在换了新电脑之后，一直没有装回 Linux 系统，一是怕麻烦不太想折腾，二是不太想划分硬盘空间。于是干脆就">
-<meta name="keywords" content="Windows,Ubuntu,zsh,WSL">
+<meta name="keywords" content="Windows,Ubuntu,zsh,WSL,shell,主题配色">
 <meta property="og:type" content="article">
 <meta property="og:title" content="WSL环境安装配置">
 <meta property="og:url" content="http://scottyeung.top/2020/WSL环境安装配置/index.html">
@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://cloud.githubusercontent.com/assets/2618447/6316862/70f58fb6-ba03-11e4-82c9-c083bf9a6574.png">
 <meta property="og:image" content="http://scottyeung.top/2020/WSL环境安装配置/image-20200504173113601.png">
 <meta property="og:image" content="http://scottyeung.top/2020/WSL环境安装配置/image-20200504173241135.png">
-<meta property="og:updated_time" content="2020-05-06T07:23:43.545Z">
+<meta property="og:updated_time" content="2020-05-12T03:48:00.770Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="WSL环境安装配置">
 <meta name="twitter:description" content="早在大三上系统级程序设计课程的时候，就通过老师的演示了解到 Windows 的新产品—— Windows Subsystem for Linux(WSL), 可以在 Windows 系统下运行 Linux 系统的程序或命令。不过当时我的旧电脑上装了 Ubuntu 的双系统，所以一直没有尝试。现在换了新电脑之后，一直没有装回 Linux 系统，一是怕麻烦不太想折腾，二是不太想划分硬盘空间。于是干脆就">
@@ -219,7 +219,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-06 15:23:43" itemprop="dateModified" datetime="2020-05-06T15:23:43+08:00">2020-05-06</time>
+                <time title="修改时间：2020-05-12 11:48:00" itemprop="dateModified" datetime="2020-05-12T11:48:00+08:00">2020-05-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -258,14 +258,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>6.5k</span>
+              <span>7.3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>11 分钟</span>
+              <span>12 分钟</span>
             </span>
 
         </div>
@@ -329,6 +329,9 @@
 <p>官方网站以及大多数经验分享文章中的 agnoster 主题效果 <img src="https://cloud.githubusercontent.com/assets/2618447/6316862/70f58fb6-ba03-11e4-82c9-c083bf9a6574.png"></p>
 <p>这是我用主题 agnoster 的效果图。<img src="/2020/WSL环境安装配置/image-20200504173113601.png" alt="image-20200504173113601"></p>
 <p>这是我最终选择的主题 ys 的效果<img src="/2020/WSL环境安装配置/image-20200504173241135.png" alt="image-20200504173241135"></p>
+<hr>
+<p>发现了为啥我的颜色跟网上看到的不一致，原来是需要设置额外的配色，将某些颜色映射为其它色号。我用的是 Windows Terminal，设置配色比较简单，只要在配置文件的 <code>schemes</code> 属性中添加配色主题，再在想要设置配色的终端设置 <code>color-scheme</code> 即可。配色主题可以到这个 <a href="https://github.com/mbadolato/iTerm2-Color-Schemes#windows-terminal-color-schemes" target="_blank" rel="noopener">GitHub repo</a> 上面挑选。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   <span class="comment">// powershell 的设置项</span></span><br><span class="line">   <span class="attr">"guid"</span>: <span class="string">"&#123;61c54bbd-c2c6-5271-96e7-009a87ff44bf&#125;"</span>,</span><br><span class="line">   <span class="attr">"name"</span>: <span class="string">"Windows PowerShell"</span>,</span><br><span class="line">   <span class="attr">"commandline"</span>: <span class="string">"powershell.exe"</span>,</span><br><span class="line">   <span class="attr">"fontFace"</span>:  <span class="string">"Cascadia Code PL"</span>,</span><br><span class="line">   <span class="attr">"colorScheme"</span>: <span class="string">"OneHalfDark"</span>, <span class="comment">//选择的配色名称</span></span><br><span class="line">   <span class="attr">"hidden"</span>: <span class="literal">false</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">&#123;  <span class="comment">//使用的配色主题, 有些颜色觉得不太行就注释掉，也可以自行修改</span></span><br><span class="line">   <span class="attr">"name"</span>: <span class="string">"OneHalfDark"</span>,</span><br><span class="line">   <span class="comment">// "black": "#282c34",</span></span><br><span class="line">   <span class="attr">"red"</span>: <span class="string">"#e06c75"</span>,</span><br><span class="line">   <span class="attr">"green"</span>: <span class="string">"#98c379"</span>,</span><br><span class="line">   <span class="attr">"yellow"</span>: <span class="string">"#e5c07b"</span>,</span><br><span class="line">   <span class="attr">"blue"</span>: <span class="string">"#61afef"</span>,</span><br><span class="line">   <span class="attr">"purple"</span>: <span class="string">"#c678dd"</span>,</span><br><span class="line">   <span class="attr">"cyan"</span>: <span class="string">"#56b6c2"</span>,</span><br><span class="line">   <span class="attr">"white"</span>: <span class="string">"#dcdfe4"</span>,</span><br><span class="line">   <span class="comment">// "brightBlack": "#282c34",</span></span><br><span class="line">   <span class="attr">"brightRed"</span>: <span class="string">"#e06c75"</span>,</span><br><span class="line">   <span class="attr">"brightGreen"</span>: <span class="string">"#98c379"</span>,</span><br><span class="line">   <span class="attr">"brightYellow"</span>: <span class="string">"#e5c07b"</span>,</span><br><span class="line">   <span class="attr">"brightBlue"</span>: <span class="string">"#61afef"</span>,</span><br><span class="line">   <span class="attr">"brightPurple"</span>: <span class="string">"#c678dd"</span>,</span><br><span class="line">   <span class="attr">"brightCyan"</span>: <span class="string">"#56b6c2"</span>,</span><br><span class="line">   <span class="attr">"brightWhite"</span>: <span class="string">"#dcdfe4"</span>,</span><br><span class="line">   <span class="attr">"background"</span>: <span class="string">"#282c34"</span>,</span><br><span class="line">   <span class="attr">"foreground"</span>: <span class="string">"#dcdfe4"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="oh-my-zsh插件">oh-my-zsh插件</h4>
 <p>自带的插件只需要在配置文件中添加即可，我这里添加了：</p>
 <ul>
@@ -455,8 +458,8 @@
           <div class="post-tags">
               <a href="/tags/notes/" rel="tag"># notes</a>
               <a href="/tags/Ubuntu/" rel="tag"># Ubuntu</a>
-              <a href="/tags/shell/" rel="tag"># shell</a>
               <a href="/tags/Windows/" rel="tag"># Windows</a>
+              <a href="/tags/shell/" rel="tag"># shell</a>
           </div>
 
         
@@ -616,7 +619,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">95k</span>
+    <span title="站点总字数">97k</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0
   </div>

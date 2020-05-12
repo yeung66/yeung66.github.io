@@ -29,7 +29,7 @@
 <meta property="og:site_name" content="YeungYeah 的乱写地">
 <meta property="og:description" content="开始学习想学很久（或者说是说了很久要学的）的 vim 文本编辑器。虽然说接触了很久，好像从大一开始接触 Linux 系统就不得不与其打交道，但是对于其了解程度一直都处在 &amp;quot;存活期&amp;quot;。所以终于想要进一步学习，进入感觉良好期，甚至是更快更好更强的阶段。于是记录一下一些有用的命令，顺便练一下手，没错本篇博客就是用 vim 写的（完全就是瞎折腾，还发现了不少我觉得是 bug 的问题）。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-05-08T09:58:05.871Z">
+<meta property="og:updated_time" content="2020-05-12T05:34:39.659Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vim 常用命令记录">
 <meta name="twitter:description" content="开始学习想学很久（或者说是说了很久要学的）的 vim 文本编辑器。虽然说接触了很久，好像从大一开始接触 Linux 系统就不得不与其打交道，但是对于其了解程度一直都处在 &amp;quot;存活期&amp;quot;。所以终于想要进一步学习，进入感觉良好期，甚至是更快更好更强的阶段。于是记录一下一些有用的命令，顺便练一下手，没错本篇博客就是用 vim 写的（完全就是瞎折腾，还发现了不少我觉得是 bug 的问题）。">
@@ -214,7 +214,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-08 17:58:05" itemprop="dateModified" datetime="2020-05-08T17:58:05+08:00">2020-05-08</time>
+                <time title="修改时间：2020-05-12 13:34:39" itemprop="dateModified" datetime="2020-05-12T13:34:39+08:00">2020-05-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -253,14 +253,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.1k</span>
+              <span>2.1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
+              <span>3 分钟</span>
             </span>
 
         </div>
@@ -323,13 +323,23 @@
 <li>设置行号： <code>set number</code></li>
 <li>vim-plug：vim 的插件管理系统</li>
 </ul>
-<h2 id="issue-on-powershell">Issue on Powershell</h2>
+<h2 id="issues-on-powershell">Issues on Powershell</h2>
 <p>在 Powershell 里面使用 vim 总是会有一些奇奇怪怪的问题。</p>
+<h3 id="编辑">编辑</h3>
 <ul>
 <li><p>退格键（Backspace）和删除键（Delete）偶尔失灵。常见于删除换行符的时候，尤其是删除空行。空行还可以使用命令 <code>dd</code> 来删除当前行。但是如果是删除之间两行的换行符使两行合并成一行时，就很尴尬。找到的解决方法是在配置文件中添加下面的退格设置，暂时问题不再出现。 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set nocp</span><br><span class="line">set backspace=2</span><br></pre></td></tr></table></figure></p></li>
 <li>在中文输入的时候，键盘上的某些字符输入无效，需要切成英文输出才能输入。如符号`，中文的引号和双引号。暂时还不知道怎么解决，使用英文符号凑合一下 <span class="github-emoji" data-alias="joy" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f602.png?v8">😂</span></li>
 <li><p>中文输入的时候莫名会多打一些字母出来。</p></li>
 </ul>
+<h3 id="git-的提交问题">Git 的提交问题</h3>
+<p>因为是 Windows 系统，我使用的是 Git on Bash, 它是内置了一个 MINGW 的类 Unix 终端，里面也自带了 vim。当我们设置 Git 的提交编辑器为 vim 时，它会默认打开内部自带的 vim，而不是在 Windows 系统安装的 vim。本来这也没什么，但是它似乎是还扫描到了我在 Windows 系统上面的 vim 的配置文件，这就出问题了。我在 Windows 上面的 vim 安装了 vim-plug 插件管理，安装方式是直接下载配置脚本到目录下的 autoload 目录中，而 Git Bash 自带的 vim 没有这个文件，自然无法识别配置文件中的插件配置项，导致每次调用都会出错。大概的提示就是说载入配置文件的时候在插件配置那里出错了。</p>
+<p>问题其实可以转化为：如何将 Git Bash 里面使用的 vim 换成本地 Windows 系统上面的 vim。搜索看了很多网页，看到的方法基本都不可行，包括：</p>
+<ul>
+<li>设置 alias 让 vim 指向 Windows 系统的 vim <code>alias vim &quot;/c/Program\ Files \(x86\)/vim/vim82/vim.exe&quot;</code> （这里路径的空格和括号都需要转义）。这样在 Git Bash 命令行调用 vim 确实调用到了 Win 上面的 vim，但 git commit 还是调用回自身的 vim</li>
+<li>设置 git config 里面的编辑器选项。默认使用 vim 的话编辑器设置是直接设成了 vim，但有人说可以设成一个路径，指向想要指向的 vim 程序。尝试后连 vim 都打不开了，添加一些选项也无果。</li>
+<li>环境变量中设置 EDITOR 变量。</li>
+</ul>
+<p>最终我选择的方法是移除了 Git Bash 里面的 vim 程序（其所在路径为 <code>/usr/bin/vim.exe</code>），然后添加一个软连接 <code>ln -s '/path/to/your/vim' /usr/bin/vim</code>。因为在 Git Bash 里面调用的 vim 实际上是在调用 <code>/usr/bin/vim</code> ，而这个路径时间上映射到了 Git 安装路径中的 <code>/usr/bin/vim.exe</code> 。我通过移除原有的 vim 程序，建立新的软链接调用目标的 vim 程序，问题解决。在 Git Bash 中调用 vim 和在 git commit 开启编辑器都能成功开启 Windows 的 vim 程序而没有出错。但是有一个小问题，就是原生提供的 Git Bash 开启不了 vim，提示不是 Cygwin 能运行的版本，不过我现在都是在 Windows Terminal 上面使用，而 Windows Terminal 上面使用没有问题。</p>
 
     </div>
 
@@ -452,7 +462,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#学习阶段"><span class="nav-number">1.</span> <span class="nav-text">学习阶段</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#能用"><span class="nav-number">1.1.</span> <span class="nav-text">能用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#好用"><span class="nav-number">1.2.</span> <span class="nav-text">好用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置"><span class="nav-number">2.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#issue-on-powershell"><span class="nav-number">3.</span> <span class="nav-text">Issue on Powershell</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#学习阶段"><span class="nav-number">1.</span> <span class="nav-text">学习阶段</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#能用"><span class="nav-number">1.1.</span> <span class="nav-text">能用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#好用"><span class="nav-number">1.2.</span> <span class="nav-text">好用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置"><span class="nav-number">2.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#issues-on-powershell"><span class="nav-number">3.</span> <span class="nav-text">Issues on Powershell</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#编辑"><span class="nav-number">3.1.</span> <span class="nav-text">编辑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-的提交问题"><span class="nav-number">3.2.</span> <span class="nav-text">Git 的提交问题</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -536,7 +546,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">95k</span>
+    <span title="站点总字数">97k</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0
   </div>
