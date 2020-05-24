@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.9.0">
+<meta name="generator" content="Hexo 4.2.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
@@ -17,29 +17,34 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"scottyeung.top","root":"/","scheme":"Pisces","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"scottyeung.top","root":"/","scheme":"Pisces","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-<script data-ad-client="ca-pub-7766364950991401" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
   <meta name="description" content="早在大三上系统级程序设计课程的时候，就通过老师的演示了解到 Windows 的新产品—— Windows Subsystem for Linux(WSL), 可以在 Windows 系统下运行 Linux 系统的程序或命令。不过当时我的旧电脑上装了 Ubuntu 的双系统，所以一直没有尝试。现在换了新电脑之后，一直没有装回 Linux 系统，一是怕麻烦不太想折腾，二是不太想划分硬盘空间。于是干脆就">
-<meta name="keywords" content="Windows,Ubuntu,zsh,WSL,shell,主题配色">
 <meta property="og:type" content="article">
 <meta property="og:title" content="WSL环境安装配置">
-<meta property="og:url" content="http://scottyeung.top/2020/WSL环境安装配置/index.html">
+<meta property="og:url" content="http://scottyeung.top/2020/WSL%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/index.html">
 <meta property="og:site_name" content="YeungYeah 的乱写地">
 <meta property="og:description" content="早在大三上系统级程序设计课程的时候，就通过老师的演示了解到 Windows 的新产品—— Windows Subsystem for Linux(WSL), 可以在 Windows 系统下运行 Linux 系统的程序或命令。不过当时我的旧电脑上装了 Ubuntu 的双系统，所以一直没有尝试。现在换了新电脑之后，一直没有装回 Linux 系统，一是怕麻烦不太想折腾，二是不太想划分硬盘空间。于是干脆就">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://scottyeung.top/2020/WSL环境安装配置/image-20200504120230327.png">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://scottyeung.top/2020/WSL%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/WSL%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/image-20200504120230327.png">
 <meta property="og:image" content="https://cloud.githubusercontent.com/assets/2618447/6316862/70f58fb6-ba03-11e4-82c9-c083bf9a6574.png">
-<meta property="og:image" content="http://scottyeung.top/2020/WSL环境安装配置/image-20200504173113601.png">
-<meta property="og:image" content="http://scottyeung.top/2020/WSL环境安装配置/image-20200504173241135.png">
-<meta property="og:updated_time" content="2020-05-12T03:48:00.770Z">
+<meta property="og:image" content="http://scottyeung.top/2020/WSL%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/WSL%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/image-20200504173113601.png">
+<meta property="og:image" content="http://scottyeung.top/2020/WSL%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/WSL%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/image-20200504173241135.png">
+<meta property="article:published_time" content="2020-05-04T02:56:45.000Z">
+<meta property="article:modified_time" content="2020-05-12T03:48:00.770Z">
+<meta property="article:author" content="Scott Yeung">
+<meta property="article:tag" content="Windows">
+<meta property="article:tag" content="Ubuntu">
+<meta property="article:tag" content="zsh">
+<meta property="article:tag" content="WSL">
+<meta property="article:tag" content="shell">
+<meta property="article:tag" content="主题配色">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="WSL环境安装配置">
-<meta name="twitter:description" content="早在大三上系统级程序设计课程的时候，就通过老师的演示了解到 Windows 的新产品—— Windows Subsystem for Linux(WSL), 可以在 Windows 系统下运行 Linux 系统的程序或命令。不过当时我的旧电脑上装了 Ubuntu 的双系统，所以一直没有尝试。现在换了新电脑之后，一直没有装回 Linux 系统，一是怕麻烦不太想折腾，二是不太想划分硬盘空间。于是干脆就">
-<meta name="twitter:image" content="http://scottyeung.top/2020/WSL环境安装配置/image-20200504120230327.png">
+<meta name="twitter:image" content="http://scottyeung.top/2020/WSL%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/WSL%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/image-20200504120230327.png">
 
-<link rel="canonical" href="http://scottyeung.top/2020/WSL环境安装配置/">
+<link rel="canonical" href="http://scottyeung.top/2020/WSL%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/">
 
 
 <script id="page-configurations">
@@ -50,11 +55,11 @@
     isPost: true
   };
 </script>
-
+<script data-ad-client="ca-pub-7766364950991401" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <title>WSL环境安装配置 | YeungYeah 的乱写地</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151343043-1"></script>
-    <script>
+    <script pjax>
       if (CONFIG.hostname === location.hostname) {
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
@@ -189,7 +194,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://scottyeung.top/2020/WSL环境安装配置/">
+    <link itemprop="mainEntityOfPage" href="http://scottyeung.top/2020/WSL%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/self.jpg">
@@ -232,7 +237,7 @@
             </span>
 
           
-            <span id="/2020/WSL环境安装配置/" class="post-meta-item leancloud_visitors" data-flag-title="WSL环境安装配置" title="阅读次数">
+            <span id="/2020/WSL%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" class="post-meta-item leancloud_visitors" data-flag-title="WSL环境安装配置" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -247,8 +252,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/WSL环境安装配置/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/WSL环境安装配置/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/WSL%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/WSL%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -258,14 +263,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>7.3k</span>
+              <span>7.5k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>12 分钟</span>
+              <span>13 分钟</span>
             </span>
 
         </div>
@@ -289,7 +294,7 @@
 <h2 id="安装">安装</h2>
 <p>安装还是挺简单的，只要本机的 Windows 版本支持 WSL功能即可。</p>
 <ol type="1">
-<li><p>打开“启用或关闭 Windows 功能”，开启适用于 Linux 的 WIndows 子系统。这个可以通过在开始菜单搜索启用（qiyong）的拼音就出现了。<img src="/2020/WSL环境安装配置/image-20200504120230327.png" alt="image-20200504120230327"></p></li>
+<li><p>打开“启用或关闭 Windows 功能”，开启适用于 Linux 的 WIndows 子系统。这个可以通过在开始菜单搜索启用（qiyong）的拼音就出现了。<img src="/2020/WSL%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/WSL环境安装配置/image-20200504120230327.png" alt="image-20200504120230327"></p></li>
 <li><p>打开 Microsoft Store，搜索 WSL 则可以看到支持的所有 Linux 版本。选择其中一个，获取安装即可。安装后可以在开始菜单找到并打开，会自动开启该系统下的 bash 命令行界面。</p></li>
 </ol>
 <h2 id="配置">配置</h2>
@@ -298,7 +303,7 @@
 <p>Ubuntu 软件安装/更新源均在国外，下载速度感人，所以可以将所有软件源更换为国内的镜像。这里选择的是阿里云的源。首先将原来的源文件备份，然后更改源文件，将内容换成阿里云的源链接。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo cp /etc/apt/sources.list  /etc/apt/sources.list.bak</span><br><span class="line">sudo vim /etc/apt/sources.list</span><br></pre></td></tr></table></figure>
 <p>通过 vim 修改源文件，将文件内容更改为下面内容</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse </span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse </span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse </span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse </span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse </span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse </span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse </span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse </span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse </span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">deb http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic main restricted universe multiverse </span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic-security main restricted universe multiverse </span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic-updates main restricted universe multiverse </span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic-proposed main restricted universe multiverse </span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic-backports main restricted universe multiverse </span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic main restricted universe multiverse </span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic-security main restricted universe multiverse </span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic-updates main restricted universe multiverse </span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic-proposed main restricted universe multiverse </span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic-backports main restricted universe multiverse</span><br></pre></td></tr></table></figure>
 <p>保存后更新</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt upgrade</span><br></pre></td></tr></table></figure>
 <h3 id="nodejs">Nodejs</h3>
@@ -327,8 +332,8 @@
 <p>但这里我怎么也搞不下来，两种方式都不能建立链接，获取不到这个脚本，自然无法进行后续的安装处理。原因似乎是国内的网络环境因为你懂的原因无法访问这个网址 ，估计走代理的话应该可以解决。所以我采用的方法是在 WIndows 系统下好这个 shell 脚本，然后在 WSL 里面运行，问题解决。之后就可以通过在配置文件 <code>~/.zshrc</code>里面设置主题里，可选的主题及效果可以<a href="https://github.com/ohmyzsh/ohmyzsh/wiki/Themes" target="_blank" rel="noopener">点此选择</a>。</p>
 <p>我选的是 ys，这里要吐槽一句，不知道为什么网上看到的预览图片，跟我实际使用的效果相差太大了，有些甚至对使用造成了影响，例如主题 agnoster ，显示的实际颜色与下面的样例图出入太大了，在 WSL 里面打开就是目录显示的是深蓝色，深到看不清楚里面的字那种，尽管我挺喜欢这种风格的，但因为影响到实际使用了，只能放弃。</p>
 <p>官方网站以及大多数经验分享文章中的 agnoster 主题效果 <img src="https://cloud.githubusercontent.com/assets/2618447/6316862/70f58fb6-ba03-11e4-82c9-c083bf9a6574.png"></p>
-<p>这是我用主题 agnoster 的效果图。<img src="/2020/WSL环境安装配置/image-20200504173113601.png" alt="image-20200504173113601"></p>
-<p>这是我最终选择的主题 ys 的效果<img src="/2020/WSL环境安装配置/image-20200504173241135.png" alt="image-20200504173241135"></p>
+<p>这是我用主题 agnoster 的效果图。<img src="/2020/WSL%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/WSL环境安装配置/image-20200504173113601.png" alt="image-20200504173113601"></p>
+<p>这是我最终选择的主题 ys 的效果<img src="/2020/WSL%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/WSL环境安装配置/image-20200504173241135.png" alt="image-20200504173241135"></p>
 <hr>
 <p>发现了为啥我的颜色跟网上看到的不一致，原来是需要设置额外的配色，将某些颜色映射为其它色号。我用的是 Windows Terminal，设置配色比较简单，只要在配置文件的 <code>schemes</code> 属性中添加配色主题，再在想要设置配色的终端设置 <code>color-scheme</code> 即可。配色主题可以到这个 <a href="https://github.com/mbadolato/iTerm2-Color-Schemes#windows-terminal-color-schemes" target="_blank" rel="noopener">GitHub repo</a> 上面挑选。</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   <span class="comment">// powershell 的设置项</span></span><br><span class="line">   <span class="attr">"guid"</span>: <span class="string">"&#123;61c54bbd-c2c6-5271-96e7-009a87ff44bf&#125;"</span>,</span><br><span class="line">   <span class="attr">"name"</span>: <span class="string">"Windows PowerShell"</span>,</span><br><span class="line">   <span class="attr">"commandline"</span>: <span class="string">"powershell.exe"</span>,</span><br><span class="line">   <span class="attr">"fontFace"</span>:  <span class="string">"Cascadia Code PL"</span>,</span><br><span class="line">   <span class="attr">"colorScheme"</span>: <span class="string">"OneHalfDark"</span>, <span class="comment">//选择的配色名称</span></span><br><span class="line">   <span class="attr">"hidden"</span>: <span class="literal">false</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">&#123;  <span class="comment">//使用的配色主题, 有些颜色觉得不太行就注释掉，也可以自行修改</span></span><br><span class="line">   <span class="attr">"name"</span>: <span class="string">"OneHalfDark"</span>,</span><br><span class="line">   <span class="comment">// "black": "#282c34",</span></span><br><span class="line">   <span class="attr">"red"</span>: <span class="string">"#e06c75"</span>,</span><br><span class="line">   <span class="attr">"green"</span>: <span class="string">"#98c379"</span>,</span><br><span class="line">   <span class="attr">"yellow"</span>: <span class="string">"#e5c07b"</span>,</span><br><span class="line">   <span class="attr">"blue"</span>: <span class="string">"#61afef"</span>,</span><br><span class="line">   <span class="attr">"purple"</span>: <span class="string">"#c678dd"</span>,</span><br><span class="line">   <span class="attr">"cyan"</span>: <span class="string">"#56b6c2"</span>,</span><br><span class="line">   <span class="attr">"white"</span>: <span class="string">"#dcdfe4"</span>,</span><br><span class="line">   <span class="comment">// "brightBlack": "#282c34",</span></span><br><span class="line">   <span class="attr">"brightRed"</span>: <span class="string">"#e06c75"</span>,</span><br><span class="line">   <span class="attr">"brightGreen"</span>: <span class="string">"#98c379"</span>,</span><br><span class="line">   <span class="attr">"brightYellow"</span>: <span class="string">"#e5c07b"</span>,</span><br><span class="line">   <span class="attr">"brightBlue"</span>: <span class="string">"#61afef"</span>,</span><br><span class="line">   <span class="attr">"brightPurple"</span>: <span class="string">"#c678dd"</span>,</span><br><span class="line">   <span class="attr">"brightCyan"</span>: <span class="string">"#56b6c2"</span>,</span><br><span class="line">   <span class="attr">"brightWhite"</span>: <span class="string">"#dcdfe4"</span>,</span><br><span class="line">   <span class="attr">"background"</span>: <span class="string">"#282c34"</span>,</span><br><span class="line">   <span class="attr">"foreground"</span>: <span class="string">"#dcdfe4"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -445,7 +450,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://scottyeung.top/2020/WSL环境安装配置/" title="WSL环境安装配置">http://scottyeung.top/2020/WSL环境安装配置/</a>
+    <a href="http://scottyeung.top/2020/WSL%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" title="WSL环境安装配置">http://scottyeung.top/2020/WSL环境安装配置/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -455,11 +460,12 @@
 
 
       <footer class="post-footer">
+          
           <div class="post-tags">
-              <a href="/tags/notes/" rel="tag"># notes</a>
-              <a href="/tags/Ubuntu/" rel="tag"># Ubuntu</a>
-              <a href="/tags/Windows/" rel="tag"># Windows</a>
-              <a href="/tags/shell/" rel="tag"># shell</a>
+              <a href="/tags/notes/" rel="tag"><i class="fa fa-tag"></i> notes</a>
+              <a href="/tags/Ubuntu/" rel="tag"><i class="fa fa-tag"></i> Ubuntu</a>
+              <a href="/tags/Windows/" rel="tag"><i class="fa fa-tag"></i> Windows</a>
+              <a href="/tags/shell/" rel="tag"><i class="fa fa-tag"></i> shell</a>
           </div>
 
         
@@ -468,11 +474,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/突然不想再记录时间的使用/" rel="prev" title="突然不想再记录时间的使用">
+    <a href="/2020/%E7%AA%81%E7%84%B6%E4%B8%8D%E6%83%B3%E5%86%8D%E8%AE%B0%E5%BD%95%E6%97%B6%E9%97%B4%E7%9A%84%E4%BD%BF%E7%94%A8/" rel="prev" title="突然不想再记录时间的使用">
       <i class="fa fa-chevron-left"></i> 突然不想再记录时间的使用
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/vim-常用命令记录/" rel="next" title="vim 常用命令记录">
+    <a href="/2020/vim-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%AE%B0%E5%BD%95/" rel="next" title="vim 常用命令记录">
       vim 常用命令记录 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -580,10 +586,13 @@
         <a href="https://instagram.com/scottyeung6" title="Instagram → https://instagram.com/scottyeung6" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
       </span>
       <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/29031611" title="哔哩哔哩视频 → https://space.bilibili.com/29031611" rel="noopener" target="_blank"><i class="fa fa-fw fa-tv"></i>哔哩哔哩视频</a>
+      </span>
+      <span class="links-of-author-item">
         <a href="https://music.163.com/#/user/home?id=126931346" title="网易云音乐 → https://music.163.com/#/user/home?id=126931346" rel="noopener" target="_blank"><i class="fa fa-fw fa-music"></i>网易云音乐</a>
       </span>
       <span class="links-of-author-item">
-        <a href="/atom.xml" title="RSS → /atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+        <a href="/atom.xml" title="RSS 订阅 → /atom.xml"><i class="fa fa-fw fa-rss"></i>RSS 订阅</a>
       </span>
   </div>
   <div class="cc-license motion-element" itemprop="license">
@@ -619,17 +628,14 @@
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">97k</span>
+    <span title="站点总字数">98k</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0
-  </div>
-  <span class="post-meta-divider">|</span>
   <div class="theme-info">主题 – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.1
   </div>
 
         
 <div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <script pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
       <span class="post-meta-item-icon">
         <i class="fa fa-user"></i>
@@ -662,16 +668,83 @@
 
   
   <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
+
+
 <script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.getAttribute('pjax') !== null) {
+      script.setAttribute('pjax', '');
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
 
 
 
   
-  <script>
+  <script pjax>
     (function(){
       var bp = document.createElement('script');
       var curProtocol = window.location.protocol.split(':')[0];
@@ -695,6 +768,7 @@
 
 
 
+    <div id="pjax">
   
 
   
@@ -776,12 +850,13 @@ NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
       visitor    : true,
       lang       : 'zh-cn' || 'zh-cn',
       path       : location.pathname,
-      recordIP   : false,
+      recordIP   : true,
       serverURLs : ''
     });
   }, window.Valine);
 });
 </script>
 
+    </div>
 </body>
 </html>
