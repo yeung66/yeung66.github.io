@@ -66,9 +66,9 @@
     
       <category term="Ubuntu" scheme="http://scottyeung.top/tags/Ubuntu/"/>
     
-      <category term="shell" scheme="http://scottyeung.top/tags/shell/"/>
-    
       <category term="Windows" scheme="http://scottyeung.top/tags/Windows/"/>
+    
+      <category term="shell" scheme="http://scottyeung.top/tags/shell/"/>
     
   </entry>
   
@@ -425,9 +425,9 @@
     
       <category term="Python" scheme="http://scottyeung.top/tags/Python/"/>
     
-      <category term="summary" scheme="http://scottyeung.top/tags/summary/"/>
-    
       <category term="自动化" scheme="http://scottyeung.top/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/"/>
+    
+      <category term="summary" scheme="http://scottyeung.top/tags/summary/"/>
     
   </entry>
   
@@ -546,9 +546,9 @@
       <category term="读书总结" scheme="http://scottyeung.top/categories/%E8%AF%BB%E4%B9%A6%E6%80%BB%E7%BB%93/"/>
     
     
-      <category term="学习" scheme="http://scottyeung.top/tags/%E5%AD%A6%E4%B9%A0/"/>
-    
       <category term="summary" scheme="http://scottyeung.top/tags/summary/"/>
+    
+      <category term="学习" scheme="http://scottyeung.top/tags/%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
