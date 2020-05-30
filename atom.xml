@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://scottyeung.top/"/>
-  <updated>2020-05-28T04:04:10.932Z</updated>
+  <updated>2020-05-30T15:45:28.071Z</updated>
   <id>http://scottyeung.top/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>用于外链的资源库构建</title>
+    <link href="http://scottyeung.top/2020/%E7%94%A8%E4%BA%8E%E5%A4%96%E9%93%BE%E7%9A%84%E8%B5%84%E6%BA%90%E5%BA%93%E6%9E%84%E5%BB%BA/"/>
+    <id>http://scottyeung.top/2020/用于外链的资源库构建/</id>
+    <published>2020-05-30T14:37:11.000Z</published>
+    <updated>2020-05-30T15:45:28.071Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="background">Background</h1><p>在升级本博客的 hexo 和主题之前，是曾经搞过一个用 Aplayer 实现的外链播放器的，但因为当时播放过程会被在博客中的页面跳转而刷新页面，导致播放被打断而暂停，体验较差，所以在升级主题版本之后一直没有添加回来。在之后的某次逛 Github 的时候，偶然发现 PJAX 可以实现博客内页面跳转使用 AJAX 不刷新页面。于是又再次把 Aplayer 添加回来。</p><p>有了播放器，最重要的还是要有音乐，有歌曲。原本想着简单地从网上那些外链播放搜索网站，搜索抓取从各大音乐平台的外链，确实能找到，当时也能用，不过好像一般都会有有效期，过了一天就不能用了。为此，参考别人在 GitHub 开启 Repo 作为图床的想法，我也打算在 GitHub 开个 Repo 来存放图片或音频资源，提供外链。</p><a id="more"></a><h1 id="methods">Methods</h1><h2 id="gtihub-repo">GtiHub Repo</h2><p>想法比较简单，在 GitHub 上面开一个公共的 Repo，通过其单个文件下载的链接作为外链使用。</p><p>以创建的 <a href="https://github.com/yeung66/resources" target="_blank" rel="noopener">yeung66/resources</a> 仓库为例，我在 music 文件下面的音乐文件，其下载链接为 <code>https://raw.githubusercontent.com/yeung66/resources/master/music/恋爱为何物.mp3</code>，其映射关系还是很直接很简单的。当场生成放到博客测试一下，也能够正常使用，没有什么问题。</p><p>然而过了一会儿我在手机上访问时，就发现播放器出现异常，歌曲无法正常播放，在手机上直接访问了一下音乐的外链，无法访问。上网一看才发现，<strong>域名 <code>raw.githubusercontent.com</code> 被 DNS 污染了</strong>，没有梯子的话不能正常访问，而我在电脑上一直挂着梯子，而且这个网址也在我的 PAC 上面（好像还是我手动添加的），而手机非需要使用时都不会开代理工具。考虑到我的多数访客并不会挂着梯子进来，只能放弃这个方法。</p><h2 id="gitee-repo">Gitee Repo</h2><p>既然 GitHub 的资源域名被墙了，那就考虑使用国内的替代品 Gitee 码云。思路也还是一样的，来一个公共 Repo，通过文件的下载链接作为外链使用，大概映射关系为 music 文件夹下的 a.mp3 的下载链接为 <code>https://gitee.com/yeungyeah/resources/raw/master/music/a.mp3</code>。放到博客的播放器中可用，似乎没有问题。</p><p>然而今天手机打开测试又再次播放失败了，在电脑上换了电脑测试访问，发现原因居然是<strong>访问的资源大小超过 1M 时需要登录</strong>，所以使用外链播放时，如果没有登录过的话，会不断重定向到登录链接，然后就一直失败，真的小气。（我专门到 GitHub 上面试了一下，不需要登录也可）。之前我在上去创建仓库的时候，登陆过，所以测试时一起正常。</p><h2 id="github-coding-pages">GitHub / Coding Pages</h2><p>突发奇想，虽然 GitHub 中 Repo 的文件直接下载链接被 DNS 污染了，但是它提供的 GitHub Pages 是可以正常访问的，而其中的静态文件也是能够直接访问的，那干脆就直接将他们当成 Pages 发布，这样就可以直接使用了，音乐文件甚至能够直接链接打开播放（直接通过 Github Repo 的文件下载链接是可以下载但是不能在线播放的）。在 GitHub 开启了 Pages 测试一下，能访问，但速度实在感人，播一秒卡两秒。然后想到了现在博客正在托管的 Coding.net 平台（自换域名之后我将所有的解析到解到这里了，国内访问速度满分，但好像 Google AdSense 访问不到了），打开速度非常满意。</p><p>于是，我将我的资源 Repo 传到了 Coding.net 平台，开启 Pages 服务，提供资源外链使用。这两者还可以绑定域名，我就顺手绑了个二级域名，爽得直接起飞。</p><h1 id="thinking">Thinking</h1><p>自说自话一下。</p><p>其实感觉原本是个很简单的问题，但断断续续搞了差不多三四个晚上应该有，最主要的原因还是考虑得不够细致，测试得不够细致，导致总有些问题没有考虑到，疏忽了。过个一天才发现问题，才重新找原因，想解决方法。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;background&quot;&gt;Background&lt;/h1&gt;
+&lt;p&gt;在升级本博客的 hexo 和主题之前，是曾经搞过一个用 Aplayer 实现的外链播放器的，但因为当时播放过程会被在博客中的页面跳转而刷新页面，导致播放被打断而暂停，体验较差，所以在升级主题版本之后一直没有添加回来。在之后的某次逛 Github 的时候，偶然发现 PJAX 可以实现博客内页面跳转使用 AJAX 不刷新页面。于是又再次把 Aplayer 添加回来。&lt;/p&gt;
+&lt;p&gt;有了播放器，最重要的还是要有音乐，有歌曲。原本想着简单地从网上那些外链播放搜索网站，搜索抓取从各大音乐平台的外链，确实能找到，当时也能用，不过好像一般都会有有效期，过了一天就不能用了。为此，参考别人在 GitHub 开启 Repo 作为图床的想法，我也打算在 GitHub 开个 Repo 来存放图片或音频资源，提供外链。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="方法" scheme="http://scottyeung.top/categories/%E6%96%B9%E6%B3%95/"/>
+    
+    
+      <category term="工具" scheme="http://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+      <category term="博客" scheme="http://scottyeung.top/tags/%E5%8D%9A%E5%AE%A2/"/>
+    
+      <category term="GitHub" scheme="http://scottyeung.top/tags/GitHub/"/>
+    
+      <category term="静态资源" scheme="http://scottyeung.top/tags/%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90/"/>
+    
+  </entry>
   
   <entry>
     <title>vim 常用命令记录</title>
@@ -186,9 +216,9 @@
       <category term="Coding 学习" scheme="http://scottyeung.top/categories/Coding-%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="Python" scheme="http://scottyeung.top/tags/Python/"/>
-    
       <category term="notes" scheme="http://scottyeung.top/tags/notes/"/>
+    
+      <category term="Python" scheme="http://scottyeung.top/tags/Python/"/>
     
       <category term="并发编程" scheme="http://scottyeung.top/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
     
@@ -400,9 +430,9 @@
       <category term="数据库" scheme="http://scottyeung.top/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
     
-      <category term="Python" scheme="http://scottyeung.top/tags/Python/"/>
-    
       <category term="notes" scheme="http://scottyeung.top/tags/notes/"/>
+    
+      <category term="Python" scheme="http://scottyeung.top/tags/Python/"/>
     
   </entry>
   
@@ -514,41 +544,6 @@
       <category term="科研" scheme="http://scottyeung.top/tags/%E7%A7%91%E7%A0%94/"/>
     
       <category term="经验" scheme="http://scottyeung.top/tags/%E7%BB%8F%E9%AA%8C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Summary of Ultralearning</title>
-    <link href="http://scottyeung.top/2019/Summary-of-Ultralearning/"/>
-    <id>http://scottyeung.top/2019/Summary-of-Ultralearning/</id>
-    <published>2019-10-15T12:51:31.000Z</published>
-    <updated>2020-05-03T07:37:38.096Z</updated>
-    
-    <content type="html"><![CDATA[<p>本文是来自我非常欣赏的博主Scott Young的新书《Ultralearning》的读后总结，本书主要介绍了ultralearning的相关概念及方法原则。</p><h2 id="定义">定义</h2><p>什么是ultraleaning？从单词上面来讲，就是ultra + learning，可以理解为超一般的学习。书中给出的定义为：</p><blockquote><p>A <strong>strategy</strong> for acquiring skills and knowneledge that is both <strong>self-directed</strong> and <strong>intense</strong></p></blockquote><ul><li>strategy: 它是一种学习的策略（just a strategy而非必须</li><li>self-directed：自我导向性（自我安排/计划</li><li>intense：强度高的</li></ul><p>总体来说，这个更像是一种学习方法观，天赋并非必须（当然有天赋必然会促使效果更好），每个人都能做到，并且通过此能够培养良好的学习方法/习惯/态度/观念</p><a id="more"></a><h2 id="principle">Principle</h2><p>纵观博主所遇到的各个ultralearner，是什么使他们在学习上取得如此成功呢？作者通过众多例子归纳出了具有指导作用的9条Principle，这也是全书的精华所在，解释了ultralearning所关联的重要性因素。</p><h3 id="meta-learning">1 meta-learning</h3><p>从词根上来说，meta-可理解为元，meta-learning即元学习，类比于数据库中的mete-data，meta-data为描述数据的数据，meta-learning即为学习如何学习。此外，在书中的meta-learning还具有pre-learning的意思，即进行学习前进行的总体安排设计。</p><p>具体内容包括： - 如何高效地进行学习：学习能力的培养 - 分析/搜索/计划 - 这个是最为总体也是最重要的内容，通用于所有项目 - 所学知识的结构：组成/关系/规律 - 学习计划的设计/安排/执行 - 过往学习经历吸取经验</p><p>针对具体的项目，meta-learning可以通过三个步骤开启 1. why？ 仔细考虑为什么要学习这些内容？可考虑所学的目标是否符合下列因素之一 - 利益/目标。所学的内容能给自身带来利益，如学习某技能能给自身带来提升机会/工资提升；或是能帮助自己达到某个目标，如通过考试/取得学位 - 兴趣爱好 2. what？ 学习内容如何选择 - benchmarking。选择一个相近的基准作为自己的基准内容。如想进行CS相关的学习，可以找某些大学的CS学位的培养方案，选择一样的课程进行学习。这些内容可以来自网上/学校/专家/同辈 - emphasize。选择感兴趣/重要的部分进行强化，增加比重 - exclusive。相对不重要/不感兴趣的部分可以排除。 3. how？ 进行学习计划的设计，主要考虑以下因素： - 学习内容选择。这里的内容指的是学习资源 - 目标。要学到一个什么程度 - 时间安排。</p><h3 id="focus">2 Focus</h3><p>专注，作为一种非常高效的状态，无论是在学习还是工作中，都是一个非常有用的工具。本章节主要从三个方面来讲专注：</p><ol type="1"><li>如何进入专注的状态？我们需要避免拖延。拖延主要来自于对即将开始需要专注事情的困难或带来的不适的恐惧和厌恶。因此，我们可以通过从事情的easy-part入手，到进入状态后再逐渐切换到困难部分。另外，我们可用采用5分钟原则，根据5分钟原则，无论事情多么困难，在5分钟之内都不会感到想要放弃，在5分钟之后，在通过减轻程度/切换目标来减缓不适感。</li><li>如何保持专注状态？<ul><li>进入[flow状态](https://en.wikipedia.org/wiki/Flow_(psychology)（但不必强求</li><li>避免干扰。<ul><li>环境/任务/mind</li><li>接受杂念，任其发展，观其起落</li></ul></li><li>时间。长度足以进入状态，但不能过度致使疲劳而低效</li></ul></li><li>如何优化？保持正确/creative while stuck</li></ol><p>除了把专注当作一个高效率的工具以外，我们也应当将其当作一种能力来锻炼。这种能力，最好是通过在日常的使用中进行锻炼，习惯专注，尽量专注。当无法专注时，不妨思考一下所处的状况；当无法进入专注时，可以尝试始于微处，从细微的地方入手开始。</p><h3 id="directness">3 Directness</h3><p>在定义中提到，ultralearning的其中一个特点，就是self-directed，所以很自然地，directness也是一个重要的指导原则。这个原则指导我们，学习需要有明确的导向性，学习的内容最好就是直接指向所需的目标。通俗来讲，就是learn-by-doing。若所学的是一门技能，那便直接上手尝试；若所学是一门用于交流的语言，则直接与他人交谈；而若目标是通过一门考试，则练习题/真题无疑是最好的工具。</p><p>为什么需要直接练习呢？最主要的原因是知识的迁移问题。通常来讲，不同的学习内容具有不用的应用上下文场景，这导致了知识在使用的过程中难以迁移，同一个知识点，在一个场景可能适用，但换一个场景，可能就毫无用处了。这也可以说是知识的局限性。因此，我们最好就是在一开始就面向目标学习。</p><p>这个指导原则说来简单，相信很多人都知道，并且觉得诧异：难道还会有人不是直接学习所需的目标内容吗？确实有。原因有二。一是间接学习大多更为简单，举个例子，像学习外语，本身的目的是为了和他人交流，那最直接的目标不应该是直接用外语和他人交流吗？但事实上，最多人选择的学习外语方法是背单词。原因无他，相比于用外语与他人交流所产生的不适感中，更多人愿意呆在背单词的舒适区中。二则是某些内容难以直接练习，或者找到练习的机会。如同外科医生对于手术的练习，他们基本都不能够通过实际的手术进行练习（这也是不被允许的），缺乏实际的练习机会，只能通过旁观和被指点的方式积累经验。</p><p>面对以上情况，书中给出了几个方法。 1. 基于项目进行学习。拿程序员为例，以做一个程序项目为目标，学一部分，做一部分。 2. 构造沉浸式环境。语言学习/社区圈子交流 3. 模拟。 4. overkill。到达极端/超出要求。</p><h3 id="drill">4 Drill</h3><p>钻研。该原则指导我们在学习时应该有所侧重，侧重在明显影响学习速率的地方，例如技能的瓶颈区，最重要的地方，最困难的地方。当克服了这些部分，总体能有很大的提升。这个也算是一个比较显而易见的原则，我们的认知能力往往有所局限，无法兼顾所有部分，因而需要有所侧重地学习。钻研步骤可分成两步：首先需要寻找值得钻研的部分，我们可以通过分解与实验的方法找出最为重要/最为影响速率的部分；接着就是设计钻研的方案，有以下5个方法：</p><ol type="1"><li>时间片段练习。当所学习的内容能够按照时间划分成一个个片段，如某些技能（篮球的上篮动作），划分后重点练习某些片段。</li><li>认知资源偏重。如语言学习侧重在听说读写某一个方面。</li><li>复制。当只想练习某内容的其中一部分而另外部分仍需要完成时，可以复制他人的其它部分，自己只亲自动手，完成钻研部分。</li><li>放大镜。放大想重点钻研的部分的比重，增大投入的时间/精力。</li><li>前置学习。钻研部分的前置部分也好好学习。</li></ol><p>这个原则也与上一个原则——Directness对应上了，对于学习内容选择，我们先采用Directness选择了内容的总体，再进行分解，选择Drill部分，进行钻研，最后再组合起来。</p><h3 id="retrieval">5 Retrieval</h3><p>对于复习来说，相对于被动的阅读进行复习，抛开书本进行主动的回忆效果要好上很多。通过主动的回忆，我们可以对自己进行知识的测试，并且加深对所学知识的记忆和印象。大概的解释有三个：</p><ol type="1"><li>知识迁移。</li><li>反馈。</li><li>JOL(Judgement of Learning)。人们对自身学习情况难以正确地感知，判断自己学得怎么样了。</li></ol><p>至于如何练习这种主动的复习方法，书中给出以下途径： - 记忆卡片。 - 自由回忆。 - 以提问形式。 - 以挑战形式</p><p>另外，书本还给出了若干相关的实验数据，告知我们主动回忆效果的一些因素，分别是：开始时间，不需要准备好才开始，时间太晚，知识容易忘却，时间太短，不如被动方法；难度，越难的内容，效果比被动方法更好</p><h3 id="feedback">6 Feedback</h3><p>学习过程中，需要适当地接受反馈。尽管接收反馈有时会让人感到不安与恐惧，但好的反馈能够给我们提供许多信息，包括表现评价，问题所在，改进建议，这些信息能够帮助我们更好地改进下一步的学习计划。</p><p>什么是好的反馈？ 1. 能够提供有用的信息 2. 正确的信息 3. 能够被正确地接收，并能引起回应 4. 有促进作用</p><p>反馈的种类 1. 结果型反馈。只提供一个整体的结果，如成绩/评分 2. 信息型反馈。提供了问题的定位 3. 校正型反馈。提供了修改建议</p><p>如何合理接收反馈/提高反馈的质量？ 1. 忽略噪声 2. 使结果不可预测（可通过提高难度实现 3. 除了学习内容本身外，接受meta-learning的反馈（计划，日程安排，资源选择 4. 营造一个高强度或沉浸式的环境</p><h3 id="retention">7 Retention</h3><p>记忆在学习中也是一个很重要的部分，知识概念需要记忆，技能步骤也需要记忆，然而保持长久良好的记忆不是一个容易的事，原因在于每个人都无法避免的因素——遗忘。</p><p>遗忘主要有三个原因 1. 时间侵蚀记忆。时间越久，记忆越难以保存 2. 记忆间干扰。新增记忆取代/冲突/混淆了旧记忆 3. 记忆不可访问。虽然内容还记得，但找不到触发记忆的路径/因素</p><p>因此，针对遗忘的原因，可以通过一些技巧来减少遗忘 - 间距记忆。通过划分时间段和知识进行记忆，每次记忆部分，并时常进行重复。日常使用单词卡为一个典型的例子 - 步骤记忆。相对于纸面上的知识，需要实际动手的技能更难以忘却 - over-learning。学多一点，学深一点 - 记忆术。通过专门的记忆方法进行记忆，如关键词法，联想法。但具有一定局限性，如适用范围较窄，回忆较费力</p><h3 id="intuition">8 Intuition</h3><p>通过学习建立相关的直觉。所谓的直觉，可以理解为对于所遇到问题，能进行自动归纳分类，遇到新的问题时，能够自发地对问题进行分解/抓取核心/组合/联系，并且得出问题解决的范式。其中，对于概念，我们需要理解；对于问题，我们需要大量积累，并通过练习，总结，得出通用的解决模式。</p><p>帮助建立学习中的直觉方法有： 1. 增加难度。难度较大时更易于钻研。 2. 通过证明来理解概念。 3. 具体例子帮助理解与记忆。 4. 多提问。dump问题也不应该避开。</p><p>另外，我们还可以通过费曼技巧，帮助我们更好地理解/掌握。费曼技巧的核心，在于迫使自己以解释/教授的方式，进行知识的加工输出，一方面可以帮助自己更好地学习，另一方面也可检测自身的学习情况。具体的步骤为：</p><ol type="1"><li>选择一个概念/问题</li><li>对于概念，尝试以通俗的语言像一个没有基础的人讲解，并能够使其明白</li><li>对于问题，独立形成一个可行的解决方法</li></ol><h3 id="experimentation">9 Experimentation</h3><p>多做试验，ultralearning的过程是一个探索的过程，永远没有一个完全正确的方案，只有只为适合自己当前的方案，所以必须靠我们通过试验进行探索，验证哪个更好，更适合。具体试验的内容包括：资源，技巧，风格，已经水平层次。在学习的过程中，我们也需要一直保持着这种实验的心态，带着一种可成长的思维模式，而非一成不变的定式。</p><p>以下为一些在试验上面有所帮助的技巧： - copy and create。最开始可以照搬他人的学习方案，并且根据自身情况适度修改 - 对比。不同方法/资源/条件/技巧的比较 - 添加新约束 - 混合 - 极端</p><h2 id="how-to-start-a-ultralearning-project">How to Start a Ultralearning Project</h2><ol type="1"><li>Research 搜集相关信息进行meta-learning<ul><li>将要学的目标领域及其范围</li><li>将要使用的资源</li><li>他人成功学习的方法规范标准借鉴</li><li>直接练习的活动</li><li>备份的学习资源及钻研部分</li></ul></li><li>计划时间 取决于自身时间安排/所学的预期程度/空闲时间等因素<ul><li>计划投入多少时间</li><li>计划投入什么时候的时间</li></ul></li><li>执行计划 在执行计划时时常用上述的指导原则向自己提问是否符合，并进行调整/优化</li><li>检查结果 分析计划及其结果，吸取经验</li><li>维持学习结果/进一步学习 为了不至于遗弃学习成果<ul><li>定期复习</li><li>重新学习</li><li>进一步学习</li></ul></li></ol><h2 id="ultralearnner的培养">ultralearnner的培养</h2><p>本部分通过介绍波尔加三姐妹的例子来说明如何培养ultralearner。 因为暂时没有人要培养的缘故，所以没什么兴趣，遂只是简单地略读摘录了相关重点记录保存。</p><h3 id="raise">Raise</h3><ol type="1"><li>早开始。越早开始越好，儿童时大脑功能更好更适宜学习。</li><li>专注。可以有多种学习内容，但需有一个侧重点，并专注于侧重点。</li><li>寓教于玩。将学习/练习转化成游戏，增添兴趣与持久性。</li><li>正向强化。通过胜利、鼓励等方式给予正向强化。</li><li>拒绝强迫。强迫学习无用，需要引导进行学习。</li></ol><h3 id="suggestion">Suggestion</h3><ul><li>Inspiring Goal</li><li>Be Careful with competition</li><li>Make Learning a Priority</li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;本文是来自我非常欣赏的博主Scott Young的新书《Ultralearning》的读后总结，本书主要介绍了ultralearning的相关概念及方法原则。&lt;/p&gt;
-&lt;h2 id=&quot;定义&quot;&gt;定义&lt;/h2&gt;
-&lt;p&gt;什么是ultraleaning？从单词上面来讲，就是ultra + learning，可以理解为超一般的学习。书中给出的定义为：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;A &lt;strong&gt;strategy&lt;/strong&gt; for acquiring skills and knowneledge that is both &lt;strong&gt;self-directed&lt;/strong&gt; and &lt;strong&gt;intense&lt;/strong&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;strategy: 它是一种学习的策略（just a strategy而非必须&lt;/li&gt;
-&lt;li&gt;self-directed：自我导向性（自我安排/计划&lt;/li&gt;
-&lt;li&gt;intense：强度高的&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;总体来说，这个更像是一种学习方法观，天赋并非必须（当然有天赋必然会促使效果更好），每个人都能做到，并且通过此能够培养良好的学习方法/习惯/态度/观念&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="读书总结" scheme="http://scottyeung.top/categories/%E8%AF%BB%E4%B9%A6%E6%80%BB%E7%BB%93/"/>
-    
-    
-      <category term="summary" scheme="http://scottyeung.top/tags/summary/"/>
-    
-      <category term="学习" scheme="http://scottyeung.top/tags/%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
