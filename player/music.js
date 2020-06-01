@@ -40,7 +40,6 @@ const ap = new APlayer({
         url: 'http://resources.scottyeung.top/music/愁人节.mp3',
         cover: 'http://singerimg.kugou.com/uploadpic/pass/softhead/100/20200419/20200419211646129.jpg'
       },
-      ,
       {
         name: '高山低谷',
         artist: '林奕匡',
