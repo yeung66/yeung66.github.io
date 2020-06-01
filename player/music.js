@@ -27,6 +27,18 @@ const ap = new APlayer({
         artist: 'AGA 江海迦',
         url: 'http://resources.scottyeung.top/music/绵绵.mp3',
         cover: 'http://p2.music.126.net/WsN6MgeqY0sbmRZFO1BxXw==/19078725765177629.jpg'
+      },
+      {
+        name: '让我享受谈恋爱',
+        artist: '连诗雅',
+        url: 'http://resources.scottyeung.top/music/让我享受谈恋爱.mp3',
+        cover: 'http://p1.music.126.net/L7MFKvbFLu3cQ4CXitP0ow==/4431031859949173.jpg'
+      },
+      {
+        name: '愁人节（Live）',
+        artist: '谢安琪',
+        url: 'http://resources.scottyeung.top/music/愁人节.mp3',
+        cover: 'http://singerimg.kugou.com/uploadpic/pass/softhead/100/20200419/20200419211646129.jpg'
       }
     ]
 });
