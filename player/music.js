@@ -39,6 +39,13 @@ const ap = new APlayer({
         artist: '谢安琪',
         url: 'http://resources.scottyeung.top/music/愁人节.mp3',
         cover: 'http://singerimg.kugou.com/uploadpic/pass/softhead/100/20200419/20200419211646129.jpg'
+      },
+      ,
+      {
+        name: '高山低谷',
+        artist: '林奕匡',
+        url: 'http://resources.scottyeung.top/music/高山低谷.mp3',
+        cover: 'http://singerimg.kugou.com/uploadpic/pass/softhead/100/20200303/20200303093045359.jpg'
       }
     ]
 });
