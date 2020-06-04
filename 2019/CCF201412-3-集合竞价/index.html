@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
@@ -28,14 +28,14 @@
 <meta property="og:site_name" content="YeungYeah 的乱写地">
 <meta property="og:description" content="Problem 问题描述 　　某股票交易所请你编写一个程序，根据开盘前客户提交的订单来确定某特定股票的开盘价和开盘成交量。 　　该程序的输入由很多行构成，每一行为一条记录，记录可能有以下几种： 1. buy p s 表示一个购买股票的买单，每手出价为p，购买股数为s。 2. sell p s 表示一个出售股票的卖单，每手出价为p，出售股数为s。 3. cancel i表示撤销第i行的记录。 如">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://scottyeung.top/2019/CCF201412-3-%E9%9B%86%E5%90%88%E7%AB%9E%E4%BB%B7/CCF201412-3-%E9%9B%86%E5%90%88%E7%AB%9E%E4%BB%B7/1551842146877.png">
+<meta property="og:image" content="http://scottyeung.top/2019/CCF201412-3-%E9%9B%86%E5%90%88%E7%AB%9E%E4%BB%B7/1551842146877.png">
 <meta property="article:published_time" content="2019-03-06T02:13:48.000Z">
-<meta property="article:modified_time" content="2019-11-12T14:48:29.974Z">
+<meta property="article:modified_time" content="2020-06-04T09:36:58.499Z">
 <meta property="article:author" content="Scott Yeung">
-<meta property="article:tag" content="CCF">
 <meta property="article:tag" content="Python">
+<meta property="article:tag" content="CCF">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://scottyeung.top/2019/CCF201412-3-%E9%9B%86%E5%90%88%E7%AB%9E%E4%BB%B7/CCF201412-3-%E9%9B%86%E5%90%88%E7%AB%9E%E4%BB%B7/1551842146877.png">
+<meta name="twitter:image" content="http://scottyeung.top/2019/CCF201412-3-%E9%9B%86%E5%90%88%E7%AB%9E%E4%BB%B7/1551842146877.png">
 
 <link rel="canonical" href="http://scottyeung.top/2019/CCF201412-3-%E9%9B%86%E5%90%88%E7%AB%9E%E4%BB%B7/">
 
@@ -217,7 +217,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-12 22:48:29" itemprop="dateModified" datetime="2019-11-12T22:48:29+08:00">2019-11-12</time>
+                <time title="修改时间：2020-06-04 17:36:58" itemprop="dateModified" datetime="2020-06-04T17:36:58+08:00">2020-06-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -314,7 +314,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">buy = []</span><br><span class="line">sell = []</span><br><span class="line">records = []</span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        inp = input()</span><br><span class="line">        records.append(inp)</span><br><span class="line"><span class="keyword">except</span> EOFError:</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">i = len(records)<span class="number">-1</span></span><br><span class="line"><span class="keyword">while</span> i&gt;=<span class="number">0</span>:</span><br><span class="line">    r = records[i]</span><br><span class="line">    <span class="keyword">if</span> r <span class="keyword">and</span> r.startswith(<span class="string">'cancel'</span>):</span><br><span class="line">        row = int(r.split()[<span class="number">1</span>])<span class="number">-1</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> records[row].startswith(<span class="string">'cancel'</span>):</span><br><span class="line">            records[row]=<span class="literal">None</span></span><br><span class="line">        records[i]=<span class="literal">None</span></span><br><span class="line">    i-=<span class="number">1</span></span><br><span class="line"></span><br><span class="line">records = filter(<span class="literal">None</span>,records)</span><br><span class="line"><span class="keyword">for</span> r <span class="keyword">in</span> records:</span><br><span class="line">    r = r.split()</span><br><span class="line">    price,count = float(r[<span class="number">1</span>]),int(r[<span class="number">2</span>])</span><br><span class="line">    <span class="keyword">if</span> r[<span class="number">0</span>]==<span class="string">'buy'</span>:</span><br><span class="line">        buy.append((price,count))</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        sell.append((price,count))</span><br><span class="line"></span><br><span class="line">all_prices = [i[<span class="number">0</span>] <span class="keyword">for</span> i <span class="keyword">in</span> sell]</span><br><span class="line">all_prices.extend([i[<span class="number">0</span>] <span class="keyword">for</span> i <span class="keyword">in</span> buy])</span><br><span class="line">all_prices = set(all_prices)</span><br><span class="line">ans_price,ans_count = <span class="number">0</span>,<span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> price <span class="keyword">in</span> all_prices:</span><br><span class="line">    buy_count,sell_count=<span class="number">0</span>,<span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> p,c <span class="keyword">in</span> buy:</span><br><span class="line">        <span class="keyword">if</span> p&gt;=price:buy_count+=c</span><br><span class="line">    <span class="keyword">for</span> p,c <span class="keyword">in</span> sell:</span><br><span class="line">        <span class="keyword">if</span> p&lt;=price:sell_count+=c</span><br><span class="line">    count = min(buy_count,sell_count)</span><br><span class="line">    <span class="keyword">if</span> count&gt;ans_count:ans_price,ans_count=price,count</span><br><span class="line">    <span class="keyword">elif</span> count==ans_count:ans_price=max(ans_price,price)</span><br><span class="line"></span><br><span class="line">print(<span class="string">'%.2f'</span>%(ans_price),ans_count)</span><br></pre></td></tr></table></figure>
 <p>提交结果如下图（中间的C++实现是测试网上其它人的代码</p>
 <figure>
-<img src="/2019/CCF201412-3-%E9%9B%86%E5%90%88%E7%AB%9E%E4%BB%B7/CCF201412-3-集合竞价/1551842146877.png" alt="1551842146877"><figcaption>1551842146877</figcaption>
+<img src="/2019/CCF201412-3-%E9%9B%86%E5%90%88%E7%AB%9E%E4%BB%B7/1551842146877.png" alt="1551842146877"><figcaption>1551842146877</figcaption>
 </figure>
 
     </div>
@@ -363,8 +363,8 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/CCF/" rel="tag"><i class="fa fa-tag"></i> CCF</a>
               <a href="/tags/Python/" rel="tag"><i class="fa fa-tag"></i> Python</a>
+              <a href="/tags/CCF/" rel="tag"><i class="fa fa-tag"></i> CCF</a>
           </div>
 
         
@@ -566,8 +566,8 @@
   </div>
 
   
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 
@@ -730,7 +730,7 @@ window.addEventListener('pjax:success', () => {
 
 <script>
 NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
-  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
     var GUEST = ['nick', 'mail', 'link'];
     var guest = 'nick,mail,link';
     guest = guest.split(',').filter(item => {

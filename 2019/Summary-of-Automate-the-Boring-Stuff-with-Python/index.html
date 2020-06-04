@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
@@ -32,8 +32,8 @@
 <meta property="article:modified_time" content="2020-05-03T07:38:10.217Z">
 <meta property="article:author" content="Scott Yeung">
 <meta property="article:tag" content="Python">
-<meta property="article:tag" content="summary">
 <meta property="article:tag" content="自动化">
+<meta property="article:tag" content="summary">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://scottyeung.top/2019/Summary-of-Automate-the-Boring-Stuff-with-Python/">
@@ -490,8 +490,8 @@
           
           <div class="post-tags">
               <a href="/tags/Python/" rel="tag"><i class="fa fa-tag"></i> Python</a>
-              <a href="/tags/summary/" rel="tag"><i class="fa fa-tag"></i> summary</a>
               <a href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/" rel="tag"><i class="fa fa-tag"></i> 自动化</a>
+              <a href="/tags/summary/" rel="tag"><i class="fa fa-tag"></i> summary</a>
           </div>
 
         
@@ -693,8 +693,8 @@
   </div>
 
   
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 
@@ -857,7 +857,7 @@ window.addEventListener('pjax:success', () => {
 
 <script>
 NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
-  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
     var GUEST = ['nick', 'mail', 'link'];
     var guest = 'nick,mail,link';
     guest = guest.split(',').filter(item => {
