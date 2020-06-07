@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/pace-js@1/themes/blue/pace-theme-flash.css">
   <script src="//cdn.jsdelivr.net/npm/pace-js@1/pace.min.js"></script>
 
@@ -23,17 +23,17 @@
   </script>
 
 
-  <meta name="description" content="Problem 问题描述 　　给定一个公司的网络，由n台交换机和m台终端电脑组成，交换机与交换机、交换机与电脑之间使用网络连接。交换机按层级设置，编号为1的交换机为根交换机，层级为1。其他的交换机都连接到一台比自己上一层的交换机上，其层级为对应交换机的层级加1。所有的终端电脑都直接连接到交换机上。 　　当信息在电脑、交换机之间传递时，每一步只能通过自己传递到自己所连接的另一台电脑或交换机。请问">
+  <meta name="description" content="Problem 问题描述 　　给定一个公司的网络，由 n 台交换机和 m 台终端电脑组成，交换机与交换机、交换机与电脑之间使用网络连接。交换机按层级设置，编号为 1 的交换机为根交换机，层级为 1。其他的交换机都连接到一台比自己上一层的交换机上，其层级为对应交换机的层级加 1。所有的终端电脑都直接连接到交换机上。 　　当信息在电脑、交换机之间传递时，每一步只能通过自己传递到自己所连接的另一台">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CCF201503-4 网络延时">
 <meta property="og:url" content="http://scottyeung.top/2019/CCF201503-4-%E7%BD%91%E7%BB%9C%E5%BB%B6%E6%97%B6/index.html">
 <meta property="og:site_name" content="YeungYeah 的乱写地">
-<meta property="og:description" content="Problem 问题描述 　　给定一个公司的网络，由n台交换机和m台终端电脑组成，交换机与交换机、交换机与电脑之间使用网络连接。交换机按层级设置，编号为1的交换机为根交换机，层级为1。其他的交换机都连接到一台比自己上一层的交换机上，其层级为对应交换机的层级加1。所有的终端电脑都直接连接到交换机上。 　　当信息在电脑、交换机之间传递时，每一步只能通过自己传递到自己所连接的另一台电脑或交换机。请问">
+<meta property="og:description" content="Problem 问题描述 　　给定一个公司的网络，由 n 台交换机和 m 台终端电脑组成，交换机与交换机、交换机与电脑之间使用网络连接。交换机按层级设置，编号为 1 的交换机为根交换机，层级为 1。其他的交换机都连接到一台比自己上一层的交换机上，其层级为对应交换机的层级加 1。所有的终端电脑都直接连接到交换机上。 　　当信息在电脑、交换机之间传递时，每一步只能通过自己传递到自己所连接的另一台">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://scottyeung.top/2019/CCF201503-4-%E7%BD%91%E7%BB%9C%E5%BB%B6%E6%97%B6/network1.png">
 <meta property="og:image" content="http://scottyeung.top/2019/CCF201503-4-%E7%BD%91%E7%BB%9C%E5%BB%B6%E6%97%B6/network2.png">
 <meta property="article:published_time" content="2019-03-14T10:35:19.000Z">
-<meta property="article:modified_time" content="2020-06-04T09:57:20.961Z">
+<meta property="article:modified_time" content="2020-06-07T16:16:02.465Z">
 <meta property="article:author" content="Scott Yeung">
 <meta property="article:tag" content="CCF">
 <meta property="article:tag" content="Python">
@@ -220,7 +220,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-06-04 17:57:20" itemprop="dateModified" datetime="2020-06-04T17:57:20+08:00">2020-06-04</time>
+                <time title="修改时间：2020-06-08 00:16:02" itemprop="dateModified" datetime="2020-06-08T00:16:02+08:00">2020-06-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -280,12 +280,15 @@
       
         <h1 id="problem">Problem</h1>
 <h2 id="问题描述">问题描述</h2>
-<p>　　给定一个公司的网络，由<em>n</em>台交换机和<em>m</em>台终端电脑组成，交换机与交换机、交换机与电脑之间使用网络连接。交换机按层级设置，编号为1的交换机为根交换机，层级为1。其他的交换机都连接到一台比自己上一层的交换机上，其层级为对应交换机的层级加1。所有的终端电脑都直接连接到交换机上。 　　当信息在电脑、交换机之间传递时，每一步只能通过自己传递到自己所连接的另一台电脑或交换机。请问，电脑与电脑之间传递消息、或者电脑与交换机之间传递消息、或者交换机与交换机之间传递消息最多需要多少步。</p>
+<p>　　给定一个公司的网络，由 <em>n</em> 台交换机和 <em>m</em> 台终端电脑组成，交换机与交换机、交换机与电脑之间使用网络连接。交换机按层级设置，编号为 1 的交换机为根交换机，层级为 1。其他的交换机都连接到一台比自己上一层的交换机上，其层级为对应交换机的层级加 1。所有的终端电脑都直接连接到交换机上。<br>
+　　当信息在电脑、交换机之间传递时，每一步只能通过自己传递到自己所连接的另一台电脑或交换机。请问，电脑与电脑之间传递消息、或者电脑与交换机之间传递消息、或者交换机与交换机之间传递消息最多需要多少步。</p>
 <a id="more"></a>
 <h2 id="输入格式">输入格式</h2>
-<p>　　输入的第一行包含两个整数<em>n</em>, <em>m</em>，分别表示交换机的台数和终端电脑的台数。 　　第二行包含<em>n</em> - 1个整数，分别表示第2、3、……、<em>n</em>台交换机所连接的比自己上一层的交换机的编号。第<em>i</em>台交换机所连接的上一层的交换机编号一定比自己的编号小。 　　第三行包含<em>m</em>个整数，分别表示第1、2、……、<em>m</em>台终端电脑所连接的交换机的编号。</p>
+<p>　　输入的第一行包含两个整数 <em>n</em>, <em>m</em>，分别表示交换机的台数和终端电脑的台数。<br>
+　　第二行包含 <em>n</em> - 1 个整数，分别表示第2、3、……、 <em>n</em> 台交换机所连接的比自己上一层的交换机的编号。第 <em>i</em> 台交换机所连接的上一层的交换机编号一定比自己的编号小。<br>
+　　第三行包含 <em>m</em> 个整数，分别表示第 1、2、……、<em>m</em> 台终端电脑所连接的交换机的编号。</p>
 <h2 id="输出格式">输出格式</h2>
-<p>　　输出一个整数，表示消息传递最多需要的步数。</p>
+<p>输出一个整数，表示消息传递最多需要的步数。</p>
 <h2 id="样例输入">样例输入</h2>
 <p>4 2 1 1 3 2 1</p>
 <h2 id="样例输出">样例输出</h2>
@@ -293,7 +296,9 @@
 <h2 id="样例说明">样例说明</h2>
 <p>　　样例的网络连接模式如下，其中圆圈表示交换机，方框表示电脑： <img src="/2019/CCF201503-4-%E7%BD%91%E7%BB%9C%E5%BB%B6%E6%97%B6/network1.png" alt="img"> 　　其中电脑1与交换机4之间的消息传递花费的时间最长，为4个单位时间。</p>
 <h2 id="样例输入-1">样例输入</h2>
-<p>4 4 1 2 2 3 4 4 4</p>
+<p>4 4<br>
+1 2 2<br>
+3 4 4 4</p>
 <h2 id="样例输出-1">样例输出</h2>
 <p>4</p>
 <h2 id="样例说明-1">样例说明</h2>
@@ -304,11 +309,11 @@
 前70%的评测用例满足：<em>n</em> ≤ 100, <em>m</em> ≤ 100。<br>
 所有评测用例都满足：1 ≤ <em>n</em> ≤ 10000，1 ≤ <em>m</em> ≤ 10000。</p>
 <h1 id="solution">Solution</h1>
-<p>问题的本质比较简单，就是求树中任意两个叶子节点的最大路径。求单一个节点的最大路径，可以使用DFS或者BFS暴搜，于是马上想到了一个版本，对所有的叶子节点DFS，分别求出其最大路径，然后取其中的最大值。</p>
+<p>问题的本质比较简单，就是求树中任意两个叶子节点的最大路径。求单一个节点的最大路径，可以使用 DFS 或者 BFS 暴搜，于是马上想到了一个版本，对所有的叶子节点 DFS，分别求出其最大路径，然后取其中的最大值。</p>
 <h2 id="version-1">Version 1</h2>
-<p>明确了直接暴力DFS的方法后，接下来的任务就是读取数据创建数据结构。看到题面给出的图示，很明显可以看到这里描述的是一个树结构，然后想当然地就建立了树节点，构建树结构。读取数据，建立相应的树节点，并将其添加到相应的父节点下。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.children=[]</span><br><span class="line">        <span class="comment">#self.level = 0 </span></span><br><span class="line">        self.no = <span class="number">0</span></span><br><span class="line">        self.type = <span class="number">0</span> <span class="comment">#是计算机还是交换机</span></span><br><span class="line">        self.parent = <span class="literal">None</span></span><br></pre></td></tr></table></figure>
-<p>核心的DFS思路为对于当前节点，如果访问过直接退出，否则判断其是否叶子节点，是则结算路径长度，若大于最大路径，则更新。不是叶子节点，则往下递归搜索其子节点。搜完后再往上搜父节点。代码如下：</p>
+<p>明确了直接暴力 DFS 的方法后，接下来的任务就是读取数据创建数据结构。看到题面给出的图示，很明显可以看到这里描述的是一个树结构，然后想当然地就建立了树节点，构建树结构。读取数据，建立相应的树节点，并将其添加到相应的父节点下。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.children=[]</span><br><span class="line">        self.no = <span class="number">0</span></span><br><span class="line">        self.type = <span class="number">0</span> <span class="comment">#是计算机还是交换机</span></span><br><span class="line">        self.parent = <span class="literal">None</span></span><br></pre></td></tr></table></figure>
+<p>核心的 DFS 思路为对于当前节点，如果访问过直接退出，否则判断其是否叶子节点，是则结算路径长度，若大于最大路径，则更新。不是叶子节点，则往下递归搜索其子节点。搜完后再往上搜父节点。代码如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dfs</span><span class="params">(node,count,visited)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> visited[node]:<span class="keyword">return</span></span><br><span class="line">    visited[node]=<span class="literal">True</span></span><br><span class="line">    <span class="keyword">if</span> isLeaf(node):</span><br><span class="line">        <span class="keyword">if</span> count&gt;ans:ans=count</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">for</span> c <span class="keyword">in</span> node.children:</span><br><span class="line">            dfs(c,count+<span class="number">1</span>,visited)</span><br><span class="line">        <span class="keyword">if</span> node.parent:dfs(node.parent,count+<span class="number">1</span>,visited)</span><br></pre></td></tr></table></figure>
 <p>接下来则主要根据读取的数据确定哪些是叶子节点，然后从叶子节点开始dfs即可，最终提交得分40分，显示运行错误。个人猜测可能是爆了递归空间（然而规模还在40个点内，存疑）。</p>
 <h2 id="version-2">Version 2</h2>
