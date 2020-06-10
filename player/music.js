@@ -45,6 +45,24 @@ const ap = new APlayer({
         artist: '林奕匡',
         url: 'http://resources.scottyeung.top/music/高山低谷.mp3',
         cover: 'http://singerimg.kugou.com/uploadpic/pass/softhead/100/20200303/20200303093045359.jpg'
+      },
+      {
+        name: '天黑黑',
+        artist: '孙燕姿',
+        url: 'http://resources.scottyeung.top/music/天黑黑.mp3',
+        cover: 'http://p2.music.126.net/p_5BNWuwtBJ_Fl5gClx5Pg==/101155069756398.jpg'
+      },
+      {
+        name: '天黑黑',
+        artist: '孙燕姿',
+        url: 'http://resources.scottyeung.top/music/天黑黑.mp3',
+        cover: 'http://p2.music.126.net/p_5BNWuwtBJ_Fl5gClx5Pg==/101155069756398.jpg'
+      },
+      {
+        name: '逆光',
+        artist: '孙燕姿',
+        url: 'http://resources.scottyeung.top/music/逆光.mp3',
+        cover: 'http://p2.music.126.net/PehnaQ-BaAXeQg1d5s7leA==/6635552673699715.jpg'
       }
     ]
 });
