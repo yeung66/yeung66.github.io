@@ -53,16 +53,28 @@ const ap = new APlayer({
         cover: 'http://p2.music.126.net/p_5BNWuwtBJ_Fl5gClx5Pg==/101155069756398.jpg'
       },
       {
-        name: '天黑黑',
-        artist: '孙燕姿',
-        url: 'http://resources.scottyeung.top/music/天黑黑.mp3',
-        cover: 'http://p2.music.126.net/p_5BNWuwtBJ_Fl5gClx5Pg==/101155069756398.jpg'
-      },
-      {
         name: '逆光',
         artist: '孙燕姿',
         url: 'http://resources.scottyeung.top/music/逆光.mp3',
         cover: 'http://p2.music.126.net/PehnaQ-BaAXeQg1d5s7leA==/6635552673699715.jpg'
+      },
+      {
+        name: '眠眠',
+        artist: '农夫',
+        url: 'http://resources.scottyeung.top/music/眠眠.mp3',
+        cover: 'http://p2.music.126.net/hozpR0eQyYYFamcg5Byatg==/5716360952882127.jpg'
+      },
+      {
+        name: '不吐不快',
+        artist: '张敬轩',
+        url: 'http://resources.scottyeung.top/music/不吐不快.m4a',
+        cover: 'http://p2.music.126.net/MbAMGidLob2YUEsw732PXw==/18815942488049510.jpg'
+      },
+      {
+        name: '和每天讲再见',
+        artist: '李幸倪',
+        url: 'http://resources.scottyeung.top/music/和每天讲再见.m4a',
+        cover: 'http://p2.music.126.net/owrXi0vV2HoAv_wqS0IBNw==/18856624416421399.jpg'
       }
     ]
 });
