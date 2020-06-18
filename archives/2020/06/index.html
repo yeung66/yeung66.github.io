@@ -23,23 +23,25 @@
   </script>
 
 
-  <meta name="description" content="开始学习想学很久（或者说是说了很久要学的）的 vim 文本编辑器。虽然说接触了很久，好像从大一开始接触 Linux 系统就不得不与其打交道，但是对于其了解程度一直都处在 &quot;存活期&quot;。所以终于想要进一步学习，进入感觉良好期，甚至是更快更好更强的阶段。于是记录一下一些有用的命令，顺便练一下手，没错本篇博客就是用 vim 写的（完全就是瞎折腾，还发现了不少我觉得是 bug 的问题）。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="vim 常用命令记录">
-<meta property="og:url" content="http://scottyeung.top/2020/vim-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%AE%B0%E5%BD%95/index.html">
+  <meta name="description" content="道亦有道  玄之又玄">
+<meta property="og:type" content="website">
+<meta property="og:title" content="YeungYeah 的乱写地">
+<meta property="og:url" content="http://scottyeung.top/archives/2020/06/index.html">
 <meta property="og:site_name" content="YeungYeah 的乱写地">
-<meta property="og:description" content="开始学习想学很久（或者说是说了很久要学的）的 vim 文本编辑器。虽然说接触了很久，好像从大一开始接触 Linux 系统就不得不与其打交道，但是对于其了解程度一直都处在 &quot;存活期&quot;。所以终于想要进一步学习，进入感觉良好期，甚至是更快更好更强的阶段。于是记录一下一些有用的命令，顺便练一下手，没错本篇博客就是用 vim 写的（完全就是瞎折腾，还发现了不少我觉得是 bug 的问题）。">
+<meta property="og:description" content="道亦有道  玄之又玄">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-05-06T15:26:53.000Z">
-<meta property="article:modified_time" content="2020-05-28T04:04:10.932Z">
 <meta property="article:author" content="YeungYeah">
-<meta property="article:tag" content="notes">
-<meta property="article:tag" content="shell">
-<meta property="article:tag" content="vim">
-<meta property="article:tag" content="工具">
+<meta property="article:tag" content="博客">
+<meta property="article:tag" content="随笔">
+<meta property="article:tag" content="编程">
+<meta property="article:tag" content="WEB">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="后台">
+<meta property="article:tag" content="全栈">
+<meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://scottyeung.top/2020/vim-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%AE%B0%E5%BD%95/">
+<link rel="canonical" href="http://scottyeung.top/archives/2020/06/">
 
 
 <script id="page-configurations">
@@ -47,11 +49,11 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: true
+    isPost: false
   };
 </script>
 <script data-ad-client="ca-pub-7766364950991401" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <title>vim 常用命令记录 | YeungYeah 的乱写地</title>
+  <title>归档 | YeungYeah 的乱写地</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151343043-1"></script>
     <script pjax>
@@ -184,254 +186,54 @@
           <div class="content">
             
 
-  <div class="posts-expand">
-      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://scottyeung.top/2020/vim-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%AE%B0%E5%BD%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/self.jpg">
-      <meta itemprop="name" content="YeungYeah">
-      <meta itemprop="description" content="道亦有道  玄之又玄">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="YeungYeah 的乱写地">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          vim 常用命令记录
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-05-06 23:26:53" itemprop="dateCreated datePublished" datetime="2020-05-06T23:26:53+08:00">2020-05-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-28 12:04:10" itemprop="dateModified" datetime="2020-05-28T12:04:10+08:00">2020-05-28</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%94%9F%E4%BA%A7%E5%8A%9B/" itemprop="url" rel="index"><span itemprop="name">生产力</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2020/vim-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%AE%B0%E5%BD%95/" class="post-meta-item leancloud_visitors" data-flag-title="vim 常用命令记录" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
   
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/vim-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%AE%B0%E5%BD%95/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/vim-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%AE%B0%E5%BD%95/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.2k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-        <p>开始学习想学很久（或者说是说了很久要学的）的 vim 文本编辑器。虽然说接触了很久，好像从大一开始接触 Linux 系统就不得不与其打交道，但是对于其了解程度一直都处在 &quot;存活期&quot;。所以终于想要进一步学习，进入感觉良好期，甚至是更快更好更强的阶段。于是记录一下一些有用的命令，顺便练一下手，没错本篇博客就是用 vim 写的（完全就是瞎折腾，还发现了不少我觉得是 bug 的问题）。</p>
-<a id="more"></a>
-<h2 id="学习阶段">学习阶段</h2>
-<h3 id="能用">能用</h3>
-<p>所谓的存活期，就是能用，知道怎么编辑，怎么保存。（<del>好像这种地步就已经领先一大批人了，当然我也停滞在这里很久了</del>) 基本上我们只要知道，怎样编辑，怎样保存，就可以用它来作为能用的文本编辑器了。包括下面的内容</p>
-<ul>
-<li>模式
-<ul>
-<li>Normal 模式：用于执行命令或者跳转。文件需要在该模式进行保存。</li>
-<li>Insert 模式：进行文本输入。按 i 进入，按 Esc 退出到 Normal 模式。</li>
-</ul></li>
-<li>命令
-<ul>
-<li><code>i</code>: 在 Normal 模式下进行 Insert 模式</li>
-<li><code>x</code>：在 Normal 模式删除光标所在字符</li>
-<li><code>:wq</code>: 保存退出</li>
-<li><code>dd</code>: 删除当前行，并将内容保存到剪贴板</li>
-<li><code>p</code>：将剪贴板内容粘贴出来</li>
-<li><code>hjkl</code>：在 Normal 模式下左下上右d移动光标（也可以使用方向键）</li>
-</ul></li>
-</ul>
-<h3 id="好用">好用</h3>
-<p>能用之后就可以通过学习一下好用且常用的快捷键来提高使用快感和效率。</p>
-<ul>
-<li>插入模式
-<ul>
-<li><code>a</code> : 光标后插入字符</li>
-<li><code>o</code> ：光标下一行插入空行</li>
-<li><code>O</code> ：光标上一行插入空行</li>
-<li><code>cw</code> ：光标后至行末的字符被替换成空白</li>
-</ul></li>
-<li>光标跳转
-<ul>
-<li><code>0</code> ：行首</li>
-<li><code>^</code> ：行首第一个非空字符</li>
-<li><code>$</code> ：行末</li>
-<li><code>g_</code>：行末第一个非空字符</li>
-<li><code>/pattern</code> ：搜索 pattern，支持正则表达式，n 可以到下一个</li>
-<li><code>nG</code> ：跳转到第 n 行</li>
-<li><code>G</code> ：跳转到最后一行</li>
-</ul></li>
-<li><code>yy</code> ：复制当前行内容</li>
-<li><code>u</code> ：撤回操作</li>
-<li><code>ctrl + b / ctrl + f</code>: 上一页/下一页</li>
-<li>复制粘贴多行
-<ul>
-<li>将光标移动到要复制的文本开始的地方，按 v 进入可视模式</li>
-<li>将光标移动到要复制的文本的结束的地方，按y复制。 此时vim会自动将光标定位到选中文本的开始的地方，并退出可视模式。</li>
-<li>移动光标到文本结束的地方，按 p 粘贴。</li>
-</ul></li>
-</ul>
-<p>暂时先稳固在这一个阶段，基本都够熟悉很久了。</p>
-<h2 id="配置">配置</h2>
-<p>在 Windows 上面的配置文件位于 $HOME_vimrc</p>
-<ul>
-<li>设置行号： <code>set number</code></li>
-<li>vim-plug：vim 的插件管理系统</li>
-</ul>
-<h2 id="issues-on-powershell">Issues on Powershell</h2>
-<p>在 Powershell 里面使用 vim 总是会有一些奇奇怪怪的问题。</p>
-<h3 id="编辑">编辑</h3>
-<ul>
-<li>退格键（Backspace）和删除键（Delete）偶尔失灵。常见于删除换行符的时候，尤其是删除空行。空行还可以使用命令 <code>dd</code> 来删除当前行。但是如果是删除之间两行的换行符使两行合并成一行时，就很尴尬。找到的解决方法是在配置文件中添加下面的退格设置，暂时问题不再出现。 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set nocp</span><br><span class="line">set backspace&#x3D;2</span><br></pre></td></tr></table></figure></li>
-<li>在中文输入的时候，键盘上的某些字符输入无效，需要切成英文输出才能输入。如符号`，中文的引号和双引号。暂时还不知道怎么解决，使用英文符号凑合一下 <span class="github-emoji" data-alias="joy" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f602.png?v8">😂</span></li>
-<li>中文输入的时候莫名会多打一些字母出来。</li>
-</ul>
-<h3 id="git-的提交问题">Git 的提交问题</h3>
-<p>因为是 Windows 系统，我使用的是 Git on Bash, 它是内置了一个 MINGW 的类 Unix 终端，里面也自带了 vim。当我们设置 Git 的提交编辑器为 vim 时，它会默认打开内部自带的 vim，而不是在 Windows 系统安装的 vim。本来这也没什么，但是它似乎是还扫描到了我在 Windows 系统上面的 vim 的配置文件，这就出问题了。我在 Windows 上面的 vim 安装了 vim-plug 插件管理，安装方式是直接下载配置脚本到目录下的 autoload 目录中，而 Git Bash 自带的 vim 没有这个文件，自然无法识别配置文件中的插件配置项，导致每次调用都会出错。大概的提示就是说载入配置文件的时候在插件配置那里出错了。</p>
-<p>问题其实可以转化为：如何将 Git Bash 里面使用的 vim 换成本地 Windows 系统上面的 vim。搜索看了很多网页，看到的方法基本都不可行，包括：</p>
-<ul>
-<li>设置 alias 让 vim 指向 Windows 系统的 vim <code>alias vim &quot;/c/Program\ Files \(x86\)/vim/vim82/vim.exe&quot;</code> （这里路径的空格和括号都需要转义）。这样在 Git Bash 命令行调用 vim 确实调用到了 Win 上面的 vim，但 git commit 还是调用回自身的 vim</li>
-<li>设置 git config 里面的编辑器选项。默认使用 vim 的话编辑器设置是直接设成了 vim，但有人说可以设成一个路径，指向想要指向的 vim 程序。尝试后连 vim 都打不开了，添加一些选项也无果。</li>
-<li>环境变量中设置 EDITOR 变量。</li>
-</ul>
-<p>最终我选择的方法是移除了 Git Bash 里面的 vim 程序（其所在路径为 <code>/usr/bin/vim.exe</code>），然后添加一个软连接 <code>ln -s '/path/to/your/vim' /usr/bin/vim</code>。因为在 Git Bash 里面调用的 vim 实际上是在调用 <code>/usr/bin/vim</code> ，而这个路径时间上映射到了 Git 安装路径中的 <code>/usr/bin/vim.exe</code> 。我通过移除原有的 vim 程序，建立新的软链接调用目标的 vim 程序，问题解决。在 Git Bash 中调用 vim 和在 git commit 开启编辑器都能成功开启 Windows 的 vim 程序而没有出错。但是有一个小问题，就是原生提供的 Git Bash 开启不了 vim，提示不是 Cygwin 能运行的版本，不过我现在都是在 Windows Terminal 上面使用，而 Windows Terminal 上面使用没有问题。</p>
-
-    </div>
-
-    
-    
-    
-        <div class="reward-container">
-  <div>佛系求打赏</div>
-  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
-    打赏
-  </button>
-  <div id="qr" style="display: none;">
-      
-      <div style="display: inline-block;">
-        <img src="/images/weixin.png" alt="YeungYeah 微信支付">
-        <p>微信支付</p>
-      </div>
-      
-      <div style="display: inline-block;">
-        <img src="/images/zfb.jpg" alt="YeungYeah 支付宝">
-        <p>支付宝</p>
+  <div class="post-block">
+    <div class="posts-collapse">
+      <div class="collection-title">
+        
+        <span class="collection-header">还行! 目前共计 46 篇日志。 继续努力。</span>
       </div>
 
-  </div>
-</div>
-
-        
-
-<div>
-<ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>本文作者： </strong>YeungYeah
-  </li>
-  <li class="post-copyright-link">
-    <strong>本文链接：</strong>
-    <a href="http://scottyeung.top/2020/vim-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%AE%B0%E5%BD%95/" title="vim 常用命令记录">http://scottyeung.top/2020/vim-常用命令记录/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
-  </li>
-</ul>
-</div>
-
-
-      <footer class="post-footer">
-          
-          <div class="post-tags">
-              <a href="/tags/notes/" rel="tag"><i class="fa fa-tag"></i> notes</a>
-              <a href="/tags/shell/" rel="tag"><i class="fa fa-tag"></i> shell</a>
-              <a href="/tags/vim/" rel="tag"><i class="fa fa-tag"></i> vim</a>
-              <a href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag"><i class="fa fa-tag"></i> 工具</a>
-          </div>
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2020/WSL%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" rel="prev" title="WSL环境安装配置">
-      <i class="fa fa-chevron-left"></i> WSL环境安装配置
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/%E7%94%A8%E4%BA%8E%E5%A4%96%E9%93%BE%E7%9A%84%E8%B5%84%E6%BA%90%E5%BA%93%E6%9E%84%E5%BB%BA/" rel="next" title="用于外链的资源库构建">
-      用于外链的资源库构建 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      
+    <div class="collection-year">
+      <h2 class="collection-header">2020</h2>
     </div>
-      </footer>
-    
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <div class="post-meta">
+        <time itemprop="dateCreated"
+              datetime="2020-06-18T16:11:46+08:00"
+              content="2020-06-18">
+          06-18
+        </time>
+      </div>
+
+      <h3 class="post-title">
+          <a class="post-title-link" href="/2020/%E4%B8%8D%E5%90%8C%E7%B3%BB%E7%BB%9F%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84%E6%8D%A2%E8%A1%8C%E7%AC%A6/" itemprop="url">
+            <span itemprop="name">不同系统环境下的换行符</span>
+          </a>
+      </h3>
+
+    </header>
   </article>
+
+
+    </div>
+  </div>
   
   
   
 
-  </div>
+  
+
 
 
           </div>
           
-    <div class="comments" id="valine-comments"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -478,7 +280,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#学习阶段"><span class="nav-number">1.</span> <span class="nav-text">学习阶段</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#能用"><span class="nav-number">1.1.</span> <span class="nav-text">能用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#好用"><span class="nav-number">1.2.</span> <span class="nav-text">好用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置"><span class="nav-number">2.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#issues-on-powershell"><span class="nav-number">3.</span> <span class="nav-text">Issues on Powershell</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#编辑"><span class="nav-number">3.1.</span> <span class="nav-text">编辑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-的提交问题"><span class="nav-number">3.2.</span> <span class="nav-text">Git 的提交问题</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

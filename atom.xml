@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://scottyeung.top/"/>
-  <updated>2020-05-30T15:45:28.071Z</updated>
+  <updated>2020-06-18T09:30:07.754Z</updated>
   <id>http://scottyeung.top/</id>
   
   <author>
@@ -17,17 +17,43 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>不同系统环境下的换行符</title>
+    <link href="http://scottyeung.top/2020/%E4%B8%8D%E5%90%8C%E7%B3%BB%E7%BB%9F%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84%E6%8D%A2%E8%A1%8C%E7%AC%A6/"/>
+    <id>http://scottyeung.top/2020/不同系统环境下的换行符/</id>
+    <published>2020-06-18T08:11:46.000Z</published>
+    <updated>2020-06-18T09:30:07.754Z</updated>
+    
+    <content type="html"><![CDATA[<p>这两天连续遇到了两个因为在不同操作系统中换行符不同所带来的问题，导致花费了一定的时间和精力。虽然之前就一直知道不同操作系统使用的换行符不一样，但是当实际遇上这些差异带来的问题时，才会发现学习的必要性。</p><a id="more"></a><h2 id="换行符">换行符</h2><p>一般会使用转义字符作为换行字符，包括 <code>\n \r \r\n</code>。</p><p>在不同的操作系统的文件系统中，会使用不同的字符作为换行符：</p><ul><li>Linux：<code>\n</code> LF(Line Feed)</li><li>Mac OS：<code>\r</code> CR(carriage return)</li><li>Windows: <code>\r\n</code> CR/LF</li></ul><p>当然这些对于换行符识别的差异主要还是出现文件系统对于文件的识别当中，实际的 coding 过程中一般都还是全部使用 <code>\n</code> 作为字符串当中的换行符。</p><h2 id="踩坑">踩坑</h2><p>记录一下因为换行符不同所踩的坑。</p><h3 id="javascript-油猴脚本解析">JavaScript 油猴脚本解析</h3><p>因为比较经常使用 Google Translate 翻译所看的文档，有挺多的复制待翻译内容到网页端上进行翻译的使用场景，但是 PDF 文档复制时会被换行符也一并复制，所以粘贴的时候原本成句的内容会被分成几段，当作几句话来处理，内容很可能不正确，需要手动删除。一两次还好，次数多了就很麻烦，于是写了一个油猴脚本，捕获 Google Translate 中的粘贴内容，把想要粘贴的内容去除换行符。</p><p>想法很简单，就在输入框元素中监听 paste 事件，当出现 paste 事件时，获取粘贴的内容，阻断粘贴的操作，并把输入框的值改为去除换行符后的粘贴内容。</p><p>第一次尝试没有效果，就在代码里面添加一些 log，来进行 debug，从控制台的输出看到脚本是可以捕获到要粘贴的内容，然后去除换行符后的输出内容也是正常的，但是这个去除换行符后的内容重新复制并粘贴到控制台输入时，却仍然会有换行现象。如果是在控制台中获取元素，用同样的语句移除换行符的话，功能也是正常的。</p><p>最终发现问题就在换行符上面，我从 pdf 中复制的文字中，换行符为 <code>\r\n</code>，而我去除换行符的操作为 <code>replace('\n',' ')</code>。当我去除了 <code>\n</code> 之后，网页端的解析还是当有换行符，在控制台的输入上面也还是有换行的作用，最终把去除换行符的语句改为 <code>replace(/(\r\n|\r|\n)/g, ' ')</code>，套了个正则匹配所有类型的换行符，问题解决。</p><h3 id="cmakelist">CMakeList</h3><p>打算使用 LLVM 在 GitHub 中的代码仓库拉下来的源代码进行构建，在使用 CMake 的时候出现问题，提示问题在 <code>cmake/config.guess</code> 文件中，但是又完全没有说是什么问题，而且它提示的行号基本全是空行。搜了一下，发现这个问题出现得还挺多，不过别人的提示信息更多，提示是字符 <code>\r</code> 出问题，说的大概就是换行符不一致，给的方法是将文件的换行符转成 unix 的换行符即可。</p><p>下了一个工具 <code>dos2unix</code> 可以直接将文本文件的换行符转成 unix下的换行符，转换之后，cmake 就可正常运行，生成构建文件了。（尽管直到现在过了我都还没有成功 build 好 llvm 及其配套工具。）</p><h3 id="git">Git</h3><p>这个是之前遇到的问题了，在 Windows 系统下通过 Git 提交的文件，在使用 WSL 打开时，会提示每一个文件都有修改。在本地中同样的 repo，同样的历史记录，当前状态显示不一样。</p><p>这个可以通过设置 <code>core.autocrlf</code> 来解决，打开了这个选项之后，在提交时会把所有的 CR/LF 换行符转成 LF 换行符，在 checkout 代码时又会把文件中的 LF 换行符转成 CR/LF。本质就是统一在提交记录里使用 LF 作为换行符。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这两天连续遇到了两个因为在不同操作系统中换行符不同所带来的问题，导致花费了一定的时间和精力。虽然之前就一直知道不同操作系统使用的换行符不一样，但是当实际遇上这些差异带来的问题时，才会发现学习的必要性。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Coding 记录" scheme="http://scottyeung.top/categories/Coding-%E8%AE%B0%E5%BD%95/"/>
+    
+    
+      <category term="notes" scheme="http://scottyeung.top/tags/notes/"/>
+    
+      <category term="Windows" scheme="http://scottyeung.top/tags/Windows/"/>
+    
+      <category term="Linux" scheme="http://scottyeung.top/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
     <title>用于外链的资源库构建</title>
     <link href="http://scottyeung.top/2020/%E7%94%A8%E4%BA%8E%E5%A4%96%E9%93%BE%E7%9A%84%E8%B5%84%E6%BA%90%E5%BA%93%E6%9E%84%E5%BB%BA/"/>
     <id>http://scottyeung.top/2020/用于外链的资源库构建/</id>
     <published>2020-05-30T14:37:11.000Z</published>
-    <updated>2020-05-30T15:45:28.071Z</updated>
+    <updated>2020-06-17T16:12:23.916Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="background">Background</h1><p>在升级本博客的 hexo 和主题之前，是曾经搞过一个用 Aplayer 实现的外链播放器的，但因为当时播放过程会被在博客中的页面跳转而刷新页面，导致播放被打断而暂停，体验较差，所以在升级主题版本之后一直没有添加回来。在之后的某次逛 Github 的时候，偶然发现 PJAX 可以实现博客内页面跳转使用 AJAX 不刷新页面。于是又再次把 Aplayer 添加回来。</p><p>有了播放器，最重要的还是要有音乐，有歌曲。原本想着简单地从网上那些外链播放搜索网站，搜索抓取从各大音乐平台的外链，确实能找到，当时也能用，不过好像一般都会有有效期，过了一天就不能用了。为此，参考别人在 GitHub 开启 Repo 作为图床的想法，我也打算在 GitHub 开个 Repo 来存放图片或音频资源，提供外链。</p><a id="more"></a><h1 id="methods">Methods</h1><h2 id="gtihub-repo">GtiHub Repo</h2><p>想法比较简单，在 GitHub 上面开一个公共的 Repo，通过其单个文件下载的链接作为外链使用。</p><p>以创建的 <a href="https://github.com/yeung66/resources" target="_blank" rel="noopener">yeung66/resources</a> 仓库为例，我在 music 文件下面的音乐文件，其下载链接为 <code>https://raw.githubusercontent.com/yeung66/resources/master/music/恋爱为何物.mp3</code>，其映射关系还是很直接很简单的。当场生成放到博客测试一下，也能够正常使用，没有什么问题。</p><p>然而过了一会儿我在手机上访问时，就发现播放器出现异常，歌曲无法正常播放，在手机上直接访问了一下音乐的外链，无法访问。上网一看才发现，<strong>域名 <code>raw.githubusercontent.com</code> 被 DNS 污染了</strong>，没有梯子的话不能正常访问，而我在电脑上一直挂着梯子，而且这个网址也在我的 PAC 上面（好像还是我手动添加的），而手机非需要使用时都不会开代理工具。考虑到我的多数访客并不会挂着梯子进来，只能放弃这个方法。</p><h2 id="gitee-repo">Gitee Repo</h2><p>既然 GitHub 的资源域名被墙了，那就考虑使用国内的替代品 Gitee 码云。思路也还是一样的，来一个公共 Repo，通过文件的下载链接作为外链使用，大概映射关系为 music 文件夹下的 a.mp3 的下载链接为 <code>https://gitee.com/yeungyeah/resources/raw/master/music/a.mp3</code>。放到博客的播放器中可用，似乎没有问题。</p><p>然而今天手机打开测试又再次播放失败了，在电脑上换了电脑测试访问，发现原因居然是<strong>访问的资源大小超过 1M 时需要登录</strong>，所以使用外链播放时，如果没有登录过的话，会不断重定向到登录链接，然后就一直失败，真的小气。（我专门到 GitHub 上面试了一下，不需要登录也可）。之前我在上去创建仓库的时候，登陆过，所以测试时一起正常。</p><h2 id="github-coding-pages">GitHub / Coding Pages</h2><p>突发奇想，虽然 GitHub 中 Repo 的文件直接下载链接被 DNS 污染了，但是它提供的 GitHub Pages 是可以正常访问的，而其中的静态文件也是能够直接访问的，那干脆就直接将他们当成 Pages 发布，这样就可以直接使用了，音乐文件甚至能够直接链接打开播放（直接通过 Github Repo 的文件下载链接是可以下载但是不能在线播放的）。在 GitHub 开启了 Pages 测试一下，能访问，但速度实在感人，播一秒卡两秒。然后想到了现在博客正在托管的 Coding.net 平台（自换域名之后我将所有的解析到解到这里了，国内访问速度满分，但好像 Google AdSense 访问不到了），打开速度非常满意。</p><p>于是，我将我的资源 Repo 传到了 Coding.net 平台，开启 Pages 服务，提供资源外链使用。这两者还可以绑定域名，我就顺手绑了个二级域名，爽得直接起飞。</p><h1 id="thinking">Thinking</h1><p>自说自话一下。</p><p>其实感觉原本是个很简单的问题，但断断续续搞了差不多三四个晚上应该有，最主要的原因还是考虑得不够细致，测试得不够细致，导致总有些问题没有考虑到，疏忽了。过个一天才发现问题，才重新找原因，想解决方法。</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="background">Background</h2><p>在升级本博客的 hexo 和主题之前，是曾经搞过一个用 Aplayer 实现的外链播放器的，但因为当时播放过程会被在博客中的页面跳转而刷新页面，导致播放被打断而暂停，体验较差，所以在升级主题版本之后一直没有添加回来。在之后的某次逛 Github 的时候，偶然发现 PJAX 可以实现博客内页面跳转使用 AJAX 不刷新页面。于是又再次把 Aplayer 添加回来。</p><p>有了播放器，最重要的还是要有音乐，有歌曲。原本想着简单地从网上那些外链播放搜索网站，搜索抓取从各大音乐平台的外链，确实能找到，当时也能用，不过好像一般都会有有效期，过了一天就不能用了。为此，参考别人在 GitHub 开启 Repo 作为图床的想法，我也打算在 GitHub 开个 Repo 来存放图片或音频资源，提供外链。</p><a id="more"></a><h2 id="methods">Methods</h2><h3 id="gtihub-repo">GtiHub Repo</h3><p>想法比较简单，在 GitHub 上面开一个公共的 Repo，通过其单个文件下载的链接作为外链使用。</p><p>以创建的 <a href="https://github.com/yeung66/resources" target="_blank" rel="noopener">yeung66/resources</a> 仓库为例，我在 music 文件下面的音乐文件，其下载链接为 <code>https://raw.githubusercontent.com/yeung66/resources/master/music/恋爱为何物.mp3</code>，其映射关系还是很直接很简单的。当场生成放到博客测试一下，也能够正常使用，没有什么问题。</p><p>然而过了一会儿我在手机上访问时，就发现播放器出现异常，歌曲无法正常播放，在手机上直接访问了一下音乐的外链，无法访问。上网一看才发现，<strong>域名 <code>raw.githubusercontent.com</code> 被 DNS 污染了</strong>，没有梯子的话不能正常访问，而我在电脑上一直挂着梯子，而且这个网址也在我的 PAC 上面（好像还是我手动添加的），而手机非需要使用时都不会开代理工具。考虑到我的多数访客并不会挂着梯子进来，只能放弃这个方法。</p><h3 id="gitee-repo">Gitee Repo</h3><p>既然 GitHub 的资源域名被墙了，那就考虑使用国内的替代品 Gitee 码云。思路也还是一样的，来一个公共 Repo，通过文件的下载链接作为外链使用，大概映射关系为 music 文件夹下的 a.mp3 的下载链接为 <code>https://gitee.com/yeungyeah/resources/raw/master/music/a.mp3</code>。放到博客的播放器中可用，似乎没有问题。</p><p>然而今天手机打开测试又再次播放失败了，在电脑上换了电脑测试访问，发现原因居然是<strong>访问的资源大小超过 1M 时需要登录</strong>，所以使用外链播放时，如果没有登录过的话，会不断重定向到登录链接，然后就一直失败，真的小气。（我专门到 GitHub 上面试了一下，不需要登录也可）。之前我在上去创建仓库的时候，登陆过，所以测试时一起正常。</p><h3 id="github-coding-pages">GitHub / Coding Pages</h3><p>突发奇想，虽然 GitHub 中 Repo 的文件直接下载链接被 DNS 污染了，但是它提供的 GitHub Pages 是可以正常访问的，而其中的静态文件也是能够直接访问的，那干脆就直接将他们当成 Pages 发布，这样就可以直接使用了，音乐文件甚至能够直接链接打开播放（直接通过 Github Repo 的文件下载链接是可以下载但是不能在线播放的）。在 GitHub 开启了 Pages 测试一下，能访问，但速度实在感人，播一秒卡两秒。然后想到了现在博客正在托管的 Coding.net 平台（自换域名之后我将所有的解析到解到这里了，国内访问速度满分，但好像 Google AdSense 访问不到了），打开速度非常满意。</p><p>于是，我将我的资源 Repo 传到了 Coding.net 平台，开启 Pages 服务，提供资源外链使用。这两者还可以绑定域名，我就顺手绑了个二级域名，爽得直接起飞。</p><h2 id="thinking">Thinking</h2><p>自说自话一下。</p><p>其实感觉原本是个很简单的问题，但断断续续搞了差不多三四个晚上应该有，最主要的原因还是考虑得不够细致，测试得不够细致，导致总有些问题没有考虑到，疏忽了。过个一天才发现问题，才重新找原因，想解决方法。</p>]]></content>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;background&quot;&gt;Background&lt;/h1&gt;
+      &lt;h2 id=&quot;background&quot;&gt;Background&lt;/h2&gt;
 &lt;p&gt;在升级本博客的 hexo 和主题之前，是曾经搞过一个用 Aplayer 实现的外链播放器的，但因为当时播放过程会被在博客中的页面跳转而刷新页面，导致播放被打断而暂停，体验较差，所以在升级主题版本之后一直没有添加回来。在之后的某次逛 Github 的时候，偶然发现 PJAX 可以实现博客内页面跳转使用 AJAX 不刷新页面。于是又再次把 Aplayer 添加回来。&lt;/p&gt;
 &lt;p&gt;有了播放器，最重要的还是要有音乐，有歌曲。原本想着简单地从网上那些外链播放搜索网站，搜索抓取从各大音乐平台的外链，确实能找到，当时也能用，不过好像一般都会有有效期，过了一天就不能用了。为此，参考别人在 GitHub 开启 Repo 作为图床的想法，我也打算在 GitHub 开个 Repo 来存放图片或音频资源，提供外链。&lt;/p&gt;
     
@@ -518,32 +544,6 @@
       <category term="summary" scheme="http://scottyeung.top/tags/summary/"/>
     
       <category term="心态" scheme="http://scottyeung.top/tags/%E5%BF%83%E6%80%81/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>组会谈话启示录（一）</title>
-    <link href="http://scottyeung.top/2019/%E7%BB%84%E4%BC%9A%E8%B0%88%E8%AF%9D%E5%90%AF%E7%A4%BA%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89/"/>
-    <id>http://scottyeung.top/2019/组会谈话启示录（一）/</id>
-    <published>2019-10-16T07:50:35.000Z</published>
-    <updated>2020-05-03T08:04:08.397Z</updated>
-    
-    <content type="html"><![CDATA[<p>又是组会结束之后的轻松时刻，本次组会由于人数较少，所以谈话内容也比较有针对性，收获颇大，但又由于只是干听，担心会很快忘却，遂打算重新回忆，记录下来，想到啥就写啥，通过输出进行再学习，同时，相信也能给刚踏上科研路的各位带来一点受益。</p><a id="more"></a><h2 id="about-empirical-study">About Empirical Study</h2><ul><li>所谓的empirical study，其实就是对收集到的数据进行分析并report，关键是提出Research Question，类似于调查报告</li><li>基本流程为进行问题定义，范围局限，收集数据，分析数据，根据分析结果初步得出RQ/规律/特征，根据RQ重新修改/优化数据收集方式，report并回答RQ</li><li>非常适合新手进行科研入门，可通过此熟悉科研的流程</li><li>即使数据分析没有好的结果，如无规律/相关性，也可如实report成文</li><li>empirical study虽然简单，但是很重要<ul><li>科研入门</li><li>对assumption进行验证</li><li>后续的method/improvement需基于此</li><li>通过此进行数据收集</li></ul></li><li>虽然重要，但不能止于此<ul><li>实质性的东西？（report有什么用？</li><li>套路类似/方法雷同，难度递减</li></ul></li><li>how to start？在确定一个方向之后，拿出一张纸，依次写下研究的对象，定义，范围，数据收集/分析的方法/数据集，<strong>RQ</strong></li></ul><h2 id="about-research">About Research</h2><ul><li>国外的PhD培养方案<ol type="1"><li>刚开始写一篇长篇的survey，借此了解当前该领域的研究背景/问题/方向</li><li>进行empirical study，收集数据，进行分析</li><li>利用前面的积累（数据，知识），进行creative的工作，如method/solution/improvement的提出或修改</li></ol></li><li>国内的现状则是大多数热衷于在3上面，一来就进行method上面的工作</li><li>国内博士的毕业情况还是要较好的，一般都能毕业（当然这个完全取决于导师<del>是否恶心</del></li></ul><hr><p>最后还是想吹一波现在的导师，真的感觉有一个好导师真是太重要了！</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;又是组会结束之后的轻松时刻，本次组会由于人数较少，所以谈话内容也比较有针对性，收获颇大，但又由于只是干听，担心会很快忘却，遂打算重新回忆，记录下来，想到啥就写啥，通过输出进行再学习，同时，相信也能给刚踏上科研路的各位带来一点受益。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="科研" scheme="http://scottyeung.top/categories/%E7%A7%91%E7%A0%94/"/>
-    
-    
-      <category term="summary" scheme="http://scottyeung.top/tags/summary/"/>
-    
-      <category term="科研" scheme="http://scottyeung.top/tags/%E7%A7%91%E7%A0%94/"/>
-    
-      <category term="经验" scheme="http://scottyeung.top/tags/%E7%BB%8F%E9%AA%8C/"/>
     
   </entry>
   
