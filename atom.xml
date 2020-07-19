@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://scottyeung.top/"/>
-  <updated>2020-07-19T06:21:49.913Z</updated>
+  <updated>2020-07-19T06:23:36.281Z</updated>
   <id>http://scottyeung.top/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://scottyeung.top/2020/stability-and-features/"/>
     <id>http://scottyeung.top/2020/stability-and-features/</id>
     <published>2020-07-19T02:39:31.000Z</published>
-    <updated>2020-07-19T06:21:49.913Z</updated>
+    <updated>2020-07-19T06:23:36.281Z</updated>
     
     <content type="html"><![CDATA[<p>对于一个软件来说，版本迭代的更新是必不可少的，可能是功能添加，可能是内容修改，可能是体验优化，也可能是问题的修复。为此，各家软件厂商对于自家产品的更新推广可谓是费尽心力，尤其是手机上的 App，隔三岔五就推个要软件升级的通知给你，不可谓不努力。尽管如此，还是有不少人会选择不升级，要不是当前版本的软件不能用了，绝不升级，包括以前的我也是如此。尤其是某些软件的升级，一直被人吐槽，最为著名的就是 Win10 的更新了，就我所知道的，不少人装完系统后第一时间就是直接禁掉自动更新。</p><a id="more"></a><p>以前的我，一直都不喜欢更新软件，无论是手机还是电脑。新手机拿到，第一时间就是关闭应用商店里面的自动更新，即使更新提示里面的数字到达了 99+，也完全不为所动，除非是当前版本的软件不能用了，或者是新出的版本出了一些大家都在用的现象级的新特性，我才会跟上。当时的我对于更新的印象，还是非常刻板的，觉得：</p><ul><li>更新会占硬盘 / 存储空间</li><li>更新后更吃性能导致卡顿</li><li>更新带来的新特性新功能没有多大的用途</li><li>更新带来的新交互方式设计让自己不习惯</li></ul><p>当然现在回想起来，其实这些印象还是挺可笑的，前两条现象确实存在，不过最主要还是局限于当时的手机硬件配置以及软件设计实现上面，而后两者其实还是为前面所找的理由，没有多大用途 != 没有用途，而新的交互方式设计，不深入体验过也难以获得最为真实的体验，习惯之后，可能会觉得更好。现在手机的配置上来了，我会隔一段时间就自觉地打开应用商店，批量选取软件进行更新，以往觉得会不习惯，没什么用的新特性，现在往往是我所寻找的新体验。包括电脑也是，准时更新系统以及各种软件，想要获取最好最新的体验。甚至我还想着加入 Windows Insider，想着提前试用新特性，获取新体验。</p><img src="/2020/stability-and-features/稳定性与新特性/200719.png"><center style="font-size:14px;color:#C0C0C0;text-decoration:underline">尽管加入了 Windows Insider，但是设备不支持也升级不了（好像有特定设备的 bug</center><p>新特性新体验很美好，但随之而来的，还有各种各样的小问题。新的版本没有经过足够多的使用和测试，很可能就有一些莫名其妙的小问题，稳定性不够好。这也是预料之中，早早体验新版本新功能，本身也是当作一个 beta 版来测试，但是某些时候，我们真的能够接受这些稳定性不足带来的问题吗？或者说，能够接受用多少的稳定性来换取新特性呢？</p><p>新的 Windows 2004，带来了新的开始界面 UI，WSL2 以及其它的新特性，对我来说虽说不是刚需，但还是挺想体验一下的，官方通知在 5 月底的时候正式推送，但是因为设备兼容的原因，直到 7 月中还没有收到升级通知。于是就萌生出加 Windows Insider 的想法，想着加入预览版本应该能够收到升级通知，能够自动升级，当然结果就如上图，最终没有成功，我也干脆就关了 Windows Insider。</p><p>没能成功更新的原因似乎是<a href="https://support.microsoft.com/zh-cn/help/4568129/issue-with-some-storage-spaces-configurations-after-updating-to-window" target="_blank" rel="noopener">磁盘管理相关问题</a>，某些设备上面分区可能会被错误识别，可能会导致数据丢失，暂时还没好的解决方法。这个 issue 是 7 月份才提出来的，之后才禁止相关的设备更新。换而言之，如果早点加入了预览版本，在该 issue 提出之前升级到了对应版本，可能我的设备就遇上了这个问题，我的数据也可能会丢失。作为当前的主力机，出问题丢数据几乎是不能接受的事情，即使有 OneDrive 做了一些最基础的备份。</p><p>想到此内心其实是有一些后怕，也是因为这个问题，我才开始对于稳定性与新特性的权衡有了一点不一样的理解。新特性固然是好，但也仅仅是好，不是必须要的，而为了追求这些可以没有的新特性而把稳定性破坏了，搞出问题影响到基本的使用，就非常难受了，尤其是当前基本所有的工作都在我的唯一主力机上进行，它出了问题就等于我出问题了 <span class="github-emoji" data-alias="cry" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8">😢</span></p><p>所以还是稳一点好，电脑关掉了预览版重新等待漫长的更新推送，手机上 MIUI 的开发版也回刷回去稳定版了，而软件上面的更新还是会及时去更新升级，毕竟软件挂了出问题可以删了重来，系统出问题可能就直接把数据都搞挂了（尤其是之前我还为了囤空间把分区只剩下一个 C 盘了）。</p><p>仅以此文来对自己做一个提醒，以后要时刻考虑稳定性的问题。<del>本文开始时间太久了很多想法都不清楚了<span class="github-emoji" data-alias="joy" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f602.png?v8">😂</span></del></p>]]></content>
     
@@ -31,7 +31,7 @@
     
     </summary>
     
-      <category term="个人随便" scheme="http://scottyeung.top/categories/%E4%B8%AA%E4%BA%BA%E9%9A%8F%E4%BE%BF/"/>
+      <category term="个人随笔" scheme="http://scottyeung.top/categories/%E4%B8%AA%E4%BA%BA%E9%9A%8F%E7%AC%94/"/>
     
     
       <category term="Windows" scheme="http://scottyeung.top/tags/Windows/"/>
@@ -170,9 +170,9 @@
       <category term="个人随笔" scheme="http://scottyeung.top/categories/%E4%B8%AA%E4%BA%BA%E9%9A%8F%E7%AC%94/"/>
     
     
-      <category term="每日千字" scheme="http://scottyeung.top/tags/%E6%AF%8F%E6%97%A5%E5%8D%83%E5%AD%97/"/>
-    
       <category term="随笔" scheme="http://scottyeung.top/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+      <category term="每日千字" scheme="http://scottyeung.top/tags/%E6%AF%8F%E6%97%A5%E5%8D%83%E5%AD%97/"/>
     
   </entry>
   
@@ -266,9 +266,9 @@
       <category term="Coding 学习" scheme="http://scottyeung.top/categories/Coding-%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="Python" scheme="http://scottyeung.top/tags/Python/"/>
-    
       <category term="notes" scheme="http://scottyeung.top/tags/notes/"/>
+    
+      <category term="Python" scheme="http://scottyeung.top/tags/Python/"/>
     
       <category term="并发编程" scheme="http://scottyeung.top/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
     
@@ -480,9 +480,9 @@
       <category term="数据库" scheme="http://scottyeung.top/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
     
-      <category term="Python" scheme="http://scottyeung.top/tags/Python/"/>
-    
       <category term="notes" scheme="http://scottyeung.top/tags/notes/"/>
+    
+      <category term="Python" scheme="http://scottyeung.top/tags/Python/"/>
     
   </entry>
   
@@ -505,9 +505,9 @@
     
       <category term="Python" scheme="http://scottyeung.top/tags/Python/"/>
     
-      <category term="自动化" scheme="http://scottyeung.top/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/"/>
-    
       <category term="summary" scheme="http://scottyeung.top/tags/summary/"/>
+    
+      <category term="自动化" scheme="http://scottyeung.top/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/"/>
     
   </entry>
   
