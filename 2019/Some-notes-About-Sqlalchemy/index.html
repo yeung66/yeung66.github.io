@@ -26,12 +26,12 @@
   <meta name="description" content="近期在收集处理大量的数据，通常是把XML&#x2F;文本格式的数据转为关系型，结构化的的数据，能够方便导出直接进行分析，尤其是导出能直接被pandas分析的格式（csv&#x2F;json）。因此需要使用一个在Python下的mysql处理库，既然找了处理库，也干脆一步到位，直接选一个支持ORM的库。于是，就选择了SQLAlchemy。用了一段时间后，写个记录来记下这段时间用到的常用的东西。 SQLAlchemy是">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Some Notes About SQLAlchemy">
-<meta property="og:url" content="http://scottyeung.top/2019/Some-notes-About-Sqlalchemy/index.html">
+<meta property="og:url" content="http://scottyeung.top/2019/Some-Notes-About-SQLAlchemy/index.html">
 <meta property="og:site_name" content="YeungYeah 的乱写地">
 <meta property="og:description" content="近期在收集处理大量的数据，通常是把XML&#x2F;文本格式的数据转为关系型，结构化的的数据，能够方便导出直接进行分析，尤其是导出能直接被pandas分析的格式（csv&#x2F;json）。因此需要使用一个在Python下的mysql处理库，既然找了处理库，也干脆一步到位，直接选一个支持ORM的库。于是，就选择了SQLAlchemy。用了一段时间后，写个记录来记下这段时间用到的常用的东西。 SQLAlchemy是">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-12-07T02:24:35.000Z">
-<meta property="article:modified_time" content="2020-05-03T08:21:12.490Z">
+<meta property="article:modified_time" content="2020-07-16T16:28:17.364Z">
 <meta property="article:author" content="YeungYeah">
 <meta property="article:tag" content="sql">
 <meta property="article:tag" content="Mysql">
@@ -40,7 +40,7 @@
 <meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://scottyeung.top/2019/Some-notes-About-Sqlalchemy/">
+<link rel="canonical" href="http://scottyeung.top/2019/Some-Notes-About-SQLAlchemy/">
 
 
 <script id="page-configurations">
@@ -190,7 +190,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://scottyeung.top/2019/Some-notes-About-Sqlalchemy/">
+    <link itemprop="mainEntityOfPage" href="http://scottyeung.top/2019/Some-Notes-About-SQLAlchemy/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/self.jpg">
@@ -220,7 +220,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-03 16:21:12" itemprop="dateModified" datetime="2020-05-03T16:21:12+08:00">2020-05-03</time>
+                <time title="修改时间：2020-07-17 00:28:17" itemprop="dateModified" datetime="2020-07-17T00:28:17+08:00">2020-07-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -233,7 +233,7 @@
             </span>
 
           
-            <span id="/2019/Some-notes-About-Sqlalchemy/" class="post-meta-item leancloud_visitors" data-flag-title="Some Notes About SQLAlchemy" title="阅读次数">
+            <span id="/2019/Some-Notes-About-SQLAlchemy/" class="post-meta-item leancloud_visitors" data-flag-title="Some Notes About SQLAlchemy" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -248,8 +248,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2019/Some-notes-About-Sqlalchemy/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/Some-notes-About-Sqlalchemy/" itemprop="commentCount"></span>
+    <a title="valine" href="/2019/Some-Notes-About-SQLAlchemy/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/Some-Notes-About-SQLAlchemy/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -350,7 +350,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://scottyeung.top/2019/Some-notes-About-Sqlalchemy/" title="Some Notes About SQLAlchemy">http://scottyeung.top/2019/Some-notes-About-Sqlalchemy/</a>
+    <a href="http://scottyeung.top/2019/Some-Notes-About-SQLAlchemy/" title="Some Notes About SQLAlchemy">http://scottyeung.top/2019/Some-Notes-About-SQLAlchemy/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -362,8 +362,8 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/notes/" rel="tag"><i class="fa fa-tag"></i> notes</a>
               <a href="/tags/Python/" rel="tag"><i class="fa fa-tag"></i> Python</a>
+              <a href="/tags/notes/" rel="tag"><i class="fa fa-tag"></i> notes</a>
           </div>
 
         
@@ -376,7 +376,7 @@
       <i class="fa fa-chevron-left"></i> Summary of Automate the Boring Stuff with Python
     </a></div>
       <div class="post-nav-item">
-    <a href="/2019/%E8%A2%AB%E8%AE%A8%E5%8E%8C%E7%9A%84%E5%8B%87%E6%B0%94-%E8%AF%BB%E4%B9%A6%E4%BD%93%E4%BC%9A%E4%B8%8E%E6%91%98%E8%A6%81/" rel="next" title="<被讨厌的勇气>读书体会与摘要">
+    <a href="/2019/%E8%A2%AB%E8%AE%A8%E5%8E%8C%E7%9A%84%E5%8B%87%E6%B0%94%E8%AF%BB%E4%B9%A6%E4%BD%93%E4%BC%9A%E4%B8%8E%E6%91%98%E8%A6%81/" rel="next" title="<被讨厌的勇气>读书体会与摘要">
       <被讨厌的勇气>读书体会与摘要 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -455,20 +455,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-count">47</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">40</span>
+        <span class="site-state-item-count">41</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -526,7 +526,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">101k</span>
+    <span title="站点总字数">102k</span>
 </div>
   <div class="theme-info">主题 – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.1
   </div>
