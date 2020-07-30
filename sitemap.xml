@@ -2,9 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://scottyeung.top/2020/csharp-merit-1/</loc>
+    
+    <lastmod>2020-07-30T03:41:17.833Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://scottyeung.top/about/index.html</loc>
+    
+    <lastmod>2020-07-30T02:57:48.904Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://scottyeung.top/moments/index.html</loc>
     
-    <lastmod>2020-07-25T08:50:38.565Z</lastmod>
+    <lastmod>2020-07-26T11:57:48.075Z</lastmod>
     
   </url>
   
@@ -334,13 +348,6 @@
     <loc>http://scottyeung.top/2019/CCF-201903/</loc>
     
     <lastmod>2020-07-16T16:28:17.254Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://scottyeung.top/about/index.html</loc>
-    
-    <lastmod>2020-06-14T01:57:55.429Z</lastmod>
     
   </url>
   
