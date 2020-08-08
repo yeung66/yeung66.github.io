@@ -75,6 +75,24 @@ const ap = new APlayer({
         artist: '李幸倪',
         url: 'http://resources.scottyeung.top/music/和每天讲再见.m4a',
         cover: 'http://p2.music.126.net/owrXi0vV2HoAv_wqS0IBNw==/18856624416421399.jpg'
+      },
+      {
+        name: '黑洞里',
+        artist: '方大同',
+        url: 'http://resources.scottyeung.top/music/黑洞里.mp3',
+        cover: 'http://p1.music.126.net/1U1iWW1z8gypkPFbPe_H-g==/72567767445970.jpg'
+      },
+      {
+        name: '随风而来随风而去',
+        artist: '李幸倪',
+        url: 'http://resources.scottyeung.top/music/随风而来随风而去.mp3',
+        cover: 'http://p2.music.126.net/D2zG1VVrUmv-AKBJzbVCJw==/18854425393133313.jpg'
+      },
+      {
+        name: '难得咁人齐',
+        artist: '农夫',
+        url: 'http://resources.scottyeung.top/music/难得咁人齐.mp3',
+        cover: 'http://p1.music.126.net/hRdVJ061mER5wTlSB-CU8A==/109951164078381042.jpg'
       }
     ]
 });
