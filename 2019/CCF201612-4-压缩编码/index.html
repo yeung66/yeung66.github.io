@@ -23,19 +23,19 @@
   </script>
 
 
-  <meta name="description" content="Problem 问题描述 　　给定一段文字，已知单词a1, a2, …, an出现的频率分别t1, t2, …, tn。可以用01串给这些单词编码，即将每个单词与一个01串对应，使得任何一个单词的编码（对应的01串）不是另一个单词编码的前缀，这种编码称为前缀码。 　　使用前缀码编码一段文字是指将这段文字中的每个单词依次对应到其编码。一段文字经过前缀编码后的长度为： 　　L&#x3D;a1的编码长度×t1">
+  <meta name="description" content="Problem 问题描述 　　给定一段文字，已知单词a1, a2, …, an出现的频率分别t1, t2, …, tn。可以用01串给这些单词编码，即将每个单词与一个01串对应，使得任何一个单词的编码（对应的01串）不是另一个单词编码的前缀，这种编码称为前缀码。 　　使用前缀码编码一段文字是指将这段文字中的每个单词依次对应到其编码。一段文字经过前缀编码后的长度为： 　　L&#x3D;a1的编码长度×">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CCF201612-4 压缩编码">
 <meta property="og:url" content="http://scottyeung.top/2019/CCF201612-4-%E5%8E%8B%E7%BC%A9%E7%BC%96%E7%A0%81/index.html">
 <meta property="og:site_name" content="YeungYeah 的乱写地">
-<meta property="og:description" content="Problem 问题描述 　　给定一段文字，已知单词a1, a2, …, an出现的频率分别t1, t2, …, tn。可以用01串给这些单词编码，即将每个单词与一个01串对应，使得任何一个单词的编码（对应的01串）不是另一个单词编码的前缀，这种编码称为前缀码。 　　使用前缀码编码一段文字是指将这段文字中的每个单词依次对应到其编码。一段文字经过前缀编码后的长度为： 　　L&#x3D;a1的编码长度×t1">
+<meta property="og:description" content="Problem 问题描述 　　给定一段文字，已知单词a1, a2, …, an出现的频率分别t1, t2, …, tn。可以用01串给这些单词编码，即将每个单词与一个01串对应，使得任何一个单词的编码（对应的01串）不是另一个单词编码的前缀，这种编码称为前缀码。 　　使用前缀码编码一段文字是指将这段文字中的每个单词依次对应到其编码。一段文字经过前缀编码后的长度为： 　　L&#x3D;a1的编码长度×">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://scottyeung.top/2019/CCF201612-4-%E5%8E%8B%E7%BC%A9%E7%BC%96%E7%A0%81/%E6%8D%95%E8%8E%B7.JPG">
 <meta property="article:published_time" content="2019-03-12T06:15:57.000Z">
-<meta property="article:modified_time" content="2020-07-16T16:28:17.287Z">
+<meta property="article:modified_time" content="2020-08-26T08:29:23.279Z">
 <meta property="article:author" content="YeungYeah">
-<meta property="article:tag" content="CCF">
 <meta property="article:tag" content="Python">
+<meta property="article:tag" content="CCF">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://scottyeung.top/2019/CCF201612-4-%E5%8E%8B%E7%BC%A9%E7%BC%96%E7%A0%81/%E6%8D%95%E8%8E%B7.JPG">
 
@@ -219,7 +219,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-17 00:28:17" itemprop="dateModified" datetime="2020-07-17T00:28:17+08:00">2020-07-17</time>
+                <time title="修改时间：2020-08-26 16:29:23" itemprop="dateModified" datetime="2020-08-26T16:29:23+08:00">2020-08-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -279,20 +279,31 @@
       
         <h1 id="problem">Problem</h1>
 <h2 id="问题描述">问题描述</h2>
-<p>　　给定一段文字，已知单词<em>a</em>1, <em>a</em>2, …, <em>an</em>出现的频率分别<em>t</em>1, <em>t</em>2, …, <em>tn</em>。可以用01串给这些单词编码，即将每个单词与一个01串对应，使得任何一个单词的编码（对应的01串）不是另一个单词编码的前缀，这种编码称为前缀码。 　　使用前缀码编码一段文字是指将这段文字中的每个单词依次对应到其编码。一段文字经过前缀编码后的长度为： 　　<em>L</em>=<em>a</em>1的编码长度×<em>t</em>1+<em>a</em>2的编码长度×<em>t</em>2+…+ <em>an</em>的编码长度×<em>tn</em>。 　　定义一个前缀编码为字典序编码，指对于1 ≤ <em>i</em> &lt; <em>n</em>，<em>ai</em>的编码（对应的01串）的字典序在<em>ai</em>+1编码之前，即<em>a</em>1, <em>a</em>2, …, <em>an</em>的编码是按字典序升序排列的。 　　例如，文字E A E C D E B C C E C B D B E中， 5个单词A、B、C、D、E出现的频率分别为1, 3, 4, 2, 5，则一种可行的编码方案是A:000, B:001, C:01, D:10, E:11，对应的编码后的01串为1100011011011001010111010011000111，对应的长度<em>L</em>为3×1+3×3+2×4+2×2+2×5=34。 　　在这个例子中，如果使用哈夫曼(Huffman)编码，对应的编码方案是A:000, B:01, C:10, D:001, E:11，虽然最终文字编码后的总长度只有33，但是这个编码不满足字典序编码的性质，比如C的编码的字典序不在D的编码之前。 　　在这个例子中，有些人可能会想的另一个字典序编码是A:000, B:001, C:010, D:011, E:1，编码后的文字长度为35。 　　请找出一个字典序编码，使得文字经过编码后的长度<em>L</em>最小。在输出时，你只需要输出最小的长度<em>L</em>，而不需要输出具体的方案。在上面的例子中，最小的长度<em>L</em>为34。</p>
+<p>　　给定一段文字，已知单词<em>a</em>1, <em>a</em>2, …, <em>an</em>出现的频率分别<em>t</em>1, <em>t</em>2, …, <em>tn</em>。可以用01串给这些单词编码，即将每个单词与一个01串对应，使得任何一个单词的编码（对应的01串）不是另一个单词编码的前缀，这种编码称为前缀码。<br>
+　　使用前缀码编码一段文字是指将这段文字中的每个单词依次对应到其编码。一段文字经过前缀编码后的长度为：<br>
+　　<em>L</em>=<em>a</em>1的编码长度×<em>t</em>1+<em>a</em>2的编码长度×<em>t</em>2+…+ <em>an</em>的编码长度×<em>tn</em>。<br>
+　　定义一个前缀编码为字典序编码，指对于1 ≤ <em>i</em> &lt; <em>n</em>，<em>ai</em>的编码（对应的01串）的字典序在<em>ai</em>+1编码之前，即<em>a</em>1, <em>a</em>2, …, <em>an</em>的编码是按字典序升序排列的。<br>
+　　例如，文字E A E C D E B C C E C B D B E中， 5个单词A、B、C、D、E出现的频率分别为1, 3, 4, 2, 5，则一种可行的编码方案是A:000, B:001, C:01, D:10, E:11，对应的编码后的01串为1100011011011001010111010011000111，对应的长度<em>L</em>为3×1+3×3+2×4+2×2+2×5=34。<br>
+　　在这个例子中，如果使用哈夫曼(Huffman)编码，对应的编码方案是A:000, B:01, C:10, D:001, E:11，虽然最终文字编码后的总长度只有33，但是这个编码不满足字典序编码的性质，比如C的编码的字典序不在D的编码之前。<br>
+　　在这个例子中，有些人可能会想的另一个字典序编码是A:000, B:001, C:010, D:011, E:1，编码后的文字长度为35。<br>
+　　请找出一个字典序编码，使得文字经过编码后的长度<em>L</em>最小。在输出时，你只需要输出最小的长度<em>L</em>，而不需要输出具体的方案。在上面的例子中，最小的长度<em>L</em>为34。</p>
 <a id="more"></a>
 <h2 id="输入格式">输入格式</h2>
-<p>　　输入的第一行包含一个整数<em>n</em>，表示单词的数量。 　　第二行包含<em>n</em>个整数，用空格分隔，分别表示<em>a</em>1, <em>a</em>2, …, <em>an</em>出现的频率，即<em>t</em>1, <em>t</em>2, …, <em>tn</em>。请注意<em>a</em>1, <em>a</em>2, …, <em>an</em>具体是什么单词并不影响本题的解，所以没有输入<em>a</em>1, <em>a</em>2, …, <em>an</em>。</p>
+<p>　　输入的第一行包含一个整数<em>n</em>，表示单词的数量。<br>
+　　第二行包含<em>n</em>个整数，用空格分隔，分别表示<em>a</em>1, <em>a</em>2, …, <em>an</em>出现的频率，即<em>t</em>1, <em>t</em>2, …, <em>tn</em>。请注意<em>a</em>1, <em>a</em>2, …, <em>an</em>具体是什么单词并不影响本题的解，所以没有输入<em>a</em>1, <em>a</em>2, …, <em>an</em>。</p>
 <h2 id="输出格式">输出格式</h2>
 <p>　　输出一个整数，表示文字经过编码后的长度<em>L</em>的最小值。</p>
 <h2 id="样例输入">样例输入</h2>
-<p>5 1 3 4 2 5</p>
+<p>5<br>
+1 3 4 2 5</p>
 <h2 id="样例输出">样例输出</h2>
 <p>34</p>
 <h2 id="样例说明">样例说明</h2>
 <p>　　这个样例就是问题描述中的例子。如果你得到了35，说明你算得有问题，请自行检查自己的算法而不要怀疑是样例输出写错了。</p>
 <h2 id="评测用例规模与约定">评测用例规模与约定</h2>
-<p>　　对于30%的评测用例，1 ≤ <em>n</em> ≤ 10，1 ≤ <em>ti</em> ≤ 20； 　　对于60%的评测用例，1 ≤ <em>n</em> ≤ 100，1 ≤ <em>ti</em> ≤ 100； 　　对于100%的评测用例，1 ≤ <em>n</em> ≤ 1000，1 ≤ <em>ti</em> ≤ 10000。</p>
+<p>　　对于30%的评测用例，1 ≤ <em>n</em> ≤ 10，1 ≤ <em>ti</em> ≤ 20；<br>
+　　对于60%的评测用例，1 ≤ <em>n</em> ≤ 100，1 ≤ <em>ti</em> ≤ 100；<br>
+　　对于100%的评测用例，1 ≤ <em>n</em> ≤ 1000，1 ≤ <em>ti</em> ≤ 10000。</p>
 <h1 id="solution">Solution</h1>
 <p>乍一眼看上去似乎跟霍夫曼编码相关，虽然题目明确了霍夫曼编码结果不一定是满足字典序的，但估计解法应该是霍夫曼编码的变形。然而还是没什么头绪，上网一搜，发现这是一个经典的dp问题——<a href="https://blog.csdn.net/acdreamers/article/details/18039073" target="_blank" rel="noopener">石子问题</a>。石子问题描述为：有n堆石子，每次合并2堆，合并花费为两堆石子之和，求合成的最小花费。问题可分为三种类型：</p>
 <ol type="1">
@@ -301,8 +312,8 @@
 <li>每次合并相邻两堆石子，且石子环形排列（2的升级版</li>
 </ol>
 <p>这里，我们只讨论第二种情况。状态转移方程如下，<code>dp[i][j]</code>表示合并第i堆到第j堆石子的花费（编码第i个单词到第j个单词的长度花费），<code>sums[i]</code>为前i堆石子（单词）的总花费。实际上是在区间i到j之间寻找一个最优的分界点，左右分别合并，再加上总体的花费。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dp[i][j]=<span class="number">0</span><span class="comment">#i==j</span></span><br><span class="line">dp[i][j]=min(dp[i][j],dp[i][k]+dp[k+<span class="number">1</span>][j]+sums[j]-sums[i<span class="number">-1</span>])<span class="comment">#i!=j and i&lt;=k&lt;=j</span></span><br></pre></td></tr></table></figure>
-<p>容易分析，需要三层循环（i，j，k），时间复杂度为<span class="math inline">\(O(n^3)\)</span>。提交后能有60分，显示运行超时，但这个是非Python的操作用时，估计实际考试也能过。针对这种情况，上面博文提到可以使用<a href="https://baike.baidu.com/item/%E5%9B%9B%E8%BE%B9%E5%BD%A2%E4%B8%8D%E7%AD%89%E5%BC%8F?fr=aladdin" target="_blank" rel="noopener">平行四边形优化</a>(百科里写得很烂)，对于像上面的状态转移方程，可设<code>p[i][j]</code>为区间i到j中最优的k值，则有<code>p[i][j-1]&lt;=p[i][j]&lt;=p[i+1][j]</code>因此，我们可以缩小k的遍历范围，可证其复杂度降低了一个数量级，为<span class="math inline">\(O(n^2)\)</span>，修改后提交能够获得100分。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dp[i][j]=<span class="number">0</span> <span class="comment">#i==j</span></span><br><span class="line">dp[i][j]=min(dp[i][j],dp[i][k]+dp[k+<span class="number">1</span>][j]+sums[j]-sums[i<span class="number">-1</span>]) <span class="comment">#i!=j and i&lt;=k&lt;=j</span></span><br></pre></td></tr></table></figure>
+<p>容易分析，需要三层循环（i，j，k），时间复杂度为<span class="math inline">\(O(n^3)\)</span>。提交后能有60分，显示运行超时，但这个是非Python的操作用时，估计实际考试也能过。针对这种情况，上面博文提到可以使用<a href="https://baike.baidu.com/item/%E5%9B%9B%E8%BE%B9%E5%BD%A2%E4%B8%8D%E7%AD%89%E5%BC%8F?fr=aladdin" target="_blank" rel="noopener">平行四边形优化</a>(百科里写得很烂)，对于像上面的状态转移方程，可设 <code>p[i][j]</code>为区间i到j中最优的k值，则有 <code>p[i][j-1]&lt;=p[i][j]&lt;=p[i+1][j]</code> 。因此，我们可以缩小k的遍历范围，可证其复杂度降低了一个数量级，为 <span class="math inline">\(O(n^2)\)</span>，修改后提交能够获得100分。</p>
 <p>详细代码可<a href="https://github.com/yeung66/codesAboutCCF/blob/master/201612/compresscode.py" target="_blank" rel="noopener">点此</a></p>
 <h2 id="运行结果">运行结果</h2>
 <p><img src="/2019/CCF201612-4-%E5%8E%8B%E7%BC%A9%E7%BC%96%E7%A0%81/捕获.JPG"></p>
@@ -353,8 +364,8 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/CCF/" rel="tag"><i class="fa fa-tag"></i> CCF</a>
               <a href="/tags/Python/" rel="tag"><i class="fa fa-tag"></i> Python</a>
+              <a href="/tags/CCF/" rel="tag"><i class="fa fa-tag"></i> CCF</a>
           </div>
 
         
@@ -520,7 +531,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">104k</span>
+    <span title="站点总字数">103k</span>
 </div>
   <div class="theme-info">主题 – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.1
   </div>

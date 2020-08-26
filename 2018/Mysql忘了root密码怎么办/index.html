@@ -23,15 +23,15 @@
   </script>
 
 
-  <meta name="description" content="引言 在准备做Windows程序设计的大作业时，需要用到Mysql。打开了Mysql WorkBench连接本地数据库时，提示要输入root密码，试了几个常用密码无果后，发现自己再次忘记了Mysql的root密码。但是没有关系，本人已经习惯忘记各种不太常用的账号密码了，驾轻就熟地打开百度搜索相关方法，却发现来来去去都是那同一个方法，而且还因为版本问题与实际情况有些差异，最终还是花费了不少的时间，">
+  <meta name="description" content="引言 在准备做Windows程序设计的大作业时，需要用到 Mysql。打开了 Mysql WorkBench 连接本地数据库时，提示要输入 root 密码，试了几个常用密码无果后，发现自己再次忘记了 Mysql 的 root 密码。但是没有关系，本人已经习惯忘记各种不太常用的账号密码了，驾轻就熟地打开百度搜索相关方法，却发现来来去去都是那同一个方法，而且还因为版本问题与实际情况有些差异，最终还是">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mysql忘了root密码怎么办">
 <meta property="og:url" content="http://scottyeung.top/2018/Mysql%E5%BF%98%E4%BA%86root%E5%AF%86%E7%A0%81%E6%80%8E%E4%B9%88%E5%8A%9E/index.html">
 <meta property="og:site_name" content="YeungYeah 的乱写地">
-<meta property="og:description" content="引言 在准备做Windows程序设计的大作业时，需要用到Mysql。打开了Mysql WorkBench连接本地数据库时，提示要输入root密码，试了几个常用密码无果后，发现自己再次忘记了Mysql的root密码。但是没有关系，本人已经习惯忘记各种不太常用的账号密码了，驾轻就熟地打开百度搜索相关方法，却发现来来去去都是那同一个方法，而且还因为版本问题与实际情况有些差异，最终还是花费了不少的时间，">
+<meta property="og:description" content="引言 在准备做Windows程序设计的大作业时，需要用到 Mysql。打开了 Mysql WorkBench 连接本地数据库时，提示要输入 root 密码，试了几个常用密码无果后，发现自己再次忘记了 Mysql 的 root 密码。但是没有关系，本人已经习惯忘记各种不太常用的账号密码了，驾轻就熟地打开百度搜索相关方法，却发现来来去去都是那同一个方法，而且还因为版本问题与实际情况有些差异，最终还是">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2018-11-29T12:03:35.000Z">
-<meta property="article:modified_time" content="2020-07-16T16:28:17.329Z">
+<meta property="article:modified_time" content="2020-08-26T08:07:37.725Z">
 <meta property="article:author" content="YeungYeah">
 <meta property="article:tag" content="Mysql">
 <meta name="twitter:card" content="summary">
@@ -216,7 +216,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-17 00:28:17" itemprop="dateModified" datetime="2020-07-17T00:28:17+08:00">2020-07-17</time>
+                <time title="修改时间：2020-08-26 16:07:37" itemprop="dateModified" datetime="2020-08-26T16:07:37+08:00">2020-08-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -255,7 +255,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.4k</span>
+              <span>2.3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -275,14 +275,14 @@
 
       
         <h1 id="引言">引言</h1>
-<p>在准备做Windows程序设计的大作业时，需要用到Mysql。打开了Mysql WorkBench连接本地数据库时，提示要输入root密码，试了几个常用密码无果后，发现自己再次忘记了Mysql的root密码。但是没有关系，本人已经习惯忘记各种不太常用的账号密码了，驾轻就熟地打开百度搜索相关方法，却发现来来去去都是那同一个方法，而且还因为版本问题与实际情况有些差异，最终还是花费了不少的时间，有点难受，遂写一文记录一下。</p>
+<p>在准备做Windows程序设计的大作业时，需要用到 Mysql。打开了 Mysql WorkBench 连接本地数据库时，提示要输入 root 密码，试了几个常用密码无果后，发现自己再次忘记了 Mysql 的 root 密码。但是没有关系，本人已经习惯忘记各种不太常用的账号密码了，驾轻就熟地打开百度搜索相关方法，却发现来来去去都是那同一个方法，而且还因为版本问题与实际情况有些差异，最终还是花费了不少的时间，有点难受，遂写一文记录一下。</p>
 <a id="more"></a>
 <h1 id="方法">方法</h1>
 <h2 id="思路">思路</h2>
-<p>纵观百度各种方法，思路均是大致一样：运用mysql的<code>-skip-grant-tables</code>参数，可以使进入mysql时免去密码验证，进入mysql后修改<code>mysql.user</code>用户表中root用户的密码，以达到解决忘记密码的问题。</p>
+<p>纵观百度各种方法，思路均是大致一样：运用mysql的<code>-skip-grant-tables</code>参数，可以使进入 mysql 时免去密码验证，进入 mysql 后修改<code>mysql.user</code>用户表中 root 用户的密码，以达到解决忘记密码的问题。</p>
 <h2 id="具体步骤">具体步骤</h2>
 <ol type="1">
-<li><p>以管理员身份打开cmd，关闭mysql</p>
+<li><p>以管理员身份打开 cmd，关闭 mysql</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net stop mysql</span><br></pre></td></tr></table></figure></li>
 <li><p>输入</p>
 <p><code>mysqld -nt -skip-grant-tables</code></p>
@@ -290,7 +290,7 @@
 <li><p>以管理员身份打开另一个cmd，输入</p>
 <p><code>mysql -u root -p</code></p>
 <p>回车后进入mysql</p></li>
-<li><p>接下来在mysql中修改root用户的密码，相应的用户信息也是按数据表的形式存储在<code>mysql.user</code>中，我们就可以改数据库数据的方式来修改密码，但这里有一点问题，mysql的几个版本的用户表的列名都不一样，需要区别对待</p>
+<li><p>接下来在mysql中修改root用户的密码，相应的用户信息也是按数据表的形式存储在 <code>mysql.user</code> 中，我们就可以改数据库数据的方式来修改密码，但这里有一点问题，mysql 的几个版本的用户表的列名都不一样，需要区别对待</p>
 <ul>
 <li><p>mysql 5.6</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">update mysql.user set password&#x3D;password(&#39;newpassword&#39;) where user &#x3D; &#39;root&#39;;</span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure></li>
@@ -304,24 +304,26 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">net start mysql</span><br><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure></li>
 </ol>
 <h1 id="后续">后续</h1>
-<p>修改root密码方法的教程网上有很多，但是我经过一通操作后，还是无法进入mysql。在进行上文的方法操作时，在通过<code>-skip-grant-tables</code>时我便出现了错误，提示mysql根目录中data目录不存在，搜索网上的教程，建议是自己新建一个data文件夹，新建后便可正常免密码验证进入mysql。但按照后续的步骤操作后，还是无法正常修改root密码，进入mysql。仔细思考，为什么我这里没有data目录，不仅如此，我这里还没有在众多教程中提到的my.ini配置文件，突然想起，自还原电脑后，我好像还没在本系统使用过mysql，我的mysql还没有初始化，其实并不算是忘记root密码的问题（可能是我太经常忘记了，已经习以为常）。但因为我强行新建了data目录，进入mysql，已经打乱了项目的结构，无法还原。反正里面没什么数据，就打算干脆删了重新装一个mysql。</p>
+<p>修改root密码方法的教程网上有很多，但是我经过一通操作后，还是无法进入mysql。在进行上文的方法操作时，在通过 <code>-skip-grant-tables</code> 时我便出现了错误，提示mysql根目录中data目录不存在，搜索网上的教程，建议是自己新建一个data文件夹，新建后便可正常免密码验证进入mysql。但按照后续的步骤操作后，还是无法正常修改root密码，进入 mysql。仔细思考，为什么我这里没有data目录，不仅如此，我这里还没有在众多教程中提到的my.ini配置文件，突然想起，自还原电脑后，我好像还没在本系统使用过mysql，我的mysql还没有初始化，其实并不算是忘记root密码的问题（可能是我太经常忘记了，已经习以为常）。但因为我强行新建了 data 目录，进入 mysql，已经打乱了项目的结构，无法还原。反正里面没什么数据，就打算干脆删了重新装一个 mysql。</p>
 <h2 id="卸载">卸载</h2>
-<p>mysql的卸载比较简单，当时我是用Mysql Installer安装的，直接进入Mysql Installer进行卸载即可。如果不是的话，就比较麻烦了，到控制面板把Mysql Server卸载了，再把mysql项目所在文件夹删除，然后再到注册表删除相关项，详情可参照<a href="https://www.jb51.net/article/146050.htm" target="_blank" rel="noopener">这里</a></p>
+<p>mysql的卸载比较简单，当时我是用 Mysql Installer 安装的，直接进入 Mysql Installer 进行卸载即可。如果不是的话，就比较麻烦了，到控制面板把 Mysql Server 卸载了，再把 mysql 项目所在文件夹删除，然后再到注册表删除相关项，详情可参照<a href="https://www.jb51.net/article/146050.htm" target="_blank" rel="noopener">这里</a></p>
 <h2 id="安装">安装</h2>
 <p>两种方法</p>
 <ul>
-<li><p>一是使用<a href="https://dev.mysql.com/downloads/windows/installer/" target="_blank" rel="noopener">Mysql Installer</a>。使用该在线安装软件非常方便，还可选择安装配套的mysql相关软件，安装完后可直接进入傻瓜式配置，无需进行额外的配置，且后续的卸载也可以在这上面进行，个人比较推荐。但该软件只能运行在Windows上，且只能安装最新版本的mysql8。尝试了一下，在初始化数据库时出现问题，而搜索该问题发现关于新版本mysql的相关信息非常少，遂放弃新版本，放弃该方式。</p></li>
+<li><p>一是使用 <a href="https://dev.mysql.com/downloads/windows/installer/" target="_blank" rel="noopener">Mysql Installer</a>。使用该在线安装软件非常方便，还可选择安装配套的 mysql 相关软件，安装完后可直接进入傻瓜式配置，无需进行额外的配置，且后续的卸载也可以在这上面进行，个人比较推荐。但该软件只能运行在 Windows 上，且只能安装最新版本的 mysql8。尝试了一下，在初始化数据库时出现问题，而搜索该问题发现关于新版本 mysql 的相关信息非常少，遂放弃新版本，放弃该方式。</p></li>
 <li><p>二是使用<a href="https://dev.mysql.com/downloads/mysql/" target="_blank" rel="noopener">压缩包</a>安装。选择相应的版本下载压缩包解压即可。这种方式则需要手动额外配置。主要步骤有</p>
 <ul>
-<li><p>创建配置文件my.ini，下面的basedir和datadir替换为本机mysql目录，若有则不用创建</p>
+<li><p>创建配置文件 my.ini，下面的 basedir 和 datadir 替换为本机 mysql 目录，若有则不用创建</p>
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[mysqld]</span></span><br><span class="line"><span class="attr">port</span> = <span class="number">3306</span></span><br><span class="line"><span class="attr">basedir</span>=C:/software/mysql-<span class="number">5.7</span>.<span class="number">21</span>-winx64</span><br><span class="line"><span class="attr">datadir</span>=C:/software/mysql-<span class="number">5.7</span>.<span class="number">21</span>-winx64/data </span><br><span class="line"><span class="attr">max_connections</span>=<span class="number">200</span></span><br><span class="line"><span class="attr">character-set-server</span>=utf8</span><br><span class="line"><span class="attr">default-storage-engine</span>=INNODB</span><br><span class="line"><span class="attr">sql_mode</span>=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES</span><br><span class="line"><span class="section">[mysql]</span></span><br><span class="line"><span class="attr">default-character-set</span>=utf8</span><br></pre></td></tr></table></figure></li>
 <li><p>增加环境变量。将<code>C:/software/mysql-5.7.21-winx64/bin</code>添加到path中（注意换成本机mysql目录）</p></li>
 <li><p>安装mysql</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqld -install</span><br></pre></td></tr></table></figure></li>
 <li><p>初始化MySQL</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqld --initialize-insecure --user=mysql</span><br></pre></td></tr></table></figure></li>
-<li><p>启动mysql</p></li>
-<li><p>```shell net mysql start <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">设置root密码，回车后会提示输入旧密码，直接回车即可</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;shell</span><br><span class="line">mysqladmin -u root -p password 密码</span><br></pre></td></tr></table></figure></p></li>
+<li><p>启动mysql</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net mysql start</span><br></pre></td></tr></table></figure></li>
+<li><p>设置root密码，回车后会提示输入旧密码，直接回车即可</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqladmin -u root -p password 密码</span><br></pre></td></tr></table></figure></li>
 <li><p>安装完成</p></li>
 </ul></li>
 </ul>
@@ -538,7 +540,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">104k</span>
+    <span title="站点总字数">103k</span>
 </div>
   <div class="theme-info">主题 – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.1
   </div>
