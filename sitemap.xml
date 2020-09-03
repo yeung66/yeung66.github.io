@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://scottyeung.top/moments/index.html</loc>
+    
+    <lastmod>2020-09-03T11:18:10.413Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://scottyeung.top/2020/record-of-life/</loc>
     
     <lastmod>2020-08-30T15:33:02.238Z</lastmod>
@@ -47,13 +54,6 @@
     <loc>http://scottyeung.top/2018/Mysql%E5%BF%98%E4%BA%86root%E5%AF%86%E7%A0%81%E6%80%8E%E4%B9%88%E5%8A%9E/</loc>
     
     <lastmod>2020-08-26T08:07:37.725Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://scottyeung.top/moments/index.html</loc>
-    
-    <lastmod>2020-08-18T07:57:40.997Z</lastmod>
     
   </url>
   
