@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://scottyeung.top/"/>
-  <updated>2020-08-30T15:33:02.238Z</updated>
+  <updated>2020-09-19T12:14:17.192Z</updated>
   <id>http://scottyeung.top/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>notes on How to Read a Paper</title>
+    <link href="http://scottyeung.top/2020/how-to-read-a-paper/"/>
+    <id>http://scottyeung.top/2020/how-to-read-a-paper/</id>
+    <published>2020-09-19T10:48:53.000Z</published>
+    <updated>2020-09-19T12:14:17.192Z</updated>
+    
+    <content type="html"><![CDATA[<p>在本周的某门研究导引课上，被推荐了一篇讲述如何读 paper 的 <a href="http://ccr.sigcomm.org/online/files/p83-keshavA.pdf" target="_blank" rel="noopener">paper</a>. 一直以来，其实我都觉得科研（research）明明是一个 skill, 但是一直都没有过方法或者课程的教授，也没有一个好的学习过程和机会。基本都是老师布置任务方向，交代看些什么 papers, 完成什么任务，就这样靠着所谓的做中学，靠着所谓的骚扰师兄师姐，大家就能突然领悟，就能够上手很好地完成科研工作，掌握科研的方法和技能。<del>而领悟不到的，就只能够解释为自己不适合科研而遗憾退场，或者当一颗科研的螺丝钉来苟活着。</del> 当然其实基本所有的事情，都有着其自身的方法论，都能够找到相关的系统的训练（maybe</p><p>回到正题，这篇 paper 主要讲了怎样读一篇 paper，以及如何判断读到什么程度和改不改读。</p><a id="more"></a><h2 id="why-reading-papers">Why reading papers?</h2><ul><li>reviewing papers for a conference or a class</li><li>keep current in our fields</li><li>doing survey for exploring a new field</li></ul><h2 id="three-pass-approach">Three-Pass Approach</h2><p>本文最主要还是提出了一个分成三个阶段阅读的方法。第一阶段的阅读获取文章的大体 idea, 第二阶段的阅读获取文章的主要内容，第三个阶段则深入了解文章，获取各种 details。</p><h3 id="the-first-pass">The First Pass</h3><blockquote><p>a quick scan to get a bird’s-eye view of the paper</p></blockquote><p>第一阶段的阅读快速浏览 paper, 大概以五到十分钟的时间，了解它的大体想讲什么，从而决定后续要不要继续阅读。主要通过以下部分获取信息：</p><ol type="1"><li>仔细阅读文章的 title, sub-title, abstract 和 introduction</li><li>阅读各个章节的标题（仅标题</li><li>跳到最后仔细阅读 conclusion 部分</li><li>扫一下 references, 看看有无熟悉/看过的</li></ol><p>通过第一阶段的略读，应该能够回答以下的问题：</p><ul><li>文章的类别：本文是什么类型的文章？measurement paper, analysis of systems, description of prototype</li><li>Context: 文章属于什么领域？与什么方向相关？</li><li>正确性</li><li>contribution</li><li>写得怎么样（从行文的角度来看</li></ul><p>如果出现以下情况，就可以选择 stop 不看了:（如果不是被安排了必须完成的任务</p><ol type="1"><li>不感兴趣</li><li>没有相关的前提知识无法理解</li><li>文章存在问题</li></ol><h3 id="the-second-pass">The Second Pass</h3><p>第二阶段的阅读可以花上一个小时，对文字的主要内容作一个更加详细的了解，找到 paper 中的关键点。可以通过仔细浏览文章给出的图表入手，通过浏览图表的内容，找出它所表现的数据特征，它 support 的内容或结论，来发掘文章的关键点。</p><p>完成第二阶段的阅读后，应该能够把握到文章的内容，并且能够向他人进行本篇文章的 summarize. 如果所阅读的文章不是当前所研究方向的内容，仅是感兴趣的话，到这一阶段则可以结束阅读了。</p><p>如果结束第二阶段后还没理解一篇文章，则可能是：</p><ul><li>对该领域不熟悉，不了解这方向的名词概念</li><li>证明或实验技巧不理解</li><li>写得不行影响阅读理解</li></ul><p>对于这些情况，我们可以：不看了；读点背景材料再来看；直接跳到第三阶段</p><h3 id="the-third-pass">The Third Pass</h3><p>第三阶段则是通过解构重构的方法来读文章，通过由读者来在脑海中重新实现 paper 的方法来进行：基于作者提出的一些 assumptions，我们会怎样来写这篇文章，怎样来展示里面的工作。通过这样的方法，我们自然会对文章中的 assumptions 有着更深的了解，也自然地会去 challenge 它们。当我们自行 virtual re-implementing 之后，再与文章进行比对，查看一致与不一致的地方</p><blockquote><p>At the end of this pass, you should be able to reconstruct the entire structure of the paper from memory, as well as be able to identify its strong and weak points</p></blockquote><h2 id="如何综述-survey">如何综述 / survey</h2><p>当我们想要了解某个领域某个小的方向时，如果能够搜到 survey 自然是最好的，但有时找不到，可以通过从相关文章中的 related works 里面去找。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在本周的某门研究导引课上，被推荐了一篇讲述如何读 paper 的 &lt;a href=&quot;http://ccr.sigcomm.org/online/files/p83-keshavA.pdf&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;paper&lt;/a&gt;. 一直以来，其实我都觉得科研（research）明明是一个 skill, 但是一直都没有过方法或者课程的教授，也没有一个好的学习过程和机会。基本都是老师布置任务方向，交代看些什么 papers, 完成什么任务，就这样靠着所谓的做中学，靠着所谓的骚扰师兄师姐，大家就能突然领悟，就能够上手很好地完成科研工作，掌握科研的方法和技能。&lt;del&gt;而领悟不到的，就只能够解释为自己不适合科研而遗憾退场，或者当一颗科研的螺丝钉来苟活着。&lt;/del&gt; 当然其实基本所有的事情，都有着其自身的方法论，都能够找到相关的系统的训练（maybe&lt;/p&gt;
+&lt;p&gt;回到正题，这篇 paper 主要讲了怎样读一篇 paper，以及如何判断读到什么程度和改不改读。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="科研" scheme="http://scottyeung.top/categories/%E7%A7%91%E7%A0%94/"/>
+    
+    
+      <category term="notes" scheme="http://scottyeung.top/tags/notes/"/>
+    
+      <category term="科研" scheme="http://scottyeung.top/tags/%E7%A7%91%E7%A0%94/"/>
+    
+      <category term="reading" scheme="http://scottyeung.top/tags/reading/"/>
+    
+  </entry>
   
   <entry>
     <title>生活记录杂谈</title>
@@ -58,11 +85,11 @@
       <category term="Coding 记录" scheme="http://scottyeung.top/categories/Coding-%E8%AE%B0%E5%BD%95/"/>
     
     
+      <category term="Python" scheme="http://scottyeung.top/tags/Python/"/>
+    
       <category term="C#" scheme="http://scottyeung.top/tags/C/"/>
     
       <category term="Linq" scheme="http://scottyeung.top/tags/Linq/"/>
-    
-      <category term="Python" scheme="http://scottyeung.top/tags/Python/"/>
     
   </entry>
   
@@ -316,9 +343,9 @@
       <category term="Coding 学习" scheme="http://scottyeung.top/categories/Coding-%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="Python" scheme="http://scottyeung.top/tags/Python/"/>
-    
       <category term="notes" scheme="http://scottyeung.top/tags/notes/"/>
+    
+      <category term="Python" scheme="http://scottyeung.top/tags/Python/"/>
     
       <category term="并发编程" scheme="http://scottyeung.top/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
     
@@ -508,31 +535,6 @@
       <category term="心态" scheme="http://scottyeung.top/tags/%E5%BF%83%E6%80%81/"/>
     
       <category term="人生" scheme="http://scottyeung.top/tags/%E4%BA%BA%E7%94%9F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Some Notes About SQLAlchemy</title>
-    <link href="http://scottyeung.top/2019/Some-Notes-About-SQLAlchemy/"/>
-    <id>http://scottyeung.top/2019/Some-Notes-About-SQLAlchemy/</id>
-    <published>2019-12-07T02:24:35.000Z</published>
-    <updated>2020-07-16T16:28:17.364Z</updated>
-    
-    <content type="html"><![CDATA[<p>近期在收集处理大量的数据，通常是把XML/文本格式的数据转为关系型，结构化的的数据，能够方便导出直接进行分析，尤其是导出能直接被pandas分析的格式（csv/json）。因此需要使用一个在Python下的mysql处理库，既然找了处理库，也干脆一步到位，直接选一个支持ORM的库。于是，就选择了SQLAlchemy。用了一段时间后，写个记录来记下这段时间用到的常用的东西。</p><p>SQLAlchemy是Python编程语言下的一款开源软件。提供了SQL工具包及对象关系映射（ORM）工具，主要能满足一下的需求： - 提供对数据库的常用操作：增删改查 - 提供ORM功能，可以让操作的单元变为对象，而不用写sql语句进行硬编码/解码解析数据</p><a id="more"></a><h2 id="数据库连接">数据库连接</h2><p>SQLalchemy不能支持操作数据库，因而需要安装额外的数据库驱动，对于不同的数据库与驱动，有着不一样的配置URI，总体格式为<code>dbms://user:pwd@host/dbname</code>。这里用的Mysql+mysqlconnector，具体的连接代码如下 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">from sqlalchemy import create_engine</span><br><span class="line">from sqlalchemy.orm import sessionmaker</span><br><span class="line"></span><br><span class="line">sql_connection &#x3D; &#39;mysql+mysqlconnector:&#x2F;&#x2F;root:pwd@localhost:3306&#x2F;database&#39;</span><br><span class="line">engine &#x3D; create_engine(sql_connection)</span><br><span class="line"></span><br><span class="line"># 执行sql事务需要使用会话</span><br><span class="line">DBsession &#x3D; sessionmaker(bind&#x3D;engine)</span><br><span class="line">session &#x3D; DBsession()</span><br><span class="line"></span><br><span class="line"># 结束前需要关闭session</span><br><span class="line">session.close()</span><br></pre></td></tr></table></figure></p><h2 id="结构定义">结构定义</h2><p>在SQLalchemy中，ORM通过定义对象进行数据库model的绑定。 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">from sqlalchemy.ext.declarative import declarative_base</span><br><span class="line">from sqlalchemy.orm import relation, sessionmaker</span><br><span class="line"></span><br><span class="line">Base &#x3D; declarative_base()</span><br><span class="line"> </span><br><span class="line">class Movie(Base):</span><br><span class="line">    __tablename__ &#x3D; &#39;movies&#39;</span><br><span class="line"> </span><br><span class="line">    id &#x3D; Column(Integer, primary_key&#x3D;True)</span><br><span class="line">    title &#x3D; Column(String(255), nullable&#x3D;False)</span><br><span class="line">    year &#x3D; Column(Integer)</span><br><span class="line">    directed_by &#x3D; Column(Integer)</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line">    def __init__(self, title&#x3D;None, year&#x3D;None):</span><br><span class="line">        self.title &#x3D; title</span><br><span class="line">        self.year &#x3D; year</span><br></pre></td></tr></table></figure></p><ul><li>ORM的model类通过继承declarative_base进行定义，通过<code>__tablename__</code>绑定到对应的table</li><li>每一个Column属性为表中的一列，需要设置类型，类型必须要与数据库中列的类型对应，常用类型有Integer，Float， String（对应varchar），Text</li><li>必须设置一个属性/列为<code>primary_key</code></li><li>可以通过<code>Base.metadata.create_all(engine)</code>创建table</li></ul><h2 id="数据操作">数据操作</h2><p>数据使用ORM进行操作，操作的基本单位为对象（也可以直接使用sql语句，但对于常用操作来说没有必要）。除查询外，对数据库有修改的操作都需要commit事务</p><h3 id="插入">插入</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">m1 &#x3D; Movie(&quot;Star Trek&quot;, 2009)</span><br><span class="line">session.add(m1)</span><br><span class="line">session.commit()</span><br></pre></td></tr></table></figure><ol type="1"><li>创建待插入的对象，添加相应的数据属性</li><li>添加进session中</li><li>提交session，提交事务</li></ol><h3 id="查询">查询</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">movies &#x3D; session.query(Movie).all() # 获取所有数据</span><br><span class="line">movie &#x3D; session.query(Movie).get(movie_id) # 获取单个记录</span><br><span class="line">filter_movie &#x3D; session.query(Movie).filter(Movie.id &#x3D;&#x3D; 1).one()</span><br></pre></td></tr></table></figure><ul><li>查询中query的参数为查询的table/返回的对象</li><li>filter等于where语句，可以对查询结果进行进一步筛选，one返回唯一行，all则返回所有行</li></ul><h3 id="更新">更新</h3><p>查询出来的数据，修改属性后重新提交事务即可。 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">movie &#x3D; session.query(Movie).get(id)</span><br><span class="line">movie.year &#x3D; 1999</span><br><span class="line">session.commit()</span><br></pre></td></tr></table></figure></p><h3 id="删除">删除</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">movie &#x3D; session.query(Movie).get(id)</span><br><span class="line">session.delete()</span><br><span class="line">session.commit()</span><br></pre></td></tr></table></figure><h2 id="some-problems">some problems</h2><h3 id="大批量数据插入">大批量数据插入</h3><p>在使用的过程中，遇到一次需要插入三十多万条数据到数据库的情况。在此之前，我一直都是插完数据再一起commit的（几千/几百条），因为每次commit需要写入数据库，会比较慢（磁盘IO制约）。 但这次数量过多的话，提交的时候出现错误，提示mysql的连接丢失。估计是写入的时间太多，时间太长超出了其限制，进而断开了连接。于是我选择批量commit，在添加一定数量数据后提交一次（5000/1000/500/100/10），但是没有成功，插入一定量的记录后，提示某一条插入的记录的某一列过长（尽管我那一列是不限长度的Text），显然有问题。 上网搜索批量数据插入的方法，但内容基本都是千篇一律，全部都是转载/翻译StackOverflow上的一篇<a href="https://stackoverflow.com/questions/3659142/bulk-insert-with-sqlalchemy-orm" target="_blank" rel="noopener">回答</a>。给出了两种方法 - bulk_save_objects(objects) - add_all()</p><p>都没有效果，最终还是采取了逐条添加并提交的方法，虽然慢了点，但是能work。</p><p>写这件事只是为了吐槽一下现在用Google搜索一些具体的技术问题是，内容严重同质化的现象，大家都抄来抄去，转来转去。像这一次的搜索，最开始的source是在StackOverflow上的提问，然后有网站翻译成了中文并发布（甚至初创，然后就流传于各个中文网站了，一搜，全是这些内容相同的网页，属实恶心。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;近期在收集处理大量的数据，通常是把XML/文本格式的数据转为关系型，结构化的的数据，能够方便导出直接进行分析，尤其是导出能直接被pandas分析的格式（csv/json）。因此需要使用一个在Python下的mysql处理库，既然找了处理库，也干脆一步到位，直接选一个支持ORM的库。于是，就选择了SQLAlchemy。用了一段时间后，写个记录来记下这段时间用到的常用的东西。&lt;/p&gt;
-&lt;p&gt;SQLAlchemy是Python编程语言下的一款开源软件。提供了SQL工具包及对象关系映射（ORM）工具，主要能满足一下的需求： - 提供对数据库的常用操作：增删改查 - 提供ORM功能，可以让操作的单元变为对象，而不用写sql语句进行硬编码/解码解析数据&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="数据库" scheme="http://scottyeung.top/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-    
-    
-      <category term="Python" scheme="http://scottyeung.top/tags/Python/"/>
-    
-      <category term="notes" scheme="http://scottyeung.top/tags/notes/"/>
     
   </entry>
   
