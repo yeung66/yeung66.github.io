@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://scottyeung.top/moments/index.html</loc>
+    
+    <lastmod>2020-10-06T02:51:05.312Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://scottyeung.top/about/index.html</loc>
     
-    <lastmod>2020-10-04T13:18:20.409Z</lastmod>
+    <lastmod>2020-10-05T03:19:05.612Z</lastmod>
     
   </url>
   
@@ -40,13 +47,6 @@
     <loc>http://scottyeung.top/2020/vim-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%AE%B0%E5%BD%95/</loc>
     
     <lastmod>2020-09-28T08:37:12.224Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://scottyeung.top/moments/index.html</loc>
-    
-    <lastmod>2020-09-28T04:20:29.515Z</lastmod>
     
   </url>
   
