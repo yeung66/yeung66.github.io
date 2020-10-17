@@ -1,3 +1,5 @@
+const baseUrl = 'http://yeungyeah.gitee.io/resources/music/';
+
 const ap = new APlayer({
     container: document.getElementById('aplayer'),
     fixed: true,
@@ -7,7 +9,7 @@ const ap = new APlayer({
       {
         name: "重新找到你",
         artist: '农夫',
-        url: 'http://yeungyeah.gitee.io/resources/music/重新找到你.mp3',
+        url: baseUrl + '重新找到你.mp3',
         cover: 'https://y.gtimg.cn/music/photo_new/T002R300x300M000003Np3BR2nsnTx_1.jpg?max_age=2592000',
       },
       {
@@ -93,6 +95,24 @@ const ap = new APlayer({
         artist: '农夫',
         url: 'http://yeungyeah.gitee.io/resources/music/难得咁人齐.mp3',
         cover: 'http://p1.music.126.net/hRdVJ061mER5wTlSB-CU8A==/109951164078381042.jpg'
+      },
+      {
+        name: '好不容易',
+        artist: '方大同',
+        url: baseUrl + '好不容易.mp3',
+        cover: 'http://p1.music.126.net/fmt8sEMrpytMR9rJzVCovw==/42880953496238.jpg'
+      },
+      {
+        name: '泡沫',
+        artist: '邓紫棋',
+        url: baseUrl + '泡沫.mp3',
+        cover: 'http://p2.music.126.net/FFCQQMYJA3n2Ig9bS6Lh2g==/5890083790192984.jpg'
+      },
+      {
+        name: '无菇朋友',
+        artist: '方大同',
+        url: baseUrl + '无菇朋友.mp3',
+        cover: 'http://p1.music.126.net/fmt8sEMrpytMR9rJzVCovw==/42880953496238.jpg'
       }
     ]
 });
