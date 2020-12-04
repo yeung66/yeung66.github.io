@@ -1,5 +1,5 @@
 <h1 align="center">
-<a href="https://github.com/MoOx/pjax" target="_blank" rel="noopener">PJAX</a> for <a href="https://github.com/theme-next" target="_blank" rel="noopener">NexT</a>
+<a href="https://github.com/MoOx/pjax">PJAX</a> for <a href="https://github.com/theme-next">NexT</a>
 </h1>
 <h1 align="center">
 Installation
@@ -24,7 +24,7 @@ Step 3 → Set it up
 </h2>
 <p>Enable module in <strong>NexT</strong> <code>_config.yml</code> file and select your theme:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode yml"><code class="sourceCode yaml"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="fu">pjax:</span><span class="at"> true</span></a></code></pre></div>
-<p><strong>And, if you wants to use the CDN, then need to set:</strong> (you also need to find your corresponding theme css link in <a href="https://www.jsdelivr.com/package/npm/pjax-js?path=themes" target="_blank" rel="noopener">jsdelivr</a>)</p>
+<p><strong>And, if you wants to use the CDN, then need to set:</strong> (you also need to find your corresponding theme css link in <a href="https://www.jsdelivr.com/package/npm/pjax-js?path=themes">jsdelivr</a>)</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode yml"><code class="sourceCode yaml"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="fu">vendors:</span></a>
 <a class="sourceLine" id="cb4-2" data-line-number="2">  ...</a>
 <a class="sourceLine" id="cb4-3" data-line-number="3">  <span class="fu">pjax:</span><span class="at"> //cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js</span></a></code></pre></div>
@@ -34,19 +34,19 @@ Update
 <div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><a class="sourceLine" id="cb5-1" data-line-number="1">$ <span class="bu">cd</span> themes/next/source/lib/pjax</a>
 <a class="sourceLine" id="cb5-2" data-line-number="2">$ <span class="fu">git</span> pull</a></code></pre></div>
 <h1 id="pjax">Pjax</h1>
-<p><a href="https://travis-ci.org/MoOx/pjax" target="_blank" rel="noopener"><img src="https://img.shields.io/travis/MoOx/pjax.svg" alt="Build Status" /></a>.</p>
+<p><a href="https://travis-ci.org/MoOx/pjax"><img src="https://img.shields.io/travis/MoOx/pjax.svg" alt="Build Status" /></a>.</p>
 <blockquote>
 <p>Easily enable fast AJAX navigation on any website (using pushState() + XHR)</p>
 </blockquote>
-<p>Pjax is <strong>a standalone JavaScript module</strong> that uses <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/AJAX" target="_blank" rel="noopener">AJAX</a> (XmlHttpRequest) and <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/API/DOM/Manipulating_the_browser_history" target="_blank" rel="noopener">pushState()</a> to deliver a fast browsing experience.</p>
+<p>Pjax is <strong>a standalone JavaScript module</strong> that uses <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/AJAX">AJAX</a> (XmlHttpRequest) and <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/API/DOM/Manipulating_the_browser_history">pushState()</a> to deliver a fast browsing experience.</p>
 <p><em>It allows you to completely transform the user experience of standard websites (server-side generated or static ones) to make users feel like they are browsing an app, especially for those with low bandwidth connections.</em></p>
 <p><strong>No more full page reloads. No more multiple HTTP requests.</strong></p>
 <p><em>Pjax does not rely on other libraries, like jQuery or similar. It is written entirely in vanilla JS.</em></p>
 <h2 id="installation">Installation</h2>
 <ul>
-<li><p>You can link directly to the <a href="https://cdn.jsdelivr.net/npm/pjax/pjax.js" target="_blank" rel="noopener">bundle</a>:</p>
+<li><p>You can link directly to the <a href="https://cdn.jsdelivr.net/npm/pjax/pjax.js">bundle</a>:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">&lt;script</span><span class="ot"> src=</span><span class="st">&quot;https://cdn.jsdelivr.net/npm/pjax@VERSION/pjax.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></a></code></pre></div></li>
-<li><p>Or the <a href="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js" target="_blank" rel="noopener">minified bundle</a>:</p>
+<li><p>Or the <a href="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js">minified bundle</a>:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">&lt;script</span><span class="ot"> src=</span><span class="st">&quot;https://cdn.jsdelivr.net/npm/pjax@VERSION/pjax.min.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></a></code></pre></div></li>
 <li><p>You can also install Pjax from <strong>npm</strong>:</p>
 <pre class="shell"><code>npm install pjax</code></pre>
@@ -71,7 +71,7 @@ npm run build</code></pre>
 <p><em>Under the hood, it's just ONE HTTP request with a <code>pushState()</code> call.</em></p>
 <p>Pjax loads pages using AJAX and updates the browser's current URL using <code>pushState()</code> <em>without</em> reloading your page's layout or any resources (JS, CSS), giving a fast page load.</p>
 <p>It works with all permalinks and can update all the parts of the page you want (including HTML metas, title, and navigation state).</p>
-<p>In the case of <a href="http://caniuse.com/#search=pushstate" target="_blank" rel="noopener">browsers that don't support <code>history.pushState()</code></a>, Pjax gracefully degrades and does not do anything at all.</p>
+<p>In the case of <a href="http://caniuse.com/#search=pushstate">browsers that don't support <code>history.pushState()</code></a>, Pjax gracefully degrades and does not do anything at all.</p>
 <p>Additionally, Pjax:</p>
 <ul>
 <li>Is not limited to one container, like jQuery-Pjax is.</li>
@@ -154,7 +154,7 @@ npm run build</code></pre>
 <a class="sourceLine" id="cb13-9" data-line-number="9"><span class="op">}</span>)</a></code></pre></div>
 <p>Now, when someone in a Pjax-compatible browser clicks an internal link on the page, the content of each of the selectors will be replaced with the specific content pieces found in the next page's content.</p>
 <p><em>Magic! For real!</em> <strong>There is no need to do anything server-side!</strong></p>
-<h2 id="differences-with-jquery-pjax">Differences with <a href="https://github.com/defunkt/jquery-pjax" target="_blank" rel="noopener">jQuery-pjax</a></h2>
+<h2 id="differences-with-jquery-pjax">Differences with <a href="https://github.com/defunkt/jquery-pjax">jQuery-pjax</a></h2>
 <ul>
 <li>No jQuery dependency.</li>
 <li>Not limited to a container.</li>
@@ -164,7 +164,7 @@ npm run build</code></pre>
 <li>Can be easily tweaked, since every method is public (and as a result, overridable).</li>
 </ul>
 <h2 id="compatibility">Compatibility</h2>
-<p>Pjax only works with <a href="http://caniuse.com/#search=pushstate" target="_blank" rel="noopener">browsers that support the <code>history.pushState()</code> API</a>. When the API isn't supported, Pjax goes into fallback mode (and it just does nothing).</p>
+<p>Pjax only works with <a href="http://caniuse.com/#search=pushstate">browsers that support the <code>history.pushState()</code> API</a>. When the API isn't supported, Pjax goes into fallback mode (and it just does nothing).</p>
 <p>To see if Pjax is actually supported by your browser, use <code>Pjax.isSupported()</code>.</p>
 <h2 id="usage">Usage</h2>
 <h3 id="new-pjax"><code>new Pjax()</code></h3>
@@ -288,7 +288,7 @@ npm run build</code></pre>
 <li><code>Pjax.switches.outerHTML</code>: The default behavior, replaces elements using <code>outerHTML</code>.</li>
 <li><code>Pjax.switches.innerHTML</code>: Replaces elements using <code>innerHTML</code> and copies <code>className</code>.</li>
 <li><code>Pjax.switches.replaceNode</code>: Replaces elements using <code>replaceChild</code></li>
-<li><code>Pjax.switches.sideBySide</code>: Smart replacing that allows you to have both elements in the same parent when you want to use CSS animations. Old elements are removed when all children have been fully animated (an <a href="http://www.w3.org/TR/css3-animations/#animationend" target="_blank" rel="noopener">animationEnd</a> event is triggered).</li>
+<li><code>Pjax.switches.sideBySide</code>: Smart replacing that allows you to have both elements in the same parent when you want to use CSS animations. Old elements are removed when all children have been fully animated (an <a href="http://www.w3.org/TR/css3-animations/#animationend">animationEnd</a> event is triggered).</li>
 </ul>
 <h3 id="creating-a-switch-callback">Creating a Switch Callback</h3>
 <p>Your callback function can do whatever you want, but you need to:</p>
@@ -302,7 +302,7 @@ npm run build</code></pre>
 <a class="sourceLine" id="cb26-3" data-line-number="3">  <span class="kw">this</span>.<span class="at">onSwitch</span>()</a>
 <a class="sourceLine" id="cb26-4" data-line-number="4"><span class="op">}</span></a></code></pre></div>
 <h3 id="switchesoptions-object-default"><code>switchesOptions</code> (Object, default: <code>{}</code>)</h3>
-<p>These are options that can be used during content replacement by switches. For now, only <code>Pjax.switches.sideBySide</code> uses it. This is very convenient when you use something like <a href="https://github.com/daneden/animate.css" target="_blank" rel="noopener">Animate.css</a> with or without <a href="https://github.com/matthieua/WOW" target="_blank" rel="noopener">WOW.js</a>.</p>
+<p>These are options that can be used during content replacement by switches. For now, only <code>Pjax.switches.sideBySide</code> uses it. This is very convenient when you use something like <a href="https://github.com/daneden/animate.css">Animate.css</a> with or without <a href="https://github.com/matthieua/WOW">WOW.js</a>.</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="kw">var</span> pjax <span class="op">=</span> <span class="kw">new</span> <span class="at">Pjax</span>(<span class="op">{</span></a>
 <a class="sourceLine" id="cb27-2" data-line-number="2">  <span class="dt">selectors</span><span class="op">:</span> [<span class="st">&quot;title&quot;</span><span class="op">,</span> <span class="st">&quot;.js-Pjax&quot;</span>]<span class="op">,</span></a>
 <a class="sourceLine" id="cb27-3" data-line-number="3">  <span class="dt">switches</span><span class="op">:</span> <span class="op">{</span></a>
@@ -463,7 +463,7 @@ npm run build</code></pre>
 <li><code>pjax:success</code> - Fired after the Pjax request succeeds.</li>
 <li><code>pjax:error</code> - Fired after the Pjax request fails. The request object will be passed along as <code>event.options.request</code>.</li>
 </ul>
-<p><code>send</code> and <code>complete</code> are a good pair of events to use if you are implementing a loading indicator (eg: <a href="http://buunguyen.github.io/topbar/" target="_blank" rel="noopener">topbar</a>)</p>
+<p><code>send</code> and <code>complete</code> are a good pair of events to use if you are implementing a loading indicator (eg: <a href="http://buunguyen.github.io/topbar/">topbar</a>)</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="va">document</span>.<span class="at">addEventListener</span>(<span class="st">&#39;pjax:send&#39;</span><span class="op">,</span> <span class="va">topbar</span>.<span class="at">show</span>)</a>
 <a class="sourceLine" id="cb31-2" data-line-number="2"><span class="va">document</span>.<span class="at">addEventListener</span>(<span class="st">&#39;pjax:complete&#39;</span><span class="op">,</span> <span class="va">topbar</span>.<span class="at">hide</span>)</a></code></pre></div>
 <h2 id="http-headers">HTTP Headers</h2>

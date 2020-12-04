@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.1">
+<meta name="generator" content="Hexo 5.2.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
@@ -156,11 +156,6 @@
     <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
 
   </li>
-        <li class="menu-item menu-item-占卜">
-
-    <a href="http://divi.scottyeung.top:8181" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>占卜</a>
-
-  </li>
   </ul>
 
 </nav>
@@ -192,7 +187,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/self.jpg">
       <meta itemprop="name" content="YeungYeah">
-      <meta itemprop="description" content="道亦有道  玄之又玄">
+      <meta itemprop="description" content="生活尽管不开心 我们没有不可能">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -275,7 +270,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>前几晚看《The Go Progromming Language》时，在<a href="https://yar999.gitbooks.io/gopl-zh/content/ch5/ch5-06.html" target="_blank" rel="noopener">匿名函数</a>的最后一小节中，发现了一个比较有趣的小坑。 大概的场景为：首先创建一些目录，然后对于每一个目录，分别声明一个匿名函数删除目录，样例代码如下：</p>
+        <p>前几晚看《The Go Progromming Language》时，在<a target="_blank" rel="noopener" href="https://yar999.gitbooks.io/gopl-zh/content/ch5/ch5-06.html">匿名函数</a>的最后一小节中，发现了一个比较有趣的小坑。 大概的场景为：首先创建一些目录，然后对于每一个目录，分别声明一个匿名函数删除目录，样例代码如下：</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> rmdirs []<span class="function"><span class="keyword">func</span><span class="params">()</span></span></span><br><span class="line"><span class="keyword">for</span> _, dir := <span class="keyword">range</span> tempDirs() &#123;</span><br><span class="line">    os.MkdirAll(dir, <span class="number">0755</span>)</span><br><span class="line">    rmdirs = <span class="built_in">append</span>(rmdirs, <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">        os.RemoveAll(dir) </span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>大家可以先自行考虑一下，有没有什么问题，效果会是怎样</p>
 <a id="more"></a>
@@ -293,9 +288,9 @@
 <h1 id="javascript中的循环变量">JavaScript中的循环变量</h1>
 <p>当时看到书，我第一时间就想到了JavaScript中也有着同样的情况，我之前还遇到过类似的问题：给一系列的控件绑定事件触发函数，每个函数中根据循环变量设定条件，然后出现了相似的问题。当时采用的解决方法是提到了参数处理的，治标不治本。</p>
 <p>看到这里后，我马上就用JavaScript复现了这个问题</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">arr = []</span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">5</span>;i++)&#123;</span><br><span class="line">    arr.push(<span class="function"><span class="params">()</span>=&gt;</span>&#123;<span class="built_in">console</span>.log(i)&#125;)</span><br><span class="line">&#125;</span><br><span class="line">arr.forEach(<span class="function">(<span class="params">f</span>)=&gt;</span>&#123;f()&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">arr = []</span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">5</span>;i++)&#123;</span><br><span class="line">    arr.push(<span class="function">()=&gt;</span>&#123;<span class="built_in">console</span>.log(i)&#125;)</span><br><span class="line">&#125;</span><br><span class="line">arr.forEach(<span class="function">(<span class="params">f</span>)=&gt;</span>&#123;f()&#125;)</span><br></pre></td></tr></table></figure>
 <p>结果就如同预期一样，输出了5个4，没有达到预期。然后用跟在Go一样的思路，在循环体内部中使用一个临时局部变量代替，运行后出现预期效果。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">arr = []</span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">5</span>;i++)&#123;</span><br><span class="line">    <span class="keyword">let</span> j=i</span><br><span class="line">    arr.push(<span class="function"><span class="params">()</span>=&gt;</span>&#123;<span class="built_in">console</span>.log(j)&#125;)</span><br><span class="line">&#125;</span><br><span class="line">arr.forEach(<span class="function">(<span class="params">f</span>)=&gt;</span>&#123;f()&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">arr = []</span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">5</span>;i++)&#123;</span><br><span class="line">    <span class="keyword">let</span> j=i</span><br><span class="line">    arr.push(<span class="function">()=&gt;</span>&#123;<span class="built_in">console</span>.log(j)&#125;)</span><br><span class="line">&#125;</span><br><span class="line">arr.forEach(<span class="function">(<span class="params">f</span>)=&gt;</span>&#123;f()&#125;)</span><br></pre></td></tr></table></figure>
 <p>注意到这里用的是<code>let</code>而不是<code>var</code>。使用 let 语句声明一个变量，该变量的范围限于声明它的块中。</p>
 
     </div>
@@ -421,7 +416,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#警告捕获迭代变量"><span class="nav-number">1.</span> <span class="nav-text">警告：捕获迭代变量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#javascript中的循环变量"><span class="nav-number">2.</span> <span class="nav-text">JavaScript中的循环变量</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AD%A6%E5%91%8A%E6%8D%95%E8%8E%B7%E8%BF%AD%E4%BB%A3%E5%8F%98%E9%87%8F"><span class="nav-number">1.</span> <span class="nav-text">警告：捕获迭代变量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#javascript%E4%B8%AD%E7%9A%84%E5%BE%AA%E7%8E%AF%E5%8F%98%E9%87%8F"><span class="nav-number">2.</span> <span class="nav-text">JavaScript中的循环变量</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -430,14 +425,14 @@
     <img class="site-author-image" itemprop="image" alt="YeungYeah"
       src="/images/self.jpg">
   <p class="site-author-name" itemprop="name">YeungYeah</p>
-  <div class="site-description" itemprop="description">道亦有道  玄之又玄</div>
+  <div class="site-description" itemprop="description">生活尽管不开心 我们没有不可能</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-count">55</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -450,7 +445,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">53</span>
+        <span class="site-state-item-count">50</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -514,7 +509,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">115k</span>
+    <span title="站点总字数">117k</span>
 </div>
   <div class="theme-info">主题 – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.1
   </div>

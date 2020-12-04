@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.1">
+<meta name="generator" content="Hexo 5.2.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
@@ -156,11 +156,6 @@
     <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
 
   </li>
-        <li class="menu-item menu-item-占卜">
-
-    <a href="http://divi.scottyeung.top:8181" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>占卜</a>
-
-  </li>
   </ul>
 
 </nav>
@@ -192,7 +187,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/self.jpg">
       <meta itemprop="name" content="YeungYeah">
-      <meta itemprop="description" content="道亦有道  玄之又玄">
+      <meta itemprop="description" content="生活尽管不开心 我们没有不可能">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -256,7 +251,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.8k</span>
+              <span>1.9k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -277,7 +272,7 @@
       
         <h1 id="problem">Problem</h1>
 <ul>
-<li><p>source: <a href="https://leetcode-cn.com/problems/wildcard-matching/" target="_blank" rel="noopener">Wildcard Matching</a></p></li>
+<li><p>source: <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/wildcard-matching/">Wildcard Matching</a></p></li>
 <li><p>difficulty: hard</p></li>
 </ul>
 <p>Given an input string (<code>s</code>) and a pattern (<code>p</code>), implement wildcard pattern matching with support for <code>'?'</code>and <code>'*'</code>.</p>
@@ -303,12 +298,12 @@
 <h2 id="函数递归调用">函数递归调用</h2>
 <p>这道题好像在不知道哪里见过，第一反应就是可以递归解决。</p>
 <p>实际上，我们需要特别考虑的，就是这个<code>*</code>的匹配情况，对于当前两个字符串，<code>*</code>可以匹配空字符，也可以匹配一个字符，核心的递归式如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">isMatch(s,p)=isMatch(s,p[<span class="number">1</span>:]) <span class="keyword">or</span> isMatch(s[<span class="number">1</span>:],p) <span class="keyword">if</span> p[<span class="number">0</span>]==<span class="string">'*'</span> <span class="keyword">else</span></span><br><span class="line">				p[<span class="number">0</span>] <span class="keyword">in</span> (s[<span class="number">0</span>],<span class="string">'?'</span>) <span class="keyword">and</span> isMatch(s[<span class="number">1</span>:],p[<span class="number">1</span>:])</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">isMatch(s,p)=isMatch(s,p[<span class="number">1</span>:]) <span class="keyword">or</span> isMatch(s[<span class="number">1</span>:],p) <span class="keyword">if</span> p[<span class="number">0</span>]==<span class="string">&#x27;*&#x27;</span> <span class="keyword">else</span></span><br><span class="line">				p[<span class="number">0</span>] <span class="keyword">in</span> (s[<span class="number">0</span>],<span class="string">&#x27;?&#x27;</span>) <span class="keyword">and</span> isMatch(s[<span class="number">1</span>:],p[<span class="number">1</span>:])</span><br></pre></td></tr></table></figure>
 <p>方法简单可行，实际上是一个DFS，但是在leetcode上面会超时，用上一个cache缓存后勉强ac。虽然思路简单很容易想到，但递归次数太多，太慢，不是一个好方法。</p>
 <h2 id="dp">DP</h2>
 <p>根据子字符串与子pattern的匹配情况从前往后进行计算.</p>
 <p>设dp[i][j]表示前i个匹配pattern可否匹配前j个待匹配字符串</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> p[i<span class="number">-1</span>]==<span class="string">'*'</span>:</span><br><span class="line">    dp[i][<span class="number">0</span>]=dp[i<span class="number">-1</span>][<span class="number">0</span>]<span class="comment">#能否匹配空字符串取决于前面的pattern</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>,len(s)+<span class="number">1</span>):</span><br><span class="line">        dp[i][j]=dp[i<span class="number">-1</span>][j] <span class="keyword">or</span> dp[i][j<span class="number">-1</span>] <span class="keyword">or</span> dp[i<span class="number">-1</span>][j<span class="number">-1</span>]</span><br><span class="line"><span class="keyword">elif</span> p[i]==<span class="string">'?'</span>:</span><br><span class="line">    dp[i][<span class="number">0</span>]=<span class="literal">False</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>,len(s)+<span class="number">1</span>):</span><br><span class="line">        dp[i][j]=dp[i<span class="number">-1</span>][j<span class="number">-1</span>]</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    dp[i][<span class="number">0</span>]=<span class="literal">False</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>,len(s)+<span class="number">1</span>):</span><br><span class="line">        dp[i][j]=s[j<span class="number">-1</span>]==p[i<span class="number">-1</span>] <span class="keyword">and</span> dp[i<span class="number">-1</span>][j<span class="number">-1</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> p[i-<span class="number">1</span>]==<span class="string">&#x27;*&#x27;</span>:</span><br><span class="line">    dp[i][<span class="number">0</span>]=dp[i-<span class="number">1</span>][<span class="number">0</span>]<span class="comment">#能否匹配空字符串取决于前面的pattern</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="built_in">len</span>(s)+<span class="number">1</span>):</span><br><span class="line">        dp[i][j]=dp[i-<span class="number">1</span>][j] <span class="keyword">or</span> dp[i][j-<span class="number">1</span>] <span class="keyword">or</span> dp[i-<span class="number">1</span>][j-<span class="number">1</span>]</span><br><span class="line"><span class="keyword">elif</span> p[i]==<span class="string">&#x27;?&#x27;</span>:</span><br><span class="line">    dp[i][<span class="number">0</span>]=<span class="literal">False</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="built_in">len</span>(s)+<span class="number">1</span>):</span><br><span class="line">        dp[i][j]=dp[i-<span class="number">1</span>][j-<span class="number">1</span>]</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    dp[i][<span class="number">0</span>]=<span class="literal">False</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="built_in">len</span>(s)+<span class="number">1</span>):</span><br><span class="line">        dp[i][j]=s[j-<span class="number">1</span>]==p[i-<span class="number">1</span>] <span class="keyword">and</span> dp[i-<span class="number">1</span>][j-<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
 <p>比较标准的dp方法，运算时间比上面函数递归调用方法快了一半，但执行时间还是很久</p>
 
     </div>
@@ -434,7 +429,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#problem"><span class="nav-number">1.</span> <span class="nav-text">Problem</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#solution"><span class="nav-number">2.</span> <span class="nav-text">Solution</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#函数递归调用"><span class="nav-number">2.1.</span> <span class="nav-text">函数递归调用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dp"><span class="nav-number">2.2.</span> <span class="nav-text">DP</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#problem"><span class="nav-number">1.</span> <span class="nav-text">Problem</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#solution"><span class="nav-number">2.</span> <span class="nav-text">Solution</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E9%80%92%E5%BD%92%E8%B0%83%E7%94%A8"><span class="nav-number">2.1.</span> <span class="nav-text">函数递归调用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dp"><span class="nav-number">2.2.</span> <span class="nav-text">DP</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -443,14 +438,14 @@
     <img class="site-author-image" itemprop="image" alt="YeungYeah"
       src="/images/self.jpg">
   <p class="site-author-name" itemprop="name">YeungYeah</p>
-  <div class="site-description" itemprop="description">道亦有道  玄之又玄</div>
+  <div class="site-description" itemprop="description">生活尽管不开心 我们没有不可能</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-count">55</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -463,7 +458,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">53</span>
+        <span class="site-state-item-count">50</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -527,7 +522,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">115k</span>
+    <span title="站点总字数">117k</span>
 </div>
   <div class="theme-info">主题 – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.1
   </div>

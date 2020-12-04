@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.1">
+<meta name="generator" content="Hexo 5.2.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
@@ -157,11 +157,6 @@
     <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
 
   </li>
-        <li class="menu-item menu-item-占卜">
-
-    <a href="http://divi.scottyeung.top:8181" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>占卜</a>
-
-  </li>
   </ul>
 
 </nav>
@@ -193,7 +188,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/self.jpg">
       <meta itemprop="name" content="YeungYeah">
-      <meta itemprop="description" content="道亦有道  玄之又玄">
+      <meta itemprop="description" content="生活尽管不开心 我们没有不可能">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -280,7 +275,7 @@
 <p>当时的第一反应居然不是感到很慌，而是在想上午计划的任务做不完了，也是好笑。虽然这是第一次遇到这种状况，而且当时的我还没找到原因，但居然觉得这好像是习以为常的小事，可能这就是 <strong>Linux User Group 成员的觉悟</strong>吧。因为当时没带电脑，就用手机上网搜了搜相关问题，发现好像是刚刚更换的显卡驱动出问题了，把它换回来应该就没问题了吧。</p>
 <p>那怎么更换显卡驱动，把新装的删掉，把旧的重新装回来呢？首先需要进入 bash。又怎样进入 bash 呢？网上说的 tty 我也进入不了，只能通过启动 U 盘（Live USB）进入系统然后加载本机环境。所以不得不跑回宿舍重新刻录一个启动盘，顺便睡了个午觉。</p>
 <p>拿到启动 U 盘之后就比较简单了，直接通过 U 盘进入 U 盘的系统，然后在里面开终端通过 chroot 命令改到硬盘中的系统执行环境，然后把驱动换回来。（说起来很简单，但事实上这几个步骤以及当中的细节，我重复组合尝试了好几次才好起来了。主要操作为</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">manjaro-chroot -a # 根据硬盘安装的系统进行挂载等操作，来切换到硬盘中系统的 bash 环境</span><br><span class="line"></span><br><span class="line">sudo mhwd -li # 列出安装的驱动，</span><br><span class="line">sudo mhwd -r driver-to-delete # 显卡驱动全删了</span><br><span class="line">sudo mhwd -i pci nonfree 0300 # 自适应安装一个闭源的显卡驱动</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 更新升级所有的 package，这一步感觉挺莫名其妙的</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 大概是需要更加内核和引导文件以适配驱动文件？</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 这里几乎把所有的 package 都重新安装了（因为这样导致我第一次不敢尝试又重启多了几次</span></span><br><span class="line">sudo pacman -Syyu</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">manjaro-chroot -a # 根据硬盘安装的系统进行挂载等操作，来切换到硬盘中系统的 bash 环境</span><br><span class="line"></span><br><span class="line">sudo mhwd -li # 列出安装的驱动，</span><br><span class="line">sudo mhwd -r driver-to-delete # 显卡驱动全删了</span><br><span class="line">sudo mhwd -i pci nonfree 0300 # 自适应安装一个闭源的显卡驱动</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 更新升级所有的 package，这一步感觉挺莫名其妙的</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 大概是需要更加内核和引导文件以适配驱动文件？</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 这里几乎把所有的 package 都重新安装了（因为这样导致我第一次不敢尝试又重启多了几次</span></span><br><span class="line">sudo pacman -Syyu </span><br></pre></td></tr></table></figure>
 <p>现在回顾起来感觉修复好像也还挺简单的，然而当时却搞了我两个多小时。在这次问题之后，重新打开了我里面的备份软件 timeshift，还是有在每天备份快照的（意外发现今天的升级把系统也升了一个小版本号），这也让我萌生出了一种<del>豪气</del>错觉：</p>
 <p><strong>只要给我一个 Live USB 让我进去 terminal，啥问题都好像可以解决。</strong></p>
 
@@ -344,7 +339,10 @@
     <a href="/2020/crawl-commic-again/" rel="prev" title="又一次的漫画爬取">
       <i class="fa fa-chevron-left"></i> 又一次的漫画爬取
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/taichi-practice-reflections/" rel="next" title="近期太极练习的反思">
+      近期太极练习的反思 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -413,14 +411,14 @@
     <img class="site-author-image" itemprop="image" alt="YeungYeah"
       src="/images/self.jpg">
   <p class="site-author-name" itemprop="name">YeungYeah</p>
-  <div class="site-description" itemprop="description">道亦有道  玄之又玄</div>
+  <div class="site-description" itemprop="description">生活尽管不开心 我们没有不可能</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-count">55</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -433,7 +431,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">53</span>
+        <span class="site-state-item-count">50</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -497,7 +495,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">115k</span>
+    <span title="站点总字数">117k</span>
 </div>
   <div class="theme-info">主题 – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.1
   </div>

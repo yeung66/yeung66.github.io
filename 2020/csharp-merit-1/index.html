@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.1">
+<meta name="generator" content="Hexo 5.2.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
@@ -33,9 +33,9 @@
 <meta property="article:published_time" content="2020-07-30T03:11:06.000Z">
 <meta property="article:modified_time" content="2020-07-30T03:41:17.833Z">
 <meta property="article:author" content="YeungYeah">
-<meta property="article:tag" content="Python">
 <meta property="article:tag" content="C#">
 <meta property="article:tag" content="Linq">
+<meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://scottyeung.top/2020/csharp-merit-1/">
@@ -157,11 +157,6 @@
     <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
 
   </li>
-        <li class="menu-item menu-item-占卜">
-
-    <a href="http://divi.scottyeung.top:8181" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>占卜</a>
-
-  </li>
   </ul>
 
 </nav>
@@ -193,7 +188,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/self.jpg">
       <meta itemprop="name" content="YeungYeah">
-      <meta itemprop="description" content="道亦有道  玄之又玄">
+      <meta itemprop="description" content="生活尽管不开心 我们没有不可能">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -251,7 +246,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1k</span>
+              <span>1.1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -273,13 +268,13 @@
         <p>昨晚无意间想到 Leetcode 刷道题，因为太久没刷就随便挑了道 Easy 的题来玩玩，顺便用用 C#。在这个过程中试了试 C# 中的 Linq 特性，果然好用到爆。</p>
 <a id="more"></a>
 <p>使用的场景为，需要对数组里面的不同元素分别进行计数，如：</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = <span class="keyword">new</span> List&lt;<span class="keyword">string</span>&gt;&#123;<span class="string">"cat"</span>, <span class="string">"bat"</span>,<span class="string">"rat"</span>,<span class="string">"dog"</span>,<span class="string">"cat"</span>,<span class="string">"cat"</span>,<span class="string">"rat"</span>&#125;;</span><br><span class="line"><span class="keyword">var</span> count = CountEle(arr);</span><br><span class="line"><span class="comment">// should return</span></span><br><span class="line"><span class="comment">// &#123;</span></span><br><span class="line"><span class="comment">//   "cat": 3,</span></span><br><span class="line"><span class="comment">//   "bat": 1,</span></span><br><span class="line"><span class="comment">//   "rat": 2,</span></span><br><span class="line"><span class="comment">//   "dog": 1</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br></pre></td></tr></table></figure>
-<p>最为常规的方法当然就是遍历计数了 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Dictionary&lt;<span class="keyword">string</span>,<span class="keyword">int</span>&gt; <span class="title">CountEle</span>(<span class="params">List&lt;<span class="keyword">string</span>&gt; arr</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> result = <span class="keyword">new</span> Dictionary&lt;<span class="keyword">string</span>,<span class="keyword">int</span>&gt;();</span><br><span class="line">    <span class="keyword">foreach</span>(<span class="keyword">var</span> word <span class="keyword">in</span> arr)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">if</span>(result.ContainsKey(word)) result[word]++;</span><br><span class="line">      <span class="keyword">else</span> result.Add(word,<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = <span class="keyword">new</span> List&lt;<span class="built_in">string</span>&gt;&#123;<span class="string">&quot;cat&quot;</span>, <span class="string">&quot;bat&quot;</span>,<span class="string">&quot;rat&quot;</span>,<span class="string">&quot;dog&quot;</span>,<span class="string">&quot;cat&quot;</span>,<span class="string">&quot;cat&quot;</span>,<span class="string">&quot;rat&quot;</span>&#125;;</span><br><span class="line"><span class="keyword">var</span> count = CountEle(arr);</span><br><span class="line"><span class="comment">// should return</span></span><br><span class="line"><span class="comment">// &#123;</span></span><br><span class="line"><span class="comment">//   &quot;cat&quot;: 3,</span></span><br><span class="line"><span class="comment">//   &quot;bat&quot;: 1,</span></span><br><span class="line"><span class="comment">//   &quot;rat&quot;: 2,</span></span><br><span class="line"><span class="comment">//   &quot;dog&quot;: 1</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br></pre></td></tr></table></figure>
+<p>最为常规的方法当然就是遍历计数了 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Dictionary&lt;<span class="built_in">string</span>,<span class="built_in">int</span>&gt; <span class="title">CountEle</span>(<span class="params">List&lt;<span class="built_in">string</span>&gt; arr</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> result = <span class="keyword">new</span> Dictionary&lt;<span class="built_in">string</span>,<span class="built_in">int</span>&gt;();</span><br><span class="line">    <span class="keyword">foreach</span>(<span class="keyword">var</span> word <span class="keyword">in</span> arr)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">if</span>(result.ContainsKey(word)) result[word]++;</span><br><span class="line">      <span class="keyword">else</span> result.Add(word,<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>这样的方法简单直接，但是我对于在遍历时里面还要对于是否包含元素进行一次判断，要多写一个判断，多写一个语句感到不爽，就想着搜搜有没改进的办法，像是在 Python 里面，就可以通过 setdefault 或者 get 方法来避免键值还不存在的情况。</p>
 <p>然后发现了 Linq 的方法，起飞。Linq 的方法思路大概就是将可遍历的元素用 Sql 的方法来处理，还是挺爽挺直观的。</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Dictionary&lt;<span class="keyword">string</span>,<span class="keyword">int</span>&gt; <span class="title">CountEle</span>(<span class="params">List&lt;<span class="keyword">string</span>&gt; arr</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> groups = arr.GroupBy(s =&gt; s)</span><br><span class="line">      .Select(s =&gt; <span class="keyword">new</span> &#123;</span><br><span class="line">        Word =&gt; s.Key,</span><br><span class="line">        Count =&gt; s.Count()</span><br><span class="line">      &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> groups.ToDictionary(s=&gt;s.Word,s=&gt;s.Count);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Dictionary&lt;<span class="built_in">string</span>,<span class="built_in">int</span>&gt; <span class="title">CountEle</span>(<span class="params">List&lt;<span class="built_in">string</span>&gt; arr</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> groups = arr.GroupBy(s =&gt; s)</span><br><span class="line">      .Select(s =&gt; <span class="keyword">new</span> &#123;</span><br><span class="line">        Word =&gt; s.Key,</span><br><span class="line">        Count =&gt; s.Count()</span><br><span class="line">      &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> groups.ToDictionary(s=&gt;s.Word,s=&gt;s.Count);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>最后送上一个 Python 版本更加 tricky 的方法。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CountEle = <span class="keyword">lambda</span> arr: &#123;i:arr.count(i) <span class="keyword">for</span> i <span class="keyword">in</span> set(arr)&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CountEle = <span class="keyword">lambda</span> arr: &#123;i:arr.count(i) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">set</span>(arr)&#125;</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -327,9 +322,9 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/Python/" rel="tag"><i class="fa fa-tag"></i> Python</a>
               <a href="/tags/C/" rel="tag"><i class="fa fa-tag"></i> C#</a>
               <a href="/tags/Linq/" rel="tag"><i class="fa fa-tag"></i> Linq</a>
+              <a href="/tags/Python/" rel="tag"><i class="fa fa-tag"></i> Python</a>
           </div>
 
         
@@ -413,14 +408,14 @@
     <img class="site-author-image" itemprop="image" alt="YeungYeah"
       src="/images/self.jpg">
   <p class="site-author-name" itemprop="name">YeungYeah</p>
-  <div class="site-description" itemprop="description">道亦有道  玄之又玄</div>
+  <div class="site-description" itemprop="description">生活尽管不开心 我们没有不可能</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-count">55</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -433,7 +428,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">53</span>
+        <span class="site-state-item-count">50</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -497,7 +492,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">115k</span>
+    <span title="站点总字数">117k</span>
 </div>
   <div class="theme-info">主题 – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.1
   </div>

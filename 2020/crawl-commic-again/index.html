@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.1">
+<meta name="generator" content="Hexo 5.2.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
@@ -161,11 +161,6 @@
     <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
 
   </li>
-        <li class="menu-item menu-item-占卜">
-
-    <a href="http://divi.scottyeung.top:8181" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>占卜</a>
-
-  </li>
   </ul>
 
 </nav>
@@ -197,7 +192,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/self.jpg">
       <meta itemprop="name" content="YeungYeah">
-      <meta itemprop="description" content="道亦有道  玄之又玄">
+      <meta itemprop="description" content="生活尽管不开心 我们没有不可能">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -261,7 +256,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.4k</span>
+              <span>2.6k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -281,7 +276,7 @@
 
       
         <h2 id="背景">背景</h2>
-<p>最近刚开始追了一部 b 站的<a href="https://www.bilibili.com/bangumi/play/ss34230" target="_blank" rel="noopener">新番</a>，觉得挺有意思，就打算看看它的漫画，但这漫画也是某站独家，不太想花钱，就打算上网找点资源白嫖（当然大家还是要支持正版的！我是已经支持太多了想省一省 <span class="github-emoji" data-alias="joy" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f602.png?v8">😂</span>)。然而网上找到的资源太少，且大多已经不可用，唯一找到的一个可以看的网站，图片质量太高，加载太慢，而且它的加载方式也很离谱，每一话在一个页面直接丢给你十几二十张图片，而且也没有 lazy load, 全部图片一起加载，体验极差。</p>
+<p>最近刚开始追了一部 b 站的<a target="_blank" rel="noopener" href="https://www.bilibili.com/bangumi/play/ss34230">新番</a>，觉得挺有意思，就打算看看它的漫画，但这漫画也是某站独家，不太想花钱，就打算上网找点资源白嫖（当然大家还是要支持正版的！我是已经支持太多了想省一省 <span class="github-emoji" data-alias="joy" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f602.png?v8">😂</span>)。然而网上找到的资源太少，且大多已经不可用，唯一找到的一个可以看的网站，图片质量太高，加载太慢，而且它的加载方式也很离谱，每一话在一个页面直接丢给你十几二十张图片，而且也没有 lazy load, 全部图片一起加载，体验极差。</p>
 <p>所以没有办法，只能重操旧业，把它爬下来，免去了阅读过程中的等待时间。（对上一次的爬取可以<a href="http://scottyeung.top/2020/%E8%AE%B0%E4%B8%80%E6%AC%A1%E6%BC%AB%E7%94%BB%E6%89%B9%E9%87%8F%E7%9A%84%E7%88%AC%E5%8F%96-%E4%B8%8B%E8%BD%BD/">看此</a>）</p>
 <a id="more"></a>
 <h2 id="爬取思路">爬取思路</h2>
@@ -301,7 +296,7 @@
 <li>字符串拼接硬编码组成的待插入 html 标签</li>
 </ul>
 <p>还好有 IDE, 能够有变量搜索和函数跳转，大概的功能还是看出来了：加载文档时调用一个初始化方法，初始化方法根据一个图片的路径变量，生成一系列的 img 标签，插入到 html 文档里面。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">imgload:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> a,b;</span><br><span class="line">  b=<span class="string">""</span>;</span><br><span class="line">  a=qTcms_S_m_murl.split(<span class="string">"$qingtiandy$"</span>);</span><br><span class="line">  qTcms_page.Pic._arr=a;</span><br><span class="line">  qTcms_page.total=a.length;</span><br><span class="line">  <span class="keyword">var</span> ll1=a.length;</span><br><span class="line">  <span class="keyword">var</span> ll=<span class="number">2</span>;</span><br><span class="line">  <span class="keyword">if</span>(ll&gt;ll1)ll=ll1;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;ll;i++)&#123;</span><br><span class="line">    <span class="keyword">var</span> srcid=<span class="string">'img'</span>+(i+<span class="number">1</span>);</span><br><span class="line">    qTcms_page.curpage=(i+<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">var</span> bb=a[i];</span><br><span class="line">    <span class="keyword">var</span> cc=f_qTcms_Pic_curUrl_realpic(bb);</span><br><span class="line">    <span class="keyword">var</span> limg1=<span class="string">"/statics/images/pic_loading.gif"</span>;</span><br><span class="line">    $(<span class="string">"#qTcms_Pic_middle tr td"</span>).append(<span class="string">'&lt;div&gt;&lt;img class="comic_img" src="'</span>+cc+<span class="string">'" data-original="'</span>+cc+<span class="string">'" id="'</span>+srcid+<span class="string">'" style="display: inline;cursor: zoom-in;" onclick="qTcms_page.relpic(\''</span>+cc+<span class="string">'\',\''</span>+srcid+<span class="string">'\')"&gt;&lt;/div&gt;'</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">imgload:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> a,b;</span><br><span class="line">  b=<span class="string">&quot;&quot;</span>;</span><br><span class="line">  a=qTcms_S_m_murl.split(<span class="string">&quot;$qingtiandy$&quot;</span>);</span><br><span class="line">  qTcms_page.Pic._arr=a;</span><br><span class="line">  qTcms_page.total=a.length;</span><br><span class="line">  <span class="keyword">var</span> ll1=a.length;</span><br><span class="line">  <span class="keyword">var</span> ll=<span class="number">2</span>;</span><br><span class="line">  <span class="keyword">if</span>(ll&gt;ll1)ll=ll1;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;ll;i++)&#123;</span><br><span class="line">    <span class="keyword">var</span> srcid=<span class="string">&#x27;img&#x27;</span>+(i+<span class="number">1</span>);</span><br><span class="line">    qTcms_page.curpage=(i+<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">var</span> bb=a[i];</span><br><span class="line">    <span class="keyword">var</span> cc=f_qTcms_Pic_curUrl_realpic(bb);</span><br><span class="line">    <span class="keyword">var</span> limg1=<span class="string">&quot;/statics/images/pic_loading.gif&quot;</span>;</span><br><span class="line">    $(<span class="string">&quot;#qTcms_Pic_middle tr td&quot;</span>).append(<span class="string">&#x27;&lt;div&gt;&lt;img class=&quot;comic_img&quot; src=&quot;&#x27;</span>+cc+<span class="string">&#x27;&quot; data-original=&quot;&#x27;</span>+cc+<span class="string">&#x27;&quot; id=&quot;&#x27;</span>+srcid+<span class="string">&#x27;&quot; style=&quot;display: inline;cursor: zoom-in;&quot; onclick=&quot;qTcms_page.relpic(\&#x27;&#x27;</span>+cc+<span class="string">&#x27;\&#x27;,\&#x27;&#x27;</span>+srcid+<span class="string">&#x27;\&#x27;)&quot;&gt;&lt;/div&gt;&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>但是这个变量 <code>qTcms_S_m_murl</code> 我怎么找都没找到它在哪里定义的，用倒是到处都在用，找了几个其它的 js 文件也没有找到，后来发现这居然是在原始的 html 文档直接给出的，原始 html 文档给了一个经过 base64 编码的所有图片链接地址作为一个全局变量，然后导入的 js 文件将该变量中的地址解码再分别取出每个图片的地址，生成 img 标签并插入到源文档中。</p>
 <p>发现了它的这个方式之后，工作就很简单了，直接从原 html 文档中找出这个编码后的图片地址合集，解码后分别下载这些图片保存。</p>
 <h2 id="实现">实现</h2>
@@ -443,7 +438,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#爬取思路"><span class="nav-number">2.</span> <span class="nav-text">爬取思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现"><span class="nav-number">3.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结果"><span class="nav-number">4.</span> <span class="nav-text">结果</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%88%AC%E5%8F%96%E6%80%9D%E8%B7%AF"><span class="nav-number">2.</span> <span class="nav-text">爬取思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0"><span class="nav-number">3.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E6%9E%9C"><span class="nav-number">4.</span> <span class="nav-text">结果</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -452,14 +447,14 @@
     <img class="site-author-image" itemprop="image" alt="YeungYeah"
       src="/images/self.jpg">
   <p class="site-author-name" itemprop="name">YeungYeah</p>
-  <div class="site-description" itemprop="description">道亦有道  玄之又玄</div>
+  <div class="site-description" itemprop="description">生活尽管不开心 我们没有不可能</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-count">55</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -472,7 +467,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">53</span>
+        <span class="site-state-item-count">50</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -536,7 +531,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">115k</span>
+    <span title="站点总字数">117k</span>
 </div>
   <div class="theme-info">主题 – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.1
   </div>

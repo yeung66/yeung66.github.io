@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.1">
+<meta name="generator" content="Hexo 5.2.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
@@ -33,8 +33,8 @@
 <meta property="article:published_time" content="2019-02-25T02:08:18.000Z">
 <meta property="article:modified_time" content="2020-08-26T08:13:58.375Z">
 <meta property="article:author" content="YeungYeah">
-<meta property="article:tag" content="CCF">
 <meta property="article:tag" content="Python">
+<meta property="article:tag" content="CCF">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://scottyeung.top/2019/CCF201604-2-%E4%BF%84%E7%BD%97%E6%96%AF%E6%96%B9%E5%9D%97/">
@@ -156,11 +156,6 @@
     <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
 
   </li>
-        <li class="menu-item menu-item-占卜">
-
-    <a href="http://divi.scottyeung.top:8181" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>占卜</a>
-
-  </li>
   </ul>
 
 </nav>
@@ -192,7 +187,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/self.jpg">
       <meta itemprop="name" content="YeungYeah">
-      <meta itemprop="description" content="道亦有道  玄之又玄">
+      <meta itemprop="description" content="生活尽管不开心 我们没有不可能">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -328,7 +323,7 @@
 <h1 id="solution">Solution</h1>
 <p>该问题是一题较为常见的模拟题，需要我们模拟方块的下落情况。就难度而言，并不困难，但相对于其为第二道题的顺序，则稍显得有些麻烦。</p>
 <p>具体思路为：读取输入构造方格图，找到下落方块的位置，逐行下降，直至其无法下降为止。思路其实很简单，其核心在于，如何判断方块是否能继续下降，实现了这判断方法，就比较简单了。在这里，我是通过检测下落方块与方块图对于区域是否有重合判断，我将方块图对应位置矩阵与下落方块图相加，若有一元素为2，则出现碰撞，无法下落而结束。具体代码如下</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">m,n = <span class="number">15</span>,<span class="number">10</span></span><br><span class="line">board = []</span><br><span class="line"><span class="comment">#读取输入构建方格图</span></span><br><span class="line"><span class="keyword">for</span> _ <span class="keyword">in</span> range(m):</span><br><span class="line">    board.append(list(map(int,input().split()[:n])))</span><br><span class="line"><span class="comment">#最方格图最下面加一行防止溢出</span></span><br><span class="line">board.append([<span class="number">1</span> <span class="keyword">for</span> _ <span class="keyword">in</span> range(<span class="number">10</span>)])</span><br><span class="line"><span class="comment">#读取下落方块</span></span><br><span class="line">new = []</span><br><span class="line"><span class="keyword">for</span> _ <span class="keyword">in</span> range(<span class="number">4</span>):</span><br><span class="line">    new.append(list(map(int,input().split()[:<span class="number">4</span>])))</span><br><span class="line"></span><br><span class="line">pos = int(input())</span><br><span class="line">pos-=<span class="number">1</span><span class="comment">#为什么要减1？第pos行的实际下标为pos-1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#删除下落方格中空行</span></span><br><span class="line">i = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> i &lt;len(new):    </span><br><span class="line">    <span class="keyword">if</span> sum(new[i])==<span class="number">0</span>:<span class="keyword">del</span> new[i]</span><br><span class="line">    <span class="keyword">else</span>:i+=<span class="number">1</span></span><br><span class="line"></span><br><span class="line">new_m = len(new)</span><br><span class="line"></span><br><span class="line">new_n = <span class="number">4</span></span><br><span class="line"></span><br><span class="line">ans = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">15</span>):</span><br><span class="line">    temp = [board[j][pos:pos+new_n] <span class="keyword">for</span> j <span class="keyword">in</span> range(i,i+new_m)]</span><br><span class="line">    sumup = [[temp[i][j]+new[i][j] <span class="keyword">for</span> j <span class="keyword">in</span> range(new_n)] <span class="keyword">for</span> i <span class="keyword">in</span> range(new_m)]</span><br><span class="line">    collsion = <span class="literal">False</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(new_m):</span><br><span class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> range(new_n):</span><br><span class="line">            <span class="keyword">if</span> sumup[j][k]==<span class="number">2</span>:</span><br><span class="line">                collsion=<span class="literal">True</span></span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">if</span> collsion:<span class="keyword">break</span></span><br><span class="line">    <span class="keyword">if</span> collsion:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">else</span>:ans = i</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(new_m):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(new_n):</span><br><span class="line">        <span class="keyword">if</span> new[i][j]==<span class="number">1</span>:board[ans+i][pos+j]=<span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> board[:<span class="number">-1</span>]:</span><br><span class="line">    print(<span class="string">' '</span>.join(map(str,i)))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">m,n = <span class="number">15</span>,<span class="number">10</span></span><br><span class="line">board = []</span><br><span class="line"><span class="comment">#读取输入构建方格图</span></span><br><span class="line"><span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(m):</span><br><span class="line">    board.append(<span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>,<span class="built_in">input</span>().split()[:n])))</span><br><span class="line"><span class="comment">#最方格图最下面加一行防止溢出</span></span><br><span class="line">board.append([<span class="number">1</span> <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>)])</span><br><span class="line"><span class="comment">#读取下落方块</span></span><br><span class="line">new = []</span><br><span class="line"><span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>):</span><br><span class="line">    new.append(<span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">int</span>,<span class="built_in">input</span>().split()[:<span class="number">4</span>])))</span><br><span class="line"></span><br><span class="line">pos = <span class="built_in">int</span>(<span class="built_in">input</span>())</span><br><span class="line">pos-=<span class="number">1</span><span class="comment">#为什么要减1？第pos行的实际下标为pos-1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#删除下落方格中空行</span></span><br><span class="line">i = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> i &lt;<span class="built_in">len</span>(new):    </span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">sum</span>(new[i])==<span class="number">0</span>:<span class="keyword">del</span> new[i]</span><br><span class="line">    <span class="keyword">else</span>:i+=<span class="number">1</span></span><br><span class="line"></span><br><span class="line">new_m = <span class="built_in">len</span>(new)</span><br><span class="line"></span><br><span class="line">new_n = <span class="number">4</span></span><br><span class="line"></span><br><span class="line">ans = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">15</span>):</span><br><span class="line">    temp = [board[j][pos:pos+new_n] <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i,i+new_m)]</span><br><span class="line">    sumup = [[temp[i][j]+new[i][j] <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(new_n)] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(new_m)]</span><br><span class="line">    collsion = <span class="literal">False</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(new_m):</span><br><span class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(new_n):</span><br><span class="line">            <span class="keyword">if</span> sumup[j][k]==<span class="number">2</span>:</span><br><span class="line">                collsion=<span class="literal">True</span></span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">if</span> collsion:<span class="keyword">break</span></span><br><span class="line">    <span class="keyword">if</span> collsion:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">else</span>:ans = i</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(new_m):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(new_n):</span><br><span class="line">        <span class="keyword">if</span> new[i][j]==<span class="number">1</span>:board[ans+i][pos+j]=<span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> board[:-<span class="number">1</span>]:</span><br><span class="line">    print(<span class="string">&#x27; &#x27;</span>.join(<span class="built_in">map</span>(<span class="built_in">str</span>,i)))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>该代码提交后正确，获得了100分。</p>
 <h1 id="reflect">Reflect</h1>
 <ul>
@@ -390,8 +385,8 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/CCF/" rel="tag"><i class="fa fa-tag"></i> CCF</a>
               <a href="/tags/Python/" rel="tag"><i class="fa fa-tag"></i> Python</a>
+              <a href="/tags/CCF/" rel="tag"><i class="fa fa-tag"></i> CCF</a>
           </div>
 
         
@@ -467,7 +462,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#problem"><span class="nav-number">1.</span> <span class="nav-text">Problem</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题描述"><span class="nav-number">1.1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入格式"><span class="nav-number">1.2.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输出格式"><span class="nav-number">1.3.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#样例输入"><span class="nav-number">1.4.</span> <span class="nav-text">样例输入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#样例输出"><span class="nav-number">1.5.</span> <span class="nav-text">样例输出</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#solution"><span class="nav-number">2.</span> <span class="nav-text">Solution</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#reflect"><span class="nav-number">3.</span> <span class="nav-text">Reflect</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#problem"><span class="nav-number">1.</span> <span class="nav-text">Problem</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0"><span class="nav-number">1.1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%A0%BC%E5%BC%8F"><span class="nav-number">1.2.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F"><span class="nav-number">1.3.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%B7%E4%BE%8B%E8%BE%93%E5%85%A5"><span class="nav-number">1.4.</span> <span class="nav-text">样例输入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%B7%E4%BE%8B%E8%BE%93%E5%87%BA"><span class="nav-number">1.5.</span> <span class="nav-text">样例输出</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#solution"><span class="nav-number">2.</span> <span class="nav-text">Solution</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#reflect"><span class="nav-number">3.</span> <span class="nav-text">Reflect</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -476,14 +471,14 @@
     <img class="site-author-image" itemprop="image" alt="YeungYeah"
       src="/images/self.jpg">
   <p class="site-author-name" itemprop="name">YeungYeah</p>
-  <div class="site-description" itemprop="description">道亦有道  玄之又玄</div>
+  <div class="site-description" itemprop="description">生活尽管不开心 我们没有不可能</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-count">55</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -496,7 +491,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">53</span>
+        <span class="site-state-item-count">50</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -560,7 +555,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">115k</span>
+    <span title="站点总字数">117k</span>
 </div>
   <div class="theme-info">主题 – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.1
   </div>

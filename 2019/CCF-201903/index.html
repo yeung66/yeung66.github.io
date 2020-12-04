@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.1">
+<meta name="generator" content="Hexo 5.2.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
@@ -33,8 +33,8 @@
 <meta property="article:published_time" content="2019-04-18T03:34:47.000Z">
 <meta property="article:modified_time" content="2020-07-16T16:28:17.254Z">
 <meta property="article:author" content="YeungYeah">
-<meta property="article:tag" content="CCF">
 <meta property="article:tag" content="Python">
+<meta property="article:tag" content="CCF">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://scottyeung.top/2019/CCF-201903/">
@@ -156,11 +156,6 @@
     <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
 
   </li>
-        <li class="menu-item menu-item-占卜">
-
-    <a href="http://divi.scottyeung.top:8181" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>占卜</a>
-
-  </li>
   </ul>
 
 </nav>
@@ -192,7 +187,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/self.jpg">
       <meta itemprop="name" content="YeungYeah">
-      <meta itemprop="description" content="道亦有道  玄之又玄">
+      <meta itemprop="description" content="生活尽管不开心 我们没有不可能">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -276,7 +271,7 @@
 
       
         <p>最后一次的认证，事前准备了差不多一个月，都觉得没什么问题了，考的时候还做出了四道题，觉得三百分是稳的。然后一查成绩，居然比第一次基本没怎么准备还低（第一次270），不甘心，又无奈。</p>
-<p>于是等到网上出了题后，把当时提交的题重新做一遍，提交一遍，重新看看问题在哪，写一写题解。也不是想要证明什么，只是觉得努力不应该被白费？ 代码链接<a href="https://github.com/yeung66/codesAboutCCF/tree/master/201903" target="_blank" rel="noopener">点此</a> <a id="more"></a></p>
+<p>于是等到网上出了题后，把当时提交的题重新做一遍，提交一遍，重新看看问题在哪，写一写题解。也不是想要证明什么，只是觉得努力不应该被白费？ 代码链接<a target="_blank" rel="noopener" href="https://github.com/yeung66/codesAboutCCF/tree/master/201903">点此</a> <a id="more"></a></p>
 <h2 id="小中大">小中大</h2>
 <p>题目为有序序列中找最大值，最小值和中位数，并按大到小的顺序输出。</p>
 <p>非常简单，最大最小值直接按索引取值即可，中位数则需要根据个数的奇偶性判断要不要取均值。</p>
@@ -299,7 +294,7 @@
 <p>题目要求给出图中每一个点到k个特定类型的点的最短路径和。</p>
 <p>对于图论题我一直都是抱着能拿分就拿分的态度，超时的话一般都不考虑，于是直接采用最为暴力直接的方法——弗洛伊德算法，直接求出多源点最短路径，复杂度为<span class="math inline">\(O(n^3)\)</span>，求出后直接找每个点到特定点的距离，排序后取前k个求和即可。</p>
 <p>考试时，这道题我得了0分，现在重新提交，显示运行超时。运行超时我并不感到意外，但是超时到连第一个样例都过不了？？？重新看数据规模，发现这里第一档的数据（30%的数据），点的规模就已经到了500，重新翻了翻以往的图论题，别的单源最短路径或者最小生成树的问题第一档数据规模一般都是<span class="math inline">\(10\)</span>,今年因为放到了第五题，强行通过数据规模提高难度，也是醉了。但是即使如此，现在的模拟提交因为时间只有1秒超时，在考试的时候时间上限是10s，10s也不能跑完第一档的数据？很奇怪。</p>
-<p>换用了C++重新写了一个C++版本的弗洛伊德算法，还是超时0分。上网搜了一下，相关题解只有<a href="https://www.cnblogs.com/brainm/p/10548893.html" target="_blank" rel="noopener">一个</a>，而且也是用弗洛伊德算法。将其直接复制提交，提示错误，这次不超时了，但是时间也接近界限了。一样的方法为什么它可以不超时？我一直贴近它的代码修改我的，可是我的代码还是一直超时，莫得办法。看它的代码，没有考虑重边和自环。修改后还是错误。暂时只能放弃。</p>
+<p>换用了C++重新写了一个C++版本的弗洛伊德算法，还是超时0分。上网搜了一下，相关题解只有<a target="_blank" rel="noopener" href="https://www.cnblogs.com/brainm/p/10548893.html">一个</a>，而且也是用弗洛伊德算法。将其直接复制提交，提示错误，这次不超时了，但是时间也接近界限了。一样的方法为什么它可以不超时？我一直贴近它的代码修改我的，可是我的代码还是一直超时，莫得办法。看它的代码，没有考虑重边和自环。修改后还是错误。暂时只能放弃。</p>
 
     </div>
 
@@ -347,8 +342,8 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/CCF/" rel="tag"><i class="fa fa-tag"></i> CCF</a>
               <a href="/tags/Python/" rel="tag"><i class="fa fa-tag"></i> Python</a>
+              <a href="/tags/CCF/" rel="tag"><i class="fa fa-tag"></i> CCF</a>
           </div>
 
         
@@ -424,7 +419,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#小中大"><span class="nav-number">1.</span> <span class="nav-text">小中大</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二十四点"><span class="nav-number">2.</span> <span class="nav-text">二十四点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#损坏的raid5"><span class="nav-number">3.</span> <span class="nav-text">损坏的RAID5</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消息传递接口"><span class="nav-number">4.</span> <span class="nav-text">消息传递接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#号子任务"><span class="nav-number">5.</span> <span class="nav-text">317号子任务</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E4%B8%AD%E5%A4%A7"><span class="nav-number">1.</span> <span class="nav-text">小中大</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E5%9B%9B%E7%82%B9"><span class="nav-number">2.</span> <span class="nav-text">二十四点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8D%9F%E5%9D%8F%E7%9A%84raid5"><span class="nav-number">3.</span> <span class="nav-text">损坏的RAID5</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B6%88%E6%81%AF%E4%BC%A0%E9%80%92%E6%8E%A5%E5%8F%A3"><span class="nav-number">4.</span> <span class="nav-text">消息传递接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%B7%E5%AD%90%E4%BB%BB%E5%8A%A1"><span class="nav-number">5.</span> <span class="nav-text">317号子任务</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -433,14 +428,14 @@
     <img class="site-author-image" itemprop="image" alt="YeungYeah"
       src="/images/self.jpg">
   <p class="site-author-name" itemprop="name">YeungYeah</p>
-  <div class="site-description" itemprop="description">道亦有道  玄之又玄</div>
+  <div class="site-description" itemprop="description">生活尽管不开心 我们没有不可能</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-count">55</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -453,7 +448,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">53</span>
+        <span class="site-state-item-count">50</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -517,7 +512,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">115k</span>
+    <span title="站点总字数">117k</span>
 </div>
   <div class="theme-info">主题 – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.1
   </div>

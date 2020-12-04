@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.1">
+<meta name="generator" content="Hexo 5.2.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
@@ -33,10 +33,7 @@
 <meta property="article:published_time" content="2019-12-07T02:24:35.000Z">
 <meta property="article:modified_time" content="2020-07-16T16:28:17.364Z">
 <meta property="article:author" content="YeungYeah">
-<meta property="article:tag" content="sql">
-<meta property="article:tag" content="Mysql">
-<meta property="article:tag" content="生产力">
-<meta property="article:tag" content="SQLAlchemy">
+<meta property="article:tag" content="notes">
 <meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
 
@@ -159,11 +156,6 @@
     <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
 
   </li>
-        <li class="menu-item menu-item-占卜">
-
-    <a href="http://divi.scottyeung.top:8181" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>占卜</a>
-
-  </li>
   </ul>
 
 </nav>
@@ -195,7 +187,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/self.jpg">
       <meta itemprop="name" content="YeungYeah">
-      <meta itemprop="description" content="道亦有道  玄之又玄">
+      <meta itemprop="description" content="生活尽管不开心 我们没有不可能">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -312,7 +304,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">movie &#x3D; session.query(Movie).get(id)</span><br><span class="line">session.delete()</span><br><span class="line">session.commit()</span><br></pre></td></tr></table></figure>
 <h2 id="some-problems">some problems</h2>
 <h3 id="大批量数据插入">大批量数据插入</h3>
-<p>在使用的过程中，遇到一次需要插入三十多万条数据到数据库的情况。在此之前，我一直都是插完数据再一起commit的（几千/几百条），因为每次commit需要写入数据库，会比较慢（磁盘IO制约）。 但这次数量过多的话，提交的时候出现错误，提示mysql的连接丢失。估计是写入的时间太多，时间太长超出了其限制，进而断开了连接。于是我选择批量commit，在添加一定数量数据后提交一次（5000/1000/500/100/10），但是没有成功，插入一定量的记录后，提示某一条插入的记录的某一列过长（尽管我那一列是不限长度的Text），显然有问题。 上网搜索批量数据插入的方法，但内容基本都是千篇一律，全部都是转载/翻译StackOverflow上的一篇<a href="https://stackoverflow.com/questions/3659142/bulk-insert-with-sqlalchemy-orm" target="_blank" rel="noopener">回答</a>。给出了两种方法 - bulk_save_objects(objects) - add_all()</p>
+<p>在使用的过程中，遇到一次需要插入三十多万条数据到数据库的情况。在此之前，我一直都是插完数据再一起commit的（几千/几百条），因为每次commit需要写入数据库，会比较慢（磁盘IO制约）。 但这次数量过多的话，提交的时候出现错误，提示mysql的连接丢失。估计是写入的时间太多，时间太长超出了其限制，进而断开了连接。于是我选择批量commit，在添加一定数量数据后提交一次（5000/1000/500/100/10），但是没有成功，插入一定量的记录后，提示某一条插入的记录的某一列过长（尽管我那一列是不限长度的Text），显然有问题。 上网搜索批量数据插入的方法，但内容基本都是千篇一律，全部都是转载/翻译StackOverflow上的一篇<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/3659142/bulk-insert-with-sqlalchemy-orm">回答</a>。给出了两种方法 - bulk_save_objects(objects) - add_all()</p>
 <p>都没有效果，最终还是采取了逐条添加并提交的方法，虽然慢了点，但是能work。</p>
 <p>写这件事只是为了吐槽一下现在用Google搜索一些具体的技术问题是，内容严重同质化的现象，大家都抄来抄去，转来转去。像这一次的搜索，最开始的source是在StackOverflow上的提问，然后有网站翻译成了中文并发布（甚至初创，然后就流传于各个中文网站了，一搜，全是这些内容相同的网页，属实恶心。</p>
 
@@ -439,7 +431,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库连接"><span class="nav-number">1.</span> <span class="nav-text">数据库连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结构定义"><span class="nav-number">2.</span> <span class="nav-text">结构定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据操作"><span class="nav-number">3.</span> <span class="nav-text">数据操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#插入"><span class="nav-number">3.1.</span> <span class="nav-text">插入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询"><span class="nav-number">3.2.</span> <span class="nav-text">查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更新"><span class="nav-number">3.3.</span> <span class="nav-text">更新</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除"><span class="nav-number">3.4.</span> <span class="nav-text">删除</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#some-problems"><span class="nav-number">4.</span> <span class="nav-text">some problems</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#大批量数据插入"><span class="nav-number">4.1.</span> <span class="nav-text">大批量数据插入</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5"><span class="nav-number">1.</span> <span class="nav-text">数据库连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E6%9E%84%E5%AE%9A%E4%B9%89"><span class="nav-number">2.</span> <span class="nav-text">结构定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C"><span class="nav-number">3.</span> <span class="nav-text">数据操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%92%E5%85%A5"><span class="nav-number">3.1.</span> <span class="nav-text">插入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2"><span class="nav-number">3.2.</span> <span class="nav-text">查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B4%E6%96%B0"><span class="nav-number">3.3.</span> <span class="nav-text">更新</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A0%E9%99%A4"><span class="nav-number">3.4.</span> <span class="nav-text">删除</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#some-problems"><span class="nav-number">4.</span> <span class="nav-text">some problems</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%A7%E6%89%B9%E9%87%8F%E6%95%B0%E6%8D%AE%E6%8F%92%E5%85%A5"><span class="nav-number">4.1.</span> <span class="nav-text">大批量数据插入</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -448,14 +440,14 @@
     <img class="site-author-image" itemprop="image" alt="YeungYeah"
       src="/images/self.jpg">
   <p class="site-author-name" itemprop="name">YeungYeah</p>
-  <div class="site-description" itemprop="description">道亦有道  玄之又玄</div>
+  <div class="site-description" itemprop="description">生活尽管不开心 我们没有不可能</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-count">55</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -468,7 +460,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">53</span>
+        <span class="site-state-item-count">50</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -532,7 +524,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">115k</span>
+    <span title="站点总字数">117k</span>
 </div>
   <div class="theme-info">主题 – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.1
   </div>

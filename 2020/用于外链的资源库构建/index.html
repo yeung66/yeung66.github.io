@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.1">
+<meta name="generator" content="Hexo 5.2.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
@@ -31,14 +31,9 @@
 <meta property="og:description" content="考虑到可访问性和访问速度，最终还是选择部署在 Gitee Pages 上面。  Background 在升级本博客的 hexo 和主题之前，是曾经搞过一个用 Aplayer 实现的外链播放器的，但因为当时播放过程会被在博客中的页面跳转而刷新页面，导致播放被打断而暂停，体验较差，所以在升级主题版本之后一直没有添加回来。在之后的某次逛 Github 的时候，偶然发现 PJAX 可以实现博客内">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-05-30T14:37:11.000Z">
-<meta property="article:modified_time" content="2020-10-18T04:40:30.695Z">
+<meta property="article:modified_time" content="2020-12-04T12:46:42.552Z">
 <meta property="article:author" content="YeungYeah">
-<meta property="article:tag" content="工具">
 <meta property="article:tag" content="博客">
-<meta property="article:tag" content="GitHub">
-<meta property="article:tag" content="Gitee">
-<meta property="article:tag" content="Pages">
-<meta property="article:tag" content="静态资源">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://scottyeung.top/2020/%E7%94%A8%E4%BA%8E%E5%A4%96%E9%93%BE%E7%9A%84%E8%B5%84%E6%BA%90%E5%BA%93%E6%9E%84%E5%BB%BA/">
@@ -160,11 +155,6 @@
     <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
 
   </li>
-        <li class="menu-item menu-item-占卜">
-
-    <a href="http://divi.scottyeung.top:8181" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>占卜</a>
-
-  </li>
   </ul>
 
 </nav>
@@ -196,7 +186,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/self.jpg">
       <meta itemprop="name" content="YeungYeah">
-      <meta itemprop="description" content="道亦有道  玄之又玄">
+      <meta itemprop="description" content="生活尽管不开心 我们没有不可能">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -221,7 +211,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-10-18 12:40:30" itemprop="dateModified" datetime="2020-10-18T12:40:30+08:00">2020-10-18</time>
+                <time title="修改时间：2020-12-04 20:46:42" itemprop="dateModified" datetime="2020-12-04T20:46:42+08:00">2020-12-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -289,7 +279,7 @@
 <h2 id="methods">Methods</h2>
 <h3 id="gtihub-repo">GtiHub Repo</h3>
 <p>想法比较简单，在 GitHub 上面开一个公共的 Repo，通过其单个文件下载的链接作为外链使用。</p>
-<p>以创建的 <a href="https://github.com/yeung66/resources" target="_blank" rel="noopener">yeung66/resources</a> 仓库为例，我在 music 文件下面的音乐文件，其下载链接为 <code>https://raw.githubusercontent.com/yeung66/resources/master/music/恋爱为何物.mp3</code>，其映射关系还是很直接很简单的。当场生成放到博客测试一下，也能够正常使用，没有什么问题。</p>
+<p>以创建的 <a target="_blank" rel="noopener" href="https://github.com/yeung66/resources">yeung66/resources</a> 仓库为例，我在 music 文件下面的音乐文件，其下载链接为 <code>https://raw.githubusercontent.com/yeung66/resources/master/music/恋爱为何物.mp3</code>，其映射关系还是很直接很简单的。当场生成放到博客测试一下，也能够正常使用，没有什么问题。</p>
 <p>然而过了一会儿我在手机上访问时，就发现播放器出现异常，歌曲无法正常播放，在手机上直接访问了一下音乐的外链，无法访问。上网一看才发现，<strong>域名 <code>raw.githubusercontent.com</code> 被 DNS 污染了</strong>，没有梯子的话不能正常访问，而我在电脑上一直挂着梯子，而且这个网址也在我的 PAC 上面（好像还是我手动添加的），而手机非需要使用时都不会开代理工具。考虑到我的多数访客并不会挂着梯子进来，只能放弃这个方法。</p>
 <h3 id="gitee-repo">Gitee Repo</h3>
 <p>既然 GitHub 的资源域名被墙了，那就考虑使用国内的替代品 Gitee 码云。思路也还是一样的，来一个公共 Repo，通过文件的下载链接作为外链使用，大概映射关系为 music 文件夹下的 a.mp3 的下载链接为 <code>https://gitee.com/yeungyeah/resources/raw/master/music/a.mp3</code>。放到博客的播放器中可用，似乎没有问题。</p>
@@ -299,8 +289,8 @@
 <p>然后想到了现在博客正在托管的 Coding.net 平台（自换域名之后我将所有的解析到解到这里了，国内访问速度满分，但好像 Google AdSense 访问不到了），打开速度非常满意。 <del>于是，我将我的资源 Repo 传到了 Coding.net 平台，开启 Pages 服务，提供资源外链使用。这两者还可以绑定域名，我就顺手绑了个二级域名，爽得直接起飞。</del> Coding 这个垃圾平台总是反复纵跳，相关的规则变来变去，现在又重新搭上了腾讯云，直接把之前所有部署的 Pages 给停了，而且没给任何的提醒。现在在 Coding 里面使用 Pages，需要使用腾讯云的 Severless 服务实现，而且还是给代金券的方式吸引你过去，之后估计还要收费，有点被恶心到了，果断弃用。</p>
 <h3 id="gitee-pages">Gitee Pages</h3>
 <p>在 Coding Pages 挂了之后，只能重新回到 Gitee Pages 的怀抱，虽然 Gitee Pages 免费版不能自行绑定域名，但是它的访问速度和上传速度还是很香的。唯一的麻烦点是，免费版的 Gitee Pages 居然不能够自动更新 Pages 页面，每次 push 之后都需要上网页去手动点更新按钮，比较蠢。</p>
-<p>然后找了一些自动化的方法，主要原理还是通过模拟登录 Gitee 来发送更新请求。一开始找了个用 puppeteer 的 js 脚本，直接是搞了个模拟浏览器登录之后发送模拟点击事件，但这个 package 怎么都下不完（需要下一个 chromium 的驱动，走镜像或者走代理都很慢）。然后又找了个使用 Github Actions 的<a href="https://github.com/yanglbme/gitee-pages-action" target="_blank" rel="noopener">方法</a>，先提交到 Github repo，然后触发 action 在 Gitee 里把原 repo 拉过去，在更新 Pages。昨晚搞了一会儿，把 mirror 的部分用在本地 push 两个 remote 替代了，算是能够实现功能了。但是每次 push 到两个 remote 端，感觉有点浪费，尤其是上传到 Github 的速度属实不给力，走代理也不过百来 kb 每秒。</p>
-<p>然后今天早上起来，突然醒悟过来，为啥要用 Github Actions 呢？我直接把他执行的脚本拿到本地，然后在部署的时候在 powershell 脚本里面调用一下不是更方便吗？这样就避免了向 Github 进行无谓的 push，而且账号密码还能存在本地，不需要传到 Github 的secrets 里面。最终的<a href="https://gitee.com/yeungyeah/resources/blob/master/scripts/gitee-pages.py" target="_blank" rel="noopener">脚本</a>读一个本地的 json 来获取数据，进行自动的更新 Gitee Pages。这样还避免了 Github Actions 登陆地为美国的异地登录的问题（当然我在本地跑的脚本也提示异地登录）。</p>
+<p>然后找了一些自动化的方法，主要原理还是通过模拟登录 Gitee 来发送更新请求。一开始找了个用 puppeteer 的 js 脚本，直接是搞了个模拟浏览器登录之后发送模拟点击事件，但这个 package 怎么都下不完（需要下一个 chromium 的驱动，走镜像或者走代理都很慢）。然后又找了个使用 Github Actions 的<a target="_blank" rel="noopener" href="https://github.com/yanglbme/gitee-pages-action">方法</a>，先提交到 Github repo，然后触发 action 在 Gitee 里把原 repo 拉过去，在更新 Pages。昨晚搞了一会儿，把 mirror 的部分用在本地 push 两个 remote 替代了，算是能够实现功能了。但是每次 push 到两个 remote 端，感觉有点浪费，尤其是上传到 Github 的速度属实不给力，走代理也不过百来 kb 每秒。</p>
+<p>然后今天早上起来，突然醒悟过来，为啥要用 Github Actions 呢？我直接把他执行的脚本拿到本地，然后在部署的时候在 powershell 脚本里面调用一下不是更方便吗？这样就避免了向 Github 进行无谓的 push，而且账号密码还能存在本地，不需要传到 Github 的secrets 里面。最终的<a target="_blank" rel="noopener" href="https://gitee.com/yeungyeah/resources/blob/master/scripts/gitee-pages.py">脚本</a>读一个本地的 json 来获取数据，进行自动的更新 Gitee Pages。这样还避免了 Github Actions 登陆地为美国的异地登录的问题（当然我在本地跑的脚本也提示异地登录）。</p>
 <p>暂时体验完美。（2020.10.18）</p>
 <h2 id="thinking">Thinking</h2>
 <p>自说自话一下。</p>
@@ -352,12 +342,7 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag"><i class="fa fa-tag"></i> 工具</a>
               <a href="/tags/%E5%8D%9A%E5%AE%A2/" rel="tag"><i class="fa fa-tag"></i> 博客</a>
-              <a href="/tags/GitHub/" rel="tag"><i class="fa fa-tag"></i> GitHub</a>
-              <a href="/tags/Gitee/" rel="tag"><i class="fa fa-tag"></i> Gitee</a>
-              <a href="/tags/Pages/" rel="tag"><i class="fa fa-tag"></i> Pages</a>
-              <a href="/tags/%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90/" rel="tag"><i class="fa fa-tag"></i> 静态资源</a>
           </div>
 
         
@@ -442,14 +427,14 @@
     <img class="site-author-image" itemprop="image" alt="YeungYeah"
       src="/images/self.jpg">
   <p class="site-author-name" itemprop="name">YeungYeah</p>
-  <div class="site-description" itemprop="description">道亦有道  玄之又玄</div>
+  <div class="site-description" itemprop="description">生活尽管不开心 我们没有不可能</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-count">55</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -462,7 +447,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">53</span>
+        <span class="site-state-item-count">50</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -526,7 +511,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">115k</span>
+    <span title="站点总字数">117k</span>
 </div>
   <div class="theme-info">主题 – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.1
   </div>

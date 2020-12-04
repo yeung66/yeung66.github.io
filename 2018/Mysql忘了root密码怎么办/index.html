@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.1">
+<meta name="generator" content="Hexo 5.2.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
@@ -155,11 +155,6 @@
     <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
 
   </li>
-        <li class="menu-item menu-item-占卜">
-
-    <a href="http://divi.scottyeung.top:8181" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>占卜</a>
-
-  </li>
   </ul>
 
 </nav>
@@ -191,7 +186,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/self.jpg">
       <meta itemprop="name" content="YeungYeah">
-      <meta itemprop="description" content="道亦有道  玄之又玄">
+      <meta itemprop="description" content="生活尽管不开心 我们没有不可能">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -306,12 +301,12 @@
 <h1 id="后续">后续</h1>
 <p>修改root密码方法的教程网上有很多，但是我经过一通操作后，还是无法进入mysql。在进行上文的方法操作时，在通过 <code>-skip-grant-tables</code> 时我便出现了错误，提示mysql根目录中data目录不存在，搜索网上的教程，建议是自己新建一个data文件夹，新建后便可正常免密码验证进入mysql。但按照后续的步骤操作后，还是无法正常修改root密码，进入 mysql。仔细思考，为什么我这里没有data目录，不仅如此，我这里还没有在众多教程中提到的my.ini配置文件，突然想起，自还原电脑后，我好像还没在本系统使用过mysql，我的mysql还没有初始化，其实并不算是忘记root密码的问题（可能是我太经常忘记了，已经习以为常）。但因为我强行新建了 data 目录，进入 mysql，已经打乱了项目的结构，无法还原。反正里面没什么数据，就打算干脆删了重新装一个 mysql。</p>
 <h2 id="卸载">卸载</h2>
-<p>mysql的卸载比较简单，当时我是用 Mysql Installer 安装的，直接进入 Mysql Installer 进行卸载即可。如果不是的话，就比较麻烦了，到控制面板把 Mysql Server 卸载了，再把 mysql 项目所在文件夹删除，然后再到注册表删除相关项，详情可参照<a href="https://www.jb51.net/article/146050.htm" target="_blank" rel="noopener">这里</a></p>
+<p>mysql的卸载比较简单，当时我是用 Mysql Installer 安装的，直接进入 Mysql Installer 进行卸载即可。如果不是的话，就比较麻烦了，到控制面板把 Mysql Server 卸载了，再把 mysql 项目所在文件夹删除，然后再到注册表删除相关项，详情可参照<a target="_blank" rel="noopener" href="https://www.jb51.net/article/146050.htm">这里</a></p>
 <h2 id="安装">安装</h2>
 <p>两种方法</p>
 <ul>
-<li><p>一是使用 <a href="https://dev.mysql.com/downloads/windows/installer/" target="_blank" rel="noopener">Mysql Installer</a>。使用该在线安装软件非常方便，还可选择安装配套的 mysql 相关软件，安装完后可直接进入傻瓜式配置，无需进行额外的配置，且后续的卸载也可以在这上面进行，个人比较推荐。但该软件只能运行在 Windows 上，且只能安装最新版本的 mysql8。尝试了一下，在初始化数据库时出现问题，而搜索该问题发现关于新版本 mysql 的相关信息非常少，遂放弃新版本，放弃该方式。</p></li>
-<li><p>二是使用<a href="https://dev.mysql.com/downloads/mysql/" target="_blank" rel="noopener">压缩包</a>安装。选择相应的版本下载压缩包解压即可。这种方式则需要手动额外配置。主要步骤有</p>
+<li><p>一是使用 <a target="_blank" rel="noopener" href="https://dev.mysql.com/downloads/windows/installer/">Mysql Installer</a>。使用该在线安装软件非常方便，还可选择安装配套的 mysql 相关软件，安装完后可直接进入傻瓜式配置，无需进行额外的配置，且后续的卸载也可以在这上面进行，个人比较推荐。但该软件只能运行在 Windows 上，且只能安装最新版本的 mysql8。尝试了一下，在初始化数据库时出现问题，而搜索该问题发现关于新版本 mysql 的相关信息非常少，遂放弃新版本，放弃该方式。</p></li>
+<li><p>二是使用<a target="_blank" rel="noopener" href="https://dev.mysql.com/downloads/mysql/">压缩包</a>安装。选择相应的版本下载压缩包解压即可。这种方式则需要手动额外配置。主要步骤有</p>
 <ul>
 <li><p>创建配置文件 my.ini，下面的 basedir 和 datadir 替换为本机 mysql 目录，若有则不用创建</p>
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[mysqld]</span></span><br><span class="line"><span class="attr">port</span> = <span class="number">3306</span></span><br><span class="line"><span class="attr">basedir</span>=C:/software/mysql-<span class="number">5.7</span>.<span class="number">21</span>-winx64</span><br><span class="line"><span class="attr">datadir</span>=C:/software/mysql-<span class="number">5.7</span>.<span class="number">21</span>-winx64/data </span><br><span class="line"><span class="attr">max_connections</span>=<span class="number">200</span></span><br><span class="line"><span class="attr">character-set-server</span>=utf8</span><br><span class="line"><span class="attr">default-storage-engine</span>=INNODB</span><br><span class="line"><span class="attr">sql_mode</span>=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES</span><br><span class="line"><span class="section">[mysql]</span></span><br><span class="line"><span class="attr">default-character-set</span>=utf8</span><br></pre></td></tr></table></figure></li>
@@ -450,7 +445,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#引言"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#方法"><span class="nav-number">2.</span> <span class="nav-text">方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#思路"><span class="nav-number">2.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#具体步骤"><span class="nav-number">2.2.</span> <span class="nav-text">具体步骤</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#后续"><span class="nav-number">3.</span> <span class="nav-text">后续</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#卸载"><span class="nav-number">3.1.</span> <span class="nav-text">卸载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">3.2.</span> <span class="nav-text">安装</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%95%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%B9%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="nav-number">2.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B7%E4%BD%93%E6%AD%A5%E9%AA%A4"><span class="nav-number">2.2.</span> <span class="nav-text">具体步骤</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%90%8E%E7%BB%AD"><span class="nav-number">3.</span> <span class="nav-text">后续</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%B8%E8%BD%BD"><span class="nav-number">3.1.</span> <span class="nav-text">卸载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">3.2.</span> <span class="nav-text">安装</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -459,14 +454,14 @@
     <img class="site-author-image" itemprop="image" alt="YeungYeah"
       src="/images/self.jpg">
   <p class="site-author-name" itemprop="name">YeungYeah</p>
-  <div class="site-description" itemprop="description">道亦有道  玄之又玄</div>
+  <div class="site-description" itemprop="description">生活尽管不开心 我们没有不可能</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-count">55</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -479,7 +474,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">53</span>
+        <span class="site-state-item-count">50</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -543,7 +538,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">115k</span>
+    <span title="站点总字数">117k</span>
 </div>
   <div class="theme-info">主题 – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.1
   </div>

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.1">
+<meta name="generator" content="Hexo 5.2.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
@@ -33,11 +33,7 @@
 <meta property="article:published_time" content="2019-07-26T02:45:34.000Z">
 <meta property="article:modified_time" content="2020-10-04T13:02:18.021Z">
 <meta property="article:author" content="YeungYeah">
-<meta property="article:tag" content="南京大学">
-<meta property="article:tag" content="计算机系">
-<meta property="article:tag" content="夏令营">
-<meta property="article:tag" content="开放日">
-<meta property="article:tag" content="机试">
+<meta property="article:tag" content="经历回顾">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://scottyeung.top/2019/%E8%AE%B02019%E5%8D%97%E4%BA%AC%E5%A4%A7%E5%AD%A6%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E5%A4%8F%E4%BB%A4%E8%90%A5/">
@@ -159,11 +155,6 @@
     <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
 
   </li>
-        <li class="menu-item menu-item-占卜">
-
-    <a href="http://divi.scottyeung.top:8181" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>占卜</a>
-
-  </li>
   </ul>
 
 </nav>
@@ -195,7 +186,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/self.jpg">
       <meta itemprop="name" content="YeungYeah">
-      <meta itemprop="description" content="道亦有道  玄之又玄">
+      <meta itemprop="description" content="生活尽管不开心 我们没有不可能">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -291,7 +282,7 @@
 <li>计组</li>
 </ul>
 <p>对于南大计算机系夏令营的准备，其实开始得比较晚，因为之前海投了挺多夏令营，而计算机系的开放日时间刚好夹在一堆夏令营之间，时间相冲，一开始是抱着放弃南大计算机系的夏令营的想法，然而其它夏令营要么没进，要么出得很晚，最终还是选择了南大计科。</p>
-<p>南大的准备主要还是准备算法方面的机试，在六月份的时候把刘汝佳的<a href="https://book.douban.com/subject/25902102/" target="_blank" rel="noopener">紫书</a>过了一遍，并且在voj上把部分的题刷了一下（时间太短刷的其实不多），题单可以<a href="https://vjudge.net/article/45" target="_blank" rel="noopener">看此</a>。另外，在看完书后，每天都上voj找一两道题练练手感，主要是 dp 和 dfs 的题。根据往年的题目来看，题目难度大概在 LeetCode 中等，当然也有直接 POJ 的原题，如果时间充足找个题单把 POJ 刷刷还是不错的。</p>
+<p>南大的准备主要还是准备算法方面的机试，在六月份的时候把刘汝佳的<a target="_blank" rel="noopener" href="https://book.douban.com/subject/25902102/">紫书</a>过了一遍，并且在voj上把部分的题刷了一下（时间太短刷的其实不多），题单可以<a target="_blank" rel="noopener" href="https://vjudge.net/article/45">看此</a>。另外，在看完书后，每天都上voj找一两道题练练手感，主要是 dp 和 dfs 的题。根据往年的题目来看，题目难度大概在 LeetCode 中等，当然也有直接 POJ 的原题，如果时间充足找个题单把 POJ 刷刷还是不错的。</p>
 <p>面试的准备，则是参营前几天随便准备了自我介绍，项目经历，兴趣爱好等面试常问话题，当时时间紧，其实都还没准备完，还想着机试完后再准备。</p>
 <h1 id="流程">流程</h1>
 <p>开放日活动共三天</p>
@@ -307,7 +298,7 @@
 <h3 id="第一道题">第一道题</h3>
 <p>给一个不超过 m(m&lt;=100) 位的整数，从中移除 k(k&lt;=m) 位，使得剩下的整数最小。</p>
 <p>当时的思路是每次移除最大的数字，然后有 60 分，但这个在后来做完其它题目回来重新想的时候已经发现有问题了，如对于 <code>1032</code>，去掉3 后显然没有去掉 1 小。当时考虑用dp重写，<code>dp(i,j)=min(10*dp(i-1,j)+num[i],dp(i-1,j-1))</code>,但没时间调试了。</p>
-<p>现在搜索看到一个贪心的方法：每一步总是选择一个使剩下的数最小的数字删去，即按高位到低位的顺序搜索，若各位数字递增，则删除最后一个数字，否则删除第一个递减区间的首字符。具体链接为<a href="https://blog.csdn.net/C20190413/article/details/77368590" target="_blank" rel="noopener">C++贪心算法之最小新整数</a></p>
+<p>现在搜索看到一个贪心的方法：每一步总是选择一个使剩下的数最小的数字删去，即按高位到低位的顺序搜索，若各位数字递增，则删除最后一个数字，否则删除第一个递减区间的首字符。具体链接为<a target="_blank" rel="noopener" href="https://blog.csdn.net/C20190413/article/details/77368590">C++贪心算法之最小新整数</a></p>
 <h3 id="第二道题">第二道题</h3>
 <p>B 个男孩，G 个女孩，要求所有男孩女孩排成一队，连续的男孩个数不可以超过 K 个，有多少种排队方式</p>
 <p>直接就 DFS 了，<code>dfs(b,g,k)</code></p>
@@ -491,7 +482,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前期准备"><span class="nav-number">1.</span> <span class="nav-text">前期准备</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#流程"><span class="nav-number">2.</span> <span class="nav-text">流程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#机试"><span class="nav-number">2.1.</span> <span class="nav-text">机试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一道题"><span class="nav-number">2.1.1.</span> <span class="nav-text">第一道题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二道题"><span class="nav-number">2.1.2.</span> <span class="nav-text">第二道题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三道题"><span class="nav-number">2.1.3.</span> <span class="nav-text">第三道题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面试"><span class="nav-number">2.2.</span> <span class="nav-text">面试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#导师"><span class="nav-number">2.3.</span> <span class="nav-text">导师</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其它"><span class="nav-number">2.4.</span> <span class="nav-text">其它</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87"><span class="nav-number">1.</span> <span class="nav-text">前期准备</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B5%81%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">流程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%BA%E8%AF%95"><span class="nav-number">2.1.</span> <span class="nav-text">机试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E9%81%93%E9%A2%98"><span class="nav-number">2.1.1.</span> <span class="nav-text">第一道题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E9%81%93%E9%A2%98"><span class="nav-number">2.1.2.</span> <span class="nav-text">第二道题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E9%81%93%E9%A2%98"><span class="nav-number">2.1.3.</span> <span class="nav-text">第三道题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%A2%E8%AF%95"><span class="nav-number">2.2.</span> <span class="nav-text">面试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%BC%E5%B8%88"><span class="nav-number">2.3.</span> <span class="nav-text">导师</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E5%AE%83"><span class="nav-number">2.4.</span> <span class="nav-text">其它</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -500,14 +491,14 @@
     <img class="site-author-image" itemprop="image" alt="YeungYeah"
       src="/images/self.jpg">
   <p class="site-author-name" itemprop="name">YeungYeah</p>
-  <div class="site-description" itemprop="description">道亦有道  玄之又玄</div>
+  <div class="site-description" itemprop="description">生活尽管不开心 我们没有不可能</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-count">55</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -520,7 +511,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">53</span>
+        <span class="site-state-item-count">50</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -584,7 +575,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">115k</span>
+    <span title="站点总字数">117k</span>
 </div>
   <div class="theme-info">主题 – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.1
   </div>
