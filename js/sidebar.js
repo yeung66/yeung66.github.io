@@ -24,7 +24,6 @@ $(document).ready(function () {
   //   based on the scrolling of heading in the article.
   function autoSpreadToc() {
     var $postBody = $('.post-body').length>0 ? $('.post-body') : $('.custompage')
-    console.log($postBody)
     var $allTocItem = $('.sidebar-toc li')
     var $headings = $postBody.find(HEADING_SELECTOR)
     var $firsetChild = $headings.first()

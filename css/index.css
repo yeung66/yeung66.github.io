@@ -2845,3 +2845,6 @@ html.nightmode {
     width: 100%;
   }
 }
+.custom-title {
+  text-align: center;
+}

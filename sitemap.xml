@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://scottyeung.top/about/index.html</loc>
+    
+    <lastmod>2020-12-08T13:11:21.400Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://scottyeung.top/moments/2019.html</loc>
     
     <lastmod>2020-12-08T12:44:11.506Z</lastmod>
@@ -12,13 +19,6 @@
     <loc>http://scottyeung.top/moments/index.html</loc>
     
     <lastmod>2020-12-08T12:43:48.408Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://scottyeung.top/about/index.html</loc>
-    
-    <lastmod>2020-12-08T12:43:31.554Z</lastmod>
     
   </url>
   
