@@ -59,8 +59,7 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></he
           <a href="#变量" class="heading-link"><i class="fas fa-link"></i></a>变量</h2>
       
 <ul>
-<li>shell 中的变量只有两种，分别为数字和字符串，数组。<br>
-</li>
+<li>shell 中的变量只有两种，分别为数字和字符串，数组。</li>
 <li>shell 变量命名由字母，数字，下划线组成</li>
 <li>通过反引号 ` 可以执行命令，将结果作为返回值赋予变量</li>
 </ul>
@@ -73,7 +72,8 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></he
 <ul>
 <li>变量直接通过 = 号进行 <code>var=125</code></li>
 <li>通过语句赋值，如 for 循环语句 <code>for file in $(ls /etc)</code></li>
-</ul></li>
+</ul>
+</li>
 <li>只读：通过设置 <code>readonly var</code></li>
 <li>删除：<code>unset var</code></li>
 <li>使用：通过在变量前使用 $ 则可</li>
@@ -111,7 +111,8 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></he
 <li><code>$*</code> 所有参数以单个字符串的方式返回</li>
 <li><code>$$</code> 当前进程ID</li>
 <li><code>$@</code> 所有参数以字符串的方式逐个返回</li>
-</ul></li>
+</ul>
+</li>
 </ul>
 
         <h2 id="运算符">
@@ -123,28 +124,34 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></he
 <ul>
 <li>加减乘除取余赋值。乘法需要转义 *</li>
 <li>相等与不相等：比较数字</li>
-</ul></li>
+</ul>
+</li>
 <li>关系运算符
 <ul>
-<li><code>-eq -ne -gt -lt -ge -le</code> 等于 不等于 大于 小于 大于等于 小于等于</li>
-</ul></li>
+<li><code>-eq -ne -gt -lt -ge -le</code>  等于 不等于 大于 小于 大于等于 小于等于</li>
+</ul>
+</li>
 <li>布尔运算符
 <ul>
 <li><code>! -o -a</code> 取反 或 与</li>
-</ul></li>
+</ul>
+</li>
 <li>逻辑运算符
 <ul>
 <li><code>&amp;&amp; ||</code> 与 或</li>
-</ul></li>
+</ul>
+</li>
 <li>字符串运算符
 <ul>
 <li><code>= != -z -n $</code> 等于 不等于 长度为0 长度不为0 是否空字符串</li>
-</ul></li>
+</ul>
+</li>
 <li>文件测试运算符
 <ul>
 <li><code>-b -c -d -f -p</code> 是否块设备 字符设备 目录 普通文件 管道</li>
 <li><code>-r -w -x -s -e</code> 文件是否可读 可写 可执行 为空 是否存在</li>
-</ul></li>
+</ul>
+</li>
 </ul>
 
         <h2 id="命令">
@@ -156,11 +163,13 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></he
 <li>printf：与C的类似，进行格式化输出
 <ul>
 <li>转义序列：<code>\b \c \n \t</code> 后退 不换行 换行 制表符</li>
-</ul></li>
+</ul>
+</li>
 <li>test：检查条件是否成立
 <ul>
 <li><code>test bool-expr</code> = <code>[bool-expr]</code></li>
-</ul></li>
+</ul>
+</li>
 <li>$[a+b]：执行基本的算数运算，符合两边不能有空格</li>
 </ul>
 
