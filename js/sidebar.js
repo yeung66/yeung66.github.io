@@ -5,8 +5,8 @@ $(document).ready(function () {
     .slice(0, tocDepth * 3)
     .slice(0, -1)
 
-  function initTocDisplay () {
-    if ($('.post-body').find(HEADING_SELECTOR)[0]) {
+  function initTocDisplay() {
+    if ($('.post-body').find(HEADING_SELECTOR)[0] || $('.custompage').find(HEADING_SELECTOR)[0]) {
       return
     }
     $('.sidebar-nav').addClass('hide')
@@ -22,8 +22,9 @@ $(document).ready(function () {
 
   // Automatically expand items in the article directory
   //   based on the scrolling of heading in the article.
-  function autoSpreadToc () {
-    var $postBody = $('.post-body')
+  function autoSpreadToc() {
+    var $postBody = $('.post-body').length>0 ? $('.post-body') : $('.custompage')
+    console.log($postBody)
     var $allTocItem = $('.sidebar-toc li')
     var $headings = $postBody.find(HEADING_SELECTOR)
     var $firsetChild = $headings.first()
@@ -65,7 +66,7 @@ $(document).ready(function () {
   // Whether toc needs scrolling.
   var isTocScroll = false
   // Scroll the post toc to the middle.
-  function scrollTocToMiddle () {
+  function scrollTocToMiddle() {
     var $tocWrapHeight = $('.sidebar-toc').height()
     var $tocHeight = $('.sidebar-toc > div').height()
 
@@ -98,7 +99,7 @@ $(document).ready(function () {
   }
 
   // Sticky the sidebar when it arrived the top.
-  function sidebarSticky () {
+  function sidebarSticky() {
     var $sidebar = $('#sidebar')
     var targetY = document
       .getElementById('content-wrap')
@@ -112,7 +113,7 @@ $(document).ready(function () {
   }
 
   // Update the reading progress lines of post.
-  function readProgress () {
+  function readProgress() {
     // Not on post page.
     if ($('#is-post').length === 0) {
       return
