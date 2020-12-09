@@ -1,9 +1,9 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/imsg/favicon-16x16.png?v=2.3.0" type="image/png" sizes="16x16"><link rel="icon" href="/imgs/favicon-32x32.png?v=2.3.0" type="image/png" sizes="32x32"><meta name="description" content="考虑到可访问性和访问速度，最终还是选择部署在 Gitee Pages 上面。                      Background        在升级本博客的 hexo 和主题之前，是曾经搞过一个用 Aplayer 实现的外链播放器的，但因为当时播放过程会被在博客中的页面跳转而刷新页面，导致播放被打断而暂停，体验较差，所以在升级主题版本之后一直没有添加回来。在之后的某次逛 Githu">
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/imsg/favicon-16x16.png?v=2.3.0" type="image/png" sizes="16x16"><link rel="icon" href="/imgs/favicon-32x32.png?v=2.3.0" type="image/png" sizes="32x32"><meta name="description" content="考虑到可访问性和访问速度，最终还是选择部署在 Gitee Pages 上面。                      Background        在升级本博客的 hexo 和主题之前，是曾经搞过一个用 Aplayer 实现的外链播放器的，但因为当时播放过程会被在博客中的页面跳转而刷新页面，导致播放被打断而暂停，体验较差，所以在升级主题版本之后一直没有添加回来。在之后的某次逛 G">
 <meta property="og:type" content="article">
 <meta property="og:title" content="用于外链的资源库构建">
 <meta property="og:url" content="http://scottyeung.top/2020/%E7%94%A8%E4%BA%8E%E5%A4%96%E9%93%BE%E7%9A%84%E8%B5%84%E6%BA%90%E5%BA%93%E6%9E%84%E5%BB%BA/index.html">
 <meta property="og:site_name" content="YeungYeah 的乱写地">
-<meta property="og:description" content="考虑到可访问性和访问速度，最终还是选择部署在 Gitee Pages 上面。                      Background        在升级本博客的 hexo 和主题之前，是曾经搞过一个用 Aplayer 实现的外链播放器的，但因为当时播放过程会被在博客中的页面跳转而刷新页面，导致播放被打断而暂停，体验较差，所以在升级主题版本之后一直没有添加回来。在之后的某次逛 Githu">
+<meta property="og:description" content="考虑到可访问性和访问速度，最终还是选择部署在 Gitee Pages 上面。                      Background        在升级本博客的 hexo 和主题之前，是曾经搞过一个用 Aplayer 实现的外链播放器的，但因为当时播放过程会被在博客中的页面跳转而刷新页面，导致播放被打断而暂停，体验较差，所以在升级主题版本之后一直没有添加回来。在之后的某次逛 G">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-05-30T14:37:11.000Z">
 <meta property="article:modified_time" content="2020-12-04T12:46:42.552Z">
@@ -70,8 +70,7 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></he
           <a href="#github-coding-pages" class="heading-link"><i class="fas fa-link"></i></a>GitHub / Coding Pages</h3>
       
 <p>突发奇想，虽然 GitHub 中 Repo 的文件直接下载链接被 DNS 污染了，但是它提供的 GitHub Pages 是可以正常访问的，而其中的静态文件也是能够直接访问的，那干脆就直接将他们当成 Pages 发布，这样就可以直接使用了，音乐文件甚至能够直接链接打开播放（直接通过 Github Repo 的文件下载链接是可以下载但是不能在线播放的）。在 GitHub 开启了 Pages 测试一下，能访问，但速度实在感人，播一秒卡两秒。</p>
-<p>然后想到了现在博客正在托管的 <span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="http://Coding.net">Coding.net</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span> 平台（自换域名之后我将所有的解析到解到这里了，国内访问速度满分，但好像 Google AdSense 访问不到了），打开速度非常满意。<br>
-<s>于是，我将我的资源 Repo 传到了 <span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="http://Coding.net">Coding.net</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span> 平台，开启 Pages 服务，提供资源外链使用。这两者还可以绑定域名，我就顺手绑了个二级域名，爽得直接起飞。</s> Coding 这个垃圾平台总是反复纵跳，相关的规则变来变去，现在又重新搭上了腾讯云，直接把之前所有部署的 Pages 给停了，而且没给任何的提醒。现在在 Coding 里面使用 Pages，需要使用腾讯云的 Severless 服务实现，而且还是给代金券的方式吸引你过去，之后估计还要收费，有点被恶心到了，果断弃用。</p>
+<p>然后想到了现在博客正在托管的 Coding.net 平台（自换域名之后我将所有的解析到解到这里了，国内访问速度满分，但好像 Google AdSense 访问不到了），打开速度非常满意。 <del>于是，我将我的资源 Repo 传到了 Coding.net 平台，开启 Pages 服务，提供资源外链使用。这两者还可以绑定域名，我就顺手绑了个二级域名，爽得直接起飞。</del> Coding 这个垃圾平台总是反复纵跳，相关的规则变来变去，现在又重新搭上了腾讯云，直接把之前所有部署的 Pages 给停了，而且没给任何的提醒。现在在 Coding 里面使用 Pages，需要使用腾讯云的 Severless 服务实现，而且还是给代金券的方式吸引你过去，之后估计还要收费，有点被恶心到了，果断弃用。</p>
 
         <h3 id="gitee-pages">
           <a href="#gitee-pages" class="heading-link"><i class="fas fa-link"></i></a>Gitee Pages</h3>

@@ -1,9 +1,9 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/imsg/favicon-16x16.png?v=2.3.0" type="image/png" sizes="16x16"><link rel="icon" href="/imgs/favicon-32x32.png?v=2.3.0" type="image/png" sizes="32x32"><meta name="description" content="Problem                            问题描述        俄罗斯方块是俄罗斯人阿列克谢·帕基特诺夫发明的一款休闲游戏。 　　游戏在一个15行10列的方格图上进行，方格图上的每一个格子可能已经放置了方块，或者没有放置方块。每一轮，都会有一个新的由4个小方块组成的板块从方格图的上方落下，玩家可以操作板块左右移动放到合适的位置，当板块中某一个方块">
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/imsg/favicon-16x16.png?v=2.3.0" type="image/png" sizes="16x16"><link rel="icon" href="/imgs/favicon-32x32.png?v=2.3.0" type="image/png" sizes="32x32"><meta name="description" content="Problem                            问题描述        　　俄罗斯方块是俄罗斯人阿列克谢·帕基特诺夫发明的一款休闲游戏。 　　游戏在一个15行10列的方格图上进行，方格图上的每一个格子可能已经放置了方块，或者没有放置方块。每一轮，都会有一个新的由4个小方块组成的板块从方格图的上方落下，玩家可以操作板块左右移动放到合适的位置，当板块中">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CCF201604-2 俄罗斯方块">
 <meta property="og:url" content="http://scottyeung.top/2019/CCF201604-2-%E4%BF%84%E7%BD%97%E6%96%AF%E6%96%B9%E5%9D%97/index.html">
 <meta property="og:site_name" content="YeungYeah 的乱写地">
-<meta property="og:description" content="Problem                            问题描述        俄罗斯方块是俄罗斯人阿列克谢·帕基特诺夫发明的一款休闲游戏。 　　游戏在一个15行10列的方格图上进行，方格图上的每一个格子可能已经放置了方块，或者没有放置方块。每一轮，都会有一个新的由4个小方块组成的板块从方格图的上方落下，玩家可以操作板块左右移动放到合适的位置，当板块中某一个方块">
+<meta property="og:description" content="Problem                            问题描述        　　俄罗斯方块是俄罗斯人阿列克谢·帕基特诺夫发明的一款休闲游戏。 　　游戏在一个15行10列的方格图上进行，方格图上的每一个格子可能已经放置了方块，或者没有放置方块。每一轮，都会有一个新的由4个小方块组成的板块从方格图的上方落下，玩家可以操作板块左右移动放到合适的位置，当板块中">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-02-25T02:08:18.000Z">
 <meta property="article:modified_time" content="2020-08-26T08:13:58.375Z">
@@ -47,7 +47,7 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></he
         <h2 id="问题描述">
           <a href="#问题描述" class="heading-link"><i class="fas fa-link"></i></a>问题描述</h2>
       
-<p>俄罗斯方块是俄罗斯人阿列克谢·帕基特诺夫发明的一款休闲游戏。<br>
+<p>　　俄罗斯方块是俄罗斯人阿列克谢·帕基特诺夫发明的一款休闲游戏。<br>
 　　游戏在一个15行10列的方格图上进行，方格图上的每一个格子可能已经放置了方块，或者没有放置方块。每一轮，都会有一个新的由4个小方块组成的板块从方格图的上方落下，玩家可以操作板块左右移动放到合适的位置，当板块中某一个方块的下边缘与方格图上的方块上边缘重合或者达到下边界时，板块不再移动，如果此时方格图的某一行全放满了方块，则该行被消除并得分。<br>
 　　在这个问题中，你需要写一个程序来模拟板块下落，你不需要处理玩家的操作，也不需要处理消行和得分。<br>
 　　具体的，给定一个初始的方格图，以及一个板块的形状和它下落的初始位置，你要给出最终的方格图。</p>
@@ -56,14 +56,14 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></he
         <h2 id="输入格式">
           <a href="#输入格式" class="heading-link"><i class="fas fa-link"></i></a>输入格式</h2>
       
-<p>输入的前15行包含初始的方格图，每行包含10个数字，相邻的数字用空格分隔。如果一个数字是0，表示对应的方格中没有方块，如果数字是1，则表示初始的时候有方块。输入保证前4行中的数字都是0。<br>
+<p>　　输入的前15行包含初始的方格图，每行包含10个数字，相邻的数字用空格分隔。如果一个数字是0，表示对应的方格中没有方块，如果数字是1，则表示初始的时候有方块。输入保证前4行中的数字都是0。<br>
 　　输入的第16至第19行包含新加入的板块的形状，每行包含4个数字，组成了板块图案，同样0表示没方块，1表示有方块。输入保证板块的图案中正好包含4个方块，且4个方块是连在一起的（准确的说，4个方块是四连通的，即给定的板块是俄罗斯方块的标准板块）。<br>
 　　<strong>第20行包含一个1到7之间的整数，表示板块图案最左边开始的时候是在方格图的哪一列中</strong>。注意，这里的板块图案指的是16至19行所输入的板块图案，如果板块图案的最左边一列全是0，则它的左边和实际所表示的板块的左边是不一致的（见样例）</p>
 
         <h2 id="输出格式">
           <a href="#输出格式" class="heading-link"><i class="fas fa-link"></i></a>输出格式</h2>
       
-<p>输出15行，每行10个数字，相邻的数字之间用一个空格分隔，表示板块下落后的方格图。注意，你不需要处理最终的消行。</p>
+<p>　　输出15行，每行10个数字，相邻的数字之间用一个空格分隔，表示板块下落后的方格图。注意，你不需要处理最终的消行。</p>
 
         <h2 id="样例输入">
           <a href="#样例输入" class="heading-link"><i class="fas fa-link"></i></a>样例输入</h2>
@@ -123,15 +123,13 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></he
 <li>方法上：
 <ul>
 <li>在检测能否下落的方法上，其实没有必要从这个对应的矩阵上来判断，可以找出下落方块中为1的点，每次下落只检测这些点在方格图上对应坐标点是否为1。后者在开发效率，运行效率上都更佳。而矩阵相加的方法，直观上实现似乎也很简单，但事实上，原生python对于矩阵运算（即二维数组处理）并没有很好的支持，我一开始觉得实现简单大概是因为此前写了一点Octave，这个语言与python语法有点相近，且完美支持矩阵运算，被影响到了。</li>
-</ul>
-</li>
+</ul></li>
 <li>解题过程上：这道题作为CCF认证的第二道题，按理来说，是水题，应该快速解决，而实际上，这道题也没有很难，没有涉及到复杂的算法，规模也不大，但是，我却用了一个多小时，而且还没AC，有点可笑，如果是真实的考试中，已经凉了。究其原因，主要有以下几点：
-<ol>
+<ol type="1">
 <li>未考虑清楚就动手写代码。虽然一直对自己强调要想好再开始写代码，但实际上，当有时没什么头绪，或者想得不是太清楚的时候，就会着急写代码，美其名曰先把不需要想的写了，然后边写边想，加快解题速度，但这样却很容易影响思考，让人想不太清楚，并且会被已写的代码影响后续的思考。像这一道题，核心应该是下落过程中能否下落/有无碰撞，但我一开始还没想到方法时，先去实现了一些无关紧要的事，如下落方块中空行空列的删除，并且因为这些事卡住了一段时间，更为好笑的是空列删除还是不必要的。</li>
 <li>一条路上走到黑。在想到的方法实现/运行上出现问题时，我选择的是修复/调试实现代码，而从未去思考过是修改/更换方法，当然其实两种方法都没什么问题，但有时候，因为方法未思考清楚，或者实现起来难度或效果跟预想有偏差，继续在该方法待下去有点浪费时间，就像本题中的碰撞检测所采用的矩阵相加方法来判断，在python原生实现并没有想象中简便。</li>
 <li>读题/题意理解。最后之所以不能AC，即使在本机测试样例能够正确运行，提交后却只有十分，百思不得其解，翻了很多其他人的代码，才发现我对于题意的理解出了偏差。输入的下落位置，表示的应该是整个下落方块最左边（含空列）在第几列（从1开始），而我的理解是，实际方块（不含空列）下落位置在第几列（从0开始），感觉题干说得有点不太清楚，而且唯一的测试样例还有二义性，对于两种解释都符合。在发现了这一点之后再重新看题，似乎在输入上也有点提示，输入在1-7之间，如果是从0开始计数，岂不是无法移到最左面，当然这也是马后炮了，实在可惜。</li>
-</ol>
-</li>
+</ol></li>
 </ul>
 </div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="http://scottyeung.top">YeungYeah</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="http://scottyeung.top/2019/CCF201604-2-%E4%BF%84%E7%BD%97%E6%96%AF%E6%96%B9%E5%9D%97/">http://scottyeung.top/2019/CCF201604-2-%E4%BF%84%E7%BD%97%E6%96%AF%E6%96%B9%E5%9D%97/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://scottyeung.top/tags/Python/">Python</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://scottyeung.top/tags/CCF/">CCF</a></span></div><div class="post-reward reward"><div class="reward-button">请我喝杯咖啡~</div><div class="reward-qrcode"><span class="reward-qrcode-alipay"><img class="reward-qrcode-alipay__img" src="/imgs/zfb.jpg"><div class="reward-qrcode-alipay__text">支付宝打赏</div></span><span class="reward-qrcode-wechat"><img class="reward-qrcode-wechat__img" src="/imgs/weixin.png"><div class="reward-qrcode-wechat__text">微信打赏</div></span></div></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2019/Wildcard-Matching/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">Wildcard Matching</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2019/Merge-k-Sorted-Lists/"><span class="paginator-prev__text">Merge k Sorted Lists</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div><div class="comments" id="comments"><div id="valine-container"></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0"><span class="toc-text">
           问题描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E6%A0%BC%E5%BC%8F"><span class="toc-text">

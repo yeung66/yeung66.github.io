@@ -1,9 +1,9 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/imsg/favicon-16x16.png?v=2.3.0" type="image/png" sizes="16x16"><link rel="icon" href="/imgs/favicon-32x32.png?v=2.3.0" type="image/png" sizes="32x32"><meta name="description" content="引言        在准备做Windows程序设计的大作业时，需要用到 Mysql。打开了 Mysql WorkBench 连接本地数据库时，提示要输入 root 密码，试了几个常用密码无果后，发现自己再次忘记了 Mysql 的 root 密码。但是没有关系，本人已经习惯忘记各种不太常用的账号密码了，驾轻就熟地打开百度搜索相关方法，却发现来来去去都是那同一个方法，而且还因为版">
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/imsg/favicon-16x16.png?v=2.3.0" type="image/png" sizes="16x16"><link rel="icon" href="/imgs/favicon-32x32.png?v=2.3.0" type="image/png" sizes="32x32"><meta name="description" content="引言        在准备做Windows程序设计的大作业时，需要用到 Mysql。打开了 Mysql WorkBench 连接本地数据库时，提示要输入 root 密码，试了几个常用密码无果后，发现自己再次忘记了 Mysql 的 root 密码。但是没有关系，本人已经习惯忘记各种不太常用的账号密码了，驾轻就熟地打开百度搜索相关方法，却发现来来去去都是那同一个方法，而且还因为">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mysql忘了root密码怎么办">
 <meta property="og:url" content="http://scottyeung.top/2018/Mysql%E5%BF%98%E4%BA%86root%E5%AF%86%E7%A0%81%E6%80%8E%E4%B9%88%E5%8A%9E/index.html">
 <meta property="og:site_name" content="YeungYeah 的乱写地">
-<meta property="og:description" content="引言        在准备做Windows程序设计的大作业时，需要用到 Mysql。打开了 Mysql WorkBench 连接本地数据库时，提示要输入 root 密码，试了几个常用密码无果后，发现自己再次忘记了 Mysql 的 root 密码。但是没有关系，本人已经习惯忘记各种不太常用的账号密码了，驾轻就熟地打开百度搜索相关方法，却发现来来去去都是那同一个方法，而且还因为版">
+<meta property="og:description" content="引言        在准备做Windows程序设计的大作业时，需要用到 Mysql。打开了 Mysql WorkBench 连接本地数据库时，提示要输入 root 密码，试了几个常用密码无果后，发现自己再次忘记了 Mysql 的 root 密码。但是没有关系，本人已经习惯忘记各种不太常用的账号密码了，驾轻就熟地打开百度搜索相关方法，却发现来来去去都是那同一个方法，而且还因为">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2018-11-29T12:03:35.000Z">
 <meta property="article:modified_time" content="2020-08-26T08:07:37.725Z">
@@ -57,43 +57,27 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></he
         <h2 id="具体步骤">
           <a href="#具体步骤" class="heading-link"><i class="fas fa-link"></i></a>具体步骤</h2>
       
-<ol>
-<li>
-<p>以管理员身份打开 cmd，关闭 mysql</p>
-<figure class="highlight shell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net stop mysql</span><br></pre></td></tr></table></div></figure>
-</li>
-<li>
-<p>输入</p>
+<ol type="1">
+<li><p>以管理员身份打开 cmd，关闭 mysql</p>
+<figure class="highlight shell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net stop mysql</span><br></pre></td></tr></table></div></figure></li>
+<li><p>输入</p>
 <p><code>mysqld -nt -skip-grant-tables</code></p>
-<p>回车后界面卡住</p>
-</li>
-<li>
-<p>以管理员身份打开另一个cmd，输入</p>
+<p>回车后界面卡住</p></li>
+<li><p>以管理员身份打开另一个cmd，输入</p>
 <p><code>mysql -u root -p</code></p>
-<p>回车后进入mysql</p>
-</li>
-<li>
-<p>接下来在mysql中修改root用户的密码，相应的用户信息也是按数据表的形式存储在 <code>mysql.user</code> 中，我们就可以改数据库数据的方式来修改密码，但这里有一点问题，mysql 的几个版本的用户表的列名都不一样，需要区别对待</p>
+<p>回车后进入mysql</p></li>
+<li><p>接下来在mysql中修改root用户的密码，相应的用户信息也是按数据表的形式存储在 <code>mysql.user</code> 中，我们就可以改数据库数据的方式来修改密码，但这里有一点问题，mysql 的几个版本的用户表的列名都不一样，需要区别对待</p>
 <ul>
-<li>
-<p>mysql 5.6</p>
-<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">update mysql.user set password&#x3D;password(&#39;newpassword&#39;) where user &#x3D; &#39;root&#39;;</span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></div></figure>
-</li>
-<li>
-<p>mysql 5.7：password列消失，取而代之的是authentication_string</p>
-<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">update mysql.user set authentication_string&#x3D;password(&#39;newpassword&#39;) where user &#x3D; &#39;root&#39;;</span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></div></figure>
-</li>
-<li>
-<p>mysql 8：password函数被移除，需要改变方式</p>
-</li>
+<li><p>mysql 5.6</p>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">update mysql.user set password&#x3D;password(&#39;newpassword&#39;) where user &#x3D; &#39;root&#39;;</span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></div></figure></li>
+<li><p>mysql 5.7：password列消失，取而代之的是authentication_string</p>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">update mysql.user set authentication_string&#x3D;password(&#39;newpassword&#39;) where user &#x3D; &#39;root&#39;;</span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></div></figure></li>
+<li><p>mysql 8：password函数被移除，需要改变方式</p></li>
 </ul>
-  <figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">flush privileges;</span><br><span class="line">alter user &#39;root&#39;@&#39;localhost&#39; identified by &#39;newpassword&#39;;</span><br></pre></td></tr></table></div></figure>
-<p>该方法是同时适用与mysql5.7和8，可谓是一种更为优雅的方法</p>
-</li>
-<li>
-<p>重新启动mysql，正常使用</p>
-<figure class="highlight shell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">net start mysql</span><br><span class="line">mysql -u root -p</span><br></pre></td></tr></table></div></figure>
-</li>
+<p><figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">flush privileges;</span><br><span class="line">alter user &#39;root&#39;@&#39;localhost&#39; identified by &#39;newpassword&#39;;</span><br></pre></td></tr></table></div></figure></p>
+<p>该方法是同时适用与mysql5.7和8，可谓是一种更为优雅的方法</p></li>
+<li><p>重新启动mysql，正常使用</p>
+<figure class="highlight shell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">net start mysql</span><br><span class="line">mysql -u root -p</span><br></pre></td></tr></table></div></figure></li>
 </ol>
 
         <h1 id="后续">
@@ -111,40 +95,22 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></he
       
 <p>两种方法</p>
 <ul>
-<li>
-<p>一是使用 <span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://dev.mysql.com/downloads/windows/installer/">Mysql Installer</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>。使用该在线安装软件非常方便，还可选择安装配套的 mysql 相关软件，安装完后可直接进入傻瓜式配置，无需进行额外的配置，且后续的卸载也可以在这上面进行，个人比较推荐。但该软件只能运行在 Windows 上，且只能安装最新版本的 mysql8。尝试了一下，在初始化数据库时出现问题，而搜索该问题发现关于新版本 mysql 的相关信息非常少，遂放弃新版本，放弃该方式。</p>
-</li>
-<li>
-<p>二是使用<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://dev.mysql.com/downloads/mysql/">压缩包</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>安装。选择相应的版本下载压缩包解压即可。这种方式则需要手动额外配置。主要步骤有</p>
+<li><p>一是使用 <span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://dev.mysql.com/downloads/windows/installer/">Mysql Installer</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>。使用该在线安装软件非常方便，还可选择安装配套的 mysql 相关软件，安装完后可直接进入傻瓜式配置，无需进行额外的配置，且后续的卸载也可以在这上面进行，个人比较推荐。但该软件只能运行在 Windows 上，且只能安装最新版本的 mysql8。尝试了一下，在初始化数据库时出现问题，而搜索该问题发现关于新版本 mysql 的相关信息非常少，遂放弃新版本，放弃该方式。</p></li>
+<li><p>二是使用<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://dev.mysql.com/downloads/mysql/">压缩包</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>安装。选择相应的版本下载压缩包解压即可。这种方式则需要手动额外配置。主要步骤有</p>
 <ul>
-<li>
-<p>创建配置文件 my.ini，下面的 basedir 和 datadir 替换为本机 mysql 目录，若有则不用创建</p>
-<figure class="highlight ini"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[mysqld]</span></span><br><span class="line"><span class="attr">port</span> = <span class="number">3306</span></span><br><span class="line"><span class="attr">basedir</span>=C:/software/mysql-<span class="number">5.7</span>.<span class="number">21</span>-winx64</span><br><span class="line"><span class="attr">datadir</span>=C:/software/mysql-<span class="number">5.7</span>.<span class="number">21</span>-winx64/data </span><br><span class="line"><span class="attr">max_connections</span>=<span class="number">200</span></span><br><span class="line"><span class="attr">character-set-server</span>=utf8</span><br><span class="line"><span class="attr">default-storage-engine</span>=INNODB</span><br><span class="line"><span class="attr">sql_mode</span>=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES</span><br><span class="line"><span class="section">[mysql]</span></span><br><span class="line"><span class="attr">default-character-set</span>=utf8</span><br></pre></td></tr></table></div></figure>
-</li>
-<li>
-<p>增加环境变量。将<code>C:/software/mysql-5.7.21-winx64/bin</code>添加到path中（注意换成本机mysql目录）</p>
-</li>
-<li>
-<p>安装mysql</p>
-<figure class="highlight shell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqld -install</span><br></pre></td></tr></table></div></figure>
-</li>
-<li>
-<p>初始化MySQL</p>
-<figure class="highlight shell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqld --initialize-insecure --user=mysql</span><br></pre></td></tr></table></div></figure>
-</li>
-<li>
-<p>启动mysql</p>
-<figure class="highlight shell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net mysql start</span><br></pre></td></tr></table></div></figure>
-</li>
-<li>
-<p>设置root密码，回车后会提示输入旧密码，直接回车即可</p>
-<figure class="highlight shell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqladmin -u root -p password 密码</span><br></pre></td></tr></table></div></figure>
-</li>
-<li>
-<p>安装完成</p>
-</li>
-</ul>
-</li>
+<li><p>创建配置文件 my.ini，下面的 basedir 和 datadir 替换为本机 mysql 目录，若有则不用创建</p>
+<figure class="highlight ini"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[mysqld]</span></span><br><span class="line"><span class="attr">port</span> = <span class="number">3306</span></span><br><span class="line"><span class="attr">basedir</span>=C:/software/mysql-<span class="number">5.7</span>.<span class="number">21</span>-winx64</span><br><span class="line"><span class="attr">datadir</span>=C:/software/mysql-<span class="number">5.7</span>.<span class="number">21</span>-winx64/data </span><br><span class="line"><span class="attr">max_connections</span>=<span class="number">200</span></span><br><span class="line"><span class="attr">character-set-server</span>=utf8</span><br><span class="line"><span class="attr">default-storage-engine</span>=INNODB</span><br><span class="line"><span class="attr">sql_mode</span>=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES</span><br><span class="line"><span class="section">[mysql]</span></span><br><span class="line"><span class="attr">default-character-set</span>=utf8</span><br></pre></td></tr></table></div></figure></li>
+<li><p>增加环境变量。将<code>C:/software/mysql-5.7.21-winx64/bin</code>添加到path中（注意换成本机mysql目录）</p></li>
+<li><p>安装mysql</p>
+<figure class="highlight shell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqld -install</span><br></pre></td></tr></table></div></figure></li>
+<li><p>初始化MySQL</p>
+<figure class="highlight shell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqld --initialize-insecure --user=mysql</span><br></pre></td></tr></table></div></figure></li>
+<li><p>启动mysql</p>
+<figure class="highlight shell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net mysql start</span><br></pre></td></tr></table></div></figure></li>
+<li><p>设置root密码，回车后会提示输入旧密码，直接回车即可</p>
+<figure class="highlight shell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqladmin -u root -p password 密码</span><br></pre></td></tr></table></div></figure></li>
+<li><p>安装完成</p></li>
+</ul></li>
 </ul>
 </div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="http://scottyeung.top">YeungYeah</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="http://scottyeung.top/2018/Mysql%E5%BF%98%E4%BA%86root%E5%AF%86%E7%A0%81%E6%80%8E%E4%B9%88%E5%8A%9E/">http://scottyeung.top/2018/Mysql%E5%BF%98%E4%BA%86root%E5%AF%86%E7%A0%81%E6%80%8E%E4%B9%88%E5%8A%9E/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://scottyeung.top/tags/Mysql/">Mysql</a></span></div><div class="post-reward reward"><div class="reward-button">请我喝杯咖啡~</div><div class="reward-qrcode"><span class="reward-qrcode-alipay"><img class="reward-qrcode-alipay__img" src="/imgs/zfb.jpg"><div class="reward-qrcode-alipay__text">支付宝打赏</div></span><span class="reward-qrcode-wechat"><img class="reward-qrcode-wechat__img" src="/imgs/weixin.png"><div class="reward-qrcode-wechat__text">微信打赏</div></span></div></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2019/Merge-k-Sorted-Lists/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">Merge k Sorted Lists</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2018/Maximum-Product-of-Word-Lengths/"><span class="paginator-prev__text">Maximum Product of Word Lengths</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div><div class="comments" id="comments"><div id="valine-container"></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-text">
           思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E6%AD%A5%E9%AA%A4"><span class="toc-text">
