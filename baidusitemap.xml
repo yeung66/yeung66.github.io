@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://scottyeung.top/2020/%E9%9D%9E%E4%B8%BB%E6%B5%81%E4%B8%8B%E7%9A%84%E5%B0%91%E6%95%B0%E9%80%89%E6%8B%A9/</loc>
+    <lastmod>2020-12-14</lastmod>
+  </url>  <url>
+    <loc>http://scottyeung.top/2020/%E5%8D%9A%E5%AE%A2%E5%9F%9F%E5%90%8D%E8%BF%81%E7%A7%BB/</loc>
+    <lastmod>2020-12-11</lastmod>
+  </url>  <url>
     <loc>http://scottyeung.top/2020/%E7%94%A8%E4%BA%8E%E5%A4%96%E9%93%BE%E7%9A%84%E8%B5%84%E6%BA%90%E5%BA%93%E6%9E%84%E5%BB%BA/</loc>
     <lastmod>2020-12-04</lastmod>
   </url>  <url>
@@ -105,9 +111,6 @@
   </url>  <url>
     <loc>http://scottyeung.top/2020/csharp-merit-1/</loc>
     <lastmod>2020-07-30</lastmod>
-  </url>  <url>
-    <loc>http://scottyeung.top/2020/%E5%8D%9A%E5%AE%A2%E5%9F%9F%E5%90%8D%E8%BF%81%E7%A7%BB/</loc>
-    <lastmod>2020-07-23</lastmod>
   </url>  <url>
     <loc>http://scottyeung.top/2020/stability-and-features/</loc>
     <lastmod>2020-07-19</lastmod>

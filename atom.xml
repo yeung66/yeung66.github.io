@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://scottyeung.top/"/>
-  <updated>2020-12-04T12:37:20.413Z</updated>
+  <updated>2020-12-14T03:24:27.141Z</updated>
   <id>http://scottyeung.top/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>非主流下的少数选择</title>
+    <link href="http://scottyeung.top/2020/%E9%9D%9E%E4%B8%BB%E6%B5%81%E4%B8%8B%E7%9A%84%E5%B0%91%E6%95%B0%E9%80%89%E6%8B%A9/"/>
+    <id>http://scottyeung.top/2020/非主流下的少数选择/</id>
+    <published>2020-12-13T11:52:23.000Z</published>
+    <updated>2020-12-14T03:24:27.141Z</updated>
+    
+    <content type="html"><![CDATA[<p>又再因为环境的差异，因为所使用的操作系统与主流，或者说是大多数人用的不一样），导致额外浪费了不少的时间，尽管最终还是解决了，但内心很是不爽，在这期间还无数次诞生出了重装环境，换个发行版系统的念头，不过考虑到近段时间实在太忙，没时间配置新的系统环境而放弃。话虽如此，新的系统的镜像我已经下好几个了，实在忍不住了，或者是有时间之后，估计马上就会换掉。</p><a id="more"></a><p>这大概就是使用一些非主流环境和工具所需要付出的最大成本了。这里的非主流，也并不是说所使用的东西很是冷门，没什么人用，更多指的是，在某种使用场景或情况下面，它不是绝大多数人使用的解决方案，也不是官方推荐的方案。因为不是官方推荐，导致文档里面缺失方法步骤，因为它不是绝大多数人的选择，所以我们在搜索问题时能看到的大家出现的问题，其发生的环境都与我们不一样，自然给出的解决方法也不能应用到我们的环境上面。</p><p>以刚遇到的问题为例，我想要在 docker 里面开启 GPU 支持，但是拉下 cuda 的 docker 镜像后使用 <code>--gpus</code> 的参数却报错了。把错误提示到网上一搜，首页几乎全是一样的错误，然而这些错误发生的环境都是在 ubuntu 当中，给出的解决方法全都需要用到 debian 系的包管理工具 apt，使用 pacman 的 arch 系 Linux 提供自然用不了这些解决方法。即使在搜索框前加上系统的关键词 arch/manjaro，出现的搜索结果仍然还是这些 ubuntu 上的错误。难道说就没有人在 manjaro/arch linux 上面出现过这样的问题吗？这怎么可能？</p><p>参考了一下 ubuntu 上面的解决方法，似乎需要下个 nvidia-container-toolkit 的包。在搜到的官方文档看了一下，给出的安装方式就是没有 arch 系的环境。到 pacman 安装试了一下，没有，发现似乎有用户在 aur 传了相关的包了，yay 试了一次，构建的过程中链接出问题了，构建失败。最终在 yay 试了几个包后才下好，暂时解决了问题。</p><p>明明就是一个很简单的问题，就因为环境的差异，找不到在该环境下面的解决方案，导致额外付出了精力与时间。当然这次算是运气比较好，最终解决了问题，但如果问题解决不了，就真的只能够自己无能狂怒了。在这个过程中，自己也无数次懊悔过为啥要选择 Manjaro，不老老实实选一个最多人选择的 Linux 系统环境。现在选择成为少数，自然要为其付出相应的时间和精力成本。</p><p>即便如此，仍然还是会有很多人选择成为这少数，也包括我。当时为什么会做出这个选择，选择成为少数呢？</p><p>主流很多时候能够成为主流，并不是因为它有多好，更多的只是因为它抓住了某个机会，抢占了绝大多数的用户和市场，而它一旦有了规模效应之后，就能够非常容易地吸收到绝大多数用户的加入这个选择，反向地壮大这个群体。因为绝大多数用户都是 Ubuntu 用户，因此它们所写的教程和资料自然都是在 Ubuntu 环境上的相关内容，作为一个新用户，自然更倾向于加入 Ubuntu 阵营。尤其是在中文互联网社区，百度搜索总是会给你返回在某所谓技术社区上面的大批相似文章。当然这里也不是说 Ubuntu 不好，只是<strong>我们能不能多点选择，对各种选择，各个方向更加友好点，从而让互联网社区更加友好呢？</strong> 为此，某些时候我更加倾向于所谓少数的选择，也算是一种支持，在某些时候，它们也能够给到我一些惊喜。尽管很多时候我自己也坚持不了，就比如 Chrome，先后转到 Edge 和 Firefox，还是忍不住要回来。</p><p>互联网自由开放的特点，一直都是我比较推崇和向往的。但现在的现象却是比较诡异的，不够自由，开放不足。各家互联网公司的画地为牢，把用户死死地圈在自己的一亩三分地里面，生怕用户和流量的流失，越垄断，越强大，越强大，就越有垄断的实力，不到你不屈服。最近就有一个被点名的现象：互联网企业下场到社区里的生鲜零售，通过超低价格和超高的补贴来占领市场，企图重现一次打车和外卖行业的现象。幸好很快就被大家意识到，官方也下场点名了资本了。</p><p>有实力的公司或者软件，逐渐成为主流难以避免，即使进化到垄断，也不足为奇。我们又能够做些什么呢？我们能不能给予更多的机会给不同的选择，尤其是处于弱势的选择呢？给多一点支持，多一次的尝试，可能就会有不一样的情况出现。然而在处于各种因为并非主流选择带来的不方便情况下，我们又可以坚持多久这些选择，不向主流投靠呢？</p><p>不管怎样，起码我也是坚持过了，而你呢？</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;又再因为环境的差异，因为所使用的操作系统与主流，或者说是大多数人用的不一样），导致额外浪费了不少的时间，尽管最终还是解决了，但内心很是不爽，在这期间还无数次诞生出了重装环境，换个发行版系统的念头，不过考虑到近段时间实在太忙，没时间配置新的系统环境而放弃。话虽如此，新的系统的镜像我已经下好几个了，实在忍不住了，或者是有时间之后，估计马上就会换掉。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://scottyeung.top/categories/Linux/"/>
+    
+    
+      <category term="Ubuntu" scheme="http://scottyeung.top/tags/Ubuntu/"/>
+    
+      <category term="Linux" scheme="http://scottyeung.top/tags/Linux/"/>
+    
+      <category term="随笔" scheme="http://scottyeung.top/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+      <category term="Manjaro" scheme="http://scottyeung.top/tags/Manjaro/"/>
+    
+  </entry>
   
   <entry>
     <title>近期太极练习的反思</title>
@@ -355,9 +383,9 @@
     
       <category term="Ubuntu" scheme="http://scottyeung.top/tags/Ubuntu/"/>
     
-      <category term="Windows" scheme="http://scottyeung.top/tags/Windows/"/>
-    
       <category term="shell" scheme="http://scottyeung.top/tags/shell/"/>
+    
+      <category term="Windows" scheme="http://scottyeung.top/tags/Windows/"/>
     
       <category term="WSL" scheme="http://scottyeung.top/tags/WSL/"/>
     
@@ -438,9 +466,9 @@
     <link href="http://scottyeung.top/2020/%E5%8D%9A%E5%AE%A2%E5%9F%9F%E5%90%8D%E8%BF%81%E7%A7%BB/"/>
     <id>http://scottyeung.top/2020/博客域名迁移/</id>
     <published>2020-03-25T03:56:16.000Z</published>
-    <updated>2020-07-23T03:54:46.740Z</updated>
+    <updated>2020-12-11T03:25:42.665Z</updated>
     
-    <content type="html"><![CDATA[<p>一早起来，发现使用两年的域名还有一个月就要到期了，提醒续费。在处理完一些事情后去续费，发现续费需要每年 72 元，震惊，当时开通的时候也就几块钱，第一年续费也就二三十块，变动也未免太大了，而且对于我这种个人小站来说确实贵。上去查了一下现在域名的价格，发现club后缀的价格确实是独一档的贵，甚至比一些 cn 后缀的都贵，有点离谱。于是果断选择转换回去最早使用的 top 域名，续费也才25一年，加上首年优惠三年才花了 60 不到。</p><p>另一方面，转域名也是有着不少的成本，而且是越用的久，沉没成本就越高。积累的 SEO 和 RSS 订阅都难以跟随域名转换而跟着转化过来，又可能要重新积累，各种的统计分析也可能需要废弃。但还是需要去做，毕竟互联网的特点就应该是开放而自由，不应该受到过多的枷锁。</p><p>本站现已迁移到域名 <strong><a href="http://scottyeung.top/" class="uri">http://scottyeung.top/</a></strong></p><a id="more"></a>        <h2 id="相关工作">          <a href="#相关工作" class="heading-link"><i class="fas fa-link"></i></a>相关工作</h2>      <p>以下是迁移域名做的一些工作：</p><ul><li><span class="github-emoji" data-alias="white_check_mark" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2705.png?v8">✅</span> Github Pages 切换解析到新域名<ul><li>域名添加DNS解析，两个 A 记录指向 GitHhub 的 ip 地址，一个 cname 绑在二级域名 www 上指向博客的源地址</li><li>Github Repo 修改 Github Pages 的 Custom domain</li><li>修改 public 文件夹当中的 CNAME 文件的内容为新域名（我已经忘了这个的作用了2333</li></ul></li><li><span class="github-emoji" data-alias="white_check_mark" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2705.png?v8">✅</span> Coding.net 添加解析（现在已经感觉完全归属到腾讯了）。原本是当作国内百度搜索引擎的专用解析，但因为下面的 Google Search 需要旧网址跳转，遂暂时使用它来提供 Pages 服务。</li><li><p><span class="github-emoji" data-alias="white_check_mark" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2705.png?v8">✅</span> LeanCloud 修改安全域名，添加对新域名的支持。发现可以直接使用过往的阅读量数据和评论数据</p></li><li><span class="github-emoji" data-alias="white_check_mark" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2705.png?v8">✅</span> Google Analytics： 修改监测网址即可。</li><li><span class="github-emoji" data-alias="zzz" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4a4.png?v8">💤</span> Google Adsense： 添加新网址即可，需要重新进行审核，等待通过中。<ul><li><span class="github-emoji" data-alias="x" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/274c.png?v8">❌</span> 因为疫情的原因，拒了我两次，原因居然是因为疫情而无法审核</li><li><span class="github-emoji" data-alias="x" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/274c.png?v8">❌</span> 两次都说我的网站已经下线或无法访问，上网搜了一下，发现一些人也有这个问题，可能是DNS对于域名国外访问的解析出了问题，建议添加额外的国外线路解析。当时我是使用 coding.net 提供的 pages 服务，好像这个是国内的服务（存疑），全部的解析到转到了那里。</li><li><span class="github-emoji" data-alias="zzz" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4a4.png?v8">💤</span> 第五次审核中。添加了额外的海外线路解析到 Github Pages。海外线路走 Github，国内访问走 coding.net.</li><li><span class="github-emoji" data-alias="x" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/274c.png?v8">❌</span> 因为多次审核不通过而被禁止申请一段时间，卒</li><li><span class="github-emoji" data-alias="white_check_mark" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2705.png?v8">✅</span> 过了禁止时间几天之后，一申请第二天就申上了，然后感觉广告量少了很多，点击就更加了</li></ul></li><li><span class="github-emoji" data-alias="white_check_mark" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2705.png?v8">✅</span> Google Search<ul><li>添加新域名并进行所有权验证</li><li>新域名添加站点地图抓取</li><li>尝试将旧网站的索引的 SEO 资源继承到新域名中，Google Search Console 中的确有网站转移的功能，要求旧网址发 301 响应重定向到新网站。可选的方法有：旧域名 DNS 解析中添加显式 URL 跳转，跳转到新域名，但是目标跳转域名需要备案。选择支持绑定多个域名的Pages服务提供商，如coding.net，可以绑定多个域名，然后选择一个首选域名，其它域名跳转到该域名，浏览器调试验证确实可行，但 Google Search Console 不知道为啥通不过，暂时放弃。过了一个多小时又可以了，不过需要一段时间来处理，不知道要多久，然而提示最好保留重定向 180 天，旧域名只剩下一个月，如果不能在一个月之内迁移成功旧白干了。</li><li>最终基本成功迁移，但是搜索的展示量和点击量都有一点下降，不过好像现在已经回归到跟之前差不多水平了</li></ul></li><li><span class="github-emoji" data-alias="white_check_mark" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2705.png?v8">✅</span> 百度站长工具：类似于 Google Search，添加新的网址进行所有权认证即可。依然采用主动推送和 sitemap 的方式来提交链接。</li><li><p><span class="github-emoji" data-alias="white_check_mark" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2705.png?v8">✅</span> 360站长工具：同上，操作简单，不过连同上周其实没有期望多大的效果。</p></li></ul>        <h2 id="数据损失">          <a href="#数据损失" class="heading-link"><i class="fas fa-link"></i></a>数据损失</h2>      <p>因为转换域名而无法继承的数据造成的损失：</p><ul><li><span class="github-emoji" data-alias="x" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/274c.png?v8">❌</span> 卜算子站点统计。因为它的统计似乎是以站点网址作为键值来进行统计的，更换后直接重新进行统计。（服务开启得太过简单的后果就是维护性/扩展性的牺牲</li><li><span class="github-emoji" data-alias="x" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/274c.png?v8">❌</span> 部分 rss 订阅的损失（虽然本来也没有多少</li></ul>        <h2 id="信息修改">          <a href="#信息修改" class="heading-link"><i class="fas fa-link"></i></a>信息修改</h2>      <p>此处是一些记录下我网址的需要改过来的地方</p><ul><li><span class="github-emoji" data-alias="white_check_mark" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2705.png?v8">✅</span> GitHub 上博客的 repo 简介和个人简介</li><li><span class="github-emoji" data-alias="white_check_mark" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2705.png?v8">✅</span> 中文独立博客 repo 中的博客列表需要修改网址，发PR来改</li><li><span class="github-emoji" data-alias="white_check_mark" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2705.png?v8">✅</span> twitter 上面写的个人网址</li></ul>]]></content>
+    <content type="html"><![CDATA[<p>一早起来，发现使用两年的域名还有一个月就要到期了，提醒续费。在处理完一些事情后去续费，发现续费需要每年 72 元，震惊，当时开通的时候也就几块钱，第一年续费也就二三十块，变动也未免太大了，而且对于我这种个人小站来说确实贵。上去查了一下现在域名的价格，发现club后缀的价格确实是独一档的贵，甚至比一些 cn 后缀的都贵，有点离谱。于是果断选择转换回去最早使用的 top 域名，续费也才25一年，加上首年优惠三年才花了 60 不到。</p><p>另一方面，转域名也是有着不少的成本，而且是越用的久，沉没成本就越高。积累的 SEO 和 RSS 订阅都难以跟随域名转换而跟着转化过来，又可能要重新积累，各种的统计分析也可能需要废弃。但还是需要去做，毕竟互联网的特点就应该是开放而自由，不应该受到过多的枷锁。</p><p>本站现已迁移到域名 <strong><a href="http://scottyeung.top/" class="uri">http://scottyeung.top/</a></strong></p><a id="more"></a>        <h2 id="相关工作">          <a href="#相关工作" class="heading-link"><i class="fas fa-link"></i></a>相关工作</h2>      <p>以下是迁移域名做的一些工作：</p><ul><li><span class="github-emoji" data-alias="white_check_mark" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2705.png?v8">✅</span> Github Pages 切换解析到新域名<ul><li>域名添加DNS解析，两个 A 记录指向 GitHhub 的 ip 地址，一个 cname 绑在二级域名 www 上指向博客的源地址</li><li>Github Repo 修改 Github Pages 的 Custom domain</li><li>修改 public 文件夹当中的 CNAME 文件的内容为新域名（我已经忘了这个的作用了2333</li></ul></li><li><span class="github-emoji" data-alias="white_check_mark" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2705.png?v8">✅</span> Coding.net 添加解析（现在已经基本完全归属到腾讯了）。原本是当作国内百度搜索引擎的专用解析，但因为下面的 Google Search 需要旧网址跳转，遂暂时使用它来提供 Pages 服务。</li><li><p><span class="github-emoji" data-alias="white_check_mark" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2705.png?v8">✅</span> LeanCloud 修改安全域名，添加对新域名的支持。发现可以直接使用过往的阅读量数据和评论数据</p></li><li><span class="github-emoji" data-alias="white_check_mark" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2705.png?v8">✅</span> Google Analytics： 修改监测网址即可。</li><li><span class="github-emoji" data-alias="zzz" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4a4.png?v8">💤</span> Google Adsense： 添加新网址即可，需要重新进行审核，等待通过中。<ul><li><span class="github-emoji" data-alias="x" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/274c.png?v8">❌</span> 因为疫情的原因，拒了我两次，原因居然是因为疫情而无法审核</li><li><span class="github-emoji" data-alias="x" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/274c.png?v8">❌</span> 两次都说我的网站已经下线或无法访问，上网搜了一下，发现一些人也有这个问题，可能是DNS对于域名国外访问的解析出了问题，建议添加额外的国外线路解析。当时我是使用 coding.net 提供的 pages 服务，好像这个是国内的服务（存疑），全部的解析到转到了那里。</li><li><span class="github-emoji" data-alias="zzz" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4a4.png?v8">💤</span> 第五次审核中。添加了额外的海外线路解析到 Github Pages。海外线路走 Github，国内访问走 coding.net.</li><li><span class="github-emoji" data-alias="x" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/274c.png?v8">❌</span> 因为多次审核不通过而被禁止申请一段时间，卒</li><li><span class="github-emoji" data-alias="white_check_mark" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2705.png?v8">✅</span> 过了禁止时间几天之后，一申请第二天就申上了，然后感觉广告量少了很多，点击就更加了</li></ul></li><li><span class="github-emoji" data-alias="white_check_mark" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2705.png?v8">✅</span> Google Search<ul><li>添加新域名并进行所有权验证</li><li>新域名添加站点地图抓取</li><li>尝试将旧网站的索引的 SEO 资源继承到新域名中，Google Search Console 中的确有网站转移的功能，要求旧网址发 301 响应重定向到新网站。可选的方法有：旧域名 DNS 解析中添加显式 URL 跳转，跳转到新域名，但是目标跳转域名需要备案。选择支持绑定多个域名的Pages服务提供商，如coding.net，可以绑定多个域名，然后选择一个首选域名，其它域名跳转到该域名，浏览器调试验证确实可行，但 Google Search Console 不知道为啥通不过，暂时放弃。过了一个多小时又可以了，不过需要一段时间来处理，不知道要多久，然而提示最好保留重定向 180 天，旧域名只剩下一个月，如果不能在一个月之内迁移成功旧白干了。</li><li>最终基本成功迁移，但是搜索的展示量和点击量都有一点下降，不过好像现在已经回归到跟之前差不多水平了</li></ul></li><li><span class="github-emoji" data-alias="white_check_mark" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2705.png?v8">✅</span> 百度站长工具：类似于 Google Search，添加新的网址进行所有权认证即可。依然采用主动推送和 sitemap 的方式来提交链接。</li><li><p><span class="github-emoji" data-alias="white_check_mark" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2705.png?v8">✅</span> 360站长工具：同上，操作简单，不过连同上周其实没有期望多大的效果。</p></li></ul>        <h2 id="数据损失">          <a href="#数据损失" class="heading-link"><i class="fas fa-link"></i></a>数据损失</h2>      <p>因为转换域名而无法继承的数据造成的损失：</p><ul><li><span class="github-emoji" data-alias="x" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/274c.png?v8">❌</span> 卜算子站点统计。因为它的统计似乎是以站点网址作为键值来进行统计的，更换后直接重新进行统计。（服务开启得太过简单的后果就是维护性/扩展性的牺牲</li><li><span class="github-emoji" data-alias="x" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/274c.png?v8">❌</span> 部分 rss 订阅的损失（虽然本来也没有多少</li></ul>        <h2 id="信息修改">          <a href="#信息修改" class="heading-link"><i class="fas fa-link"></i></a>信息修改</h2>      <p>此处是一些记录下我网址的需要改过来的地方</p><ul><li><span class="github-emoji" data-alias="white_check_mark" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2705.png?v8">✅</span> GitHub 上博客的 repo 简介和个人简介</li><li><span class="github-emoji" data-alias="white_check_mark" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2705.png?v8">✅</span> 中文独立博客 repo 中的博客列表需要修改网址，发PR来改</li><li><span class="github-emoji" data-alias="white_check_mark" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2705.png?v8">✅</span> twitter 上面写的个人网址</li></ul>]]></content>
     
     <summary type="html">
     
@@ -477,9 +505,9 @@
       <category term="Coding 学习" scheme="http://scottyeung.top/categories/Coding-%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="notes" scheme="http://scottyeung.top/tags/notes/"/>
-    
       <category term="Python" scheme="http://scottyeung.top/tags/Python/"/>
+    
+      <category term="notes" scheme="http://scottyeung.top/tags/notes/"/>
     
       <category term="并发编程" scheme="http://scottyeung.top/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
     
@@ -517,28 +545,6 @@
       <category term="异步编程" scheme="http://scottyeung.top/tags/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/"/>
     
       <category term="Golang" scheme="http://scottyeung.top/tags/Golang/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>太极拳中的劲</title>
-    <link href="http://scottyeung.top/2020/%E5%A4%AA%E6%9E%81%E6%8B%B3%E4%B8%AD%E7%9A%84%E5%8A%B2/"/>
-    <id>http://scottyeung.top/2020/太极拳中的劲/</id>
-    <published>2020-02-16T14:59:05.000Z</published>
-    <updated>2020-12-04T09:14:05.440Z</updated>
-    
-    <content type="html"><![CDATA[<p>相信每个男生一直以来都有练习武术的想法，一是想强身健体，二是可保护自己，幻想着如同武侠小说中主角般生活。我也不例外，自小就比较好动，加上一直都比较胖，就有着搞点运动的想法，武术就是当中一个很好的选择。最开始在贴吧上面接触到的就是太极拳与站桩，感觉很玄乎，也好像很厉害。后来叶问兴起，人人都在谈咏春，我也跟我堂哥学习了一下，在网上学了小念头。上了高中之后，追求先进，又开始向拳击，散打等靠拢。最终一无所获，不过也不觉得有什么可惜。</p><a id="more"></a><p>最近，又开始寻找锻炼方式，最好是一种万能的方法，能够对全身有着极大的帮助，于是又开始转回太极，在YouTube上面学了几个动作，回家后又再次搁置下来。在书柜乱翻时，心血来潮将高中时买的一本书《内家拳的瑰宝——懂劲》再次拿出来看看。这本书主要是描述内家拳当中最重要的核心——劲。所谓的劲，比较玄乎，大致的理解为肌肉收缩产生力，筋的收缩则产生劲。从太极拳等内家拳当中领悟到劲的感觉，且带着劲来打拳架，才是真的入门，用书中的话来说，才能到达“阶及神明”的地步。主要的好处有：</p><ul><li>劲能够刺激锻炼到全身，对身体当中的筋有很好的锻炼效果</li><li>通过劲在打拳当中能够更好的效果，尤其是在推手或技击中</li><li>只有领会到真正的劲，才能体会到太极当中的松，在生活当中有更好的状态</li><li>不伤身，可长久练习，不像一些刚猛的技击方法，对身体有所损耗</li></ul><p>怎样练习而找到这种劲呢？当时第一次看这本书，就是因为书中写得太过玄乎，而练习方式的叙述又太简单，被当时因学业紧张而对时间使用非常功利的我放弃掉。如今在家里比较闲，生活没有那么紧张，而且对有无所成感到没什么要求，又重新找了一下。劲怎么来？主要是从地来，力从地起，通过脚对地面的各种接触方式，产生根劲。再通过筋脉，由脚到腿，由腿到腰，由腰到全身。怎么练习呢？个人感觉关键有两点，一是怎么由脚产生劲，二是怎么在全身传导劲。前者，书中讲到一个脚掌落地与落地的方式，以左脚为例，从右上方根据顺时针分成四块，落地顺序为一四二三，离地则反过来。后者则需要注重旋转，变换重心等方式来转移劲。当然纸上谈兵非常简单，真的练习找到感觉非常困难，且是需要那种讲究顿悟的学习。具体的练习可以站桩，或者走拳架。书中给出了作者简化的二十二式太极拳，每天走十遍左右，可以试试感悟，不过书中的每一式就附上一张静态图片和一段文字解释（甚至不是动作描述），学会还是有难度的，不过太极拳的招式大致相同，且并不需要走套路，单独的招式也有效果（可能），网上找找估计能找到。</p><p>附上书中的二十二式太极拳：</p><blockquote><p>起势，左掤，右掤，捋，挤，按，单鞭，采，挒，肘，靠（左右二式），提手上式，搬拦捶，右斜飞式，搂膝拗步（三式），上步十字手，半步崩拳，抱虎归山，如封似闭，倒撵猴（三步），半单鞭（三式），左每人照镜，收势。</p></blockquote><p>常说传武式微，但就当前这种环境以及流传下来的资料，确实难以传承，就这本书来讲，一味地讲理论，讲劲的好处，而练习方式，拳架教学，只有短短不到三十页，还不到全书五分之一，仅凭这些就能够学会的确实是天赋非凡。因为没有资料，只能靠师傅人工传承，但终有各种的不方便，最主要的，还是好师傅难寻，寻到也不一定愿意教，这样的环境，技艺失传又有何奇怪。不过我也没想着练出啥绝世的武功，无非是希望能锻炼下身体，以及能够以太极的松柔状态来过生活，仅此而已，所以随缘就好。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;相信每个男生一直以来都有练习武术的想法，一是想强身健体，二是可保护自己，幻想着如同武侠小说中主角般生活。我也不例外，自小就比较好动，加上一直都比较胖，就有着搞点运动的想法，武术就是当中一个很好的选择。最开始在贴吧上面接触到的就是太极拳与站桩，感觉很玄乎，也好像很厉害。后来叶问兴起，人人都在谈咏春，我也跟我堂哥学习了一下，在网上学了小念头。上了高中之后，追求先进，又开始向拳击，散打等靠拢。最终一无所获，不过也不觉得有什么可惜。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="杂谈" scheme="http://scottyeung.top/categories/%E6%9D%82%E8%B0%88/"/>
-    
-    
-      <category term="太极" scheme="http://scottyeung.top/tags/%E5%A4%AA%E6%9E%81/"/>
     
   </entry>
   
