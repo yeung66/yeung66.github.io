@@ -170,9 +170,9 @@
       <category term="个人随笔" scheme="http://scottyeung.top/categories/%E4%B8%AA%E4%BA%BA%E9%9A%8F%E7%AC%94/"/>
     
     
-      <category term="随笔" scheme="http://scottyeung.top/tags/%E9%9A%8F%E7%AC%94/"/>
-    
       <category term="时间管理" scheme="http://scottyeung.top/tags/%E6%97%B6%E9%97%B4%E7%AE%A1%E7%90%86/"/>
+    
+      <category term="随笔" scheme="http://scottyeung.top/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
@@ -383,9 +383,9 @@
     
       <category term="Ubuntu" scheme="http://scottyeung.top/tags/Ubuntu/"/>
     
-      <category term="Windows" scheme="http://scottyeung.top/tags/Windows/"/>
-    
       <category term="shell" scheme="http://scottyeung.top/tags/shell/"/>
+    
+      <category term="Windows" scheme="http://scottyeung.top/tags/Windows/"/>
     
       <category term="WSL" scheme="http://scottyeung.top/tags/WSL/"/>
     
@@ -505,9 +505,9 @@
       <category term="Coding 学习" scheme="http://scottyeung.top/categories/Coding-%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="notes" scheme="http://scottyeung.top/tags/notes/"/>
-    
       <category term="Python" scheme="http://scottyeung.top/tags/Python/"/>
+    
+      <category term="notes" scheme="http://scottyeung.top/tags/notes/"/>
     
       <category term="并发编程" scheme="http://scottyeung.top/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
     
