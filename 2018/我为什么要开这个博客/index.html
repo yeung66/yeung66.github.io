@@ -130,17 +130,15 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></he
       }
     }
   }, false);
-}, false);</script><div id="pjax-reload"><link href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" rel="stylesheet" type="text/css"><link href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/copy-tex.css" rel="stylesheet" type="text/css"><script src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script></div><script src="https://cdn.jsdelivr.net/npm/leancloud-storage@latest/dist/av-min.js"></script><script src="https://cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script><script data-pjax="">function loadValine () {
+}, false);</script><div id="pjax-reload"><link href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" rel="stylesheet" type="text/css"><link href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/copy-tex.css" rel="stylesheet" type="text/css"><script src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script></div><script src="https://cdn.jsdelivr.net/npm/leancloud-storage@latest/dist/av-min.js"></script><script src="//unpkg.com/@waline/client/dist/Waline.min.js"></script><script data-pjax="">function loadValine () {
   var GUEST_INFO = ['nick', 'mail', 'link'];
   var guest_info = 'nick,mail,link';
 
   guest_info = guest_info.split(',').filter(function(item) {
     return GUEST_INFO.indexOf(item) > -1;
   });
-  new Valine({
+  new Waline({
     el: '#valine-container',
-    appId: '6z5x9ebUg7IQhWz2yL8MfIn5-MdYXbMMI',
-    appKey: 'V2v1czBIVEojvp8GMklXRQHs',
     notify: false,
     verify: true,
     placeholder: '欢迎留言~',
@@ -150,7 +148,8 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></he
     visitor: true,
     recordIP: true,
     lang: '' || 'zh-cn',
-    path: window.location.pathname
+    path: window.location.pathname,
+    serverURL: 'https://waline-pi.vercel.app'
   });
 }
 
