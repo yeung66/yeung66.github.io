@@ -118,7 +118,7 @@ const ap = new APlayer({
         name: '男孩像你',
         artist: '薛凯琪',
         url: baseUrl + '男孩像你.mp3',
-        cover: 'http:s//p1.music.126.net/eVNxevw1W5lyBmdq18tMJw==/109951163639097093.jpg'
+        cover: 'https://p1.music.126.net/eVNxevw1W5lyBmdq18tMJw==/109951163639097093.jpg'
       }
     ]
 });
