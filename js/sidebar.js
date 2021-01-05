@@ -5,8 +5,8 @@ $(document).ready(function () {
     .slice(0, tocDepth * 3)
     .slice(0, -1)
 
-  function initTocDisplay() {
-    if ($('.post-body').find(HEADING_SELECTOR)[0] || $('.custompage').find(HEADING_SELECTOR)[0]) {
+  function initTocDisplay () {
+    if ($('.post-body, .custompage').find(HEADING_SELECTOR)[0]) {
       return
     }
     $('.sidebar-nav').addClass('hide')
@@ -22,8 +22,8 @@ $(document).ready(function () {
 
   // Automatically expand items in the article directory
   //   based on the scrolling of heading in the article.
-  function autoSpreadToc() {
-    var $postBody = $('.post-body').length>0 ? $('.post-body') : $('.custompage')
+  function autoSpreadToc () {
+    var $postBody = $('.post-body, .custompage')
     var $allTocItem = $('.sidebar-toc li')
     var $headings = $postBody.find(HEADING_SELECTOR)
     var $firsetChild = $headings.first()
@@ -54,6 +54,13 @@ $(document).ready(function () {
     }
     if (currHeading !== lastHeading) {
       var $targetLink = $('.sidebar-toc a[href="#' + currHeading + '"]')
+
+      // In order to be compatible with Hexo under v5.0.0
+      if (!$targetLink.length) {
+        var anchorDecode = window.decodeURIComponent(currHeading)
+        $targetLink = $('.sidebar-toc a[href="#' + anchorDecode + '"]')
+      }
+
       $allTocItem.removeClass('active current')
       $targetLink.parents('li').addClass('active')
       $targetLink.parent().addClass('current')
