@@ -1,0 +1,187 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/imsg/favicon-16x16.png?v=2.6.0" type="image/png" sizes="16x16"><link rel="icon" href="/imgs/favicon-32x32.png?v=2.6.0" type="image/png" sizes="32x32"><meta name="description" content="背景        在上周的时候，打算在 Ubuntu 下查看在 Windows 下 QQ 接受到的项目代码，然后顺便就整理了一下目录，新建了一个文件夹，将实验室相关的文件剪切复制到该文件夹。后切换回 Windows，发现文件夹没有建成功，而刚才剪切的文件不见了。 无独有偶，本周一上课纪录模式识别笔记时，顺手归档了一下这门课文件夹下的作业，课件，笔记（在 Windows 下的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux文件系统中操作文件导致NTFS文件系统中文件丢失">
+<meta property="og:url" content="http://scottyeung.top/2018/Linux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E4%B8%AD%E6%93%8D%E4%BD%9C%E6%96%87%E4%BB%B6%E5%AF%BC%E8%87%B4NTFS%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E4%B8%AD%E6%96%87%E4%BB%B6%E4%B8%A2%E5%A4%B1/index.html">
+<meta property="og:site_name" content="YeungYeah 的乱写地">
+<meta property="og:description" content="背景        在上周的时候，打算在 Ubuntu 下查看在 Windows 下 QQ 接受到的项目代码，然后顺便就整理了一下目录，新建了一个文件夹，将实验室相关的文件剪切复制到该文件夹。后切换回 Windows，发现文件夹没有建成功，而刚才剪切的文件不见了。 无独有偶，本周一上课纪录模式识别笔记时，顺手归档了一下这门课文件夹下的作业，课件，笔记（在 Windows 下的">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-10-30T11:07:39.000Z">
+<meta property="article:modified_time" content="2020-12-23T16:05:02.280Z">
+<meta property="article:author" content="YeungYeah">
+<meta property="article:tag" content="经历回顾">
+<meta property="article:tag" content="Ubuntu">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary"><title>Linux文件系统中操作文件导致NTFS文件系统中文件丢失 | YeungYeah 的乱写地</title><link ref="canonical" href="http://scottyeung.top/2018/Linux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E4%B8%AD%E6%93%8D%E4%BD%9C%E6%96%87%E4%BB%B6%E5%AF%BC%E8%87%B4NTFS%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E4%B8%AD%E6%96%87%E4%BB%B6%E4%B8%A2%E5%A4%B1/"><link rel="alternate" href="/atom.xml" type="application/atom+xml"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.6.0"><link rel="dns-prefetch" href="https://www.googletagmanager.com"><script src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" data-ad-client="ca-pub-7766364950991401" async="" data-pjax=""></script><script src="https://www.googletagmanager.com/gtag/js?id=UA-151343043-1" async="" data-pjax=""></script><script data-pjax="">if (window.location.hostname !== 'localhost') {
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  gtag('js', new Date());
+  gtag('config', 'UA-151343043-1');
+}</script><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: undefined,
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"carbon","highlight":"light","wordWrap":false},
+  reward: true,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: {"avoidBanner":true},
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner header-inner--height header-inner--bgcolor"><nav class="header-nav header-nav--sticky"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/about/"><span class="header-nav-menu-item__icon"><i class="fas fa-user"></i></span><span class="header-nav-menu-item__text">关于</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="javascript:;" onclick="return false;"><span class="header-nav-menu-item__icon"><i class="fas fa-newspaper"></i></span><span class="header-nav-menu-item__text">文章</span></a><div class="header-nav-submenu"><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/archives/"><span class="header-nav-submenu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-submenu-item__text">归档</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/categories/"><span class="header-nav-submenu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-submenu-item__text">分类</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/tags/"><span class="header-nav-submenu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-submenu-item__text">标签</span></a></div></div></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="javascript:;" onclick="return false;"><span class="header-nav-menu-item__icon"><i class="fas fa-calendar-alt"></i></span><span class="header-nav-menu-item__text">动态</span></a><div class="header-nav-submenu"><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/moments/"><span class="header-nav-submenu-item__icon"><i class="fas fa-calendar-alt"></i></span><span class="header-nav-submenu-item__text">最新</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/moments/2020"><span class="header-nav-submenu-item__icon"><i class="fas fa-calendar-alt"></i></span><span class="header-nav-submenu-item__text">20年</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/moments/2019"><span class="header-nav-submenu-item__icon"><i class="fas fa-calendar-alt"></i></span><span class="header-nav-submenu-item__text">19年</span></a></div></div></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" target="_blank" rel="noopener" href="http://divi.scottyeung.top:8080/"><span class="header-nav-menu-item__icon"><i class="fas fa-question"></i></span><span class="header-nav-menu-item__text">占筮</span></a></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">Linux文件系统中操作文件导致NTFS文件系统中文件丢失</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2018-10-30</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2020-12-24</span></span><span class="post-meta-item post-meta-item--visitors leancloud_visitors" id="/2018/Linux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E4%B8%AD%E6%93%8D%E4%BD%9C%E6%96%87%E4%BB%B6%E5%AF%BC%E8%87%B4NTFS%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E4%B8%AD%E6%96%87%E4%BB%B6%E4%B8%A2%E5%A4%B1/" data-flag-title="Linux文件系统中操作文件导致NTFS文件系统中文件丢失"><span class="post-meta-item__icon"><i class="fas fa-eye"></i></span><span class="post-meta-item__info">阅读次数</span><span class="post-meta-item__value leancloud-visitors-count"></span></span></div></header><div class="post-body">
+        <h2 id="背景">
+          <a href="#背景" class="heading-link"><i class="fas fa-link"></i></a>背景</h2>
+      
+<p>在上周的时候，打算在 Ubuntu 下查看在 Windows 下 QQ 接受到的项目代码，然后顺便就整理了一下目录，新建了一个文件夹，将实验室相关的文件剪切复制到该文件夹。后切换回 Windows，发现文件夹没有建成功，而刚才剪切的文件不见了。</p>
+<p>无独有偶，本周一上课纪录模式识别笔记时，顺手归档了一下这门课文件夹下的作业，课件，笔记（在 Windows 下的 Ntfs 分区中），然后周二上课打开 Windows 系统后，发现文件丢失，新建的归档文件夹也不见了，然后昨天修改的 markdown 笔记也损坏无法打开。</p>
+<a id="more"></a>
+
+        <h2 id="思考过程">
+          <a href="#思考过程" class="heading-link"><i class="fas fa-link"></i></a>思考过程</h2>
+      
+
+        <h3 id="测试">
+          <a href="#测试" class="heading-link"><i class="fas fa-link"></i></a>测试</h3>
+      
+<p>由于两次的文件丢失均在两系统中操作（剪切）文件时发生，遂打算在 Linux 系统中对 Windows 系统的文件进行不同操作，以观察有无发生文件丢失现象，找出触发原因，后续避免。</p>
+<ul>
+<li>在NTFS分区中创建文件，在另一系统中无丢失。</li>
+<li>修改NTFS分区中的文件内容，在另一系统中能正常显示</li>
+<li>复制NTFS分区中文件，文件正常</li>
+<li>剪切NTFS分区中文件，文件正常</li>
+</ul>
+<p>也不知道幸运与否，测试了数次均没有出现文件丢失问题，无法找到直接的触发原因。</p>
+
+        <h3 id="解决">
+          <a href="#解决" class="heading-link"><i class="fas fa-link"></i></a>解决</h3>
+      
+<p>在第一次出现问题后，马上去百度查询剪切文件丢失，被告知是剪切过程极不稳定，容易发生错误导致文件丢失，但感到很不靠谱，剪切错误后应该会马上有告知信息，而我剪切后在已经能够在 Ubuntu 的文件系统中看到粘贴后结果。但心急于恢复文件，还是采用了所提供的一些方法，将其当作误删文件来恢复。</p>
+<p>第二次出现问题后，因为有第一次的经验，很熟练地就恢复文件了。结合上一次的经历来看，个人猜想应该是两个文件系统不一致所导致（然而上面的测试已经告诉我们是可以的）。到 Google 上搜了一下，相关的信息还是很少，然后换成用英语搜，终于见到几个出现相同的状况了（所以是中国人都没有遇到这个问题吗 2333 ）。然而也没有给出一个确定的解释，不过其中有一个解释感觉挺靠谱的（<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://askubuntu.com/questions/49000/files-disappear-on-ntfs-partition">链接在此</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>)，其解释是在使用 Linux系 统时，Windows 系统未完全关闭（处于睡眠状态），Linux 的文件系统修改文件后，Windows 系统启动后又再次修改该文件以修复，导致文件崩溃。然而，我的 Windows 似乎是关机的，甚至我还不知道怎么睡眠一个系统切换到另一系统，但说得很有道理，姑且先接受。</p>
+<p>所以，到最后也没有找到确定的原因导致文件的丢失，只能说在 Linux 下使用 ntfs文件系统有可能会出错，换而言之，还是不知道怎么避免（除非不用）。但文件丢失后的解决方法还是有的，虽然不一定能全复原：</p>
+<ul>
+<li>采用文件恢复软件。将其当初误删文件处理，成功率还不错。本人使用的是DiskGenius专业版（非专业版限制恢复文件的大小，略坑），成功找回了两次丢失的文件，但该软件复原时需全盘扫描，速度较慢。</li>
+<li>在Windows系统中使用<code>chkdsk</code>命令，进行文件系统的检查修复。该方法在Google过程中看到，多人推荐，感觉应该也可以。</li>
+</ul>
+
+        <h3 id="警示">
+          <a href="#警示" class="heading-link"><i class="fas fa-link"></i></a>警示</h3>
+      
+<p>虽然文件最后都找回来了，但文件丢失还是一件很恐怖的事，应该留点教训的。</p>
+<ul>
+<li>备份。自己一直都没有备份的习惯，所有的重要的文件（如学习资源）等都只存在了电脑的硬盘上，万一出事，如电脑坏了，丢了，直接GG。某些大作业或项目直接爆炸，就好像这学期的编译器。</li>
+<li>时常留意文件状况。好像这两次的文件丢失，幸好发现得早，能够及早恢复，如果再晚一点，对硬盘进行了新的写入，就难以恢复，甚至可能自己的忘了有什么文件，有没有丢失，需要恢复什么。</li>
+<li>少做跨文件系统的文件写入操作。虽然好像跟操作本身是没有关系，但很多事都是可以做，但没有必要。如剪切移动等，通过复制等较低风险进行代替，最好是以读为主。</li>
+<li>还有一个也是很有趣的，当遇到问题去搜索时，总是习惯先百度再Google，都搜不到了，便听天由命。但这次，换了个语言，便发现未到尽头。感觉自己还是被语言束缚限制住了。</li>
+</ul>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="http://scottyeung.top">YeungYeah</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="http://scottyeung.top/2018/Linux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E4%B8%AD%E6%93%8D%E4%BD%9C%E6%96%87%E4%BB%B6%E5%AF%BC%E8%87%B4NTFS%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E4%B8%AD%E6%96%87%E4%BB%B6%E4%B8%A2%E5%A4%B1/">http://scottyeung.top/2018/Linux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E4%B8%AD%E6%93%8D%E4%BD%9C%E6%96%87%E4%BB%B6%E5%AF%BC%E8%87%B4NTFS%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E4%B8%AD%E6%96%87%E4%BB%B6%E4%B8%A2%E5%A4%B1/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://scottyeung.top/tags/%E7%BB%8F%E5%8E%86%E5%9B%9E%E9%A1%BE/">经历回顾</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://scottyeung.top/tags/Ubuntu/">Ubuntu</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://scottyeung.top/tags/Linux/">Linux</a></span></div><div class="post-reward reward"><div class="reward-button">多谢你支持~</div><div class="reward-qrcode"><span class="reward-qrcode-alipay"><img class="reward-qrcode-alipay__img" src="/imgs/zfb.jpg"><div class="reward-qrcode-alipay__text">支付宝打赏</div></span><span class="reward-qrcode-wechat"><img class="reward-qrcode-wechat__img" src="/imgs/weixin.png"><div class="reward-qrcode-wechat__text">微信打赏</div></span></div></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2018/Maximum-Product-of-Word-Lengths/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">Maximum Product of Word Lengths</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2018/%E6%88%91%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%BC%80%E8%BF%99%E4%B8%AA%E5%8D%9A%E5%AE%A2/"><span class="paginator-prev__text">我为什么要开这个博客</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div><div class="comments" id="comments"><div id="waline-container"></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-text">
+          背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%80%83%E8%BF%87%E7%A8%8B"><span class="toc-text">
+          思考过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95"><span class="toc-text">
+          测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3"><span class="toc-text">
+          解决</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AD%A6%E7%A4%BA"><span class="toc-text">
+          警示</span></a></li></ol></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/imgs/self.jpg" alt="avatar"></div><p class="sidebar-ov-author__text">生活尽管不开心 我们没有不可能</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="https://github.com/yeung66" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="mailto:yeungyeah@qq.com" target="_blank" rel="noopener" data-popover="E-mail" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fas fa-envelope"></i></span></a><a class="sidebar-ov-social-item" href="https://instagram.com/scottyeung6" target="_blank" rel="noopener" data-popover="Instagram" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-instagram"></i></span></a><a class="sidebar-ov-social-item" href="https://space.bilibili.com/29031611" target="_blank" rel="noopener" data-popover="哔哩哔哩" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fas fa-tv"></i></span></a><a class="sidebar-ov-social-item" href="https://music.163.com/#/user/home?id=126931346" target="_blank" rel="noopener" data-popover="网易云音乐" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fas fa-music"></i></span></a><a class="sidebar-ov-social-item" href="https://www.zhihu.com/people/yang-hao-lin-25" target="_blank" rel="noopener" data-popover="知乎" data-popover-pos="up"><span class="sidebar-ov-social-item__icon">知</span></a></div><div class="sidebar-ov-feed"><span class="sidebar-ov-feed-rss"><a class="sidebar-ov-feed-rss__link" href="/atom.xml" target="_blank" rel="noopener"><span class="sidebar-ov-feed-rss__icon"><i class="fas fa-rss"></i></span><span>RSS 订阅</span></a></span></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">58</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">14</div><div class="sidebar-ov-state-item__name">分类</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2018~2021</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>YeungYeah</span></div><div><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.6.0</span></div><div class="busuanzi"><span class="busuanzi-siteuv"><span class="busuanzi-siteuv__icon"><i class="fas fa-user"></i></span><span class="busuanzi-siteuv__info">访问人数</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_uv"></span></span><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">浏览总量</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@latest/pjax.min.js"></script><script>window.addEventListener('DOMContentLoaded', function () {
+  var pjax = new Pjax({"selectors":["head title","#main",".pjax-reload",".header-inner"],"history":true,"scrollTo":false,"scrollRestoration":false,"cacheBust":false,"debug":false,"currentUrlFullReload":false,"timeout":0});
+  // 加载进度条的计时器
+  var loadingTimer = null;
+
+  // 重置页面 Y 方向上的滚动偏移量
+  document.addEventListener('pjax:send', function () {
+    $('.header-nav-menu').removeClass('show');
+    if (CONFIG.pjax && CONFIG.pjax.avoidBanner) {
+      $('html').velocity('scroll', {
+        duration: 500,
+        offset: $('#header').height(),
+        easing: 'easeInOutCubic'
+      });
+    }
+
+    var loadingBarWidth = 20;
+    var MAX_LOADING_WIDTH = 95;
+
+    $('.loading-bar').addClass('loading');
+    $('.loading-bar__progress').css('width', loadingBarWidth + '%');
+    clearInterval(loadingTimer);
+    loadingTimer = setInterval(function () {
+      loadingBarWidth += 3;
+      if (loadingBarWidth > MAX_LOADING_WIDTH) {
+        loadingBarWidth = MAX_LOADING_WIDTH;
+      }
+      $('.loading-bar__progress').css('width', loadingBarWidth + '%');
+    }, 500);
+  }, false);
+
+  window.addEventListener('pjax:complete', function () {
+    clearInterval(loadingTimer);
+    $('.loading-bar__progress').css('width', '100%');
+    $('.loading-bar').removeClass('loading');
+    setTimeout(function () {
+      $('.loading-bar__progress').css('width', '0');
+    }, 400);
+    $('link[rel=prefetch], script[data-pjax-rm]').each(function () {
+      $(this).remove();
+    });
+    $('script[data-pjax], #pjax-reload script').each(function () {
+      $(this).parent().append($(this).remove());
+    });
+
+    if (Stun.utils.pjaxReloadBoot) {
+      Stun.utils.pjaxReloadBoot();
+    }
+    if (Stun.utils.pjaxReloadScroll) {
+      Stun.utils.pjaxReloadScroll();
+    }
+    if (Stun.utils.pjaxReloadSidebar) {
+      Stun.utils.pjaxReloadSidebar();
+    }
+    if (true) {
+      if (Stun.utils.pjaxReloadHeader) {
+        Stun.utils.pjaxReloadHeader();
+      }
+      if (Stun.utils.pjaxReloadScrollIcon) {
+        Stun.utils.pjaxReloadScrollIcon();
+      }
+      if (Stun.utils.pjaxReloadLocalSearch) {
+        Stun.utils.pjaxReloadLocalSearch();
+      }
+    }
+  }, false);
+}, false);</script><div id="pjax-reload"><link href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" rel="stylesheet" type="text/css"><link href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/copy-tex.css" rel="stylesheet" type="text/css"><script src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script></div><script src="https://unpkg.com/@waline/client/dist/Waline.min.js"></script><script data-pjax="">function loadWaline () {
+  var GUEST_INFO = ['nick', 'mail', 'link'];
+  var guest_info = 'nick,mail,link';
+
+  guest_info = guest_info.split(',').filter(function(item) {
+    return GUEST_INFO.indexOf(item) > -1;
+  });
+
+  new Waline({
+    el: '#waline-container',
+    serverURL: 'https://waline-pi.vercel.app',
+    placeholder: '欢迎留言~',
+    pageSize: '10' || 10,
+    lang: '' || 'zh-cn',
+    visitor: true,
+    avatar: 'mm',
+    path: window.location.pathname,
+    meta: guest_info
+  });
+}
+
+if (true) {
+  loadWaline();
+} else {
+  window.addEventListener('DOMContentLoaded', loadWaline, false);
+}</script><script src="/js/utils.js?v=2.6.0"></script><script src="/js/stun-boot.js?v=2.6.0"></script><script src="/js/scroll.js?v=2.6.0"></script><script src="/js/header.js?v=2.6.0"></script><script src="/js/sidebar.js?v=2.6.0"></script><link rel="stylesheet" href="/player/APlayer.min.css">
+<div id="aplayer"></div>
+<script type="text/javascript" src="/player/APlayer.min.js"></script>
+<script type="text/javascript" src="/player/music.js"></script></body></html>

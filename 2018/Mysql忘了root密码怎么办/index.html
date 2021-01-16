@@ -1,0 +1,250 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/imsg/favicon-16x16.png?v=2.6.0" type="image/png" sizes="16x16"><link rel="icon" href="/imgs/favicon-32x32.png?v=2.6.0" type="image/png" sizes="32x32"><meta name="description" content="引言        在准备做Windows程序设计的大作业时，需要用到 Mysql。打开了 Mysql WorkBench 连接本地数据库时，提示要输入 root 密码，试了几个常用密码无果后，发现自己再次忘记了 Mysql 的 root 密码。但是没有关系，本人已经习惯忘记各种不太常用的账号密码了，驾轻就熟地打开百度搜索相关方法，却发现来来去去都是那同一个方法，而且还因为版">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mysql忘了root密码怎么办">
+<meta property="og:url" content="http://scottyeung.top/2018/Mysql%E5%BF%98%E4%BA%86root%E5%AF%86%E7%A0%81%E6%80%8E%E4%B9%88%E5%8A%9E/index.html">
+<meta property="og:site_name" content="YeungYeah 的乱写地">
+<meta property="og:description" content="引言        在准备做Windows程序设计的大作业时，需要用到 Mysql。打开了 Mysql WorkBench 连接本地数据库时，提示要输入 root 密码，试了几个常用密码无果后，发现自己再次忘记了 Mysql 的 root 密码。但是没有关系，本人已经习惯忘记各种不太常用的账号密码了，驾轻就熟地打开百度搜索相关方法，却发现来来去去都是那同一个方法，而且还因为版">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-11-29T12:03:35.000Z">
+<meta property="article:modified_time" content="2020-12-23T16:07:27.153Z">
+<meta property="article:author" content="YeungYeah">
+<meta property="article:tag" content="Mysql">
+<meta name="twitter:card" content="summary"><title>Mysql忘了root密码怎么办 | YeungYeah 的乱写地</title><link ref="canonical" href="http://scottyeung.top/2018/Mysql%E5%BF%98%E4%BA%86root%E5%AF%86%E7%A0%81%E6%80%8E%E4%B9%88%E5%8A%9E/"><link rel="alternate" href="/atom.xml" type="application/atom+xml"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.6.0"><link rel="dns-prefetch" href="https://www.googletagmanager.com"><script src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" data-ad-client="ca-pub-7766364950991401" async="" data-pjax=""></script><script src="https://www.googletagmanager.com/gtag/js?id=UA-151343043-1" async="" data-pjax=""></script><script data-pjax="">if (window.location.hostname !== 'localhost') {
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  gtag('js', new Date());
+  gtag('config', 'UA-151343043-1');
+}</script><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: undefined,
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"carbon","highlight":"light","wordWrap":false},
+  reward: true,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: {"avoidBanner":true},
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner header-inner--height header-inner--bgcolor"><nav class="header-nav header-nav--sticky"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/about/"><span class="header-nav-menu-item__icon"><i class="fas fa-user"></i></span><span class="header-nav-menu-item__text">关于</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="javascript:;" onclick="return false;"><span class="header-nav-menu-item__icon"><i class="fas fa-newspaper"></i></span><span class="header-nav-menu-item__text">文章</span></a><div class="header-nav-submenu"><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/archives/"><span class="header-nav-submenu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-submenu-item__text">归档</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/categories/"><span class="header-nav-submenu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-submenu-item__text">分类</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/tags/"><span class="header-nav-submenu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-submenu-item__text">标签</span></a></div></div></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="javascript:;" onclick="return false;"><span class="header-nav-menu-item__icon"><i class="fas fa-calendar-alt"></i></span><span class="header-nav-menu-item__text">动态</span></a><div class="header-nav-submenu"><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/moments/"><span class="header-nav-submenu-item__icon"><i class="fas fa-calendar-alt"></i></span><span class="header-nav-submenu-item__text">最新</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/moments/2020"><span class="header-nav-submenu-item__icon"><i class="fas fa-calendar-alt"></i></span><span class="header-nav-submenu-item__text">20年</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/moments/2019"><span class="header-nav-submenu-item__icon"><i class="fas fa-calendar-alt"></i></span><span class="header-nav-submenu-item__text">19年</span></a></div></div></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" target="_blank" rel="noopener" href="http://divi.scottyeung.top:8080/"><span class="header-nav-menu-item__icon"><i class="fas fa-question"></i></span><span class="header-nav-menu-item__text">占筮</span></a></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">Mysql忘了root密码怎么办</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2018-11-29</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2020-12-24</span></span><span class="post-meta-item post-meta-item--visitors leancloud_visitors" id="/2018/Mysql%E5%BF%98%E4%BA%86root%E5%AF%86%E7%A0%81%E6%80%8E%E4%B9%88%E5%8A%9E/" data-flag-title="Mysql忘了root密码怎么办"><span class="post-meta-item__icon"><i class="fas fa-eye"></i></span><span class="post-meta-item__info">阅读次数</span><span class="post-meta-item__value leancloud-visitors-count"></span></span></div></header><div class="post-body">
+        <h2 id="引言">
+          <a href="#引言" class="heading-link"><i class="fas fa-link"></i></a>引言</h2>
+      
+<p>在准备做Windows程序设计的大作业时，需要用到 Mysql。打开了 Mysql WorkBench 连接本地数据库时，提示要输入 root 密码，试了几个常用密码无果后，发现自己再次忘记了 Mysql 的 root 密码。但是没有关系，本人已经习惯忘记各种不太常用的账号密码了，驾轻就熟地打开百度搜索相关方法，却发现来来去去都是那同一个方法，而且还因为版本问题与实际情况有些差异，最终还是花费了不少的时间，有点难受，遂写一文记录一下。</p>
+<a id="more"></a>
+
+        <h2 id="方法">
+          <a href="#方法" class="heading-link"><i class="fas fa-link"></i></a>方法</h2>
+      
+
+        <h3 id="思路">
+          <a href="#思路" class="heading-link"><i class="fas fa-link"></i></a>思路</h3>
+      
+<p>纵观百度各种方法，思路均是大致一样：运用mysql的<code>-skip-grant-tables</code>参数，可以使进入 mysql 时免去密码验证，进入 mysql 后修改<code>mysql.user</code>用户表中 root 用户的密码，以达到解决忘记密码的问题。</p>
+
+        <h3 id="具体步骤">
+          <a href="#具体步骤" class="heading-link"><i class="fas fa-link"></i></a>具体步骤</h3>
+      
+<ol>
+<li>
+<p>以管理员身份打开 cmd，关闭 mysql</p>
+<figure class="highlight shell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net stop mysql</span><br></pre></td></tr></table></div></figure>
+</li>
+<li>
+<p>输入</p>
+<p><code>mysqld -nt -skip-grant-tables</code></p>
+<p>回车后界面卡住</p>
+</li>
+<li>
+<p>以管理员身份打开另一个cmd，输入</p>
+<p><code>mysql -u root -p</code></p>
+<p>回车后进入mysql</p>
+</li>
+<li>
+<p>接下来在mysql中修改root用户的密码，相应的用户信息也是按数据表的形式存储在 <code>mysql.user</code> 中，我们就可以改数据库数据的方式来修改密码，但这里有一点问题，mysql 的几个版本的用户表的列名都不一样，需要区别对待</p>
+<ul>
+<li>
+<p>mysql 5.6</p>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">update mysql.user set password&#x3D;password(&#39;newpassword&#39;) where user &#x3D; &#39;root&#39;;</span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></div></figure>
+</li>
+<li>
+<p>mysql 5.7：password列消失，取而代之的是authentication_string</p>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">update mysql.user set authentication_string&#x3D;password(&#39;newpassword&#39;) where user &#x3D; &#39;root&#39;;</span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></div></figure>
+</li>
+<li>
+<p>mysql 8：password函数被移除，需要改变方式</p>
+</li>
+</ul>
+  <figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">flush privileges;</span><br><span class="line">alter user &#39;root&#39;@&#39;localhost&#39; identified by &#39;newpassword&#39;;</span><br></pre></td></tr></table></div></figure>
+<p>该方法是同时适用与mysql5.7和8，可谓是一种更为优雅的方法</p>
+</li>
+<li>
+<p>重新启动mysql，正常使用</p>
+<figure class="highlight shell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">net start mysql</span><br><span class="line">mysql -u root -p</span><br></pre></td></tr></table></div></figure>
+</li>
+</ol>
+
+        <h2 id="后续">
+          <a href="#后续" class="heading-link"><i class="fas fa-link"></i></a>后续</h2>
+      
+<p>修改root密码方法的教程网上有很多，但是我经过一通操作后，还是无法进入mysql。在进行上文的方法操作时，在通过 <code>-skip-grant-tables</code> 时我便出现了错误，提示mysql根目录中data目录不存在，搜索网上的教程，建议是自己新建一个data文件夹，新建后便可正常免密码验证进入mysql。但按照后续的步骤操作后，还是无法正常修改root密码，进入 mysql。仔细思考，为什么我这里没有data目录，不仅如此，我这里还没有在众多教程中提到的my.ini配置文件，突然想起，自还原电脑后，我好像还没在本系统使用过mysql，我的mysql还没有初始化，其实并不算是忘记root密码的问题（可能是我太经常忘记了，已经习以为常）。但因为我强行新建了 data 目录，进入 mysql，已经打乱了项目的结构，无法还原。反正里面没什么数据，就打算干脆删了重新装一个 mysql。</p>
+
+        <h3 id="卸载">
+          <a href="#卸载" class="heading-link"><i class="fas fa-link"></i></a>卸载</h3>
+      
+<p>mysql的卸载比较简单，当时我是用 Mysql Installer 安装的，直接进入 Mysql Installer 进行卸载即可。如果不是的话，就比较麻烦了，到控制面板把 Mysql Server 卸载了，再把 mysql 项目所在文件夹删除，然后再到注册表删除相关项，详情可参照<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://www.jb51.net/article/146050.htm">这里</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+
+        <h3 id="安装">
+          <a href="#安装" class="heading-link"><i class="fas fa-link"></i></a>安装</h3>
+      
+<p>两种方法</p>
+<ul>
+<li>
+<p>一是使用 <span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://dev.mysql.com/downloads/windows/installer/">Mysql Installer</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>。使用该在线安装软件非常方便，还可选择安装配套的 mysql 相关软件，安装完后可直接进入傻瓜式配置，无需进行额外的配置，且后续的卸载也可以在这上面进行，个人比较推荐。但该软件只能运行在 Windows 上，且只能安装最新版本的 mysql8。尝试了一下，在初始化数据库时出现问题，而搜索该问题发现关于新版本 mysql 的相关信息非常少，遂放弃新版本，放弃该方式。</p>
+</li>
+<li>
+<p>二是使用<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://dev.mysql.com/downloads/mysql/">压缩包</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>安装。选择相应的版本下载压缩包解压即可。这种方式则需要手动额外配置。主要步骤有</p>
+<ul>
+<li>
+<p>创建配置文件 my.ini，下面的 basedir 和 datadir 替换为本机 mysql 目录，若有则不用创建</p>
+<figure class="highlight ini"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[mysqld]</span></span><br><span class="line"><span class="attr">port</span> = <span class="number">3306</span></span><br><span class="line"><span class="attr">basedir</span>=C:/software/mysql-<span class="number">5.7</span>.<span class="number">21</span>-winx64</span><br><span class="line"><span class="attr">datadir</span>=C:/software/mysql-<span class="number">5.7</span>.<span class="number">21</span>-winx64/data </span><br><span class="line"><span class="attr">max_connections</span>=<span class="number">200</span></span><br><span class="line"><span class="attr">character-set-server</span>=utf8</span><br><span class="line"><span class="attr">default-storage-engine</span>=INNODB</span><br><span class="line"><span class="attr">sql_mode</span>=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES</span><br><span class="line"><span class="section">[mysql]</span></span><br><span class="line"><span class="attr">default-character-set</span>=utf8</span><br></pre></td></tr></table></div></figure>
+</li>
+<li>
+<p>增加环境变量。将<code>C:/software/mysql-5.7.21-winx64/bin</code>添加到path中（注意换成本机mysql目录）</p>
+</li>
+<li>
+<p>安装mysql</p>
+<figure class="highlight shell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqld -install</span><br></pre></td></tr></table></div></figure>
+</li>
+<li>
+<p>初始化MySQL</p>
+<figure class="highlight shell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqld --initialize-insecure --user=mysql</span><br></pre></td></tr></table></div></figure>
+</li>
+<li>
+<p>启动mysql</p>
+<figure class="highlight shell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net mysql start</span><br></pre></td></tr></table></div></figure>
+</li>
+<li>
+<p>设置root密码，回车后会提示输入旧密码，直接回车即可</p>
+<figure class="highlight shell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqladmin -u root -p password 密码</span><br></pre></td></tr></table></div></figure>
+</li>
+<li>
+<p>安装完成</p>
+</li>
+</ul>
+</li>
+</ul>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="http://scottyeung.top">YeungYeah</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="http://scottyeung.top/2018/Mysql%E5%BF%98%E4%BA%86root%E5%AF%86%E7%A0%81%E6%80%8E%E4%B9%88%E5%8A%9E/">http://scottyeung.top/2018/Mysql%E5%BF%98%E4%BA%86root%E5%AF%86%E7%A0%81%E6%80%8E%E4%B9%88%E5%8A%9E/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://scottyeung.top/tags/Mysql/">Mysql</a></span></div><div class="post-reward reward"><div class="reward-button">多谢你支持~</div><div class="reward-qrcode"><span class="reward-qrcode-alipay"><img class="reward-qrcode-alipay__img" src="/imgs/zfb.jpg"><div class="reward-qrcode-alipay__text">支付宝打赏</div></span><span class="reward-qrcode-wechat"><img class="reward-qrcode-wechat__img" src="/imgs/weixin.png"><div class="reward-qrcode-wechat__text">微信打赏</div></span></div></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2019/Merge-k-Sorted-Lists/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">Merge k Sorted Lists</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2018/Maximum-Product-of-Word-Lengths/"><span class="paginator-prev__text">Maximum Product of Word Lengths</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div><div class="comments" id="comments"><div id="waline-container"></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-text">
+          引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95"><span class="toc-text">
+          方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-text">
+          思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E6%AD%A5%E9%AA%A4"><span class="toc-text">
+          具体步骤</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E7%BB%AD"><span class="toc-text">
+          后续</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%B8%E8%BD%BD"><span class="toc-text">
+          卸载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-text">
+          安装</span></a></li></ol></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/imgs/self.jpg" alt="avatar"></div><p class="sidebar-ov-author__text">生活尽管不开心 我们没有不可能</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="https://github.com/yeung66" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="mailto:yeungyeah@qq.com" target="_blank" rel="noopener" data-popover="E-mail" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fas fa-envelope"></i></span></a><a class="sidebar-ov-social-item" href="https://instagram.com/scottyeung6" target="_blank" rel="noopener" data-popover="Instagram" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-instagram"></i></span></a><a class="sidebar-ov-social-item" href="https://space.bilibili.com/29031611" target="_blank" rel="noopener" data-popover="哔哩哔哩" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fas fa-tv"></i></span></a><a class="sidebar-ov-social-item" href="https://music.163.com/#/user/home?id=126931346" target="_blank" rel="noopener" data-popover="网易云音乐" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fas fa-music"></i></span></a><a class="sidebar-ov-social-item" href="https://www.zhihu.com/people/yang-hao-lin-25" target="_blank" rel="noopener" data-popover="知乎" data-popover-pos="up"><span class="sidebar-ov-social-item__icon">知</span></a></div><div class="sidebar-ov-feed"><span class="sidebar-ov-feed-rss"><a class="sidebar-ov-feed-rss__link" href="/atom.xml" target="_blank" rel="noopener"><span class="sidebar-ov-feed-rss__icon"><i class="fas fa-rss"></i></span><span>RSS 订阅</span></a></span></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">58</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">14</div><div class="sidebar-ov-state-item__name">分类</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2018~2021</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>YeungYeah</span></div><div><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.6.0</span></div><div class="busuanzi"><span class="busuanzi-siteuv"><span class="busuanzi-siteuv__icon"><i class="fas fa-user"></i></span><span class="busuanzi-siteuv__info">访问人数</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_uv"></span></span><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">浏览总量</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@latest/pjax.min.js"></script><script>window.addEventListener('DOMContentLoaded', function () {
+  var pjax = new Pjax({"selectors":["head title","#main",".pjax-reload",".header-inner"],"history":true,"scrollTo":false,"scrollRestoration":false,"cacheBust":false,"debug":false,"currentUrlFullReload":false,"timeout":0});
+  // 加载进度条的计时器
+  var loadingTimer = null;
+
+  // 重置页面 Y 方向上的滚动偏移量
+  document.addEventListener('pjax:send', function () {
+    $('.header-nav-menu').removeClass('show');
+    if (CONFIG.pjax && CONFIG.pjax.avoidBanner) {
+      $('html').velocity('scroll', {
+        duration: 500,
+        offset: $('#header').height(),
+        easing: 'easeInOutCubic'
+      });
+    }
+
+    var loadingBarWidth = 20;
+    var MAX_LOADING_WIDTH = 95;
+
+    $('.loading-bar').addClass('loading');
+    $('.loading-bar__progress').css('width', loadingBarWidth + '%');
+    clearInterval(loadingTimer);
+    loadingTimer = setInterval(function () {
+      loadingBarWidth += 3;
+      if (loadingBarWidth > MAX_LOADING_WIDTH) {
+        loadingBarWidth = MAX_LOADING_WIDTH;
+      }
+      $('.loading-bar__progress').css('width', loadingBarWidth + '%');
+    }, 500);
+  }, false);
+
+  window.addEventListener('pjax:complete', function () {
+    clearInterval(loadingTimer);
+    $('.loading-bar__progress').css('width', '100%');
+    $('.loading-bar').removeClass('loading');
+    setTimeout(function () {
+      $('.loading-bar__progress').css('width', '0');
+    }, 400);
+    $('link[rel=prefetch], script[data-pjax-rm]').each(function () {
+      $(this).remove();
+    });
+    $('script[data-pjax], #pjax-reload script').each(function () {
+      $(this).parent().append($(this).remove());
+    });
+
+    if (Stun.utils.pjaxReloadBoot) {
+      Stun.utils.pjaxReloadBoot();
+    }
+    if (Stun.utils.pjaxReloadScroll) {
+      Stun.utils.pjaxReloadScroll();
+    }
+    if (Stun.utils.pjaxReloadSidebar) {
+      Stun.utils.pjaxReloadSidebar();
+    }
+    if (true) {
+      if (Stun.utils.pjaxReloadHeader) {
+        Stun.utils.pjaxReloadHeader();
+      }
+      if (Stun.utils.pjaxReloadScrollIcon) {
+        Stun.utils.pjaxReloadScrollIcon();
+      }
+      if (Stun.utils.pjaxReloadLocalSearch) {
+        Stun.utils.pjaxReloadLocalSearch();
+      }
+    }
+  }, false);
+}, false);</script><div id="pjax-reload"><link href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" rel="stylesheet" type="text/css"><link href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/copy-tex.css" rel="stylesheet" type="text/css"><script src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script></div><script src="https://unpkg.com/@waline/client/dist/Waline.min.js"></script><script data-pjax="">function loadWaline () {
+  var GUEST_INFO = ['nick', 'mail', 'link'];
+  var guest_info = 'nick,mail,link';
+
+  guest_info = guest_info.split(',').filter(function(item) {
+    return GUEST_INFO.indexOf(item) > -1;
+  });
+
+  new Waline({
+    el: '#waline-container',
+    serverURL: 'https://waline-pi.vercel.app',
+    placeholder: '欢迎留言~',
+    pageSize: '10' || 10,
+    lang: '' || 'zh-cn',
+    visitor: true,
+    avatar: 'mm',
+    path: window.location.pathname,
+    meta: guest_info
+  });
+}
+
+if (true) {
+  loadWaline();
+} else {
+  window.addEventListener('DOMContentLoaded', loadWaline, false);
+}</script><script src="/js/utils.js?v=2.6.0"></script><script src="/js/stun-boot.js?v=2.6.0"></script><script src="/js/scroll.js?v=2.6.0"></script><script src="/js/header.js?v=2.6.0"></script><script src="/js/sidebar.js?v=2.6.0"></script><link rel="stylesheet" href="/player/APlayer.min.css">
+<div id="aplayer"></div>
+<script type="text/javascript" src="/player/APlayer.min.js"></script>
+<script type="text/javascript" src="/player/music.js"></script></body></html>
