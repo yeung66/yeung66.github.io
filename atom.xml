@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://scottyeung.top/"/>
-  <updated>2021-01-05T15:17:39.332Z</updated>
+  <updated>2021-02-10T03:25:51.775Z</updated>
   <id>http://scottyeung.top/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>双拼使用后记</title>
+    <link href="http://scottyeung.top/2021/%E5%8F%8C%E6%8B%BC%E4%BD%BF%E7%94%A8%E5%90%8E%E8%AE%B0/"/>
+    <id>http://scottyeung.top/2021/双拼使用后记/</id>
+    <published>2021-02-09T04:00:22.000Z</published>
+    <updated>2021-02-10T03:25:51.775Z</updated>
+    
+    <content type="html"><![CDATA[<p>切换到双拼输入法一个多月了，算是掌握了双拼这个技能，现在基本上是完全使用双拼作为日常的输入方案。日常使用过程中，大问题基本没有，但是所宣传的大幅效率提升，也并不见得。不过现在用来已经顺手，应该还是会一直用下去。</p><a id="more"></a>        <h2 id="双拼简介">          <a href="#双拼简介" class="heading-link"><i class="fas fa-link"></i></a>双拼简介</h2>      <blockquote><p><img src="https://zh.wikipedia.org/wiki/%E5%8F%8C%E6%8B%BC" alt="双拼">是汉语拼音输入法的一种编码方案。相对于全拼而言，使用双拼输入汉字时只需输入一个代表声母的字母，一个代表韵母的字母，就可以打出任意一个中文单字了。</p></blockquote><p>简单来讲，双拼就是通过编码的方式，将拼音当中的韵母用一个单个字母来映射，比如韵母 ang 可以用 h 来输入。通过这种方式，每个汉字的输入，都可以通过两个字母来确定，从输入的编码平均长度来看，可以说是一种更加高效的输入编码方案，每个字符的输入都只需要两个字符。</p>        <h3 id="编码方案">          <a href="#编码方案" class="heading-link"><i class="fas fa-link"></i></a>编码方案</h3>      <p>双拼的思路比较简单，关键是怎样选择一个合适的编码方案。网络上面的方案也比较多，而我这里选择的是小鹤双拼，一个使用量比较大的编码方案。这个编码方案用起来也比较趁手，符合使用习惯，值得安利给大家。</p><figure><img src="/2021/%E5%8F%8C%E6%8B%BC%E4%BD%BF%E7%94%A8%E5%90%8E%E8%AE%B0/p1.png" alt="小鹤双拼键位"><figcaption>小鹤双拼键位</figcaption></figure><p>不过微软自带的输入法还没有这个编码方案，还需要额外设置一下。微软输入法支持手动设置编码方案，所以我们可以通过控制面板中的输入法设置，添加方案，一个一个映射规则的添加上去。当然这个方法也太麻烦了，所以可以直接通过改注册表的方式来改，具体参考这个<span class="exturl"><a class="exturl__link" href="https://ifttl.com/add-flypy-to-win10-microsoft-pinyin-and-other-configuration/">博客</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>。不过在我的机器上尝试这个方法没有效果，最终还是找了一个脚本来一键修改注册表，得以成功，可以参考<span class="exturl"><a class="exturl__link" href="https://www.jianshu.com/p/ed15869e03e6">本篇文章</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>，使用脚本的话就连设置选择拼音方案都不需要自己来了，直接一步到位。</p><p>至于移动端，常用的手机输入法支持的双拼编码方案基本都有小鹤编码，毫无问题。我现在使用的是 Gboard，用起来也很不错（这个输入法其实本身也很不错，值得推荐，如果不是被墙了，将会绝杀</p>        <h2 id="使用体验">          <a href="#使用体验" class="heading-link"><i class="fas fa-link"></i></a>使用体验</h2>      <p>通过将所有的输入发切换为小鹤双拼进而强迫自己使用双拼的方式，我很快就基本掌握了双拼的使用，从刚开始的时候想不起某个字某个韵母怎么打需要去查表，到现在完全可以直接一个个试/猜出来，其实还是很快上手的，就是刚开始的时候会觉得有点难受，尤其是在你跟人聊天的时候，宛如掉线一般久久不能发言，在群里发言就更加觉得插不上话了。所以我刚开始的时候还专门在手机保留了一个使用全拼的输入法，方便随时切换，转换到能够快速发言回复的状态。</p><p>总体使用下来体验，我觉得还是能够接受的，大体有以下的优缺点：</p>        <h3 id="优点">          <a href="#优点" class="heading-link"><i class="fas fa-link"></i></a>优点</h3>      <ol type="1"><li>更高的输入效率。因为双拼将多个字符的韵母映射到了单个符号，所以平均输入的字符自然降低了。这个也比较直观，例如打出一个 jiang，全拼需要需要敲五个字符，而双拼只需要敲两个字符。</li><li>更快的输入速度。因为需要输入的字符少了，按道理来说输入的速度自然会提上来，打字也应该更加快了。</li><li>更少的键盘敲击。换用机械键盘后总是觉得敲击键盘会不会吵到别人，影响到别人。使用双拼之后，敲击键盘的次数少了，再加上双拼的话有时需要想要敲的字符，不那么肯定，敲击的力度也自然表小了。</li><li>更好的设备定制。这个我是在 LUG@NJU 群看到的，说是使用双拼之后，别人就用不了你的设备打字了 2333，也确实很有道理。不过在另一方面来看，这也能算是一个缺点。</li></ol>        <h3 id="缺点">          <a href="#缺点" class="heading-link"><i class="fas fa-link"></i></a>缺点</h3>      <ol type="1"><li>经常打错。这里的错误有两个方面，一是记错编码规则，想输入的韵母与输入的字符不匹配。二则是直接拼音打错了，尤其是对我这些周期性前后鼻音不分的人来说，就 in 与 ing 我就已经不知道搞混几次了，而全拼的话打前鼻音 in 大多时候就能够直接匹配了，尤其是组词。</li><li>需要打全拼的字母或者单词的时候很麻烦。输入法中显示的是经过编码方式转换之后的拼音，所以导致看不到原输入了，这样如果我们需要打一些纯拼音，例如某人的名字拼音，就看不到自己是否打对了，是否打完了，需要记住，或者盲猜。另外，当我们需要输入单词的时候，微软输入法是可以给你直接拼个单词出来的，但是使用双拼之后，我们也看不到原来的输入，经常输错，实在难顶。（为什么不切换到英语输入呢，自然是拼不出来单词呀哈哈哈</li><li>有时打一些常用的输入简写很麻烦。例如打一些常用语，最简单的哈哈哈哈哈也要多打一倍字符 (hhhhh -&gt; hahahahaha)，又或是要输入一些姓名，需要从名字的拼音首字母，变成完整地把整个名字的拼音打出来 (yhl -&gt; yhhclb)。</li></ol><p>虽说从编码效率来看，双拼的输入效率确实应该提高，不过从个人使用的情况来看，结合上自身输入常常出现的手误，其实也没有提高多少。不过在移动端上面体验就好很多了，因为我在手机打字总是经常按错，打得越快就越容易错，而且一错就是打错一堆，换用双拼之后，因为输入少了，删除都快了。</p>        <h2 id="值得推荐">          <a href="#值得推荐" class="heading-link"><i class="fas fa-link"></i></a>值得推荐？</h2>      <p>所以双拼其实值得推荐给大家用吗？个人还是觉得可以尝试一下的，尤其是喜欢学习尝试新事物的人来说，掌握一门新的技能，学习一个新的东西，也还是大有脾益。回想起我当时想要学习双拼的缘由，也不过是刚好看到了一篇推送，然后刚考完试，实在不想学习，找点有意思的事情做一下而已，这样坚持了一个来月，确实也收获了不少的乐趣。</p><p>这大概就是学习的魅力吧，我是真的喜欢学习，去学一些杂七杂八的事，去做一些感兴趣的事情。有用无用，好用与否，并不关键。<del>就如同我写这篇博文本身，导致自己的论文一直没看完，虽然良心有点过意不去，但但还是很爽的。</del></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;切换到双拼输入法一个多月了，算是掌握了双拼这个技能，现在基本上是完全使用双拼作为日常的输入方案。日常使用过程中，大问题基本没有，但是所宣传的大幅效率提升，也并不见得。不过现在用来已经顺手，应该还是会一直用下去。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="生产力" scheme="http://scottyeung.top/categories/%E7%94%9F%E4%BA%A7%E5%8A%9B/"/>
+    
+    
+      <category term="工具" scheme="http://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+      <category term="输入法" scheme="http://scottyeung.top/tags/%E8%BE%93%E5%85%A5%E6%B3%95/"/>
+    
+  </entry>
   
   <entry>
     <title>Find Your Sparks</title>
@@ -219,9 +243,9 @@
       <category term="个人随笔" scheme="http://scottyeung.top/categories/%E4%B8%AA%E4%BA%BA%E9%9A%8F%E7%AC%94/"/>
     
     
-      <category term="时间管理" scheme="http://scottyeung.top/tags/%E6%97%B6%E9%97%B4%E7%AE%A1%E7%90%86/"/>
-    
       <category term="随笔" scheme="http://scottyeung.top/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+      <category term="时间管理" scheme="http://scottyeung.top/tags/%E6%97%B6%E9%97%B4%E7%AE%A1%E7%90%86/"/>
     
   </entry>
   
@@ -507,32 +531,6 @@
     
     
       <category term="每日千字" scheme="http://scottyeung.top/tags/%E6%AF%8F%E6%97%A5%E5%8D%83%E5%AD%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>博客域名迁移</title>
-    <link href="http://scottyeung.top/2020/%E5%8D%9A%E5%AE%A2%E5%9F%9F%E5%90%8D%E8%BF%81%E7%A7%BB/"/>
-    <id>http://scottyeung.top/2020/博客域名迁移/</id>
-    <published>2020-03-25T03:56:16.000Z</published>
-    <updated>2021-01-14T06:53:16.684Z</updated>
-    
-    <content type="html"><![CDATA[<p>一早起来，发现使用两年的域名还有一个月就要到期了，提醒续费。在处理完一些事情后去续费，发现续费需要每年 72 元，震惊，当时开通的时候也就几块钱，第一年续费也就二三十块，变动也未免太大了，而且对于我这种个人小站来说确实贵。上去查了一下现在域名的价格，发现club后缀的价格确实是独一档的贵，甚至比一些 cn 后缀的都贵，有点离谱。于是果断选择转换回去最早使用的 top 域名，续费也才25一年，加上首年优惠三年才花了 60 不到。</p><p>另一方面，转域名也是有着不少的成本，而且是越用的久，沉没成本就越高。积累的 SEO 和 RSS 订阅都难以跟随域名转换而跟着转化过来，又可能要重新积累，各种的统计分析也可能需要废弃。但还是需要去做，毕竟互联网的特点就应该是开放而自由，不应该受到过多的枷锁。</p><p>本站现已迁移到域名 <strong><a href="http://scottyeung.top/" class="uri">http://scottyeung.top/</a></strong></p><a id="more"></a>        <h2 id="相关工作">          <a href="#相关工作" class="heading-link"><i class="fas fa-link"></i></a>相关工作</h2>      <p>以下是迁移域名做的一些工作：</p><ul><li><span class="github-emoji" data-alias="white_check_mark" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2705.png?v8">✅</span> Github Pages 切换解析到新域名<ul><li>域名添加DNS解析，两个 A 记录指向 GitHub 的 ip 地址，一个 cname 绑在二级域名 www 上指向博客的源地址</li><li>Github Repo 修改 Github Pages 的 Custom domain</li><li>修改 public 文件夹当中的 CNAME 文件的内容为新域名（我已经忘了这个的作用了2333</li></ul></li><li><span class="github-emoji" data-alias="white_check_mark" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2705.png?v8">✅</span> Coding.net 添加解析（现在已经基本完全归属到腾讯了）。原本是当作国内百度搜索引擎的专用解析，但因为下面的 Google Search 需要旧网址跳转，遂暂时使用它来提供 Pages 服务。</li><li><p><span class="github-emoji" data-alias="white_check_mark" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2705.png?v8">✅</span> LeanCloud 修改安全域名，添加对新域名的支持。发现可以直接使用过往的阅读量数据和评论数据</p></li><li><span class="github-emoji" data-alias="white_check_mark" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2705.png?v8">✅</span> Google Analytics： 修改监测网址即可。</li><li><span class="github-emoji" data-alias="zzz" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4a4.png?v8">💤</span> Google Adsense： 添加新网址即可，需要重新进行审核，等待通过中。<ul><li><span class="github-emoji" data-alias="x" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/274c.png?v8">❌</span> 因为疫情的原因，拒了我两次，原因居然是因为疫情而无法审核</li><li><span class="github-emoji" data-alias="x" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/274c.png?v8">❌</span> 两次都说我的网站已经下线或无法访问，上网搜了一下，发现一些人也有这个问题，可能是DNS对于域名国外访问的解析出了问题，建议添加额外的国外线路解析。当时我是使用 coding.net 提供的 pages 服务，好像这个是国内的服务（存疑），全部的解析到转到了那里。</li><li><span class="github-emoji" data-alias="zzz" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4a4.png?v8">💤</span> 第五次审核中。添加了额外的海外线路解析到 Github Pages。海外线路走 Github，国内访问走 coding.net.</li><li><span class="github-emoji" data-alias="x" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/274c.png?v8">❌</span> 因为多次审核不通过而被禁止申请一段时间，卒</li><li><span class="github-emoji" data-alias="white_check_mark" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2705.png?v8">✅</span> 过了禁止时间几天之后，一申请第二天就申上了，然后感觉广告量少了很多，点击就更加了</li></ul></li><li><span class="github-emoji" data-alias="white_check_mark" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2705.png?v8">✅</span> Google Search<ul><li>添加新域名并进行所有权验证</li><li>新域名添加站点地图抓取</li><li>尝试将旧网站的索引的 SEO 资源继承到新域名中，Google Search Console 中的确有网站转移的功能，要求旧网址发 301 响应重定向到新网站。可选的方法有：旧域名 DNS 解析中添加显式 URL 跳转，跳转到新域名，但是目标跳转域名需要备案。选择支持绑定多个域名的Pages服务提供商，如coding.net，可以绑定多个域名，然后选择一个首选域名，其它域名跳转到该域名，浏览器调试验证确实可行，但 Google Search Console 不知道为啥通不过，暂时放弃。过了一个多小时又可以了，不过需要一段时间来处理，不知道要多久，然而提示最好保留重定向 180 天，旧域名只剩下一个月，如果不能在一个月之内迁移成功旧白干了。</li><li>最终基本成功迁移，但是搜索的展示量和点击量都有一点下降，不过好像现在已经回归到跟之前差不多水平了</li></ul></li><li><span class="github-emoji" data-alias="white_check_mark" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2705.png?v8">✅</span> 百度站长工具：类似于 Google Search，添加新的网址进行所有权认证即可。依然采用主动推送和 sitemap 的方式来提交链接。</li><li><p><span class="github-emoji" data-alias="white_check_mark" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2705.png?v8">✅</span> 360站长工具：同上，操作简单，不过连同上周其实没有期望多大的效果。</p></li></ul>        <h2 id="数据损失">          <a href="#数据损失" class="heading-link"><i class="fas fa-link"></i></a>数据损失</h2>      <p>因为转换域名而无法继承的数据造成的损失：</p><ul><li><span class="github-emoji" data-alias="x" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/274c.png?v8">❌</span> 卜算子站点统计。因为它的统计似乎是以站点网址作为键值来进行统计的，更换后直接重新进行统计。（服务开启得太过简单的后果就是维护性/扩展性的牺牲</li><li><span class="github-emoji" data-alias="x" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/274c.png?v8">❌</span> 部分 rss 订阅的损失（虽然本来也没有多少</li></ul>        <h2 id="信息修改">          <a href="#信息修改" class="heading-link"><i class="fas fa-link"></i></a>信息修改</h2>      <p>此处是一些记录下我网址的需要改过来的地方</p><ul><li><span class="github-emoji" data-alias="white_check_mark" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2705.png?v8">✅</span> GitHub 上博客的 repo 简介和个人简介</li><li><span class="github-emoji" data-alias="white_check_mark" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2705.png?v8">✅</span> 中文独立博客 repo 中的博客列表需要修改网址，发PR来改</li><li><span class="github-emoji" data-alias="white_check_mark" style data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2705.png?v8">✅</span> twitter 上面写的个人网址</li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;一早起来，发现使用两年的域名还有一个月就要到期了，提醒续费。在处理完一些事情后去续费，发现续费需要每年 72 元，震惊，当时开通的时候也就几块钱，第一年续费也就二三十块，变动也未免太大了，而且对于我这种个人小站来说确实贵。上去查了一下现在域名的价格，发现club后缀的价格确实是独一档的贵，甚至比一些 cn 后缀的都贵，有点离谱。于是果断选择转换回去最早使用的 top 域名，续费也才25一年，加上首年优惠三年才花了 60 不到。&lt;/p&gt;
-&lt;p&gt;另一方面，转域名也是有着不少的成本，而且是越用的久，沉没成本就越高。积累的 SEO 和 RSS 订阅都难以跟随域名转换而跟着转化过来，又可能要重新积累，各种的统计分析也可能需要废弃。但还是需要去做，毕竟互联网的特点就应该是开放而自由，不应该受到过多的枷锁。&lt;/p&gt;
-&lt;p&gt;本站现已迁移到域名 &lt;strong&gt;&lt;a href=&quot;http://scottyeung.top/&quot; class=&quot;uri&quot;&gt;http://scottyeung.top/&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="杂谈" scheme="http://scottyeung.top/categories/%E6%9D%82%E8%B0%88/"/>
-    
-    
-      <category term="经历回顾" scheme="http://scottyeung.top/tags/%E7%BB%8F%E5%8E%86%E5%9B%9E%E9%A1%BE/"/>
-    
-      <category term="博客" scheme="http://scottyeung.top/tags/%E5%8D%9A%E5%AE%A2/"/>
     
   </entry>
   
