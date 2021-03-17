@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://scottyeung.top/2021/intro-to-GraphQl/</loc>
+    
+    <lastmod>2021-03-17T12:26:01.687Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://scottyeung.top/2020/crawl-commic-again/</loc>
+    
+    <lastmod>2021-03-14T10:55:09.718Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://scottyeung.top/2020/taichi-practice-reflections/</loc>
+    
+    <lastmod>2021-03-14T10:52:18.120Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://scottyeung.top/2019/CCF201503-4-%E7%BD%91%E7%BB%9C%E5%BB%B6%E6%97%B6/</loc>
     
     <lastmod>2021-03-02T11:21:46.411Z</lastmod>
@@ -289,13 +310,6 @@
   </url>
   
   <url>
-    <loc>http://scottyeung.top/2020/taichi-practice-reflections/</loc>
-    
-    <lastmod>2020-12-04T12:37:20.413Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://scottyeung.top/2020/%E5%A4%AA%E6%9E%81%E6%8B%B3%E4%B8%AD%E7%9A%84%E5%8A%B2/</loc>
     
     <lastmod>2020-12-04T09:14:05.440Z</lastmod>
@@ -306,13 +320,6 @@
     <loc>http://scottyeung.top/2020/broke-up-the-os/</loc>
     
     <lastmod>2020-11-08T15:32:55.712Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://scottyeung.top/2020/crawl-commic-again/</loc>
-    
-    <lastmod>2020-10-14T08:11:04.493Z</lastmod>
     
   </url>
   
