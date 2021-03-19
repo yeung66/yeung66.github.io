@@ -2,6 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>http://scottyeung.top/2021/intro-to-GraphQL/</loc>
+    <lastmod>2021-03-19</lastmod>
+  </url>  <url>
+    <loc>http://scottyeung.top/2019/%E5%BE%AA%E7%8E%AF%E4%BD%93%E4%B8%AD%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E7%9A%84%E5%B0%8F%E5%9D%91/</loc>
     <lastmod>2021-03-17</lastmod>
   </url>  <url>
     <loc>http://scottyeung.top/2020/crawl-commic-again/</loc>
@@ -47,9 +50,6 @@
     <lastmod>2020-12-23</lastmod>
   </url>  <url>
     <loc>http://scottyeung.top/2019/%E5%A6%82%E4%BD%95%E5%87%8F%E5%B0%91%E7%84%A6%E8%99%91/</loc>
-    <lastmod>2020-12-23</lastmod>
-  </url>  <url>
-    <loc>http://scottyeung.top/2019/%E5%BE%AA%E7%8E%AF%E4%BD%93%E4%B8%AD%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E7%9A%84%E5%B0%8F%E5%9D%91/</loc>
     <lastmod>2020-12-23</lastmod>
   </url>  <url>
     <loc>http://scottyeung.top/2018/Linux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E4%B8%AD%E6%93%8D%E4%BD%9C%E6%96%87%E4%BB%B6%E5%AF%BC%E8%87%B4NTFS%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E4%B8%AD%E6%96%87%E4%BB%B6%E4%B8%A2%E5%A4%B1/</loc>
