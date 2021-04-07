@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://scottyeung.top/"/>
-  <updated>2021-03-19T07:00:11.966Z</updated>
+  <updated>2021-04-07T12:20:36.398Z</updated>
   <id>http://scottyeung.top/</id>
   
   <author>
@@ -15,6 +15,56 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>dotnet 爬虫的神</title>
+    <link href="http://scottyeung.top/2021/dotnet-god-of-web-crawler/"/>
+    <id>http://scottyeung.top/2021/dotnet-god-of-web-crawler/</id>
+    <published>2021-04-07T10:57:41.000Z</published>
+    <updated>2021-04-07T12:20:36.398Z</updated>
+    
+    <content type="html"><![CDATA[<p>这一周干了两次需要批量下载图片或文件的自动化工作，连续两次使用都是 dotnet 来完成，着实不错，尤其是配合 c# 的 async/await 语法糖，异步下载性能确实够快。这两次的下载让我对于这种需要批量获取信息或者下载的任务解锁了新的姿势。</p><a id="more"></a><p>首先需要明确一点，我们需要的只是爬虫的结果而已，只是为了能够自动化获取我们所需要的数据或资源，所以我们所做的事情，所写的代码即使稍微 dirty 点也无妨，只要能 work 就好. 尤其是在工程中，过于追求所谓的 elegant 只会让自己痛苦不已，不过这些都是题外话了。</p><p>So glad to make it diry. 爬虫遇到例外情况时就做特殊判断，有异常就针对异常对个例单独处理，全自动化不行就手工做点操作加点信息。</p>        <h2 id="html-parsing">          <a href="#html-parsing" class="heading-link"><i class="fas fa-link"></i></a>html parsing</h2>      <p>html 的解析库用的是 <span class="exturl"><a class="exturl__link" href="https://html-agility-pack.net/">Html Agility Pack</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>，可以解析字符串，也可以直接发请求获取页面来解析。其使用 XPath 作为选择器，不支持 css 选择器，学过 XPath 的可以接受，而且 XPath 的表达性足够的强，足够使用。</p><p>code sample 如下，能够根据 XPath 选出特定的节点，然后取出其中的属性和文本其实已经差不多了。</p><figure class="highlight cs"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> html =  <span class="keyword">await</span> <span class="keyword">new</span> HtmlWeb().LoadFromWebAsync(url);</span><br><span class="line"><span class="keyword">var</span> node = html.DocumentNode.SelectSingleNode(xpath);</span><br><span class="line"><span class="keyword">var</span> text = node.InnerText;</span><br><span class="line"><span class="keyword">var</span> attr = node.GetAttributeValue(<span class="string">&quot;href&quot;</span>, defaultValue);</span><br></pre></td></tr></table></div></figure>        <h2 id="download">          <a href="#download" class="heading-link"><i class="fas fa-link"></i></a>download</h2>      <p>完全就是根据 dotnet 的 API 来操作的，重点推荐 System.Net.Webclient 的 DownloadFileTaskAsync 方法，直接根据 url 开启异步下载任务，开启下载任务后将所有的 tasks 一起等待运行结束即可。<br>这里有个需要注意的点是，API 内置的 WebClient 是不支持并行的,这意味着一个 Client 发请求后必须完成任务后才能用它进行下个任务，所以需要并行的时候建议多开几个 client。</p><p>sample 如下</p><figure class="highlight cs"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> tasks = <span class="keyword">new</span> List&lt;Task&gt;();</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> url <span class="keyword">in</span> urls)</span><br><span class="line">&#123;</span><br><span class="line">  tasks.Add(<span class="keyword">new</span> WebClient().DownloadFileTaskAsync(<span class="keyword">new</span> Uri(url), path));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">await</span> tasks.WhenAll(tasks);</span><br></pre></td></tr></table></div></figure>        <h2 id="tricks">          <a href="#tricks" class="heading-link"><i class="fas fa-link"></i></a>tricks</h2>      <ul><li>需要下载或者访问的 urls 有时并不需要通过代码中发请求获取页面解析这样的方式来获取，很多时候直接在开发者工具里面用 XPath 来取出相应的 urls 更加简单快捷<figure class="highlight js"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$x(<span class="string">&quot;//a[@id=&#x27;target node&#x27;]&quot;</span>).map(<span class="function"><span class="params">x</span>=&gt;</span>x.href)</span><br></pre></td></tr></table></div></figure></li><li>并不需要一次性就能把全部数据抓取下来，不妨合理分批分成多个任务来完成，这样 fail 一次也只需重新执行改部分，而不需要全部重来。</li></ul>        <h2 id="performance">          <a href="#performance" class="heading-link"><i class="fas fa-link"></i></a>performance</h2>      <p>性能只能说好得离谱，也可能是因为之前的 Python 爬虫给我留下太糟糕的印象作为 baseline 了。这主要得益于 dotnet 本就良好的性能，以及其支持得很好的异步编程设计，基本每个可能会阻塞的 API 都提供了 async 版本。</p><ul><li>下载了 90 posts，包括其中的文字和图片，每个 post 平均有两张图片，加起来用了一分钟左右。</li><li>下载了差不多 60 个 pdf，用来不到 20s</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这一周干了两次需要批量下载图片或文件的自动化工作，连续两次使用都是 dotnet 来完成，着实不错，尤其是配合 c# 的 async/await 语法糖，异步下载性能确实够快。这两次的下载让我对于这种需要批量获取信息或者下载的任务解锁了新的姿势。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="生产力" scheme="http://scottyeung.top/categories/%E7%94%9F%E4%BA%A7%E5%8A%9B/"/>
+    
+    
+      <category term="自动化" scheme="http://scottyeung.top/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/"/>
+    
+      <category term="dotnet" scheme="http://scottyeung.top/tags/dotnet/"/>
+    
+      <category term="爬虫" scheme="http://scottyeung.top/tags/%E7%88%AC%E8%99%AB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>如盲人走路</title>
+    <link href="http://scottyeung.top/2021/like-blinds-walking/"/>
+    <id>http://scottyeung.top/2021/like-blinds-walking/</id>
+    <published>2021-04-06T14:35:25.000Z</published>
+    <updated>2021-04-07T09:47:05.121Z</updated>
+    
+    <content type="html"><![CDATA[<p>对比上个学期，自感最近放了比较多的时间在练习太极拳上面，甚至还曾经自我打趣道，这个学期的工作生活重心就在练拳上面。确实是练得比较多，一方面是在杨协呆得久，需要我去带练功操，有时是必须要去，另一方面则是王真人这边也约得比较勤，一周两练，因为人少（就三个人），鸽都不好找理由鸽。当然这些都还只是外部因素，真的是不得不练，被逼着练吗？也不全见得是。</p><a id="more"></a><p>之前曾经写过<a href="/2020/taichi-practice-reflections/">博客</a>说，感觉自己练拳一直得不到进展，似乎陷入瓶颈位置，导致练习得不太畅快，继而不太想练习。不过最近这种不得劲的感觉似乎逐渐在减退，仿佛找到一些东西，开始在真正地练拳。尽管还是在练习几乎一样的东西，练习的过程还是一如既往地觉得自己很菜，但确实能够发现处处都有不同的感觉。于是近来对于练拳都有着比较高的积极性，即使是自己一个闲在宿舍，或是走在路上，都会不由自主地走走站站，或是伸展肩膀手臂，颇有将太极与练拳融入到日常生活当中的感觉。</p><p>现在的练习其实与之前差别也不是很大，功操，套路，推手，站桩，都还是这些东西。然后我自己的所谓功力，其实也没有提升多少，而且也还是能在练习中发现许多的问题，例如力量不足，例如不够放松而导致的肌肉紧张。为什么会觉得之前的不畅快感已经消失了？</p><p>大概是我开始找到练拳中的所谓<strong>感觉</strong>了。</p><p>在之前的博客或者动态当中，其实自己之前一直都在吐槽，传统的内家拳过于看重这些玄之又玄的所谓感觉，通过文字口诀来描述，需要靠练习者自己去感悟，不免太难，太过于虚无缥缈。正因为此，所以之前开始练习功操时，可以很明显地让自己出现有被锻炼到的很累的感觉，会觉得很感人，并且会将这些所谓肌肉很累很酸的感觉当成是有练到的表现。</p><p>练得很累很酸就是有练到练对了吗？我曾经问过杨协的人这个问题，然而很可惜的是，很多人都还确实只能通过这种方式来判断，有没有被练到。但事实上，练确实是有被练到，练的东西对不对就不好说，练死肌肉也可以练得很累。之前就试过一次练习步法发力推人，练完几天发现双臂酸软得抬不起，但其实只是全用了肌肉发力来推人，练到的并不是想要的东西。</p><p>前两周王真人转了一篇<span class="exturl"><a class="exturl__link" href="https://mp.weixin.qq.com/s/7RGAwdNH1TYASBSe4OI2sw">推送</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>，提到“练拳要学瞎子走路”，瞎子走路身子前后都提着小心，从头到脚都有反应，练拳不是练拳头，而是全身敏感。所以在练拳的时候，感觉是应该重于一切的，一方面感受自身身体的各处状态，另一方面则是接受外界的感受。当然这个说得也很是玄妙深奥，只能看看作为参考。</p><p>上学期刚开始练拳的时候，王真人曾经跟我说过要练出掤劲，并且将其应用到身体的每一处。具体怎么练，靠站桩，练套路，和推手，来撑筋拔骨，锻炼自身。不过我上学期的我一直都感觉很迷，似乎一会出现了，一会儿又找不到了，在与其他人推手的时候，推着推着对方说有点感受到，但自己却觉得其实没有变化过。这个学期好像好了一点，似乎开始感到这种劲，体会到所说的把劲打匀到全身是种什么感觉。</p><p>上周练拳的时候，王真人问我练拳之后有没有什么收获与变化。这个问题其实我自己在寒假的时候就思考过很多次，什么还写了不少文字从身体上和信赖来进行总结。好处与收获当然是有，更健康的身体，更积极的内心，虽然可能并不足以与外人称道，也可能不太明显，不过内心还是真切感受到自己是有不同的。</p><p>想起最开始重拾练拳想法的原因，是因为想着锻炼身体，让自己变得健康。不过其实到自己真正开始练拳的时候，反而并没有了这个想法，甚至觉得其实练拳最多也不过是种锻炼方式，再怎么健康，也不过相当于多运动了。纯粹是觉得挺有意思（以及加入组织开始练习之后不好退出了。</p><p>最后再分享在知乎看到的一个很棒的评论。有个人贴出了他在武当山上面练习传统武术的经历，然后评论区中就出现了很常见的杠精，张嘴就发出传武能不能打的怀疑，什么学得不值，是被骗了之类的评价。然后答主就很坦然地回复，对于他来说，武术只是一个个人的爱好而已，像有的人喜欢跳舞，有的人喜欢打球，一定需要能打，有用，才去做，才去学吗？显然不是。</p><p>所以为什么练习太极拳，喜欢就够了。</p><p>上面提到的推送中说到练拳需要如盲人走路，在练拳过程中要注重全身的感觉。对于整个练拳的历程来说，其实需要像盲人走路一样，专注于当下走的每步路，练的每次拳，也不太需要考虑前路怎样，可以练到什么程度，可以收获什么。反正练习下去，走下去，自然能够进入新的境界。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;对比上个学期，自感最近放了比较多的时间在练习太极拳上面，甚至还曾经自我打趣道，这个学期的工作生活重心就在练拳上面。确实是练得比较多，一方面是在杨协呆得久，需要我去带练功操，有时是必须要去，另一方面则是王真人这边也约得比较勤，一周两练，因为人少（就三个人），鸽都不好找理由鸽。当然这些都还只是外部因素，真的是不得不练，被逼着练吗？也不全见得是。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="杂谈" scheme="http://scottyeung.top/categories/%E6%9D%82%E8%B0%88/"/>
+    
+    
+      <category term="太极" scheme="http://scottyeung.top/tags/%E5%A4%AA%E6%9E%81/"/>
+    
+      <category term="内家拳" scheme="http://scottyeung.top/tags/%E5%86%85%E5%AE%B6%E6%8B%B3/"/>
+    
+  </entry>
   
   <entry>
     <title>GraphQL 入门</title>
@@ -150,7 +200,7 @@
     <link href="http://scottyeung.top/2020/taichi-practice-reflections/"/>
     <id>http://scottyeung.top/2020/taichi-practice-reflections/</id>
     <published>2020-12-04T09:07:43.000Z</published>
-    <updated>2021-03-14T10:52:18.120Z</updated>
+    <updated>2021-04-06T14:37:03.482Z</updated>
     
     <content type="html"><![CDATA[<p>从十月份开始练太极拳至今，已经差不多两个月了。在这个期间，基本每周会去练两三次，晚上九点跑去恩玲剧场练习松柔功操，周四跑去武术馆练练拳架套路。虽然感觉上已经练得很多，但实际上投入的时间也不算多。</p><p>兴趣确实是有的，收获也似乎算有，用王真人的话来说，也是有一点功力的，算是有点劲出来了。</p><a id="more"></a><p>然而在这两周的练习中，却感觉到自己好像已经进入到一个瓶颈期，感觉自己练了也有一段时间了，但是没什么长进，尤其是在功操上面。</p><p>当初第一次练松柔功操的时候，因为里面有着比较多的会锻炼到下半身一些不太常用的肌肉群的动作（比如揉膝，蹲坐等集中在下盘的动作），而且强调身体其它地方放松，只靠特定的肌肉群出力，因而特别酸爽。第一次练完，就跟健身练完腿差不多，酸软无力，抬不起来的感觉。</p><p>可惜的是，直到现在的我，也依然会在练习几个揉膝动作后感到大腿酸软，而其余的动作，也依然在练习时有着比较强烈的感觉，让我感觉到自己其实并没有长进，并没有提升。至于其它的套路，站桩，因为太过于强调劲，强调感觉，也太过难以捉摸，这次好像有点感觉，下次同样的动作，同样的打法，却找不回来了。套路动作是学到了，而是否打对了，是否打得更好了，自己也不知道。</p><p>虽说只是为了兴趣在练习太极拳，但是如果一直这样练都还是这个水平，一直都没什么长进的话，其实自己内心也不太舒服，练习也练得没什么干劲。当然练习时间确实不长，每周最多也就三四小时，加起来可能就一两次机会练习，较大的提升自然不容易出现。但我也确实时间不多，虽说晚上去练拳可能也就练个一个小时多点，但是练拳前准备，练拳后的洗浴休息，前前后后可能需要花费自己三个小时的学习时间，作为一个懒散的人来说，代价其实挺大，因为本来的学习时间就不多。</p><p>这也似乎陷入了一个不好的循环，时间不多导致选择去练拳的时间不多，练拳的时间不多自然效果不好进展缓慢，效果不好导致自己练拳的时候找不到感觉，兴趣消减，逐渐就更加不想去练拳，通过自己时间不同的事实作为借口来逃避练拳。这导致我已经一个星期没去练松柔功操了🤣。接下来一个月估计更加忙，可能练习次数更少（逃</p><p>要逼着自己先去练了再说吗？这样就似乎感觉违背自己所谓兴趣的性质了。其实更希望能够将太极，将练拳融入生活当中，时不时就站起来打打拳，站站桩，甚至在平时的生活活动里面，融入一些动作，进行锻炼。然而这样的行为在他人眼中实在有点奇怪，尤其是对于我这种性格的人，总是害怕在他人面前表现自己，羞于被他人看到我在干什么，即使是无意的。</p><p>离这个学期结束还剩一个月，希望自己能够剩下的拳架套路学完吧</p>]]></content>
     
@@ -165,6 +215,8 @@
     
     
       <category term="太极" scheme="http://scottyeung.top/tags/%E5%A4%AA%E6%9E%81/"/>
+    
+      <category term="内家拳" scheme="http://scottyeung.top/tags/%E5%86%85%E5%AE%B6%E6%8B%B3/"/>
     
   </entry>
   
@@ -221,11 +273,11 @@
     
       <category term="并发编程" scheme="http://scottyeung.top/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
     
+      <category term="dotnet" scheme="http://scottyeung.top/tags/dotnet/"/>
+    
       <category term="爬虫" scheme="http://scottyeung.top/tags/%E7%88%AC%E8%99%AB/"/>
     
       <category term="异步编程" scheme="http://scottyeung.top/tags/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/"/>
-    
-      <category term="dotnet" scheme="http://scottyeung.top/tags/dotnet/"/>
     
   </entry>
   
@@ -271,9 +323,9 @@
       <category term="个人随笔" scheme="http://scottyeung.top/categories/%E4%B8%AA%E4%BA%BA%E9%9A%8F%E7%AC%94/"/>
     
     
-      <category term="随笔" scheme="http://scottyeung.top/tags/%E9%9A%8F%E7%AC%94/"/>
-    
       <category term="时间管理" scheme="http://scottyeung.top/tags/%E6%97%B6%E9%97%B4%E7%AE%A1%E7%90%86/"/>
+    
+      <category term="随笔" scheme="http://scottyeung.top/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
@@ -310,9 +362,9 @@
     <link href="http://scottyeung.top/2020/record-of-life/"/>
     <id>http://scottyeung.top/2020/record-of-life/</id>
     <published>2020-08-30T15:31:25.000Z</published>
-    <updated>2020-08-30T15:33:02.238Z</updated>
+    <updated>2021-04-02T08:12:25.698Z</updated>
     
-    <content type="html"><![CDATA[<p>到达南京之后，基本上每个晚上都是比较早地就回到酒店，洗澡之后就瘫坐在床上看手机，看视频，很颓废，也很无趣，有一种在消磨时间，等待下一天到来的感觉，像是在浪费自己的人生。</p><a id="more"></a><p>大概是在上了大学之后，我开始变得可以接受无意义地度过某段时间，等待这一段过程的结束。以前的我明明是一个很害怕无聊的人，让我去亲戚家一个下午，即使有电脑可看，有游戏可玩，也有亲友的陪伴，我还是接受不能，感觉在浪费时间，浪费一个美好的假期。现在的我，即使是在乘坐高铁时提早了两个多小时，我也能够安然等待，在完成每周的组会报告之后，也能够心安理得地颓废一两天，美其名曰给自己放一个假。这些都是以前的自己不敢想象的。</p><p>刚刚手机刷到一个同学的同学的个人公众号推送，记录她的每周日常生活，很有意思，并不是说她的日常生活有多么精彩，多么的有意思，主要感觉是她很会抓住这种生活中的一个个有意思/有趣味的瞬间，配上简单的配图与文字，就已经让人有一种身临其境的重现。真的让人有一种是在生活的感觉。</p><p>反观我自己，如果问我近来过得怎么样，都在干些什么，我多半说不出些什么，只能简单地回一个还好，没啥，让我觉得自己真的仿佛在浑浑噩噩地过日子。我不禁反思，到底是我日子没有过好，还是我没有记录好生活中的各种美好，值得记录回忆的事情。大概率两者都有，而这两个方向都需要我继续努力，尝试找寻更多的生活乐趣。</p><p>原本只是因为看到了别人的推送，想简单地记录下这几天的状况，但刚开了个头，思绪就被拉到对于过去无趣生活的愧疚，于是又写了点看似很有道理的反思文字。</p><p>希望能够改进现状。</p><p>希望希望能够实现。</p>]]></content>
+    <content type="html"><![CDATA[<p>到达南京之后，基本上每个晚上都是比较早地就回到酒店，洗澡之后就瘫坐在床上看手机，看视频，很颓废，也很无趣，有一种在消磨时间，等待下一天到来的感觉，像是在浪费自己的人生。</p><a id="more"></a><p>大概是在上了大学之后，我开始变得可以接受无意义地度过某段时间，等待这一段过程的结束。以前的我明明是一个很害怕无聊的人，让我去亲戚家一个下午，即使有电脑可看，有游戏可玩，也有亲友的陪伴，我还是接受不能，感觉在浪费时间，浪费一个美好的假期。现在的我，即使是在乘坐高铁时提早了两个多小时，我也能够安然等待，在完成每周的组会报告之后，也能够心安理得地颓废一两天，美其名曰给自己放一个假。这些都是以前的自己不敢想象的。</p><p>刚刚手机刷到一个同学的同学的个人公众号推送，记录她的每周日常生活，很有意思，并不是说她的日常生活有多么精彩，多么的有意思，主要感觉是她很会抓住这种生活中的一个个有意思/有趣味的瞬间，配上简单的配图与文字，就已经让人有一种身临其境的重现。真的让人有一种是在生活的感觉。</p><p>反观我自己，如果问我近来过得怎么样，都在干些什么，我多半说不出些什么，只能简单地回一个还好，没啥，让我觉得自己仿佛在浑浑噩噩地过日子。我不禁反思，到底是我日子没有过好，还是我没有记录好生活中的各种美好，值得记录回忆的事情。大概率两者都有，而这两个方向都需要我继续努力，尝试找寻更多的生活乐趣。</p><p>原本只是因为看到了别人的推送，想简单地记录下这几天的状况，但刚开了个头，思绪就被拉回到对于过去无趣生活的愧疚，于是又写了点看似很有道理的反思文字。</p><p>希望能够改进现状。</p><p>希望希望能够实现。</p>]]></content>
     
     <summary type="html">
     
@@ -490,54 +542,6 @@
       <category term="Windows" scheme="http://scottyeung.top/tags/Windows/"/>
     
       <category term="WSL" scheme="http://scottyeung.top/tags/WSL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>突然不想再记录时间的使用</title>
-    <link href="http://scottyeung.top/2020/%E7%AA%81%E7%84%B6%E4%B8%8D%E6%83%B3%E5%86%8D%E8%AE%B0%E5%BD%95%E6%97%B6%E9%97%B4%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
-    <id>http://scottyeung.top/2020/突然不想再记录时间的使用/</id>
-    <published>2020-05-03T03:55:30.000Z</published>
-    <updated>2020-07-16T16:28:17.818Z</updated>
-    
-    <content type="html"><![CDATA[<p>一直以来，都有着记录自己日常时间的使用情况，可能是因为很喜欢回顾这些历史数据，回望过去的事情。通过简单的记录，已经留下了不少珍贵的记录数据。</p><a id="more"></a><p>最早在高三的时候，我就会用一个小本子，在每天晚自习开始之前写上今晚想要完成的任务，开始时写上开始的时间，结束时打上一个勾并写上完成时间，通过这种简单的方式，来记录自己的学习时间分布和任务完成情况。</p><p>上了大学之后，时间变得充足了许多，人也有时会悠闲起来，对于时间的使用就没那么敏感了，所以一度没有记录时间的使用情况，只是通过手机中的便签，来记录需要完成的任务以及它们的完成状况。在大一大二时，尚有着较多课程和活动的约束，很多需要完成的任务和事情，自然而然地就会被它们的 ddl 推动着，只要记下了某个任务，而该任务确实是需要完成的，自然会去完成。</p><p>到了大三下学期，课变少了，空闲的时间更多了，人也懒散了下来，对于时间的把控似乎有点糟糕。主要原因是，当时没有一个具体而迫近的任务来推动自己。当时的打算是提早做好保研夏令营的准备，提前准备材料和复习专业课知识。然而这些任务普遍不够明确和具体，准备什么材料，复习什么内容，复习到什么程度，都很难把握。尤其是复习，有些专业课的内容比较多，时间跨度自然容易长，时间一长效率就低。为了更好地推动自己，我使用了 Forest 来进行时间记录。一方面是为了让自己学习或工作能够持续一定的时间不被中断，另一方面，则是为了记录自己在学习上的时间使用，通过每日学习时间的数据反馈来推动自己。</p><p>在使用了 Forest 进行时间记录之后，就会发现，其实自己并没有多么的努力，看似学习了一天，非常充实，实际的学习时间却只有三四个小时。虽然说上午下午甚至晚上都有在学习，但实际情况却可能是，睡到九点多才起床，吃完早餐后要差不多十点多才能开始学习，学一个多小时就要结束，去吃午饭并午休。下午睡到两点多才醒，三点多才在图书馆找到位置开始学习，学个一个多小时就五点多，要去吃晚饭了。吃完晚饭回宿舍休息，状态好的话或许能够再战一小时，状态不好的话，就直接开始娱乐了。要注意到，这里说的学习一小时，并不是说你去学习，从坐下开始到结束起来离开的时间有一小时，而是真真切切的学习一个小时，中途的任何休息，包括打水去厕所看手机，都会中断而不计时。所以数据很真实：去了一个上午，两个多小时，实际学了可能 100 分钟不到。这样的时间管理确确实实地使我明白到自己其实并没有做多少事情，对于自身的能力有一个更加真实的判断，这样的反馈或多或少地推动了我更加努力地前进。</p><p>除了让时间记录的数据推动自己以外，这样的记录还有的珍贵价值，就是可以让自己回顾过去的努力和付出。尽管有些时候工作的时间并不如自己的预期，但是还是有一些值得回味的记录的。例如在准备保研和实训的六月份，每天基本保持长达 300 分钟以上的高强度工作，还有在准备软工期末考试前夕的学习了 600 分钟的一天，都是珍贵的回忆。</p><p>在 Forest 上面种了差不多一年的树，记录了 50000+ 的专注时间，真实的树苗也在上面种了一棵。说实话，这样的数据是很能给到人触动的，尤其是回过头来重温当时的某段努力的时光，看着图上树木繁多的森林，总能够给人一种自身努力过的痕迹。</p><p>然而，在三月中的时候，可能是因为疫情原因导致时间上更加空闲的缘故，我似乎有更多的时间和精力来记录时间，收集更好看的数据，原有的 Forest 只有一个简单的类别标签，没有办法记录该段时间做了什么具体内容。另外，Forest 无法记录回过去忘记记录的时间，也是让我有点不满。刚好在某个推送上面看到了有时间管理工具的介绍，就转而使用 Toggl 进行时间记录。</p><p>Toggl 的时间记录方式比较自由，也比较专业，毕竟 Forest 始终都是一个帮助人专注的工具，在单纯的时间记录上面，Toggl 远胜于 Forest。Toggl 可以使用计时模式，也可以手动输入时间数据，对于过往的数据，也能够很容易地就修改。另一方面，每一条时间记录，可以添加 Project 和若干个 tag，便于进行聚类统计分析。</p><p>虽然工具很好，但是在用了一个来月之后，我却不想再用了。就在这两天，有一种不再想记录时间使用情况的想法。时间记录得太细，太过频繁，太过复杂，越令我萌生出一种很不耐烦，很功利的感觉。尤其是这几天在做的数据分类的工作，尽管我感觉只是在做无聊而重复的无意义的工作，但是，为了记录下时间的使用，让时间的使用显得更有价值，我还是记录了下来，美其名曰科研数据处理，甚至连几分钟的空闲间隙时间也不放过，一天能够记上差不多十条的记录。我觉得很没意思。</p><p>另外，还有一件很可怕的事情是，这样子记录时间，有点助长自己对于时间利用的功利性，事事都想记录下来，证明自己是有做事情的，是没有浪费时间的。但我们的人生真的可能时时刻刻都被妥善利用在所谓的有意义的事情上面吗？可能有这样的人，但个性闲散的我并不是这样的人。因为发现记录下来的时间并不满足自己的预期，心里受到了落差与打击，时常都会出现自己不过如此的感觉。为了抵消这种错觉，我便变得将日常所做的所有事情的一一记录，甚至夸大了从事某些事情的时间，以营造出我很努力的感觉，来抵消自己的愧疚。事实上，这样只会让自己错误地判断自己的工作和学习状况，对所能完成的任务和事情的预期产生错误的判断，当某些目标完成得不如预期时，又或者某天的记录回归正常时，就会产生出自身能力在现实和设想的落差，进而导致不自信和愧疚。</p><p>尽管如此，我还是忍受不了这种诱人的历史数据的引诱，在写这篇文章的时候，我都还是用回了 Forest 进行时间记录。不过为了进一步减少这样功利感，还是使用回这样的比较简单的工具好一点，起码这样我就不能够修改我的时间记录，而产生虚伪的结果。另外，对于一些小的碎片时间，也不应该太过执着于记录，毕竟<strong>时间的本质是为了我们的使用而服务，而不是为了被我们记录</strong>。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;一直以来，都有着记录自己日常时间的使用情况，可能是因为很喜欢回顾这些历史数据，回望过去的事情。通过简单的记录，已经留下了不少珍贵的记录数据。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="个人随笔" scheme="http://scottyeung.top/categories/%E4%B8%AA%E4%BA%BA%E9%9A%8F%E7%AC%94/"/>
-    
-    
-      <category term="随笔" scheme="http://scottyeung.top/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-      <category term="每日千字" scheme="http://scottyeung.top/tags/%E6%AF%8F%E6%97%A5%E5%8D%83%E5%AD%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>shell 脚本入门</title>
-    <link href="http://scottyeung.top/2020/shell-%E8%84%9A%E6%9C%AC%E5%85%A5%E9%97%A8/"/>
-    <id>http://scottyeung.top/2020/shell-脚本入门/</id>
-    <published>2020-04-21T13:17:55.000Z</published>
-    <updated>2020-12-23T16:02:26.617Z</updated>
-    
-    <content type="html"><![CDATA[<p>shell 是一个用 C 编写的程序，既是一种命令语言，又是一种程序设计语言，常用于运行自动化执行 Unix/Linux 系统命令的脚本。在最近的数据收集等任务当中，发现其实对于脚本的使用其实有着较大的需求，之前我都是直接用 Python 写脚本来完成，效果也不错，但总感觉总有点杀鸡用牛刀的感觉，而且对于系统命令的执行也比较不方便。写过几个自动化提交代码的 shell 脚本，但还是不太熟悉，于是打算找个教程过一遍 shell 脚本编程，算是入门了。</p><a id="more"></a>        <h2 id="执行">          <a href="#执行" class="heading-link"><i class="fas fa-link"></i></a>执行</h2>      <p>创建 shell 脚本文件，以后缀 .sh 结尾，就可以</p><ul><li>直接通过执行文件的方式执行脚本 <code>./script.sh</code></li><li>通过 sh 命令的方式 <code>sh script.sh</code> 执行</li></ul>        <h2 id="变量">          <a href="#变量" class="heading-link"><i class="fas fa-link"></i></a>变量</h2>      <ul><li>shell 中的变量只有两种，分别为数字和字符串，数组。</li><li>shell 变量命名由字母，数字，下划线组成</li><li>通过反引号 ` 可以执行命令，将结果作为返回值赋予变量</li></ul>        <h3 id="操作">          <a href="#操作" class="heading-link"><i class="fas fa-link"></i></a>操作</h3>      <ul><li>赋值<ul><li>变量直接通过 = 号进行 <code>var=125</code></li><li>通过语句赋值，如 for 循环语句 <code>for file in $(ls /etc)</code></li></ul></li><li>只读：通过设置 <code>readonly var</code></li><li>删除：<code>unset var</code></li><li>使用：通过在变量前使用 $ 则可</li><li>字符串拼接：可以通过 字符串变量字符串 的方式进行拼接</li></ul>        <h3 id="字符串">          <a href="#字符串" class="heading-link"><i class="fas fa-link"></i></a>字符串</h3>      <ul><li>单引号：不转义原样输出，变量也无效，可以通过成对出现来拼接</li><li>双引号：可以有变量，可以有转义字符</li><li>可以通过 <code>$#</code> 获取长度</li><li>可以通过 <code>$&#123;var:1:3&#125;</code> 的方式进行切片</li></ul>        <h3 id="数组">          <a href="#数组" class="heading-link"><i class="fas fa-link"></i></a>数组</h3>      <ul><li>由括号括住，元素通过空格分隔 <code>arr=(var1 var2 var3)</code></li><li>通过下标 [] 获取元素</li><li>使用 @ 可以获取所有元素</li><li>通过 # 可以获取数组的长度 <code>&#123;&#123;"$&#123;#arr[@]&#125;"&#125;&#125;</code></li></ul>        <h3 id="通用变量">          <a href="#通用变量" class="heading-link"><i class="fas fa-link"></i></a>通用变量</h3>      <ul><li>命令行参数<ul><li><code>$n</code> 表示第n个参数</li><li><code>$#</code> 参数个数</li><li><code>$*</code> 所有参数以单个字符串的方式返回</li><li><code>$$</code> 当前进程ID</li><li><code>$@</code> 所有参数以字符串的方式逐个返回</li></ul></li></ul>        <h2 id="运算符">          <a href="#运算符" class="heading-link"><i class="fas fa-link"></i></a>运算符</h2>      <p>bash 原生并不支持数学运算，需要通过其它命令来实现，如 expr</p><ul><li>算术运算符<ul><li>加减乘除取余赋值。乘法需要转义 *</li><li>相等与不相等：比较数字</li></ul></li><li>关系运算符<ul><li><code>-eq -ne -gt -lt -ge -le</code>  等于 不等于 大于 小于 大于等于 小于等于</li></ul></li><li>布尔运算符<ul><li><code>! -o -a</code> 取反 或 与</li></ul></li><li>逻辑运算符<ul><li><code>&amp;&amp; ||</code> 与 或</li></ul></li><li>字符串运算符<ul><li><code>= != -z -n $</code> 等于 不等于 长度为0 长度不为0 是否空字符串</li></ul></li><li>文件测试运算符<ul><li><code>-b -c -d -f -p</code> 是否块设备 字符设备 目录 普通文件 管道</li><li><code>-r -w -x -s -e</code> 文件是否可读 可写 可执行 为空 是否存在</li></ul></li></ul>        <h2 id="命令">          <a href="#命令" class="heading-link"><i class="fas fa-link"></i></a>命令</h2>      <ul><li>echo：字符串输出</li><li>read：从标准输入读取一行</li><li>printf：与C的类似，进行格式化输出<ul><li>转义序列：<code>\b \c \n \t</code> 后退 不换行 换行 制表符</li></ul></li><li>test：检查条件是否成立<ul><li><code>test bool-expr</code> = <code>[bool-expr]</code></li></ul></li><li>$[a+b]：执行基本的算数运算，符合两边不能有空格</li></ul>        <h2 id="控制逻辑">          <a href="#控制逻辑" class="heading-link"><i class="fas fa-link"></i></a>控制逻辑</h2>              <h3 id="if">          <a href="#if" class="heading-link"><i class="fas fa-link"></i></a>if</h3>      <figure class="highlight bash"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> condition</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">    commands</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> condition</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">    commands</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    commands</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> condition</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">    commands</span><br><span class="line"><span class="keyword">elif</span> condition</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">    commands</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></div></figure>        <h3 id="for">          <a href="#for" class="heading-link"><i class="fas fa-link"></i></a>for</h3>      <figure class="highlight bash"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> var <span class="keyword">in</span> item1 item2 item3</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    commands</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></div></figure><p>in后除了可以跟元素序列，还可以接一个返回多个元素的命令</p>        <h3 id="while">          <a href="#while" class="heading-link"><i class="fas fa-link"></i></a>while</h3>      <figure class="highlight bash"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> condition</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    <span class="built_in">command</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># infinite loop</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">true</span> / <span class="keyword">while</span> :</span><br></pre></td></tr></table></div></figure>        <h3 id="case">          <a href="#case" class="heading-link"><i class="fas fa-link"></i></a>case</h3>      <figure class="highlight bash"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span> var <span class="keyword">in</span></span><br><span class="line">    1)</span><br><span class="line">        <span class="built_in">command</span></span><br><span class="line">        ;;</span><br><span class="line">    2)</span><br><span class="line">        <span class="built_in">command</span></span><br><span class="line">        ;;</span><br><span class="line">    *) <span class="comment">#其余情况</span></span><br><span class="line">        <span class="built_in">command</span></span><br><span class="line">        ;;</span><br><span class="line"><span class="keyword">esac</span></span><br></pre></td></tr></table></div></figure>        <h3 id="breakcontine">          <a href="#breakcontine" class="heading-link"><i class="fas fa-link"></i></a>break/contine</h3>      <p>跳出循环与跳到下次循环</p>        <h2 id="函数">          <a href="#函数" class="heading-link"><i class="fas fa-link"></i></a>函数</h2>      <figure class="highlight bash"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 定义</span></span><br><span class="line"><span class="function"><span class="title">func</span></span>()&#123;</span><br><span class="line">    commands</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;使用参数时通过 <span class="variable">$1</span> 调用&quot;</span></span><br><span class="line">    <span class="built_in">return</span> <span class="string">&#x27;也可以没有返回&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 调用（不需要括号</span></span><br><span class="line">func</span><br><span class="line"></span><br></pre></td></tr></table></div></figure>        <h2 id="重定向">          <a href="#重定向" class="heading-link"><i class="fas fa-link"></i></a>重定向</h2>      <ul><li>command &gt; file 输出重定向</li><li>command &gt;&gt; file 追加方式输出重定向</li></ul>        <h2 id="导入-shell-脚本">          <a href="#导入-shell-脚本" class="heading-link"><i class="fas fa-link"></i></a>导入 shell 脚本</h2>      <p>通过 <code>. filename</code> 或 <code>source filename</code> 的方式导入脚本中的变量或函数</p>        <h2 id="unixlinux-命令">          <a href="#unixlinux-命令" class="heading-link"><i class="fas fa-link"></i></a>Unix/Linux 命令</h2>      <p>shell 脚本最强大的功能，还是在于能在脚本中自动化地使用对于系统命令的调用，而其中主要是 Linux 的命令使用，这些就需要额外的学习了，不在此处展开。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;shell 是一个用 C 编写的程序，既是一种命令语言，又是一种程序设计语言，常用于运行自动化执行 Unix/Linux 系统命令的脚本。在最近的数据收集等任务当中，发现其实对于脚本的使用其实有着较大的需求，之前我都是直接用 Python 写脚本来完成，效果也不错，但总感觉总有点杀鸡用牛刀的感觉，而且对于系统命令的执行也比较不方便。写过几个自动化提交代码的 shell 脚本，但还是不太熟悉，于是打算找个教程过一遍 shell 脚本编程，算是入门了。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Coding 学习" scheme="http://scottyeung.top/categories/Coding-%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-      <category term="notes" scheme="http://scottyeung.top/tags/notes/"/>
-    
-      <category term="shell" scheme="http://scottyeung.top/tags/shell/"/>
     
   </entry>
   
