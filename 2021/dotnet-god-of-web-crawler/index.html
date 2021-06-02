@@ -1,178 +1,647 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/imsg/favicon-16x16.png?v=2.6.0" type="image/png" sizes="16x16"><link rel="icon" href="/imgs/favicon-32x32.png?v=2.6.0" type="image/png" sizes="32x32"><meta name="description" content="这一周干了两次需要批量下载图片或文件的自动化工作，连续两次使用都是 dotnet 来完成，着实不错，尤其是配合 c# 的 async&#x2F;await 语法糖，异步下载性能确实够快。这两次的下载让我对于这种需要批量获取信息或者下载的任务解锁了新的姿势。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="dotnet 爬虫的神">
-<meta property="og:url" content="http://scottyeung.top/2021/dotnet-god-of-web-crawler/index.html">
-<meta property="og:site_name" content="YeungYeah 的乱写地">
-<meta property="og:description" content="这一周干了两次需要批量下载图片或文件的自动化工作，连续两次使用都是 dotnet 来完成，着实不错，尤其是配合 c# 的 async&#x2F;await 语法糖，异步下载性能确实够快。这两次的下载让我对于这种需要批量获取信息或者下载的任务解锁了新的姿势。">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-04-07T10:57:41.000Z">
-<meta property="article:modified_time" content="2021-04-12T07:33:46.067Z">
-<meta property="article:author" content="YeungYeah">
-<meta property="article:tag" content="自动化">
-<meta property="article:tag" content="dotnet">
-<meta property="article:tag" content="爬虫">
-<meta name="twitter:card" content="summary"><title>dotnet 爬虫的神 | YeungYeah 的乱写地</title><link ref="canonical" href="http://scottyeung.top/2021/dotnet-god-of-web-crawler/"><link rel="alternate" href="/atom.xml" type="application/atom+xml"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.6.0"><link rel="dns-prefetch" href="https://www.googletagmanager.com"><script src="https://www.googletagmanager.com/gtag/js?id=UA-151343043-1" async="" data-pjax=""></script><script data-pjax="">if (window.location.hostname !== 'localhost') {
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){ dataLayer.push(arguments); }
-  gtag('js', new Date());
-  gtag('config', 'UA-151343043-1');
-}</script><script>var Stun = window.Stun || {};
-var CONFIG = {
-  root: '/',
-  algolia: undefined,
-  assistSearch: undefined,
-  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
-  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
-  header: undefined,
-  postWidget: {"endText":true},
-  nightMode: {"enable":true},
-  back2top: {"enable":true},
-  codeblock: {"style":"carbon","highlight":"light","wordWrap":false},
-  reward: true,
-  fancybox: false,
-  zoomImage: {"gapAside":"20px"},
-  galleryWaterfall: undefined,
-  lazyload: false,
-  pjax: {"avoidBanner":true},
-  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
-  shortcuts: undefined,
-  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
-  sourcePath: {"js":"js","css":"css","images":"images"},
-};
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
+    <meta charset="UTF-8" />
 
-window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner header-inner--height header-inner--bgcolor"><nav class="header-nav header-nav--sticky"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/about/"><span class="header-nav-menu-item__icon"><i class="fas fa-user"></i></span><span class="header-nav-menu-item__text">关于</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="javascript:;" onclick="return false;"><span class="header-nav-menu-item__icon"><i class="fas fa-newspaper"></i></span><span class="header-nav-menu-item__text">文章</span></a><div class="header-nav-submenu"><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/archives/"><span class="header-nav-submenu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-submenu-item__text">归档</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/categories/"><span class="header-nav-submenu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-submenu-item__text">分类</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/tags/"><span class="header-nav-submenu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-submenu-item__text">标签</span></a></div></div></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="javascript:;" onclick="return false;"><span class="header-nav-menu-item__icon"><i class="fas fa-calendar-alt"></i></span><span class="header-nav-menu-item__text">动态</span></a><div class="header-nav-submenu"><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/moments/"><span class="header-nav-submenu-item__icon"><i class="fas fa-calendar-alt"></i></span><span class="header-nav-submenu-item__text">最新</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/moments/2020"><span class="header-nav-submenu-item__icon"><i class="fas fa-calendar-alt"></i></span><span class="header-nav-submenu-item__text">20年</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/moments/2019"><span class="header-nav-submenu-item__icon"><i class="fas fa-calendar-alt"></i></span><span class="header-nav-submenu-item__text">19年</span></a></div></div></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">dotnet 爬虫的神</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2021-04-07</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2021-04-12</span></span><span class="post-meta-item post-meta-item--visitors leancloud_visitors" id="/2021/dotnet-god-of-web-crawler/" data-flag-title="dotnet 爬虫的神"><span class="post-meta-item__icon"><i class="fas fa-eye"></i></span><span class="post-meta-item__info">阅读次数</span><span class="post-meta-item__value leancloud-visitors-count"></span></span></div></header><div class="post-body"><p>这一周干了两次需要批量下载图片或文件的自动化工作，连续两次使用都是 dotnet 来完成，着实不错，尤其是配合 c# 的 async/await 语法糖，异步下载性能确实够快。这两次的下载让我对于这种需要批量获取信息或者下载的任务解锁了新的姿势。</p>
-<a id="more"></a>
+    <meta name="generator" content="Hugo 0.83.1" /><meta name="theme-color" content="#fff" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
+    
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+    <title>dotnet 爬虫的神 | YeungYeah 的乱写地</title>
+
+    <link rel="stylesheet" href="/css/meme.min.d69b4ce2494ac3934b78e435f4e39de396918b4dd74f2cff8954e76c1ba5e802.css"/>
+
+    
+    
+        <script src="/js/meme.min.f460a174bb100a60a7e275913695161f1e09aab1378fe99cfd30cde14da70888.js"></script>
+
+    
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" media="print" onload="this.media='all'" />
+        <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" /></noscript>
+
+    <meta name="author" content="YeungYeah" /><meta name="description" content="这一周干了两次需要批量下载图片或文件的自动化工作，连续两次使用都是 dotnet 来完成，着实不错，尤其是配合 c# 的 async/await 语法糖，异步下载性能确实够快。这两次的下载让我对于这种需要批量获取信息或者下载的任务解锁了新的姿势。
+……" />
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#2a6df4" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="YeungYeah 的乱写地" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="YeungYeah 的乱写地" />
+    <meta name="msapplication-starturl" content="../../" />
+    <meta name="msapplication-TileColor" content="#fff" />
+    <meta name="msapplication-TileImage" content="../../icons/mstile-150x150.png" />
+    <link rel="manifest" href="/manifest.json" />
+
+    
+    
+
+    
+    <link rel="canonical" href="https://scottyeung.top/2021/dotnet-god-of-web-crawler/" />
+    
+
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "datePublished": "2021-04-07T18:57:41+00:00",
+        "dateModified": "2021-06-02T10:15:28+08:00",
+        "url": "https://scottyeung.top/2021/dotnet-god-of-web-crawler/",
+        "headline": "dotnet 爬虫的神",
+        "description": "这一周干了两次需要批量下载图片或文件的自动化工作，连续两次使用都是 dotnet 来完成，着实不错，尤其是配合 c# 的 async/await 语法糖，异步下载性能确实够快。这两次的下载让我对于这种需要批量获取信息或者下载的任务解锁了新的姿势。\n……",
+        "inLanguage" : "zh-CN",
+        "articleSection": "posts",
+        "wordCount":  867 ,
+        "image": "https://scottyeung.top/images/favicon-32x32.png",
+        "author": {
+            "@type": "Person",
+            "description": "Viva La Vida",
+            "email": "yeungyeah@qq.com",
+            "image": "https://scottyeung.top/icons/apple-touch-icon.png",
+            "url": "https://scottyeung.top/",
+            "name": "YeungYeah"
+        },
+        "license": "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)",
+        "publisher": {
+            "@type": "Organization",
+            "name": "YeungYeah 的乱写地",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://scottyeung.top/images/favicon-32x32.png"
+            },
+            "url": "https://scottyeung.top/"
+        },
+        "mainEntityOfPage": {
+            "@type": "WebSite",
+            "@id": "https://scottyeung.top/"
+        }
+    }
+</script>
+
+    
+
+<meta name="twitter:card" content="summary" />
+
+
+    
+
+
+
+<meta property="og:title" content="dotnet 爬虫的神" />
+<meta property="og:description" content="这一周干了两次需要批量下载图片或文件的自动化工作，连续两次使用都是 dotnet 来完成，着实不错，尤其是配合 c# 的 async/await 语法糖，异步下载性能确实够快。这两次的下载让我对于这种需要批量获取信息或者下载的任务解锁了新的姿势。
+……" />
+<meta property="og:url" content="https://scottyeung.top/2021/dotnet-god-of-web-crawler/" />
+<meta property="og:site_name" content="YeungYeah 的乱写地" />
+<meta property="og:locale" content="zh" /><meta property="og:image" content="https://scottyeung.top/images/favicon-32x32.png" />
+    <meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2021-04-07T18:57:41&#43;00:00" />
+    <meta property="article:modified_time" content="2021-06-02T10:15:28&#43;08:00" />
+    
+    <meta property="article:section" content="posts" />
+
+
+        <link rel="preconnect" href="https://www.google-analytics.com" crossorigin />
+
+        
+
+
+
+
+    
+    <script>
+        window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+        ga('create', 'UA-151343043-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+    
+
+
+    
+    
+
+    
+</head>
+
+    <body>
+        <div class="container">
+            
+    <header class="header">
+        
+            <div class="header-wrapper">
+                <div class="header-inner single">
+                    
+    <div class="site-brand">
+        
+            <a href="/" class="brand">YeungYeah 的乱写地</a>
+        
+    </div>
+
+                    <nav class="nav">
+    <ul class="menu" id="menu">
+        
+            
+        
+        
+        
+        
+            
+                <li class="menu-item"><a href="/posts/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon archive"><path d="M32 448c0 17.7 14.3 32 32 32h384c17.7 0 32-14.3 32-32V160H32v288zm160-212c0-6.6 5.4-12 12-12h104c6.6 0 12 5.4 12 12v8c0 6.6-5.4 12-12 12H204c-6.6 0-12-5.4-12-12v-8zM480 32H32C14.3 32 0 46.3 0 64v48c0 8.8 7.2 16 16 16h480c8.8 0 16-7.2 16-16V64c0-17.7-14.3-32-32-32z"/></svg><span class="menu-item-name">文章</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/moments/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon archive"><path d="M32 448c0 17.7 14.3 32 32 32h384c17.7 0 32-14.3 32-32V160H32v288zm160-212c0-6.6 5.4-12 12-12h104c6.6 0 12 5.4 12 12v8c0 6.6-5.4 12-12 12H204c-6.6 0-12-5.4-12-12v-8zM480 32H32C14.3 32 0 46.3 0 64v48c0 8.8 7.2 16 16 16h480c8.8 0 16-7.2 16-16V64c0-17.7-14.3-32-32-32z"/></svg><span class="menu-item-name">动态</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/tags/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" class="icon tags"><path d="M497.941 225.941L286.059 14.059A48 48 0 0 0 252.118 0H48C21.49 0 0 21.49 0 48v204.118a48 48 0 0 0 14.059 33.941l211.882 211.882c18.744 18.745 49.136 18.746 67.882 0l204.118-204.118c18.745-18.745 18.745-49.137 0-67.882zM112 160c-26.51 0-48-21.49-48-48s21.49-48 48-48 48 21.49 48 48-21.49 48-48 48zm513.941 133.823L421.823 497.941c-18.745 18.745-49.137 18.745-67.882 0l-.36-.36L527.64 323.522c16.999-16.999 26.36-39.6 26.36-63.64s-9.362-46.641-26.36-63.64L331.397 0h48.721a48 48 0 0 1 33.941 14.059l211.882 211.882c18.745 18.745 18.745 49.137 0 67.882z"/></svg><span class="menu-item-name">标签</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/about/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" class="icon user-circle"><path d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm0 96c48.6 0 88 39.4 88 88s-39.4 88-88 88-88-39.4-88-88 39.4-88 88-88zm0 344c-58.7 0-111.3-26.6-146.5-68.2 18.8-35.4 55.6-59.8 98.5-59.8 2.4 0 4.8.4 7.1 1.1 13 4.2 26.6 6.9 40.9 6.9 14.3 0 28-2.7 40.9-6.9 2.3-.7 4.7-1.1 7.1-1.1 42.9 0 79.7 24.4 98.5 59.8C359.3 421.4 306.7 448 248 448z"/></svg><span class="menu-item-name">关于</span></a>
+                </li>
+            
+        
+            
+                
+                    
+                    
+                        <li class="menu-item">
+                            <a id="theme-switcher" href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon theme-icon-light"><path d="M193.2 104.5l48.8-97.5a18 18 0 0128 0l48.8 97.5 103.4 -34.5a18 18 0 0119.8 19.8l-34.5 103.4l97.5 48.8a18 18 0 010 28l-97.5 48.8 34.5 103.4a18 18 0 01-19.8 19.8l-103.4-34.5-48.8 97.5a18 18 0 01-28 0l-48.8-97.5l-103.4 34.5a18 18 0 01-19.8-19.8l34.5-103.4-97.5-48.8a18 18 0 010-28l97.5-48.8-34.5-103.4a18 18 0 0119.8-19.8zM256 128a128 128 0 10.01 0M256 160a96 96 0 10.01 0"/></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon theme-icon-dark"><path d="M27 412a256 256 0 10154-407a11.5 11.5 0 00-5 20a201.5 201.5 0 01-134 374a11.5 11.5 0 00-15 13"/></svg></a>
+                        </li>
+                    
+                
+            
+        
+            
+                
+            
+        
+    </ul>
+</nav>
+
+                    
+                </div>
+            </div>
+            
+    <input type="checkbox" id="nav-toggle" aria-hidden="true" />
+    <label for="nav-toggle" class="nav-toggle"></label>
+    <label for="nav-toggle" class="nav-curtain"></label>
+
+
+        
+    </header>
+
+
+
+
+            
+            
+    <main class="main single" id="main">
+    <div class="main-inner">
+
+        
+
+        <article class="content post h-entry" data-align="justify" data-type="posts">
+
+            <h1 class="post-title p-name">dotnet 爬虫的神</h1>
+
+            
+
+            
+                
+            
+
+            
+                
+
+<div class="post-meta">
+    
+        
+        <time datetime="2021-04-07T18:57:41&#43;00:00" class="post-meta-item published dt-published"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon post-meta-icon"><path d="M148 288h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm108-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 96v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm192 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96-260v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h48V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h128V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h48c26.5 0 48 21.5 48 48zm-48 346V160H48v298c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"/></svg>&nbsp;2021.4.7</time>
+    
+    
+        
+        <time datetime="2021-06-02T10:15:28&#43;08:00" class="post-meta-item modified dt-updated"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon post-meta-icon"><path d="M400 64h-48V12c0-6.627-5.373-12-12-12h-40c-6.627 0-12 5.373-12 12v52H160V12c0-6.627-5.373-12-12-12h-40c-6.627 0-12 5.373-12 12v52H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm-6 400H54a6 6 0 0 1-6-6V160h352v298a6 6 0 0 1-6 6zm-52.849-200.65L198.842 404.519c-4.705 4.667-12.303 4.637-16.971-.068l-75.091-75.699c-4.667-4.705-4.637-12.303.068-16.971l22.719-22.536c4.705-4.667 12.303-4.637 16.97.069l44.104 44.461 111.072-110.181c4.705-4.667 12.303-4.637 16.971.068l22.536 22.718c4.667 4.705 4.636 12.303-.069 16.97z"/></svg>&nbsp;2021.6.2</time>
+    
+    
+    
+        
+        
+            
+            
+                
+                
+                
+                
+                    
+                    
+                    
+                        
+                            
+                            
+                        
+                    
+                
+            
+            
+            
+                <span class="post-meta-item category"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon post-meta-icon"><path d="M464 128H272l-54.63-54.63c-6-6-14.14-9.37-22.63-9.37H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V176c0-26.51-21.49-48-48-48zm0 272H48V112h140.12l54.63 54.63c6 6 14.14 9.37 22.63 9.37H464v224z"/></svg>&nbsp;<a href="/posts/" class="category-link p-category">Posts</a></span>
+            
+        
+        
+    
+    
+    
+    
+        
+            
+            <span class="post-meta-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="icon post-meta-icon"><path d="M288 144a110.94 110.94 0 0 0-31.24 5 55.4 55.4 0 0 1 7.24 27 56 56 0 0 1-56 56 55.4 55.4 0 0 1-27-7.24A111.71 111.71 0 1 0 288 144zm284.52 97.4C518.29 135.59 410.93 64 288 64S57.68 135.64 3.48 241.41a32.35 32.35 0 0 0 0 29.19C57.71 376.41 165.07 448 288 448s230.32-71.64 284.52-177.41a32.35 32.35 0 0 0 0-29.19zM288 400c-98.65 0-189.09-55-237.93-144C98.91 167 189.34 112 288 112s189.09 55 237.93 144C477.1 345 386.66 400 288 400z"/></svg>&nbsp;<span id="/2021/dotnet-god-of-web-crawler/" class="waline-visitor-count" /></span>
+        
+    
+    
+</div>
+
+            
+
+            <div class="post-body e-content">
+                <p>这一周干了两次需要批量下载图片或文件的自动化工作，连续两次使用都是 dotnet 来完成，着实不错，尤其是配合 c# 的 async/await 语法糖，异步下载性能确实够快。这两次的下载让我对于这种需要批量获取信息或者下载的任务解锁了新的姿势。</p>
 <p>首先需要明确一点，我们需要的只是爬虫的结果而已，只是为了能够自动化获取我们所需要的数据或资源，所以我们所做的事情，所写的代码即使稍微 dirty 点也无妨，只要能 work 就好。尤其是在工程中，过于追求所谓的 elegant 只会让自己痛苦不已，不过这些都是题外话了。</p>
 <p>So glad to make it dirty. 爬虫遇到例外情况时就做特殊判断，有异常就针对异常对个例单独处理，全自动化不行就手工做点操作加点信息。</p>
-
-        <h2 id="html-parsing">
-          <a href="#html-parsing" class="heading-link"><i class="fas fa-link"></i></a>html parsing</h2>
-      
-<p>html 的解析库用的是 <span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://html-agility-pack.net/">Html Agility Pack</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>，可以解析字符串，也可以直接发请求获取页面来解析。其使用 XPath 作为选择器，不支持 css 选择器，学过 XPath 的可以接受，而且 XPath 的表达性足够的强，足够使用。</p>
+<h2 id="html-parsing"><a href="#html-parsing" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>html parsing</h2>
+<p>html 的解析库用的是 <a href="https://html-agility-pack.net/" target="_blank" rel="noopener">Html Agility Pack</a>，可以解析字符串，也可以直接发请求获取页面来解析。其使用 XPath 作为选择器，不支持 css 选择器，学过 XPath 的可以接受，而且 XPath 的表达性足够的强，足够使用。</p>
 <p>code sample 如下，能够根据 XPath 选出特定的节点，然后取出其中的属性和文本其实已经差不多了。</p>
-<figure class="highlight cs"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> html =  <span class="keyword">await</span> <span class="keyword">new</span> HtmlWeb().LoadFromWebAsync(url);</span><br><span class="line"><span class="keyword">var</span> node = html.DocumentNode.SelectSingleNode(xpath);</span><br><span class="line"><span class="keyword">var</span> text = node.InnerText;</span><br><span class="line"><span class="keyword">var</span> attr = node.GetAttributeValue(<span class="string">&quot;href&quot;</span>, defaultValue);</span><br></pre></td></tr></table></div></figure>
-
-        <h2 id="download">
-          <a href="#download" class="heading-link"><i class="fas fa-link"></i></a>download</h2>
-      
-<p>完全就是根据 dotnet 的 API 来操作的，重点推荐 System.Net.Webclient 的 DownloadFileTaskAsync 方法，直接根据 url 开启异步下载任务，开启下载任务后将所有的 tasks 一起等待运行结束即可。<br>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cs" data-lang="cs"><span class="kt">var</span> <span class="n">html</span> <span class="p">=</span>  <span class="k">await</span> <span class="k">new</span> <span class="n">HtmlWeb</span><span class="p">().</span><span class="n">LoadFromWebAsync</span><span class="p">(</span><span class="n">url</span><span class="p">);</span>
+<span class="kt">var</span> <span class="n">node</span> <span class="p">=</span> <span class="n">html</span><span class="p">.</span><span class="n">DocumentNode</span><span class="p">.</span><span class="n">SelectSingleNode</span><span class="p">(</span><span class="n">xpath</span><span class="p">);</span>
+<span class="kt">var</span> <span class="n">text</span> <span class="p">=</span> <span class="n">node</span><span class="p">.</span><span class="n">InnerText</span><span class="p">;</span>
+<span class="kt">var</span> <span class="n">attr</span> <span class="p">=</span> <span class="n">node</span><span class="p">.</span><span class="n">GetAttributeValue</span><span class="p">(</span><span class="s">&#34;href&#34;</span><span class="p">,</span> <span class="n">defaultValue</span><span class="p">);</span>
+</code></pre></td></tr></table></div>
+</div>
+</div><h2 id="download"><a href="#download" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>download</h2>
+<p>完全就是根据 dotnet 的 API 来操作的，重点推荐 System.Net.Webclient 的 DownloadFileTaskAsync 方法，直接根据 url 开启异步下载任务，开启下载任务后将所有的 tasks 一起等待运行结束即可。
 这里有个需要注意的点是，API 内置的 WebClient 是不支持并行的,这意味着一个 Client 发请求后必须完成任务后才能用它进行下个任务，所以需要并行的时候建议多开几个 client。</p>
 <p>sample 如下</p>
-<figure class="highlight cs"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> tasks = <span class="keyword">new</span> List&lt;Task&gt;();</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> url <span class="keyword">in</span> urls)</span><br><span class="line">&#123;</span><br><span class="line">  tasks.Add(<span class="keyword">new</span> WebClient().DownloadFileTaskAsync(<span class="keyword">new</span> Uri(url), path));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">await</span> tasks.WhenAll(tasks);</span><br></pre></td></tr></table></div></figure>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-cs" data-lang="cs"><span class="kt">var</span> <span class="n">tasks</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Task</span><span class="p">&gt;();</span>
+<span class="k">for</span><span class="p">(</span><span class="kt">var</span> <span class="n">url</span> <span class="k">in</span> <span class="n">urls</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">tasks</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="k">new</span> <span class="n">WebClient</span><span class="p">().</span><span class="n">DownloadFileTaskAsync</span><span class="p">(</span><span class="k">new</span> <span class="n">Uri</span><span class="p">(</span><span class="n">url</span><span class="p">),</span> <span class="n">path</span><span class="p">));</span>
+<span class="p">}</span>
 
-        <h2 id="tricks">
-          <a href="#tricks" class="heading-link"><i class="fas fa-link"></i></a>tricks</h2>
-      
+<span class="k">await</span> <span class="n">tasks</span><span class="p">.</span><span class="n">WhenAll</span><span class="p">(</span><span class="n">tasks</span><span class="p">);</span>
+</code></pre></td></tr></table></div>
+</div>
+</div><h2 id="tricks"><a href="#tricks" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>tricks</h2>
 <ul>
-<li>需要下载或者访问的 urls 有时并不需要通过代码中发请求获取页面解析这样的方式来获取，很多时候直接在开发者工具里面用 XPath 来取出相应的 urls 更加简单快捷<figure class="highlight js"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$x(<span class="string">&quot;//a[@id=&#x27;target node&#x27;]&quot;</span>).map(<span class="function"><span class="params">x</span>=&gt;</span>x.href)</span><br></pre></td></tr></table></div></figure>
-</li>
+<li>需要下载或者访问的 urls 有时并不需要通过代码中发请求获取页面解析这样的方式来获取，很多时候直接在开发者工具里面用 XPath 来取出相应的 urls 更加简单快捷
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">$x</span><span class="p">(</span><span class="s2">&#34;//a[@id=&#39;target node&#39;]&#34;</span><span class="p">).</span><span class="nx">map</span><span class="p">(</span><span class="nx">x</span><span class="p">=&gt;</span><span class="nx">x</span><span class="p">.</span><span class="nx">href</span><span class="p">)</span>
+</code></pre></td></tr></table></div>
+</div>
+</div></li>
 <li>并不需要一次性就能把全部数据抓取下来，不妨合理分批分成多个任务来完成，这样 fail 一次也只需重新执行改部分，而不需要全部重来。</li>
 </ul>
-
-        <h2 id="performance">
-          <a href="#performance" class="heading-link"><i class="fas fa-link"></i></a>performance</h2>
-      
+<h2 id="performance"><a href="#performance" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>performance</h2>
 <p>性能只能说好得离谱，也可能是因为之前的 Python 爬虫给我留下太糟糕的印象作为 baseline 了。这主要得益于 dotnet 本就良好的性能，以及其支持得很好的异步编程设计，基本每个可能会阻塞的 API 都提供了 async 版本。</p>
 <ul>
 <li>下载了 90 posts，包括其中的文字和图片，每个 post 平均有两张图片，加起来用了一分钟左右。</li>
 <li>下载了差不多 60 个 pdf，用来不到 20s</li>
 </ul>
-</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="http://scottyeung.top">YeungYeah</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="http://scottyeung.top/2021/dotnet-god-of-web-crawler/">http://scottyeung.top/2021/dotnet-god-of-web-crawler/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://scottyeung.top/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/">自动化</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://scottyeung.top/tags/dotnet/">dotnet</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://scottyeung.top/tags/%E7%88%AC%E8%99%AB/">爬虫</a></span></div><div class="post-reward reward"><div class="reward-button">多谢你支持~</div><div class="reward-qrcode"><span class="reward-qrcode-alipay"><img class="reward-qrcode-alipay__img" src="/imgs/zfb.jpg"><div class="reward-qrcode-alipay__text">支付宝打赏</div></span><span class="reward-qrcode-wechat"><img class="reward-qrcode-wechat__img" src="/imgs/weixin.png"><div class="reward-qrcode-wechat__text">微信打赏</div></span></div></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2021/do-nothing/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">“什么都不做”</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2021/like-blinds-walking/"><span class="paginator-prev__text">如盲人走路</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div><div class="comments" id="comments"><div id="waline-container"></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#html-parsing"><span class="toc-text">
-          html parsing</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#download"><span class="toc-text">
-          download</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tricks"><span class="toc-text">
-          tricks</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#performance"><span class="toc-text">
-          performance</span></a></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/imgs/self.jpg" alt="avatar"></div><p class="sidebar-ov-author__text">生活尽管不开心 我们没有不可能</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="https://github.com/yeung66" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="mailto:yeungyeah@qq.com" target="_blank" rel="noopener" data-popover="E-mail" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fas fa-envelope"></i></span></a></div><div class="sidebar-ov-feed"><span class="sidebar-ov-feed-rss"><a class="sidebar-ov-feed-rss__link" href="/atom.xml" target="_blank" rel="noopener"><span class="sidebar-ov-feed-rss__icon"><i class="fas fa-rss"></i></span><span>RSS 订阅</span></a></span></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">65</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">14</div><div class="sidebar-ov-state-item__name">分类</div></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>YeungYeah</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>2018~2021</span><span class="footer__devider">|</span><span>Theme - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span></div><div></div><div><span><a href="http://beian.miit.gov.cn/" title="粤ICP备2021071541号" target="_blank" rel="noopener">粤ICP备2021071541号</a></span></div><div class="busuanzi"><span class="busuanzi-siteuv"><span class="busuanzi-siteuv__icon"><i class="fas fa-user"></i></span><span class="busuanzi-siteuv__info">访问人数</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_uv"></span></span><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">浏览总量</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@latest/pjax.min.js"></script><script>window.addEventListener('DOMContentLoaded', function () {
-  var pjax = new Pjax({"selectors":["head title","#main",".pjax-reload",".header-inner"],"history":true,"scrollTo":false,"scrollRestoration":false,"cacheBust":false,"debug":false,"currentUrlFullReload":false,"timeout":0});
-  // 加载进度条的计时器
-  var loadingTimer = null;
+            </div>
 
-  // 重置页面 Y 方向上的滚动偏移量
-  document.addEventListener('pjax:send', function () {
-    $('.header-nav-menu').removeClass('show');
-    if (CONFIG.pjax && CONFIG.pjax.avoidBanner) {
-      $('html').velocity('scroll', {
-        duration: 500,
-        offset: $('#header').height(),
-        easing: 'easeInOutCubic'
-      });
+            
+    
+    
+        <ul class="post-copyright">
+            <li class="copyright-item author"><span class="copyright-item-text">作者</span>：<a href="https://scottyeung.top/" class="p-author h-card" target="_blank" rel="noopener">YeungYeah</a></li>
+            
+                
+                
+                
+                
+                <li class="copyright-item link"><span class="copyright-item-text">链接</span>：<a href="/2021/dotnet-god-of-web-crawler/" target="_blank" rel="noopener">https://scottyeung.top/2021/dotnet-god-of-web-crawler/</a></li>
+            
+            <li class="copyright-item license"><span class="copyright-item-text">许可</span>：<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></li>
+            
+        </ul>
+    
+
+
+
+        </article>
+
+        
+
+        
+
+
+        
+
+
+        
+
+
+        
+    
+    
+        <div class="related-posts">
+            <h2 class="related-title">相关文章：<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon related-icon"><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm144 276c0 6.6-5.4 12-12 12h-92v92c0 6.6-5.4 12-12 12h-56c-6.6 0-12-5.4-12-12v-92h-92c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h92v-92c0-6.6 5.4-12 12-12h56c6.6 0 12 5.4 12 12v92h92c6.6 0 12 5.4 12 12v56z"/></svg></h2>
+            <ul class="related-list">
+                
+                    <li class="related-item">
+                        <a href="/2020/crawl-commic-again/" class="related-link">又一次的漫画爬取</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/2021/learn-and-use-shuangpin/" class="related-link">双拼使用后记</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/2020/%E8%AE%B0%E4%B8%80%E6%AC%A1%E6%BC%AB%E7%94%BB%E6%89%B9%E9%87%8F%E7%9A%84%E7%88%AC%E5%8F%96-%E4%B8%8B%E8%BD%BD/" class="related-link">记一次漫画批量的爬取/下载</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/2019/Summary-of-Automate-the-Boring-Stuff-with-Python/" class="related-link">Summary of Automate the Boring Stuff with Python</a>
+                    </li>
+                
+            </ul>
+        </div>
+    
+
+
+
+        
+    
+        <div class="post-tags">
+            
+                
+                
+                
+                
+                    
+                    <a href="/tags/dotnet/" rel="tag" class="post-tags-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon tag-icon"><path d="M0 252.118V48C0 21.49 21.49 0 48 0h204.118a48 48 0 0 1 33.941 14.059l211.882 211.882c18.745 18.745 18.745 49.137 0 67.882L293.823 497.941c-18.745 18.745-49.137 18.745-67.882 0L14.059 286.059A48 48 0 0 1 0 252.118zM112 64c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48z"/></svg>dotnet</a>
+                
+            
+                
+                
+                
+                
+                    
+                    <a href="/tags/%E7%88%AC%E8%99%AB/" rel="tag" class="post-tags-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon tag-icon"><path d="M0 252.118V48C0 21.49 21.49 0 48 0h204.118a48 48 0 0 1 33.941 14.059l211.882 211.882c18.745 18.745 18.745 49.137 0 67.882L293.823 497.941c-18.745 18.745-49.137 18.745-67.882 0L14.059 286.059A48 48 0 0 1 0 252.118zM112 64c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48z"/></svg>爬虫</a>
+                
+            
+                
+                
+                
+                
+                    
+                    <a href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/" rel="tag" class="post-tags-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon tag-icon"><path d="M0 252.118V48C0 21.49 21.49 0 48 0h204.118a48 48 0 0 1 33.941 14.059l211.882 211.882c18.745 18.745 18.745 49.137 0 67.882L293.823 497.941c-18.745 18.745-49.137 18.745-67.882 0L14.059 286.059A48 48 0 0 1 0 252.118zM112 64c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48z"/></svg>自动化</a>
+                
+            
+                
+                
+                
+                
+                    
+                    <a href="/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/" rel="tag" class="post-tags-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon tag-icon"><path d="M0 252.118V48C0 21.49 21.49 0 48 0h204.118a48 48 0 0 1 33.941 14.059l211.882 211.882c18.745 18.745 18.745 49.137 0 67.882L293.823 497.941c-18.745 18.745-49.137 18.745-67.882 0L14.059 286.059A48 48 0 0 1 0 252.118zM112 64c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48z"/></svg>生产力</a>
+                
+            
+        </div>
+    
+
+
+
+        
+
+
+        
+
+
+        
+    
+        
+        
+    
+    
+    
+    
+        <ul class="post-nav">
+            
+                <li class="post-nav-prev">
+                    <a href="/2021/do-nothing/" rel="prev">&lt; “什么都不做”</a>
+                </li>
+            
+            
+                <li class="post-nav-next">
+                    <a href="/2021/like-blinds-walking/" rel="next">如盲人走路 &gt;</a>
+                </li>
+            
+        </ul>
+    
+
+
+
+        
+    
+
+        
+
+        
+
+        
+
+        
+            <div id="wcomments"></div>
+            <script>
+    function loadComments() {
+        if (typeof Waline === 'undefined') {
+            var getScript = (options) => {
+                var script = document.createElement('script');
+                script.defer = true;
+                script.crossOrigin = 'anonymous';
+                Object.keys(options).forEach((key) => {
+                    script[key] = options[key];
+                });
+                document.body.appendChild(script);
+            };
+            getScript({
+                src: 'https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js',
+                onload: () => {
+                    newWaline();
+                }
+            });
+        } else {
+            newWaline();
+        }
     }
-
-    var loadingBarWidth = 20;
-    var MAX_LOADING_WIDTH = 95;
-
-    $('.loading-bar').addClass('loading');
-    $('.loading-bar__progress').css('width', loadingBarWidth + '%');
-    clearInterval(loadingTimer);
-    loadingTimer = setInterval(function () {
-      loadingBarWidth += 3;
-      if (loadingBarWidth > MAX_LOADING_WIDTH) {
-        loadingBarWidth = MAX_LOADING_WIDTH;
-      }
-      $('.loading-bar__progress').css('width', loadingBarWidth + '%');
-    }, 500);
-  }, false);
-
-  window.addEventListener('pjax:complete', function () {
-    clearInterval(loadingTimer);
-    $('.loading-bar__progress').css('width', '100%');
-    $('.loading-bar').removeClass('loading');
-    setTimeout(function () {
-      $('.loading-bar__progress').css('width', '0');
-    }, 400);
-    $('link[rel=prefetch], script[data-pjax-rm]').each(function () {
-      $(this).remove();
-    });
-    $('script[data-pjax], #pjax-reload script').each(function () {
-      $(this).parent().append($(this).remove());
-    });
-
-    if (Stun.utils.pjaxReloadBoot) {
-      Stun.utils.pjaxReloadBoot();
+    function newWaline() {
+        new Waline({
+            el: '#wcomments',
+            placeholder: '欢迎来留言~',
+            serverURL: 'https:\/\/waline-pi.vercel.app',
+            visitor:  true ,
+            avatar: 'wavatar',
+            meta: ["nick","mail","link"],
+            lang: 'zh-cn',
+            requiredMeta: [],
+            pageSize:  10 ,
+            avatarCDN: 'https:\/\/cn.gravatar.com\/avatar\/'
+        });
     }
-    if (Stun.utils.pjaxReloadScroll) {
-      Stun.utils.pjaxReloadScroll();
-    }
-    if (Stun.utils.pjaxReloadSidebar) {
-      Stun.utils.pjaxReloadSidebar();
-    }
-    if (true) {
-      if (Stun.utils.pjaxReloadHeader) {
-        Stun.utils.pjaxReloadHeader();
-      }
-      if (Stun.utils.pjaxReloadScrollIcon) {
-        Stun.utils.pjaxReloadScrollIcon();
-      }
-      if (Stun.utils.pjaxReloadLocalSearch) {
-        Stun.utils.pjaxReloadLocalSearch();
-      }
-    }
-  }, false);
-}, false);</script><div id="pjax-reload"><link href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" rel="stylesheet" type="text/css"><link href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/copy-tex.css" rel="stylesheet" type="text/css"><script src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script></div><script src="//unpkg.com/@waline/client@0.14.8/dist/Waline.min.js"></script><script data-pjax="">function loadWaline () {
-  var GUEST_INFO = ['nick', 'mail', 'link'];
-  var guest_info = 'nick,mail,link';
+</script>
 
-  guest_info = guest_info.split(',').filter(function(item) {
-    return GUEST_INFO.indexOf(item) > -1;
-  });
+        
 
-  new Waline({
-    el: '#waline-container',
-    serverURL: 'https://waline-pi.vercel.app',
-    placeholder: '欢迎留言~',
-    pageSize: '10' || 10,
-    lang: '' || 'zh-cn',
-    visitor: true,
-    avatar: 'mm',
-    path: window.location.pathname,
-    meta: guest_info
-  });
-}
+        
 
-if (true) {
-  loadWaline();
-} else {
-  window.addEventListener('DOMContentLoaded', loadWaline, false);
-}</script><script src="/js/utils.js?v=2.6.0"></script><script src="/js/stun-boot.js?v=2.6.0"></script><script src="/js/scroll.js?v=2.6.0"></script><script src="/js/header.js?v=2.6.0"></script><script src="/js/sidebar.js?v=2.6.0"></script><link rel="stylesheet" href="/player/APlayer.min.css">
-<div id="aplayer"></div>
-<script type="text/javascript" src="/player/APlayer.min.js"></script>
-<script type="text/javascript" src="/player/music.js"></script></body></html>
+        
+    
+
+
+
+    </div>
+</main>
+
+
+            
+    <div id="back-to-top" class="back-to-top">
+        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon arrow-up"><path d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"/></svg></a>
+    </div>
+
+
+            
+    <footer id="footer" class="footer">
+        <div class="footer-inner">
+            <div class="site-info">©&nbsp;2018–2021&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;YeungYeah</div><div class="powered-by">Powered by <a href="https://github.com/gohugoio/hugo" target="_blank" rel="noopener">Hugo</a> | Theme is <a href="https://github.com/reuixiy/hugo-theme-meme" target="_blank" rel="noopener">MemE</a></div>
+                <div class="busuanzi-site-uv-and-pv">
+                    <span id="busuanzi_container_site_uv">本站访客数&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon busuanzi-site-uv"><path d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z"/></svg>&nbsp;<span id="busuanzi_value_site_uv"></span></span>&nbsp;|&nbsp;<span id="busuanzi_container_site_pv">本站访问量&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="icon busuanzi-site-pv"><path d="M288 144a110.94 110.94 0 0 0-31.24 5 55.4 55.4 0 0 1 7.24 27 56 56 0 0 1-56 56 55.4 55.4 0 0 1-27-7.24A111.71 111.71 0 1 0 288 144zm284.52 97.4C518.29 135.59 410.93 64 288 64S57.68 135.64 3.48 241.41a32.35 32.35 0 0 0 0 29.19C57.71 376.41 165.07 448 288 448s230.32-71.64 284.52-177.41a32.35 32.35 0 0 0 0-29.19zM288 400c-98.65 0-189.09-55-237.93-144C98.91 167 189.34 112 288 112s189.09 55 237.93 144C477.1 345 386.66 400 288 400z"/></svg>&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+                </div>
+
+            
+    
+        <ul class="socials"><li class="socials-item">
+                    <a href="/atom.xml" target="_blank" rel="external noopener" title="RSS"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon social-icon"><path d="M19.199 24C19.199 13.467 10.533 4.8 0 4.8V0c13.165 0 24 10.835 24 24h-4.801zM3.291 17.415c1.814 0 3.293 1.479 3.293 3.295 0 1.813-1.485 3.29-3.301 3.29C1.47 24 0 22.526 0 20.71s1.475-3.294 3.291-3.295zM15.909 24h-4.665c0-6.169-5.075-11.245-11.244-11.245V8.09c8.727 0 15.909 7.184 15.909 15.91z"/></svg></a>
+                </li><li class="socials-item">
+                    <a href="mailto:yeungyeah@gmail.com" target="_blank" rel="external noopener" title="Email"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon social-icon"><path d="M464 64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm0 48v40.805c-22.422 18.259-58.168 46.651-134.587 106.49-16.841 13.247-50.201 45.072-73.413 44.701-23.208.375-56.579-31.459-73.413-44.701C106.18 199.465 70.425 171.067 48 152.805V112h416zM48 400V214.398c22.914 18.251 55.409 43.862 104.938 82.646 21.857 17.205 60.134 55.186 103.062 54.955 42.717.231 80.509-37.199 103.053-54.947 49.528-38.783 82.032-64.401 104.947-82.653V400H48z"/></svg></a>
+                </li><li class="socials-item">
+                    <a href="https://github.com/yeung66" target="_blank" rel="external noopener" title="GitHub"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon social-icon"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
+                </li></ul>
+    
+
+
+
+            
+        </div>
+    </footer>
+
+
+        </div>
+        
+
+        
+
+
+    <script>
+    if (typeof MathJax === 'undefined') {
+        window.MathJax = {
+            loader: {
+                load: ['[tex]/mhchem']
+            },
+            
+            tex: {
+                inlineMath: {'[+]': [['$', '$']]},
+                tags: 'ams',
+                packages: {'[+]': ['mhchem']}
+            }
+        };
+        (function() {
+            var script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+            script.defer = true;
+            document.head.appendChild(script);
+        })();
+    } else {
+        MathJax.texReset();
+        MathJax.typeset();
+    }
+</script>
+
+
+
+
+
+
+    
+
+        
+
+        
+
+        
+
+        
+
+    
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/medium-zoom@latest/dist/medium-zoom.min.js"></script>
+
+<script>
+    mediumZoom(document.querySelectorAll('div.post-body img'), {
+        background: 'hsla(var(--color-bg-h), var(--color-bg-s), var(--color-bg-l), 0.95)'
+    })
+</script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/instant.page@5.1.0/instantpage.min.js" type="module" defer></script>
+
+
+
+
+    
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+
+
+
+
+    </body>
+</html>

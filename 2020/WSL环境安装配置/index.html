@@ -1,116 +1,412 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/imsg/favicon-16x16.png?v=2.6.0" type="image/png" sizes="16x16"><link rel="icon" href="/imgs/favicon-32x32.png?v=2.6.0" type="image/png" sizes="32x32"><meta name="description" content="早在大三上系统级程序设计课程的时候，就通过老师的演示了解到 Windows 的新产品—— Windows Subsystem for Linux(WSL), 可以在 Windows 系统下运行 Linux 系统的程序或命令。不过当时我的旧电脑上装了 Ubuntu 的双系统，所以一直没有尝试。现在换了新电脑之后，一直没有装回 Linux 系统，一是怕麻烦不太想折腾，二是不太想划分硬盘空间。于是干脆就">
-<meta property="og:type" content="article">
-<meta property="og:title" content="WSL环境安装配置">
-<meta property="og:url" content="http://scottyeung.top/2020/WSL%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/index.html">
-<meta property="og:site_name" content="YeungYeah 的乱写地">
-<meta property="og:description" content="早在大三上系统级程序设计课程的时候，就通过老师的演示了解到 Windows 的新产品—— Windows Subsystem for Linux(WSL), 可以在 Windows 系统下运行 Linux 系统的程序或命令。不过当时我的旧电脑上装了 Ubuntu 的双系统，所以一直没有尝试。现在换了新电脑之后，一直没有装回 Linux 系统，一是怕麻烦不太想折腾，二是不太想划分硬盘空间。于是干脆就">
-<meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://scottyeung.top/2020/WSL%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/image-20200504120230327.png">
-<meta property="og:image" content="https://cloud.githubusercontent.com/assets/2618447/6316862/70f58fb6-ba03-11e4-82c9-c083bf9a6574.png">
-<meta property="og:image" content="http://scottyeung.top/2020/WSL%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/image-20200504173113601.png">
-<meta property="og:image" content="http://scottyeung.top/2020/WSL%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/image-20200504173241135.png">
-<meta property="article:published_time" content="2020-05-04T02:56:45.000Z">
-<meta property="article:modified_time" content="2020-12-04T12:45:45.093Z">
-<meta property="article:author" content="YeungYeah">
-<meta property="article:tag" content="notes">
-<meta property="article:tag" content="Ubuntu">
-<meta property="article:tag" content="Windows">
-<meta property="article:tag" content="shell">
-<meta property="article:tag" content="WSL">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://scottyeung.top/2020/WSL%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/image-20200504120230327.png"><title>WSL环境安装配置 | YeungYeah 的乱写地</title><link ref="canonical" href="http://scottyeung.top/2020/WSL%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/"><link rel="alternate" href="/atom.xml" type="application/atom+xml"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.6.0"><link rel="dns-prefetch" href="https://www.googletagmanager.com"><script src="https://www.googletagmanager.com/gtag/js?id=UA-151343043-1" async="" data-pjax=""></script><script data-pjax="">if (window.location.hostname !== 'localhost') {
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){ dataLayer.push(arguments); }
-  gtag('js', new Date());
-  gtag('config', 'UA-151343043-1');
-}</script><script>var Stun = window.Stun || {};
-var CONFIG = {
-  root: '/',
-  algolia: undefined,
-  assistSearch: undefined,
-  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
-  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
-  header: undefined,
-  postWidget: {"endText":true},
-  nightMode: {"enable":true},
-  back2top: {"enable":true},
-  codeblock: {"style":"carbon","highlight":"light","wordWrap":false},
-  reward: true,
-  fancybox: false,
-  zoomImage: {"gapAside":"20px"},
-  galleryWaterfall: undefined,
-  lazyload: false,
-  pjax: {"avoidBanner":true},
-  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
-  shortcuts: undefined,
-  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
-  sourcePath: {"js":"js","css":"css","images":"images"},
-};
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
+    <meta charset="UTF-8" />
 
-window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner header-inner--height header-inner--bgcolor"><nav class="header-nav header-nav--sticky"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/about/"><span class="header-nav-menu-item__icon"><i class="fas fa-user"></i></span><span class="header-nav-menu-item__text">关于</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="javascript:;" onclick="return false;"><span class="header-nav-menu-item__icon"><i class="fas fa-newspaper"></i></span><span class="header-nav-menu-item__text">文章</span></a><div class="header-nav-submenu"><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/archives/"><span class="header-nav-submenu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-submenu-item__text">归档</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/categories/"><span class="header-nav-submenu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-submenu-item__text">分类</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/tags/"><span class="header-nav-submenu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-submenu-item__text">标签</span></a></div></div></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="javascript:;" onclick="return false;"><span class="header-nav-menu-item__icon"><i class="fas fa-calendar-alt"></i></span><span class="header-nav-menu-item__text">动态</span></a><div class="header-nav-submenu"><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/moments/"><span class="header-nav-submenu-item__icon"><i class="fas fa-calendar-alt"></i></span><span class="header-nav-submenu-item__text">最新</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/moments/2020"><span class="header-nav-submenu-item__icon"><i class="fas fa-calendar-alt"></i></span><span class="header-nav-submenu-item__text">20年</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/moments/2019"><span class="header-nav-submenu-item__icon"><i class="fas fa-calendar-alt"></i></span><span class="header-nav-submenu-item__text">19年</span></a></div></div></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">WSL环境安装配置</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2020-05-04</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2020-12-04</span></span><span class="post-meta-item post-meta-item--visitors leancloud_visitors" id="/2020/WSL%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" data-flag-title="WSL环境安装配置"><span class="post-meta-item__icon"><i class="fas fa-eye"></i></span><span class="post-meta-item__info">阅读次数</span><span class="post-meta-item__value leancloud-visitors-count"></span></span></div></header><div class="post-body"><p>早在大三上系统级程序设计课程的时候，就通过老师的演示了解到 Windows 的新产品—— Windows Subsystem for Linux(WSL), 可以在 Windows 系统下运行 Linux 系统的程序或命令。不过当时我的旧电脑上装了 Ubuntu 的双系统，所以一直没有尝试。现在换了新电脑之后，一直没有装回 Linux 系统，一是怕麻烦不太想折腾，二是不太想划分硬盘空间。于是干脆就装一个 WSL 吧，尽管现在还没实际使用 Linux 系统的需要，不过就暂时当一个玩具吧。</p>
-<a id="more"></a>
+    <meta name="generator" content="Hugo 0.83.1" /><meta name="theme-color" content="#fff" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
+    
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
 
-        <h2 id="优点">
-          <a href="#优点" class="heading-link"><i class="fas fa-link"></i></a>优点</h2>
-      
+    <title>WSL环境安装配置 | YeungYeah 的乱写地</title>
+
+    <link rel="stylesheet" href="/css/meme.min.d69b4ce2494ac3934b78e435f4e39de396918b4dd74f2cff8954e76c1ba5e802.css"/>
+
+    
+    
+        <script src="/js/meme.min.f460a174bb100a60a7e275913695161f1e09aab1378fe99cfd30cde14da70888.js"></script>
+
+    
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" media="print" onload="this.media='all'" />
+        <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" /></noscript>
+
+    <meta name="author" content="YeungYeah" /><meta name="description" content="早在大三上系统级程序设计课程的时候，就通过老师的演示了解到 Windows 的新产品—— Windows Subsystem for Linux(WSL), 可以在 Windows 系统下运行 Linux 系统的程序或命令。不过当时我的旧电脑上装了 Ubuntu 的双系统，所以一直没有尝试。现在换了新电脑之后，一直没有装回 Linux 系统，一是怕麻烦不太想折腾，二是不太想划分硬盘空间。于是干脆就装一个 WSL 吧，尽管现在还没实际使用 Linux 系统的需要，不过就暂时当一个玩具吧。
+……" />
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#2a6df4" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="YeungYeah 的乱写地" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="YeungYeah 的乱写地" />
+    <meta name="msapplication-starturl" content="../../" />
+    <meta name="msapplication-TileColor" content="#fff" />
+    <meta name="msapplication-TileImage" content="../../icons/mstile-150x150.png" />
+    <link rel="manifest" href="/manifest.json" />
+
+    
+    
+
+    
+    <link rel="canonical" href="https://scottyeung.top/2020/WSL%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" />
+    
+
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "datePublished": "2020-05-04T10:56:45+00:00",
+        "dateModified": "2021-06-02T11:32:52+08:00",
+        "url": "https://scottyeung.top/2020/WSL%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/",
+        "headline": "WSL环境安装配置",
+        "description": "早在大三上系统级程序设计课程的时候，就通过老师的演示了解到 Windows 的新产品—— Windows Subsystem for Linux(WSL), 可以在 Windows 系统下运行 Linux 系统的程序或命令。不过当时我的旧电脑上装了 Ubuntu 的双系统，所以一直没有尝试。现在换了新电脑之后，一直没有装回 Linux 系统，一是怕麻烦不太想折腾，二是不太想划分硬盘空间。于是干脆就装一个 WSL 吧，尽管现在还没实际使用 Linux 系统的需要，不过就暂时当一个玩具吧。\n……",
+        "inLanguage" : "zh-CN",
+        "articleSection": "posts",
+        "wordCount":  4293 ,
+        "image": ["https://scottyeung.top/posts/image-20200504120230327.png","https://cloud.githubusercontent.com/assets/2618447/6316862/70f58fb6-ba03-11e4-82c9-c083bf9a6574.png","https://scottyeung.top/posts/image-20200504173113601.png","https://scottyeung.top/posts/image-20200504173241135.png"],
+        "author": {
+            "@type": "Person",
+            "description": "Viva La Vida",
+            "email": "yeungyeah@qq.com",
+            "image": "https://scottyeung.top/icons/apple-touch-icon.png",
+            "url": "https://scottyeung.top/",
+            "name": "YeungYeah"
+        },
+        "license": "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)",
+        "publisher": {
+            "@type": "Organization",
+            "name": "YeungYeah 的乱写地",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://scottyeung.top/images/favicon-32x32.png"
+            },
+            "url": "https://scottyeung.top/"
+        },
+        "mainEntityOfPage": {
+            "@type": "WebSite",
+            "@id": "https://scottyeung.top/"
+        }
+    }
+</script>
+
+    
+
+<meta name="twitter:card" content="summary_large_image" />
+
+
+
+    
+
+
+
+<meta property="og:title" content="WSL环境安装配置" />
+<meta property="og:description" content="早在大三上系统级程序设计课程的时候，就通过老师的演示了解到 Windows 的新产品—— Windows Subsystem for Linux(WSL), 可以在 Windows 系统下运行 Linux 系统的程序或命令。不过当时我的旧电脑上装了 Ubuntu 的双系统，所以一直没有尝试。现在换了新电脑之后，一直没有装回 Linux 系统，一是怕麻烦不太想折腾，二是不太想划分硬盘空间。于是干脆就装一个 WSL 吧，尽管现在还没实际使用 Linux 系统的需要，不过就暂时当一个玩具吧。
+……" />
+<meta property="og:url" content="https://scottyeung.top/2020/WSL%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" />
+<meta property="og:site_name" content="YeungYeah 的乱写地" />
+<meta property="og:locale" content="zh" /><meta property="og:image" content="https://scottyeung.top/posts/image-20200504120230327.png" />
+<meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2020-05-04T10:56:45&#43;00:00" />
+    <meta property="article:modified_time" content="2021-06-02T11:32:52&#43;08:00" />
+    
+    <meta property="article:section" content="posts" />
+
+
+        <link rel="preconnect" href="https://www.google-analytics.com" crossorigin />
+
+        
+
+
+
+
+    
+    <script>
+        window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+        ga('create', 'UA-151343043-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+    
+
+
+    
+    
+
+    
+</head>
+
+    <body>
+        <div class="container">
+            
+    <header class="header">
+        
+            <div class="header-wrapper">
+                <div class="header-inner single">
+                    
+    <div class="site-brand">
+        
+            <a href="/" class="brand">YeungYeah 的乱写地</a>
+        
+    </div>
+
+                    <nav class="nav">
+    <ul class="menu" id="menu">
+        
+            
+        
+        
+        
+        
+            
+                <li class="menu-item"><a href="/posts/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon archive"><path d="M32 448c0 17.7 14.3 32 32 32h384c17.7 0 32-14.3 32-32V160H32v288zm160-212c0-6.6 5.4-12 12-12h104c6.6 0 12 5.4 12 12v8c0 6.6-5.4 12-12 12H204c-6.6 0-12-5.4-12-12v-8zM480 32H32C14.3 32 0 46.3 0 64v48c0 8.8 7.2 16 16 16h480c8.8 0 16-7.2 16-16V64c0-17.7-14.3-32-32-32z"/></svg><span class="menu-item-name">文章</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/moments/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon archive"><path d="M32 448c0 17.7 14.3 32 32 32h384c17.7 0 32-14.3 32-32V160H32v288zm160-212c0-6.6 5.4-12 12-12h104c6.6 0 12 5.4 12 12v8c0 6.6-5.4 12-12 12H204c-6.6 0-12-5.4-12-12v-8zM480 32H32C14.3 32 0 46.3 0 64v48c0 8.8 7.2 16 16 16h480c8.8 0 16-7.2 16-16V64c0-17.7-14.3-32-32-32z"/></svg><span class="menu-item-name">动态</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/tags/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" class="icon tags"><path d="M497.941 225.941L286.059 14.059A48 48 0 0 0 252.118 0H48C21.49 0 0 21.49 0 48v204.118a48 48 0 0 0 14.059 33.941l211.882 211.882c18.744 18.745 49.136 18.746 67.882 0l204.118-204.118c18.745-18.745 18.745-49.137 0-67.882zM112 160c-26.51 0-48-21.49-48-48s21.49-48 48-48 48 21.49 48 48-21.49 48-48 48zm513.941 133.823L421.823 497.941c-18.745 18.745-49.137 18.745-67.882 0l-.36-.36L527.64 323.522c16.999-16.999 26.36-39.6 26.36-63.64s-9.362-46.641-26.36-63.64L331.397 0h48.721a48 48 0 0 1 33.941 14.059l211.882 211.882c18.745 18.745 18.745 49.137 0 67.882z"/></svg><span class="menu-item-name">标签</span></a>
+                </li>
+            
+        
+            
+                <li class="menu-item"><a href="/about/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" class="icon user-circle"><path d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm0 96c48.6 0 88 39.4 88 88s-39.4 88-88 88-88-39.4-88-88 39.4-88 88-88zm0 344c-58.7 0-111.3-26.6-146.5-68.2 18.8-35.4 55.6-59.8 98.5-59.8 2.4 0 4.8.4 7.1 1.1 13 4.2 26.6 6.9 40.9 6.9 14.3 0 28-2.7 40.9-6.9 2.3-.7 4.7-1.1 7.1-1.1 42.9 0 79.7 24.4 98.5 59.8C359.3 421.4 306.7 448 248 448z"/></svg><span class="menu-item-name">关于</span></a>
+                </li>
+            
+        
+            
+                
+                    
+                    
+                        <li class="menu-item">
+                            <a id="theme-switcher" href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon theme-icon-light"><path d="M193.2 104.5l48.8-97.5a18 18 0 0128 0l48.8 97.5 103.4 -34.5a18 18 0 0119.8 19.8l-34.5 103.4l97.5 48.8a18 18 0 010 28l-97.5 48.8 34.5 103.4a18 18 0 01-19.8 19.8l-103.4-34.5-48.8 97.5a18 18 0 01-28 0l-48.8-97.5l-103.4 34.5a18 18 0 01-19.8-19.8l34.5-103.4-97.5-48.8a18 18 0 010-28l97.5-48.8-34.5-103.4a18 18 0 0119.8-19.8zM256 128a128 128 0 10.01 0M256 160a96 96 0 10.01 0"/></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon theme-icon-dark"><path d="M27 412a256 256 0 10154-407a11.5 11.5 0 00-5 20a201.5 201.5 0 01-134 374a11.5 11.5 0 00-15 13"/></svg></a>
+                        </li>
+                    
+                
+            
+        
+            
+                
+            
+        
+    </ul>
+</nav>
+
+                    
+                </div>
+            </div>
+            
+    <input type="checkbox" id="nav-toggle" aria-hidden="true" />
+    <label for="nav-toggle" class="nav-toggle"></label>
+    <label for="nav-toggle" class="nav-curtain"></label>
+
+
+        
+    </header>
+
+
+
+
+            
+            
+    <main class="main single" id="main">
+    <div class="main-inner">
+
+        
+
+        <article class="content post h-entry" data-align="justify" data-type="posts">
+
+            <h1 class="post-title p-name">WSL环境安装配置</h1>
+
+            
+
+            
+                
+            
+
+            
+                
+
+<div class="post-meta">
+    
+        
+        <time datetime="2020-05-04T10:56:45&#43;00:00" class="post-meta-item published dt-published"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon post-meta-icon"><path d="M148 288h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm108-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 96v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm192 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96-260v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h48V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h128V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h48c26.5 0 48 21.5 48 48zm-48 346V160H48v298c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"/></svg>&nbsp;2020.5.4</time>
+    
+    
+        
+        <time datetime="2021-06-02T11:32:52&#43;08:00" class="post-meta-item modified dt-updated"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon post-meta-icon"><path d="M400 64h-48V12c0-6.627-5.373-12-12-12h-40c-6.627 0-12 5.373-12 12v52H160V12c0-6.627-5.373-12-12-12h-40c-6.627 0-12 5.373-12 12v52H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm-6 400H54a6 6 0 0 1-6-6V160h352v298a6 6 0 0 1-6 6zm-52.849-200.65L198.842 404.519c-4.705 4.667-12.303 4.637-16.971-.068l-75.091-75.699c-4.667-4.705-4.637-12.303.068-16.971l22.719-22.536c4.705-4.667 12.303-4.637 16.97.069l44.104 44.461 111.072-110.181c4.705-4.667 12.303-4.637 16.971.068l22.536 22.718c4.667 4.705 4.636 12.303-.069 16.97z"/></svg>&nbsp;2021.6.2</time>
+    
+    
+    
+        
+        
+            
+            
+                
+                
+                
+                
+                    
+                    
+                    
+                        
+                            
+                            
+                        
+                    
+                
+            
+            
+            
+                <span class="post-meta-item category"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon post-meta-icon"><path d="M464 128H272l-54.63-54.63c-6-6-14.14-9.37-22.63-9.37H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V176c0-26.51-21.49-48-48-48zm0 272H48V112h140.12l54.63 54.63c6 6 14.14 9.37 22.63 9.37H464v224z"/></svg>&nbsp;<a href="/posts/" class="category-link p-category">Posts</a></span>
+            
+        
+        
+    
+    
+    
+    
+        
+            
+            <span class="post-meta-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="icon post-meta-icon"><path d="M288 144a110.94 110.94 0 0 0-31.24 5 55.4 55.4 0 0 1 7.24 27 56 56 0 0 1-56 56 55.4 55.4 0 0 1-27-7.24A111.71 111.71 0 1 0 288 144zm284.52 97.4C518.29 135.59 410.93 64 288 64S57.68 135.64 3.48 241.41a32.35 32.35 0 0 0 0 29.19C57.71 376.41 165.07 448 288 448s230.32-71.64 284.52-177.41a32.35 32.35 0 0 0 0-29.19zM288 400c-98.65 0-189.09-55-237.93-144C98.91 167 189.34 112 288 112s189.09 55 237.93 144C477.1 345 386.66 400 288 400z"/></svg>&nbsp;<span id="/2020/WSL%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" class="waline-visitor-count" /></span>
+        
+    
+    
+</div>
+
+            
+
+            <div class="post-body e-content">
+                <p>早在大三上系统级程序设计课程的时候，就通过老师的演示了解到 Windows 的新产品—— Windows Subsystem for Linux(WSL), 可以在 Windows 系统下运行 Linux 系统的程序或命令。不过当时我的旧电脑上装了 Ubuntu 的双系统，所以一直没有尝试。现在换了新电脑之后，一直没有装回 Linux 系统，一是怕麻烦不太想折腾，二是不太想划分硬盘空间。于是干脆就装一个 WSL 吧，尽管现在还没实际使用 Linux 系统的需要，不过就暂时当一个玩具吧。</p>
+<h2 id="优点"><a href="#优点" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>优点</h2>
 <p>WSL 还是挺爽的，还没用就感觉优点满满：</p>
 <ol>
 <li>安装简单。简直是傻瓜式的操作，就在系统设置中开启一下，在商店中搜索下载即可，跟在应用商店下个 app 差别不大，而且 Windows Store 的下载速度惊人，非常快就能装好。另外，也不需要考虑任何的驱动兼容问题，少了很多奇奇怪怪的问题。</li>
 <li>空间友好。我下的 Ubuntu 系统才 200+MB, 相比于普通的带 GUI 的 Linux 操作系统，可谓是不占空间一样。另外最关键的一点是，WSL 系统的所有文件都是放在系统盘中，不需要自己另行划分磁盘空间来放置系统。这个点我觉得太赞了，之前装 Linux 双系统最为麻烦的一点就是要专门划分空间，从原有的磁盘中分出空闲空间来专门服务于 Linux 系统，怎么分，分多少，都需要一番思考和设置。分得多吧又感觉浪费，分得少又会不够，到时加空间比较麻烦。</li>
-<li>协同方便。因为 WSL 系统在 Windows 当中，两系统当中的文件都能够轻易地传输使用。之前的话，Linux确实可以通过挂载的方式访问 Windows 的文件，但反过来却不行，而且操作还有<a href="http://scottyeung.top/2018/Linux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E4%B8%AD%E6%93%8D%E4%BD%9C%E6%96%87%E4%BB%B6%E5%AF%BC%E8%87%B4NTFS%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E4%B8%AD%E6%96%87%E4%BB%B6%E4%B8%A2%E5%A4%B1/">风险</a>。当时有访问跨系统文件的需要时，还需要专门重启一下切换系统，又或者通过网页微信传输文件到手机作为中转。</li>
+<li>协同方便。因为 WSL 系统在 Windows 当中，两系统当中的文件都能够轻易地传输使用。之前的话，Linux确实可以通过挂载的方式访问 Windows 的文件，但反过来却不行，而且操作还有<a href="http://scottyeung.top/2018/Linux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E4%B8%AD%E6%93%8D%E4%BD%9C%E6%96%87%E4%BB%B6%E5%AF%BC%E8%87%B4NTFS%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E4%B8%AD%E6%96%87%E4%BB%B6%E4%B8%A2%E5%A4%B1/" target="_blank" rel="noopener">风险</a>。当时有访问跨系统文件的需要时，还需要专门重启一下切换系统，又或者通过网页微信传输文件到手机作为中转。</li>
 </ol>
-
-        <h2 id="安装">
-          <a href="#安装" class="heading-link"><i class="fas fa-link"></i></a>安装</h2>
-      
+<h2 id="安装"><a href="#安装" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>安装</h2>
 <p>安装还是挺简单的，只要本机的 Windows 版本支持 WSL功能即可。</p>
 <ol>
 <li>
-<p>打开“启用或关闭 Windows 功能”，开启适用于 Linux 的 WIndows 子系统。这个可以通过在开始菜单搜索启用（qiyong）的拼音就出现了。<img src="/2020/WSL%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/image-20200504120230327.png" alt="image-20200504120230327"></p>
+<p>打开“启用或关闭 Windows 功能”，开启适用于 Linux 的 WIndows 子系统。这个可以通过在开始菜单搜索启用（qiyong）的拼音就出现了。<img src="/posts/image-20200504120230327.png" alt="image-20200504120230327"></p>
 </li>
 <li>
 <p>打开 Microsoft Store，搜索 WSL 则可以看到支持的所有 Linux 版本。选择其中一个，获取安装即可。安装后可以在开始菜单找到并打开，会自动开启该系统下的 bash 命令行界面。</p>
 </li>
 </ol>
-
-        <h2 id="配置">
-          <a href="#配置" class="heading-link"><i class="fas fa-link"></i></a>配置</h2>
-      
+<h2 id="配置"><a href="#配置" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>配置</h2>
 <p>一个完美的开发运行系统，最关键的还是各种的软件或系统的配置，参考了网上的各种各样的文章，主要有下面的方面需要配置。我使用的是 Ubuntu 系统，不同的系统可能配置的具体方式会有出入。</p>
-
-        <h3 id="软件源更新">
-          <a href="#软件源更新" class="heading-link"><i class="fas fa-link"></i></a>软件源更新</h3>
-      
+<h3 id="软件源更新"><a href="#软件源更新" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>软件源更新</h3>
 <p>Ubuntu 软件安装/更新源均在国外，下载速度感人，所以可以将所有软件源更换为国内的镜像。这里选择的是阿里云的源。首先将原来的源文件备份，然后更改源文件，将内容换成阿里云的源链接。</p>
-<figure class="highlight bash"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo cp /etc/apt/sources.list  /etc/apt/sources.list.bak</span><br><span class="line">sudo vim /etc/apt/sources.list</span><br></pre></td></tr></table></div></figure>
-<p>通过 vim 修改源文件，将文件内容更改为下面内容</p>
-<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">deb http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic main restricted universe multiverse </span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic-security main restricted universe multiverse </span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic-updates main restricted universe multiverse </span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic-proposed main restricted universe multiverse </span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic-backports main restricted universe multiverse </span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic main restricted universe multiverse </span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic-security main restricted universe multiverse </span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic-updates main restricted universe multiverse </span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic-proposed main restricted universe multiverse </span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic-backports main restricted universe multiverse</span><br></pre></td></tr></table></div></figure>
-<p>保存后更新</p>
-<figure class="highlight bash"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt upgrade</span><br></pre></td></tr></table></div></figure>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo cp /etc/apt/sources.list  /etc/apt/sources.list.bak
+sudo vim /etc/apt/sources.list
+</code></pre></td></tr></table></div>
+</div>
+</div><p>通过 vim 修改源文件，将文件内容更改为下面内容</p>
+<pre><code>deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse 
+deb http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse 
+deb http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse 
+deb http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse 
+deb http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse 
+deb-src http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse 
+deb-src http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse 
+deb-src http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse 
+deb-src http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse 
+deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse
+</code></pre><p>保存后更新</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt update
+sudo apt upgrade
+</code></pre></td></tr></table></div>
+</div>
+</div><h3 id="nodejs"><a href="#nodejs" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>Nodejs</h3>
+<p>安装方法可以参考<a href="https://www.runoob.com/nodejs/nodejs-install-setup.html" target="_blank" rel="noopener">这里</a>。Linux 上面有三个方法，一是直接下载编译后的包来使用，下载后建立链接；二是通过下载源代码来编译构建；三则是使用 apt-get 命令直接安装。我当然是选择了最简单的 apt-get 命令安装大法。两行命令搞定。</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt-get install nodejs
+sudo apt-get install npm
+</code></pre></td></tr></table></div>
+</div>
+</div><p>安装后可以通过查看版本号测试是否成功</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ node -v
+v0.10.25
 
-        <h3 id="nodejs">
-          <a href="#nodejs" class="heading-link"><i class="fas fa-link"></i></a>Nodejs</h3>
-      
-<p>安装方法可以参考<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://www.runoob.com/nodejs/nodejs-install-setup.html">这里</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>。Linux 上面有三个方法，一是直接下载编译后的包来使用，下载后建立链接；二是通过下载源代码来编译构建；三则是使用 apt-get 命令直接安装。我当然是选择了最简单的 apt-get 命令安装大法。两行命令搞定。</p>
-<figure class="highlight bash"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install nodejs</span><br><span class="line">sudo apt-get install npm</span><br></pre></td></tr></table></div></figure>
-<p>安装后可以通过查看版本号测试是否成功</p>
-<figure class="highlight bash"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ node -v</span><br><span class="line">v0.10.25</span><br><span class="line"></span><br><span class="line">$ npm -v</span><br></pre></td></tr></table></div></figure>
-<p>我的 node 的确成功安装并测试，但是 npm 却没有，输入命令时提示如下，似乎是命令调用错误，通过 which 命令查看时发现调用的是在 Windows 系统的 npm，着实奇怪。</p>
-<figure class="highlight bash"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ npm -v</span><br><span class="line">: not foundjs//npm: 3: /mnt/d/nodejs//npm:</span><br><span class="line">: not foundjs//npm: 5: /mnt/d/nodejs//npm:</span><br><span class="line">/mnt/d/nodejs//npm: 6: /mnt/d/nodejs//npm: Syntax error: word unexpected (expecting <span class="string">&quot;in&quot;</span>)</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">which</span> npm</span><br><span class="line">/mnt/d/nodejs//npm</span><br></pre></td></tr></table></div></figure>
-<p>网上搜索了一下也很多人有类似的问题，GitHub 上面也很多人提了 issue，尝试无果，最终选择换了个方式重新安装，随后解决。</p>
+$ npm -v
+</code></pre></td></tr></table></div>
+</div>
+</div><p>我的 node 的确成功安装并测试，但是 npm 却没有，输入命令时提示如下，似乎是命令调用错误，通过 which 命令查看时发现调用的是在 Windows 系统的 npm，着实奇怪。</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ npm -v
+: not foundjs//npm: 3: /mnt/d/nodejs//npm:
+: not foundjs//npm: 5: /mnt/d/nodejs//npm:
+/mnt/d/nodejs//npm: 6: /mnt/d/nodejs//npm: Syntax error: word unexpected <span class="o">(</span>expecting <span class="s2">&#34;in&#34;</span><span class="o">)</span>
+
+$ which npm
+/mnt/d/nodejs//npm
+</code></pre></td></tr></table></div>
+</div>
+</div><p>网上搜索了一下也很多人有类似的问题，GitHub 上面也很多人提了 issue，尝试无果，最终选择换了个方式重新安装，随后解决。</p>
 <ul>
 <li>
-<p><span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://github.com/microsoft/WSL/issues/1512#issuecomment-303517504">GitHub issue</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span> ：这里提到的方法主要是修改环境变量的顺序，确保先查找 WSL 安装的 npm 先被搜索到，尝试了一下没有用，which 命令测试也没有变化。</p>
+<p><a href="https://github.com/microsoft/WSL/issues/1512#issuecomment-303517504" target="_blank" rel="noopener">GitHub issue</a> ：这里提到的方法主要是修改环境变量的顺序，确保先查找 WSL 安装的 npm 先被搜索到，尝试了一下没有用，which 命令测试也没有变化。</p>
 </li>
 <li>
-<p>StackOverflow 上的<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://stackoverflow.com/questions/45853530/npm-install-error-not-foundram-files-nodejs-npm-3-mnt-c-program-files-nodejs">重装大法</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span> ：将旧的移除后，用新建源的方法重新使用 apt-get 来安装。重新安装后测试成功</p>
-<figure class="highlight bash"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get --purge remove nodejs</span><br><span class="line"></span><br><span class="line">curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -</span><br><span class="line">sudo apt-get install -y nodejs</span><br><span class="line">sudo apt-get install -y build-essential</span><br></pre></td></tr></table></div></figure>
-</li>
-</ul>
+<p>StackOverflow 上的<a href="https://stackoverflow.com/questions/45853530/npm-install-error-not-foundram-files-nodejs-npm-3-mnt-c-program-files-nodejs" target="_blank" rel="noopener">重装大法</a> ：将旧的移除后，用新建源的方法重新使用 apt-get 来安装。重新安装后测试成功</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo apt-get --purge remove nodejs
 
-        <h3 id="zsh-and-oh-my-zsh">
-          <a href="#zsh-and-oh-my-zsh" class="heading-link"><i class="fas fa-link"></i></a>zsh and oh-my-zsh</h3>
-      
+curl -sL https://deb.nodesource.com/setup_10.x <span class="p">|</span> sudo -E bash -
+sudo apt-get install -y nodejs
+sudo apt-get install -y build-essential
+</code></pre></td></tr></table></div>
+</div>
+</div></li>
+</ul>
+<h3 id="zsh-and-oh-my-zsh"><a href="#zsh-and-oh-my-zsh" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>zsh and oh-my-zsh</h3>
 <p>之前各种的 Linux 系统，无论是服务器还是桌面系统，都是使用自带的 bash，但是大家都说别的 shell 终端更好，于是就干脆试试大家都在推荐的 zsh。</p>
 <ol>
 <li>可以通过命令<code>cat /etc/shells</code>查看本机是否有 zsh，有的话可以直接跳到 3</li>
@@ -119,19 +415,102 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></he
 <li>初次进入 zsh 会提示你需要进行配置文件的创建与配置，我们这里使用 oh-my-zsh 来提供配置</li>
 </ol>
 <p>获取 oh-my-zsh 的方法则比较简单，通过 curl 或者 wget 的方式获取 shell 脚本后执行即可。</p>
-<figure class="highlight bash"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sh -c <span class="string">&quot;<span class="subst">$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)</span>&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># or</span></span><br><span class="line"></span><br><span class="line">sh -c <span class="string">&quot;<span class="subst">$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)</span>&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
-<p>但这里我怎么也搞不下来，两种方式都不能建立链接，获取不到这个脚本，自然无法进行后续的安装处理。原因似乎是国内的网络环境因为你懂的原因无法访问这个网址 ，估计走代理的话应该可以解决。所以我采用的方法是在 WIndows 系统下好这个 shell 脚本，然后在 WSL 里面运行，问题解决。之后就可以通过在配置文件 <code>~/.zshrc</code>里面设置主题里，可选的主题及效果可以<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://github.com/ohmyzsh/ohmyzsh/wiki/Themes">点此选择</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>。</p>
-<p>我选的是 ys，这里要吐槽一句，不知道为什么网上看到的预览图片，跟我实际使用的效果相差太大了，有些甚至对使用造成了影响，例如主题 agnoster ，显示的实际颜色与下面的样例图出入太大了，在 WSL 里面打开就是目录显示的是深蓝色，深到看不清楚里面的字那种，尽管我挺喜欢这种风格的，但因为影响到实际使用了，只能放弃。</p>
-<p>官方网站以及大多数经验分享文章中的 agnoster 主题效果 <img src="https://cloud.githubusercontent.com/assets/2618447/6316862/70f58fb6-ba03-11e4-82c9-c083bf9a6574.png" alt></p>
-<p>这是我用主题 agnoster 的效果图。<img src="/2020/WSL%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/image-20200504173113601.png" alt="image-20200504173113601"></p>
-<p>这是我最终选择的主题 ys 的效果<img src="/2020/WSL%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/image-20200504173241135.png" alt="image-20200504173241135"></p>
-<hr>
-<p>发现了为啥我的颜色跟网上看到的不一致，原来是需要设置额外的配色，将某些颜色映射为其它色号。我用的是 Windows Terminal，设置配色比较简单，只要在配置文件的 <code>schemes</code> 属性中添加配色主题，再在想要设置配色的终端设置 <code>color-scheme</code> 即可。配色主题可以到这个 <span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://github.com/mbadolato/iTerm2-Color-Schemes#windows-terminal-color-schemes">GitHub repo</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span> 上面挑选。</p>
-<figure class="highlight json"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   <span class="comment">// powershell 的设置项</span></span><br><span class="line">   <span class="attr">&quot;guid&quot;</span>: <span class="string">&quot;&#123;61c54bbd-c2c6-5271-96e7-009a87ff44bf&#125;&quot;</span>,</span><br><span class="line">   <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;Windows PowerShell&quot;</span>,</span><br><span class="line">   <span class="attr">&quot;commandline&quot;</span>: <span class="string">&quot;powershell.exe&quot;</span>,</span><br><span class="line">   <span class="attr">&quot;fontFace&quot;</span>:  <span class="string">&quot;Cascadia Code PL&quot;</span>,</span><br><span class="line">   <span class="attr">&quot;colorScheme&quot;</span>: <span class="string">&quot;OneHalfDark&quot;</span>, <span class="comment">//选择的配色名称</span></span><br><span class="line">   <span class="attr">&quot;hidden&quot;</span>: <span class="literal">false</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">&#123;  <span class="comment">//使用的配色主题, 有些颜色觉得不太行就注释掉，也可以自行修改</span></span><br><span class="line">   <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;OneHalfDark&quot;</span>,</span><br><span class="line">   <span class="comment">// &quot;black&quot;: &quot;#282c34&quot;,</span></span><br><span class="line">   <span class="attr">&quot;red&quot;</span>: <span class="string">&quot;#e06c75&quot;</span>,</span><br><span class="line">   <span class="attr">&quot;green&quot;</span>: <span class="string">&quot;#98c379&quot;</span>,</span><br><span class="line">   <span class="attr">&quot;yellow&quot;</span>: <span class="string">&quot;#e5c07b&quot;</span>,</span><br><span class="line">   <span class="attr">&quot;blue&quot;</span>: <span class="string">&quot;#61afef&quot;</span>,</span><br><span class="line">   <span class="attr">&quot;purple&quot;</span>: <span class="string">&quot;#c678dd&quot;</span>,</span><br><span class="line">   <span class="attr">&quot;cyan&quot;</span>: <span class="string">&quot;#56b6c2&quot;</span>,</span><br><span class="line">   <span class="attr">&quot;white&quot;</span>: <span class="string">&quot;#dcdfe4&quot;</span>,</span><br><span class="line">   <span class="comment">// &quot;brightBlack&quot;: &quot;#282c34&quot;,</span></span><br><span class="line">   <span class="attr">&quot;brightRed&quot;</span>: <span class="string">&quot;#e06c75&quot;</span>,</span><br><span class="line">   <span class="attr">&quot;brightGreen&quot;</span>: <span class="string">&quot;#98c379&quot;</span>,</span><br><span class="line">   <span class="attr">&quot;brightYellow&quot;</span>: <span class="string">&quot;#e5c07b&quot;</span>,</span><br><span class="line">   <span class="attr">&quot;brightBlue&quot;</span>: <span class="string">&quot;#61afef&quot;</span>,</span><br><span class="line">   <span class="attr">&quot;brightPurple&quot;</span>: <span class="string">&quot;#c678dd&quot;</span>,</span><br><span class="line">   <span class="attr">&quot;brightCyan&quot;</span>: <span class="string">&quot;#56b6c2&quot;</span>,</span><br><span class="line">   <span class="attr">&quot;brightWhite&quot;</span>: <span class="string">&quot;#dcdfe4&quot;</span>,</span><br><span class="line">   <span class="attr">&quot;background&quot;</span>: <span class="string">&quot;#282c34&quot;</span>,</span><br><span class="line">   <span class="attr">&quot;foreground&quot;</span>: <span class="string">&quot;#dcdfe4&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sh -c <span class="s2">&#34;</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh<span class="k">)</span><span class="s2">&#34;</span>
 
-        <h4 id="oh-my-zsh插件">
-          <a href="#oh-my-zsh插件" class="heading-link"><i class="fas fa-link"></i></a>oh-my-zsh插件</h4>
-      
+<span class="c1"># or</span>
+
+sh -c <span class="s2">&#34;</span><span class="k">$(</span>wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh<span class="k">)</span><span class="s2">&#34;</span>
+
+</code></pre></td></tr></table></div>
+</div>
+</div><p>但这里我怎么也搞不下来，两种方式都不能建立链接，获取不到这个脚本，自然无法进行后续的安装处理。原因似乎是国内的网络环境因为你懂的原因无法访问这个网址 ，估计走代理的话应该可以解决。所以我采用的方法是在 WIndows 系统下好这个 shell 脚本，然后在 WSL 里面运行，问题解决。之后就可以通过在配置文件 <code>~/.zshrc</code>里面设置主题里，可选的主题及效果可以<a href="https://github.com/ohmyzsh/ohmyzsh/wiki/Themes" target="_blank" rel="noopener">点此选择</a>。</p>
+<p>我选的是 ys，这里要吐槽一句，不知道为什么网上看到的预览图片，跟我实际使用的效果相差太大了，有些甚至对使用造成了影响，例如主题 agnoster ，显示的实际颜色与下面的样例图出入太大了，在 WSL 里面打开就是目录显示的是深蓝色，深到看不清楚里面的字那种，尽管我挺喜欢这种风格的，但因为影响到实际使用了，只能放弃。</p>
+<p>官方网站以及大多数经验分享文章中的 agnoster 主题效果 <img src="https://cloud.githubusercontent.com/assets/2618447/6316862/70f58fb6-ba03-11e4-82c9-c083bf9a6574.png" alt=""></p>
+<p>这是我用主题 agnoster 的效果图。<img src="/posts/image-20200504173113601.png" alt="image-20200504173113601"></p>
+<p>这是我最终选择的主题 ys 的效果<img src="/posts/image-20200504173241135.png" alt="image-20200504173241135"></p>
+<hr>
+<p>发现了为啥我的颜色跟网上看到的不一致，原来是需要设置额外的配色，将某些颜色映射为其它色号。我用的是 Windows Terminal，设置配色比较简单，只要在配置文件的 <code>schemes</code> 属性中添加配色主题，再在想要设置配色的终端设置 <code>color-scheme</code> 即可。配色主题可以到这个 <a href="https://github.com/mbadolato/iTerm2-Color-Schemes#windows-terminal-color-schemes" target="_blank" rel="noopener">GitHub repo</a> 上面挑选。</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+   <span class="err">//</span> <span class="err">powershell</span> <span class="err">的设置项</span>
+   <span class="nt">&#34;guid&#34;</span><span class="p">:</span> <span class="s2">&#34;{61c54bbd-c2c6-5271-96e7-009a87ff44bf}&#34;</span><span class="p">,</span>
+   <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Windows PowerShell&#34;</span><span class="p">,</span>
+   <span class="nt">&#34;commandline&#34;</span><span class="p">:</span> <span class="s2">&#34;powershell.exe&#34;</span><span class="p">,</span>
+   <span class="nt">&#34;fontFace&#34;</span><span class="p">:</span>  <span class="s2">&#34;Cascadia Code PL&#34;</span><span class="p">,</span>
+   <span class="nt">&#34;colorScheme&#34;</span><span class="p">:</span> <span class="s2">&#34;OneHalfDark&#34;</span><span class="p">,</span> <span class="err">//选择的配色名称</span>
+   <span class="nt">&#34;hidden&#34;</span><span class="p">:</span> <span class="kc">false</span>
+<span class="p">}</span>
+
+<span class="err">//</span> <span class="err">...</span>
+<span class="p">{</span>  <span class="err">//使用的配色主题,</span> <span class="err">有些颜色觉得不太行就注释掉，也可以自行修改</span>
+   <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;OneHalfDark&#34;</span><span class="p">,</span>
+   <span class="err">//</span> <span class="nt">&#34;black&#34;</span><span class="p">:</span> <span class="s2">&#34;#282c34&#34;</span><span class="p">,</span>
+   <span class="nt">&#34;red&#34;</span><span class="p">:</span> <span class="s2">&#34;#e06c75&#34;</span><span class="p">,</span>
+   <span class="nt">&#34;green&#34;</span><span class="p">:</span> <span class="s2">&#34;#98c379&#34;</span><span class="p">,</span>
+   <span class="nt">&#34;yellow&#34;</span><span class="p">:</span> <span class="s2">&#34;#e5c07b&#34;</span><span class="p">,</span>
+   <span class="nt">&#34;blue&#34;</span><span class="p">:</span> <span class="s2">&#34;#61afef&#34;</span><span class="p">,</span>
+   <span class="nt">&#34;purple&#34;</span><span class="p">:</span> <span class="s2">&#34;#c678dd&#34;</span><span class="p">,</span>
+   <span class="nt">&#34;cyan&#34;</span><span class="p">:</span> <span class="s2">&#34;#56b6c2&#34;</span><span class="p">,</span>
+   <span class="nt">&#34;white&#34;</span><span class="p">:</span> <span class="s2">&#34;#dcdfe4&#34;</span><span class="p">,</span>
+   <span class="err">//</span> <span class="nt">&#34;brightBlack&#34;</span><span class="p">:</span> <span class="s2">&#34;#282c34&#34;</span><span class="p">,</span>
+   <span class="nt">&#34;brightRed&#34;</span><span class="p">:</span> <span class="s2">&#34;#e06c75&#34;</span><span class="p">,</span>
+   <span class="nt">&#34;brightGreen&#34;</span><span class="p">:</span> <span class="s2">&#34;#98c379&#34;</span><span class="p">,</span>
+   <span class="nt">&#34;brightYellow&#34;</span><span class="p">:</span> <span class="s2">&#34;#e5c07b&#34;</span><span class="p">,</span>
+   <span class="nt">&#34;brightBlue&#34;</span><span class="p">:</span> <span class="s2">&#34;#61afef&#34;</span><span class="p">,</span>
+   <span class="nt">&#34;brightPurple&#34;</span><span class="p">:</span> <span class="s2">&#34;#c678dd&#34;</span><span class="p">,</span>
+   <span class="nt">&#34;brightCyan&#34;</span><span class="p">:</span> <span class="s2">&#34;#56b6c2&#34;</span><span class="p">,</span>
+   <span class="nt">&#34;brightWhite&#34;</span><span class="p">:</span> <span class="s2">&#34;#dcdfe4&#34;</span><span class="p">,</span>
+   <span class="nt">&#34;background&#34;</span><span class="p">:</span> <span class="s2">&#34;#282c34&#34;</span><span class="p">,</span>
+   <span class="nt">&#34;foreground&#34;</span><span class="p">:</span> <span class="s2">&#34;#dcdfe4&#34;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table></div>
+</div>
+</div><h4 id="oh-my-zsh插件"><a href="#oh-my-zsh插件" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>oh-my-zsh插件</h4>
 <p>自带的插件只需要在配置文件中添加即可，我这里添加了：</p>
 <ul>
 <li>z：路径自动推测跳转 <code>z dir</code></li>
@@ -139,41 +518,55 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></he
 <li>git：简化了 git 的常用命令</li>
 <li>npm：npm 命令的自动补全</li>
 </ul>
-<p>额外下载的插件则需要下载源代码到 <code>$&#123;ZSH_CUSTOM:-~/.oh-my-zsh/custom&#125;/plugins</code>目录下面</p>
+<p>额外下载的插件则需要下载源代码到 <code>${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins</code>目录下面</p>
 <ul>
 <li>zsh-syntax-highlighting：自动语法高亮</li>
 <li>zsh-autosuggestions：自动补全建议</li>
 <li>git-open：打开 git remote</li>
 </ul>
-
-        <h3 id="代理">
-          <a href="#代理" class="heading-link"><i class="fas fa-link"></i></a>代理</h3>
-      
-
-        <h4 id="simple">
-          <a href="#simple" class="heading-link"><i class="fas fa-link"></i></a>Simple</h4>
-      
+<h3 id="代理"><a href="#代理" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>代理</h3>
+<h4 id="simple"><a href="#simple" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>Simple</h4>
 <p>因为我国的独特网络环境，在访问某些网站的时候速度比较感人，有些时候甚至还不能访问，因而需要一些比较科学的方法来访问互联网，这里设置的代理，本质还是让网络请求通过本机（Windows 系统）的工具进行网络请求。在 zsh 的配置脚本<code>~/.zshrc</code>中添加下面别名即可，里面的端口和协议根据自己的工具具体设置。设置后添加别名 proxy 开启，通过 unproxy 关闭。</p>
-<figure class="highlight bash"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">alias</span> proxy=<span class="string">&#x27;export http_proxy=socks5://127.0.0.1:1080; export https_proxy=socks5://127.0.0.1:1080&#x27;</span></span><br><span class="line"><span class="built_in">alias</span> unproxy=<span class="string">&#x27;unset http_proxy; unset https_proxy&#x27;</span></span><br></pre></td></tr></table></div></figure>
-<p>添加后通过<code>source ~/.zshrc</code>激活，输入 proxy 后即可打开某些不可访问的网站测试一下。</p>
-
-        <h4 id="zsh-proxy">
-          <a href="#zsh-proxy" class="heading-link"><i class="fas fa-link"></i></a>zsh-proxy</h4>
-      
-<p>在实际使用中发现，上面这样的简单的方式在某些地方虽然可行，但是有些地方在实际使用上面却会有问题，例如我在使用 wget 获取网络资源时会提示 socks5 识别不了，说是 wget 并不支持 socks 协议。另外，一些需要频繁访问网络的命令，如 git，npm 等似乎有着自己独特的代理设置方式。没办法，一个 wget 就逼着不得不改变。搜了几个方法之后，最终选择了一个 zsh 插件<span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://github.com/SukkaW/zsh-proxy">zsh-proxy</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span>来实现代理功能。</p>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">alias</span> <span class="nv">proxy</span><span class="o">=</span><span class="s1">&#39;export http_proxy=socks5://127.0.0.1:1080; export https_proxy=socks5://127.0.0.1:1080&#39;</span>
+<span class="nb">alias</span> <span class="nv">unproxy</span><span class="o">=</span><span class="s1">&#39;unset http_proxy; unset https_proxy&#39;</span>
+</code></pre></td></tr></table></div>
+</div>
+</div><p>添加后通过<code>source  ~/.zshrc </code>激活，输入 proxy 后即可打开某些不可访问的网站测试一下。</p>
+<h4 id="zsh-proxy"><a href="#zsh-proxy" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>zsh-proxy</h4>
+<p>在实际使用中发现，上面这样的简单的方式在某些地方虽然可行，但是有些地方在实际使用上面却会有问题，例如我在使用 wget 获取网络资源时会提示 socks5 识别不了，说是 wget 并不支持 socks 协议。另外，一些需要频繁访问网络的命令，如 git，npm 等似乎有着自己独特的代理设置方式。没办法，一个 wget 就逼着不得不改变。搜了几个方法之后，最终选择了一个 zsh 插件<a href="https://github.com/SukkaW/zsh-proxy" target="_blank" rel="noopener">zsh-proxy</a>来实现代理功能。</p>
 <p>使用方法很简单</p>
 <ol>
 <li>
 <p>将插件脚本 clone 到本地</p>
-<figure class="highlight bash"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/sukkaw/zsh-proxy.git ~/.oh-my-zsh/custom/plugins/zsh-proxy</span><br></pre></td></tr></table></div></figure>
-</li>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">git clone https://github.com/sukkaw/zsh-proxy.git ~/.oh-my-zsh/custom/plugins/zsh-proxy
+</code></pre></td></tr></table></div>
+</div>
+</div></li>
 <li>
 <p>在配置文件<code>~/.zshrc</code>的插件项中添加插件 zsh-proxy</p>
 </li>
 <li>
 <p>激活配置文件</p>
-<figure class="highlight bash"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.zshrc</span><br></pre></td></tr></table></div></figure>
-</li>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">source</span> ~/.zshrc
+</code></pre></td></tr></table></div>
+</div>
+</div></li>
 <li>
 <p>通过命令<code>init_proxy</code>进行初始化配置，按照提示输入自己的 http 代理和 socks5 代理即可</p>
 </li>
@@ -188,10 +581,7 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></he
 </ol>
 <hr>
 <p>走代理的速度还是挺爽的，我用 wget 下载 Miniconda，虽然才 80 多兆，但不走代理才 30-40Kb 每秒，开启代理每秒 3M 多，半分钟不到就下完。</p>
-
-        <h3 id="python">
-          <a href="#python" class="heading-link"><i class="fas fa-link"></i></a>Python</h3>
-      
+<h3 id="python"><a href="#python" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>Python</h3>
 <p>以前的人都说，Python 在 Linux 环境不需要折腾这么多官方，而我在 Windows 下面进行 Python 项目的开发也确实或多或少地遇到一些小问题，尤其是 package 的安装和管理，使用 pip 的时候莫名其妙地就失败。不过这些问题在开始的时候折腾过后一般就不再发生，尤其是我使用 conda 进行包管理之后，基本很少发生。</p>
 <p>除了可能有奇奇怪怪的的错误之外，使用 Linux 系统开发的好处就是能够接近实际的部署生产环境。因为现在使用的服务器大多都是使用 Linux系统，在相似的环境下开发，部署起来更加方便。</p>
 <p>我也试过跑到 Linux 下面进行 Python 的软件开发，有着 Pycharm 的支持，开发效率也还不错。不过主要的问题是，非开发工具的效率和便利性确实不行。~~就像是简单地从别人那接收一个 QQ 发过来的文件，我需要从手机 QQ 中接收保存下来，再通过微信发送给在 Linux 系统中登录的网页微信。一两次都还好，经常这样的话简直灾难，尤其是某些应用的网页端 app 简直是残废。~~有些沟通交互实在麻烦，而且开发过程中的休息与娱乐也比较困难，使我难以坚持下来。</p>
@@ -200,37 +590,49 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></he
 <ol>
 <li>
 <p>获取安装脚本。建议开启代理，不然速度感人，又或者你在 WIndows 系统下好再在 WSL 里面执行也可以</p>
-<figure class="highlight bash"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh</span><br></pre></td></tr></table></div></figure>
-</li>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+</code></pre></td></tr></table></div>
+</div>
+</div></li>
 <li>
 <p>赋予执行权限。</p>
-<figure class="highlight bash"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod 777 Miniconda3-latest-Linux-x86_64.sh <span class="comment"># 直接全给权限了</span></span><br></pre></td></tr></table></div></figure>
-</li>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo chmod <span class="m">777</span> Miniconda3-latest-Linux-x86_64.sh <span class="c1"># 直接全给权限了</span>
+</code></pre></td></tr></table></div>
+</div>
+</div></li>
 <li>
 <p>执行安装脚本。安装过程中会出现若干的配置提示信息，包括安装路径等。</p>
-<figure class="highlight bash"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./Miniconda3-latest-Linux-x86_64.sh</span><br></pre></td></tr></table></div></figure>
-</li>
+<div class="highlight"><div class="chroma">
+<div class="table-container"><table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">./Miniconda3-latest-Linux-x86_64.sh
+</code></pre></td></tr></table></div>
+</div>
+</div></li>
 <li>
 <p>添加环境变量。将<code>export PATH=/home/YOURNAME/miniconda3/bin/conda:$PATH</code> 放到你的 bash 配置文件中。我放到了 zsh 的配置文件 <code>~/.zshrc</code>中。添加后重新启动，或者激活配置文件即可</p>
 </li>
 </ol>
-
-        <h3 id="待填坑">
-          <a href="#待填坑" class="heading-link"><i class="fas fa-link"></i></a>待填坑</h3>
-      
+<h3 id="待填坑"><a href="#待填坑" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>待填坑</h3>
 <ul>
-<li><span class="github-emoji" alias="white_check_mark" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2705.png?v8">✅</span> Python。<s>Ubuntu18 自带了 Python2 和 Python3。我已经不再使用 Python2 了，而 Python2 把 Python和 pip 的命令默认调用都占用了，考虑移除 Python2，或者搞一个 Anoconda 来做环境管理。</s></li>
-<li><span class="github-emoji" alias="x" style fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/274c.png?v8">❌</span> C/C++ 环境​。<s>想好好学习一下 C++，之前因为 Windows 环境的原因，不得不装了个巨占空间的 Visual Studio，然后到现在还没写过一行 C++ 代码。有点想把它删了，在这里搞个 LLVM/clang 编译器。</s></li>
+<li>✅ Python。<del>Ubuntu18 自带了 Python2 和 Python3。我已经不再使用 Python2 了，而 Python2 把 Python和 pip 的命令默认调用都占用了，考虑移除 Python2，或者搞一个 Anoconda 来做环境管理。</del></li>
+<li>❌ C/C++ 环境​。<del>想好好学习一下 C++，之前因为 Windows 环境的原因，不得不装了个巨占空间的 Visual Studio，然后到现在还没写过一行 C++ 代码。有点想把它删了，在这里搞个 LLVM/clang 编译器。</del></li>
 </ul>
-
-        <h2 id="命令与快捷键">
-          <a href="#命令与快捷键" class="heading-link"><i class="fas fa-link"></i></a>命令与快捷键</h2>
-      
+<h2 id="命令与快捷键"><a href="#命令与快捷键" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>命令与快捷键</h2>
 <p>记录一下一些较为常用和实用的命令和快捷键这里</p>
-
-        <h3 id="命令">
-          <a href="#命令" class="heading-link"><i class="fas fa-link"></i></a>命令</h3>
-      
+<h3 id="命令"><a href="#命令" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>命令</h3>
 <ul>
 <li><code>x file</code>：解压任意类型文件（需要添加 extract 插件</li>
 <li><code>z dir</code>：根据给出的目录进行跳转
@@ -241,10 +643,7 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></he
 </ul>
 </li>
 </ul>
-
-        <h3 id="快捷键">
-          <a href="#快捷键" class="heading-link"><i class="fas fa-link"></i></a>快捷键</h3>
-      
+<h3 id="快捷键"><a href="#快捷键" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>快捷键</h3>
 <p>好像是仅适用于 zsh</p>
 <ul>
 <li>ctrl + u：清空当前行命令</li>
@@ -252,113 +651,318 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.2.0"></he
 <li>ctrl + e：跳到行尾</li>
 <li>ctrl + k：删除光标到行尾内容</li>
 </ul>
-</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="http://scottyeung.top">YeungYeah</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="http://scottyeung.top/2020/WSL%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/">http://scottyeung.top/2020/WSL%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://scottyeung.top/tags/notes/">notes</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://scottyeung.top/tags/Ubuntu/">Ubuntu</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://scottyeung.top/tags/Windows/">Windows</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://scottyeung.top/tags/shell/">shell</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://scottyeung.top/tags/WSL/">WSL</a></span></div><div class="post-reward reward"><div class="reward-button">多谢你支持~</div><div class="reward-qrcode"><span class="reward-qrcode-alipay"><img class="reward-qrcode-alipay__img" src="/imgs/zfb.jpg"><div class="reward-qrcode-alipay__text">支付宝打赏</div></span><span class="reward-qrcode-wechat"><img class="reward-qrcode-wechat__img" src="/imgs/weixin.png"><div class="reward-qrcode-wechat__text">微信打赏</div></span></div></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2020/vim-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%AE%B0%E5%BD%95/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">vim 常用命令记录</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2020/%E7%AA%81%E7%84%B6%E4%B8%8D%E6%83%B3%E5%86%8D%E8%AE%B0%E5%BD%95%E6%97%B6%E9%97%B4%E7%9A%84%E4%BD%BF%E7%94%A8/"><span class="paginator-prev__text">突然不想再记录时间的使用</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div><div class="comments" id="comments"><div id="waline-container"></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E7%82%B9"><span class="toc-text">
-          优点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-text">
-          安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE"><span class="toc-text">
-          配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E6%BA%90%E6%9B%B4%E6%96%B0"><span class="toc-text">
-          软件源更新</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nodejs"><span class="toc-text">
-          Nodejs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#zsh-and-oh-my-zsh"><span class="toc-text">
-          zsh and oh-my-zsh</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#oh-my-zsh%E6%8F%92%E4%BB%B6"><span class="toc-text">
-          oh-my-zsh插件</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%90%86"><span class="toc-text">
-          代理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#simple"><span class="toc-text">
-          Simple</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#zsh-proxy"><span class="toc-text">
-          zsh-proxy</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#python"><span class="toc-text">
-          Python</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BE%85%E5%A1%AB%E5%9D%91"><span class="toc-text">
-          待填坑</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E4%B8%8E%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="toc-text">
-          命令与快捷键</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4"><span class="toc-text">
-          命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="toc-text">
-          快捷键</span></a></li></ol></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/imgs/self.jpg" alt="avatar"></div><p class="sidebar-ov-author__text">生活尽管不开心 我们没有不可能</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="https://github.com/yeung66" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="mailto:yeungyeah@qq.com" target="_blank" rel="noopener" data-popover="E-mail" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fas fa-envelope"></i></span></a></div><div class="sidebar-ov-feed"><span class="sidebar-ov-feed-rss"><a class="sidebar-ov-feed-rss__link" href="/atom.xml" target="_blank" rel="noopener"><span class="sidebar-ov-feed-rss__icon"><i class="fas fa-rss"></i></span><span>RSS 订阅</span></a></span></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">65</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">14</div><div class="sidebar-ov-state-item__name">分类</div></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>YeungYeah</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>2018~2021</span><span class="footer__devider">|</span><span>Theme - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span></div><div></div><div><span><a href="http://beian.miit.gov.cn/" title="粤ICP备2021071541号" target="_blank" rel="noopener">粤ICP备2021071541号</a></span></div><div class="busuanzi"><span class="busuanzi-siteuv"><span class="busuanzi-siteuv__icon"><i class="fas fa-user"></i></span><span class="busuanzi-siteuv__info">访问人数</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_uv"></span></span><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">浏览总量</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@latest/pjax.min.js"></script><script>window.addEventListener('DOMContentLoaded', function () {
-  var pjax = new Pjax({"selectors":["head title","#main",".pjax-reload",".header-inner"],"history":true,"scrollTo":false,"scrollRestoration":false,"cacheBust":false,"debug":false,"currentUrlFullReload":false,"timeout":0});
-  // 加载进度条的计时器
-  var loadingTimer = null;
+            </div>
 
-  // 重置页面 Y 方向上的滚动偏移量
-  document.addEventListener('pjax:send', function () {
-    $('.header-nav-menu').removeClass('show');
-    if (CONFIG.pjax && CONFIG.pjax.avoidBanner) {
-      $('html').velocity('scroll', {
-        duration: 500,
-        offset: $('#header').height(),
-        easing: 'easeInOutCubic'
-      });
+            
+    
+    
+        <ul class="post-copyright">
+            <li class="copyright-item author"><span class="copyright-item-text">作者</span>：<a href="https://scottyeung.top/" class="p-author h-card" target="_blank" rel="noopener">YeungYeah</a></li>
+            
+                
+                
+                
+                
+                <li class="copyright-item link"><span class="copyright-item-text">链接</span>：<a href="/2020/WSL%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" target="_blank" rel="noopener">https://scottyeung.top/2020/WSL环境安装配置/</a></li>
+            
+            <li class="copyright-item license"><span class="copyright-item-text">许可</span>：<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></li>
+            
+        </ul>
+    
+
+
+
+        </article>
+
+        
+
+        
+
+
+        
+
+
+        
+
+
+        
+    
+    
+        <div class="related-posts">
+            <h2 class="related-title">相关文章：<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon related-icon"><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm144 276c0 6.6-5.4 12-12 12h-92v92c0 6.6-5.4 12-12 12h-56c-6.6 0-12-5.4-12-12v-92h-92c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h92v-92c0-6.6 5.4-12 12-12h56c6.6 0 12 5.4 12 12v92h92c6.6 0 12 5.4 12 12v56z"/></svg></h2>
+            <ul class="related-list">
+                
+                    <li class="related-item">
+                        <a href="/2020/%E4%B8%8D%E5%90%8C%E7%B3%BB%E7%BB%9F%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84%E6%8D%A2%E8%A1%8C%E7%AC%A6/" class="related-link">不同系统环境下的换行符</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/2020/vim-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%AE%B0%E5%BD%95/" class="related-link">vim 常用命令记录</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/2020/shell-%E8%84%9A%E6%9C%AC%E5%85%A5%E9%97%A8/" class="related-link">shell 脚本入门</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/2019/Windows-%E5%BF%AB%E6%8D%B7%E9%94%AE/" class="related-link">Windows 快捷键</a>
+                    </li>
+                
+                    <li class="related-item">
+                        <a href="/2020/minority-under-mainstream/" class="related-link">非主流下的少数选择</a>
+                    </li>
+                
+            </ul>
+        </div>
+    
+
+
+
+        
+    
+        <div class="post-tags">
+            
+                
+                
+                
+                
+                    
+                    <a href="/tags/windows/" rel="tag" class="post-tags-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon tag-icon"><path d="M0 252.118V48C0 21.49 21.49 0 48 0h204.118a48 48 0 0 1 33.941 14.059l211.882 211.882c18.745 18.745 18.745 49.137 0 67.882L293.823 497.941c-18.745 18.745-49.137 18.745-67.882 0L14.059 286.059A48 48 0 0 1 0 252.118zM112 64c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48z"/></svg>Windows</a>
+                
+            
+                
+                
+                
+                
+                    
+                    <a href="/tags/ubuntu/" rel="tag" class="post-tags-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon tag-icon"><path d="M0 252.118V48C0 21.49 21.49 0 48 0h204.118a48 48 0 0 1 33.941 14.059l211.882 211.882c18.745 18.745 18.745 49.137 0 67.882L293.823 497.941c-18.745 18.745-49.137 18.745-67.882 0L14.059 286.059A48 48 0 0 1 0 252.118zM112 64c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48z"/></svg>Ubuntu</a>
+                
+            
+                
+                
+                
+                
+                    
+                    <a href="/tags/wsl/" rel="tag" class="post-tags-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon tag-icon"><path d="M0 252.118V48C0 21.49 21.49 0 48 0h204.118a48 48 0 0 1 33.941 14.059l211.882 211.882c18.745 18.745 18.745 49.137 0 67.882L293.823 497.941c-18.745 18.745-49.137 18.745-67.882 0L14.059 286.059A48 48 0 0 1 0 252.118zM112 64c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48z"/></svg>WSL</a>
+                
+            
+                
+                
+                
+                
+                    
+                    <a href="/tags/shell/" rel="tag" class="post-tags-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon tag-icon"><path d="M0 252.118V48C0 21.49 21.49 0 48 0h204.118a48 48 0 0 1 33.941 14.059l211.882 211.882c18.745 18.745 18.745 49.137 0 67.882L293.823 497.941c-18.745 18.745-49.137 18.745-67.882 0L14.059 286.059A48 48 0 0 1 0 252.118zM112 64c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48z"/></svg>shell</a>
+                
+            
+                
+                
+                
+                
+                    
+                    <a href="/tags/notes/" rel="tag" class="post-tags-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon tag-icon"><path d="M0 252.118V48C0 21.49 21.49 0 48 0h204.118a48 48 0 0 1 33.941 14.059l211.882 211.882c18.745 18.745 18.745 49.137 0 67.882L293.823 497.941c-18.745 18.745-49.137 18.745-67.882 0L14.059 286.059A48 48 0 0 1 0 252.118zM112 64c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48z"/></svg>notes</a>
+                
+            
+        </div>
+    
+
+
+
+        
+
+
+        
+
+
+        
+    
+        
+        
+    
+    
+    
+    
+        <ul class="post-nav">
+            
+                <li class="post-nav-prev">
+                    <a href="/2020/vim-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%AE%B0%E5%BD%95/" rel="prev">&lt; vim 常用命令记录</a>
+                </li>
+            
+            
+                <li class="post-nav-next">
+                    <a href="/2020/%E7%AA%81%E7%84%B6%E4%B8%8D%E6%83%B3%E5%86%8D%E8%AE%B0%E5%BD%95%E6%97%B6%E9%97%B4%E7%9A%84%E4%BD%BF%E7%94%A8/" rel="next">突然不想再记录时间的使用 &gt;</a>
+                </li>
+            
+        </ul>
+    
+
+
+
+        
+    
+
+        
+
+        
+
+        
+
+        
+            <div id="wcomments"></div>
+            <script>
+    function loadComments() {
+        if (typeof Waline === 'undefined') {
+            var getScript = (options) => {
+                var script = document.createElement('script');
+                script.defer = true;
+                script.crossOrigin = 'anonymous';
+                Object.keys(options).forEach((key) => {
+                    script[key] = options[key];
+                });
+                document.body.appendChild(script);
+            };
+            getScript({
+                src: 'https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js',
+                onload: () => {
+                    newWaline();
+                }
+            });
+        } else {
+            newWaline();
+        }
     }
-
-    var loadingBarWidth = 20;
-    var MAX_LOADING_WIDTH = 95;
-
-    $('.loading-bar').addClass('loading');
-    $('.loading-bar__progress').css('width', loadingBarWidth + '%');
-    clearInterval(loadingTimer);
-    loadingTimer = setInterval(function () {
-      loadingBarWidth += 3;
-      if (loadingBarWidth > MAX_LOADING_WIDTH) {
-        loadingBarWidth = MAX_LOADING_WIDTH;
-      }
-      $('.loading-bar__progress').css('width', loadingBarWidth + '%');
-    }, 500);
-  }, false);
-
-  window.addEventListener('pjax:complete', function () {
-    clearInterval(loadingTimer);
-    $('.loading-bar__progress').css('width', '100%');
-    $('.loading-bar').removeClass('loading');
-    setTimeout(function () {
-      $('.loading-bar__progress').css('width', '0');
-    }, 400);
-    $('link[rel=prefetch], script[data-pjax-rm]').each(function () {
-      $(this).remove();
-    });
-    $('script[data-pjax], #pjax-reload script').each(function () {
-      $(this).parent().append($(this).remove());
-    });
-
-    if (Stun.utils.pjaxReloadBoot) {
-      Stun.utils.pjaxReloadBoot();
+    function newWaline() {
+        new Waline({
+            el: '#wcomments',
+            placeholder: '欢迎来留言~',
+            serverURL: 'https:\/\/waline-pi.vercel.app',
+            visitor:  true ,
+            avatar: 'wavatar',
+            meta: ["nick","mail","link"],
+            lang: 'zh-cn',
+            requiredMeta: [],
+            pageSize:  10 ,
+            avatarCDN: 'https:\/\/cn.gravatar.com\/avatar\/'
+        });
     }
-    if (Stun.utils.pjaxReloadScroll) {
-      Stun.utils.pjaxReloadScroll();
-    }
-    if (Stun.utils.pjaxReloadSidebar) {
-      Stun.utils.pjaxReloadSidebar();
-    }
-    if (true) {
-      if (Stun.utils.pjaxReloadHeader) {
-        Stun.utils.pjaxReloadHeader();
-      }
-      if (Stun.utils.pjaxReloadScrollIcon) {
-        Stun.utils.pjaxReloadScrollIcon();
-      }
-      if (Stun.utils.pjaxReloadLocalSearch) {
-        Stun.utils.pjaxReloadLocalSearch();
-      }
-    }
-  }, false);
-}, false);</script><div id="pjax-reload"><link href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" rel="stylesheet" type="text/css"><link href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/copy-tex.css" rel="stylesheet" type="text/css"><script src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/copy-tex.min.js"></script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script></div><script src="//unpkg.com/@waline/client@0.14.8/dist/Waline.min.js"></script><script data-pjax="">function loadWaline () {
-  var GUEST_INFO = ['nick', 'mail', 'link'];
-  var guest_info = 'nick,mail,link';
+</script>
 
-  guest_info = guest_info.split(',').filter(function(item) {
-    return GUEST_INFO.indexOf(item) > -1;
-  });
+        
 
-  new Waline({
-    el: '#waline-container',
-    serverURL: 'https://waline-pi.vercel.app',
-    placeholder: '欢迎留言~',
-    pageSize: '10' || 10,
-    lang: '' || 'zh-cn',
-    visitor: true,
-    avatar: 'mm',
-    path: window.location.pathname,
-    meta: guest_info
-  });
-}
+        
 
-if (true) {
-  loadWaline();
-} else {
-  window.addEventListener('DOMContentLoaded', loadWaline, false);
-}</script><script src="/js/utils.js?v=2.6.0"></script><script src="/js/stun-boot.js?v=2.6.0"></script><script src="/js/scroll.js?v=2.6.0"></script><script src="/js/header.js?v=2.6.0"></script><script src="/js/sidebar.js?v=2.6.0"></script><link rel="stylesheet" href="/player/APlayer.min.css">
-<div id="aplayer"></div>
-<script type="text/javascript" src="/player/APlayer.min.js"></script>
-<script type="text/javascript" src="/player/music.js"></script></body></html>
+        
+    
+
+
+
+    </div>
+</main>
+
+
+            
+    <div id="back-to-top" class="back-to-top">
+        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon arrow-up"><path d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"/></svg></a>
+    </div>
+
+
+            
+    <footer id="footer" class="footer">
+        <div class="footer-inner">
+            <div class="site-info">©&nbsp;2018–2021&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;YeungYeah</div><div class="powered-by">Powered by <a href="https://github.com/gohugoio/hugo" target="_blank" rel="noopener">Hugo</a> | Theme is <a href="https://github.com/reuixiy/hugo-theme-meme" target="_blank" rel="noopener">MemE</a></div>
+                <div class="busuanzi-site-uv-and-pv">
+                    <span id="busuanzi_container_site_uv">本站访客数&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon busuanzi-site-uv"><path d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z"/></svg>&nbsp;<span id="busuanzi_value_site_uv"></span></span>&nbsp;|&nbsp;<span id="busuanzi_container_site_pv">本站访问量&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="icon busuanzi-site-pv"><path d="M288 144a110.94 110.94 0 0 0-31.24 5 55.4 55.4 0 0 1 7.24 27 56 56 0 0 1-56 56 55.4 55.4 0 0 1-27-7.24A111.71 111.71 0 1 0 288 144zm284.52 97.4C518.29 135.59 410.93 64 288 64S57.68 135.64 3.48 241.41a32.35 32.35 0 0 0 0 29.19C57.71 376.41 165.07 448 288 448s230.32-71.64 284.52-177.41a32.35 32.35 0 0 0 0-29.19zM288 400c-98.65 0-189.09-55-237.93-144C98.91 167 189.34 112 288 112s189.09 55 237.93 144C477.1 345 386.66 400 288 400z"/></svg>&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+                </div>
+
+            
+    
+        <ul class="socials"><li class="socials-item">
+                    <a href="/atom.xml" target="_blank" rel="external noopener" title="RSS"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon social-icon"><path d="M19.199 24C19.199 13.467 10.533 4.8 0 4.8V0c13.165 0 24 10.835 24 24h-4.801zM3.291 17.415c1.814 0 3.293 1.479 3.293 3.295 0 1.813-1.485 3.29-3.301 3.29C1.47 24 0 22.526 0 20.71s1.475-3.294 3.291-3.295zM15.909 24h-4.665c0-6.169-5.075-11.245-11.244-11.245V8.09c8.727 0 15.909 7.184 15.909 15.91z"/></svg></a>
+                </li><li class="socials-item">
+                    <a href="mailto:yeungyeah@gmail.com" target="_blank" rel="external noopener" title="Email"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon social-icon"><path d="M464 64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm0 48v40.805c-22.422 18.259-58.168 46.651-134.587 106.49-16.841 13.247-50.201 45.072-73.413 44.701-23.208.375-56.579-31.459-73.413-44.701C106.18 199.465 70.425 171.067 48 152.805V112h416zM48 400V214.398c22.914 18.251 55.409 43.862 104.938 82.646 21.857 17.205 60.134 55.186 103.062 54.955 42.717.231 80.509-37.199 103.053-54.947 49.528-38.783 82.032-64.401 104.947-82.653V400H48z"/></svg></a>
+                </li><li class="socials-item">
+                    <a href="https://github.com/yeung66" target="_blank" rel="external noopener" title="GitHub"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon social-icon"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
+                </li></ul>
+    
+
+
+
+            
+        </div>
+    </footer>
+
+
+        </div>
+        
+
+        
+
+
+    <script>
+    if (typeof MathJax === 'undefined') {
+        window.MathJax = {
+            loader: {
+                load: ['[tex]/mhchem']
+            },
+            
+            tex: {
+                inlineMath: {'[+]': [['$', '$']]},
+                tags: 'ams',
+                packages: {'[+]': ['mhchem']}
+            }
+        };
+        (function() {
+            var script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+            script.defer = true;
+            document.head.appendChild(script);
+        })();
+    } else {
+        MathJax.texReset();
+        MathJax.typeset();
+    }
+</script>
+
+
+
+
+
+
+    
+
+        
+
+        
+
+        
+
+        
+
+    
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/medium-zoom@latest/dist/medium-zoom.min.js"></script>
+
+<script>
+    mediumZoom(document.querySelectorAll('div.post-body img'), {
+        background: 'hsla(var(--color-bg-h), var(--color-bg-s), var(--color-bg-l), 0.95)'
+    })
+</script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/instant.page@5.1.0/instantpage.min.js" type="module" defer></script>
+
+
+
+
+    
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+
+
+
+
+    </body>
+</html>
