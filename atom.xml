@@ -23,7 +23,7 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Wed, 02 Jun 2021 20:53:32 &#43;0800</lastBuildDate>
+        <lastBuildDate>Thu, 03 Jun 2021 16:56:21 &#43;0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://scottyeung.top/atom.xml" />
         
@@ -459,8 +459,8 @@
         
             <item>
                 <title>GraphQL 入门</title>
-                <link>https://scottyeung.top/2021/intro-to-GraphQL/</link>
-                <guid isPermaLink="true">https://scottyeung.top/2021/intro-to-GraphQL/</guid>
+                <link>https://scottyeung.top/2021/intro-to-graphql/</link>
+                <guid isPermaLink="true">https://scottyeung.top/2021/intro-to-graphql/</guid>
                 <pubDate>Wed, 17 Mar 2021 15:46:25 &#43;0000</pubDate>
                 
                     <author>yeungyeah@qq.com (YeungYeah)</author>
@@ -2266,8 +2266,8 @@ set backspace=2
         
             <item>
                 <title>WSL环境安装配置</title>
-                <link>https://scottyeung.top/2020/WSL%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/</link>
-                <guid isPermaLink="true">https://scottyeung.top/2020/WSL%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/</guid>
+                <link>https://scottyeung.top/2020/wsl%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/</link>
+                <guid isPermaLink="true">https://scottyeung.top/2020/wsl%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/</guid>
                 <pubDate>Mon, 04 May 2020 10:56:45 &#43;0000</pubDate>
                 
                     <author>yeungyeah@qq.com (YeungYeah)</author>
@@ -3225,8 +3225,8 @@ func
         
             <item>
                 <title>Python中的并发编程</title>
-                <link>https://scottyeung.top/2020/Python%E4%B8%AD%E7%9A%84%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/</link>
-                <guid isPermaLink="true">https://scottyeung.top/2020/Python%E4%B8%AD%E7%9A%84%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/</guid>
+                <link>https://scottyeung.top/2020/python%E4%B8%AD%E7%9A%84%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/</link>
+                <guid isPermaLink="true">https://scottyeung.top/2020/python%E4%B8%AD%E7%9A%84%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/</guid>
                 <pubDate>Mon, 09 Mar 2020 20:51:07 &#43;0000</pubDate>
                 
                     <author>yeungyeah@qq.com (YeungYeah)</author>
@@ -3822,8 +3822,8 @@ func
         
             <item>
                 <title>就医当中的医疗选择——《最好的抉择》读书总结</title>
-                <link>https://scottyeung.top/2020/%E5%B0%B1%E5%8C%BB%E5%BD%93%E4%B8%AD%E7%9A%84%E5%8C%BB%E7%96%97%E9%80%89%E6%8B%A9%E2%80%94%E2%80%94%E3%80%8A%E6%9C%80%E5%A5%BD%E7%9A%84%E6%8A%89%E6%8B%A9%E3%80%8B%E8%AF%BB%E4%B9%A6%E6%80%BB%E7%BB%93/</link>
-                <guid isPermaLink="true">https://scottyeung.top/2020/%E5%B0%B1%E5%8C%BB%E5%BD%93%E4%B8%AD%E7%9A%84%E5%8C%BB%E7%96%97%E9%80%89%E6%8B%A9%E2%80%94%E2%80%94%E3%80%8A%E6%9C%80%E5%A5%BD%E7%9A%84%E6%8A%89%E6%8B%A9%E3%80%8B%E8%AF%BB%E4%B9%A6%E6%80%BB%E7%BB%93/</guid>
+                <link>https://scottyeung.top/2020/%E5%B0%B1%E5%8C%BB%E5%BD%93%E4%B8%AD%E7%9A%84%E5%8C%BB%E7%96%97%E9%80%89%E6%8B%A9%E6%9C%80%E5%A5%BD%E7%9A%84%E6%8A%89%E6%8B%A9%E8%AF%BB%E4%B9%A6%E6%80%BB%E7%BB%93/</link>
+                <guid isPermaLink="true">https://scottyeung.top/2020/%E5%B0%B1%E5%8C%BB%E5%BD%93%E4%B8%AD%E7%9A%84%E5%8C%BB%E7%96%97%E9%80%89%E6%8B%A9%E6%9C%80%E5%A5%BD%E7%9A%84%E6%8A%89%E6%8B%A9%E8%AF%BB%E4%B9%A6%E6%80%BB%E7%BB%93/</guid>
                 <pubDate>Sat, 01 Feb 2020 17:20:32 &#43;0000</pubDate>
                 
                     <author>yeungyeah@qq.com (YeungYeah)</author>
@@ -3908,8 +3908,8 @@ func
         
             <item>
                 <title>Maximum Sum Circular Subarray</title>
-                <link>https://scottyeung.top/2020/Maximum-Sum-Circular-Subarray/</link>
-                <guid isPermaLink="true">https://scottyeung.top/2020/Maximum-Sum-Circular-Subarray/</guid>
+                <link>https://scottyeung.top/2020/maximum-sum-circular-subarray/</link>
+                <guid isPermaLink="true">https://scottyeung.top/2020/maximum-sum-circular-subarray/</guid>
                 <pubDate>Tue, 21 Jan 2020 19:59:53 &#43;0000</pubDate>
                 
                     <author>yeungyeah@qq.com (YeungYeah)</author>
@@ -4229,8 +4229,8 @@ Explanation: Subarray [-1] has maximum sum -1
         
             <item>
                 <title>&lt;唤醒大脑：神经可塑性如何帮助大脑自我疗愈&gt; 读书笔记</title>
-                <link>https://scottyeung.top/2019/%E5%94%A4%E9%86%92%E5%A4%A7%E8%84%91%EF%BC%9A%E7%A5%9E%E7%BB%8F%E5%8F%AF%E5%A1%91%E6%80%A7%E5%A6%82%E4%BD%95%E5%B8%AE%E5%8A%A9%E5%A4%A7%E8%84%91%E8%87%AA%E6%88%91%E7%96%97%E6%84%88-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</link>
-                <guid isPermaLink="true">https://scottyeung.top/2019/%E5%94%A4%E9%86%92%E5%A4%A7%E8%84%91%EF%BC%9A%E7%A5%9E%E7%BB%8F%E5%8F%AF%E5%A1%91%E6%80%A7%E5%A6%82%E4%BD%95%E5%B8%AE%E5%8A%A9%E5%A4%A7%E8%84%91%E8%87%AA%E6%88%91%E7%96%97%E6%84%88-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</guid>
+                <link>https://scottyeung.top/2019/%E5%94%A4%E9%86%92%E5%A4%A7%E8%84%91%E7%A5%9E%E7%BB%8F%E5%8F%AF%E5%A1%91%E6%80%A7%E5%A6%82%E4%BD%95%E5%B8%AE%E5%8A%A9%E5%A4%A7%E8%84%91%E8%87%AA%E6%88%91%E7%96%97%E6%84%88-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</link>
+                <guid isPermaLink="true">https://scottyeung.top/2019/%E5%94%A4%E9%86%92%E5%A4%A7%E8%84%91%E7%A5%9E%E7%BB%8F%E5%8F%AF%E5%A1%91%E6%80%A7%E5%A6%82%E4%BD%95%E5%B8%AE%E5%8A%A9%E5%A4%A7%E8%84%91%E8%87%AA%E6%88%91%E7%96%97%E6%84%88-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</guid>
                 <pubDate>Mon, 30 Dec 2019 17:53:48 &#43;0000</pubDate>
                 
                     <author>yeungyeah@qq.com (YeungYeah)</author>
@@ -4382,8 +4382,8 @@ Explanation: Subarray [-1] has maximum sum -1
         
             <item>
                 <title>Some Notes About SQLAlchemy</title>
-                <link>https://scottyeung.top/2019/Some-Notes-About-SQLAlchemy/</link>
-                <guid isPermaLink="true">https://scottyeung.top/2019/Some-Notes-About-SQLAlchemy/</guid>
+                <link>https://scottyeung.top/2019/some-notes-about-sqlalchemy/</link>
+                <guid isPermaLink="true">https://scottyeung.top/2019/some-notes-about-sqlalchemy/</guid>
                 <pubDate>Sat, 07 Dec 2019 10:24:35 &#43;0000</pubDate>
                 
                     <author>yeungyeah@qq.com (YeungYeah)</author>
@@ -4514,8 +4514,8 @@ session.commit()
         
             <item>
                 <title>Summary of Automate the Boring Stuff with Python</title>
-                <link>https://scottyeung.top/2019/Summary-of-Automate-the-Boring-Stuff-with-Python/</link>
-                <guid isPermaLink="true">https://scottyeung.top/2019/Summary-of-Automate-the-Boring-Stuff-with-Python/</guid>
+                <link>https://scottyeung.top/2019/summary-of-automate-the-boring-stuff-with-python/</link>
+                <guid isPermaLink="true">https://scottyeung.top/2019/summary-of-automate-the-boring-stuff-with-python/</guid>
                 <pubDate>Mon, 04 Nov 2019 16:15:25 &#43;0000</pubDate>
                 
                     <author>yeungyeah@qq.com (YeungYeah)</author>
@@ -5053,8 +5053,8 @@ session.commit()
         
             <item>
                 <title>组会谈话启示录（一）</title>
-                <link>https://scottyeung.top/2019/%E7%BB%84%E4%BC%9A%E8%B0%88%E8%AF%9D%E5%90%AF%E7%A4%BA%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89/</link>
-                <guid isPermaLink="true">https://scottyeung.top/2019/%E7%BB%84%E4%BC%9A%E8%B0%88%E8%AF%9D%E5%90%AF%E7%A4%BA%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89/</guid>
+                <link>https://scottyeung.top/2019/%E7%BB%84%E4%BC%9A%E8%B0%88%E8%AF%9D%E5%90%AF%E7%A4%BA%E5%BD%95%E4%B8%80/</link>
+                <guid isPermaLink="true">https://scottyeung.top/2019/%E7%BB%84%E4%BC%9A%E8%B0%88%E8%AF%9D%E5%90%AF%E7%A4%BA%E5%BD%95%E4%B8%80/</guid>
                 <pubDate>Wed, 16 Oct 2019 15:50:35 &#43;0000</pubDate>
                 
                     <author>yeungyeah@qq.com (YeungYeah)</author>
@@ -5157,8 +5157,8 @@ session.commit()
         
             <item>
                 <title>Summary of Ultralearning</title>
-                <link>https://scottyeung.top/2019/Summary-of-Ultralearning/</link>
-                <guid isPermaLink="true">https://scottyeung.top/2019/Summary-of-Ultralearning/</guid>
+                <link>https://scottyeung.top/2019/summary-of-ultralearning/</link>
+                <guid isPermaLink="true">https://scottyeung.top/2019/summary-of-ultralearning/</guid>
                 <pubDate>Tue, 15 Oct 2019 20:51:31 &#43;0000</pubDate>
                 
                     <author>yeungyeah@qq.com (YeungYeah)</author>
@@ -6253,8 +6253,8 @@ session.commit()
         
             <item>
                 <title>Windows 快捷键</title>
-                <link>https://scottyeung.top/2019/Windows-%E5%BF%AB%E6%8D%B7%E9%94%AE/</link>
-                <guid isPermaLink="true">https://scottyeung.top/2019/Windows-%E5%BF%AB%E6%8D%B7%E9%94%AE/</guid>
+                <link>https://scottyeung.top/2019/windows-%E5%BF%AB%E6%8D%B7%E9%94%AE/</link>
+                <guid isPermaLink="true">https://scottyeung.top/2019/windows-%E5%BF%AB%E6%8D%B7%E9%94%AE/</guid>
                 <pubDate>Thu, 13 Jun 2019 20:07:11 &#43;0000</pubDate>
                 
                     <author>yeungyeah@qq.com (YeungYeah)</author>
@@ -6399,8 +6399,8 @@ session.commit()
         
             <item>
                 <title>C&#43;&#43; std::set</title>
-                <link>https://scottyeung.top/2019/C-std-set/</link>
-                <guid isPermaLink="true">https://scottyeung.top/2019/C-std-set/</guid>
+                <link>https://scottyeung.top/2019/c-std-set/</link>
+                <guid isPermaLink="true">https://scottyeung.top/2019/c-std-set/</guid>
                 <pubDate>Tue, 21 May 2019 12:40:46 &#43;0000</pubDate>
                 
                     <author>yeungyeah@qq.com (YeungYeah)</author>
@@ -6689,8 +6689,12 @@ session.commit()
 &lt;h2 id=&#34;方法&#34;&gt;方法&lt;/h2&gt;
 &lt;p&gt;利用统计学知识，建立数据分布模型，并用已知样本进行参数估计。然后利用分布模型继续概率估计。一般选择使用高斯分布。&lt;/p&gt;
 &lt;h3 id=&#34;高斯分布&#34;&gt;高斯分布&lt;/h3&gt;
-&lt;p&gt;单元高斯分布
-$$p(x;\mu;\sigma)={1\over \sqrt{2\pi \sigma}}e^{(x-\mu)^2\over 2\sigma^2}$$&lt;/p&gt;
+&lt;p&gt;单元高斯分布&lt;/p&gt;
+&lt;div&gt;
+$$
+p(x;\mu;\sigma)={1\over \sqrt{2\pi \sigma}}e^{(x-\mu)^2\over 2\sigma^2}
+$$
+&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;$\mu$为平均值，影响分布的对称轴&lt;/li&gt;
 &lt;li&gt;$\sigma^2$为方差，影响图形的胖瘦&lt;/li&gt;
@@ -6880,8 +6884,8 @@ $$F_1score={PR\over P+R}$$&lt;/p&gt;
         
             <item>
                 <title>CCF 201903</title>
-                <link>https://scottyeung.top/2019/CCF-201903/</link>
-                <guid isPermaLink="true">https://scottyeung.top/2019/CCF-201903/</guid>
+                <link>https://scottyeung.top/2019/ccf-201903/</link>
+                <guid isPermaLink="true">https://scottyeung.top/2019/ccf-201903/</guid>
                 <pubDate>Thu, 18 Apr 2019 11:34:47 &#43;0000</pubDate>
                 
                     <author>yeungyeah@qq.com (YeungYeah)</author>
@@ -7076,7 +7080,7 @@ $$F_1score={PR\over P+R}$$&lt;/p&gt;
                                 
                                 
                                 
-                                    <category domain="https://scottyeung.top/tags/go/">GO</category>
+                                    <category domain="https://scottyeung.top/tags/golang/">Golang</category>
                                 
                             
                                 
@@ -7310,8 +7314,8 @@ $$F_1score={PR\over P+R}$$&lt;/p&gt;
         
             <item>
                 <title>CCF201503-4 网络延时</title>
-                <link>https://scottyeung.top/2019/CCF201503-4-%E7%BD%91%E7%BB%9C%E5%BB%B6%E6%97%B6/</link>
-                <guid isPermaLink="true">https://scottyeung.top/2019/CCF201503-4-%E7%BD%91%E7%BB%9C%E5%BB%B6%E6%97%B6/</guid>
+                <link>https://scottyeung.top/2019/ccf201503-4-%E7%BD%91%E7%BB%9C%E5%BB%B6%E6%97%B6/</link>
+                <guid isPermaLink="true">https://scottyeung.top/2019/ccf201503-4-%E7%BD%91%E7%BB%9C%E5%BB%B6%E6%97%B6/</guid>
                 <pubDate>Thu, 14 Mar 2019 18:35:19 &#43;0000</pubDate>
                 
                     <author>yeungyeah@qq.com (YeungYeah)</author>
@@ -7500,8 +7504,8 @@ $$F_1score={PR\over P+R}$$&lt;/p&gt;
         
             <item>
                 <title>CCF201612-4 压缩编码</title>
-                <link>https://scottyeung.top/2019/CCF201612-4-%E5%8E%8B%E7%BC%A9%E7%BC%96%E7%A0%81/</link>
-                <guid isPermaLink="true">https://scottyeung.top/2019/CCF201612-4-%E5%8E%8B%E7%BC%A9%E7%BC%96%E7%A0%81/</guid>
+                <link>https://scottyeung.top/2019/ccf201612-4-%E5%8E%8B%E7%BC%A9%E7%BC%96%E7%A0%81/</link>
+                <guid isPermaLink="true">https://scottyeung.top/2019/ccf201612-4-%E5%8E%8B%E7%BC%A9%E7%BC%96%E7%A0%81/</guid>
                 <pubDate>Tue, 12 Mar 2019 14:15:57 &#43;0000</pubDate>
                 
                     <author>yeungyeah@qq.com (YeungYeah)</author>
@@ -7595,8 +7599,8 @@ $$F_1score={PR\over P+R}$$&lt;/p&gt;
         
             <item>
                 <title>CCF201412-3 集合竞价</title>
-                <link>https://scottyeung.top/2019/CCF201412-3-%E9%9B%86%E5%90%88%E7%AB%9E%E4%BB%B7/</link>
-                <guid isPermaLink="true">https://scottyeung.top/2019/CCF201412-3-%E9%9B%86%E5%90%88%E7%AB%9E%E4%BB%B7/</guid>
+                <link>https://scottyeung.top/2019/ccf201412-3-%E9%9B%86%E5%90%88%E7%AB%9E%E4%BB%B7/</link>
+                <guid isPermaLink="true">https://scottyeung.top/2019/ccf201412-3-%E9%9B%86%E5%90%88%E7%AB%9E%E4%BB%B7/</guid>
                 <pubDate>Wed, 06 Mar 2019 10:13:48 &#43;0000</pubDate>
                 
                     <author>yeungyeah@qq.com (YeungYeah)</author>
@@ -7790,8 +7794,8 @@ buy 100.00 50&lt;/p&gt;
         
             <item>
                 <title>Wildcard Matching</title>
-                <link>https://scottyeung.top/2019/Wildcard-Matching/</link>
-                <guid isPermaLink="true">https://scottyeung.top/2019/Wildcard-Matching/</guid>
+                <link>https://scottyeung.top/2019/wildcard-matching/</link>
+                <guid isPermaLink="true">https://scottyeung.top/2019/wildcard-matching/</guid>
                 <pubDate>Fri, 01 Mar 2019 10:46:12 &#43;0000</pubDate>
                 
                     <author>yeungyeah@qq.com (YeungYeah)</author>
@@ -7933,8 +7937,8 @@ Output: false
         
             <item>
                 <title>CCF201604-2 俄罗斯方块</title>
-                <link>https://scottyeung.top/2019/CCF201604-2-%E4%BF%84%E7%BD%97%E6%96%AF%E6%96%B9%E5%9D%97/</link>
-                <guid isPermaLink="true">https://scottyeung.top/2019/CCF201604-2-%E4%BF%84%E7%BD%97%E6%96%AF%E6%96%B9%E5%9D%97/</guid>
+                <link>https://scottyeung.top/2019/ccf201604-2-%E4%BF%84%E7%BD%97%E6%96%AF%E6%96%B9%E5%9D%97/</link>
+                <guid isPermaLink="true">https://scottyeung.top/2019/ccf201604-2-%E4%BF%84%E7%BD%97%E6%96%AF%E6%96%B9%E5%9D%97/</guid>
                 <pubDate>Mon, 25 Feb 2019 10:08:18 &#43;0000</pubDate>
                 
                     <author>yeungyeah@qq.com (YeungYeah)</author>
@@ -8150,8 +8154,8 @@ Output: false
         
             <item>
                 <title>Merge k Sorted Lists</title>
-                <link>https://scottyeung.top/2019/Merge-k-Sorted-Lists/</link>
-                <guid isPermaLink="true">https://scottyeung.top/2019/Merge-k-Sorted-Lists/</guid>
+                <link>https://scottyeung.top/2019/merge-k-sorted-lists/</link>
+                <guid isPermaLink="true">https://scottyeung.top/2019/merge-k-sorted-lists/</guid>
                 <pubDate>Wed, 30 Jan 2019 10:30:23 &#43;0000</pubDate>
                 
                     <author>yeungyeah@qq.com (YeungYeah)</author>
@@ -8338,8 +8342,8 @@ Output: 1-&amp;gt;1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;4-&amp;gt;5-&amp;gt;6
         
             <item>
                 <title>Mysql忘了root密码怎么办</title>
-                <link>https://scottyeung.top/2018/Mysql%E5%BF%98%E4%BA%86root%E5%AF%86%E7%A0%81%E6%80%8E%E4%B9%88%E5%8A%9E/</link>
-                <guid isPermaLink="true">https://scottyeung.top/2018/Mysql%E5%BF%98%E4%BA%86root%E5%AF%86%E7%A0%81%E6%80%8E%E4%B9%88%E5%8A%9E/</guid>
+                <link>https://scottyeung.top/2018/mysql%E5%BF%98%E4%BA%86root%E5%AF%86%E7%A0%81%E6%80%8E%E4%B9%88%E5%8A%9E/</link>
+                <guid isPermaLink="true">https://scottyeung.top/2018/mysql%E5%BF%98%E4%BA%86root%E5%AF%86%E7%A0%81%E6%80%8E%E4%B9%88%E5%8A%9E/</guid>
                 <pubDate>Thu, 29 Nov 2018 20:03:35 &#43;0000</pubDate>
                 
                     <author>yeungyeah@qq.com (YeungYeah)</author>
@@ -8561,8 +8565,8 @@ mysql -u root -p
         
             <item>
                 <title>Maximum Product of Word Lengths</title>
-                <link>https://scottyeung.top/2018/Maximum-Product-of-Word-Lengths/</link>
-                <guid isPermaLink="true">https://scottyeung.top/2018/Maximum-Product-of-Word-Lengths/</guid>
+                <link>https://scottyeung.top/2018/maximum-product-of-word-lengths/</link>
+                <guid isPermaLink="true">https://scottyeung.top/2018/maximum-product-of-word-lengths/</guid>
                 <pubDate>Sun, 11 Nov 2018 20:26:29 &#43;0000</pubDate>
                 
                     <author>yeungyeah@qq.com (YeungYeah)</author>
@@ -8713,8 +8717,8 @@ Explanation: No such pair of words.
         
             <item>
                 <title>Linux文件系统中操作文件导致NTFS文件系统中文件丢失</title>
-                <link>https://scottyeung.top/2018/Linux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E4%B8%AD%E6%93%8D%E4%BD%9C%E6%96%87%E4%BB%B6%E5%AF%BC%E8%87%B4NTFS%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E4%B8%AD%E6%96%87%E4%BB%B6%E4%B8%A2%E5%A4%B1/</link>
-                <guid isPermaLink="true">https://scottyeung.top/2018/Linux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E4%B8%AD%E6%93%8D%E4%BD%9C%E6%96%87%E4%BB%B6%E5%AF%BC%E8%87%B4NTFS%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E4%B8%AD%E6%96%87%E4%BB%B6%E4%B8%A2%E5%A4%B1/</guid>
+                <link>https://scottyeung.top/2018/linux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E4%B8%AD%E6%93%8D%E4%BD%9C%E6%96%87%E4%BB%B6%E5%AF%BC%E8%87%B4ntfs%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E4%B8%AD%E6%96%87%E4%BB%B6%E4%B8%A2%E5%A4%B1/</link>
+                <guid isPermaLink="true">https://scottyeung.top/2018/linux%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E4%B8%AD%E6%93%8D%E4%BD%9C%E6%96%87%E4%BB%B6%E5%AF%BC%E8%87%B4ntfs%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E4%B8%AD%E6%96%87%E4%BB%B6%E4%B8%A2%E5%A4%B1/</guid>
                 <pubDate>Tue, 30 Oct 2018 19:07:39 &#43;0000</pubDate>
                 
                     <author>yeungyeah@qq.com (YeungYeah)</author>
