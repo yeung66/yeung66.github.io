@@ -9,7 +9,7 @@
     <channel>
         <title>YeungYeah 的乱写地</title>
         <link>https://scottyeung.top/</link>
-        <description>MemE 是一个强大且可高度定制的 GoHugo 博客主题，专为个人博客设计。</description>
+        <description>YeungYeah 的乱写地中记录了作者的所思所想及所为。</description>
         <generator>Hugo 0.83.1 https://gohugo.io/</generator>
         
             <language>zh-CN</language>
@@ -23,10 +23,110 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Thu, 03 Jun 2021 16:56:21 &#43;0800</lastBuildDate>
+        <lastBuildDate>Thu, 03 Jun 2021 19:00:15 &#43;0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://scottyeung.top/atom.xml" />
         
+        
+            <item>
+                <title>博客切换至 Hugo</title>
+                <link>https://scottyeung.top/2021/transform-to-hugo/</link>
+                <guid isPermaLink="true">https://scottyeung.top/2021/transform-to-hugo/</guid>
+                <pubDate>Thu, 03 Jun 2021 12:07:47 &#43;0800</pubDate>
+                
+                    <author>yeungyeah@qq.com (YeungYeah)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description>&lt;p&gt;不到半年时间，又重新折腾过博客了。大概花了两天多的时间，把博客从原来的 Hexo + Stun 切换到 Hugo + MemE 上面。想要转换的原因有很多，例如&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;使用 Hexo 生成页面的速度已经进入了有点慢的程度。我也不过 70 个页面，每次构建部署加上提交可能需要花上一两分钟，然后随着时间久了所写的内容越多，还会越来越久。&lt;/li&gt;
+&lt;li&gt;原主题看着有点不太合适。现在的自己更加希望博客的风格往简洁靠近，让网站的聚焦点能回归到文字本身。这也促使自己这次在选主题的时候把文章主体不居中的都 ban 掉了。&lt;/li&gt;
+&lt;li&gt;原博客感觉有着太多无用啰嗦的页面和功能，包括所谓的背景音乐播放。为了有着更好播放背景音乐体验，又不得不搞 PJAX。但实际上我自己点开背景音乐并播放的次数寥寥可数。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;当然想要更换的最主要原因还是&lt;em&gt;喜欢折腾&lt;/em&gt;，这两天在折腾博客的时候，久违地感受到了那种心思全部集中在一个事情上面的状态。在迁移博客的时候，选主题，配环境，写迁移脚本，改写主题以获取想要的效果和功能，虽然也遇到一些坑，但还是能够拥有着持续的动力去继续和完善。看来自己是真的发自内心的喜欢折腾想折腾的东西。&lt;/p&gt;
+&lt;h2 id=&#34;迁移准备&#34;&gt;迁移准备&lt;/h2&gt;
+&lt;p&gt;因为 Hugo 和 Hexo 存在一些差异，同时我所选择的主题与原主题不一致，导致博客迁移到 Hugo 的时候需要做一些变更，才比较好实现无缝转换。 &lt;br&gt;
+主要需要考虑以下问题：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;路径组织差异&lt;/li&gt;
+&lt;li&gt;分类标签差异&lt;/li&gt;
+&lt;li&gt;评论功能实现&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;路径&#34;&gt;路径&lt;/h3&gt;
+&lt;p&gt;在 Hexo 中文章的路径默认通过根目录配置文件的 permalink 来配置文章链接的构成，其可以使用常用的基础变量（年份，月份，标题），也可以使用在 front matter 中自行定义的变量。&lt;/p&gt;
+&lt;p&gt;Hugo 则默认是根据在 content 目录下文件的组织情况来构建页面的链接的，也可以在配置文件下面通过配置 permalink 属性来实现，但可选择的变量比较少，通常为年月日标题与文件名，不支持使用自定义的 front matter 变量。&lt;/p&gt;
+&lt;p&gt;我之前的博客链接使用的样式都是 &lt;code&gt;/:year/:urlname&lt;/code&gt;，通过在 front matter 中自定义文章的路径名。刚开始一直找不到 permalink 的正确配置方式，最终在文件的 front matter 中使用 url 属性来强行确定文章的链接。于是写了一个脚本，把所有 Markdown 文件当中的 urlname 属性改成 url，并在值前面加上年份，硬编码成 &lt;code&gt;/:year/:urlname&lt;/code&gt; 的形式。后来发现可以通过 slug 变量向 permalink 传递值，所以在配置中设置 &lt;code&gt;posts = &amp;quot;/:year/:slug/&amp;quot;&lt;/code&gt; 然后再写脚本把 url 属性转换为 slug 并去掉前面的年份编码。&lt;/p&gt;
+&lt;h3 id=&#34;分类标签&#34;&gt;分类标签&lt;/h3&gt;
+&lt;p&gt;刚复制几篇文章到 Hugo 时发现总是运行失败，提示 range cannot iterate 某个分类或标签，把它们删了就能够正确运行。后来发现是所使用的主题 MemE 总是预设这些属性是数组形式，因而如果分类或标签写成 &lt;code&gt;tags: val&lt;/code&gt; 的单行形式便会出错，需要写成多行形式&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span class=&#34;nt&#34;&gt;tags&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;- &lt;span class=&#34;l&#34;&gt;val&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;为什么分类（category）明明只有一个，但需要使用数组呢？这里 Hugo 就与 Hexo 有点差异，Hugo 的分类其实与标签有点类似，Hugo 中更像 Hexo 的分类反而是 sections，这种是通过目录的文件结构来组织的。&lt;/p&gt;
+&lt;p&gt;考虑到这个差异，我干脆把所有的分类都通过脚本一并删了。通过 tags 的方式来组织文章的分类。&lt;/p&gt;
+&lt;h3 id=&#34;评论功能实现&#34;&gt;评论功能实现&lt;/h3&gt;
+&lt;p&gt;之前使用的是 Waline 评论系统实现，选择的主题只提供 Valine 的设置，而且实现还是不完整，用不了的。于是我就仿照它的思路写了个 Waline 的实现，并且把未实现的部分实现了，并且补上了文章阅读量的显示。&lt;/p&gt;
+&lt;h2 id=&#34;博客到底需要什么&#34;&gt;博客到底需要什么？&lt;/h2&gt;
+&lt;p&gt;在博客迁移需要对博客的功能内容进行重新取舍时，不禁又在重新思考了一下这个问题：我在写一个博客的时候，到底需要些什么，需要向他人展示些什么？&lt;/p&gt;
+&lt;p&gt;在最开始的时候，写博客不过就是在做技术类的笔记，大多时候都在摘抄与记录，少有自己的想法。而这种技术类的文章创作起来也不容易，就导致了更新也不频繁，内容不够充实。于是乎，就很容易花费心思到博客本身上面，而非文章内容本身，总是想着给博客加点什么功能，怎样让博客好看点，通过这样的方式来吸引人前来博客。于是越来越花哨，打开也越来越慢。这样的博客确实可能会给人打开时眼前一亮的感觉，但也仅会在第一次而已。&lt;/p&gt;
+&lt;p&gt;在之前给女友写信寻找博客主题时，选择了一个很棒的极简主义风格主题。这个主题让我意识到，我应该要回归到博客的内容本身，让人们的视线重新聚焦到文字上面。所以这次挑选 Hugo 主题时就秉着这个条件，一是要简单，二是则以文字为主。当前这个主题感觉还是能够很好地符合我的要求。&lt;/p&gt;
+&lt;p&gt;但写到这里就会觉得，其实在博客内容创造上面，我好像也陷入了一个瓶颈的位置。写技术类文章，简单的类文档形式的比较耗时且繁琐，不如去看官方文档；复杂点的技术性强点的文章，又会使阅读的门槛提高；记录自己爬坑经历与反思，但没有相似的具体场景的话有时也比较无味。写生活类文章，困于校园忙于学业的我似乎也找不到更多的时间去真正生活，即使遇到有意思的事情，首先会想到的也是记录在私密的周记记录当中。而关于练拳，养生，阅读等等各个方面的内容，感觉自己都有点半桶水的感觉。&lt;/p&gt;
+&lt;p&gt;不过问题来了：文章写得不够好就不能写吗？显然不是的，越不够好就越要写，只有通过多写多练的方式才能促进水平提示，包括写作水平以及所写内容涉及到的领域水平。&lt;/p&gt;
+&lt;p&gt;正如自己更新的个人介绍中写到&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;🛠️ 什么都会点但又不够精通的杂才&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;希望自己早日能够从杂才成为通才吧！&lt;/p&gt;
+</description>
+                
+                
+                
+                    
+                    
+                    
+                        
+                        
+                        
+                            
+                                <category domain="https://scottyeung.top/posts/">posts\</category>
+                            
+                        
+                    
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://scottyeung.top/tags/%E5%8D%9A%E5%AE%A2/">博客</category>
+                                
+                            
+                                
+                                
+                                
+                                    <category domain="https://scottyeung.top/tags/hugo/">Hugo</category>
+                                
+                            
+                                
+                                
+                                
+                                    <category domain="https://scottyeung.top/tags/%E7%BB%8F%E5%8E%86%E5%9B%9E%E9%A1%BE/">经历回顾</category>
+                                
+                            
+                        
+                    
+                
+            </item>
         
             <item>
                 <title>CSS 选择器</title>
