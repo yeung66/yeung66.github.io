@@ -54,7 +54,7 @@ L=a1 的编码长度 ×t1&#43;a2 的编码长度 ×t2&#43;…&#43; an 的编码�
     
 
     
-    <link rel="canonical" href="https://scottyeung.top/2019/ccf201612-4-%E5%8E%8B%E7%BC%A9%E7%BC%96%E7%A0%81/" />
+    <link rel="canonical" href="https://scottyeung.top/2019/CCF201612-4-%E5%8E%8B%E7%BC%A9%E7%BC%96%E7%A0%81/" />
     
 
 <script type="application/ld+json">
@@ -63,7 +63,7 @@ L=a1 的编码长度 ×t1&#43;a2 的编码长度 ×t2&#43;…&#43; an 的编码�
         "@type": "BlogPosting",
         "datePublished": "2019-03-12T14:15:57+00:00",
         "dateModified": "2021-06-03T14:12:48+08:00",
-        "url": "https://scottyeung.top/2019/ccf201612-4-%E5%8E%8B%E7%BC%A9%E7%BC%96%E7%A0%81/",
+        "url": "https://scottyeung.top/2019/CCF201612-4-%E5%8E%8B%E7%BC%A9%E7%BC%96%E7%A0%81/",
         "headline": "CCF201612-4 压缩编码",
         "description": "Problem 问题描述 　给定一段文字，已知单词a1, a2, …, an出现的频率分别t1, t2, …, tn。可以用01串给这些单词编码，即将每个单词与一个01串对应，使得任何一个单词的编码（对应的01串）不是另一个单词编码的前缀，这种编码称为前缀码。\n使用前缀码编码一段文字是指将这段文字中的每个单词依次对应到其编码。一段文字经过前缀编码后的长度为：\nL=a1 的编码长度 ×t1+a2 的编码长度 ×t2+…+ an 的编码长度×tn。\n定义一个前缀编码为字典序编码，指对于1 ≤ i \u003c n，ai的编码（对应的01串）的字典序在ai+1编码之前，即 a1, a2, …, an 的编码是按字典序升序排列的。\n例如，文字E A E C D E B C C E C B D B E中， 5个单词A、B、C、D、E出现的频率分别为1, 3, 4, 2, 5，则一种可行的编码方案是A:000, B:001, C:01, D:10, E:11，对应的编码后的01串为1100011011011001010111010011000111，对应的长度 L 为 3×1+3×3+2×4+2×2+2×5=34。\n在这个例子中，如果使用哈夫曼(Huffman)编码，对应的编码方案是A:000, B:01, C:10, D:001, E:11，虽然最终文字编码后的总长度只有33，但是这个编码不满足字典序编码的性质，比如C的编码的字典序不在D的编码之前。\n在这个例子中，有些人可能会想的另一个字典序编码是A:000, B:001, C:010, D:011, E:1，编码后的文字长度为35。\n请找出一个字典序编码，使得文字经过编码后的长度L最小。在输出时，你只需要输出最小的长度L，而不需要输出具体的方案。在上面的例子中，最小的长度L为34。\n……",
         "inLanguage" : "zh-CN",
@@ -115,7 +115,7 @@ L=a1 的编码长度 ×t1&#43;a2 的编码长度 ×t2&#43;…&#43; an 的编码�
 在这个例子中，有些人可能会想的另一个字典序编码是A:000, B:001, C:010, D:011, E:1，编码后的文字长度为35。
 请找出一个字典序编码，使得文字经过编码后的长度L最小。在输出时，你只需要输出最小的长度L，而不需要输出具体的方案。在上面的例子中，最小的长度L为34。
 ……" />
-<meta property="og:url" content="https://scottyeung.top/2019/ccf201612-4-%E5%8E%8B%E7%BC%A9%E7%BC%96%E7%A0%81/" />
+<meta property="og:url" content="https://scottyeung.top/2019/CCF201612-4-%E5%8E%8B%E7%BC%A9%E7%BC%96%E7%A0%81/" />
 <meta property="og:site_name" content="YeungYeah 的乱写地" />
 <meta property="og:locale" content="zh" /><meta property="og:image" content="https://scottyeung.top/posts/%E6%8D%95%E8%8E%B7.JPG" />
 <meta property="og:type" content="article" />
@@ -284,7 +284,7 @@ L=a1 的编码长度 ×t1&#43;a2 的编码长度 ×t2&#43;…&#43; an 的编码�
     
         
             
-            <span class="post-meta-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="icon post-meta-icon"><path d="M288 144a110.94 110.94 0 0 0-31.24 5 55.4 55.4 0 0 1 7.24 27 56 56 0 0 1-56 56 55.4 55.4 0 0 1-27-7.24A111.71 111.71 0 1 0 288 144zm284.52 97.4C518.29 135.59 410.93 64 288 64S57.68 135.64 3.48 241.41a32.35 32.35 0 0 0 0 29.19C57.71 376.41 165.07 448 288 448s230.32-71.64 284.52-177.41a32.35 32.35 0 0 0 0-29.19zM288 400c-98.65 0-189.09-55-237.93-144C98.91 167 189.34 112 288 112s189.09 55 237.93 144C477.1 345 386.66 400 288 400z"/></svg>&nbsp;<span id="/2019/ccf201612-4-%E5%8E%8B%E7%BC%A9%E7%BC%96%E7%A0%81/" class="waline-visitor-count" /></span>
+            <span class="post-meta-item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="icon post-meta-icon"><path d="M288 144a110.94 110.94 0 0 0-31.24 5 55.4 55.4 0 0 1 7.24 27 56 56 0 0 1-56 56 55.4 55.4 0 0 1-27-7.24A111.71 111.71 0 1 0 288 144zm284.52 97.4C518.29 135.59 410.93 64 288 64S57.68 135.64 3.48 241.41a32.35 32.35 0 0 0 0 29.19C57.71 376.41 165.07 448 288 448s230.32-71.64 284.52-177.41a32.35 32.35 0 0 0 0-29.19zM288 400c-98.65 0-189.09-55-237.93-144C98.91 167 189.34 112 288 112s189.09 55 237.93 144C477.1 345 386.66 400 288 400z"/></svg>&nbsp;<span id="/2019/CCF201612-4-%E5%8E%8B%E7%BC%A9%E7%BC%96%E7%A0%81/" class="waline-visitor-count" /></span>
         
     
     
@@ -353,7 +353,7 @@ L=a1 的编码长度 ×t1&#43;a2 的编码长度 ×t2&#43;…&#43; an 的编码�
                 
                 
                 
-                <li class="copyright-item link"><span class="copyright-item-text">链接</span>：<a href="/2019/ccf201612-4-%E5%8E%8B%E7%BC%A9%E7%BC%96%E7%A0%81/" target="_blank" rel="noopener">https://scottyeung.top/2019/ccf201612-4-压缩编码/</a></li>
+                <li class="copyright-item link"><span class="copyright-item-text">链接</span>：<a href="/2019/CCF201612-4-%E5%8E%8B%E7%BC%A9%E7%BC%96%E7%A0%81/" target="_blank" rel="noopener">https://scottyeung.top/2019/CCF201612-4-压缩编码/</a></li>
             
             <li class="copyright-item license"><span class="copyright-item-text">许可</span>：<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></li>
             
@@ -383,7 +383,7 @@ L=a1 的编码长度 ×t1&#43;a2 的编码长度 ×t2&#43;…&#43; an 的编码�
             <ul class="related-list">
                 
                     <li class="related-item">
-                        <a href="/2019/ccf-201903/" class="related-link">CCF 201903</a>
+                        <a href="/2019/CCF-201903/" class="related-link">CCF 201903</a>
                     </li>
                 
                     <li class="related-item">
@@ -391,15 +391,15 @@ L=a1 的编码长度 ×t1&#43;a2 的编码长度 ×t2&#43;…&#43; an 的编码�
                     </li>
                 
                     <li class="related-item">
-                        <a href="/2019/ccf201503-4-%E7%BD%91%E7%BB%9C%E5%BB%B6%E6%97%B6/" class="related-link">CCF201503-4 网络延时</a>
+                        <a href="/2019/CCF201503-4-%E7%BD%91%E7%BB%9C%E5%BB%B6%E6%97%B6/" class="related-link">CCF201503-4 网络延时</a>
                     </li>
                 
                     <li class="related-item">
-                        <a href="/2019/ccf201412-3-%E9%9B%86%E5%90%88%E7%AB%9E%E4%BB%B7/" class="related-link">CCF201412-3 集合竞价</a>
+                        <a href="/2019/CCF201412-3-%E9%9B%86%E5%90%88%E7%AB%9E%E4%BB%B7/" class="related-link">CCF201412-3 集合竞价</a>
                     </li>
                 
                     <li class="related-item">
-                        <a href="/2019/ccf201604-2-%E4%BF%84%E7%BD%97%E6%96%AF%E6%96%B9%E5%9D%97/" class="related-link">CCF201604-2 俄罗斯方块</a>
+                        <a href="/2019/CCF201604-2-%E4%BF%84%E7%BD%97%E6%96%AF%E6%96%B9%E5%9D%97/" class="related-link">CCF201604-2 俄罗斯方块</a>
                     </li>
                 
             </ul>
@@ -417,7 +417,7 @@ L=a1 的编码长度 ×t1&#43;a2 的编码长度 ×t2&#43;…&#43; an 的编码�
                 
                 
                     
-                    <a href="/tags/ccf/" rel="tag" class="post-tags-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon tag-icon"><path d="M0 252.118V48C0 21.49 21.49 0 48 0h204.118a48 48 0 0 1 33.941 14.059l211.882 211.882c18.745 18.745 18.745 49.137 0 67.882L293.823 497.941c-18.745 18.745-49.137 18.745-67.882 0L14.059 286.059A48 48 0 0 1 0 252.118zM112 64c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48z"/></svg>CCF</a>
+                    <a href="/tags/CCF/" rel="tag" class="post-tags-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon tag-icon"><path d="M0 252.118V48C0 21.49 21.49 0 48 0h204.118a48 48 0 0 1 33.941 14.059l211.882 211.882c18.745 18.745 18.745 49.137 0 67.882L293.823 497.941c-18.745 18.745-49.137 18.745-67.882 0L14.059 286.059A48 48 0 0 1 0 252.118zM112 64c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48z"/></svg>CCF</a>
                 
             
                 
@@ -425,7 +425,7 @@ L=a1 的编码长度 ×t1&#43;a2 的编码长度 ×t2&#43;…&#43; an 的编码�
                 
                 
                     
-                    <a href="/tags/python/" rel="tag" class="post-tags-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon tag-icon"><path d="M0 252.118V48C0 21.49 21.49 0 48 0h204.118a48 48 0 0 1 33.941 14.059l211.882 211.882c18.745 18.745 18.745 49.137 0 67.882L293.823 497.941c-18.745 18.745-49.137 18.745-67.882 0L14.059 286.059A48 48 0 0 1 0 252.118zM112 64c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48z"/></svg>Python</a>
+                    <a href="/tags/Python/" rel="tag" class="post-tags-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon tag-icon"><path d="M0 252.118V48C0 21.49 21.49 0 48 0h204.118a48 48 0 0 1 33.941 14.059l211.882 211.882c18.745 18.745 18.745 49.137 0 67.882L293.823 497.941c-18.745 18.745-49.137 18.745-67.882 0L14.059 286.059A48 48 0 0 1 0 252.118zM112 64c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48z"/></svg>Python</a>
                 
             
         </div>
@@ -450,12 +450,12 @@ L=a1 的编码长度 ×t1&#43;a2 的编码长度 ×t2&#43;…&#43; an 的编码�
         <ul class="post-nav">
             
                 <li class="post-nav-prev">
-                    <a href="/2019/ccf201503-4-%E7%BD%91%E7%BB%9C%E5%BB%B6%E6%97%B6/" rel="prev">&lt; CCF201503-4 网络延时</a>
+                    <a href="/2019/CCF201503-4-%E7%BD%91%E7%BB%9C%E5%BB%B6%E6%97%B6/" rel="prev">&lt; CCF201503-4 网络延时</a>
                 </li>
             
             
                 <li class="post-nav-next">
-                    <a href="/2019/ccf201412-3-%E9%9B%86%E5%90%88%E7%AB%9E%E4%BB%B7/" rel="next">CCF201412-3 集合竞价 &gt;</a>
+                    <a href="/2019/CCF201412-3-%E9%9B%86%E5%90%88%E7%AB%9E%E4%BB%B7/" rel="next">CCF201412-3 集合竞价 &gt;</a>
                 </li>
             
         </ul>
