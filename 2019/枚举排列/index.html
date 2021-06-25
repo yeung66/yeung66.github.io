@@ -27,7 +27,7 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" media="print" onload="this.media='all'" />
         <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" /></noscript>
 
-    <meta name="author" content="YeungYeah" /><meta name="description" content="如何按字典序从小到大输出前n个数的所有排列？ 递归调用 将数字分成两部分： 已确定前缀序列 待定元素 每次移除一个待定元素添加到前缀序列末尾，进行下一次递归 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 void print_permutation(int n, int* A, int cur) { if(cur == n) {……" />
+    <meta name="author" content="YeungYeah" /><meta name="description" content="如何按字典序从小到大输出前 n 个数的所有排列？ 递归调用 将数字分成两部分： 已确定前缀序列 待定元素 每次移除一个待定元素添加到前缀序列末尾，进行下一次递归 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 void print_permutation(int n, int* A, int cur) { if(cur == n) {……" />
 
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#2a6df4" />
@@ -54,13 +54,13 @@
         "@context": "https://schema.org",
         "@type": "BlogPosting",
         "datePublished": "2019-07-03T10:21:44+00:00",
-        "dateModified": "2021-06-03T14:12:48+08:00",
+        "dateModified": "2021-06-25T16:03:51+08:00",
         "url": "https://scottyeung.top/2019/%E6%9E%9A%E4%B8%BE%E6%8E%92%E5%88%97/",
         "headline": "枚举排列",
-        "description": "如何按字典序从小到大输出前n个数的所有排列？ 递归调用 将数字分成两部分： 已确定前缀序列 待定元素 每次移除一个待定元素添加到前缀序列末尾，进行下一次递归 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 void print_permutation(int n, int* A, int cur) { if(cur == n) {……",
+        "description": "如何按字典序从小到大输出前 n 个数的所有排列？ 递归调用 将数字分成两部分： 已确定前缀序列 待定元素 每次移除一个待定元素添加到前缀序列末尾，进行下一次递归 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 void print_permutation(int n, int* A, int cur) { if(cur == n) {……",
         "inLanguage" : "zh-CN",
         "articleSection": "posts",
-        "wordCount":  452 ,
+        "wordCount":  413 ,
         "image": "https://scottyeung.top/images/favicon-32x32.png",
         "author": {
             "@type": "Person",
@@ -97,13 +97,13 @@
 
 
 <meta property="og:title" content="枚举排列" />
-<meta property="og:description" content="如何按字典序从小到大输出前n个数的所有排列？ 递归调用 将数字分成两部分： 已确定前缀序列 待定元素 每次移除一个待定元素添加到前缀序列末尾，进行下一次递归 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 void print_permutation(int n, int* A, int cur) { if(cur == n) {……" />
+<meta property="og:description" content="如何按字典序从小到大输出前 n 个数的所有排列？ 递归调用 将数字分成两部分： 已确定前缀序列 待定元素 每次移除一个待定元素添加到前缀序列末尾，进行下一次递归 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 void print_permutation(int n, int* A, int cur) { if(cur == n) {……" />
 <meta property="og:url" content="https://scottyeung.top/2019/%E6%9E%9A%E4%B8%BE%E6%8E%92%E5%88%97/" />
 <meta property="og:site_name" content="YeungYeah 的乱写地" />
 <meta property="og:locale" content="zh" /><meta property="og:image" content="https://scottyeung.top/images/favicon-32x32.png" />
     <meta property="og:type" content="article" />
     <meta property="article:published_time" content="2019-07-03T10:21:44&#43;00:00" />
-    <meta property="article:modified_time" content="2021-06-03T14:12:48&#43;08:00" />
+    <meta property="article:modified_time" content="2021-06-25T16:03:51&#43;08:00" />
     
     <meta property="article:section" content="posts" />
 
@@ -233,7 +233,7 @@
     
     
         
-        <time datetime="2021-06-03T14:12:48&#43;08:00" class="post-meta-item modified dt-updated"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon post-meta-icon"><path d="M400 64h-48V12c0-6.627-5.373-12-12-12h-40c-6.627 0-12 5.373-12 12v52H160V12c0-6.627-5.373-12-12-12h-40c-6.627 0-12 5.373-12 12v52H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm-6 400H54a6 6 0 0 1-6-6V160h352v298a6 6 0 0 1-6 6zm-52.849-200.65L198.842 404.519c-4.705 4.667-12.303 4.637-16.971-.068l-75.091-75.699c-4.667-4.705-4.637-12.303.068-16.971l22.719-22.536c4.705-4.667 12.303-4.637 16.97.069l44.104 44.461 111.072-110.181c4.705-4.667 12.303-4.637 16.971.068l22.536 22.718c4.667 4.705 4.636 12.303-.069 16.97z"/></svg>&nbsp;2021.6.3</time>
+        <time datetime="2021-06-25T16:03:51&#43;08:00" class="post-meta-item modified dt-updated"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon post-meta-icon"><path d="M400 64h-48V12c0-6.627-5.373-12-12-12h-40c-6.627 0-12 5.373-12 12v52H160V12c0-6.627-5.373-12-12-12h-40c-6.627 0-12 5.373-12 12v52H48C21.49 64 0 85.49 0 112v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm-6 400H54a6 6 0 0 1-6-6V160h352v298a6 6 0 0 1-6 6zm-52.849-200.65L198.842 404.519c-4.705 4.667-12.303 4.637-16.971-.068l-75.091-75.699c-4.667-4.705-4.637-12.303.068-16.971l22.719-22.536c4.705-4.667 12.303-4.637 16.97.069l44.104 44.461 111.072-110.181c4.705-4.667 12.303-4.637 16.971.068l22.536 22.718c4.667 4.705 4.636 12.303-.069 16.97z"/></svg>&nbsp;2021.6.25</time>
     
     
     
@@ -276,7 +276,7 @@
             
 
             <div class="post-body e-content">
-                <p>如何按字典序从小到大输出前n个数的所有排列？</p>
+                <p>如何按字典序从小到大输出前 n 个数的所有排列？</p>
 <!-- more -->
 <h2 id="递归调用"><a href="#递归调用" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>递归调用</h2>
 <p>将数字分成两部分：</p>
@@ -306,13 +306,13 @@
 <td class="lntd">
 <pre class="chroma"><code class="language-c++" data-lang="c++"><span class="kt">void</span> <span class="nf">print_permutation</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span><span class="o">*</span> <span class="n">A</span><span class="p">,</span> <span class="kt">int</span> <span class="n">cur</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span><span class="p">(</span><span class="n">cur</span> <span class="o">==</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span> <span class="c1">//递归边界
-</span><span class="c1"></span>    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%d &#34;</span><span class="p">,</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
-        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span><span class="c1"></span>        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%d &#34;</span><span class="p">,</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
     <span class="p">}</span>
-    <span class="k">else</span> <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="c1">//尝试在A[cur]中填各种整数i
-</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">ok</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">cur</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="n">i</span><span class="p">)</span> <span class="n">ok</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">//如果i已经在A[0]~A[cur-1]出现过，则不能再选
+    <span class="k">else</span> <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="c1">//尝试在 A[cur] 中填各种整数 i
+</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">ok</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">cur</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="n">i</span><span class="p">)</span> <span class="n">ok</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">//如果 i 已经在 A[0]~A[cur-1] 出现过，则不能再选
 </span><span class="c1"></span>        <span class="k">if</span><span class="p">(</span><span class="n">ok</span><span class="p">)</span> <span class="p">{</span>
             <span class="n">A</span><span class="p">[</span><span class="n">cur</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
             <span class="n">print_permutation</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">cur</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span> <span class="c1">//递归调用
@@ -326,11 +326,11 @@
 <ol>
 <li>将元素排序，记录初始序列。</li>
 <li>将当前首元素记录。</li>
-<li>每次将记录的元素右移1位（交换位置），生成一个排列</li>
-<li>直到元素移到最右边，回到步骤2</li>
+<li>每次将记录的元素右移 1 位（交换位置），生成一个排列</li>
+<li>直到元素移到最右边，回到步骤 2</li>
 <li>当出现了初始序列时，排列生成完毕</li>
 </ol>
-<p>具体代码可以参照std标准库里面的方法<code>next_permutation</code></p>
+<p>具体代码可以参照 std 标准库里面的方法<code>next_permutation</code></p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt"> 1
@@ -350,15 +350,15 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-c++" data-lang="c++"><span class="cp">#include</span><span class="cpf">&lt;cstdio&gt;</span><span class="cp">
-</span><span class="cp">#include</span><span class="cpf">&lt;algorithm&gt; //包含next_permutation</span><span class="cp">
+</span><span class="cp">#include</span><span class="cpf">&lt;algorithm&gt; //包含 next_permutation</span><span class="cp">
 </span><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span> <span class="p">)</span> <span class="p">{</span>
     <span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
     <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">);</span>
     <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
-        <span class="n">sort</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">p</span><span class="o">+</span><span class="n">n</span><span class="p">);</span> <span class="c1">//排序，得到p的最小排列
+        <span class="n">sort</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">p</span><span class="o">+</span><span class="n">n</span><span class="p">);</span> <span class="c1">//排序，得到 p 的最小排列
 </span><span class="c1"></span>    <span class="k">do</span> <span class="p">{</span>
-        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%d &#34;</span><span class="p">,</span> <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span> <span class="c1">//输出排列p
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%d &#34;</span><span class="p">,</span> <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span> <span class="c1">//输出排列 p
 </span><span class="c1"></span>        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
     <span class="p">}</span> <span class="k">while</span><span class="p">(</span><span class="n">next_permutation</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">p</span><span class="o">+</span><span class="n">n</span><span class="p">));</span> <span class="c1">//求下一个排列
 </span><span class="c1"></span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
