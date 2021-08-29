@@ -1,4 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah 的乱写地</title><link>https://scottyeung.top/</link><description>YeungYeah 的乱写地中记录了作者的所思所想及所为。</description><generator>Hugo 0.83.1 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><lastBuildDate>Wed, 18 Aug 2021 07:56:21 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>今日之大学</title><link>https://scottyeung.top/2021/current-college-life/</link><guid isPermaLink="true">https://scottyeung.top/2021/current-college-life/</guid><pubDate>Tue, 27 Jul 2021 16:48:49 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;p>今天在翻之前在看的一本书，名为《我的二本学生》，内容讲述了广东某二本学院老师对于其执教以来所接触到的学生的记录。虽然仅是类似于教学札记般的文字记述，但是胜在够于真实和细致，还是很能够让人了解到以前的大学生生活状态与今日之大学生的生活状态，及其两者的区别。&lt;/p>
+<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah 的乱写地</title><link>https://scottyeung.top/</link><description>YeungYeah 的乱写地中记录了作者的所思所想及所为。</description><generator>Hugo 0.83.1 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><lastBuildDate>Sun, 29 Aug 2021 07:51:27 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>数据定义的生活</title><link>https://scottyeung.top/2021/%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89%E7%9A%84%E7%94%9F%E6%B4%BB/</link><guid isPermaLink="true">https://scottyeung.top/2021/%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89%E7%9A%84%E7%94%9F%E6%B4%BB/</guid><pubDate>Fri, 27 Aug 2021 16:41:34 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;p>刚放假回家的那段时间，总是想着把现在在用的小米手环换成 Amazfit 的智能手表。不是因为现在的手环有什么问题，也不是因为看中的智能手表有着如何吸引人的功能，硬要说的话可能就是新的手表能够多测身体的一些参数，配套新的应用可能生成更好看的图表数据。然而这样就已经是我感到心痒痒了，直到现在都还没有完全打消购买的念头。&lt;/p>
+&lt;p>不知道从什么时候起，我很喜欢使用数据来记录生活的一切：用手环来记录每天的睡眠和运动情况，用 Forest 来记录日常的学习时间，甚至写代码的情况最近也开始使用 WakaTime 来进行记录。记录多了，所产生的数据自然也多了，这些数据看起来通常是会觉得不错的，尤其是在过了一段时间后来回顾过去一段数据的数据记录，有时也会让人觉得，好像之前确实是有在做事情，而所做的事情确实是有那么点意义。&lt;/p>
+&lt;p>可惜的是，这样的数据除了在日后回顾的时候给自己感慨以外，还能带来什么实际的用途呢？像是睡眠情况的监测，睡眠的长度和质量其实自己也能有所察觉，而软件给出的睡眠不足和深睡较短的结果，我也没有很好的解决方法，即使是知道自己睡得不够或睡得很晚，我又会去解决吗，又可以如何解决。还有手机自带的使用时间监测，不需要点开就知道自己花了大量的时间在手机上面，这些数据的出现除了让自己徒增愧疚以外，也带来不了很好的改正效果。&lt;/p>
+&lt;p>数据自己用不上就算了，作为一个日后回忆的记录，其实也未尝不可，不过最近开始隐隐觉得，似乎有点找寻不到日常学习工作的意义，或者更进一步来说，如果进行学习或工作的时候没被记录下来，仿佛就是没有意义的无用功一样。好像在手机上面看了一会书，如果这个过程没有被微信读书记录上阅读时间，或者是摘抄几个片段和写几条记录，就好像没有看过书一样，即使是看了一下午，也感觉是什么都没做的一个下午。运动锻炼也是如此，对于不能使用手环记录的运动，意愿会大大下降。&lt;/p>
+&lt;p>因此为了重新平日生活当中的意义，开始有意无意地减少一些时间的记录，例如 Forest 以及手环的使用，尽量减少对于数据给自己带来的反馈感，避免行为模式变成数据驱动的模式，让行为的出发点回归的意愿本身。不过这样的想法能够持续多久，自己也无法预计，而且真的可以做到找寻会行为的意义和自身的意义本身来进行行为的选择吗，其实也不太乐观。&lt;/p>
+&lt;p>问题又回到了自己到底想要做什么上面。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E6%95%B0%E6%8D%AE/">数据</category><category domain="https://scottyeung.top/tags/%E9%9A%8F%E7%AC%94/">随笔</category><category domain="https://scottyeung.top/tags/%E7%94%9F%E6%B4%BB/">生活</category></item><item><title>今日之大学</title><link>https://scottyeung.top/2021/current-college-life/</link><guid isPermaLink="true">https://scottyeung.top/2021/current-college-life/</guid><pubDate>Tue, 27 Jul 2021 16:48:49 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;p>今天在翻之前在看的一本书，名为《我的二本学生》，内容讲述了广东某二本学院老师对于其执教以来所接触到的学生的记录。虽然仅是类似于教学札记般的文字记述，但是胜在够于真实和细致，还是很能够让人了解到以前的大学生生活状态与今日之大学生的生活状态，及其两者的区别。&lt;/p>
 &lt;p>今天在里面看到一个观点，讲到中国大学教育目标已经发生了明显的变化，以前的大学教育目标是为集体（社会和祖国）培养人才，而现在的教育目标，更多是在把学生培养成为了找到工作的就业主体，以温铁军老师的话来说，就是“把人变成资本化的一个要素”。作为一个计算机专业的学生来说，我对于这种转变的现象感到深以为然。&lt;/p>
 &lt;blockquote>
 &lt;p>我的大学时代，哪怕只是一个中专生、专科生，也被视为“天之骄子”，对农村的孩子而言，考上大学常常被视为“跳龙门”，并被国家从人事关系上认定为“干部”；而对 062111 班的学生而言，进入广东 F 学院这样的二本院校，并不能给他们带来太多精神上的荣耀感，从进入校门开始，还没来得及感受高中老师曾描绘的美妙大学时光，就被辅导员告知就业的压力。他们毕业时，更多人拿到的只是一份“劳务派遣”，可以说，刚刚卸下高考的重负，就绷上了找工作的弦，整个大学过程，不过教育产业化后被学校锻造为专业“流水线”上的一个规整产品，并被冠以“人力资源”的工具化表述。&lt;/p>
@@ -28,7 +33,7 @@
 如何解决？想到两个点。一个是合作，每个人精通一方面的知识，通过合作获取意见，轮流充当 expert/data collecter/analyzer 的角色。另外一个是快速学习入门，但这个其实比较虚，不过其实做分析需要的水平其实也不是很高？&lt;/p>
 &lt;/blockquote>
 &lt;p>我们研究软件质量，会选择某些特定类型的软件来进行研究考察，但事实上我们并没有在这一类型或这一领域中有着深厚的专业知识，所以我们该如何对其做出深入而专业的分析，又或者说，为什么这类工作不交给领域相关的开发人员来负责其质量。也许是我们这也有着通用的，可以补上领域知识缺失的屠龙方法吧（当然可能合作更为关键）。&lt;/p>
-&lt;p>&lt;del>所以到头来好像也没想出个什么结果，越想反而越加劝退自己了&lt;/del>&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E7%A7%91%E7%A0%94/">科研</category><category domain="https://scottyeung.top/tags/%E4%B8%AA%E4%BA%BA%E9%9A%8F%E7%AC%94/">个人随笔</category><category domain="https://scottyeung.top/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</category></item><item><title>996 的二三事</title><link>https://scottyeung.top/2021/why-refuse-to-996/</link><guid isPermaLink="true">https://scottyeung.top/2021/why-refuse-to-996/</guid><pubDate>Fri, 25 Jun 2021 16:06:10 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;p>从五月中在 B 站上面刷到一些关于政经与哲学的视频之后又重新勾起了自己对于这方面知识内容的兴趣，陆续关注了一些 up 主进行了解~~，人也变得越来越左~~。其中有个比较喜欢的 up &lt;a href="https://space.bilibili.com/23191782">未明子&lt;/a> 谈了点关于 996 的话题，深以为然，觉得还是启发挺大的，于是写点东西把它记录下来。&lt;/p>
+&lt;p>&lt;del>所以到头来好像也没想出个什么结果，越想反而越加劝退自己了&lt;/del>&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E7%A7%91%E7%A0%94/">科研</category><category domain="https://scottyeung.top/tags/%E9%9A%8F%E7%AC%94/">随笔</category><category domain="https://scottyeung.top/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</category></item><item><title>996 的二三事</title><link>https://scottyeung.top/2021/why-refuse-to-996/</link><guid isPermaLink="true">https://scottyeung.top/2021/why-refuse-to-996/</guid><pubDate>Fri, 25 Jun 2021 16:06:10 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;p>从五月中在 B 站上面刷到一些关于政经与哲学的视频之后又重新勾起了自己对于这方面知识内容的兴趣，陆续关注了一些 up 主进行了解~~，人也变得越来越左~~。其中有个比较喜欢的 up &lt;a href="https://space.bilibili.com/23191782">未明子&lt;/a> 谈了点关于 996 的话题，深以为然，觉得还是启发挺大的，于是写点东西把它记录下来。&lt;/p>
 &lt;h2 id="什么是-996">什么是 996&lt;/h2>
 &lt;p>现在总是在说 996，到底是什么是 996 呢？&lt;/p>
 &lt;p>从字面上的意思来看，就是工作时间变成了早上 9 点上班，晚上 9 点下班，每周工作六天。与传统的 965 相比，每周的工作的时间多了 27 小时。以互联网行业来说，这些多出来的工作时间在大多数公司都可以被算作加班时间，可以获得额外的加班费以及相应的福利，因而会有人觉得加班很好，甚至主动加班，主动 996 来开卷。可能是因为太多这样的情况，导致高收入都逐渐与 996 划上等号了，如果想要收入高点，就必须要 996，如果要不加班，就要选择接受较低的收入。&lt;/p>
@@ -177,7 +182,7 @@
 &lt;li>对于时间的利用不够灵活，仿佛洁癖一般，总是会抱着一种完美主义的效率至上心态。会认为与其在上课的半个小时里面低效的学，不如在这期间摸鱼休息，然后等到之后可以高效率学习。这样的心态会导致自己在某些时候心安理得地摸鱼不学习，把时间白白浪费掉。其次就是对于时间的要求越来越多，然后就开始成为拖延某些任务的借口。明明可以做半个小时，一个小时，但是觉得这么短的时间干不出什么结果就干脆放弃，不做，选择做一些短平快的事。&lt;/li>
 &lt;/ul>
 &lt;p>当然其实工具的本身还是其次，本质上还是自己的心态出现了问题，现在的自己不是很能够接纳没有学习的自己，不能接受好像一天都没怎么学习的自己。原本只是为了对于时间记录这个用于以后留念的数据，现在逐渐演变成证明自己有在努力的工具，很是不妥，而自己也仿佛被困在 Forest 这个工具当中。&lt;/p>
-&lt;p>当然你要我一下子就完全不用，我也还是做不到，甚至在写这篇文章的时候，我也开着了 Forest 来计时。不过还是需要改变，正如昨天文章所写，改变只需要一点点的改进，就从看少点 Forest 的种树记录，看轻点里面的数字开始。或许首先可以做到的就是，减少学习时间吧 😆&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E6%97%B6%E9%97%B4%E7%AE%A1%E7%90%86/">时间管理</category><category domain="https://scottyeung.top/tags/%E4%B8%AA%E4%BA%BA%E9%9A%8F%E7%AC%94/">个人随笔</category></item><item><title>“什么都不做”</title><link>https://scottyeung.top/2021/do-nothing/</link><guid isPermaLink="true">https://scottyeung.top/2021/do-nothing/</guid><pubDate>Tue, 18 May 2021 21:21:49 +0000</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;blockquote>
+&lt;p>当然你要我一下子就完全不用，我也还是做不到，甚至在写这篇文章的时候，我也开着了 Forest 来计时。不过还是需要改变，正如昨天文章所写，改变只需要一点点的改进，就从看少点 Forest 的种树记录，看轻点里面的数字开始。或许首先可以做到的就是，减少学习时间吧 😆&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E6%97%B6%E9%97%B4%E7%AE%A1%E7%90%86/">时间管理</category><category domain="https://scottyeung.top/tags/%E9%9A%8F%E7%AC%94/">随笔</category></item><item><title>“什么都不做”</title><link>https://scottyeung.top/2021/do-nothing/</link><guid isPermaLink="true">https://scottyeung.top/2021/do-nothing/</guid><pubDate>Tue, 18 May 2021 21:21:49 +0000</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;blockquote>
 &lt;p>对于五月假期回来后状态的复盘，其实是写于 5.14 的周记记录&lt;/p>
 &lt;/blockquote>
 &lt;p>经历了不太想工作的一周工作日，可能是还处在五一的假期后遗症当中，缺乏干活的动力，每天都不想起床，不想干活，但偏偏事情又感觉很多，因而会陷入一种焦虑当中，不想干，但又要干，让人很是闹心。因为不想干活导致了无意义的拖延行为，因为拖延导致不得不利用一些另外的时间来尽量补回被拖延的时间，因为额外的时间被占用了导致某些想做的事情难以完成甚至无法完成，因为做不了自己想做的事情觉得不甘心又导致因为不愿就这样结束自己的一天而自然地熬夜，因为睡得不够又导致了第二天很困起不来，更加缺乏做事的动力与决心。&lt;/p>
@@ -186,7 +191,7 @@
 &lt;p>但为什么做不到呢？我觉得是现在的自己缺乏一种勇气，一种能够坦然接受现状并寻求应对解决方法的勇气。遇到问题，处于不满意的状态，不能够坦然地接受自己就处于这种状态，以及承受接下来可能出现的后果。出现这种情况，第一时间想到的是逃避，想着明天再来，全然不想处理当天比较糟糕的开局，哪怕只是稍微起晚了一点，哪怕只是上午的学习时间没了。内心居然隐隐会觉得，在状态不好时间不足的一天学习，还不如一天都不学，或者是干一些所谓轻松点的，与任务无关的事情。&lt;/p>
 &lt;p>迎着糟糕的情况前进比放弃或拖延所需要承担的压力还要多，因而会使人退缩。所以现在的我会选择早上醒来晚后就多赖一会床，起床晚了后就干脆不去实验室学习，去不了实验室就干脆上午不学习，上午不学习就中午早点睡下午再努力。当事情的一点点发展得不如心意就干脆将后续的发展也跟着打乱，舍弃掉本可利用的时间资源，想的是从下个阶段再开始。但很现实的是，既然第一个阶段的开端会出现意外，那么之后的又如何担保其一定按照预期发展呢？&lt;/p>
 &lt;p>&lt;img src="https://scottyeung.top/posts/2.png" alt="懂得都懂不懂都不懂的示意草图">&lt;/p>
-&lt;p>勇气怎么培养，我自己也不知道。不过现在的我已经不是之前那个只会接受一切的我，我相信一切都能够改变，都可以尽力去做到。改变自身性格就是一个，哪怕可能只是一点点。当以后出现这种情况的时候，直面它，接受它，应对它，战胜它。希望以后出现今天状态不好不想学习的时候，我的想法不再是等到明天状态好点再开始，而是状态不好的话我应该做些什么，应该怎么做，能做多少算多少的心态。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E6%97%B6%E9%97%B4%E7%AE%A1%E7%90%86/">时间管理</category><category domain="https://scottyeung.top/tags/%E4%B8%AA%E4%BA%BA%E9%9A%8F%E7%AC%94/">个人随笔</category></item><item><title>dotnet 爬虫的神</title><link>https://scottyeung.top/2021/dotnet-god-of-web-crawler/</link><guid isPermaLink="true">https://scottyeung.top/2021/dotnet-god-of-web-crawler/</guid><pubDate>Wed, 07 Apr 2021 18:57:41 +0000</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;p>这一周干了两次需要批量下载图片或文件的自动化工作，连续两次使用都是 dotnet 来完成，着实不错，尤其是配合 c# 的 async/await 语法糖，异步下载性能确实够快。这两次的下载让我对于这种需要批量获取信息或者下载的任务解锁了新的姿势。&lt;/p>
+&lt;p>勇气怎么培养，我自己也不知道。不过现在的我已经不是之前那个只会接受一切的我，我相信一切都能够改变，都可以尽力去做到。改变自身性格就是一个，哪怕可能只是一点点。当以后出现这种情况的时候，直面它，接受它，应对它，战胜它。希望以后出现今天状态不好不想学习的时候，我的想法不再是等到明天状态好点再开始，而是状态不好的话我应该做些什么，应该怎么做，能做多少算多少的心态。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E6%97%B6%E9%97%B4%E7%AE%A1%E7%90%86/">时间管理</category><category domain="https://scottyeung.top/tags/%E9%9A%8F%E7%AC%94/">随笔</category></item><item><title>dotnet 爬虫的神</title><link>https://scottyeung.top/2021/dotnet-god-of-web-crawler/</link><guid isPermaLink="true">https://scottyeung.top/2021/dotnet-god-of-web-crawler/</guid><pubDate>Wed, 07 Apr 2021 18:57:41 +0000</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;p>这一周干了两次需要批量下载图片或文件的自动化工作，连续两次使用都是 dotnet 来完成，着实不错，尤其是配合 c# 的 async/await 语法糖，异步下载性能确实够快。这两次的下载让我对于这种需要批量获取信息或者下载的任务解锁了新的姿势。&lt;/p>
 &lt;p>首先需要明确一点，我们需要的只是爬虫的结果而已，只是为了能够自动化获取我们所需要的数据或资源，所以我们所做的事情，所写的代码即使稍微 dirty 点也无妨，只要能 work 就好。尤其是在工程中，过于追求所谓的 elegant 只会让自己痛苦不已，不过这些都是题外话了。&lt;/p>
 &lt;p>So glad to make it dirty. 爬虫遇到例外情况时就做特殊判断，有异常就针对异常对个例单独处理，全自动化不行就手工做点操作加点信息。&lt;/p>
 &lt;h2 id="html-parsing">html parsing&lt;/h2>
@@ -260,306 +265,4 @@
 &lt;p>想起在开始重拾练拳想法的原因，是因为想着锻炼身体，让自己变得健康。不过其实到自己真正开始练拳的时候，反而并没有了这个想法，甚至觉得其实练拳最多也不过是种锻炼方式，再怎么健康，也不过相当于多运动了。纯粹是觉得挺有意思（以及加入组织开始练习之后不好退出了。&lt;/p>
 &lt;p>最后再分享在知乎看到的一个很棒的评论。有个人贴出了他在武当山上面练习传统武术的经历，然后评论区中就出现了很常见的杠精，张嘴就发出传武能不能打的怀疑，什么学得不值，是被骗了之类的评价。然后答主就很坦然地回复，对于他来说，武术只是一个个人的爱好而已，像有的人喜欢跳舞，有的人喜欢打球，一定需要能打，有用，才去做，才去学吗？显然不是。&lt;/p>
 &lt;p>所以为什么练习太极拳，喜欢就够了。&lt;/p>
-&lt;p>上面提到的推送中说到练拳需要如盲人走路，在练拳过程中要注重全身的感觉。对于整个练拳的历程来说，其实需要像盲人走路一样，专注于当下走的每步路，练的每次拳，也不太需要考虑前路怎样，可以练到什么程度，可以收获什么。反正练习下去，走下去，自然能够进入新的境界。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E5%A4%AA%E6%9E%81/">太极</category><category domain="https://scottyeung.top/tags/%E5%86%85%E5%AE%B6%E6%8B%B3/">内家拳</category><category domain="https://scottyeung.top/tags/%E6%9D%82%E8%B0%88/">杂谈</category></item><item><title>GraphQL 入门</title><link>https://scottyeung.top/2021/intro-to-GraphQL/</link><guid isPermaLink="true">https://scottyeung.top/2021/intro-to-GraphQL/</guid><pubDate>Wed, 17 Mar 2021 15:46:25 +0000</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;blockquote>
-&lt;p>GraphQL 既是一种用于 API 的查询语言也是一个满足你数据查询的运行时。 GraphQL 对你的 API 中的数据提供了一套易于理解的完整描述，使得客户端能够准确地获得它需要的数据，而且没有任何冗余，也让 API 更容易地随着时间推移而演进，还能用于构建强大的开发者工具。&lt;/p>
-&lt;/blockquote>
-&lt;h2 id="why-graphql">Why GraphQL&lt;/h2>
-&lt;p>GraphQL 的出现主要是针对于传统的 REST API。传统的 REST API 使用资源实体的概念来划分各个数据实体，当我们需要请求数据的时候，我们往往需要发送多个请求来获取所需要的数据，一般来说，实体当中往往与其它不同类型的实体有着各样的关系。&lt;/p>
-&lt;p>例如我们需要展示各个用户所编写的博客文章，这需要获取博客的数据以及用户的数据。如果我们通过 REST API 获取，我们首先需要通过 &lt;code>GET /api/posts&lt;/code> 获取所有的文章，返回的数据中就包含了文章的相关信息，如标题，内容，创建时间，以及作者的 id。根据获取的作者 id，我们需要根据每一个用户 id，发送请求 &lt;code>GET /api/users/:id&lt;/code> 获取每个作者的信息。所以这样单一个展示页面，我们就可能需要发送大量的请求来获取数据。如果这个情况发生在需要数据现场渲染页面的网站，就比较尴尬，尤其是当网络情况较差时。&lt;/p>
-&lt;p>而使用 GraphQL 的话，只需要单个 Query 即可&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
-&lt;/span>&lt;span class="lnt"> 2
-&lt;/span>&lt;span class="lnt"> 3
-&lt;/span>&lt;span class="lnt"> 4
-&lt;/span>&lt;span class="lnt"> 5
-&lt;/span>&lt;span class="lnt"> 6
-&lt;/span>&lt;span class="lnt"> 7
-&lt;/span>&lt;span class="lnt"> 8
-&lt;/span>&lt;span class="lnt"> 9
-&lt;/span>&lt;span class="lnt">10
-&lt;/span>&lt;span class="lnt">11
-&lt;/span>&lt;span class="lnt">12
-&lt;/span>&lt;span class="lnt">13
-&lt;/span>&lt;span class="lnt">14
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-GraphQL" data-lang="GraphQL">&lt;span class="kd">query&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nc">posts&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="py">title&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="py">content&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="py">tags&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="py">date&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="py">user&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="py">username&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="py">avatar&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="py">catchphrase&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="py">favorite_dog&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>另外传统的 API 在前后端进行接口交互时，往往需要文档来进行沟通交流，通过文档上面的定义和描述，来告诉前端接口到底长什么样，可以获取怎样的数据，以及怎样获取数据。然而文档的质量参差不齐，什么经常存在信息缺失的情况，尤其是需要人工编写的接口描述~~（给你写个类型信息和返回信息都不愿意）~~。尽管有着 Swagger 这些接口文档自动生成的工具，但是还是需要后端开发者付出额外的精力来添加描述信息。而如果写 GraphQL 的话，写一个 Scheme 就可以把支持的类型及其属性都清楚地暴露出去，只要再完善一下其中的 Query 以及 Mutation 内容，即可以把 GraphQL 支持的查询和更改操作都清楚地暴露出来。这些内容都可以通过算是内置的辅助工具 &lt;a href="https://github.com/graphql/graphiql">GraphiQL&lt;/a>，进行文档的查询，以及实际的尝试。&lt;/p>
-&lt;h2 id="how">How&lt;/h2>
-&lt;h3 id="to-build">to build&lt;/h3>
-&lt;p>如何编写一个 GrahpQL 服务呢？我们首先需要定义好它的 Schema，包括其定义的类型（Type），输入类型（Input）。在 GraphQL 里面，服务能够支持的查询和更改操作，也是类型，分别是 Query 和 Mutation。&lt;/p>
-&lt;ul>
-&lt;li>Type: 每个类型由多个属性组成，每个属性包含一个名字，以及该属性字段的类型，该类型可以为基本类型（Int, String, Boolean, Float, ID），数组，或者是自定义的对象类型&lt;/li>
-&lt;li>Input: 输入类型也是一个 Type&lt;/li>
-&lt;li>Query: 表示服务支持的查询内容，每个属性表示某个 query，其类型则为返回类型，可以接收参数&lt;/li>
-&lt;li>Mutation: 表示服务支持的更改操作，每个属性表示操作名，需要接收输入类型的参数，其类型为返回类型&lt;/li>
-&lt;/ul>
-&lt;p>以下为一个关于 todo 的 GraphQL Schema&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
-&lt;/span>&lt;span class="lnt"> 2
-&lt;/span>&lt;span class="lnt"> 3
-&lt;/span>&lt;span class="lnt"> 4
-&lt;/span>&lt;span class="lnt"> 5
-&lt;/span>&lt;span class="lnt"> 6
-&lt;/span>&lt;span class="lnt"> 7
-&lt;/span>&lt;span class="lnt"> 8
-&lt;/span>&lt;span class="lnt"> 9
-&lt;/span>&lt;span class="lnt">10
-&lt;/span>&lt;span class="lnt">11
-&lt;/span>&lt;span class="lnt">12
-&lt;/span>&lt;span class="lnt">13
-&lt;/span>&lt;span class="lnt">14
-&lt;/span>&lt;span class="lnt">15
-&lt;/span>&lt;span class="lnt">16
-&lt;/span>&lt;span class="lnt">17
-&lt;/span>&lt;span class="lnt">18
-&lt;/span>&lt;span class="lnt">19
-&lt;/span>&lt;span class="lnt">20
-&lt;/span>&lt;span class="lnt">21
-&lt;/span>&lt;span class="lnt">22
-&lt;/span>&lt;span class="lnt">23
-&lt;/span>&lt;span class="lnt">24
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-GraphQL" data-lang="GraphQL">&lt;span class="kd">type&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nc">TodoItem&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="py">id&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nc">Int&lt;/span>&lt;span class="p">!&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="py">title&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nc">String&lt;/span>&lt;span class="p">!&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="py">content&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nc">String&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="py">checked&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nc">Boolean&lt;/span>&lt;span class="p">!&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="py">createdTime&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nc">String&lt;/span>&lt;span class="p">!&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="kd">type&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nc">Query&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="py">todoItems&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="nc">TodoItem&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="py">todoItem&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="py">id&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nc">Int&lt;/span>&lt;span class="p">!):&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nc">TodoItem&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="kd">input&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nc">TodoItemInput&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="py">title&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nc">String&lt;/span>&lt;span class="p">!&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="py">content&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nc">String&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="py">checked&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nc">Boolean&lt;/span>&lt;span class="p">!&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="py">createdTime&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nc">String&lt;/span>&lt;span class="p">!&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="kd">type&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nc">Mutation&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="py">createTodoItem&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="py">todo&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nc">TodoItemInput&lt;/span>&lt;span class="p">!):&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nc">TodoItem&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="py">updateTodoItem&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="py">id&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nc">Int&lt;/span>&lt;span class="p">!,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="py">todo&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nc">TodoItemInput&lt;/span>&lt;span class="p">!):&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nc">TodoItem&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;h3 id="to-use">to use&lt;/h3>
-&lt;p>怎么使用 GraphQL 服务呢？&lt;/p>
-&lt;h4 id="query">Query&lt;/h4>
-&lt;p>需要查询数据时，我们只需要通过花括号把需要的类型和字段的列举出来即可。当需要传入变量，我们可以在 query 处进行定义，然后在变量处进行值传递。&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
-&lt;/span>&lt;span class="lnt"> 2
-&lt;/span>&lt;span class="lnt"> 3
-&lt;/span>&lt;span class="lnt"> 4
-&lt;/span>&lt;span class="lnt"> 5
-&lt;/span>&lt;span class="lnt"> 6
-&lt;/span>&lt;span class="lnt"> 7
-&lt;/span>&lt;span class="lnt"> 8
-&lt;/span>&lt;span class="lnt"> 9
-&lt;/span>&lt;span class="lnt">10
-&lt;/span>&lt;span class="lnt">11
-&lt;/span>&lt;span class="lnt">12
-&lt;/span>&lt;span class="lnt">13
-&lt;/span>&lt;span class="lnt">14
-&lt;/span>&lt;span class="lnt">15
-&lt;/span>&lt;span class="lnt">16
-&lt;/span>&lt;span class="lnt">17
-&lt;/span>&lt;span class="lnt">18
-&lt;/span>&lt;span class="lnt">19
-&lt;/span>&lt;span class="lnt">20
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-GraphQL" data-lang="GraphQL">&lt;span class="kd">query&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nc">TodoItem&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="py">title&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="py">content&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="c"># or&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="kd">query&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">$id&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nc">Int&lt;/span>&lt;span class="p">!)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nc">todoItem&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="py">id&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nv">$id&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nc">id&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="py">title&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="c"># variables&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s">&amp;#34;id&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nc">1&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;h4 id="mutation">Mutation&lt;/h4>
-&lt;p>进行数据更改时，也是类似，传入变量，调用相应的 mutation 方法即可，另外根据需要，我们还可以选择返回的属性。&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
-&lt;/span>&lt;span class="lnt"> 2
-&lt;/span>&lt;span class="lnt"> 3
-&lt;/span>&lt;span class="lnt"> 4
-&lt;/span>&lt;span class="lnt"> 5
-&lt;/span>&lt;span class="lnt"> 6
-&lt;/span>&lt;span class="lnt"> 7
-&lt;/span>&lt;span class="lnt"> 8
-&lt;/span>&lt;span class="lnt"> 9
-&lt;/span>&lt;span class="lnt">10
-&lt;/span>&lt;span class="lnt">11
-&lt;/span>&lt;span class="lnt">12
-&lt;/span>&lt;span class="lnt">13
-&lt;/span>&lt;span class="lnt">14
-&lt;/span>&lt;span class="lnt">15
-&lt;/span>&lt;span class="lnt">16
-&lt;/span>&lt;span class="lnt">17
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-GraphQL" data-lang="GraphQL">&lt;span class="kd">mutation&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nv">$todo&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="nc">TodoItemInput&lt;/span>&lt;span class="p">!){&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nc">createTodoItem&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="py">todo&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="nv">$todo&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nc">id&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="py">title&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="py">content&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="c"># variables&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s">&amp;#34;todo&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s">&amp;#34;title&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s">&amp;#34;asdafa&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s">&amp;#34;content&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s">&amp;#34;asdaf&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s">&amp;#34;createdTime&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s">&amp;#34;today&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s">&amp;#34;checked&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nc">false&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;h3 id="to-implement">to implement&lt;/h3>
-&lt;p>怎样快速搭一个 GraphQL 服务出来呢？当然是采用动态语言最快了，而其中，又自然是选择使用 GraphQL 最多的 JavaScript 语言实现起来最快。&lt;/p>
-&lt;p>这里我们使用 express 来提高 http 服务，使用 express-graphql 来搭建 GraphQL 服务&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-shell" data-lang="shell">npm install --save express express-graphql graphql
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>然后就是一把梭地实现，首先构建 GraphQL Schema，然后搭建 http 服务，构建并绑定一个 GraphQL handler，启动服务，完。&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
-&lt;/span>&lt;span class="lnt"> 2
-&lt;/span>&lt;span class="lnt"> 3
-&lt;/span>&lt;span class="lnt"> 4
-&lt;/span>&lt;span class="lnt"> 5
-&lt;/span>&lt;span class="lnt"> 6
-&lt;/span>&lt;span class="lnt"> 7
-&lt;/span>&lt;span class="lnt"> 8
-&lt;/span>&lt;span class="lnt"> 9
-&lt;/span>&lt;span class="lnt">10
-&lt;/span>&lt;span class="lnt">11
-&lt;/span>&lt;span class="lnt">12
-&lt;/span>&lt;span class="lnt">13
-&lt;/span>&lt;span class="lnt">14
-&lt;/span>&lt;span class="lnt">15
-&lt;/span>&lt;span class="lnt">16
-&lt;/span>&lt;span class="lnt">17
-&lt;/span>&lt;span class="lnt">18
-&lt;/span>&lt;span class="lnt">19
-&lt;/span>&lt;span class="lnt">20
-&lt;/span>&lt;span class="lnt">21
-&lt;/span>&lt;span class="lnt">22
-&lt;/span>&lt;span class="lnt">23
-&lt;/span>&lt;span class="lnt">24
-&lt;/span>&lt;span class="lnt">25
-&lt;/span>&lt;span class="lnt">26
-&lt;/span>&lt;span class="lnt">27
-&lt;/span>&lt;span class="lnt">28
-&lt;/span>&lt;span class="lnt">29
-&lt;/span>&lt;span class="lnt">30
-&lt;/span>&lt;span class="lnt">31
-&lt;/span>&lt;span class="lnt">32
-&lt;/span>&lt;span class="lnt">33
-&lt;/span>&lt;span class="lnt">34
-&lt;/span>&lt;span class="lnt">35
-&lt;/span>&lt;span class="lnt">36
-&lt;/span>&lt;span class="lnt">37
-&lt;/span>&lt;span class="lnt">38
-&lt;/span>&lt;span class="lnt">39
-&lt;/span>&lt;span class="lnt">40
-&lt;/span>&lt;span class="lnt">41
-&lt;/span>&lt;span class="lnt">42
-&lt;/span>&lt;span class="lnt">43
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-JavaScript" data-lang="JavaScript">&lt;span class="kd">var&lt;/span> &lt;span class="nx">express&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">require&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;express&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;span class="kd">var&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="nx">graphqlHTTP&lt;/span> &lt;span class="p">}&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">require&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;express-graphql&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;span class="kd">var&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="nx">buildSchema&lt;/span> &lt;span class="p">}&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">require&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;graphql&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;span class="kd">var&lt;/span> &lt;span class="nx">schema&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">buildSchema&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sb">``&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1">// 内容省略
-&lt;/span>&lt;span class="c1">&lt;/span>
-&lt;span class="c1">// 那个数组假装一下数据库
-&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="kr">const&lt;/span> &lt;span class="nx">todoItemDb&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[]&lt;/span>
-&lt;span class="kd">var&lt;/span> &lt;span class="nx">root&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="c1">// 这里用来存储各个 query 和 mutation 的响应函数
-&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="nx">todoItems&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="p">()&lt;/span> &lt;span class="p">=&amp;gt;&lt;/span> &lt;span class="nx">todoItemDb&lt;/span>&lt;span class="p">,&lt;/span>
-&lt;span class="nx">todoItem&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="p">({&lt;/span>&lt;span class="nx">id&lt;/span>&lt;span class="p">})&lt;/span> &lt;span class="p">=&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="k">for&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kd">let&lt;/span> &lt;span class="nx">todo&lt;/span> &lt;span class="k">of&lt;/span> &lt;span class="nx">todoItemDb&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="k">if&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">todo&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;id&amp;#39;&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="nx">id&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">return&lt;/span> &lt;span class="nx">todo&lt;/span>
-&lt;span class="p">}&lt;/span>
-&lt;span class="k">return&lt;/span> &lt;span class="p">{}&lt;/span>
-&lt;span class="p">},&lt;/span>
-&lt;span class="nx">createTodoItem&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="p">({&lt;/span>&lt;span class="nx">todo&lt;/span>&lt;span class="p">})&lt;/span> &lt;span class="p">=&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="nx">todo&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;id&amp;#39;&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">todoItemDb&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">length&lt;/span>
-&lt;span class="nx">todoItemDb&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">push&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">todo&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;span class="nx">console&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">log&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">todo&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;span class="k">return&lt;/span> &lt;span class="nx">todo&lt;/span>
-&lt;span class="p">},&lt;/span>
-&lt;span class="nx">updateTodoItem&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="p">({&lt;/span>&lt;span class="nx">id&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">todo&lt;/span>&lt;span class="p">})&lt;/span> &lt;span class="p">=&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="k">for&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kd">let&lt;/span> &lt;span class="nx">i&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="nx">i&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nx">todoItemDb&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">length&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="nx">i&lt;/span>&lt;span class="o">++&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="k">if&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">todoItemDb&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="nx">i&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="s1">&amp;#39;id&amp;#39;&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="o">==&lt;/span> &lt;span class="nx">id&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="nx">todo&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;id&amp;#39;&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">id&lt;/span>
-&lt;span class="nx">todoItemDb&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="nx">i&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">todo&lt;/span>
-&lt;span class="k">return&lt;/span> &lt;span class="nx">todo&lt;/span>
-&lt;span class="p">}&lt;/span>
-&lt;span class="p">}&lt;/span>
-&lt;span class="p">}&lt;/span>
-&lt;span class="p">}&lt;/span>
-&lt;span class="kd">var&lt;/span> &lt;span class="nx">app&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">express&lt;/span>&lt;span class="p">();&lt;/span>
-&lt;span class="nx">app&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">use&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;/graphql&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">graphqlHTTP&lt;/span>&lt;span class="p">({&lt;/span>
-&lt;span class="nx">schema&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">schema&lt;/span>&lt;span class="p">,&lt;/span>
-&lt;span class="nx">rootValue&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">root&lt;/span>&lt;span class="p">,&lt;/span>
-&lt;span class="nx">graphiql&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="kc">true&lt;/span>&lt;span class="p">,&lt;/span>
-&lt;span class="p">}));&lt;/span>
-&lt;span class="nx">app&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">listen&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">4000&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>实现就这么简单 2333&lt;/p>
-&lt;h2 id="后记">后记&lt;/h2>
-&lt;p>在写这篇博客的时候，其实写到后面有点点迷茫，所谓的 GraphQL 真的是这么好吗？如果真的这么好，为什么当前主流的前后端分离，后端接口的方式还是用传统方式的类 RESTful API 的方式来设计和实现呢？&lt;/p>
-&lt;p>其实回过头看上面举出的例子，那些所谓的需要多次请求才获取到的数据，其实本质上也是因为后端考虑要获取多个数据，才将其整合在一起，作为一个新的独立的 endpoint 来暴露出来的。换句话，其实传统的 API 也可以做到，只需要再写一个 endpoint，专门为这个情况设置独立的 handler。&lt;/p>
-&lt;p>不过这种专门设置一个新的 endpoint 也未免太过不够 elegant，而且 GraphQL 对我这种还没经历过实际项目的新手来说，最大的优点，还是其自带的 GraphiQL 吧，一个带 ui 的 playground 提供给使用者来了解 API 中支持的类型，查询和变更操作，并且可以随时进行尝试，实在吸引。&lt;/p>
-&lt;p>所以以后如果需要到 GitHub 挖点数据的时候，不妨把请求方式从其传统的 REST API 上搬到 GraphQL 当中。这样就不需要再在命令行或者是 Postman 的方式来发请求尝试，直接在网页端界面解决。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/JavaScript/">JavaScript</category><category domain="https://scottyeung.top/tags/API/">API</category><category domain="https://scottyeung.top/tags/Coding-%E5%AD%A6%E4%B9%A0/">Coding 学习</category></item></channel></rss>
+&lt;p>上面提到的推送中说到练拳需要如盲人走路，在练拳过程中要注重全身的感觉。对于整个练拳的历程来说，其实需要像盲人走路一样，专注于当下走的每步路，练的每次拳，也不太需要考虑前路怎样，可以练到什么程度，可以收获什么。反正练习下去，走下去，自然能够进入新的境界。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E5%A4%AA%E6%9E%81/">太极</category><category domain="https://scottyeung.top/tags/%E5%86%85%E5%AE%B6%E6%8B%B3/">内家拳</category><category domain="https://scottyeung.top/tags/%E6%9D%82%E8%B0%88/">杂谈</category></item></channel></rss>
