@@ -1,4 +1,385 @@
-<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah 的乱写地</title><link>https://scottyeung.top/</link><description>YeungYeah 的乱写地中记录了作者的所思所想及所为。</description><generator>Hugo 0.83.1 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><lastBuildDate>Thu, 09 Sep 2021 06:46:44 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>数据定义的生活</title><link>https://scottyeung.top/2021/%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89%E7%9A%84%E7%94%9F%E6%B4%BB/</link><guid isPermaLink="true">https://scottyeung.top/2021/%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89%E7%9A%84%E7%94%9F%E6%B4%BB/</guid><pubDate>Fri, 27 Aug 2021 16:41:34 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;p>刚放假回家的那段时间，总是想着把现在在用的小米手环换成 Amazfit 的智能手表。不是因为现在的手环有什么问题，也不是因为看中的智能手表有着如何吸引人的功能，硬要说的话可能就是新的手表能够多测身体的一些参数，配套新的应用可能生成更好看的图表数据。然而这样就已经是我感到心痒痒了，直到现在都还没有完全打消购买的念头。&lt;/p>
+<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah 的乱写地</title><link>https://scottyeung.top/</link><description>YeungYeah 的乱写地中记录了作者的所思所想及所为。</description><generator>Hugo 0.83.1 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><lastBuildDate>Wed, 15 Sep 2021 09:34:23 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>Spring Graphql</title><link>https://scottyeung.top/2021/guide-to-spring-graphql/</link><guid isPermaLink="true">https://scottyeung.top/2021/guide-to-spring-graphql/</guid><pubDate>Wed, 15 Sep 2021 16:26:42 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;p>&lt;a href="https://spring.io/projects/spring-graphql#overview">Spring GraphQL&lt;/a> 是今年 Spring 新发布的一个集成 Graphql 的 Spring Application，凭借着 Spiring boot 开箱即用的特性，能够非常快地构建出一个可用的 Graphql 服务。然而尽管可用，但其&lt;a href="https://docs.spring.io/spring-graphql/docs/1.0.0-SNAPSHOT/reference/html/">文档&lt;/a>实在是写得一言难尽，尤其是对于一些进一步的功能来说，需要靠自己看 API 文档来摸索。&lt;/p>
+&lt;p>以下记录使用的相关情况&lt;/p>
+&lt;h2 id="setup">Setup&lt;/h2>
+&lt;p>可以通过构建 Spring boot 项目来进行初始化&lt;/p>
+&lt;p>使用 Gradle&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-GROOVY" data-lang="GROOVY">&lt;span class="n">dependencies&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">implementation&lt;/span> &lt;span class="s1">&amp;#39;org.springframework.boot:spring-boot-starter-web&amp;#39;&lt;/span>
+&lt;span class="c1">// Spring GraphQL Boot starter
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">implementation&lt;/span> &lt;span class="s1">&amp;#39;org.springframework.experimental:graphql-spring-boot-starter:1.0.0-SNAPSHOT&amp;#39;&lt;/span>
+&lt;span class="c1">// ...
+&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="o">}&lt;/span>
+&lt;span class="n">repositories&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">mavenCentral&lt;/span>&lt;span class="o">()&lt;/span>
+&lt;span class="n">maven&lt;/span> &lt;span class="o">{&lt;/span> &lt;span class="n">url&lt;/span> &lt;span class="s1">&amp;#39;https://repo.spring.io/milestone&amp;#39;&lt;/span> &lt;span class="o">}&lt;/span> &lt;span class="c1">// Spring milestones
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">maven&lt;/span> &lt;span class="o">{&lt;/span> &lt;span class="n">url&lt;/span> &lt;span class="s1">&amp;#39;https://repo.spring.io/snapshot&amp;#39;&lt;/span> &lt;span class="o">}&lt;/span> &lt;span class="c1">// Spring snapshots
+&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>或者使用 Maven&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-xml" data-lang="xml">&lt;span class="nt">&amp;lt;dependencies&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;dependency&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;groupId&amp;gt;&lt;/span>org.springframework.boot&lt;span class="nt">&amp;lt;/groupId&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;artifactId&amp;gt;&lt;/span>spring-boot-starter-web&lt;span class="nt">&amp;lt;/artifactId&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;/dependency&amp;gt;&lt;/span>
+// Spring GraphQL Boot starter
+&lt;span class="nt">&amp;lt;dependency&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;groupId&amp;gt;&lt;/span>org.springframework.experimental&lt;span class="nt">&amp;lt;/groupId&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;artifactId&amp;gt;&lt;/span>graphql-spring-boot-starter&lt;span class="nt">&amp;lt;/artifactId&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;version&amp;gt;&lt;/span>1.0.0-SNAPSHOT&lt;span class="nt">&amp;lt;/version&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;/dependency&amp;gt;&lt;/span>
+&lt;span class="c">&amp;lt;!-- ... --&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;/dependencies&amp;gt;&lt;/span>
+&lt;span class="c">&amp;lt;!-- For Spring project milestones or snapshot releases --&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;repositories&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;repository&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;id&amp;gt;&lt;/span>spring-milestones&lt;span class="nt">&amp;lt;/id&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;name&amp;gt;&lt;/span>Spring Milestones&lt;span class="nt">&amp;lt;/name&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;url&amp;gt;&lt;/span>https://repo.spring.io/milestone&lt;span class="nt">&amp;lt;/url&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;/repository&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;repository&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;id&amp;gt;&lt;/span>spring-snapshots&lt;span class="nt">&amp;lt;/id&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;name&amp;gt;&lt;/span>Spring Snapshots&lt;span class="nt">&amp;lt;/name&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;url&amp;gt;&lt;/span>https://repo.spring.io/snapshot&lt;span class="nt">&amp;lt;/url&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;snapshots&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;enabled&amp;gt;&lt;/span>true&lt;span class="nt">&amp;lt;/enabled&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;/snapshots&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;/repository&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;/repositories&amp;gt;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>导入依赖后，将 Graphql Schema 文件放到 &lt;code>resources/graphql&lt;/code> 目录下并进行相应的配置即可运行，运行后在设定的路径可以看到网页版的 playground&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-yaml" data-lang="yaml">&lt;span class="nt">spring&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">graphql&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">graphiql&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># 提供辅助用的网页端 playground&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">enabled&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kc">true&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">path&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">/&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">schema&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># 提供 schema&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">printer&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">enabled&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kc">true&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nt">path&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">/query&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># Graphql endpoint&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="query-and-mutation">Query and Mutation&lt;/h2>
+&lt;p>Schema 中提供的 query 和 mutation 通过注解映射到 Controller 中方法进行处理，并返回相应的数据。此处默认使用的 convention 的方式，只要方法的名字及其参数的名字与 Schema 声明的一致则可自动映射，否则也可以通过注解的参数进行设置。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="nd">@Controller&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">TodoController&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="nd">@QueryMapping&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="n">List&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">TodoItem&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="nf">todoItems&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">GraphQLContext&lt;/span> &lt;span class="n">cxt&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">var&lt;/span> &lt;span class="n">u&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">getUserInContext&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">cxt&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">todoService&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getTodoItemsByUser&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">u&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="nd">@MutationMapping&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="n">TodoItem&lt;/span> &lt;span class="nf">createTodoItem&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="nd">@Argument&lt;/span> &lt;span class="n">TodoItemInput&lt;/span> &lt;span class="n">todo&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">GraphQLContext&lt;/span> &lt;span class="n">cxt&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">var&lt;/span> &lt;span class="n">user&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">getUserInContext&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">cxt&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">todoService&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">createTodoItem&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">todo&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">user&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>方法的参数支持&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://javadoc.io/doc/com.graphql-java/graphql-java/latest/graphql/schema/DataFetchingEnvironment.html">DataFetchingEnvironment&lt;/a>: 包含本次查询当中丰富的相关信息，包括查询的变量，context等信息&lt;/li>
+&lt;li>通过注解 &lt;code>@Argument&lt;/code> 可以为参数绑定传入的相应变量&lt;/li>
+&lt;li>GraphQLContext: 用于存储访问上下文中相应数据内容&lt;/li>
+&lt;/ul>
+&lt;h2 id="authorization">Authorization&lt;/h2>
+&lt;p>怎样进行权限认证，文档中只是简单地给了段文字介绍说可以用 Spring Security 来进行权限认证。然而我的需求也没有这么复杂，只需要简单地拦截请求，查看有无携带 token 访问，如果带 token 的访问则将其转换成相应的用户并给后续交给后续的 Controller 来进行处理。&lt;/p>
+&lt;p>此处我使用的是 WebInterceptor 来进行请求的拦截处理，主要的思路为：&lt;/p>
+&lt;ol>
+&lt;li>拦截每个请求，尝试取请求中 header 中的 Authorization 字段&lt;/li>
+&lt;li>如果没有这个字段，则跳过&lt;/li>
+&lt;li>如果有这个字段，则尝试根据 token 取出相应的 User，如果找不到，则抛出无效 token 的错误&lt;/li>
+&lt;li>找到后将该 User 对象加入到 graphQLContext 当中供 Controller 使用。&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="nd">@Component&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">MyInterceptor&lt;/span> &lt;span class="kd">implements&lt;/span> &lt;span class="n">WebInterceptor&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="kd">private&lt;/span> &lt;span class="kd">final&lt;/span> &lt;span class="n">UserService&lt;/span> &lt;span class="n">userService&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="nd">@Autowired&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="nf">MyInterceptor&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">UserService&lt;/span> &lt;span class="n">userService&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="k">this&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">userService&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">userService&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="nd">@Override&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="n">Mono&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">WebOutput&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="nf">intercept&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">WebInput&lt;/span> &lt;span class="n">webInput&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">WebGraphQlHandler&lt;/span> &lt;span class="n">next&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">var&lt;/span> &lt;span class="n">authHeader&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">webInput&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getHeaders&lt;/span>&lt;span class="o">().&lt;/span>&lt;span class="na">get&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;Authorization&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">var&lt;/span> &lt;span class="n">q&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">webInput&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">toExecutionInput&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">Objects&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">isNull&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">authHeader&lt;/span>&lt;span class="o">)||&lt;/span>&lt;span class="n">authHeader&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">size&lt;/span>&lt;span class="o">()==&lt;/span>&lt;span class="n">0&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">next&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">handle&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">webInput&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="n">var&lt;/span> &lt;span class="n">user&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">userService&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getUserByToken&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">authHeader&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">get&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">0&lt;/span>&lt;span class="o">));&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">user&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">isEmpty&lt;/span>&lt;span class="o">())&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">Mono&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">just&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="k">new&lt;/span> &lt;span class="n">WebOutput&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">webInput&lt;/span>&lt;span class="o">,&lt;/span>
+&lt;span class="k">new&lt;/span> &lt;span class="n">ExecutionResultImpl&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">GraphqlExceptionBuilder&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">genError&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">GraphqlExceptionBuilder&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">ErrorType&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">INVALID_TOKEN&lt;/span>&lt;span class="o">))));&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="n">webInput&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">configureExecutionInput&lt;/span>&lt;span class="o">(((&lt;/span>&lt;span class="n">executionInput&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">builder&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">Map&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">Object&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">context&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">HashMap&lt;/span>&lt;span class="o">&amp;lt;&amp;gt;()&lt;/span> &lt;span class="o">{{&lt;/span>
+&lt;span class="n">put&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;user&amp;#34;&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">user&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">get&lt;/span>&lt;span class="o">());&lt;/span>
+&lt;span class="o">}};&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">builder&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">graphQLContext&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">context&lt;/span>&lt;span class="o">).&lt;/span>&lt;span class="na">build&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="o">}));&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">next&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">handle&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">webInput&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>在后续的 controller 方法当中，如果需要使用到用户信息或者需要用户权限，则直接从 graphQLContext 当中取出相应的对象，如果取不到则抛出相应的 error&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kd">private&lt;/span> &lt;span class="n">User&lt;/span> &lt;span class="nf">getUserInContext&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">GraphQLContext&lt;/span> &lt;span class="n">cxt&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">User&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="n">cxt&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getOrEmpty&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;user&amp;#34;&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;span class="o">.&lt;/span>&lt;span class="na">orElseThrow&lt;/span>&lt;span class="o">(()-&amp;gt;&lt;/span> &lt;span class="n">GraphqlExceptionBuilder&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">genError&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">GraphqlExceptionBuilder&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">ErrorType&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">FORBIDDEN&lt;/span>&lt;span class="o">));&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="error-handler">Error Handler&lt;/h2>
+&lt;p>在应用运行过程所有抛出的异常最终都会以 GraphQL 的形式返回给客户端。一开始我还以为是会直接将抛出的 GraphQLError 直接返回给用户，所以直接在代码内部抛出错误，企图通过 Controller 最终返回给用户。不过发现这样做的话，我在 GraphlQLErrorException 当中设置的 extensions 总会没有效果，而是全被归类为 INTERNAL_ERROR。&lt;/p>
+&lt;p>后来发现是所有的异常都会跑去一个 ErrorResolver 的东西处理，会重新把 Error 重新封装一次。所以我们必须自己写一个 ExceptionHandler 来将其覆盖&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="nd">@Component&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">DataFetcherExceptionHandler&lt;/span> &lt;span class="kd">extends&lt;/span> &lt;span class="n">DataFetcherExceptionResolverAdapter&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="nd">@Override&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="n">GraphQLError&lt;/span> &lt;span class="nf">resolveToSingleError&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">Throwable&lt;/span> &lt;span class="n">ex&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">DataFetchingEnvironment&lt;/span> &lt;span class="n">env&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">GraphQLError&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="n">ex&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>另外，GraphQLError 的生成我是通过自定义了一个 Builder 工具类来辅助生成，通过枚举类型来生成包含 message，error 的 Error&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">GraphqlExceptionBuilder&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kd">enum&lt;/span> &lt;span class="n">ErrorType&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">DUPLICATED_USER&lt;/span>&lt;span class="o">,&lt;/span>
+&lt;span class="n">NO_USER&lt;/span>&lt;span class="o">,&lt;/span>
+&lt;span class="n">WRONG_PASSWORD&lt;/span>&lt;span class="o">,&lt;/span>
+&lt;span class="n">INVALID_TOKEN&lt;/span>&lt;span class="o">,&lt;/span>
+&lt;span class="n">FORBIDDEN&lt;/span>&lt;span class="o">,&lt;/span>
+&lt;span class="n">NO_ITEM&lt;/span>&lt;span class="o">,&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kd">static&lt;/span> &lt;span class="n">Map&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">Object&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="nf">updateErrorCode&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">ErrorType&lt;/span> &lt;span class="n">errorType&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">HashMap&lt;/span>&lt;span class="o">&amp;lt;&amp;gt;()&lt;/span> &lt;span class="o">{{&lt;/span>
+&lt;span class="n">put&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;code&amp;#34;&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">errorType&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">name&lt;/span>&lt;span class="o">());&lt;/span>
+&lt;span class="o">}};&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kd">static&lt;/span> &lt;span class="n">GraphqlErrorException&lt;/span> &lt;span class="nf">genError&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">ErrorType&lt;/span> &lt;span class="n">errorType&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">var&lt;/span> &lt;span class="n">err&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">GraphqlErrorException&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">newErrorException&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="k">switch&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">errorType&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="k">case&lt;/span> &lt;span class="n">DUPLICATED_USER&lt;/span>&lt;span class="o">:&lt;/span>
+&lt;span class="n">err&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">message&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;existed username&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="k">break&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="k">case&lt;/span> &lt;span class="n">NO_USER&lt;/span>&lt;span class="o">:&lt;/span>
+&lt;span class="n">err&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">message&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;not exist username&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="k">break&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="k">case&lt;/span> &lt;span class="n">WRONG_PASSWORD&lt;/span>&lt;span class="o">:&lt;/span>
+&lt;span class="n">err&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">message&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;wrong password&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="k">break&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="k">case&lt;/span> &lt;span class="n">INVALID_TOKEN&lt;/span>&lt;span class="o">:&lt;/span>
+&lt;span class="n">err&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">message&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;invalid token&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="k">break&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="k">case&lt;/span> &lt;span class="n">FORBIDDEN&lt;/span>&lt;span class="o">:&lt;/span>
+&lt;span class="n">err&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">message&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;access forbidden&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="k">break&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="k">case&lt;/span> &lt;span class="n">NO_ITEM&lt;/span>&lt;span class="o">:&lt;/span>
+&lt;span class="n">err&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">message&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">&amp;#34;no such query items&amp;#34;&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="k">break&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="n">err&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">extensions&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">updateErrorCode&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">errorType&lt;/span>&lt;span class="o">));&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">err&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">build&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/Graphql/">Graphql</category><category domain="https://scottyeung.top/tags/Java/">Java</category><category domain="https://scottyeung.top/tags/Spring/">Spring</category></item><item><title>数据定义的生活</title><link>https://scottyeung.top/2021/%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89%E7%9A%84%E7%94%9F%E6%B4%BB/</link><guid isPermaLink="true">https://scottyeung.top/2021/%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89%E7%9A%84%E7%94%9F%E6%B4%BB/</guid><pubDate>Fri, 27 Aug 2021 16:41:34 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;p>刚放假回家的那段时间，总是想着把现在在用的小米手环换成 Amazfit 的智能手表。不是因为现在的手环有什么问题，也不是因为看中的智能手表有着如何吸引人的功能，硬要说的话可能就是新的手表能够多测身体的一些参数，配套新的应用可能生成更好看的图表数据。然而这样就已经是我感到心痒痒了，直到现在都还没有完全打消购买的念头。&lt;/p>
 &lt;p>不知道从什么时候起，我很喜欢使用数据来记录生活的一切：用手环来记录每天的睡眠和运动情况，用 Forest 来记录日常的学习时间，甚至写代码的情况最近也开始使用 WakaTime 来进行记录。记录多了，所产生的数据自然也多了，这些数据看起来通常是会觉得不错的，尤其是在过了一段时间后来回顾过去一段数据的数据记录，有时也会让人觉得，好像之前确实是有在做事情，而所做的事情确实是有那么点意义。&lt;/p>
 &lt;p>可惜的是，这样的数据除了在日后回顾的时候给自己感慨以外，还能带来什么实际的用途呢？像是睡眠情况的监测，睡眠的长度和质量其实自己也能有所察觉，而软件给出的睡眠不足和深睡较短的结果，我也没有很好的解决方法，即使是知道自己睡得不够或睡得很晚，我又会去解决吗，又可以如何解决。还有手机自带的使用时间监测，不需要点开就知道自己花了大量的时间在手机上面，这些数据的出现除了让自己徒增愧疚以外，也带来不了很好的改正效果。&lt;/p>
 &lt;p>数据自己用不上就算了，作为一个日后回忆的记录，其实也未尝不可，不过最近开始隐隐觉得，似乎有点找寻不到日常学习工作的意义，或者更进一步来说，如果进行学习或工作的时候没被记录下来，仿佛就是没有意义的无用功一样。好像在手机上面看了一会书，如果这个过程没有被微信读书记录上阅读时间，或者是摘抄几个片段和写几条记录，就好像没有看过书一样，即使是看了一下午，也感觉是什么都没做的一个下午。运动锻炼也是如此，对于不能使用手环记录的运动，意愿会大大下降。&lt;/p>
@@ -169,7 +550,7 @@
 &lt;li>百位: ID Selector&lt;/li>
 &lt;li>十位: Class selector, attribute selector, preudo-class selector&lt;/li>
 &lt;li>各位: type selector, preudo-element selector&lt;/li>
-&lt;/ol></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/CSS/">CSS</category><category domain="https://scottyeung.top/tags/%E5%89%8D%E7%AB%AF/">前端</category><category domain="https://scottyeung.top/tags/%E7%AC%94%E8%AE%B0/">笔记</category><category domain="https://scottyeung.top/tags/Coding-%E5%AD%A6%E4%B9%A0/">Coding 学习</category></item><item><title>种树，直到把自己围住</title><link>https://scottyeung.top/2021/forest-for-what/</link><guid isPermaLink="true">https://scottyeung.top/2021/forest-for-what/</guid><pubDate>Tue, 18 May 2021 22:36:14 +0000</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;blockquote>
+&lt;/ol></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/CSS/">CSS</category><category domain="https://scottyeung.top/tags/%E5%89%8D%E7%AB%AF/">前端</category><category domain="https://scottyeung.top/tags/Coding-%E5%AD%A6%E4%B9%A0/">Coding 学习</category></item><item><title>种树，直到把自己围住</title><link>https://scottyeung.top/2021/forest-for-what/</link><guid isPermaLink="true">https://scottyeung.top/2021/forest-for-what/</guid><pubDate>Tue, 18 May 2021 22:36:14 +0000</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;blockquote>
 &lt;p>对于五月假期回来后状态的复盘，其实是写于 5.15 的周记记录&lt;/p>
 &lt;/blockquote>
 &lt;p>是否还应该要使用 &lt;a href="https://www.forestapp.cc/">Forest&lt;/a> 种树呢？在去年的四五月份的时候就曾经有过这样的&lt;a href="https://scottyeung.top/2020/%E7%AA%81%E7%84%B6%E4%B8%8D%E6%83%B3%E5%86%8D%E8%AE%B0%E5%BD%95%E6%97%B6%E9%97%B4%E7%9A%84%E4%BD%BF%E7%94%A8/">想法&lt;/a>，怀疑自己使用 Forest 等时间记录工具的意义在哪，甚至会觉得使用这些工具使自己对于时间的利用变得很焦虑，进而对自己的时间安排产生焦虑。&lt;/p>
@@ -253,16 +634,4 @@
 &lt;ul>
 &lt;li>下载了 90 posts，包括其中的文字和图片，每个 post 平均有两张图片，加起来用了一分钟左右。&lt;/li>
 &lt;li>下载了差不多 60 个 pdf，用来不到 20s&lt;/li>
-&lt;/ul></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/dotnet/">dotnet</category><category domain="https://scottyeung.top/tags/%E7%88%AC%E8%99%AB/">爬虫</category><category domain="https://scottyeung.top/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/">自动化</category><category domain="https://scottyeung.top/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/">生产力</category></item><item><title>如盲人走路</title><link>https://scottyeung.top/2021/like-blinds-walking/</link><guid isPermaLink="true">https://scottyeung.top/2021/like-blinds-walking/</guid><pubDate>Tue, 06 Apr 2021 22:35:25 +0000</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;p>对比上个学期，自感最近放了比较多的时间在练习太极拳上面，甚至还曾经自我打趣道，这个学期的工作生活重心就在练拳上面。确实是练得比较多，一方面是在杨协呆得久，需要我去带练功操，有时是必须要去，另一方面则是王真人这边也约得比较勤，一周两练，因为人少（就三个人），鸽都不好找理由鸽。当然这些都还只是外部因素，真的是不得不练，被逼着练吗？也不全见得是。&lt;/p>
-&lt;p>之前曾经写过&lt;a href="https://scottyeung.top/2020/taichi-practice-reflections/">博客&lt;/a>说，感觉自己练拳一直得不到进展，似乎陷入瓶颈位置，导致练习得不太畅快，继而不太想练习。不过最近这种不得劲的感觉似乎逐渐在减退，仿佛找到一些东西，开始在真正地练拳。尽管还是在练习几乎一样的东西，练习的过程还是一如既往地觉得自己很菜，但确实能够发现处处都有不同的感觉。于是近来对于练拳都有着比较高的积极性，即使是自己一个闲在宿舍，或是走在路上，都会不由自主地走走站站，或是伸展肩膀手臂，颇有将太极与练拳融入到日常生活当中的感觉。&lt;/p>
-&lt;p>现在的练习其实与之前差别也不是很大，功操，套路，推手，站桩，都还是这些东西。然后我自己的所谓功力，其实也没有提升多少，而且也还是能在练习中发现许多的问题，例如力量不足，例如不够放松而导致的肌肉紧张。为什么会觉得之前的不畅快感已经消失了？&lt;/p>
-&lt;p>大概是我开始找到练拳中的所谓&lt;strong>感觉&lt;/strong>了。&lt;/p>
-&lt;p>在之前的博客或者动态当中，其实自己之前一直都在吐槽，传统的内家拳过于看重这些玄之又玄的所谓感觉，通过文字口诀来描述，需要靠练习者自己去感悟，不免太难，太过于虚无缥缈。正因为此，所以之前开始练习功操时，可以很明显地让自己出现有被锻炼到的很累的感觉，会觉得很感人，并且会将这些所谓肌肉很累很酸的感觉当成是有练到的表现。&lt;/p>
-&lt;p>练得很累很酸就是有练到练对了吗？我曾经问过杨协的人这个问题，然而很可惜的是，很多人都还确实只能通过这种方式来判断，有没有被练到。但事实上，练确实是有被练到，练的东西对不对就不好说，练死肌肉也可以练得很累。之前就试过一次练习步法发力推人，练完几天发现双臂酸软得抬不起，但其实只是全用了肌肉发力来推人，练到的并不是想要的东西。&lt;/p>
-&lt;p>前两周王真人转了一篇&lt;a href="https://mp.weixin.qq.com/s/7RGAwdNH1TYASBSe4OI2sw">推送&lt;/a>，提到“练拳要学瞎子走路”，瞎子走路身子前后都提着小心，从头到脚都有反应，练拳不是练拳头，而是全身敏感。所以在练拳的时候，感觉是应该重于一切的，一方面感受自身身体的各处状态，另一方面则是接受外界的感受。当然这个说得也很是玄妙深奥，只能看看作为参考。&lt;/p>
-&lt;p>上学期刚开始练拳的时候，王真人曾经跟我说过要练出掤劲，并且将其应用到身体的每一处。具体怎么练，靠站桩，练套路，和推手，来撑筋拔骨，锻炼自身。不过我上学期的我一直都感觉很迷，似乎一会出现了，一会儿又找不到了，在与其他人推手的时候，推着推着对方说有点感受到，但自己却觉得其实没有变化过。这个学期好像好了一点，似乎开始感到这种劲，体会到所说的把劲打匀到全身是种什么感觉。&lt;/p>
-&lt;p>上周练拳的时候，王真人问我练拳之后有没有什么收获与变化。这个问题其实我自己在寒假的时候就思考过很多次，什么还写了不少文字从身体上和信赖来进行总结。好处与收获当然是有，更健康的身体，更积极的内心，虽然可能并不足以与外人称道，也可能不太明显，不过内心还是真切感受到自己是有不同的。&lt;/p>
-&lt;p>想起在开始重拾练拳想法的原因，是因为想着锻炼身体，让自己变得健康。不过其实到自己真正开始练拳的时候，反而并没有了这个想法，甚至觉得其实练拳最多也不过是种锻炼方式，再怎么健康，也不过相当于多运动了。纯粹是觉得挺有意思（以及加入组织开始练习之后不好退出了。&lt;/p>
-&lt;p>最后再分享在知乎看到的一个很棒的评论。有个人贴出了他在武当山上面练习传统武术的经历，然后评论区中就出现了很常见的杠精，张嘴就发出传武能不能打的怀疑，什么学得不值，是被骗了之类的评价。然后答主就很坦然地回复，对于他来说，武术只是一个个人的爱好而已，像有的人喜欢跳舞，有的人喜欢打球，一定需要能打，有用，才去做，才去学吗？显然不是。&lt;/p>
-&lt;p>所以为什么练习太极拳，喜欢就够了。&lt;/p>
-&lt;p>上面提到的推送中说到练拳需要如盲人走路，在练拳过程中要注重全身的感觉。对于整个练拳的历程来说，其实需要像盲人走路一样，专注于当下走的每步路，练的每次拳，也不太需要考虑前路怎样，可以练到什么程度，可以收获什么。反正练习下去，走下去，自然能够进入新的境界。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E5%A4%AA%E6%9E%81/">太极</category><category domain="https://scottyeung.top/tags/%E5%86%85%E5%AE%B6%E6%8B%B3/">内家拳</category><category domain="https://scottyeung.top/tags/%E6%9D%82%E8%B0%88/">杂谈</category></item></channel></rss>
+&lt;/ul></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/dotnet/">dotnet</category><category domain="https://scottyeung.top/tags/%E7%88%AC%E8%99%AB/">爬虫</category><category domain="https://scottyeung.top/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/">自动化</category><category domain="https://scottyeung.top/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/">生产力</category></item></channel></rss>
