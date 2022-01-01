@@ -1,4 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah 的乱写地</title><link>https://scottyeung.top/</link><description>YeungYeah 的乱写地中记录了作者的所思所想及所为。</description><generator>Hugo 0.83.1 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><lastBuildDate>Thu, 16 Dec 2021 04:01:23 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>Kotlin Coroutines Notes (I)</title><link>https://scottyeung.top/2021/kotlin-coroutines-notes-1/</link><guid isPermaLink="true">https://scottyeung.top/2021/kotlin-coroutines-notes-1/</guid><pubDate>Wed, 15 Dec 2021 22:04:23 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;blockquote>
+<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah 的乱写地</title><link>https://scottyeung.top/</link><description>YeungYeah 的乱写地中记录了作者的所思所想及所为。</description><generator>Hugo 0.83.1 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><lastBuildDate>Sat, 01 Jan 2022 13:09:36 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>当下手机云服务的一些槽点</title><link>https://scottyeung.top/2022/complaints-of-cloud-service/</link><guid isPermaLink="true">https://scottyeung.top/2022/complaints-of-cloud-service/</guid><pubDate>Sat, 01 Jan 2022 20:01:02 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;p>最近收了个 Pixel 3 XL 来玩，想着体验一下原生安卓的爽点以及谷歌家强大的计算摄影能力。原生的谷歌全家桶确实用得很爽，但是拍出来的照片如何完美地同步到另一个手机上面，确实是一大麻烦事。作为谷歌家的手机，自然第一时间想到使用其自带的谷歌相册进行照片同步，而且刚好 Pixel 还能继续嫖谷歌的无限相册空间，于是考虑要不把照片备份到谷歌相册上进行同步。&lt;/p>
+&lt;p>于是需求就演变成：将我小米手机当中的所有照片传输到 Pixel 上面，然后在 Pixel 中上传照片进行备份，以后就使用谷歌相册作为两台手机主力的相册，照片就同步到谷歌上面。&lt;/p>
+&lt;p>然而任务的第一步，将小米当中的数千张照片传输到 Pixel 上面，已经是一大难点。&lt;/p>
+&lt;p>小米手机上的照片，其实我都存储到小米云服务上面，还开了个黄金会员，有接近 20 G 的数据。最理想的，当然是在 Pixel 上下一个小米云服务的 APP 进行照片下载，下完再用谷歌相册同步上去。然后我就发现，小米云服务，是内嵌于小米系统当中，并没有一个独立的移动端应用或者 PC 端应用，这也意味着在非小米手机上面或者在电脑端也只能通过网页进行访问。虽然网页端的小米云服务也可以进行照片下载，但问题是，居然没有全选，得一天一天地进行选中来下载。几年几千张照片，意味着需要点选中几百上千次，简直麻了，而且这个还是个 SAP，写爬虫也不好写。&lt;strong>所以问题来了？小米云服务的产品是没有考虑过用户需要把云上的数据全部下载下来的需求吗？&lt;del>（还是来了就别想跑了&lt;/del>&lt;/strong>&lt;/p>
+&lt;p>于是只能从手机本地来下手，将小米手机里面的照片通过 USB 拉到电脑来中转，然后再通过 USB 拉到 Pixel 上面。然而在拉的过程中发现 Pixel 的传输时间居然需要十多个小时，（可能是因为手机传输接口是 USB 2.0？）。最终通过 Send Anywhere 应用，使用 Wifi 直连的方式进行相机拍的 2000+ 照片传输到了 Pixel 上面，开始同步。&lt;/p>
+&lt;p>然后今天等到 Pixel 备份完照片后，把小米手机上的谷歌相册备份也打开了，然后发现，相同的已经在 Pixel 上传的照片，在小米上面又再同步了一次，这跟我看到的谷歌相册在备份前会先检查云端有否相同照片的说法不同。然后我在谷歌云端上看了一下这些相同的照片，发现一样的照片，一样的时间戳，一样的参数，但是大小却是不一样的，而且这些照片都只是几百 k 大小。然后打开小米的相册才发现，这些重复的照片在小米手机好像只是缩略图，原图还在云上面，需要点击下载才能下载下来。那我应该如何将云上的照片全部，不好意思，并没有找到这样的功能，你可以一键释放空间把本地照片全删了，但却不能一键把所有照片的原图全拉下，最终只能放弃使用使用谷歌相册作为主要的照片同步空间。&lt;/p>
+&lt;p>吐槽了这么多小米云服务，可惜谷歌相册提供的云服务也有许多问题：需要特殊工具才能访问；不能选择关闭同步相机分组下的照片；打开了同步文件夹后，不能选择文件具体的同步顺序和批次，也不能暂停，想暂停就得把这个备份功能给关掉。这就导致明明我只是想把我新拍的两张照片同步到谷歌云上面，再同步到另一台手机上面，就必须要先把两台手机上全部照片备份好了才能达到目标（因为同步的顺序还是先同步最旧的）。&lt;/p>
+&lt;p>不过这次的经历还是使我对这些云服务感到了一丝警觉，虽然我一直自诩是云计算与服务的拥护者，但如今这些云服务产品，只给人进，不给人出，不自由，难扩展，还封闭，逐渐迁移的沉没成本越来越高，被最终被喂屎的概率也只会越来越高。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E6%9D%82%E8%B0%88/">杂谈</category><category domain="https://scottyeung.top/tags/%E5%90%90%E6%A7%BD/">吐槽</category></item><item><title>Kotlin Coroutines Notes (I)</title><link>https://scottyeung.top/2021/kotlin-coroutines-notes-1/</link><guid isPermaLink="true">https://scottyeung.top/2021/kotlin-coroutines-notes-1/</guid><pubDate>Wed, 15 Dec 2021 22:04:23 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;blockquote>
 &lt;p>对于 &lt;a href="https://kotlinlang.org/docs/coroutines-basics.html">Kotlin 官方文档&lt;/a>当中 coroutines 部分的内容的学习 &lt;del>（翻译）&lt;/del>&lt;/p>
 &lt;/blockquote>
 &lt;p>在 Kotlin 当中，协程（coroutines）通过库 &lt;code>kotlinx.coroutines&lt;/code> 来提供，相较于其它语言的协程实现，Kotlin 选择的方式更为没有侵入性，其所使用的 &lt;code>async&lt;/code> 和 &lt;code>await&lt;/code> 等只是库提供的函数，而非语言自身的关键字，因而能够有着更好的兼容性。另外 Kotlin 当中提供的挂起函数 （suspending function）的概念，能为 Kotlin 当中 coroutines 提供比 Java 和 Javascript 当中的 future and promise 更加直观，安全，不易错的抽象&lt;/p>
@@ -70,7 +77,7 @@
 &lt;span class="k">val&lt;/span> &lt;span class="py">unlimitedChannel&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="n">Channel&lt;/span>&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="p">&amp;gt;(&lt;/span>&lt;span class="n">UNLIMITED&lt;/span>&lt;span class="p">)&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/kotlin/">kotlin</category><category domain="https://scottyeung.top/tags/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</category><category domain="https://scottyeung.top/tags/%E8%AE%B0%E5%BD%95/">记录</category><category domain="https://scottyeung.top/tags/notes/">notes</category><category domain="https://scottyeung.top/tags/Coding-%E5%AD%A6%E4%B9%A0/">Coding 学习</category><category domain="https://scottyeung.top/tags/coroutines/">coroutines</category></item><item><title>Java Functional Programming and Stream API 使用简介（一）</title><link>https://scottyeung.top/2021/java-fp-stream-1/</link><guid isPermaLink="true">https://scottyeung.top/2021/java-fp-stream-1/</guid><pubDate>Thu, 11 Nov 2021 11:05:00 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;p>在使用学习了一段时间 Javascript 之后，对那种在数据源后使用使用 lambda 函数进行链式的处理方式感到很爽，并带有点病态的沉迷感觉，啥事都想套个 map 或者 filter 来完成。在回到 Java 的学习后，发现自 Java 8 之后，其也开始提供 lambda 函数，并且提供了一些十分便利的 API，主要是 stream API，可以通过这些 API 对于 Collections 当中的数据进行比较 functional 的处理。&lt;/p>
+&lt;/div></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/kotlin/">kotlin</category><category domain="https://scottyeung.top/tags/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</category><category domain="https://scottyeung.top/tags/%E8%AE%B0%E5%BD%95/">记录</category><category domain="https://scottyeung.top/tags/notes/">notes</category><category domain="https://scottyeung.top/tags/Coding-%E5%AD%A6%E4%B9%A0/">Coding 学习</category><category domain="https://scottyeung.top/tags/coroutines/">coroutines</category></item><item><title>Java Functional Programming and Stream API (I)</title><link>https://scottyeung.top/2021/java-fp-stream-1/</link><guid isPermaLink="true">https://scottyeung.top/2021/java-fp-stream-1/</guid><pubDate>Thu, 11 Nov 2021 11:05:00 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;p>在使用学习了一段时间 Javascript 之后，对那种在数据源后使用使用 lambda 函数进行链式的处理方式感到很爽，并带有点病态的沉迷感觉，啥事都想套个 map 或者 filter 来完成。在回到 Java 的学习后，发现自 Java 8 之后，其也开始提供 lambda 函数，并且提供了一些十分便利的 API，主要是 stream API，可以通过这些 API 对于 Collections 当中的数据进行比较 functional 的处理。&lt;/p>
 &lt;h2 id="functional-inteface">Functional Inteface&lt;/h2>
 &lt;p>Java 当中的 lambda 表示形式主要是通过函数接口的方式，所谓的函数接口为&lt;strong>只有一个方法的接口&lt;/strong>，例如&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
@@ -853,66 +860,4 @@
 &lt;blockquote>
 &lt;p>🛠️ 什么都会点但又不够精通的杂才&lt;/p>
 &lt;/blockquote>
-&lt;p>希望自己早日能够从杂才成为通才吧！&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E5%8D%9A%E5%AE%A2/">博客</category><category domain="https://scottyeung.top/tags/Hugo/">Hugo</category><category domain="https://scottyeung.top/tags/%E7%BB%8F%E5%8E%86%E5%9B%9E%E9%A1%BE/">经历回顾</category></item><item><title>CSS 选择器</title><link>https://scottyeung.top/2021/css-selector/</link><guid isPermaLink="true">https://scottyeung.top/2021/css-selector/</guid><pubDate>Sat, 22 May 2021 18:39:56 +0000</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;p>翻 MDN 文档重新系统地学习下 CSS 选择器知识，记录下来当作笔记。&lt;/p>
-&lt;p>所谓 CSS selector 用于在 HTML 文档中选取指定的元素节点，可用于 CSS 文件中设置 style 或者在某些库中选取元素节点（如爬虫）。&lt;/p>
-&lt;h2 id="css-rules-中使用">CSS Rules 中使用&lt;/h2>
-&lt;p>在 CSS 文件中 selector 通常为 Rules 的开头，每个 Rules 可以指定单个 selector 或者指定 selectors list，后者以逗号分割 (,)&lt;/p>
-&lt;h2 id="css-选择器类型">CSS 选择器类型&lt;/h2>
-&lt;ul>
-&lt;li>Type selectors: 类型选择器，根据 &lt;code>tagname&lt;/code> 来选择对应的元素&lt;/li>
-&lt;li>Universal selectors: 通用选择器，使用 &lt;code>*&lt;/code> 来匹配所有元素
-&lt;ul>
-&lt;li>可以增强伪类选择器的可读性： &lt;code>div *:first-child&lt;/code> instead of &lt;code>div :first-child&lt;/code>&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>Class selectors: 类选择器，使用 &lt;code>.classname&lt;/code> 来选择相应的元素
-&lt;ul>
-&lt;li>可以结合其它选择器如 &lt;code>span.highlight&lt;/code>&lt;/li>
-&lt;li>可以同时选取包含多个 class 的元素 &lt;code>.class1.class2&lt;/code>&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>ID selectors: ID 选择器，使用 &lt;code>#id&lt;/code> 来选取相应元素&lt;/li>
-&lt;li>Attribute selectors: 属性选择器，根据元素的属性来选择元素
-&lt;ul>
-&lt;li>&lt;code>[attr]&lt;/code>: 元素包括 attr 属性&lt;/li>
-&lt;li>&lt;code>[attr='val']&lt;/code> : 元素的 attr 属性值为 val&lt;/li>
-&lt;li>&lt;code>[attr~='val']&lt;/code> : 元素的 attr 属性为 val 或该属性的列表中包含 val（如 &lt;code>attr='val val1'&lt;/code>&lt;/li>
-&lt;li>&lt;code>[attr|='val']&lt;/code> : 元素的 attr 属性为 val 或该属性以 val- 开头（如 &lt;code>attr='val-val1'&lt;/code>&lt;/li>
-&lt;li>&lt;code>[attr^='val']&lt;/code> : 属性以 val 开头&lt;/li>
-&lt;li>&lt;code>[attr$='val']&lt;/code> : 属性以 val 结尾&lt;/li>
-&lt;li>&lt;code>[attr*='val']&lt;/code> : 属性包含 val&lt;/li>
-&lt;li>取否定需要伪类选择器 &lt;code>:not([attr])&lt;/code>&lt;/li>
-&lt;li>末尾添加 &lt;code>i&lt;/code> 可以是匹配大小写不敏感&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>pseudo-class: 伪类选择器，用 &lt;code>:pseudo-class-name&lt;/code> 可选择在特定状态的元素
-&lt;ul>
-&lt;li>选择指定顺序: &lt;code>first-child&lt;/code>, &lt;code>last-child&lt;/code>, &lt;code>first-of-type&lt;/code>, &lt;code>nth-child(n or an+b)&lt;/code>&lt;/li>
-&lt;li>选择特定状态: &lt;code>checked&lt;/code>, &lt;code>disabled&lt;/code>, &lt;code>visited&lt;/code>&lt;/li>
-&lt;li>for action: &lt;code>hover&lt;/code>, &lt;code>focus&lt;/code>&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>pseudo-element: 伪元素选择器，使用 &lt;code>::pseudo-element&lt;/code> 选取
-&lt;ul>
-&lt;li>与伪类的区别伪元素会为选中的元素添加 HTML 片段，而伪类只会在原元素中修改&lt;/li>
-&lt;li>选取特定位置: &lt;code>first-line&lt;/code>&lt;/li>
-&lt;li>生成特定内容: &lt;code>before&lt;/code>, &lt;code>after&lt;/code> 然后通过 content 属性设置&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;h2 id="css-combinators">CSS Combinators&lt;/h2>
-&lt;ul>
-&lt;li>Descendant: &lt;code> &lt;/code> 后者元素的某个祖先是前者元素&lt;/li>
-&lt;li>Child: &lt;code>&amp;gt;&lt;/code> 后者是前者的直接子节点&lt;/li>
-&lt;li>Adjacent sibling: &lt;code>+&lt;/code> 后者紧接着前者，且是同一个父元素节点&lt;/li>
-&lt;li>General sibling: &lt;code>~&lt;/code> 后者出现在前者的后面，且是同一个父元素节点&lt;/li>
-&lt;/ul>
-&lt;h2 id="css-selector-的优先级">CSS Selector 的优先级&lt;/h2>
-&lt;p>如果有多个 CSS Rule 同样选择到了某个元素节点且声明的 CSS 样式出现冲突时，会根据首先根据优先级进行处理，当优先级相同时，选择后声明的规则。&lt;/p>
-&lt;p>优先级可以用一个四位数表示，每出现一个选择器在相应位上加一&lt;/p>
-&lt;ol start="0">
-&lt;li>inline style: 行内的 css style 的优先级时最高的，直接在千位加一&lt;/li>
-&lt;li>百位: ID Selector&lt;/li>
-&lt;li>十位: Class selector, attribute selector, preudo-class selector&lt;/li>
-&lt;li>各位: type selector, preudo-element selector&lt;/li>
-&lt;/ol></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/CSS/">CSS</category><category domain="https://scottyeung.top/tags/%E5%89%8D%E7%AB%AF/">前端</category><category domain="https://scottyeung.top/tags/Coding-%E5%AD%A6%E4%B9%A0/">Coding 学习</category></item></channel></rss>
+&lt;p>希望自己早日能够从杂才成为通才吧！&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E5%8D%9A%E5%AE%A2/">博客</category><category domain="https://scottyeung.top/tags/Hugo/">Hugo</category><category domain="https://scottyeung.top/tags/%E7%BB%8F%E5%8E%86%E5%9B%9E%E9%A1%BE/">经历回顾</category></item></channel></rss>
