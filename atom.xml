@@ -1,4 +1,52 @@
-<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah 的乱写地</title><link>https://scottyeung.top/</link><description>YeungYeah 的乱写地中记录了作者的所思所想及所为。</description><generator>Hugo 0.83.1 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Mon, 24 Apr 2023 09:24:00 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>Hugo 如何转义美元符号 $</title><link>https://scottyeung.top/2023/hugo-escape-dollar-sigh/</link><guid isPermaLink="true">https://scottyeung.top/2023/hugo-escape-dollar-sigh/</guid><pubDate>Thu, 13 Apr 2023 10:42:26 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>写上一篇博客的时候出现了一些美元符号 $，因为平时比较少用，所以发布后才发现这是个特殊字符，显示效果会有点问题，需要进行转义。不转义的话，可能就会当成行内公式来处理，显得很奇怪。&lt;/p>
+<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah 的乱写地</title><link>https://scottyeung.top/</link><description>YeungYeah 的乱写地中记录了作者的所思所想及所为。</description><generator>Hugo 0.83.1 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Mon, 24 Apr 2023 12:56:34 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>系统工具替换之 Rust 化推进</title><link>https://scottyeung.top/2023/replace-with-tools-based-rust/</link><guid isPermaLink="true">https://scottyeung.top/2023/replace-with-tools-based-rust/</guid><pubDate>Mon, 24 Apr 2023 10:51:42 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>起因是在知乎看到了这篇 &lt;a href="https://zhuanlan.zhihu.com/p/436024560">文章&lt;/a>，讲到作者使用 Rust 新开发的终端工具生态，以构建一个能在不同设备环境下运行的终端配置。里面提到的 Starship 自己就已经在用，确实不错，而且自己确实对于 Rust 有不少的好感。于是就按照他的思路，将日常使用的一些工具，迁移到使用 Rust 实现的版本当中，体验还是挺不错的。&lt;/p>
+&lt;p>具体做了以下的替换。&lt;/p>
+&lt;h2 id="starship-cross-shell-prompt">Starship: Cross-Shell Prompt&lt;/h2>
+&lt;p>此前在新环境开启一个 shell 之后，总是会第一时间就对 shell 进行配置，以获取更好的终端使用体验。比如在 zsh 当中使用 &lt;a href="https://ohmyz.sh/">oh-my-zsh&lt;/a>。不过这些 prompt 配置往往会因为其对于特定 shell 的移植性，以及实际使用起来的性能响应问题，而让人劝退。&lt;/p>
+&lt;p>&lt;a href="https://starship.rs/">Starship&lt;/a> 是一个使用 Rust 实现的适用于任何 shell 的 prompt。实际使用起来，看起来足够美观，性能也不错，而且安装配置也方便，几乎是开箱即用。于是在很早就为我的 powershell 切换到 Starship 了。&lt;/p>
+&lt;p>基本各个包管理工具都有 Starship，在 Windows 下可以使用 scoop 安装。安装好后根据相应使用的 shell 进行配置即可。&lt;/p>
+&lt;h2 id="nushell">Nushell&lt;/h2>
+&lt;p>[Nushell] 是使用 Rust 实现的一种新型的 shell，得益于使用 Rust 实现，Nushell 可以运行于各个 OS 平台，即使是在 Windows 上面也有着很不错的体验。这对于一个在 Windows 上面一直没有良好终端交互体验的人来说（powershell 不能根据历史记录进行补全，补全提示也很弱，不能看到所有的候选项，只能一个个 tab 切换过去尝试，简直窒息），简直是质的的飞跃。这段时间使用下来，主要有以下的爽点。&lt;/p>
+&lt;ul>
+&lt;li>全平台提供统一的命令和功能，使得使用起来非常统一。而且提供的命令足够丰富，完全可以涵盖日常使用。&lt;/li>
+&lt;li>良好的命令补全功能。某种程度这种补全能力才是最吸引我的哈哈哈。&lt;/li>
+&lt;li>一切皆数据。所有命令得到的数据，可以通过管道流动，进行数据处理加工，从而得到想要的结果和效果。
+&lt;ul>
+&lt;li>很多命令的输出结果都是以表格的形式返回，方便进行数据处理&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>足够美观。命令的输入和结果的输出，都有不错的格式化，看起来体验不错。&lt;/li>
+&lt;/ul>
+&lt;p>除了提供足够好用的 shell 以外，Nushell 使用语法也不错，可以很简单地进行 shell 变成，写脚本实现自己想要的功能，比如看视频常用的，获取当前目录下最近访问的视频文件。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-shell" data-lang="shell">ls -l &lt;span class="p">|&lt;/span> where &lt;span class="nb">type&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="s2">&amp;#34;file&amp;#34;&lt;/span> and &lt;span class="nv">name&lt;/span> &lt;span class="o">=&lt;/span>~ &lt;span class="s2">&amp;#34;.(rmvb|mp4|mkv)&lt;/span>$&lt;span class="s2">&amp;#34;&lt;/span> &lt;span class="p">|&lt;/span> sort-by accessed &lt;span class="p">|&lt;/span> reverse &lt;span class="p">|&lt;/span> first &lt;span class="m">1&lt;/span> &lt;span class="p">|&lt;/span> get name
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>同时 Nushell 也为来自使用不同 shell 的用户提供了 mapping 指南。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://www.nushell.sh/book/coming_from_bash.html">Coming from Bash&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.nushell.sh/book/coming_from_cmd.html">Coming from CMD&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>真心安利大家试试！&lt;/p>
+&lt;h2 id="bat-alternative-to-cat">Bat: alternative to cat&lt;/h2>
+&lt;p>Linux cat 的命令用于输出文本文件的内容，几乎是 Linux 上最常用的命令之一了。&lt;a href="https://github.com/sharkdp/bat/">Bat&lt;/a> 则是带有自动格式化和语法高亮的 cat 命令。而且 Windows powershell 当中居然不提供 cat 的命令或者 alias，让人不适应。Bat 还有许多的功能，比如与 git 集成，以及自动分页。&lt;/p>
+&lt;p>Bat 已经用很久了，它已经存在于我的每个设备上面，大量使用，已经替换掉我的 cat 了。&lt;/p>
+&lt;h2 id="fd-alternative-to-find">fd: alternative to find&lt;/h2>
+&lt;p>&lt;a href="https://github.com/sharkdp/fd">fd&lt;/a> 是使用 rust 实现的简单快捷的 find 命令代替版。实际使用的性能表现挺不错的，而且输出就自带颜色格式化，结果看起来也很美观。不过 fd 的出现，最主要是可以让我在 Windows 下面也可以用到 find，快速地找到文件。在终端使用 fd 命令，几乎可以当成一个命令行版本的 everything，来搜索文件。&lt;/p>
+&lt;h2 id="zoxide">zoxide&lt;/h2>
+&lt;p>&lt;a href="https://github.com/ajeetdsouza/zoxide">zoxide&lt;/a> 是使用 Rust 实现的目录切换工具，是一个更加智能的 cd 命令。类似于 autojump，zoxide 可以记录历史访问切换路径，然后根据历史数据，快速跳转到目标路径。比如通过多次 cd 进入了一个深层级的目录后，后面就可以直接根据目录名一步跳转到目标目录。得益于 Rust 的跨平台能力，zoxide 适用于多种不同的 shell，而且性能表现还不错。&lt;/p>
+&lt;p>现在正在逐步使用 z 替换掉习惯中的 cd。&lt;/p>
+&lt;h2 id="helix-alternative-to-vim">Helix: alternative to vim&lt;/h2>
+&lt;p>&lt;a href="https://github.com/helix-editor/helix">Helix&lt;/a> 是一个使用 vim 键位的终端编辑器，其自带有比较完备的配置设置，基本可以开箱即用，而且一些操作也更加简单，其内置了较多的提示和选项菜单，使用体验比 vim 要好很多，尤其是在大家都没配置的情况下。对于我这种懒折腾的人来说简直完美。&lt;/p>
+&lt;p>现在在服务器上也基本用 helix 来代替 vim 了，几乎没有什么学习成本。&lt;/p>
+&lt;h2 id="zellij-alternative-to-tmux">zellij: alternative to tmux&lt;/h2>
+&lt;p>zellij 是一款类似于 tmux 的终端复用工具。不过相比于 tmux，zellij 使用起来更加简单（因为几乎所有的操作命令都可以在窗口的指示中了解到），不需要再像用 tmux，如果一段时间没用，还得现搜一些快捷键，看怎么退出会话，怎么切换tabs。使用体验还是不错的。&lt;/p>
+&lt;hr>
+&lt;p>Rust 语言的发展，带来了大量工具软件的蓬勃发展。虽然有些人会觉得 Rust 开发者是不是闲得没事，总是喜欢造轮子，总是喜欢把已有的东西重新实现一遍。但我觉得这样的发展趋势还是很棒的，这也并不是简单地重复造轮子，除了 Rust 带来的性能提升以外，我觉得最主要的卖点，还是 Rust 跨平台特性，所带来的软件工具的移植性。因为 Rust 跨平台，所以可以为各个 OS 和架构都直接打出一个可用的二进制包，借助各类型的包管理工具，下载安装的体验极佳，即使是 Windows。退一步，即使包管理源还没有相应的工具，还能够通过 cargo 进行源码安装（就是花的的时间多一点，不过可以考虑使用 &lt;a href="https://github.com/cargo-bins/cargo-binstall">cargo binstall&lt;/a> 提速一下）。&lt;/p>
+&lt;p>感谢 Rust，让我有机会能够在 Windows 平台下体验到许多原本只能在 Linux 系统才能够体验到的命令行工具，还能够有非常不错的体验，值得向大家推荐。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category><category domain="https://scottyeung.top/tags/Windows/">Windows</category><category domain="https://scottyeung.top/tags/Linux/">Linux</category><category domain="https://scottyeung.top/tags/shell/">shell</category><category domain="https://scottyeung.top/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/">生产力</category><category domain="https://scottyeung.top/tags/Rust/">Rust</category></item><item><title>Hugo 如何转义美元符号 $</title><link>https://scottyeung.top/2023/hugo-escape-dollar-sigh/</link><guid isPermaLink="true">https://scottyeung.top/2023/hugo-escape-dollar-sigh/</guid><pubDate>Thu, 13 Apr 2023 10:42:26 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>写上一篇博客的时候出现了一些美元符号 $，因为平时比较少用，所以发布后才发现这是个特殊字符，显示效果会有点问题，需要进行转义。不转义的话，可能就会当成行内公式来处理，显得很奇怪。&lt;/p>
 &lt;p>&lt;img src="https://scottyeung.top/my-images/202304131045363.png" alt="">&lt;/p>
 &lt;p>反应过来后很快就给这些 $ 符号添加上反斜杠 \ 来转义了，即使用&lt;code>1\$&lt;/code>的形式。因为文章还同时发布在 &lt;a href="https://blog.yeungyeah.top/">xLog&lt;/a> 的平台上面，所以修改后就直接在上面看效果，看起来没事，就重新发布了。&lt;/p>
 &lt;p>然后今天发现主页上 hugo 的版本还是显示不正常，在本地跑了一下才发现，这样加一个反斜杠转义并没有转义效果。搜了一轮才意识到，应该是我的 Hugo 全局开了 MathJax 的问题。在开启 MathJax 的情况下，文章 markdown 会出现处理一轮，先做一轮转义，比如 &lt;code>\$&lt;/code> 会转义成 &lt;code>$&lt;/code>，然后再用 MathJax 扫描，如果这时还发现 $ 符号，自然就会当成公式再处理一遍，导致不能正常显示出 $。&lt;/p>
@@ -213,8 +261,4 @@ Make sure your answer is exactly correct
 &lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="p">}&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>C# 可以直接使用 &lt;code>System.Threading.Tasks&lt;/code> 来并行跑任务，然后通过 &lt;code>System.Threading.Interlocked&lt;/code> 直接原子式修改变量，能够直接在几十秒内扫描完 380+g 的整个盘，相比于需要差不多十分钟的Go 版本，速度简直惊人，加上 dotnet 还能直接打包成 exe，用起来体验简直起飞。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/dotnet/">dotnet</category><category domain="https://scottyeung.top/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">并发编程</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category></item><item><title>当软件习惯开源之后</title><link>https://scottyeung.top/2022/%E5%BD%93%E8%BD%AF%E4%BB%B6%E4%B9%A0%E6%83%AF%E5%BC%80%E6%BA%90%E4%B9%8B%E5%90%8E/</link><guid isPermaLink="true">https://scottyeung.top/2022/%E5%BD%93%E8%BD%AF%E4%BB%B6%E4%B9%A0%E6%83%AF%E5%BC%80%E6%BA%90%E4%B9%8B%E5%90%8E/</guid><pubDate>Sat, 05 Nov 2022 12:57:58 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>前几天遇上一个小需求，需要批量提取 pdf 的若干页面并合并成新的新的 pdf 文件。因为这个需求是需要在别人的电脑上跑，且对方并无太多相关的基础，所以自然考虑能够打包成单个可执行文件的解决方案。最终选择使用 Golang 来实现，把代码打包成单个 exe 给对方直接运行。&lt;/p>
-&lt;p>在选好语言后，下一步很自然地就是寻找相关的工具库进行处理，简单地在 Google 搜索 &lt;code>go pdf process&lt;/code>，就在第一条搜索结果就找到了一个质量还不错的开源 pdf 处理库 —— &lt;a href="https://github.com/pdfcpu/pdfcpu">pdfcpu&lt;/a>，该工具不仅提供命令行工具，还提供能在代码封装好的 API，看了看文档和相应的例子，就能马上上手用了。&lt;/p>
-&lt;p>这个需求挺快就解决了，不过后面突然对于 dotnet 心血来潮，想玩玩新版本的 dotnet7 和 dotnet 提供的单文件发布功能，又将这个需求打算用 dotnet 实现一次。当然核心的 pdf 处理功能还是打算找网上的工具库实现，使用类似的方法在 Google 一搜，相应的工具库还是挺多的，于是就找了第一个跟着文档操作了几下，好像没有问题，再多用几次后却发现，不能正常使用了，再一细看才发现，原来这是个商业软件，使用需要购买 license，免费版只能使用几次，而且因为是商业软件的缘故，有时候方法调试或者是跳转调用的函数定义，也因为调用库的代码被加密混淆，而无法清晰了解，如果使用过程出现了什么问题，也难以调试。&lt;/p>
-&lt;p>重新回去 Google 搜索了一下 dotnet 当中的 pdf 处理库，然而搜索引擎靠前的都是需要付费的商业软件，免费版的或是限制使用次数，或是限制处理文档的页面数量，都满足不了我的需求。最终找到了一个开源的 pdf 处理库，但是功能羸弱，连加密解密功能都没有，只能选择放弃。不过想了一下，感觉也挺理所当然的，在这个领域方向上的商业软件比较强的情况下，开源软件天然受到压制，商业软件在维护人数，使用人数，搜索的 seo 上都有着较大的领先，搜索引擎一搜，基本前面都是商业软件以及使用他们的相关教程帖子和分享，因此开源软件得不到应有的关注，自然难以进展和反超。&lt;/p>
-&lt;p>一直以来，我都已经把软件开源使用当作是一件习以为常的事情了，尤其是这种依赖工具库。只要有这个需求，自然就会有人写代码实现解决这个问题，重复的人和代码多了，于是便整理起来放到网上进行共享使用，形成一个依赖库供大家一起使用，在这个过程中也一起改进。后面的人在遇到这个问题之后，便能借助前人的智慧，轻松获取解决方案，这也是开源的魅力所在。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E9%9A%8F%E7%AC%94/">随笔</category><category domain="https://scottyeung.top/tags/dotnet/">dotnet</category><category domain="https://scottyeung.top/tags/Golang/">Golang</category><category domain="https://scottyeung.top/tags/%E8%BD%AF%E4%BB%B6/">软件</category><category domain="https://scottyeung.top/tags/%E5%BC%80%E6%BA%90/">开源</category></item></channel></rss>
+&lt;/div>&lt;p>C# 可以直接使用 &lt;code>System.Threading.Tasks&lt;/code> 来并行跑任务，然后通过 &lt;code>System.Threading.Interlocked&lt;/code> 直接原子式修改变量，能够直接在几十秒内扫描完 380+g 的整个盘，相比于需要差不多十分钟的Go 版本，速度简直惊人，加上 dotnet 还能直接打包成 exe，用起来体验简直起飞。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/dotnet/">dotnet</category><category domain="https://scottyeung.top/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">并发编程</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category></item></channel></rss>
