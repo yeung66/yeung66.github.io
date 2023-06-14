@@ -1,4 +1,77 @@
-<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah 的乱写地</title><link>https://scottyeung.top/</link><description>YeungYeah 的乱写地中记录了作者的所思所想及所为。</description><generator>Hugo 0.83.1 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Mon, 12 Jun 2023 05:31:38 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>系统工具替换之 Rust 化推进</title><link>https://scottyeung.top/2023/replace-with-tools-based-rust/</link><guid isPermaLink="true">https://scottyeung.top/2023/replace-with-tools-based-rust/</guid><pubDate>Mon, 24 Apr 2023 10:51:42 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>起因是在知乎看到了这篇 &lt;a href="https://zhuanlan.zhihu.com/p/436024560">文章&lt;/a>，讲到作者使用 Rust 新开发的终端工具生态，以构建一个能在不同设备环境下运行的终端配置。里面提到的 Starship 自己就已经在用，确实不错，而且自己确实对于 Rust 有不少的好感。于是就按照他的思路，将日常使用的一些工具，迁移到使用 Rust 实现的版本当中，体验还是挺不错的。&lt;/p>
+<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah 的乱写地</title><link>https://scottyeung.top/</link><description>YeungYeah 的乱写地中记录了作者的所思所想及所为。</description><generator>Hugo 0.83.1 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Wed, 14 Jun 2023 03:49:53 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>Umami: 更简单的自托管网站统计服务</title><link>https://scottyeung.top/2023/umami/</link><guid isPermaLink="true">https://scottyeung.top/2023/umami/</guid><pubDate>Wed, 14 Jun 2023 10:41:12 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>此前博客都是用 Google Analytics 来提供网站统计服务，统计博客中各个页面的访问情况。可用是可用，但是 Google Analytics 提供了太多的统计内容，让人眼花缭乱，都不知道要看些什么。另外 Google 的服务，总是会存在访问性的问题。因此在看到介绍其它博主介绍 &lt;a href="https://github.com/umami-software/umami">Umami&lt;/a> 的文章后，我也打算搭建一个自己的网站统计服务，并进行切换。&lt;/p>
+&lt;blockquote>
+&lt;p>Umami is a simple, fast, privacy-focused alternative to Google Analytics.&lt;/p>
+&lt;/blockquote>
+&lt;p>Umami 主打的就是注重隐私，毕竟像访问数据这些数据，还是不落在大公司手上好点。Umami 支持多种部署方式，比如 Docker。不过对于我这种云计算爱好者来说，当然是都上云服务了。Umami 服务本身可以部署在 Vercel 上面，绑定一个域名就可以直接访问了。Umami 支持 MySQL 和 Postgresql 两种数据库，这两种数据库都可以找到对应的 serverless 提供商。这里我选择的是 PingCap 家的 &lt;a href="https://www.pingcap.com/tidb-cloud/">TiDB Cloud&lt;/a>，能够提供每个集群最大 5G 容量，每月 5 千万次访问的 MySQL 数据库。&lt;/p>
+&lt;p>最终部署的成果如下。&lt;/p>
+&lt;p>&lt;img src="https://scottyeung.top/my-images/202306141051580.png" alt="">&lt;/p>
+&lt;h2 id="搭建过程">搭建过程&lt;/h2>
+&lt;ol>
+&lt;li>
+&lt;p>TiDB Cloud 登录后，创建一个 Serverless 的数据库 cluster&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>在集群的 overview 页面，点击 connect 获取建立数据库链接的相关内容，以 MySQL CLI 的连接方式为例，包括&lt;/p>
+&lt;ul>
+&lt;li>用户名 -u&lt;/li>
+&lt;li>host -h&lt;/li>
+&lt;li>端口 -P&lt;/li>
+&lt;li>密码 -p&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>根据获取得到的相关信息，拼接出 MySQL 的连接 URL&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>mysql://&amp;lt;username&amp;gt;:&amp;lt;password&amp;gt;@&amp;lt;host&amp;gt;:&amp;lt;port&amp;gt;/&amp;lt;database_name&amp;gt;?pool_timeout=60&amp;amp;sslaccept=accept_invalid_certs&lt;/code>&lt;/li>
+&lt;li>需要预先创建一个数据库并指定数据库&lt;/li>
+&lt;li>因为 TiDB Cloud 默认是需要 TLS 的，因此必须添加参数 &lt;code>sslaccept=accept_invalid_certs&lt;/code>，否则会连不上（这是一个隐藏的小坑）&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>GitHub Fork Umami 项目，并到 Vercel 部署，部署时填入环境变量 &lt;code>DATABASE_URL&lt;/code>，值是上面的连接 URL&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>部署后在 Vercel 绑定自己的域名，因为 DNS 污染的原因，Vercel 提供的域名大多数时候不能够正常访问，需要自己的域名，才能更顺利地被访问到&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>部署成功后，通过绑定的域名访问网站，默认账号用户名和密码是 admmin 和 umami，进去后可以修改密码，添加网站，添加用户&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>在设置页面处添加网站，填写相关信息，Umami 会为需要统计的网站分配一个 ID 以及影响的 tracking code。只需要把这个 tracking code 放到网页的 head 标签中，即可以开始收集统计数据，并在 dashboard 中看到相应的统计结果。&lt;/p>
+&lt;ol>
+&lt;li>以我使用的 hugo 为例，在主题的 html 模板当中找到 head 标签相关的生成模板，然后把 tracking code 放进去就行了。为了增加可配置性，也可以把 tracking code 中的 id 抽取出来变成变量，从配置中读取。&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-html" data-lang="html"> {{- if and .Site.Params.enableUmami (eq hugo.Environment &amp;#34;production&amp;#34;) }}
+{{ $id := .Site.Params.umamiTrackingID }}
+{{ $host := .Site.Params.umamiHost }}
+&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">script&lt;/span> &lt;span class="na">async&lt;/span> &lt;span class="na">src&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;https://{{ $host }}/script.js&amp;#34;&lt;/span> &lt;span class="na">data-website-id&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;{{ $id }}&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&amp;lt;/&lt;/span>&lt;span class="nt">script&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+{{- end }}
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-toml" data-lang="toml">&lt;span class="nx">enableUmami&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="kc">true&lt;/span>
+&lt;span class="nx">umamiTrackingID&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;your_id&amp;#34;&lt;/span>
+&lt;span class="nx">umamiHost&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;your_umami_website&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;/li>
+&lt;/ol></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/serverless/">serverless</category><category domain="https://scottyeung.top/tags/vercel/">vercel</category><category domain="https://scottyeung.top/tags/%E5%8D%9A%E5%AE%A2/">博客</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category><category domain="https://scottyeung.top/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1/">云服务</category></item><item><title>系统工具替换之 Rust 化推进</title><link>https://scottyeung.top/2023/replace-with-tools-based-rust/</link><guid isPermaLink="true">https://scottyeung.top/2023/replace-with-tools-based-rust/</guid><pubDate>Mon, 24 Apr 2023 10:51:42 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>起因是在知乎看到了这篇 &lt;a href="https://zhuanlan.zhihu.com/p/436024560">文章&lt;/a>，讲到作者使用 Rust 新开发的终端工具生态，以构建一个能在不同设备环境下运行的终端配置。里面提到的 Starship 自己就已经在用，确实不错，而且自己确实对于 Rust 有不少的好感。于是就按照他的思路，将日常使用的一些工具，迁移到使用 Rust 实现的版本当中，体验还是挺不错的。&lt;/p>
 &lt;p>具体做了以下的替换。&lt;/p>
 &lt;h2 id="starship-cross-shell-prompt">Starship: Cross-Shell Prompt&lt;/h2>
 &lt;p>此前在新环境开启一个 shell 之后，总是会第一时间就对 shell 进行配置，以获取更好的终端使用体验。比如在 zsh 当中使用 &lt;a href="https://ohmyz.sh/">oh-my-zsh&lt;/a>。不过这些 prompt 配置往往会因为其对于特定 shell 的移植性，以及实际使用起来的性能响应问题，而让人劝退。&lt;/p>
@@ -214,51 +287,4 @@ Make sure your answer is exactly correct
 &lt;p>尽管争议很大，但突然而来的防控政策变化，还是使得我国的疫情防控方向往着放开的路上，不可逆的前进。对于每个人来说，感染似乎都已经是无可避免，家人已经开始阳了，就连在写这篇博客的我都开始出现症状，躲不过，只能做好防护，做好应对的准备。回想起今年的防控情况，算是把疫情的大多数状况都体验了一次，被赋黄码，每天核酸，小区被封，家里被封，学校被封。对我来说，种种的折腾，如果能够换来有用的效果，我也是能接受的。但当没有效果后，确实需要改变，改变方向也确实不是一件丢脸的事，更不能为了面子一直死撑。然而可惜的是，我们大多数人其实并不能左右这些政策的出台，只能被动接受，自己做好准备。相信自己，永远比相信 XX 有用。&lt;/p>
 &lt;p>此前看到一个帖子提到此前疫情形势带来的一个大影响，就是给生活带来了许多不确定性，永远没有办法能够预想到自己什么时候会被黄码红码，什么时候成为密接被带走，什么时候会因为封控或隔离而无法出门办事。疫情发展得快，管理政策转变得更快，每一层都有自己的理解和解释，都有自己一套的做法。这样的不确定性使得大家的行为都被更加压抑，所有的决策和选择都会偏向保守。去任何一个地方都会担心自己所在地或者目的地有疫情，而导致落地就隔离，再加上政策的不明显和不确定，你也不知道会不会被隔离，隔离需要多久，于是就舍不得外出，避免可能的浪费自己的时间。国庆期间就是这样溜出学校和女朋友去玩，然而中途南京突然来了个疫情，于是担心学校突然被封，担心女友回去会被隔离，各种提心吊胆，虽然最终没事，但想起来这些还是觉得疲倦，尤其是对我这种心不够大的人来说，各种焦虑。&lt;/p>
 &lt;p>不过放开还是清零，这样的争论已经没有意义了，每个政策都有其自身的问题，怎么选都要付出代价。网上各种声音之所以喊得响亮，无非是自己成为了代价那一方而被迫付出。我们小市民也只能努力准备，避免消耗，留存实力。&lt;/p>
-&lt;p>希望明年大家都能够恢复活力吧！&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E8%AE%B0%E5%BD%95/">记录</category><category domain="https://scottyeung.top/tags/summary/">summary</category><category domain="https://scottyeung.top/tags/%E7%94%9F%E6%B4%BB/">生活</category></item><item><title>C# 爽点记录-2：并行任务</title><link>https://scottyeung.top/2022/csharp-merit-2/</link><guid isPermaLink="true">https://scottyeung.top/2022/csharp-merit-2/</guid><pubDate>Fri, 25 Nov 2022 12:58:22 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>之前有个小需求，想写个小工具来统计电脑上各个文件夹和文件的大小，方便自己找出占用空间多的文件夹进行清理，释放硬盘空间。代码实现起来很简单，利用各种编程语言提供的读取文件系统当中的文件和大小接口，然后做个累加统计就可。&lt;/p>
-&lt;p>具体的思路是：&lt;/p>
-&lt;ol>
-&lt;li>读取目录下的所有文件和文件夹&lt;/li>
-&lt;li>文件直接获取大小&lt;/li>
-&lt;li>文件夹则递归调用计算函数，获取大小&lt;/li>
-&lt;li>最后把所有文件和文件夹的大小累加起来&lt;/li>
-&lt;/ol>
-&lt;p>一个函数就能搞定，但是如果当目录下的文件夹数量太多，或者是目录的层级太深，跑起来就会很慢，尤其是通常来说硬盘里面的文件和文件夹数量这么多，随随便便就能跑个几十分钟（还是非磁盘的根目录）。&lt;/p>
-&lt;p>于是想当然地就想着用多线程来并行计算加速。因为最开始的版本是用 Go 实现，所以就把每次递归调用变成了开一个协程来跑。一开始觉得可能会用太多的协程，占用过多资源，所以还写了个简单的协程池，然而这样限制协程数量的话，导致不够协程来计算新的文件夹，就会出现死锁的情况。所以就还是每个调用开个协程来跑，不过速度还是比较感人。&lt;/p>
-&lt;p>然后昨晚看到一个 C# 的写法，一个函数就能够就能够简单开启并行任务，也不用像在 Go 里面用各种锁或者 channel 来进行数据同步。&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
-&lt;/span>&lt;span class="lnt"> 2
-&lt;/span>&lt;span class="lnt"> 3
-&lt;/span>&lt;span class="lnt"> 4
-&lt;/span>&lt;span class="lnt"> 5
-&lt;/span>&lt;span class="lnt"> 6
-&lt;/span>&lt;span class="lnt"> 7
-&lt;/span>&lt;span class="lnt"> 8
-&lt;/span>&lt;span class="lnt"> 9
-&lt;/span>&lt;span class="lnt">10
-&lt;/span>&lt;span class="lnt">11
-&lt;/span>&lt;span class="lnt">12
-&lt;/span>&lt;span class="lnt">13
-&lt;/span>&lt;span class="lnt">14
-&lt;/span>&lt;span class="lnt">15
-&lt;/span>&lt;span class="lnt">16
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-c#" data-lang="c#">&lt;span class="k">public&lt;/span> &lt;span class="k">static&lt;/span> &lt;span class="kt">long&lt;/span> &lt;span class="n">GetDirectorySize&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">this&lt;/span> &lt;span class="n">System&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">IO&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">DirectoryInfo&lt;/span> &lt;span class="n">directoryInfo&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kt">bool&lt;/span> &lt;span class="n">recursive&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="k">true&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;span class="p">{&lt;/span>
-&lt;span class="kt">var&lt;/span> &lt;span class="n">startDirectorySize&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="k">default&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">long&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">directoryInfo&lt;/span> &lt;span class="p">==&lt;/span> &lt;span class="k">null&lt;/span> &lt;span class="p">||&lt;/span> &lt;span class="p">!&lt;/span>&lt;span class="n">directoryInfo&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Exists&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;span class="k">return&lt;/span> &lt;span class="n">startDirectorySize&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="c1">//Return 0 while Directory does not exist.
-&lt;/span>&lt;span class="c1">&lt;/span>
-&lt;span class="c1">//Add size of files in the Current Directory to main size.
-&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="k">foreach&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">var&lt;/span> &lt;span class="n">fileInfo&lt;/span> &lt;span class="k">in&lt;/span> &lt;span class="n">directoryInfo&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">GetFiles&lt;/span>&lt;span class="p">())&lt;/span>
-&lt;span class="n">System&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Threading&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Interlocked&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Add&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">ref&lt;/span> &lt;span class="n">startDirectorySize&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">fileInfo&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Length&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">recursive&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1">//Loop on Sub Direcotries in the Current Directory and Calculate it&amp;#39;s files size.
-&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">System&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Threading&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Tasks&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Parallel&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">ForEach&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">directoryInfo&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">GetDirectories&lt;/span>&lt;span class="p">(),&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">subDirectory&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">=&amp;gt;&lt;/span>
-&lt;span class="n">System&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Threading&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Interlocked&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Add&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">ref&lt;/span> &lt;span class="n">startDirectorySize&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">GetDirectorySize&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">subDirectory&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">recursive&lt;/span>&lt;span class="p">)));&lt;/span>
-&lt;span class="k">return&lt;/span> &lt;span class="n">startDirectorySize&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="c1">//Return full Size of this Directory.
-&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="p">}&lt;/span>
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>C# 可以直接使用 &lt;code>System.Threading.Tasks&lt;/code> 来并行跑任务，然后通过 &lt;code>System.Threading.Interlocked&lt;/code> 直接原子式修改变量，能够直接在几十秒内扫描完 380+g 的整个盘，相比于需要差不多十分钟的Go 版本，速度简直惊人，加上 dotnet 还能直接打包成 exe，用起来体验简直起飞。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/dotnet/">dotnet</category><category domain="https://scottyeung.top/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">并发编程</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category></item></channel></rss>
+&lt;p>希望明年大家都能够恢复活力吧！&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E8%AE%B0%E5%BD%95/">记录</category><category domain="https://scottyeung.top/tags/summary/">summary</category><category domain="https://scottyeung.top/tags/%E7%94%9F%E6%B4%BB/">生活</category></item></channel></rss>
