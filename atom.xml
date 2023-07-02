@@ -1,24 +1,49 @@
-<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah 的乱写地</title><link>https://scottyeung.top/</link><description>YeungYeah 的乱写地中记录了作者的所思所想及所为。</description><generator>Hugo 0.83.1 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Fri, 30 Jun 2023 04:23:17 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>更好的写脚本方式</title><link>https://scottyeung.top/2023/better-script-with-fsharp/</link><guid isPermaLink="true">https://scottyeung.top/2023/better-script-with-fsharp/</guid><pubDate>Fri, 30 Jun 2023 12:00:41 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>毕业季和同学去拍了一些照片，后面共享回来的照片，格式是 HEIC 格式的，在电脑上可以直接打开，但是 iCloud 相册里面上传照片只支持 jpg 格式，哪怕这些照片就是用 iPhone 拍的，也不能直接上传，没有办法，只能够手动转一次照片格式。
+<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah 的乱写地</title><link>https://scottyeung.top/</link><description>YeungYeah 的乱写地中记录了作者的所思所想及所为。</description><generator>Hugo 0.83.1 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Sun, 02 Jul 2023 13:10:22 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>更好的写脚本方式</title><link>https://scottyeung.top/2023/better-script-with-fsharp/</link><guid isPermaLink="true">https://scottyeung.top/2023/better-script-with-fsharp/</guid><pubDate>Fri, 30 Jun 2023 12:00:41 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>毕业季和同学去拍了一些照片，后面共享回来的照片，格式是 HEIC 格式的，在电脑上可以直接打开，但是 iCloud 相册里面上传照片只支持 jpg 格式，哪怕这些照片就是用 iPhone 拍的，也不能直接上传，没有办法，只能够手动转一次照片格式。
 网上也有很多 HEIC 转 JPG 格式的工具网站，但是都只能够一张张上传，然后一张张下载，这对于需要处理较大量照片的情况显然并不是一个好的解决方案。于是自然打算写个脚本，进行转换。&lt;/p>
 &lt;p>当然现在有了 ChatGPT，写脚本都不用亲历亲为了，直接把问题抛给它，我们只需要做代码的搬运工。&lt;/p>
 &lt;p>&lt;img src="https://scottyeung.top/my-images/202306301213820.png" alt="">&lt;/p>
 &lt;p>看起来很不错，复制到本地，替换一下路径一跑，发现脚本并不能正常运行，原因是使用的 Pillow 库其实不支持 HEIC 格式的图片。继续把问题交给它，它又给我推了一个 pyheif 库来处理，然而这个库需要 MSVC 相关工具链来编译安装，在我的电脑安装总是失败，后面尝试了几个它推荐的依赖库，都安装不了，寄！被 Python 的跨平台安装构建的低移植性狠狠教训，而为了写个脚本专门去配个环境或者容器又太夸张了。&lt;/p>
 &lt;p>于是最近在学的 F#来代替，继续把问题交给 ChatGPT，来回复制粘贴代码运行尝试几次后，顺利完成任务。&lt;/p>
-&lt;pre>&lt;code class="language-f#" data-lang="f#">#r &amp;quot;nuget:Magick.NET-Q16-AnyCPU&amp;quot;
-open System.IO
-open ImageMagick
-let convertHEICtoJPG (inputPath: string) (outputPath: string) =
-let image = new MagickImage(inputPath)
-image.Format &amp;lt;- MagickFormat.Jpg
-image.Write(outputPath)
-// 获取当前目录下的所有 HEIC 文件
-let heicFiles = Directory.GetFiles(@&amp;quot;/path/to/you&amp;quot;, &amp;quot;*.heic&amp;quot;)
-// 遍历每个 HEIC 文件，并进行转换
-for heicFile in heicFiles do
-let jpgFile = Path.ChangeExtension(heicFile, &amp;quot;.jpg&amp;quot;)
-convertHEICtoJPG heicFile jpgFile
-printfn &amp;quot;转换完成：%s -&amp;gt; %s&amp;quot; heicFile jpgFile
-&lt;/code>&lt;/pre>&lt;p>对比于 Python，使用 F#来写脚本其实也足够简单和方便，可以单个 fsx 文件来写，也可以直接把写好的代码复制到 fsi 交互命令行里逐段代码执行，方便得很。尤其是对于有外部依赖库的脚本代码，使用 F#或者 C#的脚本，这样一行代码引用依赖库，可比在命令行中全局安装一个依赖好用得多。（起码不会有安装失败的问题）&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/Coding-%E8%AE%B0%E5%BD%95/">Coding 记录</category><category domain="https://scottyeung.top/tags/Python/">Python</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category><category domain="https://scottyeung.top/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/">自动化</category><category domain="https://scottyeung.top/tags/dotnet/">dotnet</category><category domain="https://scottyeung.top/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/">生产力</category></item><item><title>我的动态时间线聚合</title><link>https://scottyeung.top/2023/my-timeline/</link><guid isPermaLink="true">https://scottyeung.top/2023/my-timeline/</guid><pubDate>Sat, 24 Jun 2023 20:30:00 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>之前一段时间偶然发现了 DIYGod 创建的一个个人 &lt;a href="https://t.me/awesomeDIYgod">Channel&lt;/a>，内容是关于他的一些动态，包括其发布的推特内容，以及豆瓣的书影音动态等内容。这种形式的 Channel 对我来说很有意思，一方面也是一个对外界分享自身情况的平台（虽然我的内容也没什么人关注），另一个方面也是可以有个地方将自己的相关信息数据持久化地保存下来，拿到自己手上。于是我也写了点代码，整出了一个自己的时间线聚合 &lt;a href="https://t.me/yeungyeah_channel">YeungYeah's Timeline&lt;/a>。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-FSharp" data-lang="FSharp">&lt;span class="o">#&lt;/span>&lt;span class="n">r&lt;/span> &lt;span class="s">&amp;#34;nuget:Magick.NET-Q16-AnyCPU&amp;#34;&lt;/span>
+&lt;span class="k">open&lt;/span> &lt;span class="nn">System.IO&lt;/span>
+&lt;span class="k">open&lt;/span> &lt;span class="nn">ImageMagick&lt;/span>
+&lt;span class="k">let&lt;/span> &lt;span class="nv">convertHEICtoJPG&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">inputPath&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="kt">string&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">outputPath&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="kt">string&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">=&lt;/span>
+&lt;span class="k">let&lt;/span> &lt;span class="nv">image&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">MagickImage&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">inputPath&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;span class="n">image&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Format&lt;/span> &lt;span class="o">&amp;lt;-&lt;/span> &lt;span class="nn">MagickFormat&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Jpg&lt;/span>
+&lt;span class="n">image&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">Write&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">outputPath&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;span class="c1">// 获取当前目录下的所有 HEIC 文件
+&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="k">let&lt;/span> &lt;span class="nv">heicFiles&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nn">Directory&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">GetFiles&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="s">@&amp;#34;/path/to/you&amp;#34;&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="s">&amp;#34;*.heic&amp;#34;&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;span class="c1">// 遍历每个 HEIC 文件，并进行转换
+&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="k">for&lt;/span> &lt;span class="n">heicFile&lt;/span> &lt;span class="k">in&lt;/span> &lt;span class="n">heicFiles&lt;/span> &lt;span class="k">do&lt;/span>
+&lt;span class="k">let&lt;/span> &lt;span class="nv">jpgFile&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nn">Path&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">ChangeExtension&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">heicFile&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="s">&amp;#34;.jpg&amp;#34;&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;span class="n">convertHEICtoJPG&lt;/span> &lt;span class="n">heicFile&lt;/span> &lt;span class="n">jpgFile&lt;/span>
+&lt;span class="n">printfn&lt;/span> &lt;span class="s">&amp;#34;转换完成：%s -&amp;gt; %s&amp;#34;&lt;/span> &lt;span class="n">heicFile&lt;/span> &lt;span class="n">jpgFile&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>对比于 Python，使用 F#来写脚本其实也足够简单和方便，可以单个 fsx 文件来写，也可以直接把写好的代码复制到 fsi 交互命令行里逐段代码执行，方便得很。尤其是对于有外部依赖库的脚本代码，使用 F#或者 C#的脚本，这样一行代码引用依赖库，可比在命令行中全局安装一个依赖好用得多。（起码不会有安装失败的问题）&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/Coding-%E8%AE%B0%E5%BD%95/">Coding 记录</category><category domain="https://scottyeung.top/tags/Python/">Python</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category><category domain="https://scottyeung.top/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/">自动化</category><category domain="https://scottyeung.top/tags/dotnet/">dotnet</category><category domain="https://scottyeung.top/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/">生产力</category></item><item><title>我的动态时间线聚合</title><link>https://scottyeung.top/2023/my-timeline/</link><guid isPermaLink="true">https://scottyeung.top/2023/my-timeline/</guid><pubDate>Sat, 24 Jun 2023 20:30:00 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>之前一段时间偶然发现了 DIYGod 创建的一个个人 &lt;a href="https://t.me/awesomeDIYgod">Channel&lt;/a>，内容是关于他的一些动态，包括其发布的推特内容，以及豆瓣的书影音动态等内容。这种形式的 Channel 对我来说很有意思，一方面也是一个对外界分享自身情况的平台（虽然我的内容也没什么人关注），另一个方面也是可以有个地方将自己的相关信息数据持久化地保存下来，拿到自己手上。于是我也写了点代码，整出了一个自己的时间线聚合 &lt;a href="https://t.me/yeungyeah_channel">YeungYeah's Timeline&lt;/a>。&lt;/p>
 &lt;p>程序大体的工作流程是这样的&lt;/p>
 &lt;ol>
 &lt;li>Vercel 上面部署一个自己的 RSSHub，通过 rss 的方式来订阅相关的个人信息。
