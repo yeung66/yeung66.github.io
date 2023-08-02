@@ -1,4 +1,30 @@
-<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah 的乱写地</title><link>https://scottyeung.top/</link><description>YeungYeah 的乱写地中记录了作者的所思所想及所为。</description><generator>Hugo 0.83.1 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Fri, 07 Jul 2023 15:37:39 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>表达的力量：写作与情绪宣泄</title><link>https://scottyeung.top/2023/power-of-expression/</link><guid isPermaLink="true">https://scottyeung.top/2023/power-of-expression/</guid><pubDate>Fri, 07 Jul 2023 23:14:39 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>在知乎看看到一个 &lt;a href="https://www.zhihu.com/question/610553893/answer/3105392840">回答&lt;/a>，对此颇为认同。&lt;/p>
+<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah 的乱写地</title><link>https://scottyeung.top/</link><description>YeungYeah 的乱写地中记录了作者的所思所想及所为。</description><generator>Hugo 0.83.1 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Wed, 02 Aug 2023 13:21:28 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>Arc 浏览器使用小记</title><link>https://scottyeung.top/2023/arc-browser/</link><guid isPermaLink="true">https://scottyeung.top/2023/arc-browser/</guid><pubDate>Wed, 02 Aug 2023 20:46:35 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>之前其实一直都有听说过 Arc 这个号称要改变浏览器格局，取代 Chrome 的浏览器，但是一直只有 Macos 版，不支持 Windows 系统，所以也只能一直观望。直到工作之后，拿到了 Mac 的工作电脑，然后自己也提了一台 MacBook，终于有机会可以体验了。于是马上下载下来，设成默认浏览器，体验一番。&lt;/p>
+&lt;p>&lt;img src="https://scottyeung.top/my-images/20230802204238.png" alt="">&lt;/p>
+&lt;p>下载好打开 Arc 浏览器，给人的第一感觉是好看，它的设计以及动画特效，一看就有种花里胡哨的感觉，据说还得付出性能代价，不过实际使用过程中倒也没有察觉到有什么性能问题。&lt;/p>
+&lt;p>实际使用下来，对比于 Chrome 系的浏览器，Arc 主要有下面这些特性&lt;/p>
+&lt;ol>
+&lt;li>垂直侧边栏。Arc 直接把顶部的标签栏，地址栏，收藏夹等都搬到侧边栏，以换取更大的浏览高度&lt;/li>
+&lt;li>不同的标签机制。
+&lt;ol>
+&lt;li>Arc 没有了收藏夹和书签的概念，取而代之的是可以将页面 Pined 住，或者设成 Fav&lt;/li>
+&lt;li>Arc 为了解决开太多标签难以关闭的问题，选择定时会关闭标签，标签打开最多 24 小时就会关闭，默认好像是几个小时。为了防止想看的 tab 被关，必须把它 Pin 住&lt;/li>
+&lt;li>同时，针对日常在各种应用打开链接只是看一下的情况，Arc 提供小窗模式供临时打开一些链接，觉得有必要在点击到大窗&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>对于页面分屏良好支持，可以随时在当前页面分出一半打开其他页面。&lt;/li>
+&lt;li>使用 Space 来取代多窗口。提供 Space 这个概念来隔离浏览器的使用，不同分组的标签和 Pined 页面可以放到不同的 space 当中使用。相对地，这里比较少用多窗口，甚至打开的新窗口之间会共享已经打开的标签页。&lt;/li>
+&lt;/ol>
+&lt;p>本质上，Arc 也是用的 Chromium 内核，所以其实 Chrome 支持的插件 Arc 都能支持，实际使用起来感觉也还好。但是我的评价是，Arc 浏览器确实是个有特性的浏览器，然后并不算是一个好用的浏览器，尤其是其中的一些概念，可能喜欢的人会很喜欢，但对我来说，感到束手束脚的。比如&lt;/p>
+&lt;ol>
+&lt;li>强行为用户做决定，强制关闭标签页。就这一点，意味在工作中需要一直开着许多工作页面的场景根本不能用 Arc。&lt;/li>
+&lt;li>很别扭的标签页同步。一方面它希望你能够及时关闭看完的页面，但另一方面又自作主张把你把所有打开的标签页同步到每一个打开的窗口，甚至是电脑打开的标签页给你实时地同步到手机上。感觉其实用起来挺别扭的，尤其是很多时候其实手机电脑浏览的场景都是分开的。&lt;/li>
+&lt;li>过分注重美观导致在一些细节上面有很多小问题，不好用，比如靠近右上角自动触发分屏提示，但有时有些按钮在右上角边缘，可能还会导致按不了。&lt;/li>
+&lt;li>没有书签的概念后，收藏页面只能用 Pin，但是 Pin 又不能在 Space 上面共享，又变得要绑定于某一个 Space，最终也还是只用一个 Space，失去了 Space 的意义。&lt;/li>
+&lt;li>一个浏览器居然强制登录才能使用，而登录居然还有墙的限制，从开始就给使用者加障碍了。&lt;/li>
+&lt;li>移动端应用实在太简陋了，甚至没有无痕浏览。&lt;/li>
+&lt;/ol>
+&lt;p>Arc 作为一个很有特点的浏览器，玩玩可以，真沉浸投入使用，可能还是得忍受种种差异与不适，当然就像臭豆腐一样，总有人能接受，如果能够接受，那它的优点还是很香的。另外，Arc 似乎也有很高的定制性，可以自己定制样式，甚至区块布局，不过我探索的时间（和兴趣）有限，懒得折腾。但是大家有兴趣的话也可以玩一玩，试一试。&lt;/p>
+&lt;p>从前在没有 MacBook 的时候，对于 Macos 专享的应用，内心总是有特别的向往，不过真的使用下来，好像又会觉得不过如此，或者仅是还行而已。最近 Macos 上也多了很多新软件，比如 Warp Terminal，Raycast，这些都有在用。可能也是自己还没有深度使用，或者用到它们的精髓，所以感觉也还比较一般。继续慢慢发掘。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/">生产力</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category><category domain="https://scottyeung.top/tags/%E5%90%90%E6%A7%BD/">吐槽</category></item><item><title>表达的力量：写作与情绪宣泄</title><link>https://scottyeung.top/2023/power-of-expression/</link><guid isPermaLink="true">https://scottyeung.top/2023/power-of-expression/</guid><pubDate>Fri, 07 Jul 2023 23:14:39 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>在知乎看看到一个 &lt;a href="https://www.zhihu.com/question/610553893/answer/3105392840">回答&lt;/a>，对此颇为认同。&lt;/p>
 &lt;blockquote>
 &lt;p>当你意识到自己的表达能力或者自尊水平下降的时候，一定要非常非常小心警惕，这是很危险的征兆。表达真的很重要的，比看起来还要重要。把表达能力一直顶在一个比较高的状态上实际上是一种维持平衡跟自我保护的办法。大家一定要留一个地方来表达，无论表达什么内容都好。&lt;/p>
 &lt;p>不要沉默，别怕嘴笨，习惯去表达。表达是另一种意义上的健身。&lt;/p>
@@ -286,62 +312,4 @@
 &lt;p>然而，FireFox 的表现只是还可以，实际上没有太多出彩的地方，只能说它接近或者差不多好于 Edge。这也并不是 FireFox 的问题，因为它已经很好地完成了自己的任务，而浏览器很难做出令人惊艳的创新。&lt;/p>
 &lt;p>但是这种只是表现差不多的程度，遇上使用人数上的极大差距，就会变得很没有竞争力。例如，最近 ChatGPT 很火，出现了许多相关插件。我看上了一个整合各种 AI 的 Chathub 插件，但它没有 FireFox 版本，因此我又改回了 Edge，尽管后来我也没有太多使用这个插件。&lt;/p>
 &lt;p>当新软件面临着已经形成的庞大用户群体，这些用户群体拥有成熟且庞大的社区时，该怎么办呢？这确实很难。&lt;/p>
-&lt;p>如果还有使用 FireFox 浏览器的用户，请在评论区分享你使用它的原因，说服更多的人加入。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E9%9A%8F%E7%AC%94/">随笔</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category><category domain="https://scottyeung.top/tags/%E5%90%90%E6%A7%BD/">吐槽</category><category domain="https://scottyeung.top/tags/%E6%9D%82%E8%B0%88/">杂谈</category></item><item><title>AI 时代，Prompting 时代</title><link>https://scottyeung.top/2023/prompt-times-coming/</link><guid isPermaLink="true">https://scottyeung.top/2023/prompt-times-coming/</guid><pubDate>Wed, 15 Mar 2023 17:52:25 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>一早醒来，就看到 OpenAI 发布的新一代 GPT-4 模型刷屏，加上之前火热的 &lt;a href="chat.openai.com">chatGPT&lt;/a>，似乎真人工智能时代已到，大家都开始尝试使用 AI，各种各样的场景都在尝试用 AI，看起来确实前途光明，机会满满。在看着如此强势的 AI 的表现下，有人开始调侃以后许多职业可以被取代了，比如我们写代码的，还要啥 software engineer，不如 prompting engineer，直接让 AI 写就好了。当然对于我这个一直在用 GitHub Copilot 的人来说，面对 ai 的态度早就是打不过就加入了，当然是积极拥护 AI 的发展。&lt;/p>
-&lt;p>在这个背景下，许多 AI 使用的教学开始火热起来，甚至在推特上还看到有人在收费卖 chatGPT 的使用课程，确实有商业头脑。于是我也不能落后，在今天刷到一个 &lt;a href="https://learnprompting.org">Learning Prompting&lt;/a> 的文档后，马上开学，争取成为一个及格的 prompting engineer.&lt;/p>
-&lt;p>&lt;img src="https://scottyeung.top/my-images/202304051948782.png" alt="">&lt;/p>
-&lt;p>下面是一些看完文档记录的一些 notes，建议大家阅读前最好先体验下 chatGPT，毕竟如果找不到使用的方法，学来也没什么意义。&lt;/p>
-&lt;h2 id="基本概念">基本概念&lt;/h2>
-&lt;p>简单来说，prompt 就是告诉 AI 要怎么做，怎么满足你的需求。当中可以包括上下文，指令，以及一些提问与回答的例子。&lt;/p>
-&lt;blockquote>
-&lt;p>The process of instructing an AI to do a task is called prompting. We tell the AI a set of instructions (the prompt) and it performs the task. Prompts can be as simple as a question, or as complex as multiple paragraphs.&lt;/p>
-&lt;/blockquote>
-&lt;p>可能会有人感觉疑惑，为什么还需要学习专门的 prompt 呢？直接向它下命令，直接向它提问不就好了吗？然而现在的 AI 确实没有这么智能，很多时候并不能达到想要的效果。上面的文档中提到一个挺有意思的 case&lt;/p>
-&lt;pre>&lt;code>What is 965*590? // 可能会返回错误答案
-Make sure your answer is exactly correct.
-What is 965*590?
-Make sure your answer is exactly correct
-// 重复强调后返回正确答案
-&lt;/code>&lt;/pre>&lt;p>因此掌握一定的 prompt 技巧可以更好地得到想要的答案。&lt;/p>
-&lt;h2 id="一些策略与技巧">一些策略与技巧&lt;/h2>
-&lt;p>除了直接给指令与提问以外，下面的一些策略与技巧可能可以得到更好的效果。&lt;/p>
-&lt;ol>
-&lt;li>&lt;strong>角色扮演。&lt;/strong> 让 AI 扮演某个角色，来回答某些问题，或者做某些行为。比如是充当一个词源学家来解释单词的词根构造，或者是充当售后中心的服务人员，回答消费者的问题。
-&lt;ol>
-&lt;li>看到这个时突然有点开了点脑洞猜想上面的算数 case 为什么会出错，既然可以扮演角色，意味着其实可能在某种情况下扮演一个数学不好或者不会算数的人？&lt;/li>
-&lt;li>这个东西其实还挺好玩的，除了扮演角色以外，还可以充当一些物品或者机器，甚至还看到过有人用 chatGPT 扮演一个 shell，并且成功执行命令&lt;/li>
-&lt;/ol>
-&lt;/li>
-&lt;li>传递 context。直接的提问可能让 AI get 不到你想要传递的点，所以可以在 prompt 中传递上下文背景，或者通过连续对话的方式，让 AI 掌握上下文背景，有更多的信息来生成回答。&lt;/li>
-&lt;li>Chain of Thought. 在 prompt 中先给出一些在答案中包含解释的 QA 例子，从而让 AI 在回答时也进行解释，通常地带解释的回答更加准确和详细。&lt;/li>
-&lt;li>Zero shot Chain of Thought. &lt;strong>直接让 AI 在回答中给出解释，比如让它 'step by step' 回答&lt;/strong>。在某些情况下，可以做到不需要例子就能有 Chain of Thought 的效果。&lt;/li>
-&lt;li>Self-Consistency. 基于 zero shot CoT，在 step by step 的过程中综合多次回答来选取正确答案。&lt;/li>
-&lt;li>&lt;strong>提问或指示前先让其生成相应的知识&lt;/strong>。
-&lt;ol>
-&lt;li>如需要写一篇关于某内容的 post 时，可以让其先列出关于内容的若干事实，再开始写&lt;/li>
-&lt;li>作用是让其知识生成和知识集成处于同一步骤&lt;/li>
-&lt;/ol>
-&lt;/li>
-&lt;li>Least to Most Prompting
-&lt;ol>
-&lt;li>将问题或者 case 分解成子问题求解&lt;/li>
-&lt;li>在 CoT 教导解释时，可以用递归的方式来解释&lt;/li>
-&lt;/ol>
-&lt;/li>
-&lt;li>借助工具。偶然刷到现在已经有工具可以根据需求的类别选择模块，快速生成 prompt，比如 &lt;a href="https://app.aiprm.com/">AIPRM&lt;/a>&lt;/li>
-&lt;/ol>
-&lt;h2 id="后记">后记&lt;/h2>
-&lt;p>就这个发展趋势看下来，AI 降临到每一个人身边似乎已经是板上钉钉的事情了，即使是“服务在所在地区不可用”的情况下，国内的各家公司还是以自家的产品来为大家普及 AI 服务。这其实也是个好事情，毕竟不好用也比没得用好 &lt;del>，不过某种程度上算不算硬给人们造出个信息差呢？&lt;/del>。作为一个积极拥抱新技术新事物的人，我对于 AI 还是很乐观的，尤其是在感受 GitHub Copilot 的魅力之后，写代码简直离不开了。希望能够有机会尽快体验到 GPT-4，以及有条件订阅 chatGPT plus.&lt;/p>
-&lt;p>所以作为普通人，应该如何应对这般趋势呢？感觉还是得靠下面三方面的能力，确保不被时代抛下：&lt;/p>
-&lt;ol>
-&lt;li>广泛获取阅读并提炼信息&lt;/li>
-&lt;li>快速学习知识和工具的使用&lt;/li>
-&lt;li>为问题提出解决方案并落实&lt;/li>
-&lt;/ol>
-&lt;p>希望自己能够做到，与大家共勉！&lt;/p>
-&lt;hr>
-&lt;p>最后附上一个 AI 生成的命题作文式后记，生成了几次都不是很满意，但是以足够应付一些没有意义的文字工作了。&lt;/p>
-&lt;blockquote>
-&lt;p>AI prompt 技术的出现，让我们看到了人工智能的无限潜力。然而，在使用 AI 技术时，我们也需要注意如何更好地引导 AI 解决问题。因为 AI 能力的发挥，很大程度上取决于我们所提供的输入数据和问题引导方式。如果我们不善于引导，AI 将会被困在一个不断重复的循环中，无法创造出真正的创新和价值。&lt;/p>
-&lt;p>通过学习 AI prompt 的引导方法，我们也可以获得一些对我们自身有益的启示。例如，学习如何更好地理解问题，如何针对不同问题提供不同的引导方式，以及如何从问题中发现隐藏的机会和潜力。这些能力不仅可以帮助我们更好地引导 AI 解决问题，也可以帮助我们更好地应对现实生活中的各种挑战。&lt;/p>
-&lt;p>当然，AI 技术的发展也需要我们保持一定的警惕性和负责任的态度。我们需要认真考虑 AI 技术带来的潜在风险和挑战，并积极寻求解决方案。只有在这样的前提下，我们才能更好地引导 AI 技术发挥它的潜力，为我们带来更多的创新和价值。&lt;/p>
-&lt;/blockquote></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/AI/">AI</category><category domain="https://scottyeung.top/tags/coding/">coding</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category><category domain="https://scottyeung.top/tags/notes/">notes</category></item></channel></rss>
+&lt;p>如果还有使用 FireFox 浏览器的用户，请在评论区分享你使用它的原因，说服更多的人加入。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E9%9A%8F%E7%AC%94/">随笔</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category><category domain="https://scottyeung.top/tags/%E5%90%90%E6%A7%BD/">吐槽</category><category domain="https://scottyeung.top/tags/%E6%9D%82%E8%B0%88/">杂谈</category></item></channel></rss>
