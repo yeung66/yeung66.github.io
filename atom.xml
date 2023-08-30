@@ -1,4 +1,197 @@
-<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah 的乱写地</title><link>https://scottyeung.top/</link><description>YeungYeah 的乱写地中记录了作者的所思所想及所为。</description><generator>Hugo 0.83.1 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Wed, 02 Aug 2023 13:21:28 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>Arc 浏览器使用小记</title><link>https://scottyeung.top/2023/arc-browser/</link><guid isPermaLink="true">https://scottyeung.top/2023/arc-browser/</guid><pubDate>Wed, 02 Aug 2023 20:46:35 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>之前其实一直都有听说过 Arc 这个号称要改变浏览器格局，取代 Chrome 的浏览器，但是一直只有 Macos 版，不支持 Windows 系统，所以也只能一直观望。直到工作之后，拿到了 Mac 的工作电脑，然后自己也提了一台 MacBook，终于有机会可以体验了。于是马上下载下来，设成默认浏览器，体验一番。&lt;/p>
+<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah 的乱写地</title><link>https://scottyeung.top/</link><description>YeungYeah 的乱写地中记录了作者的所思所想及所为。</description><generator>Hugo 0.83.1 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Wed, 30 Aug 2023 13:05:12 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>Scripting in Kotlin</title><link>https://scottyeung.top/2023/Scripting-in-Kotlin/</link><guid isPermaLink="true">https://scottyeung.top/2023/Scripting-in-Kotlin/</guid><pubDate>Wed, 30 Aug 2023 20:01:30 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>最近又重新非常心仪 kotlin，甚至将自己的 rss 时间线聚合都重新用 kotlin 写了一次。kotlin 的各种函数式的写法确实很招我喜欢。因此就想要把它更加应用到自己的生活中，其中 code 在日常生活中最重要的部份，还是写点小脚本解决日常问题，于是就考察了一下使用 kotlin 来写脚本的方式。&lt;/p>
+&lt;h2 id="kotlin-官方">kotlin 官方&lt;/h2>
+&lt;p>一搜 kotlin scripting，第一个结果就是官方关于 scripting 的 &lt;a href="https://kotlinlang.org/docs/custom-script-deps-tutorial.html">文档&lt;/a>，我也到其提供的代码示例库去研究了一下，它主要提供了三种方式的 kotlin scripting 使用方式。&lt;/p>
+&lt;h3 id="jsr223">jsr223&lt;/h3>
+&lt;p>java 里面的一个已经实现了的提案，提供了一个可用于运行脚本的 host，通过使用外部依赖，可以使这个 host 支持 kotlin。main.kts 的功能似乎更强，可以导入别的脚本 &lt;code>@file:Import(&amp;quot;import-common.main.kts&amp;quot;)&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-kotlin" data-lang="kotlin">&lt;span class="k">import&lt;/span> &lt;span class="nn">javax.script.ScriptEngineManager&lt;/span>
+&lt;span class="k">val&lt;/span> &lt;span class="py">engine&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="n">ScriptEngineManager&lt;/span>&lt;span class="p">().&lt;/span>&lt;span class="n">getEngineByExtension&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;main.kts&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">!!&lt;/span>
+&lt;span class="c1">// 或者
+&lt;/span>&lt;span class="c1">// val engine = ScriptEngineManager().getEngineByExtension(&amp;#34;kts&amp;#34;)!!
+&lt;/span>&lt;span class="c1">&lt;/span>
+&lt;span class="n">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;&amp;gt; &amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">System&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nd">`in&lt;/span>&lt;span class="err">`&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">reader&lt;/span>&lt;span class="p">().&lt;/span>&lt;span class="n">forEachLine&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="k">val&lt;/span> &lt;span class="py">res&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="n">engine&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">eval&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">it&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">println&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">res&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;&amp;gt; &amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>需要依赖&lt;/p>
+&lt;pre>&lt;code class="language-kts" data-lang="kts">runtimeOnly(&amp;quot;org.jetbrains.kotlin:kotlin-main-kts:$kotlinVersion&amp;quot;) // 可选
+runtimeOnly(&amp;quot;org.jetbrains.kotlin:kotlin-scripting-jsr223:$kotlinVersion&amp;quot;)
+&lt;/code>&lt;/pre>&lt;p>它的输出是直接打到 System.out 里面，但是也不会直接显示出来，需要截获它的输出，有点诡异&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-kotlin" data-lang="kotlin">&lt;span class="k">fun&lt;/span> &lt;span class="nf">captureOut&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">body&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="p">()&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">Unit&lt;/span>&lt;span class="p">):&lt;/span> &lt;span class="n">String&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="k">val&lt;/span> &lt;span class="py">outStream&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="n">ByteArrayOutputStream&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="k">val&lt;/span> &lt;span class="py">prevOut&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="n">System&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="k">out&lt;/span>
+&lt;span class="n">System&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">setOut&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">PrintStream&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">outStream&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;span class="k">try&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="n">body&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="p">}&lt;/span> &lt;span class="k">finally&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="n">System&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="k">out&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">flush&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="n">System&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">setOut&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">prevOut&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">outStream&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">toString&lt;/span>&lt;span class="p">().&lt;/span>&lt;span class="n">trim&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="simple-main-kts">simple-main-kts&lt;/h3>
+&lt;p>官方提供了 kotlin-scripting-common|jvm|jvm-host 的依赖库（但是在 experimental 中，而且在很久了）。&lt;/p>
+&lt;p>这种方式本质也是通过创建一个 jvm 运行时 host 来执行，不过这个可以通过注解的方式，添加许多编译配置，从而获取声明的 maven 依赖。不过这样需要的额外配置还是很多，自定义工作很多。&lt;/p>
+&lt;p>一方面通过注解来声明 kotlin script&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-kotlin" data-lang="kotlin">&lt;span class="k">import&lt;/span> &lt;span class="nn">kotlin.script.experimental.annotations.KotlinScript&lt;/span>
+&lt;span class="c1">// The KotlinScript annotation marks a class that can serve as a reference to the script definition for
+&lt;/span>&lt;span class="c1">// `createJvmCompilationConfigurationFromTemplate` call as well as for the discovery mechanism
+&lt;/span>&lt;span class="c1">// The marked class also become the base class for defined script type (unless redefined in the configuration)
+&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="nd">@KotlinScript&lt;/span>&lt;span class="p">(&lt;/span>
+&lt;span class="c1">// file name extension by which this script type is recognized by mechanisms built into scripting compiler plugin
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="c1">// and IDE support, it is recommendend to use double extension with the last one being &amp;#34;kts&amp;#34;, so some non-specific
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="c1">// scripting support could be used, e.g. in IDE, if the specific support is not installed.
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">fileExtension&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;simplescript.kts&amp;#34;&lt;/span>
+&lt;span class="p">)&lt;/span>
+&lt;span class="c1">// the class is used as the script base class, therefore it should be open or abstract
+&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="k">abstract&lt;/span> &lt;span class="k">class&lt;/span> &lt;span class="nc">SimpleScript&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>可以通过配置@KotlinScript 注解来声明脚本的编译配置和执行配置&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-kotlin" data-lang="kotlin">&lt;span class="nd">@KotlinScript&lt;/span>&lt;span class="p">(&lt;/span>
+&lt;span class="n">fileExtension&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;smain.kts&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="c1">// the class or object that defines script compilation configuration for this type of scripts
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">compilationConfiguration&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="n">SimpleMainKtsScriptDefinition&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="k">class&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;span class="c1">// the class or object that defines script evaluation configuration for this type of scripts
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">evaluationConfiguration&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="n">MainKtsEvaluationConfiguration&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="k">class&lt;/span>
+&lt;span class="err">)&lt;/span>
+&lt;span class="c1">// the class is used as the script base class, therefore it should be open or abstract. Also the constructor parameters
+&lt;/span>&lt;span class="c1">// of the base class are copied to the script constructor, so with this definition the script will require `args` to be
+&lt;/span>&lt;span class="c1">// passed to the constructor, and `args` could be used in the script as a defined variable.
+&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="k">abstract&lt;/span> &lt;span class="k">class&lt;/span> &lt;span class="nc">SimpleMainKtsScript&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">val&lt;/span> &lt;span class="py">args&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">Array&lt;/span>&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="p">&amp;gt;)&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>根据声明的 script class 来创建运行的 host。host 的创建其实就是通过之前注解声明的 Script class 来创建编译的 configuration，另外根据需要来创建 evaluate 时的 configuration，来编译执行。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-kotlin" data-lang="kotlin"> &lt;span class="k">val&lt;/span> &lt;span class="py">compilationConfiguration&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="n">createJvmCompilationConfigurationFromTemplate&lt;/span>&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="n">SimpleScript&lt;/span>&lt;span class="p">&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="n">jvm&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="c1">// 声明需要的依赖，用于编译
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">dependenciesFromCurrentContext&lt;/span>&lt;span class="p">(&lt;/span>
+&lt;span class="s2">&amp;#34;script&amp;#34;&lt;/span> &lt;span class="cm">/* script library jar name (exact or without a version) */&lt;/span>
+&lt;span class="p">)&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="n">BasicJvmScriptingHost&lt;/span>&lt;span class="p">().&lt;/span>&lt;span class="n">eval&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">scriptFile&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">toScriptSource&lt;/span>&lt;span class="p">(),&lt;/span> &lt;span class="n">compilationConfiguration&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="k">null&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="main-kts">main-kts&lt;/h2>
+&lt;p>通过上面的配置，其实就已经可以实现一个简单的 kotlin scripting。只需要再封装一下，添加点功能，比如缓存，就可以变成一个可用的 scripting 工具。实际上 jetbrains 官方将这个封装成来一个 kotlin-main-kts.jar 供运行。&lt;/p>
+&lt;p>可以把 kotlin script 命名成&lt;code>*.main.kts&lt;/code>，即可以直接用 kotlin 来运行脚本&lt;/p>
+&lt;pre>&lt;code>kotlinc -cp &amp;lt;path/to/kotlin-main-kts.jar&amp;gt; script.main.kts
+&lt;/code>&lt;/pre>&lt;p>在 Kotlin version 1.3.70 后，可以直接把这个 jar 都省掉，直接&lt;/p>
+&lt;pre>&lt;code>kotlin script.main.kts
+&lt;/code>&lt;/pre>&lt;p>或者直接在脚本里面写 shebang&lt;/p>
+&lt;pre>&lt;code>#!/usr/bin/env kotlin
+@file:DependsOn(&amp;quot;org.jetbrains.kotlinx:kotlinx-html-jvm:0.8.0&amp;quot;)
+import kotlinx.html.*; import kotlinx.html.stream.*; import kotlinx.html.attributes.*
+val addressee = args.firstOrNull() ?: &amp;quot;World&amp;quot;
+print(createHTML().html {
+body {
+h1 { +&amp;quot;Hello, $addressee!&amp;quot; }
+}
+})
+&lt;/code>&lt;/pre>&lt;p>真爽，看起来就是我想要的方案了。这个 main-kts 的方法，会对脚本进行缓存，第一次运行后，会编译保存到本地 cache 目录，如果内容没有更改，会直接把已编译版本拿来用。&lt;/p>
+&lt;p>&lt;img src="https://scottyeung.top/my-images/202308302040485.png" alt="">&lt;/p>
+&lt;p>而且官方仓库还说 idea 支持 main.kts 脚本的补全提示，看起来就更香了，用起来也还行，补全还是挺香的，尤其是加上 GitHub Copliot，起飞。&lt;/p>
+&lt;blockquote>
+&lt;p>Starting from the Kotlin IntelliJ plugin version 1.3.70, the .main.kts scripts are supported automatically in the IntelliJ IDEA, provided that they are placed outside of the regular source folders. E.g. if this project is imported into the IntelliJ, the demo scripts in the scripts folders should be properly highlighted and support navigation, including navigation into imported libraries.&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="第三方支持">第三方支持&lt;/h2>
+&lt;p>除了官方提供的 scripting 方法以外，也有一些第三方库因为各种原因，比如之前官方的 scripting 功能还没出的时候，造出一些用 kotlin scripting 写代码的方法&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/kscripting/kscript">kscript&lt;/a> 是 GitHub 一个比较有名的 kotlin 脚本库。
+&lt;ul>
+&lt;li>可以提供更加丰富功能特性的 kotlin 脚本。比如编译缓存，使用外部依赖，设置运行时参数，从输入或者链接读取脚本内容以及将脚本发布成独立二进制文件。&lt;/li>
+&lt;li>不过随着官方发布了正式的 scripting 功能，好像提到的大多功能特性都被覆盖到了。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;a href="">jbang&lt;/a> 是一个使用 jvm 语言写脚本的工具软件。jbang 支持的脚本语言就更多了，java，kotlin 都可以，而且 jbang 感觉是有意做成一个脚本平台广场，还可以将写好的代码发布到其提供的 app store 中，看起来也不错，idea 也可以通过插件提供自动补全对支持。不过其对于 kotlin 的支持好像也不怎么样，前两年刚接触的时候，还帮其修了一个 kotlin 编译的 bug。&lt;/li>
+&lt;/ul>
+&lt;h2 id="后记">后记&lt;/h2>
+&lt;p>写脚本最主要的还是方便，而方便有两方面，一是写要方便，二是跑起来要方便，比如有个小任务，随手打开个 vscode 甚至都不同打开目录，就能有自动补全开写，并在命令行一行命令执行，完成。这样才叫方便。&lt;/p>
+&lt;p>这样调研了一轮，看起来用 kotlin 脚本，方便地跑起来现在已经是没有问题了，问题就在于如何方便地写。写个小东西打开 idea 是否方便呢？如果是以前的 Windows，打开一次得等上个几分钟，那可以直接否掉了。但是现在新电脑打开 idea 几乎是秒开，看起来使用 idea 来写脚本好像又变得可以接受了。&lt;/p>
+&lt;p>&lt;del>不过最后好像还是用F#来写香😂·&lt;/del>&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/kotlin/">kotlin</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category><category domain="https://scottyeung.top/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/">自动化</category></item><item><title>Arc 浏览器使用小记</title><link>https://scottyeung.top/2023/arc-browser/</link><guid isPermaLink="true">https://scottyeung.top/2023/arc-browser/</guid><pubDate>Wed, 02 Aug 2023 20:46:35 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>之前其实一直都有听说过 Arc 这个号称要改变浏览器格局，取代 Chrome 的浏览器，但是一直只有 Macos 版，不支持 Windows 系统，所以也只能一直观望。直到工作之后，拿到了 Mac 的工作电脑，然后自己也提了一台 MacBook，终于有机会可以体验了。于是马上下载下来，设成默认浏览器，体验一番。&lt;/p>
 &lt;p>&lt;img src="https://scottyeung.top/my-images/20230802204238.png" alt="">&lt;/p>
 &lt;p>下载好打开 Arc 浏览器，给人的第一感觉是好看，它的设计以及动画特效，一看就有种花里胡哨的感觉，据说还得付出性能代价，不过实际使用过程中倒也没有察觉到有什么性能问题。&lt;/p>
 &lt;p>实际使用下来，对比于 Chrome 系的浏览器，Arc 主要有下面这些特性&lt;/p>
@@ -40,7 +233,7 @@
 &lt;p>当然现在有了 ChatGPT，写脚本都不用亲历亲为了，直接把问题抛给它，我们只需要做代码的搬运工。&lt;/p>
 &lt;p>&lt;img src="https://scottyeung.top/my-images/202306301213820.png" alt="">&lt;/p>
 &lt;p>看起来很不错，复制到本地，替换一下路径一跑，发现脚本并不能正常运行，原因是使用的 Pillow 库其实不支持 HEIC 格式的图片。继续把问题交给它，它又给我推了一个 pyheif 库来处理，然而这个库需要 MSVC 相关工具链来编译安装，在我的电脑安装总是失败，后面尝试了几个它推荐的依赖库，都安装不了，寄！被 Python 的跨平台安装构建的低移植性狠狠教训，而为了写个脚本专门去配个环境或者容器又太夸张了。&lt;/p>
-&lt;p>于是最近在学的 F#来代替，继续把问题交给 ChatGPT，来回复制粘贴代码运行尝试几次后，顺利完成任务。&lt;/p>
+&lt;p>于是使用最近在学的 F#来代替，继续把问题交给 ChatGPT，来回复制粘贴代码运行尝试几次后，顺利完成任务。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -80,7 +273,7 @@
 &lt;span class="n">printfn&lt;/span> &lt;span class="s">&amp;#34;转换完成：%s -&amp;gt; %s&amp;#34;&lt;/span> &lt;span class="n">heicFile&lt;/span> &lt;span class="n">jpgFile&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>对比于 Python，使用 F#来写脚本其实也足够简单和方便，可以单个 fsx 文件来写，也可以直接把写好的代码复制到 fsi 交互命令行里逐段代码执行，方便得很。尤其是对于有外部依赖库的脚本代码，使用 F#或者 C#的脚本，这样一行代码引用依赖库，可比在命令行中全局安装一个依赖好用得多。（起码不会有安装失败的问题）&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/Coding-%E8%AE%B0%E5%BD%95/">Coding 记录</category><category domain="https://scottyeung.top/tags/Python/">Python</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category><category domain="https://scottyeung.top/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/">自动化</category><category domain="https://scottyeung.top/tags/dotnet/">dotnet</category><category domain="https://scottyeung.top/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/">生产力</category></item><item><title>我的动态时间线聚合</title><link>https://scottyeung.top/2023/my-timeline/</link><guid isPermaLink="true">https://scottyeung.top/2023/my-timeline/</guid><pubDate>Sat, 24 Jun 2023 20:30:00 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>之前一段时间偶然发现了 DIYGod 创建的一个个人 &lt;a href="https://t.me/awesomeDIYgod">Channel&lt;/a>，内容是关于他的一些动态，包括其发布的推特内容，以及豆瓣的书影音动态等内容。这种形式的 Channel 对我来说很有意思，一方面也是一个对外界分享自身情况的平台（虽然我的内容也没什么人关注），另一个方面也是可以有个地方将自己的相关信息数据持久化地保存下来，拿到自己手上。于是我也写了点代码，整出了一个自己的时间线聚合 &lt;a href="https://t.me/yeungyeah_channel">YeungYeah's Timeline&lt;/a>。&lt;/p>
+&lt;/div>&lt;p>对比于 Python，使用 F#来写脚本其实也足够简单和方便，可以单个 fsx 文件来写，也可以直接把写好的代码复制到 fsi 交互命令行里逐段代码执行，方便得很。尤其是对于有外部依赖库的脚本代码，使用 F# 或者 C# 的脚本，这样一行代码引用依赖库，可比在命令行中全局安装一个依赖好用得多。（起码不会有安装失败的问题）&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/Coding-%E8%AE%B0%E5%BD%95/">Coding 记录</category><category domain="https://scottyeung.top/tags/Python/">Python</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category><category domain="https://scottyeung.top/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/">自动化</category><category domain="https://scottyeung.top/tags/dotnet/">dotnet</category><category domain="https://scottyeung.top/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/">生产力</category></item><item><title>我的动态时间线聚合</title><link>https://scottyeung.top/2023/my-timeline/</link><guid isPermaLink="true">https://scottyeung.top/2023/my-timeline/</guid><pubDate>Sat, 24 Jun 2023 20:30:00 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>之前一段时间偶然发现了 DIYGod 创建的一个个人 &lt;a href="https://t.me/awesomeDIYgod">Channel&lt;/a>，内容是关于他的一些动态，包括其发布的推特内容，以及豆瓣的书影音动态等内容。这种形式的 Channel 对我来说很有意思，一方面也是一个对外界分享自身情况的平台（虽然我的内容也没什么人关注），另一个方面也是可以有个地方将自己的相关信息数据持久化地保存下来，拿到自己手上。于是我也写了点代码，整出了一个自己的时间线聚合 &lt;a href="https://t.me/yeungyeah_channel">YeungYeah's Timeline&lt;/a>。&lt;/p>
 &lt;p>程序大体的工作流程是这样的&lt;/p>
 &lt;ol>
 &lt;li>Vercel 上面部署一个自己的 RSSHub，通过 rss 的方式来订阅相关的个人信息。
@@ -307,9 +500,4 @@
 &lt;p>&lt;img src="https://scottyeung.top/my-images/202304091128898.png" alt="">&lt;/p>
 &lt;p>对于停更这个事情，知道后感觉到很魔幻，想不到还真的会有人较真起来。本来是否唱得难听这件事，就是一件很主观的事情，每个人的程度都不一样，有些人要求高，有些人要求低。然而评论里居然还有人会搬出既然要吐槽，怎么没有 XX，怎么又有 XX，up 是不是对 XX 有偏见，是不是双标。然而之前连发几个吐槽 Mirror 视频的时候大家都还是乐呵呵地跟着笑，那时就没有人说 up 是双标了。但是如果说到了某个女星，就会变成她其实还好，她还年轻，应该多给机会她。&lt;/p>
 &lt;p>想了想，会出现这种事情的原因，还是因为自己喜欢的人或事被别人评价了，因此可能就会觉得自己所爱被攻击了。到这个时候，在评论区争辩其实就变成了立场的战争，变成了守卫自己的所爱了。有 preference 其实是很合理的事情，但 preference 被别人锐评时，自己还能不能保持理智的思考，就是一个能力了。&lt;/p>
-&lt;p>晚上的时候自己其实也忽然想到，如果自己支持的某个歌手或者艺人，也被这样锐评了，我还能够笑得出来吗？然后转念一想，自己之前很喜欢听 AGA 的歌，也很喜欢她，但还是不妨碍我在 up 这里乐呵呵地看 &lt;a href="https://www.bilibili.com/video/BV1Lr4y1G72s/?spm_id_from=333.999.0.0&amp;amp;vd_source=2a7aa969015404d2b62ea4a38e2bfbf7">up 吐槽 AGA 唱歌&lt;/a> ，但也可能是我不够爱吧哈哈。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E9%9A%8F%E7%AC%94/">随笔</category></item><item><title>Why Firefox?</title><link>https://scottyeung.top/2023/why-firefox/</link><guid isPermaLink="true">https://scottyeung.top/2023/why-firefox/</guid><pubDate>Sun, 26 Mar 2023 17:39:50 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>此前一直使用微软自带的密码管理工具。PC 端可以使用 Edge 提供的密码填充和查询功能，移动端则可以通过微软推出的 Authenticator 作为手机的密码管理工具。虽然好用，但基本上意味着 PC 的浏览器需要和 Edge 及微软强绑定。如果想换其他浏览器，就不太方便了。&lt;/p>
-&lt;p>最近两周，我开始使用 Bitwarden 作为密码管理器，从而摆脱了对 Edge 的依赖。于是，我立即更新了电脑上的 FireFox 浏览器，并尝试将其作为默认浏览器使用。使用体验还不错，它拥有我需要的所有功能，表现与 Chrome 和 Edge 差不多。&lt;/p>
-&lt;p>然而，FireFox 的表现只是还可以，实际上没有太多出彩的地方，只能说它接近或者差不多好于 Edge。这也并不是 FireFox 的问题，因为它已经很好地完成了自己的任务，而浏览器很难做出令人惊艳的创新。&lt;/p>
-&lt;p>但是这种只是表现差不多的程度，遇上使用人数上的极大差距，就会变得很没有竞争力。例如，最近 ChatGPT 很火，出现了许多相关插件。我看上了一个整合各种 AI 的 Chathub 插件，但它没有 FireFox 版本，因此我又改回了 Edge，尽管后来我也没有太多使用这个插件。&lt;/p>
-&lt;p>当新软件面临着已经形成的庞大用户群体，这些用户群体拥有成熟且庞大的社区时，该怎么办呢？这确实很难。&lt;/p>
-&lt;p>如果还有使用 FireFox 浏览器的用户，请在评论区分享你使用它的原因，说服更多的人加入。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E9%9A%8F%E7%AC%94/">随笔</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category><category domain="https://scottyeung.top/tags/%E5%90%90%E6%A7%BD/">吐槽</category><category domain="https://scottyeung.top/tags/%E6%9D%82%E8%B0%88/">杂谈</category></item></channel></rss>
+&lt;p>晚上的时候自己其实也忽然想到，如果自己支持的某个歌手或者艺人，也被这样锐评了，我还能够笑得出来吗？然后转念一想，自己之前很喜欢听 AGA 的歌，也很喜欢她，但还是不妨碍我在 up 这里乐呵呵地看 &lt;a href="https://www.bilibili.com/video/BV1Lr4y1G72s/?spm_id_from=333.999.0.0&amp;amp;vd_source=2a7aa969015404d2b62ea4a38e2bfbf7">up 吐槽 AGA 唱歌&lt;/a> ，但也可能是我不够爱吧哈哈。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E9%9A%8F%E7%AC%94/">随笔</category></item></channel></rss>
