@@ -1,4 +1,129 @@
-<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah 的乱写地</title><link>https://scottyeung.top/</link><description>YeungYeah 的乱写地中记录了作者的所思所想及所为。</description><generator>Hugo 0.83.1 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Thu, 07 Sep 2023 14:24:48 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>Scripting in Kotlin</title><link>https://scottyeung.top/2023/Scripting-in-Kotlin/</link><guid isPermaLink="true">https://scottyeung.top/2023/Scripting-in-Kotlin/</guid><pubDate>Wed, 30 Aug 2023 20:01:30 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>最近又重新非常心仪 kotlin，甚至将自己的 rss 时间线聚合都重新用 kotlin 写了一次。kotlin 的各种函数式的写法确实很招我喜欢。因此就想要把它更加应用到自己的生活中，其中 code 在日常生活中最重要的部份，还是写点小脚本解决日常问题，于是就考察了一下使用 kotlin 来写脚本的方式。&lt;/p>
+<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah 的乱写地</title><link>https://scottyeung.top/</link><description>YeungYeah 的乱写地中记录了作者的所思所想及所为。</description><generator>Hugo 0.83.1 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Sun, 10 Sep 2023 13:00:39 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>JVM 当中的剪贴板访问</title><link>https://scottyeung.top/2023/clipboard-access-jvm/</link><guid isPermaLink="true">https://scottyeung.top/2023/clipboard-access-jvm/</guid><pubDate>Sun, 10 Sep 2023 20:00:00 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>起因是想要写一个 kotlin 的脚本，用于读取剪贴板中的内容并保存到文件当中。然而网上搜了一圈，java 和 kotlin 给出的方法都是通过 jdk 中的 awt 包来获取系统剪贴板。因为 kotlin 脚本还是跑的 jvm target，所以方法还是通用的。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="kn">import&lt;/span> &lt;span class="nn">java.awt.*&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">java.awt.datatransfer.DataFlavor&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">java.awt.datatransfer.UnsupportedFlavorException&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kn">import&lt;/span> &lt;span class="nn">java.io.IOException&lt;/span>&lt;span class="o">;&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kd">class&lt;/span> &lt;span class="nc">Test&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="kd">public&lt;/span> &lt;span class="kd">static&lt;/span> &lt;span class="kt">void&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">[]&lt;/span> &lt;span class="n">args&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="kd">throws&lt;/span> &lt;span class="n">IOException&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">UnsupportedFlavorException&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="n">var&lt;/span> &lt;span class="n">clipboard&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">Toolkit&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getDefaultToolkit&lt;/span>&lt;span class="o">().&lt;/span>&lt;span class="na">getSystemClipboard&lt;/span>&lt;span class="o">();&lt;/span>
+&lt;span class="n">var&lt;/span> &lt;span class="n">transferable&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">clipboard&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getContents&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="kc">null&lt;/span>&lt;span class="o">);&lt;/span>
+&lt;span class="n">System&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">out&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">println&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">transferable&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">getTransferData&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">DataFlavor&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="na">stringFlavor&lt;/span>&lt;span class="o">));&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;span class="o">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-kotlin" data-lang="kotlin">&lt;span class="k">val&lt;/span> &lt;span class="py">toolkit&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="n">Toolkit&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">getDefaultToolkit&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="k">val&lt;/span> &lt;span class="py">clipboard&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="n">toolkit&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">systemClipboard&lt;/span>
+&lt;span class="k">val&lt;/span> &lt;span class="py">result&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="n">clipboard&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">getData&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">DataFlavor&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">stringFlavor&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">String&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>这个方法用是能用，而且支持操作的数据类型还挺全，除了文本，还能读写图片。然而有一个缺点，就是使用时必须关掉 headless 选项。kotlin 默认是关掉的，需要显示声明配置 &lt;code>kotlin -Djava.awt.headless=false&lt;/code>来禁用掉。&lt;/p>
+&lt;blockquote>
+&lt;p>Headless mode is a system configuration in which the display device, keyboard, or mouse is lacking. Sounds unexpected, but actually you can perform different operations in this mode, even with graphic data.&lt;/p>
+&lt;/blockquote>
+&lt;p>禁用掉 headless 模式后是代码是可用，然而运行起来时会拉起一个 jre 程序，虽然这个拉起的程序没有界面，但是还是会强制跳转切换一次窗口，体感很差。于是只能另寻办法，选择使用 nodejs，最后找到了 (clipboardy)[https://github.com/sindresorhus/clipboardy]，一个简单好用的 npm 库，先实现了我的需求。后来细细看了下它的实现代码，是通过调用命令后的方式来实现访问系统剪贴板。然而调用系统命令的话，各个系统环境的命令都不同，如何兼顾可移植性，在不同的系统环境都能运行呢？解决的办法也很简单粗暴，手动为每个系统都写一个实现，并且针对如果某些系统没有这个操作系统剪贴板的命令程序，还在 npm 包里附带一个二进制作为 fallback。简单，但可用。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-javascript" data-lang="javascript">&lt;span class="kr">import&lt;/span> &lt;span class="nx">process&lt;/span> &lt;span class="nx">from&lt;/span> &lt;span class="s1">&amp;#39;node:process&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="kr">import&lt;/span> &lt;span class="nx">isWSL&lt;/span> &lt;span class="nx">from&lt;/span> &lt;span class="s1">&amp;#39;is-wsl&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="kr">import&lt;/span> &lt;span class="nx">termux&lt;/span> &lt;span class="nx">from&lt;/span> &lt;span class="s1">&amp;#39;./lib/termux.js&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="kr">import&lt;/span> &lt;span class="nx">linux&lt;/span> &lt;span class="nx">from&lt;/span> &lt;span class="s1">&amp;#39;./lib/linux.js&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="kr">import&lt;/span> &lt;span class="nx">macos&lt;/span> &lt;span class="nx">from&lt;/span> &lt;span class="s1">&amp;#39;./lib/macos.js&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="kr">import&lt;/span> &lt;span class="nx">windows&lt;/span> &lt;span class="nx">from&lt;/span> &lt;span class="s1">&amp;#39;./lib/windows.js&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="kr">const&lt;/span> &lt;span class="nx">platformLib&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">(()&lt;/span> &lt;span class="p">=&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="k">switch&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">process&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">platform&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="k">case&lt;/span> &lt;span class="s1">&amp;#39;darwin&amp;#39;&lt;/span>&lt;span class="o">:&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="nx">macos&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">case&lt;/span> &lt;span class="s1">&amp;#39;win32&amp;#39;&lt;/span>&lt;span class="o">:&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="nx">windows&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">case&lt;/span> &lt;span class="s1">&amp;#39;android&amp;#39;&lt;/span>&lt;span class="o">:&lt;/span>
+&lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">process&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">env&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">PREFIX&lt;/span> &lt;span class="o">!==&lt;/span> &lt;span class="s1">&amp;#39;/data/data/com.termux/files/usr&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="k">throw&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="nb">Error&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;You need to install Termux for this module to work on Android: https://termux.com&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="nx">termux&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="k">default&lt;/span>&lt;span class="o">:&lt;/span>
+&lt;span class="c1">// `process.platform === &amp;#39;linux&amp;#39;` for WSL.
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">isWSL&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="nx">windows&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="nx">linux&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">})();&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>于是很自然地借鉴这个思路，用 kotlin 也来实现一版。代码实现可见 &lt;a href="https://github.com/yeung66/clipboard-jvm">clipboard-jvm&lt;/a>，实现的思路也是通过不同的操作系统，调用不同的 shell 命令，访问与操作系统剪贴板。对于执行外部命令&lt;/p>
+&lt;p>使用起来也很简单&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-kotlin" data-lang="kotlin">&lt;span class="k">import&lt;/span> &lt;span class="nn">org.yeungyeah.clipboard.Clipboard&lt;/span>
+&lt;span class="k">val&lt;/span> &lt;span class="py">clipboard&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="n">Clipboard&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">getClipboard&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="n">println&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">clipboard&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="k">get&lt;/span>&lt;span class="p">())&lt;/span>
+&lt;span class="n">clipboard&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="k">set&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;Hello World&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">println&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">clipboard&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="k">get&lt;/span>&lt;span class="p">())&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>原本想把依赖库发布到 maven central 仓库，这样脚本就可以一行直接使用。然而 maven 发布实在是麻烦，研究了几个小时，还是被一些相关的检查卡点了，只能够先 install 到本地，给自己先用。后续上传到 maven central 后再更新，也顺便更新一篇文章如何 deploy to maven central.&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/Java/">Java</category><category domain="https://scottyeung.top/tags/kotlin/">kotlin</category><category domain="https://scottyeung.top/tags/coding/">coding</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category><category domain="https://scottyeung.top/tags/JavaScript/">JavaScript</category></item><item><title>Scripting in Kotlin</title><link>https://scottyeung.top/2023/Scripting-in-Kotlin/</link><guid isPermaLink="true">https://scottyeung.top/2023/Scripting-in-Kotlin/</guid><pubDate>Wed, 30 Aug 2023 20:01:30 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>最近又重新非常心仪 kotlin，甚至将自己的 rss 时间线聚合都重新用 kotlin 写了一次。kotlin 的各种函数式的写法确实很招我喜欢。因此就想要把它更加应用到自己的生活中，其中 code 在日常生活中最重要的部份，还是写点小脚本解决日常问题，于是就考察了一下使用 kotlin 来写脚本的方式。&lt;/p>
 &lt;h2 id="kotlin-官方">kotlin 官方&lt;/h2>
 &lt;p>一搜 kotlin scripting，第一个结果就是官方关于 scripting 的 &lt;a href="https://kotlinlang.org/docs/custom-script-deps-tutorial.html">文档&lt;/a>，我也到其提供的代码示例库去研究了一下，它主要提供了三种方式的 kotlin scripting 使用方式。&lt;/p>
 &lt;h3 id="jsr223">jsr223&lt;/h3>
@@ -516,8 +641,4 @@ runtimeOnly(&amp;quot;org.jetbrains.kotlin:kotlin-scripting-jsr223:$kotlinVersio
 &lt;h2 id="openai-绑定">OpenAI 绑定&lt;/h2>
 &lt;p>有了卡之后就可以去 OpenAI 处添加消费方法，绑卡。绑卡主要填写的内容是卡号，安全码，以及账单地址。卡的信息可以在 Depay 的 app 上面找到，地址信息可以到一些地址生成网站获取，如 &lt;a href="https://www.haoweichi.com/Index/custom_result">haoweichi&lt;/a>。&lt;/p>
 &lt;p>然而 OpenAI 的风控非常的诡异，除了限制国内许多的信用卡外，很多时候还会因 IP 而不让绑卡。网上的说法五花八门，比如让开全局代理，开无痕模式，甚至还说要梯子的 IP 要跟填写的地址一致的。根据亲身体验，其实并不一定要使用美国的 IP，而且 IP 和填写的地址也不一定需要一致。相反地，感觉非美国的其它区域的 IP 地址可能回因为冷门点反而更好通过。最后我是使用了一个日本还是新加坡的节点，在第四次的时候成功绑定。&lt;/p>
-&lt;p>在绑定 OpenAI 之后，卡会扣 5$ 的授权额度，然后应该是根据每个月使用的情况进行扣费，到时候还得看能不能顺利扣费成功🤣&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/AI/">AI</category><category domain="https://scottyeung.top/tags/%E8%AE%B0%E5%BD%95/">记录</category><category domain="https://scottyeung.top/tags/%E6%94%AF%E4%BB%98/">支付</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category></item><item><title>无意识 Preferences</title><link>https://scottyeung.top/2023/unconscious-preference/</link><guid isPermaLink="true">https://scottyeung.top/2023/unconscious-preference/</guid><pubDate>Sun, 09 Apr 2023 11:07:33 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>前几天关注的一个 up &lt;a href="https://space.bilibili.com/1322440019?spm_id_from=333.337.0.0">難聽歌手俱樂部&lt;/a>，因为新视频中继续吐槽了某位女歌手，惹来了众多的粉丝攻击，然后 up 受不了了，发动态表示停更了。这个 up 主要是做一些香港歌手的难听现场的合集点评，一直以来我都是看个乐子，有些现场确实会让人忍不住发笑，在这个 up 的视频里面我也确实见识到了“歌手”的多样性 &lt;del>，确实什么样的人都可以做歌手&lt;/del>。&lt;/p>
-&lt;p>&lt;img src="https://scottyeung.top/my-images/202304091128898.png" alt="">&lt;/p>
-&lt;p>对于停更这个事情，知道后感觉到很魔幻，想不到还真的会有人较真起来。本来是否唱得难听这件事，就是一件很主观的事情，每个人的程度都不一样，有些人要求高，有些人要求低。然而评论里居然还有人会搬出既然要吐槽，怎么没有 XX，怎么又有 XX，up 是不是对 XX 有偏见，是不是双标。然而之前连发几个吐槽 Mirror 视频的时候大家都还是乐呵呵地跟着笑，那时就没有人说 up 是双标了。但是如果说到了某个女星，就会变成她其实还好，她还年轻，应该多给机会她。&lt;/p>
-&lt;p>想了想，会出现这种事情的原因，还是因为自己喜欢的人或事被别人评价了，因此可能就会觉得自己所爱被攻击了。到这个时候，在评论区争辩其实就变成了立场的战争，变成了守卫自己的所爱了。有 preference 其实是很合理的事情，但 preference 被别人锐评时，自己还能不能保持理智的思考，就是一个能力了。&lt;/p>
-&lt;p>晚上的时候自己其实也忽然想到，如果自己支持的某个歌手或者艺人，也被这样锐评了，我还能够笑得出来吗？然后转念一想，自己之前很喜欢听 AGA 的歌，也很喜欢她，但还是不妨碍我在 up 这里乐呵呵地看 &lt;a href="https://www.bilibili.com/video/BV1Lr4y1G72s/?spm_id_from=333.999.0.0&amp;amp;vd_source=2a7aa969015404d2b62ea4a38e2bfbf7">up 吐槽 AGA 唱歌&lt;/a> ，但也可能是我不够爱吧哈哈。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E9%9A%8F%E7%AC%94/">随笔</category></item></channel></rss>
+&lt;p>在绑定 OpenAI 之后，卡会扣 5$ 的授权额度，然后应该是根据每个月使用的情况进行扣费，到时候还得看能不能顺利扣费成功🤣&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/AI/">AI</category><category domain="https://scottyeung.top/tags/%E8%AE%B0%E5%BD%95/">记录</category><category domain="https://scottyeung.top/tags/%E6%94%AF%E4%BB%98/">支付</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category></item></channel></rss>
