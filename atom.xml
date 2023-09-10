@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah 的乱写地</title><link>https://scottyeung.top/</link><description>YeungYeah 的乱写地中记录了作者的所思所想及所为。</description><generator>Hugo 0.83.1 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Sun, 10 Sep 2023 13:00:39 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>JVM 当中的剪贴板访问</title><link>https://scottyeung.top/2023/clipboard-access-jvm/</link><guid isPermaLink="true">https://scottyeung.top/2023/clipboard-access-jvm/</guid><pubDate>Sun, 10 Sep 2023 20:00:00 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>起因是想要写一个 kotlin 的脚本，用于读取剪贴板中的内容并保存到文件当中。然而网上搜了一圈，java 和 kotlin 给出的方法都是通过 jdk 中的 awt 包来获取系统剪贴板。因为 kotlin 脚本还是跑的 jvm target，所以方法还是通用的。&lt;/p>
+<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah 的乱写地</title><link>https://scottyeung.top/</link><description>YeungYeah 的乱写地中记录了作者的所思所想及所为。</description><generator>Hugo 0.83.1 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Sun, 10 Sep 2023 14:51:01 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>JVM 当中的剪贴板访问</title><link>https://scottyeung.top/2023/clipboard-access-jvm/</link><guid isPermaLink="true">https://scottyeung.top/2023/clipboard-access-jvm/</guid><pubDate>Sun, 10 Sep 2023 20:00:00 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>起因是想要写一个 kotlin 的脚本，用于读取剪贴板中的内容并保存到文件当中。然而网上搜了一圈，java 和 kotlin 给出的方法都是通过 jdk 中的 awt 包来获取系统剪贴板。因为 kotlin 脚本还是跑的 jvm target，所以方法还是通用的。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -123,7 +123,45 @@
 &lt;span class="n">println&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">clipboard&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="k">get&lt;/span>&lt;span class="p">())&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>原本想把依赖库发布到 maven central 仓库，这样脚本就可以一行直接使用。然而 maven 发布实在是麻烦，研究了几个小时，还是被一些相关的检查卡点了，只能够先 install 到本地，给自己先用。后续上传到 maven central 后再更新，也顺便更新一篇文章如何 deploy to maven central.&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/Java/">Java</category><category domain="https://scottyeung.top/tags/kotlin/">kotlin</category><category domain="https://scottyeung.top/tags/coding/">coding</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category><category domain="https://scottyeung.top/tags/JavaScript/">JavaScript</category></item><item><title>Scripting in Kotlin</title><link>https://scottyeung.top/2023/Scripting-in-Kotlin/</link><guid isPermaLink="true">https://scottyeung.top/2023/Scripting-in-Kotlin/</guid><pubDate>Wed, 30 Aug 2023 20:01:30 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>最近又重新非常心仪 kotlin，甚至将自己的 rss 时间线聚合都重新用 kotlin 写了一次。kotlin 的各种函数式的写法确实很招我喜欢。因此就想要把它更加应用到自己的生活中，其中 code 在日常生活中最重要的部份，还是写点小脚本解决日常问题，于是就考察了一下使用 kotlin 来写脚本的方式。&lt;/p>
+&lt;/div>&lt;p>原本想把依赖库发布到 maven central 仓库，这样脚本就可以一行直接使用。然而 maven 发布实在是麻烦，研究了几个小时，还是被一些相关的检查卡点了，只能够先 install 到本地，给自己先用。&lt;del>后续上传到 maven central 后再更新，也顺便更新一篇文章如何 deploy to maven central.&lt;/del>&lt;/p>
+&lt;p>部署到 maven central 仓库后，就可以通过配置直接导入依赖使用了。比如在 java 项目，通过&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-xml" data-lang="xml">&lt;span class="nt">&amp;lt;dependency&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;groupId&amp;gt;&lt;/span>io.github.yeung66&lt;span class="nt">&amp;lt;/groupId&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;artifactId&amp;gt;&lt;/span>clipboard-jvm&lt;span class="nt">&amp;lt;/artifactId&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;version&amp;gt;&lt;/span>1.0.0&lt;span class="nt">&amp;lt;/version&amp;gt;&lt;/span>
+&lt;span class="nt">&amp;lt;/dependency&amp;gt;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>或者是在 kotlin script 中，直接&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-kotlin" data-lang="kotlin">&lt;span class="nd">@file&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="n">DependsOn&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;io.github.yeung66:clipboard-jvm:1.0.0&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="k">import&lt;/span> &lt;span class="nn">org.yeungyeah.clipboard.Clipboard&lt;/span>
+&lt;span class="k">val&lt;/span> &lt;span class="py">clipboard&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="n">Clipboard&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">getClipboard&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;span class="n">println&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">clipboard&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="k">get&lt;/span>&lt;span class="p">())&lt;/span>
+&lt;span class="n">clipboard&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="k">set&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;Hello World&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="n">println&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">clipboard&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="k">get&lt;/span>&lt;span class="p">())&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>起飞🛫️。不过只是测试了在macOS系统下面的使用，按理说其他系统也是可行的，如果有兴趣的可以试试玩玩。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/Java/">Java</category><category domain="https://scottyeung.top/tags/kotlin/">kotlin</category><category domain="https://scottyeung.top/tags/coding/">coding</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category><category domain="https://scottyeung.top/tags/JavaScript/">JavaScript</category></item><item><title>Scripting in Kotlin</title><link>https://scottyeung.top/2023/Scripting-in-Kotlin/</link><guid isPermaLink="true">https://scottyeung.top/2023/Scripting-in-Kotlin/</guid><pubDate>Wed, 30 Aug 2023 20:01:30 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>最近又重新非常心仪 kotlin，甚至将自己的 rss 时间线聚合都重新用 kotlin 写了一次。kotlin 的各种函数式的写法确实很招我喜欢。因此就想要把它更加应用到自己的生活中，其中 code 在日常生活中最重要的部份，还是写点小脚本解决日常问题，于是就考察了一下使用 kotlin 来写脚本的方式。&lt;/p>
 &lt;h2 id="kotlin-官方">kotlin 官方&lt;/h2>
 &lt;p>一搜 kotlin scripting，第一个结果就是官方关于 scripting 的 &lt;a href="https://kotlinlang.org/docs/custom-script-deps-tutorial.html">文档&lt;/a>，我也到其提供的代码示例库去研究了一下，它主要提供了三种方式的 kotlin scripting 使用方式。&lt;/p>
 &lt;h3 id="jsr223">jsr223&lt;/h3>
