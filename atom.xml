@@ -1,4 +1,143 @@
-<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah 的乱写地</title><link>https://scottyeung.top/</link><description>YeungYeah 的乱写地中记录了作者的所思所想及所为。</description><generator>Hugo 0.83.1 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Sun, 15 Oct 2023 03:51:37 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>拥抱 AI 的 Arc 浏览器</title><link>https://scottyeung.top/2023/ai-in-arc-browser/</link><guid isPermaLink="true">https://scottyeung.top/2023/ai-in-arc-browser/</guid><pubDate>Sun, 15 Oct 2023 08:00:00 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>虽然前面的使用小记中对于 Arc 浏览器进行了不少吐槽，但是其特色和美观的外表还是挺吸引我的，于是在自己的电脑上总是时不时又忍不住切换默认的浏览器到 Arc 上面。现在整体使用感觉还是挺不错的，除了看不到扩展的状态，需要在使用的时候点菜单来唤起扩展以外。&lt;/p>
+<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah 的乱写地</title><link>https://scottyeung.top/</link><description>YeungYeah 的乱写地中记录了作者的所思所想及所为。</description><generator>Hugo 0.83.1 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Sun, 29 Oct 2023 09:05:15 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>Cloudflare 应用开发使用小记</title><link>https://scottyeung.top/2023/cloudflare-app-dev/</link><guid isPermaLink="true">https://scottyeung.top/2023/cloudflare-app-dev/</guid><pubDate>Sun, 29 Oct 2023 16:45:21 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;blockquote>
+&lt;p>能给大众白嫖使用的 serverless 服务，像 Cloudflare 和 Vercel 就是好的服务商。&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://scottyeung.top/my-images/202310291700756.png" alt="">&lt;/p>
+&lt;p>最近因为各种原因，突然想把在服务器上运行的 rss-timeline 记录（详情可以看这里 -- &lt;a href="https://scottyeung.top/2023/my-timeline/">我的动态时间线聚合&lt;/a>）的程序换成在云服务上面部署，最终选择了 Cloudflare，并且实现了一版。下面是实现过程中一些记录。&lt;/p>
+&lt;h2 id="worker">worker&lt;/h2>
+&lt;p>cloudflare 通过 worker 的方式提供服务，worker 有两种触发的方式&lt;/p>
+&lt;ul>
+&lt;li>http trigger. 通过发送 http 请求进行触发，也是最常用的一种，实现 fetch 方法处理请求即可
+&lt;ul>
+&lt;li>在 ChatGPT API 刚出的时候，很多人都因为 API 地址不能直连，所以搞一个 worker 请求转发就可以了。比如&lt;a href="https://github.com/noobnooc/noobnooc/discussions/9">这个&lt;/a>。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>cron trigger. 通过定时任务的方式来触发任务。通过配置 cron job 来声明执行的周期。&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-typescript" data-lang="typescript">&lt;span class="kr">export&lt;/span> &lt;span class="k">default&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="c1">// The scheduled handler is invoked at the interval set in our wrangler.toml&amp;#39;s
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="c1">// [[triggers]] configuration.
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="kr">async&lt;/span> &lt;span class="nx">scheduled&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">event&lt;/span>: &lt;span class="kt">ScheduledEvent&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">env&lt;/span>: &lt;span class="kt">Env&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">ctx&lt;/span>: &lt;span class="kt">ExecutionContext&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">Promise&lt;/span>&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">void&lt;/span>&lt;span class="p">&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="c1">// A Cron Trigger can make requests to other endpoints on the Internet,
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="c1">// publish to a Queue, query a D1 Database, and much more.
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="c1">//
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="c1">// We&amp;#39;ll keep it simple and make an API call to a Cloudflare API:
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="kd">let&lt;/span> &lt;span class="nx">resp&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">await&lt;/span> &lt;span class="nx">fetch&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;https://api.cloudflare.com/client/v4/ips&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="kd">let&lt;/span> &lt;span class="nx">wasSuccessful&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">resp&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">ok&lt;/span> &lt;span class="o">?&lt;/span> &lt;span class="s1">&amp;#39;success&amp;#39;&lt;/span> &lt;span class="o">:&lt;/span> &lt;span class="s1">&amp;#39;fail&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="c1">// You could store this result in KV, write to a D1 Database, or publish to a Queue.
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="c1">// In this template, we&amp;#39;ll just log the result:
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="nx">console&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">log&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sb">`trigger fired at &lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nx">event&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">cron&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="sb">: &lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nx">wasSuccessful&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="sb">`&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">},&lt;/span>
+&lt;span class="c1">// The event handler is invoked whenever an HTTP request is made to your
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="c1">// worker. The request will trigger the event handler regardless of the
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="c1">// request method or URL path.
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="nx">fetch&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">request&lt;/span>: &lt;span class="kt">Request&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">env&lt;/span>: &lt;span class="kt">Env&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">ctx&lt;/span>: &lt;span class="kt">ExecutionContext&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">Promise&lt;/span>&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">Response&lt;/span>&lt;span class="p">&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="nx">Response&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sb">`Hello from the scheduled worker at &lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nx">request&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">url&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="sb">`&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">};&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>可以通过在配置文件 wrangle.toml 或者 dashboard 中的设置中声明环境变量。环境变量通过传递进来的 env 参数使用。&lt;/p>
+&lt;p>免费版主要是限制&lt;/p>
+&lt;ul>
+&lt;li>每次调用的 CPU 执行时间 10ms
+&lt;ul>
+&lt;li>官网中介绍用量很少，基本都不会超&lt;/li>
+&lt;li>但实际跑下来发现好像超了也没事？&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>每天的请求执行次数 100, 000&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="https://scottyeung.top/my-images/202310282110476.png" alt="">&lt;/p>
+&lt;h3 id="本地调试">本地调试&lt;/h3>
+&lt;p>本地可以通过 wrangle 来进行开发调试和部署&lt;/p>
+&lt;p>cron worker 可以通过 &lt;code>--test-scheduled&lt;/code> 参数，实现 http 调用 &lt;code>http://localhost:8787/__scheduled?cron=*+*+*+*+*&lt;/code> 触发 trigger.&lt;/p>
+&lt;p>有些时候本地访问一些网站可能因为某些奇怪因素访问不了，可以通过 &lt;code>--remote&lt;/code> 参数，实现本地运行远程调试，这样就可以突破网络限制访问某些网站。另外也可以通过这个方法直接操作数据库，这样就可以直接在网站就看到数据库的更新情况。&lt;/p>
+&lt;h3 id="non-standard-nodejs-runtime">non-standard Node.js runtime&lt;/h3>
+&lt;p>cloudflare worker 本质上其实是 edge function，其实际的运行时并不是正宗的 node 环境，所以一些对于 node api 的使用，是可能会满足不了的。部分到 API cloudflare 的运行时实现了，在自己的代码中可以直接用。但往往通过 npm install 使用的依赖就容易会出现这种兼容性问题。&lt;/p>
+&lt;p>&lt;img src="https://scottyeung.top/my-images/202310291635833.png" alt="">&lt;/p>
+&lt;p>对于这些有兼容性问题的 npm 库，建议在本地运行时看看实际跑到的代码是否真的用到这些 node api，如果没有，只是在文件当中导入的话，可以注释掉。动态语言 js 的一个爽点就是，就算代码有问题，但只要没有跑到有问题的地方，也还是能跑，就算这样注释掉一个依赖导入，但只要调用的代码没有使用它们，照样能跑。&lt;/p>
+&lt;p>如果调用的 node api 在 Cloudflare 中有实现的，通过换个方式导入也可以。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-javascript" data-lang="javascript">&lt;span class="c1">// Do this:
+&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="kr">import&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="nx">Buffer&lt;/span> &lt;span class="p">}&lt;/span> &lt;span class="nx">from&lt;/span> &lt;span class="s1">&amp;#39;node:buffer&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="c1">// Do not do this:
+&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="kr">import&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="nx">Buffer&lt;/span> &lt;span class="p">}&lt;/span> &lt;span class="nx">from&lt;/span> &lt;span class="s1">&amp;#39;buffer&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="d1">D1&lt;/h2>
+&lt;p>cloudflare 提供的关系型数据库&lt;/p>
+&lt;p>创建数据库后可以在 worker 里面添加绑定，直接访问到数据库&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-toml" data-lang="toml">&lt;span class="p">[[&lt;/span>&lt;span class="nx">d1_databases&lt;/span>&lt;span class="p">]]&lt;/span>
+&lt;span class="nx">binding&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;DB&amp;#34;&lt;/span> &lt;span class="c"># available in your Worker on env.DB&lt;/span>
+&lt;span class="nx">database_name&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;database&amp;#34;&lt;/span>
+&lt;span class="nx">database_id&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;database_id&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>实际使用起来就是会在入口处传递 env，然后这个数据库的实例也随着 env 传进来，然后就可以手写 sql 进行数据处理了。&lt;/p>
+&lt;p>数据库操作可以通过&lt;/p>
+&lt;ul>
+&lt;li>官网网页可以创建表，已经修改行数据
+&lt;ul>
+&lt;li>官网也提供一个 console 进行 sql 语句的执行&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>也可以在命令后通过 wrangle 执行 sql 语句，从而更新数据库
+&lt;ul>
+&lt;li>这种方式还可以实现一些表结构的更新，比如增加一列&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>免费的用量限制&lt;/p>
+&lt;ul>
+&lt;li>最多创建 10 个数据库&lt;/li>
+&lt;li>单个数据库 500MB&lt;/li>
+&lt;li>每月读 5,000,000 行，写 100,000 行&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="https://scottyeung.top/my-images/%E6%88%AA%E5%B1%8F2023-10-28%2021.07.36.png" alt="">&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/serverless/">serverless</category><category domain="https://scottyeung.top/tags/JavaScript/">JavaScript</category><category domain="https://scottyeung.top/tags/Cloudflare/">Cloudflare</category><category domain="https://scottyeung.top/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1/">云服务</category></item><item><title>拥抱 AI 的 Arc 浏览器</title><link>https://scottyeung.top/2023/ai-in-arc-browser/</link><guid isPermaLink="true">https://scottyeung.top/2023/ai-in-arc-browser/</guid><pubDate>Sun, 15 Oct 2023 08:00:00 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>虽然前面的使用小记中对于 Arc 浏览器进行了不少吐槽，但是其特色和美观的外表还是挺吸引我的，于是在自己的电脑上总是时不时又忍不住切换默认的浏览器到 Arc 上面。现在整体使用感觉还是挺不错的，除了看不到扩展的状态，需要在使用的时候点菜单来唤起扩展以外。&lt;/p>
 &lt;p>在这次切换并更新 Arc 浏览器后，发现 Arc 浏览器在设置上多了一个关于 AI 的 tab，叫做 Max，看起来还挺有意思的。&lt;/p>
 &lt;p>&lt;img src="https://scottyeung.top/my-images/202310142324997.png" alt="">&lt;/p>
 &lt;p>根据这个设置页简单看了一下，主要有下面的功能：&lt;/p>
@@ -10,15 +149,15 @@
 &lt;/ul>
 &lt;p>实际使用了一下，想法挺不错的，但是还可以有进一步的改进空间&lt;/p>
 &lt;h2 id="link-preview">link preview&lt;/h2>
-&lt;p>这个超链接 preview 的功能挺有意思的，可以在打开前先看看链接描述的内容。生成preview格式是一句话的title，加上一些分组列出的属性。生成preview 的内容其实也算准确，不过现阶段生成的 preview 语言都是固定是英语的，即使我调了一下浏览器的 Preferred languages 改成英语，生成的 preview 也还是英语的。虽然没错，但是其实对于帮助了解链接内容讲什么作用不是很大，不过感觉这个提升空间很大，如果继续优化估计会很强。&lt;/p>
+&lt;p>这个超链接 preview 的功能挺有意思的，可以在打开前先看看链接描述的内容。生成 preview 格式是一句话的 title，加上一些分组列出的属性。生成 preview 的内容其实也算准确，不过现阶段生成的 preview 语言都是固定是英语的，即使我调了一下浏览器的 Preferred languages 改成英语，生成的 preview 也还是英语的。虽然没错，但是其实对于帮助了解链接内容讲什么作用不是很大，不过感觉这个提升空间很大，如果继续优化估计会很强。&lt;/p>
 &lt;p>&lt;img src="https://scottyeung.top/my-images/202310142327077.png" alt="">&lt;/p>
 &lt;h2 id="chatgpt">ChatGPT&lt;/h2>
-&lt;p>拉起 ChatGPT 就是一个比较 normal 的功能了，通过 option + command + G (windows 下应该是 alt + ctrl + G) 唤起。不过本质其实就是个启动器，输入问题后就是跳转到 &lt;a href="https://chat.openai.com/">chat.openai.com&lt;/a> 页面进行提问回答了。（不过发现现在的ChatGPT官网是不是放开了对区域的限制？挂🇭🇰网络访问还是非常丝滑的）&lt;/p>
+&lt;p>拉起 ChatGPT 就是一个比较 normal 的功能了，通过 option + command + G (windows 下应该是 alt + ctrl + G) 唤起。不过本质其实就是个启动器，输入问题后就是跳转到 &lt;a href="https://chat.openai.com/">chat.openai.com&lt;/a> 页面进行提问回答了。（不过发现现在的 ChatGPT 官网是不是放开了对区域的限制？挂🇭🇰网络访问还是非常丝滑的）&lt;/p>
 &lt;p>&lt;img src="https://scottyeung.top/my-images/202310142345200.png" alt="">&lt;/p>
 &lt;h2 id="页面内容提问">页面内容提问&lt;/h2>
 &lt;p>传统的页面搜索唤起后，如果搜索不到内容，可以进行提问，估计也是唤起 ChatGPT 来提问？但我这里尝试了几次都是遇到问题，返回 &lt;code>Sorry, I encountered an error.&lt;/code>。上网一搜好像也不是个例，尝鲜不了。&lt;/p>
 &lt;h2 id="智能重命名">智能重命名&lt;/h2>
-&lt;p>Arc 浏览器一个挺有意思的改动，就是去除了收藏夹的概念，转变为pin tab的概念。现在把tab pin后把这个标签页的title智能重命名，变得更短更整洁，用起来也还好。个人理解其实就是相当于收藏页面的时候，用 AI 自动为它生成一个标题。这个功能还是有点用的，毕竟很多时候添加收藏其实都不会给它加标题，直接用它的标题可能会巨长，或者也描述不清。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/">生产力</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category><category domain="https://scottyeung.top/tags/%E8%AE%B0%E5%BD%95/">记录</category><category domain="https://scottyeung.top/tags/%E6%9D%82%E8%B0%88/">杂谈</category><category domain="https://scottyeung.top/tags/AI/">AI</category></item><item><title>围城之内：一位程序员的生活反思与职业选择</title><link>https://scottyeung.top/2023/thoughts-of-programmer-career/</link><guid isPermaLink="true">https://scottyeung.top/2023/thoughts-of-programmer-career/</guid><pubDate>Sat, 14 Oct 2023 20:19:57 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>前两天在抖音刷到了一个同是 23 年应届的 Java 开发程序员，也是在深圳工作。按他视频的介绍，早上九点上班，然后看起来也似乎是住的比较远，从罗湖站附近坐地铁来南山这边上班，可能也需要个一小时。晚上平均大概十点走，有事可能还会更晚，比如软件发布。公司体量应该还行，月 base 也有差不多 20k。刷到的时候已经因为工作强度高，常加班且加班时间长等原因，选择裸辞。&lt;/p>
+&lt;p>Arc 浏览器一个挺有意思的改动，就是去除了收藏夹的概念，转变为 pin tab 的概念。现在把 tab pin 后把这个标签页的 title 智能重命名，变得更短更整洁，用起来也还好。个人理解其实就是相当于收藏页面的时候，用 AI 自动为它生成一个标题。这个功能还是有点用的，毕竟很多时候添加收藏其实都不会给它加标题，直接用它的标题可能会巨长，或者也描述不清。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/">生产力</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category><category domain="https://scottyeung.top/tags/%E8%AE%B0%E5%BD%95/">记录</category><category domain="https://scottyeung.top/tags/%E6%9D%82%E8%B0%88/">杂谈</category><category domain="https://scottyeung.top/tags/AI/">AI</category></item><item><title>围城之内：一位程序员的生活反思与职业选择</title><link>https://scottyeung.top/2023/thoughts-of-programmer-career/</link><guid isPermaLink="true">https://scottyeung.top/2023/thoughts-of-programmer-career/</guid><pubDate>Sat, 14 Oct 2023 20:19:57 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>前两天在抖音刷到了一个同是 23 年应届的 Java 开发程序员，也是在深圳工作。按他视频的介绍，早上九点上班，然后看起来也似乎是住的比较远，从罗湖站附近坐地铁来南山这边上班，可能也需要个一小时。晚上平均大概十点走，有事可能还会更晚，比如软件发布。公司体量应该还行，月 base 也有差不多 20k。刷到的时候已经因为工作强度高，常加班且加班时间长等原因，选择裸辞。&lt;/p>
 &lt;p>第一眼看到他的生活以及他的选择的时候，觉得走人确实没什么问题，自己作为也同样在互联网大厂工作的人来说，能够体会到他这种高强度长时间工作的累（身体上的累和心累）。不过其实细看他的生活，其实对于这样累的生活方式，其实有挺多是可以通过一些方法或者舍弃一些东西来缓解的。&lt;/p>
 &lt;ul>
 &lt;li>通勤时间太长。可能因为租房价格的原因，所以选择租得比较远，住罗湖区来南山区上班，通勤来回感觉得两个小时了，而且途径一些大站上地铁，排队挤地铁通勤的体验也实在不好，看视频等两三次地铁才能上简直是窒息。要么加点钱住近点（多掏个 2k 能舒服很多），要么舍弃点其他因素（比如合租而不是不整租）。原本工作时间就长了，还花这么多在通勤，很窒息。&lt;/li>
@@ -716,77 +855,4 @@ runtimeOnly(&amp;quot;org.jetbrains.kotlin:kotlin-scripting-jsr223:$kotlinVersio
 &lt;/div>
 &lt;/div>&lt;p>最后 Rust 版本的程序通过 WSL 成功编译，并能够在服务器上面运行，运行的性能和资源占用也挺不错。但是实际上，我也并不缺这一点性能，跑得快一点意义不大，服务器的内存其实也暂时充足。而程序其实上线后也常常会出现一些意料之外的小问题，或者是需要添加一些新的订阅资源，这些都需要快速迭代，快速修改，因此使用 Rust 每次修改重新编译发布，可能都要比修改代码的时间长了。于是只能又用回 ts 版本。&lt;/p>
 &lt;p>PS：另外偶然发现，Rust 开发过程中生成的中间产物，居然这么吃硬盘空间， &lt;del>又劝退多一点了&lt;/del>&lt;/p>
-&lt;p>&lt;img src="https://scottyeung.top/my-images/202306242025064.png" alt="">&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category><category domain="https://scottyeung.top/tags/%E8%AE%B0%E5%BD%95/">记录</category><category domain="https://scottyeung.top/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/">自动化</category><category domain="https://scottyeung.top/tags/Vercel/">Vercel</category><category domain="https://scottyeung.top/tags/JavaScript/">JavaScript</category><category domain="https://scottyeung.top/tags/Rust/">Rust</category><category domain="https://scottyeung.top/tags/coding-%E8%AE%B0%E5%BD%95/">coding 记录</category><category domain="https://scottyeung.top/tags/rss/">rss</category></item><item><title>Umami: 更简单的自托管网站统计服务</title><link>https://scottyeung.top/2023/umami/</link><guid isPermaLink="true">https://scottyeung.top/2023/umami/</guid><pubDate>Wed, 14 Jun 2023 10:41:12 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>此前博客都是用 Google Analytics 来提供网站统计服务，统计博客中各个页面的访问情况。可用是可用，但是 Google Analytics 提供了太多的统计内容，让人眼花缭乱，都不知道要看些什么。另外 Google 的服务，总是会存在访问性的问题。因此在看到介绍其它博主介绍 &lt;a href="https://github.com/umami-software/umami">Umami&lt;/a> 的文章后，我也打算搭建一个自己的网站统计服务，并进行切换。&lt;/p>
-&lt;blockquote>
-&lt;p>Umami is a simple, fast, privacy-focused alternative to Google Analytics.&lt;/p>
-&lt;/blockquote>
-&lt;p>Umami 主打的就是注重隐私，毕竟像访问数据这些数据，还是不落在大公司手上好点。Umami 支持多种部署方式，比如 Docker。不过对于我这种云计算爱好者来说，当然是都上云服务了。Umami 服务本身可以部署在 Vercel 上面，绑定一个域名就可以直接访问了。Umami 支持 MySQL 和 Postgresql 两种数据库，这两种数据库都可以找到对应的 serverless 提供商。这里我选择的是 PingCap 家的 &lt;a href="https://www.pingcap.com/tidb-cloud/">TiDB Cloud&lt;/a>，能够提供每个集群最大 5G 容量，每月 5 千万次访问的 MySQL 数据库。&lt;/p>
-&lt;p>最终部署的成果如下。&lt;/p>
-&lt;p>&lt;img src="https://scottyeung.top/my-images/202306141051580.png" alt="">&lt;/p>
-&lt;h2 id="搭建过程">搭建过程&lt;/h2>
-&lt;ol>
-&lt;li>
-&lt;p>TiDB Cloud 登录后，创建一个 Serverless 的数据库 cluster&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>在集群的 overview 页面，点击 connect 获取建立数据库链接的相关内容，以 MySQL CLI 的连接方式为例，包括&lt;/p>
-&lt;ul>
-&lt;li>用户名 -u&lt;/li>
-&lt;li>host -h&lt;/li>
-&lt;li>端口 -P&lt;/li>
-&lt;li>密码 -p&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>
-&lt;p>根据获取得到的相关信息，拼接出 MySQL 的连接 URL&lt;/p>
-&lt;ul>
-&lt;li>&lt;code>mysql://&amp;lt;username&amp;gt;:&amp;lt;password&amp;gt;@&amp;lt;host&amp;gt;:&amp;lt;port&amp;gt;/&amp;lt;database_name&amp;gt;?pool_timeout=60&amp;amp;sslaccept=accept_invalid_certs&lt;/code>&lt;/li>
-&lt;li>需要预先创建一个数据库并指定数据库&lt;/li>
-&lt;li>因为 TiDB Cloud 默认是需要 TLS 的，因此必须添加参数 &lt;code>sslaccept=accept_invalid_certs&lt;/code>，否则会连不上（这是一个隐藏的小坑）&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>
-&lt;p>GitHub Fork Umami 项目，并到 Vercel 部署，部署时填入环境变量 &lt;code>DATABASE_URL&lt;/code>，值是上面的连接 URL&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>部署后在 Vercel 绑定自己的域名，因为 DNS 污染的原因，Vercel 提供的域名大多数时候不能够正常访问，需要自己的域名，才能更顺利地被访问到&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>部署成功后，通过绑定的域名访问网站，默认账号用户名和密码是 admmin 和 umami，进去后可以修改密码，添加网站，添加用户&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>在设置页面处添加网站，填写相关信息，Umami 会为需要统计的网站分配一个 ID 以及影响的 tracking code。只需要把这个 tracking code 放到网页的 head 标签中，即可以开始收集统计数据，并在 dashboard 中看到相应的统计结果。&lt;/p>
-&lt;ol>
-&lt;li>以我使用的 hugo 为例，在主题的 html 模板当中找到 head 标签相关的生成模板，然后把 tracking code 放进去就行了。为了增加可配置性，也可以把 tracking code 中的 id 抽取出来变成变量，从配置中读取。&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
-&lt;/span>&lt;span class="lnt">4
-&lt;/span>&lt;span class="lnt">5
-&lt;/span>&lt;span class="lnt">6
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-html" data-lang="html"> {{- if and .Site.Params.enableUmami (eq hugo.Environment &amp;#34;production&amp;#34;) }}
-{{ $id := .Site.Params.umamiTrackingID }}
-{{ $host := .Site.Params.umamiHost }}
-&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">script&lt;/span> &lt;span class="na">async&lt;/span> &lt;span class="na">src&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;https://{{ $host }}/script.js&amp;#34;&lt;/span> &lt;span class="na">data-website-id&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;{{ $id }}&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&amp;lt;/&lt;/span>&lt;span class="nt">script&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-{{- end }}
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-toml" data-lang="toml">&lt;span class="nx">enableUmami&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="kc">true&lt;/span>
-&lt;span class="nx">umamiTrackingID&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;your_id&amp;#34;&lt;/span>
-&lt;span class="nx">umamiHost&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;your_umami_website&amp;#34;&lt;/span>
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;/li>
-&lt;/ol></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/serverless/">serverless</category><category domain="https://scottyeung.top/tags/Vercel/">Vercel</category><category domain="https://scottyeung.top/tags/%E5%8D%9A%E5%AE%A2/">博客</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category><category domain="https://scottyeung.top/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1/">云服务</category><category domain="https://scottyeung.top/tags/Mysql/">Mysql</category></item></channel></rss>
+&lt;p>&lt;img src="https://scottyeung.top/my-images/202306242025064.png" alt="">&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category><category domain="https://scottyeung.top/tags/%E8%AE%B0%E5%BD%95/">记录</category><category domain="https://scottyeung.top/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/">自动化</category><category domain="https://scottyeung.top/tags/Vercel/">Vercel</category><category domain="https://scottyeung.top/tags/JavaScript/">JavaScript</category><category domain="https://scottyeung.top/tags/Rust/">Rust</category><category domain="https://scottyeung.top/tags/coding-%E8%AE%B0%E5%BD%95/">coding 记录</category><category domain="https://scottyeung.top/tags/rss/">rss</category></item></channel></rss>
