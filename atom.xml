@@ -1,4 +1,86 @@
-<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah 的乱写地</title><link>https://scottyeung.top/</link><description>YeungYeah 的乱写地中记录了作者的所思所想及所为。</description><generator>Hugo 0.83.1 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Sun, 29 Oct 2023 09:05:15 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>Cloudflare 应用开发使用小记</title><link>https://scottyeung.top/2023/cloudflare-app-dev/</link><guid isPermaLink="true">https://scottyeung.top/2023/cloudflare-app-dev/</guid><pubDate>Sun, 29 Oct 2023 16:45:21 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;blockquote>
+<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah 的乱写地</title><link>https://scottyeung.top/</link><description>YeungYeah 的乱写地中记录了作者的所思所想及所为。</description><generator>Hugo 0.83.1 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Sat, 04 Nov 2023 03:51:46 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>动态时间线聚合 - Cloudflare 重制版</title><link>https://scottyeung.top/2023/rss-timeline-cloudflare/</link><guid isPermaLink="true">https://scottyeung.top/2023/rss-timeline-cloudflare/</guid><pubDate>Sat, 04 Nov 2023 11:46:58 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>上个周末把在服务器运行的 rss 聚合程序迁移到了 Cloudflare 处运行。&lt;strong>真的 Cloudflare 太香了！！&lt;/strong>&lt;/p>
+&lt;h2 id="why">why&lt;/h2>
+&lt;ol>
+&lt;li>之前部署到服务器这个流程太麻烦
+&lt;ol>
+&lt;li>本地修改代码 -&amp;gt; 打包发布 -&amp;gt; scp 上传服务器 -&amp;gt; 服务器关掉正在运行的程序 -&amp;gt; 重新运行程序&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>查看和管理数据麻烦：
+&lt;ol>
+&lt;li>因为使用本地 sqlite 数据库文件来保存抓取的文件，所以导致查看服务器上的数据就比较麻烦，得 ssh 连上去然后跑一个 sqlite client 的 shell 程序执行 sql 语句来查询，显示也不好看&lt;/li>
+&lt;li>基于文件存储，本地一份，服务器一份，数据常常不同步，还得专门搞一个功能来只抓数据&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>网络环境不是很好。
+&lt;ol>
+&lt;li>需要访问 vercel 部署的网页和访问 telegram api，都对网络环境有点要求，本地开发调试还得走个代理，又需要个额外配置&lt;/li>
+&lt;li>即使是部署在境外服务器上，网络访问也常常出现链接的问题，log 里面一大堆网络 error&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ol>
+&lt;h2 id="方案">方案&lt;/h2>
+&lt;p>使用 Cloudflare 提供的&lt;/p>
+&lt;ul>
+&lt;li>cron 定时任务调用 worker
+&lt;ul>
+&lt;li>worker 根据定时任务的 cron 种类来区分重发任务和抓取任务&lt;/li>
+&lt;li>抓取任务：访问各个 RSS 源解析数据象，并把新的数据发送到 Telegram 频道并保存到数据库当中&lt;/li>
+&lt;li>重发任务：捞取数据库当中没有发送成功的数据，重新发送到 Telegram 频道当中&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>使用 D1 数据库存储数据&lt;/li>
+&lt;/ul>
+&lt;h2 id="实现">实现&lt;/h2>
+&lt;p>Cloudflare 提供的 worker 需要用 JS / TS 实现。因为之前其实就已经写过 typescript 版本，所以其实直接迁移调试就可以了。&lt;/p>
+&lt;p>大概的创建的流程可以看 &lt;a href="https://scottyeung.top/2023/cloudflare-app-dev/">Cloudflare 应用&lt;/a>，主要是有几个点需要注意&lt;/p>
+&lt;ul>
+&lt;li>Cloudflare worker 启动都是通过其入口函数来启动的。传递的环境变量和数据库实例都是通过入口函数的 env 变量来传递的。&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-typescript" data-lang="typescript">&lt;span class="kr">export&lt;/span> &lt;span class="k">default&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="kr">async&lt;/span> &lt;span class="nx">scheduled&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">event&lt;/span>: &lt;span class="kt">ScheduledEvent&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">env&lt;/span>: &lt;span class="kt">Env&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">ctx&lt;/span>: &lt;span class="kt">ExecutionContext&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">Promise&lt;/span>&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">void&lt;/span>&lt;span class="p">&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="c1">// A Cron Trigger can make requests to other endpoints on the Internet,
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="c1">// publish to a Queue, query a D1 Database, and much more.
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="c1">//
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="c1">// We&amp;#39;ll keep it simple and make an API call to a Cloudflare API:
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="kd">let&lt;/span> &lt;span class="nx">resp&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">await&lt;/span> &lt;span class="nx">fetch&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;https://api.cloudflare.com/client/v4/ips&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="kd">let&lt;/span> &lt;span class="nx">wasSuccessful&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">resp&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">ok&lt;/span> &lt;span class="o">?&lt;/span> &lt;span class="s1">&amp;#39;success&amp;#39;&lt;/span> &lt;span class="o">:&lt;/span> &lt;span class="s1">&amp;#39;fail&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="c1">// You could store this result in KV, write to a D1 Database, or publish to a Queue.
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="c1">// In this template, we&amp;#39;ll just log the result:
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="nx">console&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">log&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sb">`trigger fired at &lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nx">event&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">cron&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="sb">: &lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nx">wasSuccessful&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="sb">`&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">};&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>因为 Cloudflare 的 JS 运行时并不是标准的 node，所以一些依赖 node api 的 npm 库可能会跑不了。之前的一些依赖库可能就需要替换，或者手工对 npm 库源代码进行修改。&lt;/li>
+&lt;/ul>
+&lt;h2 id="体验">体验&lt;/h2>
+&lt;ul>
+&lt;li>本地开发可以使用 remote 运行调试，直接用上 Cloudflare 的网络环境和数据库来进行测试。&lt;/li>
+&lt;li>使用 Cloudflare worker 后可以用官方提供的 wrangle 一键部署，流程大大简化。&lt;/li>
+&lt;li>使用 Cloudflare 的 dashboard 可以随时查看运行情况（但是拉历史日志好像比较麻烦？）。&lt;/li>
+&lt;li>可以用在 dashboard 上面修改一些简单的配置，比如定时间隔和环境变量。&lt;/li>
+&lt;li>可以用 D1 数据库的 console 查询数据库情况，并且做些简单的增删改查。&lt;/li>
+&lt;/ul></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/serverless/">serverless</category><category domain="https://scottyeung.top/tags/JavaScript/">JavaScript</category><category domain="https://scottyeung.top/tags/Cloudflare/">Cloudflare</category><category domain="https://scottyeung.top/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1/">云服务</category><category domain="https://scottyeung.top/tags/coding-%E8%AE%B0%E5%BD%95/">coding 记录</category><category domain="https://scottyeung.top/tags/rss/">rss</category><category domain="https://scottyeung.top/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/">自动化</category></item><item><title>Cloudflare 应用开发使用小记</title><link>https://scottyeung.top/2023/cloudflare-app-dev/</link><guid isPermaLink="true">https://scottyeung.top/2023/cloudflare-app-dev/</guid><pubDate>Sun, 29 Oct 2023 16:45:21 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;blockquote>
 &lt;p>能给大众白嫖使用的 serverless 服务，像 Cloudflare 和 Vercel 就是好的服务商。&lt;/p>
 &lt;/blockquote>
 &lt;p>&lt;img src="https://scottyeung.top/my-images/202310291700756.png" alt="">&lt;/p>
@@ -809,50 +891,4 @@ runtimeOnly(&amp;quot;org.jetbrains.kotlin:kotlin-scripting-jsr223:$kotlinVersio
 &lt;span class="n">printfn&lt;/span> &lt;span class="s">&amp;#34;转换完成：%s -&amp;gt; %s&amp;#34;&lt;/span> &lt;span class="n">heicFile&lt;/span> &lt;span class="n">jpgFile&lt;/span>
 &lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>对比于 Python，使用 F#来写脚本其实也足够简单和方便，可以单个 fsx 文件来写，也可以直接把写好的代码复制到 fsi 交互命令行里逐段代码执行，方便得很。尤其是对于有外部依赖库的脚本代码，使用 F# 或者 C# 的脚本，这样一行代码引用依赖库，可比在命令行中全局安装一个依赖好用得多。（起码不会有安装失败的问题）&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/coding-%E8%AE%B0%E5%BD%95/">coding 记录</category><category domain="https://scottyeung.top/tags/Python/">Python</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category><category domain="https://scottyeung.top/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/">自动化</category><category domain="https://scottyeung.top/tags/dotnet/">dotnet</category><category domain="https://scottyeung.top/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/">生产力</category></item><item><title>我的动态时间线聚合</title><link>https://scottyeung.top/2023/my-timeline/</link><guid isPermaLink="true">https://scottyeung.top/2023/my-timeline/</guid><pubDate>Sat, 24 Jun 2023 20:30:00 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>之前一段时间偶然发现了 DIYGod 创建的一个个人 &lt;a href="https://t.me/awesomeDIYgod">Channel&lt;/a>，内容是关于他的一些动态，包括其发布的推特内容，以及豆瓣的书影音动态等内容。这种形式的 Channel 对我来说很有意思，一方面也是一个对外界分享自身情况的平台（虽然我的内容也没什么人关注），另一个方面也是可以有个地方将自己的相关信息数据持久化地保存下来，拿到自己手上。于是我也写了点代码，整出了一个自己的时间线聚合 &lt;a href="https://t.me/yeungyeah_channel">YeungYeah's Timeline&lt;/a>。&lt;/p>
-&lt;p>程序大体的工作流程是这样的&lt;/p>
-&lt;ol>
-&lt;li>Vercel 上面部署一个自己的 RSSHub，通过 rss 的方式来订阅相关的个人信息。
-&lt;ul>
-&lt;li>&lt;a href="https://github.com/DIYgod/RSSHub">RSSHub&lt;/a> 是一个让所有事情都可以 rss 订阅的服务，支持许多网站源，而且 &lt;a href="https://docs.rsshub.app/">文档详细&lt;/a>，基本都可以查得到。&lt;/li>
-&lt;li>一些网站的信息生成订阅需要相关的访问权限或者有一些访问次数的限制，比如 YouTube 保存的视频，和 Spotify 点赞的音乐，因此自己搭建最佳，搭建以后根据 &lt;a href="https://docs.rsshub.app/install/#pei-zhi-bu-fen-rss-mo-kuai-pei-zhi">文档&lt;/a> 在环境变量进行配置即可。&lt;/li>
-&lt;li>一般地 Vercel 部署后提供的域名在大陆访问都不太方便，需要的话可以绑一个自己的域名。&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>运行一个程序定时访问 RSSHub 相关接口，获取 rss 订阅内容并保存&lt;/li>
-&lt;li>缓存获取的数据的链接，如果发现新数据，则以一定的格式发送到 Telegram Channel 当中。
-&lt;ul>
-&lt;li>要往 Telegram Channel 自动发送消息，虽然首先申请一个自己的 Channel，获取 Channel 的 ID&lt;/li>
-&lt;li>然后在 &lt;a href="https://t.me/BotFather">@BotFather&lt;/a> 处创建一个自己的 bot，并获取这个 bot 对应的访问 token。&lt;/li>
-&lt;li>将 bot 添加为自己 Channel 的管理员，确保 bot 发送的信息可以传给 Channel&lt;/li>
-&lt;li>通过官方提供的 API，附带访问 token，调用相应的接口，发送消息&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ol>
-&lt;p>程序的工作流程很简单，实现起来也不难。一开始我用 typescript 写了一个版本，使用 sqlite 存储数据，sequelize 作为 ORM 库，node-telegram-bot-api 作为 telegram 接口的封装库，两三天就写完上线。写起来没什么难点，只有在开发过程中一些坑点：&lt;/p>
-&lt;ol>
-&lt;li>Vercel 部署的 RSSHub 提供的访问域名和 Telegram 的接口，在大陆可能会出现不能访问的问题。在本地开发时，可以走代理，但是因为要 24 小时定期几分钟就跑一次，所以还是得放在服务器上面，服务器就不太方便走代理了，于是我放在了 CloudCone 位于美国的 VPS 上面，可以直连。&lt;/li>
-&lt;li>往 Channel 发送消息时不好调试，需要真实往 Channel 发送消息才能看到效果。但有时候调试或者出了点啥问题后，一下子给自己的 Channel 发个几十条信息，还得自己手动删除，幸好也没有其他人关注，只影响到了自己。&lt;/li>
-&lt;li>Telegram 接口发送文本消息支持 Markdown 格式信息，但是如果 Markdown 内容解析异常，会直接发送失败，而且因为内容是从 rss 订阅里抽出来的，也难判断哪里会有解析的问题，只能够出一次问题，就修复一次，重新上线一次。&lt;/li>
-&lt;/ol>
-&lt;p>这也好像是我第一次用 typescript 来开发项目，整体而言还是挺爽的，即使没有学过 ts，凭着 js 的基础和 ide 的帮助，也可以爽写 ts（当然原因可能代码只是写给自己的，很多时候都不太需要复杂的类型标注）。不过刚好当时也在学习 Rust，再加上可以打包成单个可执行文件的诱惑，于是我就使用 Rust 重新实现了一个版本，并编译部署到我的服务器上面。运行起来确实好像要快了点，而且最主要的好处是，内存占用从 ts 版本的 100+M，下降到了 10+M，内存占用只有原来的十分之一，而且开发效率也还不错。&lt;/p>
-&lt;p>虽然写起来没什么问题，但是在打包发布上面，Rust 还是有很多槽点的。虽然 Rust 支持多个系统平台，但是很多的 crate 在系统的兼容性上都存在一定的问题，尤其是传递依赖，导致打包出来的产物还会动态依赖系统的库，或者 crate 的编译需要系统工具链的支持。我是在 Windows 上面开发调试，完成后编译一个 linux 版本的 release 一样，传到服务器上面运行。听起来很简单，但是实际上跨平台编译会出现各种问题，一些传递引入的 crate 在编译时需要 gnu 的工具链和一些在 Windows 没有的链接库，而其中的一些 crate 明确就是不支持 Windows 系统的，在解决了一个 crate 的编译问题后，又来一个，完全没有办法，只能够在 Windows Subsystem for Linux (WSL) 上面的 Ubuntu 来编译。&lt;/p>
-&lt;p>然而使用 WSL 也没有那么简单，代码放在 WSL 能够正常编译得到二进制产物，传到服务器上面就不能运行，提示找不到某个版本 libssl.so 的链接库。一检查发现是因为我 WSL 上的 Ubuntu 是 18.04，而服务器在跑的已经是 22.04 的，两者通过 apt 安装的 ssl 库版本不一致，导致 WSL 编译出来的产物没有办法在服务器运行。也尝试过使用基于容器的方式来进行编译，比如 &lt;a href="https://github.com/cross-rs/cross">cross-rs&lt;/a>，但在编译的过程中还是会出现各种的问题导致编译不成功。&lt;/p>
-&lt;p>于是只能够根据依赖进行进一步的具体排查，找到跟这个动态 so 库相关的依赖，发现许多需要和使用到网络连接的依赖库，都可能间接或直接依赖于 &lt;a href="https://github.com/sfackler/rust-native-tls">rust-native-tls&lt;/a>，这个库会根据系统自动选择相应的 TLS 实现 crate，来调用系统的 SSL bindings，比如在 Linux 上就会调用系统的 &lt;a href="https://docs.rs/openssl/latest/openssl/">openssl&lt;/a> 这个依赖库，包括常用的 http 请求库 reqwest，支持连接远程数据库的 orm 库 sea-orm，以及 telegram api 的封装库。这种通过 binding 方式依赖于具体的某个系统环境和依赖库，就使得构建过程和程序运行的可移植性大大降低。于是考虑使用 Rust 版本实现的 tls 依赖库 &lt;a href="https://github.com/rustls/rustls">rustls&lt;/a> 来全部替代掉。比较好的一点是，很多人都在 native-tls 的跨平台编译上面踩过不少坑，于是上面提到的这些库都提供了相关的 feature 配置选项，供用户使用 rustls 替换掉 native-tls，具体的设置方式可以到依赖库自身的文档和提供的 feature 查询。&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
-&lt;/span>&lt;span class="lnt">4
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-toml" data-lang="toml">&lt;span class="p">[&lt;/span>&lt;span class="nx">dependencies&lt;/span>&lt;span class="p">]&lt;/span>
-&lt;span class="nx">reqwest&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="nx">version&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;0.11.16&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">default&lt;/span>&lt;span class="err">-&lt;/span>&lt;span class="nx">features&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="kc">false&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">features&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="s2">&amp;#34;rustls-tls&amp;#34;&lt;/span>&lt;span class="p">]}&lt;/span>
-&lt;span class="nx">teloxide&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="nx">version&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;0.12&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">default&lt;/span>&lt;span class="err">-&lt;/span>&lt;span class="nx">features&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="kc">false&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">features&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="s2">&amp;#34;macros&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;rustls&amp;#34;&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="p">}&lt;/span>
-&lt;span class="nx">sea&lt;/span>&lt;span class="err">-&lt;/span>&lt;span class="nx">orm&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="nx">version&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;0.11.2&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">features&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="p">[&lt;/span> &lt;span class="s2">&amp;#34;sqlx-sqlite&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;runtime-tokio-rustls&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">&amp;#34;macros&amp;#34;&lt;/span> &lt;span class="p">]&lt;/span> &lt;span class="p">}&lt;/span>
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>最后 Rust 版本的程序通过 WSL 成功编译，并能够在服务器上面运行，运行的性能和资源占用也挺不错。但是实际上，我也并不缺这一点性能，跑得快一点意义不大，服务器的内存其实也暂时充足。而程序其实上线后也常常会出现一些意料之外的小问题，或者是需要添加一些新的订阅资源，这些都需要快速迭代，快速修改，因此使用 Rust 每次修改重新编译发布，可能都要比修改代码的时间长了。于是只能又用回 ts 版本。&lt;/p>
-&lt;p>PS：另外偶然发现，Rust 开发过程中生成的中间产物，居然这么吃硬盘空间， &lt;del>又劝退多一点了&lt;/del>&lt;/p>
-&lt;p>&lt;img src="https://scottyeung.top/my-images/202306242025064.png" alt="">&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category><category domain="https://scottyeung.top/tags/%E8%AE%B0%E5%BD%95/">记录</category><category domain="https://scottyeung.top/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/">自动化</category><category domain="https://scottyeung.top/tags/Vercel/">Vercel</category><category domain="https://scottyeung.top/tags/JavaScript/">JavaScript</category><category domain="https://scottyeung.top/tags/Rust/">Rust</category><category domain="https://scottyeung.top/tags/coding-%E8%AE%B0%E5%BD%95/">coding 记录</category><category domain="https://scottyeung.top/tags/rss/">rss</category></item></channel></rss>
+&lt;/div>&lt;p>对比于 Python，使用 F#来写脚本其实也足够简单和方便，可以单个 fsx 文件来写，也可以直接把写好的代码复制到 fsi 交互命令行里逐段代码执行，方便得很。尤其是对于有外部依赖库的脚本代码，使用 F# 或者 C# 的脚本，这样一行代码引用依赖库，可比在命令行中全局安装一个依赖好用得多。（起码不会有安装失败的问题）&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/coding-%E8%AE%B0%E5%BD%95/">coding 记录</category><category domain="https://scottyeung.top/tags/Python/">Python</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category><category domain="https://scottyeung.top/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/">自动化</category><category domain="https://scottyeung.top/tags/dotnet/">dotnet</category><category domain="https://scottyeung.top/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/">生产力</category></item></channel></rss>
