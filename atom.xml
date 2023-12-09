@@ -1,4 +1,253 @@
-<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah 的乱写地</title><link>https://scottyeung.top/</link><description>YeungYeah 的乱写地中记录了作者的所思所想及所为。</description><generator>Hugo 0.83.1 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Sat, 18 Nov 2023 15:31:49 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>cross-rs: 无配置可跨平台编译与测试</title><link>https://scottyeung.top/2023/cross-rs-build/</link><guid isPermaLink="true">https://scottyeung.top/2023/cross-rs-build/</guid><pubDate>Sat, 18 Nov 2023 23:08:25 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>虽然说 Rust 是跨平台的，原生也是可以通过指定 target 的方式来进行跨平台编译，但实际使用过程中总是常常因为一些系统配置或者应用的缺失导致编译失败。&lt;/p>
+<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah 的乱写地</title><link>https://scottyeung.top/</link><description>YeungYeah 的乱写地中记录了作者的所思所想及所为。</description><generator>Hugo 0.83.1 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Sat, 09 Dec 2023 13:29:45 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>Advent of Code 2023: Day5</title><link>https://scottyeung.top/2023/advent-of-code-day-5/</link><guid isPermaLink="true">https://scottyeung.top/2023/advent-of-code-day-5/</guid><pubDate>Sat, 09 Dec 2023 20:22:52 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;blockquote>
+&lt;p>题目具体可以看 &lt;a href="https://adventofcode.com/2023/day/5">这里&lt;/a>&lt;/p>
+&lt;p>简单概括描述就是：
+给定一些整数输入 seeds，并且给出一些 mapping (list list (dst, src, length))，如果 seed 落在 [src, src + length] 这个区间里面，就 map 成 (dst + seed - src)。求经过多次 mapping 之后，seeds 当中的最小值。&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="暴力-with-f">暴力 with F#&lt;/h2>
+&lt;p>看到题目很直观的一个想法就是对于输入的每个 seed 都扫一遍所有的 mapping，得到一个最终的 seed，并从中求最小值。part1 很轻松就过掉，但是到了 part2 的时候，每两个 seed 表示输入的是 [seed1, seed1 + seed2] 区间内的所有 seeds，加起来超过 198 亿个 seeds。&lt;/p>
+&lt;p>最开始直接用 F# 写了一个暴力法模拟，但是跑了一段时间后可能因为数量太多直接给我中断了。于是手动把输入分成了两半，然后跑两次，一次大概要跑 &lt;strong>8 分钟&lt;/strong>，不过能跑到正确的答案。&lt;/p>
+&lt;p>既然这么耗时，第一时间想到的就是用多线程并行来跑。在 F# 当中，可以很简单地通过 async block + Async.Parallel 实现并行计算，看起来能跑满七八个核。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-FSharp" data-lang="FSharp">&lt;span class="n">seeds&lt;/span>
+&lt;span class="o">|&amp;gt;&lt;/span> &lt;span class="nn">Seq&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">map&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="k">fun&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">b&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span>
+&lt;span class="n">async&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;span class="k">let&lt;/span> &lt;span class="nv">allSeeds&lt;/span> &lt;span class="o">=&lt;/span>
+&lt;span class="o">[|&lt;/span> &lt;span class="k">for&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="k">in&lt;/span> &lt;span class="n">a&lt;/span> &lt;span class="o">..&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">a&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">b&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="kt">int64&lt;/span> &lt;span class="n">1&lt;/span>&lt;span class="o">))&lt;/span> &lt;span class="k">do&lt;/span>
+&lt;span class="k">yield&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">|]&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">maps&lt;/span> &lt;span class="o">|&amp;gt;&lt;/span> &lt;span class="nn">Array&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">fold&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="k">fun&lt;/span> &lt;span class="n">seeds&lt;/span> &lt;span class="n">map&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">seed2Map&lt;/span> &lt;span class="n">seeds&lt;/span> &lt;span class="n">map&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="n">allSeeds&lt;/span> &lt;span class="o">|&amp;gt;&lt;/span> &lt;span class="nn">Seq&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">min&lt;/span>
+&lt;span class="o">})&lt;/span>
+&lt;span class="o">|&amp;gt;&lt;/span> &lt;span class="nn">Async&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Parallel&lt;/span>
+&lt;span class="o">|&amp;gt;&lt;/span> &lt;span class="nn">Async&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">RunSynchronously&lt;/span>
+&lt;span class="o">|&amp;gt;&lt;/span> &lt;span class="nn">Array&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">min&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>在 F# 当中使用多线程跑，&lt;strong>5 分钟多点&lt;/strong>就能跑完。&lt;/p>
+&lt;p>既然跑得慢，那么切换到一个跑得更快的语言，用 Rust 来写，应该能提升不少。&lt;/p>
+&lt;h2 id="暴力-with-rust">暴力 with Rust&lt;/h2>
+&lt;p>先用 Rust 写了个逻辑一样的暴力模拟，基本上就是把 F# 写的逻辑搬了过来，&lt;strong>4 分钟&lt;/strong>左右能跑完。这个速度比我在 F# 用多线程来跑还快！Rust 的性能果然名不虚传。&lt;/p>
+&lt;p>然后继续用多线程的方法又写了一版，每两个 seed 作为一组，开一个线程来逐个 seed 处理。然后&lt;strong>一分钟&lt;/strong>左右就能跑完，确实快，&lt;del>Rust 实在是太强辣&lt;/del>。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-rust" data-lang="rust">&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">mut&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">handlers&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">vec&lt;/span>&lt;span class="o">!&lt;/span>&lt;span class="p">[];&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="k">for&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">start&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">cnt&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">in&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">seeds&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">maps_clone&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">maps&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">clone&lt;/span>&lt;span class="p">();&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">handler&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">thread&lt;/span>::&lt;span class="n">spawn&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">move&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">||&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">start&lt;/span>&lt;span class="p">..&lt;/span>&lt;span class="n">start&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">cnt&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">|&lt;/span>&lt;span class="n">seed&lt;/span>&lt;span class="o">|&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">maps_clone&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">iter&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">fold&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">seed&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">|&lt;/span>&lt;span class="n">seed&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">map&lt;/span>&lt;span class="o">|&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">seed_2_map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">seed&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">map&lt;/span>&lt;span class="p">))&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">})&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">min&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">unwrap&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">});&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">handlers&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">push&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">handler&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="n">handlers&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">into_iter&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">|&lt;/span>&lt;span class="n">handler&lt;/span>&lt;span class="o">|&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">handler&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">join&lt;/span>&lt;span class="p">().&lt;/span>&lt;span class="n">unwrap&lt;/span>&lt;span class="p">())&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">min&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">unwrap&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="真正的解法">真正的解法&lt;/h2>
+&lt;p>之前暴力的解法是逐个 seed 做多次 mapping 得到结果再找最小值，但是这个数量太多，需要跑的次数太多。但实际也不需要每个 seed 做 mapping，完全可以根据区间来做 mapping.&lt;/p>
+&lt;p>对于一个 seeds 的区间 range，经过一轮 mapping 后，&lt;/p>
+&lt;ul>
+&lt;li>如果跟其中的一个 map 有交集，可以取这个交集出来做 mapping&lt;/li>
+&lt;li>交集部分两个端点进行 mapping 可以得到新 range&lt;/li>
+&lt;li>非交集部分取出来得到新 range，继续和其他的 map 进行处理&lt;/li>
+&lt;li>如果都没有交集，那么直接进入下一轮 mapping&lt;/li>
+&lt;/ul>
+&lt;p>具体代码如下&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;span class="lnt">45
+&lt;/span>&lt;span class="lnt">46
+&lt;/span>&lt;span class="lnt">47
+&lt;/span>&lt;span class="lnt">48
+&lt;/span>&lt;span class="lnt">49
+&lt;/span>&lt;span class="lnt">50
+&lt;/span>&lt;span class="lnt">51
+&lt;/span>&lt;span class="lnt">52
+&lt;/span>&lt;span class="lnt">53
+&lt;/span>&lt;span class="lnt">54
+&lt;/span>&lt;span class="lnt">55
+&lt;/span>&lt;span class="lnt">56
+&lt;/span>&lt;span class="lnt">57
+&lt;/span>&lt;span class="lnt">58
+&lt;/span>&lt;span class="lnt">59
+&lt;/span>&lt;span class="lnt">60
+&lt;/span>&lt;span class="lnt">61
+&lt;/span>&lt;span class="lnt">62
+&lt;/span>&lt;span class="lnt">63
+&lt;/span>&lt;span class="lnt">64
+&lt;/span>&lt;span class="lnt">65
+&lt;/span>&lt;span class="lnt">66
+&lt;/span>&lt;span class="lnt">67
+&lt;/span>&lt;span class="lnt">68
+&lt;/span>&lt;span class="lnt">69
+&lt;/span>&lt;span class="lnt">70
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-rust" data-lang="rust">&lt;span class="cp">#[derive(Copy, Clone)]&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="k">struct&lt;/span> &lt;span class="nc">Range&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">start&lt;/span>: &lt;span class="kt">u64&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">end&lt;/span>: &lt;span class="kt">u64&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="k">impl&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Range&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">fn&lt;/span> &lt;span class="nf">new&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">start&lt;/span>: &lt;span class="kt">u64&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">end&lt;/span>: &lt;span class="kt">u64&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>-&amp;gt; &lt;span class="nc">Range&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Range&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">start&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">end&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">fn&lt;/span> &lt;span class="nf">is_empty&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="bp">self&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>-&amp;gt; &lt;span class="kt">bool&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="bp">self&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">start&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;gt;=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="bp">self&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">end&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">fn&lt;/span> &lt;span class="nf">intersect&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="bp">self&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">other&lt;/span>: &lt;span class="nc">Range&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>-&amp;gt; &lt;span class="nc">Range&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Range&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">start&lt;/span>: &lt;span class="nc">self&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">start&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">max&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">other&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">start&lt;/span>&lt;span class="p">),&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">end&lt;/span>: &lt;span class="nc">self&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">end&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">min&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">other&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">end&lt;/span>&lt;span class="p">),&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">fn&lt;/span> &lt;span class="nf">difference&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="bp">self&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">other&lt;/span>: &lt;span class="nc">Range&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>-&amp;gt; &lt;span class="p">(&lt;/span>&lt;span class="n">Range&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Range&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">left_diff&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Range&lt;/span>::&lt;span class="n">new&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="bp">self&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">start&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="bp">self&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">end&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">min&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">other&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">start&lt;/span>&lt;span class="p">));&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">right_diff&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Range&lt;/span>::&lt;span class="n">new&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="bp">self&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">start&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">max&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">other&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">end&lt;/span>&lt;span class="p">),&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="bp">self&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">end&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">left_diff&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">right_diff&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">mut&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">ranges&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">seeds&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="k">for&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">map&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">in&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">maps&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">mut&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">mapped_ranges&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">vec&lt;/span>&lt;span class="o">!&lt;/span>&lt;span class="p">[];&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">while&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nb">Some&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">range&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">ranges&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">pop&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">mut&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">has_intersect&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kc">false&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">for&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">target&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">source&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">len&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">in&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">map&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">iter&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">mapped_range&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Range&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">start&lt;/span>: &lt;span class="o">*&lt;/span>&lt;span class="n">source&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">end&lt;/span>: &lt;span class="o">*&lt;/span>&lt;span class="n">source&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">len&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">};&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">intersection&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">range&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">intersect&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">mapped_range&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">if&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">intersection&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">is_empty&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">continue&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">has_intersect&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kc">true&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">mapped_ranges&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">push&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">Range&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">start&lt;/span>: &lt;span class="nc">intersection&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">start&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="n">source&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="n">target&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">end&lt;/span>: &lt;span class="nc">intersection&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">end&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="n">source&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="n">target&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">});&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">left_diff&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">right_diff&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">range&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">difference&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">mapped_range&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">if&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">!&lt;/span>&lt;span class="n">left_diff&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">is_empty&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">ranges&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">push&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">left_diff&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">if&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">!&lt;/span>&lt;span class="n">right_diff&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">is_empty&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">ranges&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">push&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">right_diff&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">break&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">if&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">!&lt;/span>&lt;span class="n">has_intersect&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">mapped_ranges&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">push&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">range&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">ranges&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">mapped_ranges&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">
+&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="n">ranges&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">iter&lt;/span>&lt;span class="p">().&lt;/span>&lt;span class="n">map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">|&lt;/span>&lt;span class="n">range&lt;/span>&lt;span class="o">|&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">range&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">start&lt;/span>&lt;span class="p">).&lt;/span>&lt;span class="n">min&lt;/span>&lt;span class="p">().&lt;/span>&lt;span class="n">unwrap&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>切换到这个解法后，直接 &lt;strong>0.05s&lt;/strong> 秒了！&lt;/p>
+&lt;p>一个小问题：对于这种需要三个嵌套循环的代码逻辑，如果转成使用函数式编程的思路，比如用 F# 来实现，该怎么办呢？具体请看下回分解。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E7%AE%97%E6%B3%95/">算法</category><category domain="https://scottyeung.top/tags/Rust/">Rust</category><category domain="https://scottyeung.top/tags/coding-%E8%AE%B0%E5%BD%95/">coding 记录</category><category domain="https://scottyeung.top/tags/coding/">coding</category></item><item><title>cross-rs: 无配置可跨平台编译与测试</title><link>https://scottyeung.top/2023/cross-rs-build/</link><guid isPermaLink="true">https://scottyeung.top/2023/cross-rs-build/</guid><pubDate>Sat, 18 Nov 2023 23:08:25 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>虽然说 Rust 是跨平台的，原生也是可以通过指定 target 的方式来进行跨平台编译，但实际使用过程中总是常常因为一些系统配置或者应用的缺失导致编译失败。&lt;/p>
 &lt;p>因此合理的一个想法就是，通过 docker 这种标准化的隔离环境进行编译。rust 中就有这样的应用：&lt;a href="https://github.com/cross-rs/cross">cross&lt;/a>，根据指定的 target，开启合适的容器来进行编译。这样就不用再为配置环境或者安装相应的工具链而费心。&lt;/p>
 &lt;p>使用起来非常简单，只需要前置安装一个 docker 或者 podman，使得系统可支持容器就行。在 macOS 上通过 OrbStack 使用 docker 的体验很好，安装完命令行直接支持。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
@@ -850,30 +1099,4 @@ runtimeOnly(&amp;quot;org.jetbrains.kotlin:kotlin-scripting-jsr223:$kotlinVersio
 &lt;h2 id="后记">后记&lt;/h2>
 &lt;p>写脚本最主要的还是方便，而方便有两方面，一是写要方便，二是跑起来要方便，比如有个小任务，随手打开个 vscode 甚至都不同打开目录，就能有自动补全开写，并在命令行一行命令执行，完成。这样才叫方便。&lt;/p>
 &lt;p>这样调研了一轮，看起来用 kotlin 脚本，方便地跑起来现在已经是没有问题了，问题就在于如何方便地写。写个小东西打开 idea 是否方便呢？如果是以前的 Windows，打开一次得等上个几分钟，那可以直接否掉了。但是现在新电脑打开 idea 几乎是秒开，看起来使用 idea 来写脚本好像又变得可以接受了。&lt;/p>
-&lt;p>&lt;del>不过最后好像还是用F#来写香😂·&lt;/del>&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/kotlin/">kotlin</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category><category domain="https://scottyeung.top/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/">自动化</category></item><item><title>Arc 浏览器使用小记</title><link>https://scottyeung.top/2023/arc-browser/</link><guid isPermaLink="true">https://scottyeung.top/2023/arc-browser/</guid><pubDate>Wed, 02 Aug 2023 20:46:35 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>之前其实一直都有听说过 Arc 这个号称要改变浏览器格局，取代 Chrome 的浏览器，但是一直只有 Macos 版，不支持 Windows 系统，所以也只能一直观望。直到工作之后，拿到了 Mac 的工作电脑，然后自己也提了一台 MacBook，终于有机会可以体验了。于是马上下载下来，设成默认浏览器，体验一番。&lt;/p>
-&lt;p>&lt;img src="https://scottyeung.top/my-images/20230802204238.png" alt="">&lt;/p>
-&lt;p>下载好打开 Arc 浏览器，给人的第一感觉是好看，它的设计以及动画特效，一看就有种花里胡哨的感觉，据说还得付出性能代价，不过实际使用过程中倒也没有察觉到有什么性能问题。&lt;/p>
-&lt;p>实际使用下来，对比于 Chrome 系的浏览器，Arc 主要有下面这些特性&lt;/p>
-&lt;ol>
-&lt;li>垂直侧边栏。Arc 直接把顶部的标签栏，地址栏，收藏夹等都搬到侧边栏，以换取更大的浏览高度&lt;/li>
-&lt;li>不同的标签机制。
-&lt;ol>
-&lt;li>Arc 没有了收藏夹和书签的概念，取而代之的是可以将页面 Pined 住，或者设成 Fav&lt;/li>
-&lt;li>Arc 为了解决开太多标签难以关闭的问题，选择定时会关闭标签，标签打开最多 24 小时就会关闭，默认好像是几个小时。为了防止想看的 tab 被关，必须把它 Pin 住&lt;/li>
-&lt;li>同时，针对日常在各种应用打开链接只是看一下的情况，Arc 提供小窗模式供临时打开一些链接，觉得有必要在点击到大窗&lt;/li>
-&lt;/ol>
-&lt;/li>
-&lt;li>对于页面分屏良好支持，可以随时在当前页面分出一半打开其他页面。&lt;/li>
-&lt;li>使用 Space 来取代多窗口。提供 Space 这个概念来隔离浏览器的使用，不同分组的标签和 Pined 页面可以放到不同的 space 当中使用。相对地，这里比较少用多窗口，甚至打开的新窗口之间会共享已经打开的标签页。&lt;/li>
-&lt;/ol>
-&lt;p>本质上，Arc 也是用的 Chromium 内核，所以其实 Chrome 支持的插件 Arc 都能支持，实际使用起来感觉也还好。但是我的评价是，Arc 浏览器确实是个有特性的浏览器，然后并不算是一个好用的浏览器，尤其是其中的一些概念，可能喜欢的人会很喜欢，但对我来说，感到束手束脚的。比如&lt;/p>
-&lt;ol>
-&lt;li>强行为用户做决定，强制关闭标签页。就这一点，意味在工作中需要一直开着许多工作页面的场景根本不能用 Arc。&lt;/li>
-&lt;li>很别扭的标签页同步。一方面它希望你能够及时关闭看完的页面，但另一方面又自作主张把你把所有打开的标签页同步到每一个打开的窗口，甚至是电脑打开的标签页给你实时地同步到手机上。感觉其实用起来挺别扭的，尤其是很多时候其实手机电脑浏览的场景都是分开的。&lt;/li>
-&lt;li>过分注重美观导致在一些细节上面有很多小问题，不好用，比如靠近右上角自动触发分屏提示，但有时有些按钮在右上角边缘，可能还会导致按不了。&lt;/li>
-&lt;li>没有书签的概念后，收藏页面只能用 Pin，但是 Pin 又不能在 Space 上面共享，又变得要绑定于某一个 Space，最终也还是只用一个 Space，失去了 Space 的意义。&lt;/li>
-&lt;li>一个浏览器居然强制登录才能使用，而登录居然还有墙的限制，从开始就给使用者加障碍了。&lt;/li>
-&lt;li>移动端应用实在太简陋了，甚至没有无痕浏览。&lt;/li>
-&lt;/ol>
-&lt;p>Arc 作为一个很有特点的浏览器，玩玩可以，真沉浸投入使用，可能还是得忍受种种差异与不适，当然就像臭豆腐一样，总有人能接受，如果能够接受，那它的优点还是很香的。另外，Arc 似乎也有很高的定制性，可以自己定制样式，甚至区块布局，不过我探索的时间（和兴趣）有限，懒得折腾。但是大家有兴趣的话也可以玩一玩，试一试。&lt;/p>
-&lt;p>从前在没有 MacBook 的时候，对于 Macos 专享的应用，内心总是有特别的向往，不过真的使用下来，好像又会觉得不过如此，或者仅是还行而已。最近 Macos 上也多了很多新软件，比如 Warp Terminal，Raycast，这些都有在用。可能也是自己还没有深度使用，或者用到它们的精髓，所以感觉也还比较一般。继续慢慢发掘。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/">生产力</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category><category domain="https://scottyeung.top/tags/%E5%90%90%E6%A7%BD/">吐槽</category></item></channel></rss>
+&lt;p>&lt;del>不过最后好像还是用F#来写香😂·&lt;/del>&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/kotlin/">kotlin</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category><category domain="https://scottyeung.top/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/">自动化</category></item></channel></rss>
