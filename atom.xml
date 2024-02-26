@@ -1,4 +1,229 @@
-<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah 的乱写地</title><link>https://scottyeung.top/</link><description>YeungYeah 的乱写地中记录了作者的所思所想及所为。</description><generator>Hugo 0.83.1 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Sun, 21 Jan 2024 14:41:24 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>重新开始思考投资</title><link>https://scottyeung.top/2024/think-invest-again/</link><guid isPermaLink="true">https://scottyeung.top/2024/think-invest-again/</guid><pubDate>Sun, 21 Jan 2024 22:34:34 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>继大四看了孟岩关于价值投资的一些观点后，开始有意识地考虑投资这个事。从 19 年开始，一直在定投国内的基金，从最开始的指数基金买整体的发展，到后面选择一些评级高的主动进取型基金想要更好的收益，投资理念开始逐渐转变。然而再怎样的选择，其实也抵不过大环境大趋势，整个国内市场就不行，怎么选其实都没有意义，再加上发现的各种奇怪的事情，也更加清晰地意识到国内的股市和投资市场就是个笑话。&lt;/p>
+<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah 的乱写地</title><link>https://scottyeung.top/</link><description>YeungYeah 的乱写地中记录了作者的所思所想及所为。</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Mon, 26 Feb 2024 15:49:48 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>开设我的英语博客 By Hugo</title><link>https://scottyeung.top/2024/setup-english-blog/</link><guid isPermaLink="true">https://scottyeung.top/2024/setup-english-blog/</guid><pubDate>Sun, 25 Feb 2024 20:47:21 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>前几天刷推特看到一个挺让人气愤的事情：关注的一个用户所写的博客文章被人翻译成英语搬运到 Medium 上发布，收获了不少的浏览，而且还有一些来自用户认真用心的评论留言。以前见得多中文社区搬运英语社区当中文章翻译成中文变成内容农场的，反向搬中文到英文社区的还真是第一次见，而且看起来更加让人不爽。&lt;/p>
+&lt;p>&lt;img src="https://scottyeung.top/my-images/202402252057093.png" alt="">&lt;/p>
+&lt;p>&lt;img src="https://scottyeung.top/my-images/202402252057572.png" alt="">&lt;/p>
+&lt;p>博主后续很快就举报了这个翻译搬运文章的博主，并且尝试把自己一些博文借助 ChatGPT 的帮助下，把一些文章翻译成英语并发表到 Reddit 上面，反响很不错，甚至登上了频道的 Top1. 作为工作一直都跟国际化相关的人员，我突然意识到除了工作需要紧跟出海的趋势以外，其实个人的东西是不是也可以出海，个人的文字和代码产出是不是也可以发表到海外的英语社区。尤其是现在借助强大的 ChatGPT 下，几乎每个人都可以翻译出不错的英文内容。&lt;/p>
+&lt;p>于是我也把我博客的一些文章，翻译成英语，并通过 Hugo 的多语言，搞出一个&lt;a href="https://scottyeung.top/en">英语版本的博客&lt;/a>。&lt;/p>
+&lt;h2 id="hugo-如何设置多语言">Hugo 如何设置多语言？&lt;/h2>
+&lt;p>一般地使用的 Hugo 主题都有多语言相关的配置，而博客里面需要配置多语言的，主要有以下几个点&lt;/p>
+&lt;ol>
+&lt;li>博客标题&lt;/li>
+&lt;li>导航栏标题&lt;/li>
+&lt;li>评论组件的文本显示&lt;/li>
+&lt;li>自我介绍的关于页面内容&lt;/li>
+&lt;li>博客内容&lt;/li>
+&lt;li>RSS 订阅&lt;/li>
+&lt;li>网页 footer 文本&lt;/li>
+&lt;/ol>
+&lt;h3 id="语言设置">语言设置&lt;/h3>
+&lt;p>Hugo 是支持多语言的，详细的设置可看文档 &lt;a href="https://gohugo.io/content-management/multilingual/">Multilingual mode&lt;/a>. 要支持英语，我们主要要做的是事情是添加语言的配置。这里在添加了新增的 en 后，还得需要把之前使用的默认的中文 zh 语言配置也加上。&lt;/p>
+&lt;p>这里通过 contentDir 来设置不同语言文章所在的目录。我看一般是 &lt;code>content/lang&lt;/code> 这样的格式来设置，但是我之前中文已经把 &lt;code>content&lt;/code> 这个占了，所以就只是为英语设了个 &lt;code>/en&lt;/code> 的路径。后续英语的博客文章放在 &lt;code>content/en/posts/&lt;/code> 下。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-toml" data-lang="toml">&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="nx">languages&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="nx">languages&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">zh&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">contentDir&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;content&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">disabled&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="kc">false&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">languageCode&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;zh-CN&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">languageDirection&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;ltr&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">languageName&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;简体中文&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">weight&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="mi">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="nx">languages&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">en&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">contentDir&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;content/en&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">disabled&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="kc">false&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">languageCode&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;en-US&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">languageDirection&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;ltr&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">languageName&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;English&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">title&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;YeungYeah&amp;#39;s Blog&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">description&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;Record the YeungYeah&amp;#39;s thoughts and actions.&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">siteDescription&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;Record the YeungYeah&amp;#39;s thoughts and actions.&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">weight&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="mi">2&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>这里可以通过 languages 里面的配置来覆盖多语言下博客网站的标题和描述。&lt;/p>
+&lt;h3 id="博客标题--导航栏标题">博客标题 / 导航栏标题&lt;/h3>
+&lt;p>博客标题可以在上面语言配置相关将其覆盖掉，设置成一个英语的标题。导航栏的话可以直接 copy 原有的导航栏设置，然后把 name 修改成英语即可。这里需要注意的是，导航栏需要添加一个新的链接，用于网站中英文的切换。链接添加也很简单，英语的跳转到 &lt;code>/&lt;/code>，中文的跳转到 &lt;code>/en&lt;/code> 即可。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-toml" data-lang="toml">&lt;span class="line">&lt;span class="cl">&lt;span class="p">[[&lt;/span>&lt;span class="nx">languages&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">en&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">menu&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">main&lt;/span>&lt;span class="p">]]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">url&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;/en/posts/&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">name&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;Posts&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">weight&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="mi">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">pre&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;internal&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">post&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;archive&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[[&lt;/span>&lt;span class="nx">languages&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">en&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">menu&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">main&lt;/span>&lt;span class="p">]]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">url&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;/en/tags/&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">name&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;Tags&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">weight&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="mi">4&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">pre&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;internal&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">post&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;tags&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[[&lt;/span>&lt;span class="nx">languages&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">en&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">menu&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">main&lt;/span>&lt;span class="p">]]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">url&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;/en/about/&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">name&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;About&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">weight&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="mi">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">pre&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;internal&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">post&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;user-circle&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[[&lt;/span>&lt;span class="nx">languages&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">en&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">menu&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">main&lt;/span>&lt;span class="p">]]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">url&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;https://www.travellings.cn/go.html&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">name&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;Travel&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">weight&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="mi">5&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">post&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;subway&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[[&lt;/span>&lt;span class="nx">languages&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">en&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">menu&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">main&lt;/span>&lt;span class="p">]]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">weight&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="mi">7&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">identifier&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;theme-switcher&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[[&lt;/span>&lt;span class="nx">languages&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">en&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">menu&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">main&lt;/span>&lt;span class="p">]]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">url&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;/&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">name&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;中文&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">weight&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="mi">6&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">pre&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;internal&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">post&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;user-circle&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="评论组件">评论组件&lt;/h3>
+&lt;p>我的博客是用了 Waline 作为评论组件。Waline 原本就支持多语言，只需要在 Waline 初始化组件时设置 lang 属性即可。我原本用的 Hugo 主题只是提供了参数设置语言，但是并没有可以根据 Hugo 的多语言切换评论组件的语言，于是找到了对应的地方，加了一个判断：如果当前页面的链接中包含 &lt;code>/en/&lt;/code> 则说明是处于英语博客状态。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="line">&lt;span class="cl">&lt;span class="kr">const&lt;/span> &lt;span class="nx">lang&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{{&lt;/span> &lt;span class="k">if&lt;/span> &lt;span class="k">in&lt;/span> &lt;span class="nx">page&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">RelPermalink&lt;/span> &lt;span class="s2">&amp;#34;/en/&amp;#34;&lt;/span> &lt;span class="p">}}&lt;/span> &lt;span class="s1">&amp;#39;en&amp;#39;&lt;/span> &lt;span class="p">{{&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="p">}}&lt;/span> &lt;span class="p">{{&lt;/span> &lt;span class="p">.&lt;/span>&lt;span class="nx">Site&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">Params&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">walineLang&lt;/span> &lt;span class="p">}}&lt;/span> &lt;span class="p">{{&lt;/span> &lt;span class="nx">end&lt;/span> &lt;span class="p">}};&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">Waline&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">init&lt;/span>&lt;span class="p">({&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">el&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s1">&amp;#39;#wcomments&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">placeholder&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s1">&amp;#39;{{ .Site.Params.walinePlaceholder }}&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">serverURL&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s1">&amp;#39;{{ .Site.Params.walineServerURL }}&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">pageview&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="p">{{&lt;/span> &lt;span class="p">.&lt;/span>&lt;span class="nx">Site&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">Params&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">walineVisitor&lt;/span> &lt;span class="p">}},&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">comment&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="p">{{&lt;/span> &lt;span class="p">.&lt;/span>&lt;span class="nx">Site&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">Params&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">walineVisitor&lt;/span> &lt;span class="p">}},&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">meta&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="p">{{&lt;/span> &lt;span class="p">.&lt;/span>&lt;span class="nx">Site&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">Params&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">walineMeta&lt;/span> &lt;span class="p">}},&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">lang&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">lang&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">requiredMeta&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="p">{{&lt;/span> &lt;span class="p">.&lt;/span>&lt;span class="nx">Site&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">Params&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">walineRequiredMeta&lt;/span> &lt;span class="p">}},&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">pageSize&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="p">{{&lt;/span> &lt;span class="p">.&lt;/span>&lt;span class="nx">Site&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">Params&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">walinePageSize&lt;/span> &lt;span class="p">}},&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">dark&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s1">&amp;#39;html[data-theme=&amp;#34;dark&amp;#34;]&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">})&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="关于页面--博客内容">关于页面 / 博客内容&lt;/h3>
+&lt;p>这些文本内容的，直接在 &lt;code>content/en/posts/&lt;/code> 下新建文件即可。这里我基本上是把中文内容丢到 ChatGPT4 翻译就直接拿过来了。除了文本内容以外，标题和标签，都是需要翻译的。&lt;/p>
+&lt;h3 id="rss-订阅">RSS 订阅&lt;/h3>
+&lt;p>Hugo 的多语言在配置后直接就支持生成多语言的 RSS 生成。不过我的主题在页面底部有一个 RSS 订阅的标记，而这个的配置主题也是没有考虑多语言的，所以又改了主题配置，写了个定制，当当前页面链接包含 &lt;code>/en/&lt;/code> 且配置的 id 是 &lt;code>rss&lt;/code>，给他的 url 加一个 &lt;code>/en&lt;/code>。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="line">&lt;span class="cl">&lt;span class="p">{{&lt;/span> &lt;span class="k">if&lt;/span> &lt;span class="p">.&lt;/span>&lt;span class="nx">Site&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">Params&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">enableSocials&lt;/span> &lt;span class="p">}}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{{&lt;/span> &lt;span class="kd">with&lt;/span> &lt;span class="p">.&lt;/span>&lt;span class="nx">Site&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">Data&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">Socials&lt;/span> &lt;span class="p">}}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nx">ul&lt;/span> &lt;span class="kr">class&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;socials&amp;#34;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{{&lt;/span>&lt;span class="o">-&lt;/span> &lt;span class="nx">range&lt;/span> &lt;span class="nx">sort&lt;/span> &lt;span class="p">.&lt;/span>&lt;span class="nx">socials&lt;/span> &lt;span class="s2">&amp;#34;weight&amp;#34;&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="p">}}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{{&lt;/span> &lt;span class="k">if&lt;/span> &lt;span class="nx">and&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="k">in&lt;/span> &lt;span class="nx">page&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">RelPermalink&lt;/span> &lt;span class="s2">&amp;#34;/en/&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">eq&lt;/span> &lt;span class="p">.&lt;/span>&lt;span class="nx">id&lt;/span> &lt;span class="s2">&amp;#34;rss&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">}}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nx">li&lt;/span> &lt;span class="kr">class&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;socials-item&amp;#34;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nx">a&lt;/span> &lt;span class="nx">href&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;/en{{ .url }}&amp;#34;&lt;/span> &lt;span class="nx">title&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;{{ .title }}&amp;#34;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{{&lt;/span>&lt;span class="o">-&lt;/span> &lt;span class="nx">partial&lt;/span> &lt;span class="s2">&amp;#34;utils/icon.html&amp;#34;&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">dict&lt;/span> &lt;span class="s2">&amp;#34;$&amp;#34;&lt;/span> &lt;span class="nx">$&lt;/span> &lt;span class="s2">&amp;#34;name&amp;#34;&lt;/span> &lt;span class="p">.&lt;/span>&lt;span class="nx">icon&lt;/span> &lt;span class="s2">&amp;#34;class&amp;#34;&lt;/span> &lt;span class="s2">&amp;#34;social-icon&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="p">}}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="err">/a&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="err">/li&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{{&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="p">}}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nx">li&lt;/span> &lt;span class="kr">class&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;socials-item&amp;#34;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nx">a&lt;/span> &lt;span class="nx">href&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;{{ .url }}&amp;#34;&lt;/span> &lt;span class="nx">target&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;_blank&amp;#34;&lt;/span> &lt;span class="nx">rel&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;external noopener&amp;#34;&lt;/span> &lt;span class="nx">title&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;{{ .title }}&amp;#34;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{{&lt;/span>&lt;span class="o">-&lt;/span> &lt;span class="nx">partial&lt;/span> &lt;span class="s2">&amp;#34;utils/icon.html&amp;#34;&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">dict&lt;/span> &lt;span class="s2">&amp;#34;$&amp;#34;&lt;/span> &lt;span class="nx">$&lt;/span> &lt;span class="s2">&amp;#34;name&amp;#34;&lt;/span> &lt;span class="p">.&lt;/span>&lt;span class="nx">icon&lt;/span> &lt;span class="s2">&amp;#34;class&amp;#34;&lt;/span> &lt;span class="s2">&amp;#34;social-icon&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="p">}}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="err">/a&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="err">/li&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{{&lt;/span> &lt;span class="nx">end&lt;/span> &lt;span class="p">}}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{{&lt;/span>&lt;span class="o">-&lt;/span> &lt;span class="nx">end&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="p">}}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="err">/ul&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{{&lt;/span> &lt;span class="nx">end&lt;/span> &lt;span class="p">}}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">{{&lt;/span> &lt;span class="nx">end&lt;/span> &lt;span class="p">}}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="footer-内容">footer 内容&lt;/h3>
+&lt;p>footer 的内容基本都是自己定制添加上去的，基本都是没有多语言支持，如果需要给英语博客填上，就得给硬编码的定制价格条件判断。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E5%8D%9A%E5%AE%A2/">博客</category><category domain="https://scottyeung.top/tags/%E5%86%99%E4%BD%9C/">写作</category><category domain="https://scottyeung.top/tags/%E8%BE%93%E5%87%BA/">输出</category><category domain="https://scottyeung.top/tags/Hugo/">Hugo</category><category domain="https://scottyeung.top/tags/AI/">AI</category></item><item><title>重新开始思考投资</title><link>https://scottyeung.top/2024/think-invest-again/</link><guid isPermaLink="true">https://scottyeung.top/2024/think-invest-again/</guid><pubDate>Sun, 21 Jan 2024 22:34:34 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>继大四看了孟岩关于价值投资的一些观点后，开始有意识地考虑投资这个事。从 19 年开始，一直在定投国内的基金，从最开始的指数基金买整体的发展，到后面选择一些评级高的主动进取型基金想要更好的收益，投资理念开始逐渐转变。然而再怎样的选择，其实也抵不过大环境大趋势，整个国内市场就不行，怎么选其实都没有意义，再加上发现的各种奇怪的事情，也更加清晰地意识到国内的股市和投资市场就是个笑话。&lt;/p>
 &lt;p>为什么逐渐对长期的价值投资失去信心？个人理解价值投资，本质上就是用钱去支持与陪同某个企业共同成长，然后成长后获取成长增长的这部份价值。股市的本质应该是帮助企业融资以实现更好的发展和增长。然而现在国内的股市，感觉完全就没有这个感觉。融资只是部份人为了拿钱，更像是企业从股民手上拿钱然后花掉 / 分掉。简单地说就是我们韭菜送钱给他们花。股市是这样，衍生的基金自然也好不到哪里去。&lt;/p>
 &lt;p>其实以前也有过一个疑问，就是如果价值投资或者所谓的长期主义，真的是等大牛市有大涨幅才开始获利离场，但是难道真的要长期到持有几年或者几十年？那这样都收益摊到这么多年来，收益率算下来真的是好吗？其次是一笔钱和收益都需要放这么久不能用，有钱 / 资产的意义也大大减少。&lt;/p>
 &lt;p>遂打算转战美股，停止对于国内市场的投资。之前还一直下不来决心，但是今天刷推特看到才意识到，自己一直缺乏止损 / 止盈能力。其实很早就开始经济不行，但是一直不舍得停下来，一直安慰自己终有一天能够涨回来，再加上定投的钱也不多，就一直投下去，直到现在加起来持有收益已经差不多 -20%。亏了点钱是一方面，另一方面这些定投的钱没有拿去定投其他的地方也少了赚钱的机会了。&lt;/p>
@@ -63,7 +288,7 @@
 &lt;p>既然这么耗时，第一时间想到的就是用多线程并行来跑。在 F# 当中，可以很简单地通过 async block + Async.Parallel 实现并行计算，看起来能跑满七八个核。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
 &lt;/span>&lt;span class="lnt"> 2
 &lt;/span>&lt;span class="lnt"> 3
 &lt;/span>&lt;span class="lnt"> 4
@@ -78,18 +303,20 @@
 &lt;/span>&lt;span class="lnt">13
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-FSharp" data-lang="FSharp">&lt;span class="n">seeds&lt;/span>
-&lt;span class="o">|&amp;gt;&lt;/span> &lt;span class="nn">Seq&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">map&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="k">fun&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">b&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span>
-&lt;span class="n">async&lt;/span> &lt;span class="o">{&lt;/span>
-&lt;span class="k">let&lt;/span> &lt;span class="nv">allSeeds&lt;/span> &lt;span class="o">=&lt;/span>
-&lt;span class="o">[|&lt;/span> &lt;span class="k">for&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="k">in&lt;/span> &lt;span class="n">a&lt;/span> &lt;span class="o">..&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">a&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">b&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="kt">int64&lt;/span> &lt;span class="n">1&lt;/span>&lt;span class="o">))&lt;/span> &lt;span class="k">do&lt;/span>
-&lt;span class="k">yield&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">|]&lt;/span>
-&lt;span class="k">return&lt;/span> &lt;span class="n">maps&lt;/span> &lt;span class="o">|&amp;gt;&lt;/span> &lt;span class="nn">Array&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">fold&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="k">fun&lt;/span> &lt;span class="n">seeds&lt;/span> &lt;span class="n">map&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">seed2Map&lt;/span> &lt;span class="n">seeds&lt;/span> &lt;span class="n">map&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="n">allSeeds&lt;/span> &lt;span class="o">|&amp;gt;&lt;/span> &lt;span class="nn">Seq&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">min&lt;/span>
-&lt;span class="o">})&lt;/span>
-&lt;span class="o">|&amp;gt;&lt;/span> &lt;span class="nn">Async&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Parallel&lt;/span>
-&lt;span class="o">|&amp;gt;&lt;/span> &lt;span class="nn">Async&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">RunSynchronously&lt;/span>
-&lt;span class="o">|&amp;gt;&lt;/span> &lt;span class="nn">Array&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">min&lt;/span>
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-FSharp" data-lang="FSharp">&lt;span class="line">&lt;span class="cl">&lt;span class="n">seeds&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">|&amp;gt;&lt;/span> &lt;span class="nn">Seq&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">map&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="k">fun&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">b&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">async&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">let&lt;/span> &lt;span class="nv">allSeeds&lt;/span> &lt;span class="o">=&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">[|&lt;/span> &lt;span class="k">for&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="k">in&lt;/span> &lt;span class="n">a&lt;/span> &lt;span class="o">..&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">a&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">b&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="kt">int64&lt;/span> &lt;span class="n">1&lt;/span>&lt;span class="o">))&lt;/span> &lt;span class="k">do&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">yield&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">|]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="n">maps&lt;/span> &lt;span class="o">|&amp;gt;&lt;/span> &lt;span class="nn">Array&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">fold&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="k">fun&lt;/span> &lt;span class="n">seeds&lt;/span> &lt;span class="n">map&lt;/span> &lt;span class="o">-&amp;gt;&lt;/span> &lt;span class="n">seed2Map&lt;/span> &lt;span class="n">seeds&lt;/span> &lt;span class="n">map&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="n">allSeeds&lt;/span> &lt;span class="o">|&amp;gt;&lt;/span> &lt;span class="nn">Seq&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">min&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">})&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">|&amp;gt;&lt;/span> &lt;span class="nn">Async&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Parallel&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">|&amp;gt;&lt;/span> &lt;span class="nn">Async&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">RunSynchronously&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">|&amp;gt;&lt;/span> &lt;span class="nn">Array&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">min&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>在 F# 当中使用多线程跑，&lt;strong>5 分钟多点&lt;/strong>就能跑完。&lt;/p>
 &lt;p>既然跑得慢，那么切换到一个跑得更快的语言，用 Rust 来写，应该能提升不少。&lt;/p>
@@ -98,7 +325,7 @@
 &lt;p>然后继续用多线程的方法又写了一版，每两个 seed 作为一组，开一个线程来逐个 seed 处理。然后&lt;strong>一分钟&lt;/strong>左右就能跑完，确实快，&lt;del>Rust 实在是太强辣&lt;/del>。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
 &lt;/span>&lt;span class="lnt"> 2
 &lt;/span>&lt;span class="lnt"> 3
 &lt;/span>&lt;span class="lnt"> 4
@@ -121,28 +348,28 @@
 &lt;/span>&lt;span class="lnt">21
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-rust" data-lang="rust">&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">mut&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">handlers&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">vec&lt;/span>&lt;span class="o">!&lt;/span>&lt;span class="p">[];&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="k">for&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">start&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">cnt&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">in&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">seeds&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">maps_clone&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">maps&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">clone&lt;/span>&lt;span class="p">();&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">handler&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">thread&lt;/span>::&lt;span class="n">spawn&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">move&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">||&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">start&lt;/span>&lt;span class="p">..&lt;/span>&lt;span class="n">start&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">cnt&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">|&lt;/span>&lt;span class="n">seed&lt;/span>&lt;span class="o">|&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">maps_clone&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">iter&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">fold&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">seed&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">|&lt;/span>&lt;span class="n">seed&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">map&lt;/span>&lt;span class="o">|&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">seed_2_map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">seed&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">map&lt;/span>&lt;span class="p">))&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">})&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">min&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">unwrap&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">});&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">handlers&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">push&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">handler&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="n">handlers&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">into_iter&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">|&lt;/span>&lt;span class="n">handler&lt;/span>&lt;span class="o">|&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">handler&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">join&lt;/span>&lt;span class="p">().&lt;/span>&lt;span class="n">unwrap&lt;/span>&lt;span class="p">())&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">min&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">unwrap&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-rust" data-lang="rust">&lt;span class="line">&lt;span class="cl">&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">mut&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">handlers&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="fm">vec!&lt;/span>&lt;span class="p">[];&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">for&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">start&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">cnt&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">in&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">seeds&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">maps_clone&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">maps&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">clone&lt;/span>&lt;span class="p">();&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">handler&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">thread&lt;/span>::&lt;span class="n">spawn&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">move&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">||&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">start&lt;/span>&lt;span class="o">..&lt;/span>&lt;span class="n">start&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">cnt&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">|&lt;/span>&lt;span class="n">seed&lt;/span>&lt;span class="o">|&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">maps_clone&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">iter&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">fold&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">seed&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">|&lt;/span>&lt;span class="n">seed&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">map&lt;/span>&lt;span class="o">|&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">seed_2_map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">seed&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">map&lt;/span>&lt;span class="p">))&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">})&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">min&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">unwrap&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">});&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">handlers&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">push&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">handler&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="n">handlers&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">into_iter&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">|&lt;/span>&lt;span class="n">handler&lt;/span>&lt;span class="o">|&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">handler&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">join&lt;/span>&lt;span class="p">().&lt;/span>&lt;span class="n">unwrap&lt;/span>&lt;span class="p">())&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">min&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">unwrap&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;h2 id="真正的解法">真正的解法&lt;/h2>
 &lt;p>之前暴力的解法是逐个 seed 做多次 mapping 得到结果再找最小值，但是这个数量太多，需要跑的次数太多。但实际也不需要每个 seed 做 mapping，完全可以根据区间来做 mapping.&lt;/p>
@@ -156,7 +383,7 @@
 &lt;p>具体代码如下&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
 &lt;/span>&lt;span class="lnt"> 2
 &lt;/span>&lt;span class="lnt"> 3
 &lt;/span>&lt;span class="lnt"> 4
@@ -228,77 +455,77 @@
 &lt;/span>&lt;span class="lnt">70
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-rust" data-lang="rust">&lt;span class="cp">#[derive(Copy, Clone)]&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="k">struct&lt;/span> &lt;span class="nc">Range&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">start&lt;/span>: &lt;span class="kt">u64&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">end&lt;/span>: &lt;span class="kt">u64&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="k">impl&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Range&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">fn&lt;/span> &lt;span class="nf">new&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">start&lt;/span>: &lt;span class="kt">u64&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">end&lt;/span>: &lt;span class="kt">u64&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>-&amp;gt; &lt;span class="nc">Range&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Range&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">start&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">end&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">fn&lt;/span> &lt;span class="nf">is_empty&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="bp">self&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>-&amp;gt; &lt;span class="kt">bool&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="bp">self&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">start&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;gt;=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="bp">self&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">end&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">fn&lt;/span> &lt;span class="nf">intersect&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="bp">self&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">other&lt;/span>: &lt;span class="nc">Range&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>-&amp;gt; &lt;span class="nc">Range&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Range&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">start&lt;/span>: &lt;span class="nc">self&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">start&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">max&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">other&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">start&lt;/span>&lt;span class="p">),&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">end&lt;/span>: &lt;span class="nc">self&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">end&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">min&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">other&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">end&lt;/span>&lt;span class="p">),&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">fn&lt;/span> &lt;span class="nf">difference&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="bp">self&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">other&lt;/span>: &lt;span class="nc">Range&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>-&amp;gt; &lt;span class="p">(&lt;/span>&lt;span class="n">Range&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Range&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">left_diff&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Range&lt;/span>::&lt;span class="n">new&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="bp">self&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">start&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="bp">self&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">end&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">min&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">other&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">start&lt;/span>&lt;span class="p">));&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">right_diff&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Range&lt;/span>::&lt;span class="n">new&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="bp">self&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">start&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">max&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">other&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">end&lt;/span>&lt;span class="p">),&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="bp">self&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">end&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">left_diff&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">right_diff&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">mut&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">ranges&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">seeds&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="k">for&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">map&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">in&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">maps&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">mut&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">mapped_ranges&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">vec&lt;/span>&lt;span class="o">!&lt;/span>&lt;span class="p">[];&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">while&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nb">Some&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">range&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">ranges&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">pop&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">mut&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">has_intersect&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kc">false&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">for&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">target&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">source&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">len&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">in&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">map&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">iter&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">mapped_range&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Range&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">start&lt;/span>: &lt;span class="o">*&lt;/span>&lt;span class="n">source&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">end&lt;/span>: &lt;span class="o">*&lt;/span>&lt;span class="n">source&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">len&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">};&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">intersection&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">range&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">intersect&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">mapped_range&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">if&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">intersection&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">is_empty&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">continue&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">has_intersect&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kc">true&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">mapped_ranges&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">push&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">Range&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">start&lt;/span>: &lt;span class="nc">intersection&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">start&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="n">source&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="n">target&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">end&lt;/span>: &lt;span class="nc">intersection&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">end&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="n">source&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="n">target&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">});&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">left_diff&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">right_diff&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">range&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">difference&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">mapped_range&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">if&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">!&lt;/span>&lt;span class="n">left_diff&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">is_empty&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">ranges&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">push&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">left_diff&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">if&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">!&lt;/span>&lt;span class="n">right_diff&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">is_empty&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">ranges&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">push&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">right_diff&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">break&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">if&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">!&lt;/span>&lt;span class="n">has_intersect&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">mapped_ranges&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">push&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">range&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">ranges&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">mapped_ranges&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">
-&lt;/span>&lt;span class="w">&lt;/span>&lt;span class="n">ranges&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">iter&lt;/span>&lt;span class="p">().&lt;/span>&lt;span class="n">map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">|&lt;/span>&lt;span class="n">range&lt;/span>&lt;span class="o">|&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">range&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">start&lt;/span>&lt;span class="p">).&lt;/span>&lt;span class="n">min&lt;/span>&lt;span class="p">().&lt;/span>&lt;span class="n">unwrap&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-rust" data-lang="rust">&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#[derive(Copy, Clone)]&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">struct&lt;/span> &lt;span class="nc">Range&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">start&lt;/span>: &lt;span class="kt">u64&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">end&lt;/span>: &lt;span class="kt">u64&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">impl&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Range&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">fn&lt;/span> &lt;span class="nf">new&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">start&lt;/span>: &lt;span class="kt">u64&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">end&lt;/span>: &lt;span class="kt">u64&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>-&amp;gt; &lt;span class="nc">Range&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">Range&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">start&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">end&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">fn&lt;/span> &lt;span class="nf">is_empty&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="bp">self&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>-&amp;gt; &lt;span class="kt">bool&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="bp">self&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">start&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;gt;=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="bp">self&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">end&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">fn&lt;/span> &lt;span class="nf">intersect&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="bp">self&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">other&lt;/span>: &lt;span class="nc">Range&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>-&amp;gt; &lt;span class="nc">Range&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">Range&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">start&lt;/span>: &lt;span class="nc">self&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">start&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">max&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">other&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">start&lt;/span>&lt;span class="p">),&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">end&lt;/span>: &lt;span class="nc">self&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">end&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">min&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">other&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">end&lt;/span>&lt;span class="p">),&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">fn&lt;/span> &lt;span class="nf">difference&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="bp">self&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">other&lt;/span>: &lt;span class="nc">Range&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>-&amp;gt; &lt;span class="p">(&lt;/span>&lt;span class="n">Range&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Range&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">left_diff&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Range&lt;/span>::&lt;span class="n">new&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="bp">self&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">start&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="bp">self&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">end&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">min&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">other&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">start&lt;/span>&lt;span class="p">));&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">right_diff&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Range&lt;/span>::&lt;span class="n">new&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="bp">self&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">start&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">max&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">other&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">end&lt;/span>&lt;span class="p">),&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="bp">self&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">end&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">left_diff&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">right_diff&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">mut&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">ranges&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">seeds&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">for&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">map&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">in&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">maps&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">mut&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">mapped_ranges&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="fm">vec!&lt;/span>&lt;span class="p">[];&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">while&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nb">Some&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">range&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">ranges&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">pop&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">mut&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">has_intersect&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kc">false&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">for&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">target&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">source&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">len&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">in&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">map&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">iter&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">mapped_range&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Range&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">start&lt;/span>: &lt;span class="o">*&lt;/span>&lt;span class="n">source&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">end&lt;/span>: &lt;span class="o">*&lt;/span>&lt;span class="n">source&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">len&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">};&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">intersection&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">range&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">intersect&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">mapped_range&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">if&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">intersection&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">is_empty&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">continue&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">has_intersect&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kc">true&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">mapped_ranges&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">push&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">Range&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">start&lt;/span>: &lt;span class="nc">intersection&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">start&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="n">source&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="n">target&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">end&lt;/span>: &lt;span class="nc">intersection&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">end&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="n">source&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="n">target&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">});&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">let&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">left_diff&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">right_diff&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">range&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">difference&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">mapped_range&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">if&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">!&lt;/span>&lt;span class="n">left_diff&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">is_empty&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">ranges&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">push&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">left_diff&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">if&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">!&lt;/span>&lt;span class="n">right_diff&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">is_empty&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">ranges&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">push&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">right_diff&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">break&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">if&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">!&lt;/span>&lt;span class="n">has_intersect&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">mapped_ranges&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">push&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">range&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">ranges&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">mapped_ranges&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="n">ranges&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">iter&lt;/span>&lt;span class="p">().&lt;/span>&lt;span class="n">map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">|&lt;/span>&lt;span class="n">range&lt;/span>&lt;span class="o">|&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">range&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">start&lt;/span>&lt;span class="p">).&lt;/span>&lt;span class="n">min&lt;/span>&lt;span class="p">().&lt;/span>&lt;span class="n">unwrap&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>切换到这个解法后，直接 &lt;strong>0.05s&lt;/strong> 秒了！&lt;/p>
 &lt;p>一个小问题：对于这种需要三个嵌套循环的代码逻辑，如果转成使用函数式编程的思路，比如用 F# 来实现，该怎么办呢？具体请看下回分解。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E7%AE%97%E6%B3%95/">算法</category><category domain="https://scottyeung.top/tags/Rust/">Rust</category><category domain="https://scottyeung.top/tags/coding-%E8%AE%B0%E5%BD%95/">coding 记录</category><category domain="https://scottyeung.top/tags/coding/">coding</category></item><item><title>cross-rs: 无配置可跨平台编译与测试</title><link>https://scottyeung.top/2023/cross-rs-build/</link><guid isPermaLink="true">https://scottyeung.top/2023/cross-rs-build/</guid><pubDate>Sat, 18 Nov 2023 23:08:25 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>虽然说 Rust 是跨平台的，原生也是可以通过指定 target 的方式来进行跨平台编译，但实际使用过程中总是常常因为一些系统配置或者应用的缺失导致编译失败。&lt;/p>
@@ -306,7 +533,7 @@
 &lt;p>使用起来非常简单，只需要前置安装一个 docker 或者 podman，使得系统可支持容器就行。在 macOS 上通过 OrbStack 使用 docker 的体验很好，安装完命令行直接支持。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
 &lt;/span>&lt;span class="lnt"> 2
 &lt;/span>&lt;span class="lnt"> 3
 &lt;/span>&lt;span class="lnt"> 4
@@ -317,18 +544,20 @@
 &lt;/span>&lt;span class="lnt"> 9
 &lt;/span>&lt;span class="lnt">10
 &lt;/span>&lt;span class="lnt">11
-&lt;/span>&lt;span class="lnt">12
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="c1"># 首先安装 cross&lt;/span>
-cargo install cross --git https://github.com/cross-rs/cross
-&lt;span class="c1"># 启动 docker&lt;/span>
-&lt;span class="c1"># 指定 target 进行编译&lt;/span>
-cross build --target x86_64-unknown-linux-musl
-cross build --target x86_64-unknown-linux-musl --release
-&lt;span class="c1"># 指定 target 进行测试&lt;/span>
-cross &lt;span class="nb">test&lt;/span> --target mips64-unknown-linux-gnuabi64
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 首先安装 cross&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cargo install cross --git https://github.com/cross-rs/cross
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 启动 docker&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 指定 target 进行编译&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cross build --target x86_64-unknown-linux-musl
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cross build --target x86_64-unknown-linux-musl --release
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 指定 target 进行测试&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cross &lt;span class="nb">test&lt;/span> --target mips64-unknown-linux-gnuabi64
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>不过编译速度稍慢，可能是因为套了层 docker 的原因，比直接编译慢多了，甚至感觉还不如以前在 Windows 上用 WSL 来编译 Linux 版本。&lt;/p>
 &lt;p>另外这样用 docker 来编译的话，一些依赖 crate 的编译结果也没得缓存，每次都需要重新把所有 crate 都编译一次，有点折磨。&lt;/p>
@@ -383,7 +612,7 @@ cross &lt;span class="nb">test&lt;/span> --target mips64-unknown-linux-gnuabi64
 &lt;/ul>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
 &lt;/span>&lt;span class="lnt"> 2
 &lt;/span>&lt;span class="lnt"> 3
 &lt;/span>&lt;span class="lnt"> 4
@@ -399,20 +628,21 @@ cross &lt;span class="nb">test&lt;/span> --target mips64-unknown-linux-gnuabi64
 &lt;/span>&lt;span class="lnt">14
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-typescript" data-lang="typescript">&lt;span class="kr">export&lt;/span> &lt;span class="k">default&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="kr">async&lt;/span> &lt;span class="nx">scheduled&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">event&lt;/span>: &lt;span class="kt">ScheduledEvent&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">env&lt;/span>: &lt;span class="kt">Env&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">ctx&lt;/span>: &lt;span class="kt">ExecutionContext&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">Promise&lt;/span>&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">void&lt;/span>&lt;span class="p">&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="c1">// A Cron Trigger can make requests to other endpoints on the Internet,
-&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="c1">// publish to a Queue, query a D1 Database, and much more.
-&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="c1">//
-&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="c1">// We&amp;#39;ll keep it simple and make an API call to a Cloudflare API:
-&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="kd">let&lt;/span> &lt;span class="nx">resp&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">await&lt;/span> &lt;span class="nx">fetch&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;https://api.cloudflare.com/client/v4/ips&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;span class="kd">let&lt;/span> &lt;span class="nx">wasSuccessful&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">resp&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">ok&lt;/span> &lt;span class="o">?&lt;/span> &lt;span class="s1">&amp;#39;success&amp;#39;&lt;/span> &lt;span class="o">:&lt;/span> &lt;span class="s1">&amp;#39;fail&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;span class="c1">// You could store this result in KV, write to a D1 Database, or publish to a Queue.
-&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="c1">// In this template, we&amp;#39;ll just log the result:
-&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="nx">console&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">log&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sb">`trigger fired at &lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nx">event&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">cron&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="sb">: &lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nx">wasSuccessful&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="sb">`&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;span class="p">}&lt;/span>
-&lt;span class="p">};&lt;/span>
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-typescript" data-lang="typescript">&lt;span class="line">&lt;span class="cl">&lt;span class="kr">export&lt;/span> &lt;span class="k">default&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kr">async&lt;/span> &lt;span class="nx">scheduled&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">event&lt;/span>: &lt;span class="kt">ScheduledEvent&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">env&lt;/span>: &lt;span class="kt">Env&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">ctx&lt;/span>: &lt;span class="kt">ExecutionContext&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">Promise&lt;/span>&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">void&lt;/span>&lt;span class="p">&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// A Cron Trigger can make requests to other endpoints on the Internet,
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="c1">// publish to a Queue, query a D1 Database, and much more.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="c1">//
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="c1">// We&amp;#39;ll keep it simple and make an API call to a Cloudflare API:
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="kd">let&lt;/span> &lt;span class="nx">resp&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">await&lt;/span> &lt;span class="nx">fetch&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;https://api.cloudflare.com/client/v4/ips&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kd">let&lt;/span> &lt;span class="nx">wasSuccessful&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">resp&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">ok&lt;/span> &lt;span class="o">?&lt;/span> &lt;span class="s1">&amp;#39;success&amp;#39;&lt;/span> &lt;span class="o">:&lt;/span> &lt;span class="s1">&amp;#39;fail&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// You could store this result in KV, write to a D1 Database, or publish to a Queue.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="c1">// In this template, we&amp;#39;ll just log the result:
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="nx">console&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">log&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sb">`trigger fired at &lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nx">event&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">cron&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="sb">: &lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nx">wasSuccessful&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="sb">`&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">};&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;ul>
 &lt;li>因为 Cloudflare 的 JS 运行时并不是标准的 node，所以一些依赖 node api 的 npm 库可能会跑不了。之前的一些依赖库可能就需要替换，或者手工对 npm 库源代码进行修改。&lt;/li>
@@ -441,7 +671,7 @@ cross &lt;span class="nb">test&lt;/span> --target mips64-unknown-linux-gnuabi64
 &lt;/ul>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
 &lt;/span>&lt;span class="lnt"> 2
 &lt;/span>&lt;span class="lnt"> 3
 &lt;/span>&lt;span class="lnt"> 4
@@ -467,28 +697,31 @@ cross &lt;span class="nb">test&lt;/span> --target mips64-unknown-linux-gnuabi64
 &lt;/span>&lt;span class="lnt">24
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-typescript" data-lang="typescript">&lt;span class="kr">export&lt;/span> &lt;span class="k">default&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="c1">// The scheduled handler is invoked at the interval set in our wrangler.toml&amp;#39;s
-&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="c1">// [[triggers]] configuration.
-&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="kr">async&lt;/span> &lt;span class="nx">scheduled&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">event&lt;/span>: &lt;span class="kt">ScheduledEvent&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">env&lt;/span>: &lt;span class="kt">Env&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">ctx&lt;/span>: &lt;span class="kt">ExecutionContext&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">Promise&lt;/span>&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">void&lt;/span>&lt;span class="p">&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="c1">// A Cron Trigger can make requests to other endpoints on the Internet,
-&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="c1">// publish to a Queue, query a D1 Database, and much more.
-&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="c1">//
-&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="c1">// We&amp;#39;ll keep it simple and make an API call to a Cloudflare API:
-&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="kd">let&lt;/span> &lt;span class="nx">resp&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">await&lt;/span> &lt;span class="nx">fetch&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;https://api.cloudflare.com/client/v4/ips&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;span class="kd">let&lt;/span> &lt;span class="nx">wasSuccessful&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">resp&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">ok&lt;/span> &lt;span class="o">?&lt;/span> &lt;span class="s1">&amp;#39;success&amp;#39;&lt;/span> &lt;span class="o">:&lt;/span> &lt;span class="s1">&amp;#39;fail&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;span class="c1">// You could store this result in KV, write to a D1 Database, or publish to a Queue.
-&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="c1">// In this template, we&amp;#39;ll just log the result:
-&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="nx">console&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">log&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sb">`trigger fired at &lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nx">event&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">cron&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="sb">: &lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nx">wasSuccessful&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="sb">`&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;span class="p">},&lt;/span>
-&lt;span class="c1">// The event handler is invoked whenever an HTTP request is made to your
-&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="c1">// worker. The request will trigger the event handler regardless of the
-&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="c1">// request method or URL path.
-&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="nx">fetch&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">request&lt;/span>: &lt;span class="kt">Request&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">env&lt;/span>: &lt;span class="kt">Env&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">ctx&lt;/span>: &lt;span class="kt">ExecutionContext&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">Promise&lt;/span>&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">Response&lt;/span>&lt;span class="p">&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="k">return&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="nx">Response&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sb">`Hello from the scheduled worker at &lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nx">request&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">url&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="sb">`&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;span class="p">}&lt;/span>
-&lt;span class="p">};&lt;/span>
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-typescript" data-lang="typescript">&lt;span class="line">&lt;span class="cl">&lt;span class="kr">export&lt;/span> &lt;span class="k">default&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// The scheduled handler is invoked at the interval set in our wrangler.toml&amp;#39;s
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="c1">// [[triggers]] configuration.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="kr">async&lt;/span> &lt;span class="nx">scheduled&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">event&lt;/span>: &lt;span class="kt">ScheduledEvent&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">env&lt;/span>: &lt;span class="kt">Env&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">ctx&lt;/span>: &lt;span class="kt">ExecutionContext&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">Promise&lt;/span>&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">void&lt;/span>&lt;span class="p">&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// A Cron Trigger can make requests to other endpoints on the Internet,
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="c1">// publish to a Queue, query a D1 Database, and much more.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="c1">//
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="c1">// We&amp;#39;ll keep it simple and make an API call to a Cloudflare API:
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="kd">let&lt;/span> &lt;span class="nx">resp&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">await&lt;/span> &lt;span class="nx">fetch&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;https://api.cloudflare.com/client/v4/ips&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kd">let&lt;/span> &lt;span class="nx">wasSuccessful&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">resp&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">ok&lt;/span> &lt;span class="o">?&lt;/span> &lt;span class="s1">&amp;#39;success&amp;#39;&lt;/span> &lt;span class="o">:&lt;/span> &lt;span class="s1">&amp;#39;fail&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// You could store this result in KV, write to a D1 Database, or publish to a Queue.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="c1">// In this template, we&amp;#39;ll just log the result:
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="nx">console&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">log&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sb">`trigger fired at &lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nx">event&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">cron&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="sb">: &lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nx">wasSuccessful&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="sb">`&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// The event handler is invoked whenever an HTTP request is made to your
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="c1">// worker. The request will trigger the event handler regardless of the
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="c1">// request method or URL path.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="nx">fetch&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">request&lt;/span>: &lt;span class="kt">Request&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">env&lt;/span>: &lt;span class="kt">Env&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">ctx&lt;/span>: &lt;span class="kt">ExecutionContext&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">Promise&lt;/span>&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">Response&lt;/span>&lt;span class="p">&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="nx">Response&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sb">`Hello from the scheduled worker at &lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nx">request&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">url&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="sb">`&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">};&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>可以通过在配置文件 wrangle.toml 或者 dashboard 中的设置中声明环境变量。环境变量通过传递进来的 env 参数使用。&lt;/p>
 &lt;p>免费版主要是限制&lt;/p>
@@ -513,35 +746,36 @@ cross &lt;span class="nb">test&lt;/span> --target mips64-unknown-linux-gnuabi64
 &lt;p>如果调用的 node api 在 Cloudflare 中有实现的，通过换个方式导入也可以。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
 &lt;/span>&lt;span class="lnt">2
 &lt;/span>&lt;span class="lnt">3
 &lt;/span>&lt;span class="lnt">4
 &lt;/span>&lt;span class="lnt">5
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-javascript" data-lang="javascript">&lt;span class="c1">// Do this:
-&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="kr">import&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="nx">Buffer&lt;/span> &lt;span class="p">}&lt;/span> &lt;span class="nx">from&lt;/span> &lt;span class="s1">&amp;#39;node:buffer&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;span class="c1">// Do not do this:
-&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="kr">import&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="nx">Buffer&lt;/span> &lt;span class="p">}&lt;/span> &lt;span class="nx">from&lt;/span> &lt;span class="s1">&amp;#39;buffer&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-javascript" data-lang="javascript">&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// Do this:
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="kr">import&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="nx">Buffer&lt;/span> &lt;span class="p">}&lt;/span> &lt;span class="nx">from&lt;/span> &lt;span class="s1">&amp;#39;node:buffer&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// Do not do this:
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="kr">import&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="nx">Buffer&lt;/span> &lt;span class="p">}&lt;/span> &lt;span class="nx">from&lt;/span> &lt;span class="s1">&amp;#39;buffer&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;h2 id="d1">D1&lt;/h2>
 &lt;p>cloudflare 提供的关系型数据库&lt;/p>
 &lt;p>创建数据库后可以在 worker 里面添加绑定，直接访问到数据库&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
 &lt;/span>&lt;span class="lnt">2
 &lt;/span>&lt;span class="lnt">3
 &lt;/span>&lt;span class="lnt">4
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-toml" data-lang="toml">&lt;span class="p">[[&lt;/span>&lt;span class="nx">d1_databases&lt;/span>&lt;span class="p">]]&lt;/span>
-&lt;span class="nx">binding&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;DB&amp;#34;&lt;/span> &lt;span class="c"># available in your Worker on env.DB&lt;/span>
-&lt;span class="nx">database_name&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;database&amp;#34;&lt;/span>
-&lt;span class="nx">database_id&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;database_id&amp;#34;&lt;/span>
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-toml" data-lang="toml">&lt;span class="line">&lt;span class="cl">&lt;span class="p">[[&lt;/span>&lt;span class="nx">d1_databases&lt;/span>&lt;span class="p">]]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">binding&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;DB&amp;#34;&lt;/span> &lt;span class="c"># available in your Worker on env.DB&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">database_name&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;database&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">database_id&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;database_id&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>实际使用起来就是会在入口处传递 env，然后这个数据库的实例也随着 env 传进来，然后就可以手写 sql 进行数据处理了。&lt;/p>
 &lt;p>数据库操作可以通过&lt;/p>
@@ -563,218 +797,4 @@ cross &lt;span class="nb">test&lt;/span> --target mips64-unknown-linux-gnuabi64
 &lt;li>单个数据库 500MB&lt;/li>
 &lt;li>每月读 5,000,000 行，写 100,000 行&lt;/li>
 &lt;/ul>
-&lt;p>&lt;img src="https://scottyeung.top/my-images/%E6%88%AA%E5%B1%8F2023-10-28%2021.07.36.png" alt="">&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/serverless/">serverless</category><category domain="https://scottyeung.top/tags/JavaScript/">JavaScript</category><category domain="https://scottyeung.top/tags/Cloudflare/">Cloudflare</category><category domain="https://scottyeung.top/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1/">云服务</category></item><item><title>拥抱 AI 的 Arc 浏览器</title><link>https://scottyeung.top/2023/ai-in-arc-browser/</link><guid isPermaLink="true">https://scottyeung.top/2023/ai-in-arc-browser/</guid><pubDate>Sun, 15 Oct 2023 08:00:00 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>虽然前面的使用小记中对于 Arc 浏览器进行了不少吐槽，但是其特色和美观的外表还是挺吸引我的，于是在自己的电脑上总是时不时又忍不住切换默认的浏览器到 Arc 上面。现在整体使用感觉还是挺不错的，除了看不到扩展的状态，需要在使用的时候点菜单来唤起扩展以外。&lt;/p>
-&lt;p>在这次切换并更新 Arc 浏览器后，发现 Arc 浏览器在设置上多了一个关于 AI 的 tab，叫做 Max，看起来还挺有意思的。&lt;/p>
-&lt;p>&lt;img src="https://scottyeung.top/my-images/202310142324997.png" alt="">&lt;/p>
-&lt;p>根据这个设置页简单看了一下，主要有下面的功能：&lt;/p>
-&lt;ul>
-&lt;li>根据当前页面内容进行提问&lt;/li>
-&lt;li>链接内容根据 AI 进行一个预览生成&lt;/li>
-&lt;li>利用 AI 为打开 tab 的 title 和下载文件名进行智能命名&lt;/li>
-&lt;li>拉起 ChatGPT 提问&lt;/li>
-&lt;/ul>
-&lt;p>实际使用了一下，想法挺不错的，但是还可以有进一步的改进空间&lt;/p>
-&lt;h2 id="link-preview">link preview&lt;/h2>
-&lt;p>这个超链接 preview 的功能挺有意思的，可以在打开前先看看链接描述的内容。生成 preview 格式是一句话的 title，加上一些分组列出的属性。生成 preview 的内容其实也算准确，不过现阶段生成的 preview 语言都是固定是英语的，即使我调了一下浏览器的 Preferred languages 改成英语，生成的 preview 也还是英语的。虽然没错，但是其实对于帮助了解链接内容讲什么作用不是很大，不过感觉这个提升空间很大，如果继续优化估计会很强。&lt;/p>
-&lt;p>&lt;img src="https://scottyeung.top/my-images/202310142327077.png" alt="">&lt;/p>
-&lt;h2 id="chatgpt">ChatGPT&lt;/h2>
-&lt;p>拉起 ChatGPT 就是一个比较 normal 的功能了，通过 option + command + G (windows 下应该是 alt + ctrl + G) 唤起。不过本质其实就是个启动器，输入问题后就是跳转到 &lt;a href="https://chat.openai.com/">chat.openai.com&lt;/a> 页面进行提问回答了。（不过发现现在的 ChatGPT 官网是不是放开了对区域的限制？挂🇭🇰网络访问还是非常丝滑的）&lt;/p>
-&lt;p>&lt;img src="https://scottyeung.top/my-images/202310142345200.png" alt="">&lt;/p>
-&lt;h2 id="页面内容提问">页面内容提问&lt;/h2>
-&lt;p>传统的页面搜索唤起后，如果搜索不到内容，可以进行提问，估计也是唤起 ChatGPT 来提问？但我这里尝试了几次都是遇到问题，返回 &lt;code>Sorry, I encountered an error.&lt;/code>。上网一搜好像也不是个例，尝鲜不了。&lt;/p>
-&lt;h2 id="智能重命名">智能重命名&lt;/h2>
-&lt;p>Arc 浏览器一个挺有意思的改动，就是去除了收藏夹的概念，转变为 pin tab 的概念。现在把 tab pin 后把这个标签页的 title 智能重命名，变得更短更整洁，用起来也还好。个人理解其实就是相当于收藏页面的时候，用 AI 自动为它生成一个标题。这个功能还是有点用的，毕竟很多时候添加收藏其实都不会给它加标题，直接用它的标题可能会巨长，或者也描述不清。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/">生产力</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category><category domain="https://scottyeung.top/tags/%E8%AE%B0%E5%BD%95/">记录</category><category domain="https://scottyeung.top/tags/%E6%9D%82%E8%B0%88/">杂谈</category><category domain="https://scottyeung.top/tags/AI/">AI</category></item><item><title>围城之内：一位程序员的生活反思与职业选择</title><link>https://scottyeung.top/2023/thoughts-of-programmer-career/</link><guid isPermaLink="true">https://scottyeung.top/2023/thoughts-of-programmer-career/</guid><pubDate>Sat, 14 Oct 2023 20:19:57 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>前两天在抖音刷到了一个同是 23 年应届的 Java 开发程序员，也是在深圳工作。按他视频的介绍，早上九点上班，然后看起来也似乎是住的比较远，从罗湖站附近坐地铁来南山这边上班，可能也需要个一小时。晚上平均大概十点走，有事可能还会更晚，比如软件发布。公司体量应该还行，月 base 也有差不多 20k。刷到的时候已经因为工作强度高，常加班且加班时间长等原因，选择裸辞。&lt;/p>
-&lt;p>第一眼看到他的生活以及他的选择的时候，觉得走人确实没什么问题，自己作为也同样在互联网大厂工作的人来说，能够体会到他这种高强度长时间工作的累（身体上的累和心累）。不过其实细看他的生活，其实对于这样累的生活方式，其实有挺多是可以通过一些方法或者舍弃一些东西来缓解的。&lt;/p>
-&lt;ul>
-&lt;li>通勤时间太长。可能因为租房价格的原因，所以选择租得比较远，住罗湖区来南山区上班，通勤来回感觉得两个小时了，而且途径一些大站上地铁，排队挤地铁通勤的体验也实在不好，看视频等两三次地铁才能上简直是窒息。要么加点钱住近点（多掏个 2k 能舒服很多），要么舍弃点其他因素（比如合租而不是不整租）。原本工作时间就长了，还花这么多在通勤，很窒息。&lt;/li>
-&lt;li>每天还自己做饭，晚上下班后到家才做饭吃，并且做好第二天的饭。做饭也花上不少的时间，备材料，做饭，洗碗筷收拾，又花上个一小时。而且最主要的是这样下班后才回家做饭吃，一是太晚吃东西，饿得难受，二是这样岂不是就少了晚上吃饭这个摸鱼的时间了吗？&lt;/li>
-&lt;li>&lt;strong>在时间如此紧缺的情况下，不单没有接受这种处境，反而想要通过拼一点来与这种处境抗争。&lt;/strong> 比如十一点多才到家，不赶紧休息还去做个饭，晚上还剪下视频，到差不多两点钟才睡觉，然后早上7点钟又起床。这样纯靠意志力来抗衡，其实终究会是被消磨干净。&lt;/li>
-&lt;/ul>
-&lt;p>当然对于这样的生活，大家都可以选择不要，选择离开，有些时候是真的难顶，真的会顶不住。然而离开后又能干什么呢？或者说你能不能做出舍弃，比如放弃相当的收入，或者放弃在大城市工作的机会。&lt;/p>
-&lt;p>看 up 裸辞爽玩了半个月不到，然后又开始焦虑地找工作，但是还是在这一行里面，还是找类似的开发工作，面试类似的工作，又能够找出多少例外？因为今年毕业且已经工作，基本都只能够走社招，但经验又只工作了几个月，求职也不太容易。最新的视频是最后拿到了平安银行的开发，工资可能十来 k，号称是晚上七点多下班。但就这家在脉脉的风评，以及评论区的现身说法，我感觉是难保证这个下班时间的。这个 offer 本质上和前面干不下去的那家又有什么区别呢？&lt;/p>
-&lt;p>&lt;del>不过 up 也已经因为这些视频收获了一些粉丝，正如某评论说的，不如就干脆把找工作作为工作，当自媒体算了🤣。也可能可以是下一步我的副业方向。&lt;/del>&lt;/p>
-&lt;p>现在的互联网计算机行业就像围城一样，外面的人看到工资都高都觉得程序员这份工作很好，里面的人则因为这种心累而选择退出。我还能熬多久自己也不知道，不过现在的心态也已经从以前我能卷过它们，我能克服一切，到现在理解，接受，成为。不过人的接受阈值终究是有一条界线在，能够坚持多久，其实不好说，毕竟其实也并非完全不可能。&lt;/p>
-&lt;p>&lt;img src="https://scottyeung.top/my-images/202310142029272.png" alt="">&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E7%94%9F%E6%B4%BB/">生活</category><category domain="https://scottyeung.top/tags/%E6%9D%82%E8%B0%88/">杂谈</category><category domain="https://scottyeung.top/tags/%E8%AE%B0%E5%BD%95/">记录</category><category domain="https://scottyeung.top/tags/%E9%9A%8F%E7%AC%94/">随笔</category><category domain="https://scottyeung.top/tags/%E5%90%90%E6%A7%BD/">吐槽</category><category domain="https://scottyeung.top/tags/%E5%81%A5%E5%BA%B7/">健康</category><category domain="https://scottyeung.top/tags/Java/">Java</category></item><item><title>gradle 项目如何发布到 Maven 中央库</title><link>https://scottyeung.top/2023/gradle-deploy-maven-central/</link><guid isPermaLink="true">https://scottyeung.top/2023/gradle-deploy-maven-central/</guid><pubDate>Sat, 16 Sep 2023 22:34:26 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>如何把开发完成的 gradle 项目的产物发布到 Maven Central Repository 中，让大家可以使用到你的成果？上周走了一遍流程，把写的剪贴板操作的一个简单项目发布了一下，发现有点麻烦的，流程比较长，而且使用 gradle 的话，gradle 更新实在是太快，兼容性也太差，导致网上搜到到文档，其实都不太一样，更难绷的是是连 &lt;a href="https://central.sonatype.org/publish/publish-gradle">sonatype 官方给出的 gradle 发布教学文档&lt;/a> 也是跟实际最新 gradle8 版本的不一致，因此只能参考下里面的流程，而细节只能靠自己摸索。&lt;/p>
-&lt;h2 id="发布本质">发布本质&lt;/h2>
-&lt;p>项目发布本质上是将项目打包成一个可用的 artifact，里面有编译好字节码，以及包含项目相关信息的配置 pom 文件。这些产物可以上传到可供大众使用到托管平台中，如 &lt;a href="http://links.sonatype.com/products/nexus/pro/home">Sonatype Nexus Repository&lt;/a>，并最终同步到 Central Repository 当中。当需要使用依赖时，声明依赖的标识 groupId:artifactId:version，构建工具 Maven/gradle 就会自动到这些仓库获取依赖并使用。因此发布的核心操作其实就两个&lt;/p>
-&lt;ol>
-&lt;li>项目打包成产物&lt;/li>
-&lt;li>产物上传到托管平台&lt;/li>
-&lt;/ol>
-&lt;h2 id="发布流程">发布流程&lt;/h2>
-&lt;p>这里以发布到 sonatype 的仓库为例，这是一个开源的 artifact 托管平台，大家都可以使用，产物也都是公开的。&lt;/p>
-&lt;blockquote>
-&lt;p>这里用的都是最新的 gradle 8.2&lt;/p>
-&lt;/blockquote>
-&lt;h3 id="创建-ticket">创建 ticket&lt;/h3>
-&lt;p>想要发布产物到公开仓库，首先需要到 sonatype 注册一个 &lt;a href="https://issues.sonatype.org/secure/Signup!default.jspa">JIRA 帐号&lt;/a>，然后提交一个 issue，为需要发布的产物创建一个 &lt;a href="https://issues.sonatype.org/secure/CreateIssue.jspa?pid=10134&amp;amp;issuetype=21">ticket&lt;/a>。在这个 ticket 当中，需要填写将发布产物的基本信息，包括 groupId，项目地址，项目代码管理地址（SCM）。&lt;/p>
-&lt;p>在填写好 ticket 后，会由 sonatype 来审核相关信息，并会确认用户是否对使用的 groupId 具有所有权（即是否有 groupId 倒过来的域名控制权），比如如果我想要用自己的域名 top.yeungyeah 作为 groupId，就会要求我给域名的 dns 加个解析。除了这些通用域名，还可以使用 GitHub 提供的 GitHub Page 作为域名，如 io.github.username，这个的验证方法就比较简单，去创个 GitHub repo 即可。所以发布时的 groupId 得需要考虑下，不能乱填了。&lt;/p>
-&lt;p>&lt;img src="https://scottyeung.top/my-images/202309161941492.png" alt="">&lt;/p>
-&lt;h3 id="完善项目">完善项目&lt;/h3>
-&lt;p>sonatype 对于发布的项目有一定的质量要求，其中就要求，除了项目编译后 jar 包，还需要将项目的源代码，以及 javadoc 都一并上传发布到托管平台。这就需要在 gradle 的构建配置文件&lt;code>build.gradle.kts&lt;/code>当中进行额外的配置。&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
-&lt;/span>&lt;span class="lnt">4
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-kotlin" data-lang="kotlin">&lt;span class="n">java&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="n">withJavadocJar&lt;/span>&lt;span class="p">()&lt;/span>
-&lt;span class="n">withSourcesJar&lt;/span>&lt;span class="p">()&lt;/span>
-&lt;span class="p">}&lt;/span>
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>另外，发布的项目其最终生成的 pom 配置文件里包含的信息要求也是完整的，比如项目的开发者信息，开源的 license，都需要进行额外的配置。&lt;/p>
-&lt;h3 id="maven-publish">maven-publish&lt;/h3>
-&lt;p>看到这里可能有些人会觉得很奇怪，为什么用 gradle，但是一直在说 Maven 的发布，发布也是发布到 Maven 的中央仓库当中。其实 gradle 是可以支持很多类型的依赖，除了 maven 以外，也可以支持 ivy。不过 Maven 的使用现在要更加广泛，所以基本都是在用 maven 仓库当中的依赖（而且 gradle 好像也没有搞自己的依赖格式标准）。&lt;/p>
-&lt;p>最新的 gradle 可以用其提供的 maven-publish 插件来完成发布相关的功能，而不是此前的 maven 插件，上面文档提到的许多配置，在这个新的 maven-publish 插件都不可用了😂&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
-&lt;/span>&lt;span class="lnt"> 2
-&lt;/span>&lt;span class="lnt"> 3
-&lt;/span>&lt;span class="lnt"> 4
-&lt;/span>&lt;span class="lnt"> 5
-&lt;/span>&lt;span class="lnt"> 6
-&lt;/span>&lt;span class="lnt"> 7
-&lt;/span>&lt;span class="lnt"> 8
-&lt;/span>&lt;span class="lnt"> 9
-&lt;/span>&lt;span class="lnt">10
-&lt;/span>&lt;span class="lnt">11
-&lt;/span>&lt;span class="lnt">12
-&lt;/span>&lt;span class="lnt">13
-&lt;/span>&lt;span class="lnt">14
-&lt;/span>&lt;span class="lnt">15
-&lt;/span>&lt;span class="lnt">16
-&lt;/span>&lt;span class="lnt">17
-&lt;/span>&lt;span class="lnt">18
-&lt;/span>&lt;span class="lnt">19
-&lt;/span>&lt;span class="lnt">20
-&lt;/span>&lt;span class="lnt">21
-&lt;/span>&lt;span class="lnt">22
-&lt;/span>&lt;span class="lnt">23
-&lt;/span>&lt;span class="lnt">24
-&lt;/span>&lt;span class="lnt">25
-&lt;/span>&lt;span class="lnt">26
-&lt;/span>&lt;span class="lnt">27
-&lt;/span>&lt;span class="lnt">28
-&lt;/span>&lt;span class="lnt">29
-&lt;/span>&lt;span class="lnt">30
-&lt;/span>&lt;span class="lnt">31
-&lt;/span>&lt;span class="lnt">32
-&lt;/span>&lt;span class="lnt">33
-&lt;/span>&lt;span class="lnt">34
-&lt;/span>&lt;span class="lnt">35
-&lt;/span>&lt;span class="lnt">36
-&lt;/span>&lt;span class="lnt">37
-&lt;/span>&lt;span class="lnt">38
-&lt;/span>&lt;span class="lnt">39
-&lt;/span>&lt;span class="lnt">40
-&lt;/span>&lt;span class="lnt">41
-&lt;/span>&lt;span class="lnt">42
-&lt;/span>&lt;span class="lnt">43
-&lt;/span>&lt;span class="lnt">44
-&lt;/span>&lt;span class="lnt">45
-&lt;/span>&lt;span class="lnt">46
-&lt;/span>&lt;span class="lnt">47
-&lt;/span>&lt;span class="lnt">48
-&lt;/span>&lt;span class="lnt">49
-&lt;/span>&lt;span class="lnt">50
-&lt;/span>&lt;span class="lnt">51
-&lt;/span>&lt;span class="lnt">52
-&lt;/span>&lt;span class="lnt">53
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-kotlin" data-lang="kotlin">&lt;span class="n">plugins&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="o">..&lt;/span>&lt;span class="p">.&lt;/span>
-&lt;span class="nd">`maven&lt;/span>&lt;span class="p">-&lt;/span>&lt;span class="n">publish&lt;/span>&lt;span class="err">`&lt;/span>
-&lt;span class="p">}&lt;/span>
-&lt;span class="n">publishing&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="n">publications&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="n">create&lt;/span>&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="n">MavenPublication&lt;/span>&lt;span class="p">&amp;gt;(&lt;/span>&lt;span class="s2">&amp;#34;maven&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="c1">// 自行替换产物描述信息
-&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">groupId&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;io.github.yeung66&amp;#34;&lt;/span>
-&lt;span class="n">artifactId&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;clipboard-jvm&amp;#34;&lt;/span>
-&lt;span class="n">version&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="n">version&lt;/span>
-&lt;span class="n">from&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">components&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s2">&amp;#34;java&amp;#34;&lt;/span>&lt;span class="p">])&lt;/span>
-&lt;span class="n">pom&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="c1">// 填充生成的 POM 信息
-&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">name&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="k">set&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;clipboard-jvm&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;span class="n">description&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="k">set&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;A simple clipboard library for jvm.&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;span class="n">url&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="k">set&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;https://github.com/yeung66/clipboard-jvm&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;span class="n">licenses&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="n">license&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="n">name&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="k">set&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;The Apache License, Version 2.0&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;span class="n">url&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="k">set&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;http://www.apache.org/licenses/LICENSE-2.0.txt&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;span class="p">}&lt;/span>
-&lt;span class="p">}&lt;/span>
-&lt;span class="n">developers&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="n">developer&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="n">id&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="k">set&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;yeung66&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;span class="n">name&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="k">set&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;YeungYeah&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;span class="n">email&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="k">set&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;email@host.com&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;span class="p">}&lt;/span>
-&lt;span class="p">}&lt;/span>
-&lt;span class="n">scm&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="n">connection&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="k">set&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;scm:git:git://github.com/yeung66/clipboard-jvm.git&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;span class="n">developerConnection&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="k">set&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;scm:git:ssh://github.com/yeung66/clipboard-jvm.git&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;span class="n">url&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="k">set&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;https://github.com/yeung66/clipboard-jvm&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;span class="p">}&lt;/span>
-&lt;span class="p">}&lt;/span>
-&lt;span class="p">}&lt;/span>
-&lt;span class="p">}&lt;/span>
-&lt;span class="n">repositories&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="n">maven&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="n">name&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;OSSRH&amp;#34;&lt;/span>
-&lt;span class="n">url&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="n">URI&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">create&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;span class="n">credentials&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;span class="n">username&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="n">project&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">properties&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s2">&amp;#34;ossrhUsername&amp;#34;&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">String&lt;/span>
-&lt;span class="n">password&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="n">project&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">properties&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s2">&amp;#34;ossrhPassword&amp;#34;&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">String&lt;/span>
-&lt;span class="p">}&lt;/span>
-&lt;span class="p">}&lt;/span>
-&lt;span class="p">}&lt;/span>
-&lt;span class="p">}&lt;/span>
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>其中帐号密码可以放到用户目录下的 gradle.properties 当中，防止泄漏。&lt;/p>
-&lt;h3 id="signing">signing&lt;/h3>
-&lt;p>在生成产物后，还需要对生成的产物进行一次签名，这样托管平台才能确保这个上传是由本人完成，保证产物的可靠性。对发布产物签名，需要先生成自己的密钥，并使用直接的私钥文件签名。然后把公钥上传到公钥服务器上面，供托管平台取得公钥验证签名。&lt;/p>
-&lt;p>具体步骤如下&lt;/p>
-&lt;ol>
-&lt;li>首先使用 gpg 生成自己的密钥，可参考阮一峰的 &lt;a href="https://www.ruanyifeng.com/blog/2013/07/gpg.html">这个文档&lt;/a>&lt;/li>
-&lt;li>根据上面生成的密钥，取得私钥的路径，使用私钥的密码，公钥的 keyId，并填入 gradle.properties 文件当中。为了安全，不泄漏个人信息，一般这种敏感信息可以放到用户目录下的配置文件而不是项目当中的，这样就能够好地避免随着代码仓库上传到 GitHub 而被泄漏。
-&lt;ul>
-&lt;li>
-&lt;pre>&lt;code class="language-property" data-lang="property">signing.keyId= #The last 8 symbols of the keyId
-signing.password= #passphrase used to protect your private key
-signing.secretKeyRingFile= #absolute path to the secret key ring file containing your private key
-&lt;/code>&lt;/pre>&lt;/li>
-&lt;li>(Since gpg 2.1, you need to export the keys with command gpg --keyring secring.gpg --export-secret-keys &amp;gt; ~/.gnupg/secring.gpg).&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>把公钥上传到公钥服务器上
-&lt;ol>
-&lt;li>&lt;img src="https://scottyeung.top/my-images/202309162022777.png" alt="">&lt;/li>
-&lt;/ol>
-&lt;/li>
-&lt;li>在构建问题当中添加 signing 的插件，并进行配置
-&lt;pre>&lt;code>plugins {
-...
-signing
-}
-signing {
-sign(publishing.publications[&amp;quot;maven&amp;quot;])
-}
-&lt;/code>&lt;/pre>&lt;/li>
-&lt;/ol>
-&lt;p>在进行上面的配置后，执行构建发布任务时，会自动对构建产物进行一个签名。&lt;/p>
-&lt;h3 id="执行发布">执行发布&lt;/h3>
-&lt;p>直接执行 gradle 的发布任务即可&lt;/p>
-&lt;p>&lt;img src="https://scottyeung.top/my-images/202309162043253.png" alt="">&lt;/p>
-&lt;p>执行顺利的话，项目会将编译得到的产物打包，签名，然后上传到托管平台当中。此时可以在 &lt;a href="https://central.sonatype.org/publish/release/">托管平台&lt;/a> 里面进行一个 release 发布。&lt;/p>
-&lt;p>在 staging repositories 当中找到刚刚发布的产物，检查上传的文件无误后，点击 close 按钮，就会自动推进到检查阶段，检查发布的产物是否符合标准，这里面的检查就包括上面提到的质量检查，信息检查。检查通过后会就会发送邮件提醒，然后就可以点击 release 按钮，正式将产物发布。发布后产物会同步到 Maven Central 仓库当中，就可以在 &lt;a href="https://mvnrepository.com/">mvnrepository&lt;/a> 或者 &lt;a href="https://central.sonatype.com/">sonatype central&lt;/a> 查询到。
-不过这个 staging 的步骤好像也能通过 &lt;a href="https://github.com/Codearte/gradle-nexus-staging-plugin/">插件&lt;/a> 进行自动化。如果可以自动化估计可以简单点。&lt;/p>
-&lt;hr>
-&lt;p>至此，gradle 项目就可以成功发布到 Maven Central 仓库当中，供大家使用了。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/gradle/">gradle</category><category domain="https://scottyeung.top/tags/jvm/">jvm</category><category domain="https://scottyeung.top/tags/Java/">Java</category><category domain="https://scottyeung.top/tags/kotlin/">kotlin</category><category domain="https://scottyeung.top/tags/maven/">maven</category><category domain="https://scottyeung.top/tags/coding-%E8%AE%B0%E5%BD%95/">coding 记录</category></item></channel></rss>
+&lt;p>&lt;img src="https://scottyeung.top/my-images/%E6%88%AA%E5%B1%8F2023-10-28%2021.07.36.png" alt="">&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/serverless/">serverless</category><category domain="https://scottyeung.top/tags/JavaScript/">JavaScript</category><category domain="https://scottyeung.top/tags/Cloudflare/">Cloudflare</category><category domain="https://scottyeung.top/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1/">云服务</category></item></channel></rss>
