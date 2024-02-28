@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah 的乱写地</title><link>https://scottyeung.top/</link><description>YeungYeah 的乱写地中记录了作者的所思所想及所为。</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Mon, 26 Feb 2024 15:49:48 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>开设我的英语博客 By Hugo</title><link>https://scottyeung.top/2024/setup-english-blog/</link><guid isPermaLink="true">https://scottyeung.top/2024/setup-english-blog/</guid><pubDate>Sun, 25 Feb 2024 20:47:21 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>前几天刷推特看到一个挺让人气愤的事情：关注的一个用户所写的博客文章被人翻译成英语搬运到 Medium 上发布，收获了不少的浏览，而且还有一些来自用户认真用心的评论留言。以前见得多中文社区搬运英语社区当中文章翻译成中文变成内容农场的，反向搬中文到英文社区的还真是第一次见，而且看起来更加让人不爽。&lt;/p>
+<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah 的乱写地</title><link>https://scottyeung.top/</link><description>YeungYeah 的乱写地中记录了作者的所思所想及所为。</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Wed, 28 Feb 2024 15:02:32 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>开设我的英语博客 By Hugo</title><link>https://scottyeung.top/2024/setup-english-blog/</link><guid isPermaLink="true">https://scottyeung.top/2024/setup-english-blog/</guid><pubDate>Sun, 25 Feb 2024 20:47:21 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>前几天刷推特看到一个挺让人气愤的事情：关注的一个用户所写的博客文章被人翻译成英语搬运到 Medium 上发布，收获了不少的浏览，而且还有一些来自用户认真用心的评论留言。以前见得多中文社区搬运英语社区当中文章翻译成中文变成内容农场的，反向搬中文到英文社区的还真是第一次见，而且看起来更加让人不爽。&lt;/p>
 &lt;p>&lt;img src="https://scottyeung.top/my-images/202402252057093.png" alt="">&lt;/p>
 &lt;p>&lt;img src="https://scottyeung.top/my-images/202402252057572.png" alt="">&lt;/p>
 &lt;p>博主后续很快就举报了这个翻译搬运文章的博主，并且尝试把自己一些博文借助 ChatGPT 的帮助下，把一些文章翻译成英语并发表到 Reddit 上面，反响很不错，甚至登上了频道的 Top1. 作为工作一直都跟国际化相关的人员，我突然意识到除了工作需要紧跟出海的趋势以外，其实个人的东西是不是也可以出海，个人的文字和代码产出是不是也可以发表到海外的英语社区。尤其是现在借助强大的 ChatGPT 下，几乎每个人都可以翻译出不错的英文内容。&lt;/p>
@@ -223,7 +223,7 @@
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;h3 id="footer-内容">footer 内容&lt;/h3>
-&lt;p>footer 的内容基本都是自己定制添加上去的，基本都是没有多语言支持，如果需要给英语博客填上，就得给硬编码的定制价格条件判断。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E5%8D%9A%E5%AE%A2/">博客</category><category domain="https://scottyeung.top/tags/%E5%86%99%E4%BD%9C/">写作</category><category domain="https://scottyeung.top/tags/%E8%BE%93%E5%87%BA/">输出</category><category domain="https://scottyeung.top/tags/Hugo/">Hugo</category><category domain="https://scottyeung.top/tags/AI/">AI</category></item><item><title>重新开始思考投资</title><link>https://scottyeung.top/2024/think-invest-again/</link><guid isPermaLink="true">https://scottyeung.top/2024/think-invest-again/</guid><pubDate>Sun, 21 Jan 2024 22:34:34 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>继大四看了孟岩关于价值投资的一些观点后，开始有意识地考虑投资这个事。从 19 年开始，一直在定投国内的基金，从最开始的指数基金买整体的发展，到后面选择一些评级高的主动进取型基金想要更好的收益，投资理念开始逐渐转变。然而再怎样的选择，其实也抵不过大环境大趋势，整个国内市场就不行，怎么选其实都没有意义，再加上发现的各种奇怪的事情，也更加清晰地意识到国内的股市和投资市场就是个笑话。&lt;/p>
+&lt;p>footer 的内容基本都是自己定制添加上去的，基本都是没有多语言支持，如果需要给英语博客做切换，就得给硬编码的定制加个条件判断。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E5%8D%9A%E5%AE%A2/">博客</category><category domain="https://scottyeung.top/tags/%E5%86%99%E4%BD%9C/">写作</category><category domain="https://scottyeung.top/tags/%E8%BE%93%E5%87%BA/">输出</category><category domain="https://scottyeung.top/tags/Hugo/">Hugo</category><category domain="https://scottyeung.top/tags/AI/">AI</category></item><item><title>重新开始思考投资</title><link>https://scottyeung.top/2024/think-invest-again/</link><guid isPermaLink="true">https://scottyeung.top/2024/think-invest-again/</guid><pubDate>Sun, 21 Jan 2024 22:34:34 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>继大四看了孟岩关于价值投资的一些观点后，开始有意识地考虑投资这个事。从 19 年开始，一直在定投国内的基金，从最开始的指数基金买整体的发展，到后面选择一些评级高的主动进取型基金想要更好的收益，投资理念开始逐渐转变。然而再怎样的选择，其实也抵不过大环境大趋势，整个国内市场就不行，怎么选其实都没有意义，再加上发现的各种奇怪的事情，也更加清晰地意识到国内的股市和投资市场就是个笑话。&lt;/p>
 &lt;p>为什么逐渐对长期的价值投资失去信心？个人理解价值投资，本质上就是用钱去支持与陪同某个企业共同成长，然后成长后获取成长增长的这部份价值。股市的本质应该是帮助企业融资以实现更好的发展和增长。然而现在国内的股市，感觉完全就没有这个感觉。融资只是部份人为了拿钱，更像是企业从股民手上拿钱然后花掉 / 分掉。简单地说就是我们韭菜送钱给他们花。股市是这样，衍生的基金自然也好不到哪里去。&lt;/p>
 &lt;p>其实以前也有过一个疑问，就是如果价值投资或者所谓的长期主义，真的是等大牛市有大涨幅才开始获利离场，但是难道真的要长期到持有几年或者几十年？那这样都收益摊到这么多年来，收益率算下来真的是好吗？其次是一笔钱和收益都需要放这么久不能用，有钱 / 资产的意义也大大减少。&lt;/p>
 &lt;p>遂打算转战美股，停止对于国内市场的投资。之前还一直下不来决心，但是今天刷推特看到才意识到，自己一直缺乏止损 / 止盈能力。其实很早就开始经济不行，但是一直不舍得停下来，一直安慰自己终有一天能够涨回来，再加上定投的钱也不多，就一直投下去，直到现在加起来持有收益已经差不多 -20%。亏了点钱是一方面，另一方面这些定投的钱没有拿去定投其他的地方也少了赚钱的机会了。&lt;/p>
@@ -654,147 +654,4 @@
 &lt;li>使用 Cloudflare 的 dashboard 可以随时查看运行情况（但是拉历史日志好像比较麻烦？）。&lt;/li>
 &lt;li>可以用在 dashboard 上面修改一些简单的配置，比如定时间隔和环境变量。&lt;/li>
 &lt;li>可以用 D1 数据库的 console 查询数据库情况，并且做些简单的增删改查。&lt;/li>
-&lt;/ul></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/serverless/">serverless</category><category domain="https://scottyeung.top/tags/JavaScript/">JavaScript</category><category domain="https://scottyeung.top/tags/Cloudflare/">Cloudflare</category><category domain="https://scottyeung.top/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1/">云服务</category><category domain="https://scottyeung.top/tags/coding-%E8%AE%B0%E5%BD%95/">coding 记录</category><category domain="https://scottyeung.top/tags/rss/">rss</category><category domain="https://scottyeung.top/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/">自动化</category></item><item><title>Cloudflare 应用开发使用小记</title><link>https://scottyeung.top/2023/cloudflare-app-dev/</link><guid isPermaLink="true">https://scottyeung.top/2023/cloudflare-app-dev/</guid><pubDate>Sun, 29 Oct 2023 16:45:21 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;blockquote>
-&lt;p>能给大众白嫖使用的 serverless 服务，像 Cloudflare 和 Vercel 就是好的服务商。&lt;/p>
-&lt;/blockquote>
-&lt;p>&lt;img src="https://scottyeung.top/my-images/202310291700756.png" alt="">&lt;/p>
-&lt;p>最近因为各种原因，突然想把在服务器上运行的 rss-timeline 记录（详情可以看这里 -- &lt;a href="https://scottyeung.top/2023/my-timeline/">我的动态时间线聚合&lt;/a>）的程序换成在云服务上面部署，最终选择了 Cloudflare，并且实现了一版。下面是实现过程中一些记录。&lt;/p>
-&lt;h2 id="worker">worker&lt;/h2>
-&lt;p>cloudflare 通过 worker 的方式提供服务，worker 有两种触发的方式&lt;/p>
-&lt;ul>
-&lt;li>http trigger. 通过发送 http 请求进行触发，也是最常用的一种，实现 fetch 方法处理请求即可
-&lt;ul>
-&lt;li>在 ChatGPT API 刚出的时候，很多人都因为 API 地址不能直连，所以搞一个 worker 请求转发就可以了。比如&lt;a href="https://github.com/noobnooc/noobnooc/discussions/9">这个&lt;/a>。&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>cron trigger. 通过定时任务的方式来触发任务。通过配置 cron job 来声明执行的周期。&lt;/li>
-&lt;/ul>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
-&lt;/span>&lt;span class="lnt"> 2
-&lt;/span>&lt;span class="lnt"> 3
-&lt;/span>&lt;span class="lnt"> 4
-&lt;/span>&lt;span class="lnt"> 5
-&lt;/span>&lt;span class="lnt"> 6
-&lt;/span>&lt;span class="lnt"> 7
-&lt;/span>&lt;span class="lnt"> 8
-&lt;/span>&lt;span class="lnt"> 9
-&lt;/span>&lt;span class="lnt">10
-&lt;/span>&lt;span class="lnt">11
-&lt;/span>&lt;span class="lnt">12
-&lt;/span>&lt;span class="lnt">13
-&lt;/span>&lt;span class="lnt">14
-&lt;/span>&lt;span class="lnt">15
-&lt;/span>&lt;span class="lnt">16
-&lt;/span>&lt;span class="lnt">17
-&lt;/span>&lt;span class="lnt">18
-&lt;/span>&lt;span class="lnt">19
-&lt;/span>&lt;span class="lnt">20
-&lt;/span>&lt;span class="lnt">21
-&lt;/span>&lt;span class="lnt">22
-&lt;/span>&lt;span class="lnt">23
-&lt;/span>&lt;span class="lnt">24
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-typescript" data-lang="typescript">&lt;span class="line">&lt;span class="cl">&lt;span class="kr">export&lt;/span> &lt;span class="k">default&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// The scheduled handler is invoked at the interval set in our wrangler.toml&amp;#39;s
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="c1">// [[triggers]] configuration.
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="kr">async&lt;/span> &lt;span class="nx">scheduled&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">event&lt;/span>: &lt;span class="kt">ScheduledEvent&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">env&lt;/span>: &lt;span class="kt">Env&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">ctx&lt;/span>: &lt;span class="kt">ExecutionContext&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">Promise&lt;/span>&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">void&lt;/span>&lt;span class="p">&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// A Cron Trigger can make requests to other endpoints on the Internet,
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="c1">// publish to a Queue, query a D1 Database, and much more.
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="c1">//
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="c1">// We&amp;#39;ll keep it simple and make an API call to a Cloudflare API:
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="kd">let&lt;/span> &lt;span class="nx">resp&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">await&lt;/span> &lt;span class="nx">fetch&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;https://api.cloudflare.com/client/v4/ips&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kd">let&lt;/span> &lt;span class="nx">wasSuccessful&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">resp&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">ok&lt;/span> &lt;span class="o">?&lt;/span> &lt;span class="s1">&amp;#39;success&amp;#39;&lt;/span> &lt;span class="o">:&lt;/span> &lt;span class="s1">&amp;#39;fail&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// You could store this result in KV, write to a D1 Database, or publish to a Queue.
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="c1">// In this template, we&amp;#39;ll just log the result:
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="nx">console&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">log&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sb">`trigger fired at &lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nx">event&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">cron&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="sb">: &lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nx">wasSuccessful&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="sb">`&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">},&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// The event handler is invoked whenever an HTTP request is made to your
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="c1">// worker. The request will trigger the event handler regardless of the
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="c1">// request method or URL path.
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="nx">fetch&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">request&lt;/span>: &lt;span class="kt">Request&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">env&lt;/span>: &lt;span class="kt">Env&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">ctx&lt;/span>: &lt;span class="kt">ExecutionContext&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">Promise&lt;/span>&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">Response&lt;/span>&lt;span class="p">&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="nx">Response&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sb">`Hello from the scheduled worker at &lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nx">request&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">url&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="sb">`&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">};&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>可以通过在配置文件 wrangle.toml 或者 dashboard 中的设置中声明环境变量。环境变量通过传递进来的 env 参数使用。&lt;/p>
-&lt;p>免费版主要是限制&lt;/p>
-&lt;ul>
-&lt;li>每次调用的 CPU 执行时间 10ms
-&lt;ul>
-&lt;li>官网中介绍用量很少，基本都不会超&lt;/li>
-&lt;li>但实际跑下来发现好像超了也没事？&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>每天的请求执行次数 100, 000&lt;/li>
-&lt;/ul>
-&lt;p>&lt;img src="https://scottyeung.top/my-images/202310282110476.png" alt="">&lt;/p>
-&lt;h3 id="本地调试">本地调试&lt;/h3>
-&lt;p>本地可以通过 wrangle 来进行开发调试和部署&lt;/p>
-&lt;p>cron worker 可以通过 &lt;code>--test-scheduled&lt;/code> 参数，实现 http 调用 &lt;code>http://localhost:8787/__scheduled?cron=*+*+*+*+*&lt;/code> 触发 trigger.&lt;/p>
-&lt;p>有些时候本地访问一些网站可能因为某些奇怪因素访问不了，可以通过 &lt;code>--remote&lt;/code> 参数，实现本地运行远程调试，这样就可以突破网络限制访问某些网站。另外也可以通过这个方法直接操作数据库，这样就可以直接在网站就看到数据库的更新情况。&lt;/p>
-&lt;h3 id="non-standard-nodejs-runtime">non-standard Node.js runtime&lt;/h3>
-&lt;p>cloudflare worker 本质上其实是 edge function，其实际的运行时并不是正宗的 node 环境，所以一些对于 node api 的使用，是可能会满足不了的。部分到 API cloudflare 的运行时实现了，在自己的代码中可以直接用。但往往通过 npm install 使用的依赖就容易会出现这种兼容性问题。&lt;/p>
-&lt;p>&lt;img src="https://scottyeung.top/my-images/202310291635833.png" alt="">&lt;/p>
-&lt;p>对于这些有兼容性问题的 npm 库，建议在本地运行时看看实际跑到的代码是否真的用到这些 node api，如果没有，只是在文件当中导入的话，可以注释掉。动态语言 js 的一个爽点就是，就算代码有问题，但只要没有跑到有问题的地方，也还是能跑，就算这样注释掉一个依赖导入，但只要调用的代码没有使用它们，照样能跑。&lt;/p>
-&lt;p>如果调用的 node api 在 Cloudflare 中有实现的，通过换个方式导入也可以。&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
-&lt;/span>&lt;span class="lnt">4
-&lt;/span>&lt;span class="lnt">5
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-javascript" data-lang="javascript">&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// Do this:
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="kr">import&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="nx">Buffer&lt;/span> &lt;span class="p">}&lt;/span> &lt;span class="nx">from&lt;/span> &lt;span class="s1">&amp;#39;node:buffer&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// Do not do this:
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="kr">import&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="nx">Buffer&lt;/span> &lt;span class="p">}&lt;/span> &lt;span class="nx">from&lt;/span> &lt;span class="s1">&amp;#39;buffer&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;h2 id="d1">D1&lt;/h2>
-&lt;p>cloudflare 提供的关系型数据库&lt;/p>
-&lt;p>创建数据库后可以在 worker 里面添加绑定，直接访问到数据库&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
-&lt;/span>&lt;span class="lnt">4
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-toml" data-lang="toml">&lt;span class="line">&lt;span class="cl">&lt;span class="p">[[&lt;/span>&lt;span class="nx">d1_databases&lt;/span>&lt;span class="p">]]&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">binding&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;DB&amp;#34;&lt;/span> &lt;span class="c"># available in your Worker on env.DB&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">database_name&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;database&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">database_id&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;database_id&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>实际使用起来就是会在入口处传递 env，然后这个数据库的实例也随着 env 传进来，然后就可以手写 sql 进行数据处理了。&lt;/p>
-&lt;p>数据库操作可以通过&lt;/p>
-&lt;ul>
-&lt;li>官网网页可以创建表，已经修改行数据
-&lt;ul>
-&lt;li>官网也提供一个 console 进行 sql 语句的执行&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>也可以在命令后通过 wrangle 执行 sql 语句，从而更新数据库
-&lt;ul>
-&lt;li>这种方式还可以实现一些表结构的更新，比如增加一列&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;p>免费的用量限制&lt;/p>
-&lt;ul>
-&lt;li>最多创建 10 个数据库&lt;/li>
-&lt;li>单个数据库 500MB&lt;/li>
-&lt;li>每月读 5,000,000 行，写 100,000 行&lt;/li>
-&lt;/ul>
-&lt;p>&lt;img src="https://scottyeung.top/my-images/%E6%88%AA%E5%B1%8F2023-10-28%2021.07.36.png" alt="">&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/serverless/">serverless</category><category domain="https://scottyeung.top/tags/JavaScript/">JavaScript</category><category domain="https://scottyeung.top/tags/Cloudflare/">Cloudflare</category><category domain="https://scottyeung.top/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1/">云服务</category></item></channel></rss>
+&lt;/ul></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/serverless/">serverless</category><category domain="https://scottyeung.top/tags/JavaScript/">JavaScript</category><category domain="https://scottyeung.top/tags/Cloudflare/">Cloudflare</category><category domain="https://scottyeung.top/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1/">云服务</category><category domain="https://scottyeung.top/tags/coding-%E8%AE%B0%E5%BD%95/">coding 记录</category><category domain="https://scottyeung.top/tags/rss/">rss</category><category domain="https://scottyeung.top/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/">自动化</category></item></channel></rss>
