@@ -1,4 +1,27 @@
-<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah's Blog</title><link>https://scottyeung.top/en/</link><description>Record the YeungYeah's thoughts and actions.</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>en-US</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Sun, 03 Mar 2024 16:03:56 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/en/atom.xml"/><item><title>Solution to Nuxt3 Project Initialization Failure</title><link>https://scottyeung.top/en/2024/nuxt-cannot-init/</link><guid isPermaLink="true">https://scottyeung.top/en/2024/nuxt-cannot-init/</guid><pubDate>Sun, 03 Mar 2024 21:11:08 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>In China mainland, the project initialization command of Nuxt will encounter the following error.&lt;/p>
+<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah's Blog</title><link>https://scottyeung.top/en/</link><description>Record the YeungYeah's thoughts and actions.</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>en-US</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Mon, 04 Mar 2024 15:22:24 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/en/atom.xml"/><item><title>Hugo English Content Appears on Chinese Pages</title><link>https://scottyeung.top/en/2024/hugo-en-content-exist-in-zh/</link><guid isPermaLink="true">https://scottyeung.top/en/2024/hugo-en-content-exist-in-zh/</guid><pubDate>Mon, 04 Mar 2024 22:32:35 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>After setting up my English blog, I accidentally noticed English content tags appearing on the tag pages during an update yesterday. Initially, I thought there was an issue with the logic of generating the tag pages. The variable used for generation was &lt;code>$.Site.Taxonomies.tags&lt;/code>, which seemed to have no issues. I thought about various filtering methods, but none seemed to solve the problem.&lt;/p>
+&lt;p>Then, after writing a new blog post last night, I noticed that English article content started appearing in the similar recommendations. Upon clicking into it, I realized something was off: although the article content was in English, the blog site name and the copyright information below were all in Chinese. Then I took another look at the path and found it didn't match my expected path for English content. The path of this article was &lt;code>/en/posts/2024/nuxt-cannot-init/&lt;/code>, but I expected it to be &lt;code>/en/2024/nuxt-cannot-init/&lt;/code>.&lt;/p>
+&lt;p>From this, it seems that the crux of the problem is that English content files are being treated as part of the Chinese blog and processed as such. Therefore, English content appears when generating tag pages and retrieving related pages. The reason for this issue is that my directory settings for the two languages are not quite appropriate. The Chinese content directory includes the English directory, causing English content to be treated as part of the Chinese content.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-toml" data-lang="toml">&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="nx">languages&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="nx">languages&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">zh&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">contentDir&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;content&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">...&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="nx">languages&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">en&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">contentDir&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;content/en&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">...&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>So, I changed the path of the English content to &lt;code>contentDir = 'content_en'&lt;/code>, created a directory with the same name, and moved the English content files to this new directory. Problem solved!&lt;/p></description><category domain="https://scottyeung.top/en/posts/">posts</category><category domain="https://scottyeung.top/en/tags/Hugo/">Hugo</category><category domain="https://scottyeung.top/en/tags/blog/">blog</category><category domain="https://scottyeung.top/en/tags/Tools/">Tools</category></item><item><title>Solution to Nuxt3 Project Initialization Failure</title><link>https://scottyeung.top/en/2024/nuxt-cannot-init/</link><guid isPermaLink="true">https://scottyeung.top/en/2024/nuxt-cannot-init/</guid><pubDate>Sun, 03 Mar 2024 21:11:08 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>In China mainland, the project initialization command of Nuxt will encounter the following error.&lt;/p>
 &lt;blockquote>
 &lt;p>Error: Failed to download template from registry: Failed to download &lt;a href="https://raw.githubusercontent.com/nuxt/starter/templates/templates/v3.json">https://raw.githubusercontent.com/nuxt/starter/templates/templates/v3.json&lt;/a>: TypeError: fetch failed&lt;/p>
 &lt;/blockquote>
@@ -76,7 +99,7 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">languageName&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;Simplified Chinese&amp;#39;&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">weight&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="mi">1&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="nx">languages&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">en&lt;/span>&lt;span class="p">]&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">contentDir&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;content/en&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">contentDir&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;content_en&amp;#39;&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">disabled&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="kc">false&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">languageCode&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;en-US&amp;#39;&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">languageDirection&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;ltr&amp;#39;&lt;/span>
@@ -251,7 +274,7 @@
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;h3 id="footer-content">Footer Content&lt;/h3>
-&lt;p>The content of the footer is basically custom-added by myself, and there is basically no multilingual support. If you need to switch for the English blog, you need to add a condition judgment to the hardcoded customization.&lt;/p></description><category domain="https://scottyeung.top/en/posts/">posts</category><category domain="https://scottyeung.top/en/tags/Blog/">Blog</category><category domain="https://scottyeung.top/en/tags/Writing/">Writing</category><category domain="https://scottyeung.top/en/tags/Output/">Output</category><category domain="https://scottyeung.top/en/tags/Hugo/">Hugo</category><category domain="https://scottyeung.top/en/tags/AI/">AI</category></item><item><title>Rethinking Investment</title><link>https://scottyeung.top/en/2024/think-invest-again/</link><guid isPermaLink="true">https://scottyeung.top/en/2024/think-invest-again/</guid><pubDate>Sun, 21 Jan 2024 22:34:34 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>After reading some of Meng Yan's views on value investing in my senior year, I started consciously considering the matter of investment. Since 2019, I have been regularly investing in domestic funds, from initially buying index funds to track overall development, to later choosing some highly-rated aggressive funds for better returns, my investment philosophy began to gradually shift. However, no matter how I chose, it couldn't resist the overall environment and trend. When the entire domestic market was in poor shape, the choice was essentially meaningless. Coupled with the discovery of various oddities, I became more clearly aware that the domestic stock and investment market is a joke.&lt;/p>
+&lt;p>The content of the footer is basically custom-added by myself, and there is basically no multilingual support. If you need to switch for the English blog, you need to add a condition judgment to the hardcoded customization.&lt;/p></description><category domain="https://scottyeung.top/en/posts/">posts</category><category domain="https://scottyeung.top/en/tags/blog/">blog</category><category domain="https://scottyeung.top/en/tags/Writing/">Writing</category><category domain="https://scottyeung.top/en/tags/Output/">Output</category><category domain="https://scottyeung.top/en/tags/Hugo/">Hugo</category><category domain="https://scottyeung.top/en/tags/AI/">AI</category></item><item><title>Rethinking Investment</title><link>https://scottyeung.top/en/2024/think-invest-again/</link><guid isPermaLink="true">https://scottyeung.top/en/2024/think-invest-again/</guid><pubDate>Sun, 21 Jan 2024 22:34:34 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>After reading some of Meng Yan's views on value investing in my senior year, I started consciously considering the matter of investment. Since 2019, I have been regularly investing in domestic funds, from initially buying index funds to track overall development, to later choosing some highly-rated aggressive funds for better returns, my investment philosophy began to gradually shift. However, no matter how I chose, it couldn't resist the overall environment and trend. When the entire domestic market was in poor shape, the choice was essentially meaningless. Coupled with the discovery of various oddities, I became more clearly aware that the domestic stock and investment market is a joke.&lt;/p>
 &lt;p>Why did I gradually lose faith in long-term value investing? In my understanding, value investing is essentially using money to support and accompany a company's growth, and then to gain a portion of the value from this growth. The essence of the stock market should be to help companies raise funds for better development and growth. However, the current domestic stock market seems completely devoid of this sense. Financing is just a part of people trying to get money, more like companies taking money from retail investors and then spending it or distributing it. Simply put, we retail investors are just handing over our money for them to spend. The stock market is like this, and the derived funds naturally aren't much better.&lt;/p>
 &lt;p>In fact, I had a question before, that is, if value investing or so-called long-termism truly waits for a bull market to start profiting and exit, but does it really need to be long-term enough to hold for several years or even decades? If the profits are spread over so many years, is the return rate really good? Secondly, both the money and the profits need to be locked up for so long and cannot be used, greatly reducing the value of having money/assets.&lt;/p>
 &lt;p>Therefore, I plan to switch to the US stock market and stop investing in the domestic market. I couldn't make up my mind before, but today when I was scrolling through Twitter, I realized that I had always lacked the ability to stop losses/take profits. The economy has been bad for a long time, but I was always reluctant to stop, always comforting myself that it would rise back one day. Plus, the money I invested regularly wasn't much, so I kept investing until now, when the total return is almost -20%. Losing some money is one thing, and on the other hand, the money I invested regularly could have been put in other places to make money.&lt;/p>
@@ -701,412 +724,78 @@ sign(publishing.publications[&amp;#34;maven&amp;#34;])
 &lt;li>The mobile application is too simple, it doesn't even have incognito browsing.&lt;/li>
 &lt;/ol>
 &lt;p>As a browser with distinctive features, Arc is fun to play with, but if you want to immerse yourself and use it intensively, you may have to endure various differences and discomforts. Of course, like stinky tofu, there are always people who can accept it, and if you can, its advantages are indeed attractive. Also, Arc seems to have high customizability, allowing you to customize styles and even block layouts, but my exploration time (and interest) was limited, so I didn't bother. However, if you are interested, you can also play around and give it a try.&lt;/p>
-&lt;p>Before I had a MacBook, I always had a special longing for Macos-exclusive applications. However, after really using them, they seem to be just so-so, or just okay. Recently, there have been many new software on Macos, such as Warp Terminal, Raycast, which I have been using. Maybe it's because I haven't used them deeply, or gotten to their essence, so they feel quite ordinary. I'll continue to explore slowly.&lt;/p></description><category domain="https://scottyeung.top/en/posts/">posts</category><category domain="https://scottyeung.top/en/tags/Productivity/">Productivity</category><category domain="https://scottyeung.top/en/tags/Tools/">Tools</category></item><item><title>Don't Take Open Source Software for Granted</title><link>https://scottyeung.top/en/2023/open-source-issue/</link><guid isPermaLink="true">https://scottyeung.top/en/2023/open-source-issue/</guid><pubDate>Thu, 16 Feb 2023 16:53:34 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>This morning, while scrolling through Twitter, I came across an &lt;a href="https://github.com/zloirock/core-js/blob/master/docs/2023-02-14-so-whats-next.md">article&lt;/a> written by the author of core-js a couple of days ago, about his experiences developing open source software. His experiences are indeed eye-opening and heart-wrenching. What is most shocking and saddening is that the core-js, which the author has put a lot of effort into developing and maintaining, has indeed gained everyone's attention and recognition (it has nearly 20k stars on GitHub), and this software library is also widely used (the total download volume on npm has reached 9 billion, 52% of the top 1000 websites use core-js, and 75-80% of the top 100 websites use it).&lt;/p>
-&lt;p>However, such widespread recognition and use has not brought any income to the author. The peak period of a few hundred dollars in monthly donations is not at all commensurate with the time and effort required to maintain the project. Added to the fact that the author is unemployed and in a rather sensitive country, the income is indeed a bit lacking, and can even be considered impoverished. This led to the author not being able to raise enough money for compensation after a traffic accident, and he even served ten months in prison. It's very tragic, but for some users, they feel it has nothing to do with them, and even think that the help and donation requests made by the author in the project are polluting the open source ecosystem, which has also earned him many haters.&lt;/p>
-&lt;p>&lt;img src="https://scottyeung.top/my-images/202304051948549.png" alt="">&lt;/p>
-&lt;p>&lt;img src="https://scottyeung.top/my-images/202304051948233.png" alt="">&lt;/p>
-&lt;p>Looking at it this way, it's really hard to do open source individually. If there is no full-time job with a stable income, or a way to monetize open source into income and traffic, it's really hard to make a living solely from open source projects, and it's really hard to keep up the good development and maintenance quality with love. Especially compared to the high income of the Internet industry / cs development, it is too discouraging.&lt;/p>
-&lt;p>Perhaps it's because using open source projects is too simple and easy. A search on the open source community, a command line knock, and others' hard work can be used for oneself immediately. Users easily overlook the effort and achievements required to develop and maintain open source projects. Everyone's attitude towards open source projects has become taken for granted - it's expected that the author writes for everyone to use, provides maintenance and demand development support, and even some users think it's the author and maintainer's duty to answer usage problems and provide technical support. And what will most users give in return? Give a star as a token of appreciation.&lt;/p>
-&lt;p>&lt;img src="https://scottyeung.top/my-images/202304051949719.png" alt="">&lt;/p>
-&lt;p>A few months ago, &lt;a href="https://scottyeung.top/2022/when-software-gets-used-to-open-source/">I was still immersed in the beauty of the open source ecosystem&lt;/a>, thinking that the atmosphere of mutual aid, sharing, and dedication in the open source community was great, very friendly to developers, and even considered whether to choose a job related to open source software to contribute to the community. The harsh reality makes one sober, and one must consider more. I also hope that everyone can consider more, for the open source community and open source developers, don't take it for granted.&lt;/p></description><category domain="https://scottyeung.top/en/posts/">posts</category><category domain="https://scottyeung.top/en/tags/Essay/">Essay</category><category domain="https://scottyeung.top/en/tags/Open-Source/">Open Source</category><category domain="https://scottyeung.top/en/tags/Software/">Software</category></item><item><title>A Record on Using Spring GraphQL</title><link>https://scottyeung.top/en/2021/guide-to-spring-graphql/</link><guid isPermaLink="true">https://scottyeung.top/en/2021/guide-to-spring-graphql/</guid><pubDate>Wed, 15 Sep 2021 16:26:42 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>&lt;a href="https://spring.io/projects/spring-graphql#overview">Spring GraphQL&lt;/a> is a new Spring Application integrating GraphQL, released by Spring this year. Thanks to the out-of-the-box features of Spring Boot, it allows for the quick construction of a usable GraphQL service. However, despite its usability, the &lt;a href="https://docs.spring.io/spring-graphql/docs/1.0.0-SNAPSHOT/reference/html/">documentation&lt;/a> leaves much to be desired, especially for some advanced features, which require self-exploration through the API documentation.&lt;/p>
-&lt;p>The following records the related usage.&lt;/p>
-&lt;h2 id="setup">Setup&lt;/h2>
-&lt;p>Initialization can be done by building a Spring Boot project.&lt;/p>
-&lt;p>Using Gradle&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
-&lt;/span>&lt;span class="lnt"> 2
-&lt;/span>&lt;span class="lnt"> 3
-&lt;/span>&lt;span class="lnt"> 4
-&lt;/span>&lt;span class="lnt"> 5
-&lt;/span>&lt;span class="lnt"> 6
-&lt;/span>&lt;span class="lnt"> 7
-&lt;/span>&lt;span class="lnt"> 8
-&lt;/span>&lt;span class="lnt"> 9
-&lt;/span>&lt;span class="lnt">10
-&lt;/span>&lt;span class="lnt">11
-&lt;/span>&lt;span class="lnt">12
-&lt;/span>&lt;span class="lnt">13
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-GROOVY" data-lang="GROOVY">&lt;span class="line">&lt;span class="cl">&lt;span class="n">dependencies&lt;/span> &lt;span class="o">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">implementation&lt;/span> &lt;span class="s1">&amp;#39;org.springframework.boot:spring-boot-starter-web&amp;#39;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// Spring GraphQL Boot starter
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="n">implementation&lt;/span> &lt;span class="s1">&amp;#39;org.springframework.experimental:graphql-spring-boot-starter:1.0.0-SNAPSHOT&amp;#39;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// ...
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="o">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">repositories&lt;/span> &lt;span class="o">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">mavenCentral&lt;/span>&lt;span class="o">()&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">maven&lt;/span> &lt;span class="o">{&lt;/span> &lt;span class="n">url&lt;/span> &lt;span class="s1">&amp;#39;https://repo.spring.io/milestone&amp;#39;&lt;/span> &lt;span class="o">}&lt;/span> &lt;span class="c1">// Spring milestones
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="n">maven&lt;/span> &lt;span class="o">{&lt;/span> &lt;span class="n">url&lt;/span> &lt;span class="s1">&amp;#39;https://repo.spring.io/snapshot&amp;#39;&lt;/span> &lt;span class="o">}&lt;/span> &lt;span class="c1">// Spring snapshots
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="o">}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>Or using Maven&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
-&lt;/span>&lt;span class="lnt"> 2
-&lt;/span>&lt;span class="lnt"> 3
-&lt;/span>&lt;span class="lnt"> 4
-&lt;/span>&lt;span class="lnt"> 5
-&lt;/span>&lt;span class="lnt"> 6
-&lt;/span>&lt;span class="lnt"> 7
-&lt;/span>&lt;span class="lnt"> 8
-&lt;/span>&lt;span class="lnt"> 9
-&lt;/span>&lt;span class="lnt">10
-&lt;/span>&lt;span class="lnt">11
-&lt;/span>&lt;span class="lnt">12
-&lt;/span>&lt;span class="lnt">13
-&lt;/span>&lt;span class="lnt">14
-&lt;/span>&lt;span class="lnt">15
-&lt;/span>&lt;span class="lnt">16
-&lt;/span>&lt;span class="lnt">17
-&lt;/span>&lt;span class="lnt">18
-&lt;/span>&lt;span class="lnt">19
-&lt;/span>&lt;span class="lnt">20
-&lt;/span>&lt;span class="lnt">21
-&lt;/span>&lt;span class="lnt">22
-&lt;/span>&lt;span class="lnt">23
-&lt;/span>&lt;span class="lnt">24
-&lt;/span>&lt;span class="lnt">25
-&lt;/span>&lt;span class="lnt">26
-&lt;/span>&lt;span class="lnt">27
-&lt;/span>&lt;span class="lnt">28
-&lt;/span>&lt;span class="lnt">29
-&lt;/span>&lt;span class="lnt">30
-&lt;/span>&lt;span class="lnt">31
-&lt;/span>&lt;span class="lnt">32
-&lt;/span>&lt;span class="lnt">33
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-xml" data-lang="xml">&lt;span class="line">&lt;span class="cl">&lt;span class="nt">&amp;lt;dependencies&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;lt;dependency&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;lt;groupId&amp;gt;&lt;/span>org.springframework.boot&lt;span class="nt">&amp;lt;/groupId&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;lt;artifactId&amp;gt;&lt;/span>spring-boot-starter-web&lt;span class="nt">&amp;lt;/artifactId&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;lt;/dependency&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> // Spring GraphQL Boot starter
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;lt;dependency&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;lt;groupId&amp;gt;&lt;/span>org.springframework.experimental&lt;span class="nt">&amp;lt;/groupId&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;lt;artifactId&amp;gt;&lt;/span>graphql-spring-boot-starter&lt;span class="nt">&amp;lt;/artifactId&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;lt;version&amp;gt;&lt;/span>1.0.0-SNAPSHOT&lt;span class="nt">&amp;lt;/version&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;lt;/dependency&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c">&amp;lt;!-- ... --&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nt">&amp;lt;/dependencies&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c">&amp;lt;!-- For Spring project milestones or snapshot releases --&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nt">&amp;lt;repositories&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;lt;repository&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;lt;id&amp;gt;&lt;/span>spring-milestones&lt;span class="nt">&amp;lt;/id&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;lt;name&amp;gt;&lt;/span>Spring Milestones&lt;span class="nt">&amp;lt;/name&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;lt;url&amp;gt;&lt;/span>https://repo.spring.io/milestone&lt;span class="nt">&amp;lt;/url&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;lt;/repository&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;lt;repository&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;lt;id&amp;gt;&lt;/span>spring-snapshots&lt;span class="nt">&amp;lt;/id&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;lt;name&amp;gt;&lt;/span>Spring Snapshots&lt;span class="nt">&amp;lt;/name&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;lt;url&amp;gt;&lt;/span>https://repo.spring.io/snapshot&lt;span class="nt">&amp;lt;/url&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;lt;snapshots&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;lt;enabled&amp;gt;&lt;/span>true&lt;span class="nt">&amp;lt;/enabled&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;lt;/snapshots&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;lt;/repository&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nt">&amp;lt;/repositories&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>After importing the dependencies, place the Graphql Schema file in the &lt;code>resources/graphql&lt;/code> directory and make the corresponding configuration to run. After running, you can see the web version of the playground at the set path.&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
-&lt;/span>&lt;span class="lnt">4
-&lt;/span>&lt;span class="lnt">5
-&lt;/span>&lt;span class="lnt">6
-&lt;/span>&lt;span class="lnt">7
-&lt;/span>&lt;span class="lnt">8
-&lt;/span>&lt;span class="lnt">9
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-yaml" data-lang="yaml">&lt;span class="line">&lt;span class="cl">&lt;span class="nt">spring&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">graphql&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">graphiql&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># Provides a web-based playground for assistance&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">enabled&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kc">true&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">path&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">/&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">schema&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># Provides schema&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">printer&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">enabled&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kc">true&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">path&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">/query&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># Graphql endpoint&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;h2 id="query-and-mutation">Query and Mutation&lt;/h2>
-&lt;p>The queries and mutations provided in the Schema are mapped to methods in the Controller through annotations for processing and returning the corresponding data. The convention method is used by default here, as long as the name of the method and its parameters are consistent with the Schema declaration, it can be automatically mapped, otherwise it can be set through the parameters of the annotation.&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
-&lt;/span>&lt;span class="lnt"> 2
-&lt;/span>&lt;span class="lnt"> 3
-&lt;/span>&lt;span class="lnt"> 4
-&lt;/span>&lt;span class="lnt"> 5
-&lt;/span>&lt;span class="lnt"> 6
-&lt;/span>&lt;span class="lnt"> 7
-&lt;/span>&lt;span class="lnt"> 8
-&lt;/span>&lt;span class="lnt"> 9
-&lt;/span>&lt;span class="lnt">10
-&lt;/span>&lt;span class="lnt">11
-&lt;/span>&lt;span class="lnt">12
-&lt;/span>&lt;span class="lnt">13
-&lt;/span>&lt;span class="lnt">14
-&lt;/span>&lt;span class="lnt">15
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="cl">&lt;span class="nd">@Controller&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">class&lt;/span> &lt;span class="nc">TodoController&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nd">@QueryMapping&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">List&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">TodoItem&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nf">todoItems&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">GraphQLContext&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">cxt&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">var&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">u&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">getUserInContext&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">cxt&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">return&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">todoService&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">getTodoItemsByUser&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">u&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nd">@MutationMapping&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">TodoItem&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nf">createTodoItem&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nd">@Argument&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">TodoItemInput&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">todo&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">GraphQLContext&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">cxt&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">var&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">user&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">getUserInContext&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">cxt&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">return&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">todoService&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">createTodoItem&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">todo&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">user&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>The method's parameters support:&lt;/p>
-&lt;ul>
-&lt;li>&lt;a href="https://javadoc.io/doc/com.graphql-java/graphql-java/latest/graphql/schema/DataFetchingEnvironment.html">DataFetchingEnvironment&lt;/a>: Contains rich related information in this query, including query variables, context information, etc.&lt;/li>
-&lt;li>The &lt;code>@Argument&lt;/code> annotation can bind the corresponding variables to the parameters.&lt;/li>
-&lt;li>GraphQLContext: Used to store the corresponding data content in the access context.&lt;/li>
-&lt;/ul>
-&lt;h2 id="authorization">Authorization&lt;/h2>
-&lt;p>How to perform authorization, the document simply gives a brief introduction saying that Spring Security can be used for authorization. However, my needs are not so complicated, I just need to simply intercept requests, check whether there is token access, if there is token access, then convert it into the corresponding user and give it to the subsequent Controller for processing.&lt;/p>
-&lt;p>Here I use WebInterceptor to handle request interception, the main idea is:&lt;/p>
+&lt;p>Before I had a MacBook, I always had a special longing for Macos-exclusive applications. However, after really using them, they seem to be just so-so, or just okay. Recently, there have been many new software on Macos, such as Warp Terminal, Raycast, which I have been using. Maybe it's because I haven't used them deeply, or gotten to their essence, so they feel quite ordinary. I'll continue to explore slowly.&lt;/p></description><category domain="https://scottyeung.top/en/posts/">posts</category><category domain="https://scottyeung.top/en/tags/Productivity/">Productivity</category><category domain="https://scottyeung.top/en/tags/Tools/">Tools</category></item><item><title>Umami: A Simpler Self-Hosted Website Statistics Service</title><link>https://scottyeung.top/en/2023/umami/</link><guid isPermaLink="true">https://scottyeung.top/en/2023/umami/</guid><pubDate>Wed, 14 Jun 2023 10:41:12 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>Previously, I used Google Analytics to provide website statistics services, tracking the visits to each page on my blog. It's usable, but Google Analytics offers too much statistical content, which is quite overwhelming. Moreover, Google's services always have accessibility issues. Therefore, after reading other bloggers' introductions to &lt;a href="https://github.com/umami-software/umami">Umami&lt;/a>, I decided to set up my own website statistics service and switch to it.&lt;/p>
+&lt;blockquote>
+&lt;p>Umami is a simple, fast, privacy-focused alternative to Google Analytics.&lt;/p>
+&lt;/blockquote>
+&lt;p>Umami's main selling point is its focus on privacy. After all, it's better not to let big companies handle data like visit statistics. Umami supports multiple deployment methods, such as Docker. However, for a cloud computing enthusiast like me, it's natural to go for cloud services. The Umami service itself can be deployed on Vercel, and you can access it directly by binding a domain name. Umami supports two types of databases, MySQL and Postgresql, and you can find corresponding serverless providers for both. I chose &lt;a href="https://www.pingcap.com/tidb-cloud/">TiDB Cloud&lt;/a> by PingCap, which provides a MySQL database with a maximum capacity of 5G per cluster and 50 million accesses per month.&lt;/p>
+&lt;p>The final deployment result is as follows.&lt;/p>
+&lt;p>&lt;img src="https://scottyeung.top/my-images/202306141051580.png" alt="">&lt;/p>
+&lt;h2 id="setup-process">Setup Process&lt;/h2>
 &lt;ol>
-&lt;li>Intercept each request and try to take the Authorization field in the request header.&lt;/li>
-&lt;li>If there is no such field, skip it.&lt;/li>
-&lt;li>If there is this field, try to get the corresponding User based on the token, if not found, throw an invalid token error.&lt;/li>
-&lt;li>After finding it, add the User object to the graphQLContext for the Controller to use.&lt;/li>
+&lt;li>
+&lt;p>After logging in to TiDB Cloud, create a serverless database cluster.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>On the cluster's overview page, click connect to get the relevant content for establishing a database connection, including the following in the MySQL CLI connection method:&lt;/p>
+&lt;ul>
+&lt;li>Username -u&lt;/li>
+&lt;li>Host -h&lt;/li>
+&lt;li>Port -P&lt;/li>
+&lt;li>Password -p&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>Based on the obtained information, piece together the MySQL connection URL:&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>mysql://&amp;lt;username&amp;gt;:&amp;lt;password&amp;gt;@&amp;lt;host&amp;gt;:&amp;lt;port&amp;gt;/&amp;lt;database_name&amp;gt;?pool_timeout=60&amp;amp;sslaccept=accept_invalid_certs&lt;/code>&lt;/li>
+&lt;li>You need to create a database in advance and specify it.&lt;/li>
+&lt;li>Because TiDB Cloud requires TLS by default, you must add the parameter &lt;code>sslaccept=accept_invalid_certs&lt;/code>, otherwise, you cannot connect (this is a hidden pitfall).&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>Fork the Umami project on GitHub and deploy it on Vercel. When deploying, fill in the environment variable &lt;code>DATABASE_URL&lt;/code> with the connection URL from above.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>After deployment, bind your own domain name on Vercel. Due to DNS pollution, the domain names provided by Vercel cannot be accessed most of the time. You need your own domain name for smoother access.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>After successful deployment, visit the website through the bound domain name. The default account username and password are 'admin' and 'umami'. After logging in, you can change the password, add websites, and add users.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>In the settings page, add a website and fill in the relevant information. Umami will assign an ID and a tracking code for the website to be tracked. Simply put this tracking code into the head tag of the webpage to start collecting statistical data and see the corresponding statistics results in the dashboard.&lt;/p>
+&lt;ol>
+&lt;li>For example, in the case of Hugo that I use, find the generation template related to the head tag in the HTML template of the theme and put the tracking code into it. To increase configurability, you can also extract the id in the tracking code into a variable and read it from the configuration.&lt;/li>
 &lt;/ol>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
-&lt;/span>&lt;span class="lnt"> 2
-&lt;/span>&lt;span class="lnt"> 3
-&lt;/span>&lt;span class="lnt"> 4
-&lt;/span>&lt;span class="lnt"> 5
-&lt;/span>&lt;span class="lnt"> 6
-&lt;/span>&lt;span class="lnt"> 7
-&lt;/span>&lt;span class="lnt"> 8
-&lt;/span>&lt;span class="lnt"> 9
-&lt;/span>&lt;span class="lnt">10
-&lt;/span>&lt;span class="lnt">11
-&lt;/span>&lt;span class="lnt">12
-&lt;/span>&lt;span class="lnt">13
-&lt;/span>&lt;span class="lnt">14
-&lt;/span>&lt;span class="lnt">15
-&lt;/span>&lt;span class="lnt">16
-&lt;/span>&lt;span class="lnt">17
-&lt;/span>&lt;span class="lnt">18
-&lt;/span>&lt;span class="lnt">19
-&lt;/span>&lt;span class="lnt">20
-&lt;/span>&lt;span class="lnt">21
-&lt;/span>&lt;span class="lnt">22
-&lt;/span>&lt;span class="lnt">23
-&lt;/span>&lt;span class="lnt">24
-&lt;/span>&lt;span class="lnt">25
-&lt;/span>&lt;span class="lnt">26
-&lt;/span>&lt;span class="lnt">27
-&lt;/span>&lt;span class="lnt">28
-&lt;/span>&lt;span class="lnt">29
-&lt;/span>&lt;span class="lnt">30
-&lt;/span>&lt;span class="lnt">31
-&lt;/span>&lt;span class="lnt">32
-&lt;/span>&lt;span class="lnt">33
-&lt;/span>&lt;span class="lnt">34
-&lt;/span>&lt;span class="lnt">35
-&lt;/span>&lt;span class="lnt">36
-&lt;/span>&lt;span class="lnt">37
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="cl">&lt;span class="nd">@Component&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">class&lt;/span> &lt;span class="nc">MyInterceptor&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">implements&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">WebInterceptor&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">private&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">final&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">UserService&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">userService&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nd">@Autowired&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nf">MyInterceptor&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">UserService&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">userService&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">this&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">userService&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">userService&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nd">@Override&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Mono&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">WebOutput&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nf">intercept&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">WebInput&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">webInput&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">WebGraphQlHandler&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">next&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">var&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">authHeader&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">webInput&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">getHeaders&lt;/span>&lt;span class="p">().&lt;/span>&lt;span class="na">get&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;Authorization&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">var&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">q&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">webInput&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">toExecutionInput&lt;/span>&lt;span class="p">();&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">if&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">Objects&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">isNull&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">authHeader&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">||&lt;/span>&lt;span class="n">authHeader&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">size&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="o">==&lt;/span>&lt;span class="n">0&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">return&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">next&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">handle&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">webInput&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">var&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">user&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">userService&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">getUserByToken&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">authHeader&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">get&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">0&lt;/span>&lt;span class="p">));&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">if&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">user&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">isEmpty&lt;/span>&lt;span class="p">())&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">return&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Mono&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">just&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">new&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">WebOutput&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">webInput&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">new&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">ExecutionResultImpl&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">GraphqlExceptionBuilder&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">genError&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">GraphqlExceptionBuilder&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">ErrorType&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">INVALID_TOKEN&lt;/span>&lt;span class="p">))));&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">webInput&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">configureExecutionInput&lt;/span>&lt;span class="p">(((&lt;/span>&lt;span class="n">executionInput&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">builder&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">Map&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Object&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">context&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">new&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">HashMap&lt;/span>&lt;span class="o">&amp;lt;&amp;gt;&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{{&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">put&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;user&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">user&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">get&lt;/span>&lt;span class="p">());&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}};&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">return&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">builder&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">graphQLContext&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">context&lt;/span>&lt;span class="p">).&lt;/span>&lt;span class="na">build&lt;/span>&lt;span class="p">();&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}));&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">return&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">next&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">handle&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">webInput&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>In subsequent controller methods, if user information or user permissions are needed, just take out the corresponding object from the graphQLContext, if not available, throw the corresponding error.&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
-&lt;/span>&lt;span class="lnt">4
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="cl">&lt;span class="kd">private&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">User&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nf">getUserInContext&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">GraphQLContext&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">cxt&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">return&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">User&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">cxt&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">getOrEmpty&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;user&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">orElseThrow&lt;/span>&lt;span class="p">(()&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">GraphqlExceptionBuilder&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">genError&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">GraphqlExceptionBuilder&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">ErrorType&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">FORBIDDEN&lt;/span>&lt;span class="p">));&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;h2 id="error-handler">Error Handler&lt;/h2>
-&lt;p>All exceptions thrown during the application run will eventually be returned to the client in the form of GraphQL. At first, I thought that the thrown GraphQLError would be directly returned to the user, so I directly threw an error in the code, trying to return it to the user through the Controller. However, I found that in this way, the extensions I set in the GraphlQLErrorException would always have no effect, but would be classified as INTERNAL_ERROR.&lt;/p>
-&lt;p>Later I found that all exceptions would run to something called an ErrorResolver for processing, which would repackage the Error again. So we must write our own ExceptionHandler to override it.&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
 &lt;/span>&lt;span class="lnt">2
 &lt;/span>&lt;span class="lnt">3
 &lt;/span>&lt;span class="lnt">4
 &lt;/span>&lt;span class="lnt">5
 &lt;/span>&lt;span class="lnt">6
-&lt;/span>&lt;span class="lnt">7
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="cl">&lt;span class="nd">@Component&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">class&lt;/span> &lt;span class="nc">DataFetcherExceptionHandler&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">extends&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">DataFetcherExceptionResolverAdapter&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nd">@Override&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">GraphQLError&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nf">resolveToSingleError&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">Throwable&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">ex&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">DataFetchingEnvironment&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">env&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">return&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">GraphQLError&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">ex&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-html" data-lang="html">&lt;span class="line">&lt;span class="cl"> {{- if and .Site.Params.enableUmami (eq hugo.Environment &amp;#34;production&amp;#34;) }}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> {{ $id := .Site.Params.umamiTrackingID }}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> {{ $host := .Site.Params.umamiHost }}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">script&lt;/span> &lt;span class="na">async&lt;/span> &lt;span class="na">src&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;https://{{ $host }}/script.js&amp;#34;&lt;/span> &lt;span class="na">data-website-id&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;{{ $id }}&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&amp;lt;/&lt;/span>&lt;span class="nt">script&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> {{- end }}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>In addition, the generation of GraphQLError is assisted by a custom Builder tool class, which generates Errors containing message and error through enumeration types.&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
+&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
-&lt;/span>&lt;span class="lnt"> 2
-&lt;/span>&lt;span class="lnt"> 3
-&lt;/span>&lt;span class="lnt"> 4
-&lt;/span>&lt;span class="lnt"> 5
-&lt;/span>&lt;span class="lnt"> 6
-&lt;/span>&lt;span class="lnt"> 7
-&lt;/span>&lt;span class="lnt"> 8
-&lt;/span>&lt;span class="lnt"> 9
-&lt;/span>&lt;span class="lnt">10
-&lt;/span>&lt;span class="lnt">11
-&lt;/span>&lt;span class="lnt">12
-&lt;/span>&lt;span class="lnt">13
-&lt;/span>&lt;span class="lnt">14
-&lt;/span>&lt;span class="lnt">15
-&lt;/span>&lt;span class="lnt">16
-&lt;/span>&lt;span class="lnt">17
-&lt;/span>&lt;span class="lnt">18
-&lt;/span>&lt;span class="lnt">19
-&lt;/span>&lt;span class="lnt">20
-&lt;/span>&lt;span class="lnt">21
-&lt;/span>&lt;span class="lnt">22
-&lt;/span>&lt;span class="lnt">23
-&lt;/span>&lt;span class="lnt">24
-&lt;/span>&lt;span class="lnt">25
-&lt;/span>&lt;span class="lnt">26
-&lt;/span>&lt;span class="lnt">27
-&lt;/span>&lt;span class="lnt">28
-&lt;/span>&lt;span class="lnt">29
-&lt;/span>&lt;span class="lnt">30
-&lt;/span>&lt;span class="lnt">31
-&lt;/span>&lt;span class="lnt">32
-&lt;/span>&lt;span class="lnt">33
-&lt;/span>&lt;span class="lnt">34
-&lt;/span>&lt;span class="lnt">35
-&lt;/span>&lt;span class="lnt">36
-&lt;/span>&lt;span class="lnt">37
-&lt;/span>&lt;span class="lnt">38
-&lt;/span>&lt;span class="lnt">39
-&lt;/span>&lt;span class="lnt">40
-&lt;/span>&lt;span class="lnt">41
-&lt;/span>&lt;span class="lnt">42
-&lt;/span>&lt;span class="lnt">43
-&lt;/span>&lt;span class="lnt">44
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="cl">&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">class&lt;/span> &lt;span class="nc">GraphqlExceptionBuilder&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">enum&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">ErrorType&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">DUPLICATED_USER&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">NO_USER&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">WRONG_PASSWORD&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">INVALID_TOKEN&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">FORBIDDEN&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">NO_ITEM&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">static&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Map&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Object&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nf">updateErrorCode&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">ErrorType&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">errorType&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">return&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">new&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">HashMap&lt;/span>&lt;span class="o">&amp;lt;&amp;gt;&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{{&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">put&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;code&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">errorType&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">name&lt;/span>&lt;span class="p">());&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}};&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">static&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">GraphqlErrorException&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nf">genError&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">ErrorType&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">errorType&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">var&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">err&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">GraphqlErrorException&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">newErrorException&lt;/span>&lt;span class="p">();&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">switch&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">errorType&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">case&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">DUPLICATED_USER&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">err&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">message&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;existed username&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">break&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">case&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">NO_USER&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">err&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">message&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;not exist username&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">break&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">case&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">WRONG_PASSWORD&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">err&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">message&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;wrong password&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">break&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">case&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">INVALID_TOKEN&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">err&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">message&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;invalid token&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">break&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">case&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">FORBIDDEN&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">err&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">message&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;access forbidden&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">break&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">case&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">NO_ITEM&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">err&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">message&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;no such query items&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">break&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">err&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">extensions&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">updateErrorCode&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">errorType&lt;/span>&lt;span class="p">));&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">return&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">err&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">build&lt;/span>&lt;span class="p">();&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-toml" data-lang="toml">&lt;span class="line">&lt;span class="cl">&lt;span class="nx">enableUmami&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="kc">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">umamiTrackingID&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;your_id&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">umamiHost&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;your_umami_website&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description><category domain="https://scottyeung.top/en/posts/">posts</category><category domain="https://scottyeung.top/en/tags/GraphQL/">GraphQL</category><category domain="https://scottyeung.top/en/tags/Java/">Java</category><category domain="https://scottyeung.top/en/tags/Spring/">Spring</category></item></channel></rss>
+&lt;/div>&lt;/li>
+&lt;/ol></description><category domain="https://scottyeung.top/en/posts/">posts</category><category domain="https://scottyeung.top/en/tags/serverless/">serverless</category><category domain="https://scottyeung.top/en/tags/Vercel/">Vercel</category><category domain="https://scottyeung.top/en/tags/blog/">blog</category><category domain="https://scottyeung.top/en/tags/Tools/">Tools</category><category domain="https://scottyeung.top/en/tags/cloud-services/">cloud services</category><category domain="https://scottyeung.top/en/tags/Mysql/">Mysql</category></item></channel></rss>

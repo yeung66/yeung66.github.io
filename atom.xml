@@ -1,4 +1,27 @@
-<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah 的乱写地</title><link>https://scottyeung.top/</link><description>YeungYeah 的乱写地中记录了作者的所思所想及所为。</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Sun, 03 Mar 2024 16:03:55 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>Nuxt3 无法初始化项目解决</title><link>https://scottyeung.top/2024/nuxt-cannot-init/</link><guid isPermaLink="true">https://scottyeung.top/2024/nuxt-cannot-init/</guid><pubDate>Sun, 03 Mar 2024 21:11:08 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>国内环境下，使用 Nuxt 的项目初始化命令会出现下面错误。&lt;/p>
+<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah 的乱写地</title><link>https://scottyeung.top/</link><description>YeungYeah 的乱写地中记录了作者的所思所想及所为。</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Mon, 04 Mar 2024 15:22:23 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>Hugo 英语内容出现在中文页面</title><link>https://scottyeung.top/2024/hugo-en-content-exist-in-zh/</link><guid isPermaLink="true">https://scottyeung.top/2024/hugo-en-content-exist-in-zh/</guid><pubDate>Mon, 04 Mar 2024 22:32:35 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>在开设了我的英语博客之后，在昨天更新的时候偶然发现标签页面当中出现了英语内容的标签，以为是标签页生成的逻辑有问题，然后看了一下，用于生成的变量是 &lt;code>$.Site.Taxonomies.tags&lt;/code>，看起来也没有问题，想了一圈筛选的办法，似乎也解决不了。&lt;/p>
+&lt;p>然后昨晚写了一篇新博客后，发现文章的相似推荐也出现了英语文章内容，点进去才发现不对劲：虽然文章的内容是英语的，但是博客的站点名字，以及下方的版权信息介绍都是中文的。然后再看一眼路径，发现好像跟我预期的英语内容的路径也不一样。这个文章的路径是 &lt;code>/en/posts/2024/nuxt-cannot-init/&lt;/code>，但是预期的应该是 &lt;code>/en/2024/nuxt-cannot-init/&lt;/code>。&lt;/p>
+&lt;p>如此看起来，问题的本质在于英语的内容文件被当成了中文博客的一部份来进行处理，所以在生成标签页和获取相关页面，都出现了英文内容。而出现这个问题的原因在于，我两种语言的目录设置不太妥当，中文的内容目录包含了英文的目录，导致英文的内容被当作是中文的一部份了。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-toml" data-lang="toml">&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="nx">languages&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="nx">languages&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">zh&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">contentDir&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;content&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">...&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="nx">languages&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">en&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">contentDir&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;content/en&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">...&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>于是把英文的内容路径改成 &lt;code>contentDir = 'content_en'&lt;/code>，并且新建同名文件夹，并把英文内容的文件移动到该文件夹，问题解决！&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/Hugo/">Hugo</category><category domain="https://scottyeung.top/tags/%E5%8D%9A%E5%AE%A2/">博客</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category></item><item><title>Nuxt3 无法初始化项目解决</title><link>https://scottyeung.top/2024/nuxt-cannot-init/</link><guid isPermaLink="true">https://scottyeung.top/2024/nuxt-cannot-init/</guid><pubDate>Sun, 03 Mar 2024 21:11:08 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>国内环境下，使用 Nuxt 的项目初始化命令会出现下面错误。&lt;/p>
 &lt;blockquote>
 &lt;p>Error: Failed to download template from registry: Failed to download &lt;a href="https://raw.githubusercontent.com/nuxt/starter/templates/templates/v3.json">https://raw.githubusercontent.com/nuxt/starter/templates/templates/v3.json&lt;/a>: TypeError: fetch failed&lt;/p>
 &lt;/blockquote>
@@ -76,7 +99,7 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">languageName&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;简体中文&amp;#39;&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">weight&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="mi">1&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="nx">languages&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">en&lt;/span>&lt;span class="p">]&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">contentDir&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;content/en&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">contentDir&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;content_en&amp;#39;&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">disabled&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="kc">false&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">languageCode&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;en-US&amp;#39;&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">languageDirection&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;ltr&amp;#39;&lt;/span>
@@ -251,13 +274,7 @@
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;h3 id="footer-内容">footer 内容&lt;/h3>
-&lt;p>footer 的内容基本都是自己定制添加上去的，基本都是没有多语言支持，如果需要给英语博客做切换，就得给硬编码的定制加个条件判断。&lt;/p>
-&lt;hr>
-&lt;h2 id="一些问题">一些问题&lt;/h2>
-&lt;h3 id="中文-tags-页面出现英语内容-tags">中文 tags 页面出现英语内容 tags&lt;/h3>
-&lt;ul>
-&lt;li>因为不想改中文博客的路径，就没有改动中文博客的内容所在目录，还是放在 &lt;code>content/posts&lt;/code> 下，英语内容放在了 &lt;code>content/en/posts&lt;/code> 下，虽然归档中可以区分中中文和英文的内容，但是 tags 无法区分，导致中文页面的 tags 会出现英语文章的 tags。&lt;/li>
-&lt;/ul></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E5%8D%9A%E5%AE%A2/">博客</category><category domain="https://scottyeung.top/tags/%E5%86%99%E4%BD%9C/">写作</category><category domain="https://scottyeung.top/tags/%E8%BE%93%E5%87%BA/">输出</category><category domain="https://scottyeung.top/tags/Hugo/">Hugo</category><category domain="https://scottyeung.top/tags/AI/">AI</category></item><item><title>重新开始思考投资</title><link>https://scottyeung.top/2024/think-invest-again/</link><guid isPermaLink="true">https://scottyeung.top/2024/think-invest-again/</guid><pubDate>Sun, 21 Jan 2024 22:34:34 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>继大四看了孟岩关于价值投资的一些观点后，开始有意识地考虑投资这个事。从 19 年开始，一直在定投国内的基金，从最开始的指数基金买整体的发展，到后面选择一些评级高的主动进取型基金想要更好的收益，投资理念开始逐渐转变。然而再怎样的选择，其实也抵不过大环境大趋势，整个国内市场就不行，怎么选其实都没有意义，再加上发现的各种奇怪的事情，也更加清晰地意识到国内的股市和投资市场就是个笑话。&lt;/p>
+&lt;p>footer 的内容基本都是自己定制添加上去的，基本都是没有多语言支持，如果需要给英语博客做切换，就得给硬编码的定制加个条件判断。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E5%8D%9A%E5%AE%A2/">博客</category><category domain="https://scottyeung.top/tags/%E5%86%99%E4%BD%9C/">写作</category><category domain="https://scottyeung.top/tags/%E8%BE%93%E5%87%BA/">输出</category><category domain="https://scottyeung.top/tags/Hugo/">Hugo</category><category domain="https://scottyeung.top/tags/AI/">AI</category></item><item><title>重新开始思考投资</title><link>https://scottyeung.top/2024/think-invest-again/</link><guid isPermaLink="true">https://scottyeung.top/2024/think-invest-again/</guid><pubDate>Sun, 21 Jan 2024 22:34:34 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>继大四看了孟岩关于价值投资的一些观点后，开始有意识地考虑投资这个事。从 19 年开始，一直在定投国内的基金，从最开始的指数基金买整体的发展，到后面选择一些评级高的主动进取型基金想要更好的收益，投资理念开始逐渐转变。然而再怎样的选择，其实也抵不过大环境大趋势，整个国内市场就不行，怎么选其实都没有意义，再加上发现的各种奇怪的事情，也更加清晰地意识到国内的股市和投资市场就是个笑话。&lt;/p>
 &lt;p>为什么逐渐对长期的价值投资失去信心？个人理解价值投资，本质上就是用钱去支持与陪同某个企业共同成长，然后成长后获取成长增长的这部份价值。股市的本质应该是帮助企业融资以实现更好的发展和增长。然而现在国内的股市，感觉完全就没有这个感觉。融资只是部份人为了拿钱，更像是企业从股民手上拿钱然后花掉 / 分掉。简单地说就是我们韭菜送钱给他们花。股市是这样，衍生的基金自然也好不到哪里去。&lt;/p>
 &lt;p>其实以前也有过一个疑问，就是如果价值投资或者所谓的长期主义，真的是等大牛市有大涨幅才开始获利离场，但是难道真的要长期到持有几年或者几十年？那这样都收益摊到这么多年来，收益率算下来真的是好吗？其次是一笔钱和收益都需要放这么久不能用，有钱 / 资产的意义也大大减少。&lt;/p>
 &lt;p>遂打算转战美股，停止对于国内市场的投资。之前还一直下不来决心，但是今天刷推特看到才意识到，自己一直缺乏止损 / 止盈能力。其实很早就开始经济不行，但是一直不舍得停下来，一直安慰自己终有一天能够涨回来，再加上定投的钱也不多，就一直投下去，直到现在加起来持有收益已经差不多 -20%。亏了点钱是一方面，另一方面这些定投的钱没有拿去定投其他的地方也少了赚钱的机会了。&lt;/p>
@@ -596,4 +613,239 @@
 &lt;/div>&lt;p>不过编译速度稍慢，可能是因为套了层 docker 的原因，比直接编译慢多了，甚至感觉还不如以前在 Windows 上用 WSL 来编译 Linux 版本。&lt;/p>
 &lt;p>另外这样用 docker 来编译的话，一些依赖 crate 的编译结果也没得缓存，每次都需要重新把所有 crate 都编译一次，有点折磨。&lt;/p>
 &lt;p>不过看了下 &lt;a href="https://github.com/cross-rs/cross/issues/381">issue&lt;/a>，说是实际其实已经支持 incremental build 的。
-但是使用 cargo 和 cross 来编译，都只会使用 &lt;code>target/debug|release&lt;/code> 目录下的内容作为 cache，而不同 target 之间是不能够复用的。如果在 cross 为指定 target 编译一次后，&lt;code>target/release&lt;/code> 目录下的内容都会变成只针对指定 target 有效，这时使用 cargo 本地编译就得全部重新编译（包括全部依赖的 crate 😭）。而这样 cargo 编译后，又重写了 &lt;code>target/release&lt;/code> 的内容，后续使用 cross 跨平台编译又得重新全部编译一次。虽然最终 cross 打出来的内容会放在 &lt;code>target/{target-host}/release&lt;/code> 下面，但是似乎使用的是 &lt;code>target/release&lt;/code>，导致这个能否增量编译的设置就很迷，几乎等于没有。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/Rust/">Rust</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category><category domain="https://scottyeung.top/tags/%E5%AD%A6%E4%B9%A0/">学习</category></item></channel></rss>
+但是使用 cargo 和 cross 来编译，都只会使用 &lt;code>target/debug|release&lt;/code> 目录下的内容作为 cache，而不同 target 之间是不能够复用的。如果在 cross 为指定 target 编译一次后，&lt;code>target/release&lt;/code> 目录下的内容都会变成只针对指定 target 有效，这时使用 cargo 本地编译就得全部重新编译（包括全部依赖的 crate 😭）。而这样 cargo 编译后，又重写了 &lt;code>target/release&lt;/code> 的内容，后续使用 cross 跨平台编译又得重新全部编译一次。虽然最终 cross 打出来的内容会放在 &lt;code>target/{target-host}/release&lt;/code> 下面，但是似乎使用的是 &lt;code>target/release&lt;/code>，导致这个能否增量编译的设置就很迷，几乎等于没有。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/Rust/">Rust</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category><category domain="https://scottyeung.top/tags/%E5%AD%A6%E4%B9%A0/">学习</category></item><item><title>双十一与我</title><link>https://scottyeung.top/2023/11-11-shopping-festival/</link><guid isPermaLink="true">https://scottyeung.top/2023/11-11-shopping-festival/</guid><pubDate>Sat, 11 Nov 2023 10:53:30 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>不知不觉双十一购物节这个概念已经诞生了这么久，然而现在都双十一似乎也越来越没有购物节的氛围，优惠没感觉到多少，基本提不起购买欲。&lt;/p>
+&lt;p>对我来说，现在已经换了种方式参与双十一，从过去提前一个月参与各种活动拿红包然后准点下单，到现在工作为双十一大促赶需求和做保障，真的颇有感概。&lt;/p>
+&lt;p>以前的双十一，确实能有优惠，虽然优惠不大，也是实打实的。也正是这些优惠的存在，给予了当时还是学生的我一个购物花钱的理由和机会。有什么想买的都可以接着双十一这个机会来购买。&lt;/p>
+&lt;p>大一那年买了个 kindle，大二买了双鞋和电动牙刷，大三买了个骨传导耳机，大四那年换了台笔记本。真的到了双十一，就突然有了个理由，可以去买一些自己以前想买的东西，尤其是学生阶段的自己其实还没自己的收入，没有属于自己可以随意支配的钱。消费就更需要一个理由。双十一就是一个很好的给自己和给家人购物的理由。&lt;/p>
+&lt;p>最早期的双十一，直接就给你降价优惠，给你发消费红包，消费者是真的能够实打实地体现到优惠。双十一当天随便点开淘宝都能发现相关优惠并被吸引到。&lt;/p>
+&lt;p>然后搞跨店满减，买多了才能优惠。但是不同商品满足的满减条件又不一样，变得需要各种拼凑计算，宛然成为数学题。算来算去要买什么东西，加起来买多少钱，要不要和别人凑单。&lt;/p>
+&lt;p>然后开始搞预售，把双十一周期拉长，订金抵双倍这种。也算是有那么一点优惠，就是要等一等。&lt;/p>
+&lt;p>接着还搞组队 pk，逼迫人每天去转发链接，pk 赢了才能拿那点点红包，pk 输了还会红包清零。第一年还能和几个好友每天拉人 pk，然后最后也就拿到了几十块红包。第二年看到还出了类似的活动，简直觉得去年的自己是个傻逼。&lt;/p>
+&lt;p>最后，今年的双十一还是基本什么都没买，一方面可能是因为确实没什么优惠，另一方面也是自己确确实实没有什么很需要的购物需求。但最主要的还是自己已经开始工作，有属于自己可以支配的钱，不需要再为购物找原因和理由。&lt;/p>
+&lt;p>但是作为利益相关方，还是希望双十一能够大卖，大家也真的有钱能够消费吧。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E7%94%9F%E6%B4%BB/">生活</category><category domain="https://scottyeung.top/tags/%E8%AE%B0%E5%BD%95/">记录</category><category domain="https://scottyeung.top/tags/%E9%9A%8F%E7%AC%94/">随笔</category></item><item><title>动态时间线聚合 - Cloudflare 重制版</title><link>https://scottyeung.top/2023/rss-timeline-cloudflare/</link><guid isPermaLink="true">https://scottyeung.top/2023/rss-timeline-cloudflare/</guid><pubDate>Sat, 04 Nov 2023 11:46:58 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>上个周末把在服务器运行的 rss 聚合程序迁移到了 Cloudflare 处运行。&lt;strong>真的 Cloudflare 太香了！！&lt;/strong>&lt;/p>
+&lt;h2 id="why">why&lt;/h2>
+&lt;ol>
+&lt;li>之前部署到服务器这个流程太麻烦
+&lt;ol>
+&lt;li>本地修改代码 -&amp;gt; 打包发布 -&amp;gt; scp 上传服务器 -&amp;gt; 服务器关掉正在运行的程序 -&amp;gt; 重新运行程序&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>查看和管理数据麻烦：
+&lt;ol>
+&lt;li>因为使用本地 sqlite 数据库文件来保存抓取的文件，所以导致查看服务器上的数据就比较麻烦，得 ssh 连上去然后跑一个 sqlite client 的 shell 程序执行 sql 语句来查询，显示也不好看&lt;/li>
+&lt;li>基于文件存储，本地一份，服务器一份，数据常常不同步，还得专门搞一个功能来只抓数据&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>网络环境不是很好。
+&lt;ol>
+&lt;li>需要访问 vercel 部署的网页和访问 telegram api，都对网络环境有点要求，本地开发调试还得走个代理，又需要个额外配置&lt;/li>
+&lt;li>即使是部署在境外服务器上，网络访问也常常出现链接的问题，log 里面一大堆网络 error&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ol>
+&lt;h2 id="方案">方案&lt;/h2>
+&lt;p>使用 Cloudflare 提供的&lt;/p>
+&lt;ul>
+&lt;li>cron 定时任务调用 worker
+&lt;ul>
+&lt;li>worker 根据定时任务的 cron 种类来区分重发任务和抓取任务&lt;/li>
+&lt;li>抓取任务：访问各个 RSS 源解析数据象，并把新的数据发送到 Telegram 频道并保存到数据库当中&lt;/li>
+&lt;li>重发任务：捞取数据库当中没有发送成功的数据，重新发送到 Telegram 频道当中&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>使用 D1 数据库存储数据&lt;/li>
+&lt;/ul>
+&lt;h2 id="实现">实现&lt;/h2>
+&lt;p>Cloudflare 提供的 worker 需要用 JS / TS 实现。因为之前其实就已经写过 typescript 版本，所以其实直接迁移调试就可以了。&lt;/p>
+&lt;p>大概的创建的流程可以看 &lt;a href="https://scottyeung.top/2023/cloudflare-app-dev/">Cloudflare 应用&lt;/a>，主要是有几个点需要注意&lt;/p>
+&lt;ul>
+&lt;li>Cloudflare worker 启动都是通过其入口函数来启动的。传递的环境变量和数据库实例都是通过入口函数的 env 变量来传递的。&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-typescript" data-lang="typescript">&lt;span class="line">&lt;span class="cl">&lt;span class="kr">export&lt;/span> &lt;span class="k">default&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kr">async&lt;/span> &lt;span class="nx">scheduled&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">event&lt;/span>: &lt;span class="kt">ScheduledEvent&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">env&lt;/span>: &lt;span class="kt">Env&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">ctx&lt;/span>: &lt;span class="kt">ExecutionContext&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">Promise&lt;/span>&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">void&lt;/span>&lt;span class="p">&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// A Cron Trigger can make requests to other endpoints on the Internet,
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="c1">// publish to a Queue, query a D1 Database, and much more.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="c1">//
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="c1">// We&amp;#39;ll keep it simple and make an API call to a Cloudflare API:
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="kd">let&lt;/span> &lt;span class="nx">resp&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">await&lt;/span> &lt;span class="nx">fetch&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;https://api.cloudflare.com/client/v4/ips&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kd">let&lt;/span> &lt;span class="nx">wasSuccessful&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">resp&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">ok&lt;/span> &lt;span class="o">?&lt;/span> &lt;span class="s1">&amp;#39;success&amp;#39;&lt;/span> &lt;span class="o">:&lt;/span> &lt;span class="s1">&amp;#39;fail&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// You could store this result in KV, write to a D1 Database, or publish to a Queue.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="c1">// In this template, we&amp;#39;ll just log the result:
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="nx">console&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">log&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sb">`trigger fired at &lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nx">event&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">cron&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="sb">: &lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nx">wasSuccessful&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="sb">`&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">};&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>因为 Cloudflare 的 JS 运行时并不是标准的 node，所以一些依赖 node api 的 npm 库可能会跑不了。之前的一些依赖库可能就需要替换，或者手工对 npm 库源代码进行修改。&lt;/li>
+&lt;/ul>
+&lt;h2 id="体验">体验&lt;/h2>
+&lt;ul>
+&lt;li>本地开发可以使用 remote 运行调试，直接用上 Cloudflare 的网络环境和数据库来进行测试。&lt;/li>
+&lt;li>使用 Cloudflare worker 后可以用官方提供的 wrangle 一键部署，流程大大简化。&lt;/li>
+&lt;li>使用 Cloudflare 的 dashboard 可以随时查看运行情况（但是拉历史日志好像比较麻烦？）。&lt;/li>
+&lt;li>可以用在 dashboard 上面修改一些简单的配置，比如定时间隔和环境变量。&lt;/li>
+&lt;li>可以用 D1 数据库的 console 查询数据库情况，并且做些简单的增删改查。&lt;/li>
+&lt;/ul></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/serverless/">serverless</category><category domain="https://scottyeung.top/tags/JavaScript/">JavaScript</category><category domain="https://scottyeung.top/tags/Cloudflare/">Cloudflare</category><category domain="https://scottyeung.top/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1/">云服务</category><category domain="https://scottyeung.top/tags/coding-%E8%AE%B0%E5%BD%95/">coding 记录</category><category domain="https://scottyeung.top/tags/rss/">rss</category><category domain="https://scottyeung.top/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/">自动化</category></item><item><title>Cloudflare 应用开发使用小记</title><link>https://scottyeung.top/2023/cloudflare-app-dev/</link><guid isPermaLink="true">https://scottyeung.top/2023/cloudflare-app-dev/</guid><pubDate>Sun, 29 Oct 2023 16:45:21 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;blockquote>
+&lt;p>能给大众白嫖使用的 serverless 服务，像 Cloudflare 和 Vercel 就是好的服务商。&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://scottyeung.top/my-images/202310291700756.png" alt="">&lt;/p>
+&lt;p>最近因为各种原因，突然想把在服务器上运行的 rss-timeline 记录（详情可以看这里 -- &lt;a href="https://scottyeung.top/2023/my-timeline/">我的动态时间线聚合&lt;/a>）的程序换成在云服务上面部署，最终选择了 Cloudflare，并且实现了一版。下面是实现过程中一些记录。&lt;/p>
+&lt;h2 id="worker">worker&lt;/h2>
+&lt;p>cloudflare 通过 worker 的方式提供服务，worker 有两种触发的方式&lt;/p>
+&lt;ul>
+&lt;li>http trigger. 通过发送 http 请求进行触发，也是最常用的一种，实现 fetch 方法处理请求即可
+&lt;ul>
+&lt;li>在 ChatGPT API 刚出的时候，很多人都因为 API 地址不能直连，所以搞一个 worker 请求转发就可以了。比如&lt;a href="https://github.com/noobnooc/noobnooc/discussions/9">这个&lt;/a>。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>cron trigger. 通过定时任务的方式来触发任务。通过配置 cron job 来声明执行的周期。&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-typescript" data-lang="typescript">&lt;span class="line">&lt;span class="cl">&lt;span class="kr">export&lt;/span> &lt;span class="k">default&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// The scheduled handler is invoked at the interval set in our wrangler.toml&amp;#39;s
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="c1">// [[triggers]] configuration.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="kr">async&lt;/span> &lt;span class="nx">scheduled&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">event&lt;/span>: &lt;span class="kt">ScheduledEvent&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">env&lt;/span>: &lt;span class="kt">Env&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">ctx&lt;/span>: &lt;span class="kt">ExecutionContext&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">Promise&lt;/span>&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">void&lt;/span>&lt;span class="p">&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// A Cron Trigger can make requests to other endpoints on the Internet,
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="c1">// publish to a Queue, query a D1 Database, and much more.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="c1">//
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="c1">// We&amp;#39;ll keep it simple and make an API call to a Cloudflare API:
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="kd">let&lt;/span> &lt;span class="nx">resp&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">await&lt;/span> &lt;span class="nx">fetch&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;https://api.cloudflare.com/client/v4/ips&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kd">let&lt;/span> &lt;span class="nx">wasSuccessful&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">resp&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">ok&lt;/span> &lt;span class="o">?&lt;/span> &lt;span class="s1">&amp;#39;success&amp;#39;&lt;/span> &lt;span class="o">:&lt;/span> &lt;span class="s1">&amp;#39;fail&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// You could store this result in KV, write to a D1 Database, or publish to a Queue.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="c1">// In this template, we&amp;#39;ll just log the result:
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="nx">console&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">log&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sb">`trigger fired at &lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nx">event&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">cron&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="sb">: &lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nx">wasSuccessful&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="sb">`&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// The event handler is invoked whenever an HTTP request is made to your
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="c1">// worker. The request will trigger the event handler regardless of the
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="c1">// request method or URL path.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="nx">fetch&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">request&lt;/span>: &lt;span class="kt">Request&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">env&lt;/span>: &lt;span class="kt">Env&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">ctx&lt;/span>: &lt;span class="kt">ExecutionContext&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">Promise&lt;/span>&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">Response&lt;/span>&lt;span class="p">&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="nx">Response&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sb">`Hello from the scheduled worker at &lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nx">request&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">url&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="sb">`&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">};&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>可以通过在配置文件 wrangle.toml 或者 dashboard 中的设置中声明环境变量。环境变量通过传递进来的 env 参数使用。&lt;/p>
+&lt;p>免费版主要是限制&lt;/p>
+&lt;ul>
+&lt;li>每次调用的 CPU 执行时间 10ms
+&lt;ul>
+&lt;li>官网中介绍用量很少，基本都不会超&lt;/li>
+&lt;li>但实际跑下来发现好像超了也没事？&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>每天的请求执行次数 100, 000&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="https://scottyeung.top/my-images/202310282110476.png" alt="">&lt;/p>
+&lt;h3 id="本地调试">本地调试&lt;/h3>
+&lt;p>本地可以通过 wrangle 来进行开发调试和部署&lt;/p>
+&lt;p>cron worker 可以通过 &lt;code>--test-scheduled&lt;/code> 参数，实现 http 调用 &lt;code>http://localhost:8787/__scheduled?cron=*+*+*+*+*&lt;/code> 触发 trigger.&lt;/p>
+&lt;p>有些时候本地访问一些网站可能因为某些奇怪因素访问不了，可以通过 &lt;code>--remote&lt;/code> 参数，实现本地运行远程调试，这样就可以突破网络限制访问某些网站。另外也可以通过这个方法直接操作数据库，这样就可以直接在网站就看到数据库的更新情况。&lt;/p>
+&lt;h3 id="non-standard-nodejs-runtime">non-standard Node.js runtime&lt;/h3>
+&lt;p>cloudflare worker 本质上其实是 edge function，其实际的运行时并不是正宗的 node 环境，所以一些对于 node api 的使用，是可能会满足不了的。部分到 API cloudflare 的运行时实现了，在自己的代码中可以直接用。但往往通过 npm install 使用的依赖就容易会出现这种兼容性问题。&lt;/p>
+&lt;p>&lt;img src="https://scottyeung.top/my-images/202310291635833.png" alt="">&lt;/p>
+&lt;p>对于这些有兼容性问题的 npm 库，建议在本地运行时看看实际跑到的代码是否真的用到这些 node api，如果没有，只是在文件当中导入的话，可以注释掉。动态语言 js 的一个爽点就是，就算代码有问题，但只要没有跑到有问题的地方，也还是能跑，就算这样注释掉一个依赖导入，但只要调用的代码没有使用它们，照样能跑。&lt;/p>
+&lt;p>如果调用的 node api 在 Cloudflare 中有实现的，通过换个方式导入也可以。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-javascript" data-lang="javascript">&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// Do this:
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="kr">import&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="nx">Buffer&lt;/span> &lt;span class="p">}&lt;/span> &lt;span class="nx">from&lt;/span> &lt;span class="s1">&amp;#39;node:buffer&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// Do not do this:
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="kr">import&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="nx">Buffer&lt;/span> &lt;span class="p">}&lt;/span> &lt;span class="nx">from&lt;/span> &lt;span class="s1">&amp;#39;buffer&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="d1">D1&lt;/h2>
+&lt;p>cloudflare 提供的关系型数据库&lt;/p>
+&lt;p>创建数据库后可以在 worker 里面添加绑定，直接访问到数据库&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-toml" data-lang="toml">&lt;span class="line">&lt;span class="cl">&lt;span class="p">[[&lt;/span>&lt;span class="nx">d1_databases&lt;/span>&lt;span class="p">]]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">binding&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;DB&amp;#34;&lt;/span> &lt;span class="c"># available in your Worker on env.DB&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">database_name&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;database&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">database_id&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;database_id&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>实际使用起来就是会在入口处传递 env，然后这个数据库的实例也随着 env 传进来，然后就可以手写 sql 进行数据处理了。&lt;/p>
+&lt;p>数据库操作可以通过&lt;/p>
+&lt;ul>
+&lt;li>官网网页可以创建表，已经修改行数据
+&lt;ul>
+&lt;li>官网也提供一个 console 进行 sql 语句的执行&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>也可以在命令后通过 wrangle 执行 sql 语句，从而更新数据库
+&lt;ul>
+&lt;li>这种方式还可以实现一些表结构的更新，比如增加一列&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>免费的用量限制&lt;/p>
+&lt;ul>
+&lt;li>最多创建 10 个数据库&lt;/li>
+&lt;li>单个数据库 500MB&lt;/li>
+&lt;li>每月读 5,000,000 行，写 100,000 行&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="https://scottyeung.top/my-images/%E6%88%AA%E5%B1%8F2023-10-28%2021.07.36.png" alt="">&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/serverless/">serverless</category><category domain="https://scottyeung.top/tags/JavaScript/">JavaScript</category><category domain="https://scottyeung.top/tags/Cloudflare/">Cloudflare</category><category domain="https://scottyeung.top/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1/">云服务</category></item></channel></rss>
