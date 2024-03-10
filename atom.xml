@@ -1,4 +1,234 @@
-<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah 的乱写地</title><link>https://scottyeung.top/</link><description>YeungYeah 的乱写地中记录了作者的所思所想及所为。</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Fri, 08 Mar 2024 12:47:36 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>Hugo 英语内容出现在中文页面</title><link>https://scottyeung.top/2024/hugo-en-content-exist-in-zh/</link><guid isPermaLink="true">https://scottyeung.top/2024/hugo-en-content-exist-in-zh/</guid><pubDate>Mon, 04 Mar 2024 22:32:35 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>在开设了我的英语博客之后，在昨天更新的时候偶然发现标签页面当中出现了英语内容的标签，以为是标签页生成的逻辑有问题，然后看了一下，用于生成的变量是 &lt;code>$.Site.Taxonomies.tags&lt;/code>，看起来也没有问题，想了一圈筛选的办法，似乎也解决不了。&lt;/p>
+<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah 的乱写地</title><link>https://scottyeung.top/</link><description>YeungYeah 的乱写地中记录了作者的所思所想及所为。</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Sun, 10 Mar 2024 12:35:43 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>Vue3 Slot</title><link>https://scottyeung.top/2024/vue3-slot/</link><guid isPermaLink="true">https://scottyeung.top/2024/vue3-slot/</guid><pubDate>Sun, 10 Mar 2024 20:02:50 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>组件可以在 template 当中设置一个 slot 的 tag，用于在使用该组件时，传入一些内容来替换掉 slot&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-vue" data-lang="vue">&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">FancyButton&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">Click&lt;/span> &lt;span class="nx">me&lt;/span>&lt;span class="o">!&lt;/span> &lt;span class="c">&amp;lt;!--&lt;/span> &lt;span class="nx">slot&lt;/span> &lt;span class="nx">content&lt;/span> &lt;span class="o">--&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">FancyButton&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">button&lt;/span> &lt;span class="na">class&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;fancy-btn&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">slot&lt;/span>&lt;span class="p">&amp;gt;&amp;lt;/&lt;/span>&lt;span class="nt">slot&lt;/span>&lt;span class="p">&amp;gt;&lt;/span> &lt;span class="c">&amp;lt;!--&lt;/span> &lt;span class="nx">slot&lt;/span> &lt;span class="nx">outlet&lt;/span> &lt;span class="o">--&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">button&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// final output
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">button&lt;/span> &lt;span class="na">class&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;fancy-btn&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>&lt;span class="nx">Click&lt;/span> &lt;span class="nx">me&lt;/span>&lt;span class="o">!&lt;/span>&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">button&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>传给 slot 的内容可以是文本，也可以是 html element&lt;/p>
+&lt;h2 id="scope">scope&lt;/h2>
+&lt;p>slot 的渲染 scope 限于父组件，当传入一个变量，这个变量只能访问父组件，而不能访问子组件的变量&lt;/p>
+&lt;blockquote>
+&lt;p>Expressions in the parent template only have access to the parent scope; expressions in the child template only have access to the child scope.&lt;/p>
+&lt;/blockquote>
+&lt;p>有些情况下 slot 的内容需要根据组件本身的变量来设置。这种情况可以像传递 props 给组件一样传递 attributes 给组件。这种时候 slot 的内容就可以根据子组件的变量来获取。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-vue" data-lang="vue">&lt;span class="line">&lt;span class="cl">&lt;span class="c">&amp;lt;!--&lt;/span> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">MyComponent&lt;/span>&lt;span class="p">&amp;gt;&lt;/span> &lt;span class="nx">template&lt;/span> &lt;span class="o">--&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">div&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">slot&lt;/span> &lt;span class="nt">:text&lt;/span>&lt;span class="s">=&amp;#34;greetingMessage&amp;#34;&lt;/span> &lt;span class="nt">:count&lt;/span>&lt;span class="s">=&amp;#34;1&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&amp;lt;/&lt;/span>&lt;span class="nt">slot&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">div&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">MyComponent&lt;/span> &lt;span class="nt">v-slot&lt;/span>&lt;span class="s">=&amp;#34;slotProps&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{{&lt;/span> &lt;span class="na">slotProps.text&lt;/span> &lt;span class="p">}}&lt;/span> &lt;span class="p">{{&lt;/span> &lt;span class="na">slotProps.count&lt;/span> &lt;span class="p">}}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">MyComponent&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>本质上可以当作是传递了一个函数下去，由组件调用&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="line">&lt;span class="cl">&lt;span class="nx">MyComponent&lt;/span>&lt;span class="p">({&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// passing the default slot, but as a function
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="k">default&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">slotProps&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">=&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="sb">`&lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nx">slotProps&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">text&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="sb"> &lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nx">slotProps&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">count&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="sb">`&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">})&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kd">function&lt;/span> &lt;span class="nx">MyComponent&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">slots&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kr">const&lt;/span> &lt;span class="nx">greetingMessage&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;hello&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="sb">`&amp;lt;div&amp;gt;&lt;/span>&lt;span class="si">${&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// call the slot function with props!
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="nx">slots&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="k">default&lt;/span>&lt;span class="p">({&lt;/span> &lt;span class="nx">text&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">greetingMessage&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">count&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="mi">1&lt;/span> &lt;span class="si">}&lt;/span>&lt;span class="sb">)
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="sb"> }&amp;lt;/div&amp;gt;`&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="fallback-content">fallback content&lt;/h2>
+&lt;p>组件可以为 slot 设置默认值&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-vue" data-lang="vue">&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">button&lt;/span> &lt;span class="na">type&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;submit&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">slot&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">Submit&lt;/span> &lt;span class="c">&amp;lt;!--&lt;/span> &lt;span class="nx">fallback&lt;/span> &lt;span class="nx">content&lt;/span> &lt;span class="o">--&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">slot&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">button&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="named-slot">named slot&lt;/h2>
+&lt;p>如果一个组件中有多个 slot，可以通过 name 属性来进行区分。使用时可以通过属性 &lt;code>v-slot:slotName&lt;/code> 或者缩写 &lt;code>#slotName&lt;/code> 明确是传给哪一个 slot，不填时默认是 &lt;code>default&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-vue" data-lang="vue">&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">div&lt;/span> &lt;span class="na">class&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;container&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">header&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">slot&lt;/span> &lt;span class="na">name&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;header&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&amp;lt;/&lt;/span>&lt;span class="nt">slot&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">header&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">main&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">slot&lt;/span>&lt;span class="p">&amp;gt;&amp;lt;/&lt;/span>&lt;span class="nt">slot&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">main&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">footer&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">slot&lt;/span> &lt;span class="na">name&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;footer&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&amp;lt;/&lt;/span>&lt;span class="nt">slot&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">footer&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">div&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">BaseLayout&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">template&lt;/span> &lt;span class="na">v&lt;/span>&lt;span class="nt">-slot&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="na">header&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">h1&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>&lt;span class="nx">Here&lt;/span> &lt;span class="nx">might&lt;/span> &lt;span class="nx">be&lt;/span> &lt;span class="nx">a&lt;/span> &lt;span class="nx">page&lt;/span> &lt;span class="nx">title&lt;/span>&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">h1&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">template&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">template&lt;/span> &lt;span class="err">#&lt;/span>&lt;span class="na">default&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">p&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>&lt;span class="nx">A&lt;/span> &lt;span class="nx">paragraph&lt;/span> &lt;span class="k">for&lt;/span> &lt;span class="nx">the&lt;/span> &lt;span class="nx">main&lt;/span> &lt;span class="nx">content&lt;/span>&lt;span class="p">.&amp;lt;/&lt;/span>&lt;span class="nt">p&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">p&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>&lt;span class="nx">And&lt;/span> &lt;span class="nx">another&lt;/span> &lt;span class="nx">one&lt;/span>&lt;span class="p">.&amp;lt;/&lt;/span>&lt;span class="nt">p&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">template&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">template&lt;/span> &lt;span class="err">#&lt;/span>&lt;span class="na">footer&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">p&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>&lt;span class="nx">Here&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="nx">s&lt;/span> &lt;span class="nx">some&lt;/span> &lt;span class="nx">contact&lt;/span> &lt;span class="nx">info&lt;/span>&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">p&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">template&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">BaseLayout&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>默认顶级的元素都会传递给 default slot&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-vue" data-lang="vue">&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">BaseLayout&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">template&lt;/span> &lt;span class="err">#&lt;/span>&lt;span class="na">header&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">h1&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>&lt;span class="nx">Here&lt;/span> &lt;span class="nx">might&lt;/span> &lt;span class="nx">be&lt;/span> &lt;span class="nx">a&lt;/span> &lt;span class="nx">page&lt;/span> &lt;span class="nx">title&lt;/span>&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">h1&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">template&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c">&amp;lt;!--&lt;/span> &lt;span class="nx">implicit&lt;/span> &lt;span class="k">default&lt;/span> &lt;span class="nx">slot&lt;/span> &lt;span class="o">--&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">p&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>&lt;span class="nx">A&lt;/span> &lt;span class="nx">paragraph&lt;/span> &lt;span class="k">for&lt;/span> &lt;span class="nx">the&lt;/span> &lt;span class="nx">main&lt;/span> &lt;span class="nx">content&lt;/span>&lt;span class="p">.&amp;lt;/&lt;/span>&lt;span class="nt">p&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">p&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>&lt;span class="nx">And&lt;/span> &lt;span class="nx">another&lt;/span> &lt;span class="nx">one&lt;/span>&lt;span class="p">.&amp;lt;/&lt;/span>&lt;span class="nt">p&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">template&lt;/span> &lt;span class="err">#&lt;/span>&lt;span class="na">footer&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">p&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>&lt;span class="nx">Here&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="nx">s&lt;/span> &lt;span class="nx">some&lt;/span> &lt;span class="nx">contact&lt;/span> &lt;span class="nx">info&lt;/span>&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">p&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">template&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">BaseLayout&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="动态-slot-name">动态 slot name&lt;/h3>
+&lt;p>通过中括号可以使用动态变量或表达式作为 slot name&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-vue" data-lang="vue">&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">base-layout&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">template&lt;/span> &lt;span class="na">v&lt;/span>&lt;span class="nt">-slot&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="err">[&lt;/span>&lt;span class="na">dynamicSlotName&lt;/span>&lt;span class="err">]&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">...&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">template&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c">&amp;lt;!--&lt;/span> &lt;span class="kd">with&lt;/span> &lt;span class="nx">shorthand&lt;/span> &lt;span class="o">--&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">template&lt;/span> &lt;span class="err">#[&lt;/span>&lt;span class="na">dynamicSlotName&lt;/span>&lt;span class="err">]&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">...&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">template&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="err">/base-layout&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E5%89%8D%E7%AB%AF/">前端</category><category domain="https://scottyeung.top/tags/JavaScript/">JavaScript</category><category domain="https://scottyeung.top/tags/coding-%E5%AD%A6%E4%B9%A0/">coding 学习</category><category domain="https://scottyeung.top/tags/Vue/">Vue</category><category domain="https://scottyeung.top/tags/notes/">notes</category></item><item><title>Hugo 英语内容出现在中文页面</title><link>https://scottyeung.top/2024/hugo-en-content-exist-in-zh/</link><guid isPermaLink="true">https://scottyeung.top/2024/hugo-en-content-exist-in-zh/</guid><pubDate>Mon, 04 Mar 2024 22:32:35 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>在开设了我的英语博客之后，在昨天更新的时候偶然发现标签页面当中出现了英语内容的标签，以为是标签页生成的逻辑有问题，然后看了一下，用于生成的变量是 &lt;code>$.Site.Taxonomies.tags&lt;/code>，看起来也没有问题，想了一圈筛选的办法，似乎也解决不了。&lt;/p>
 &lt;p>然后昨晚写了一篇新博客后，发现文章的相似推荐也出现了英语文章内容，点进去才发现不对劲：虽然文章的内容是英语的，但是博客的站点名字，以及下方的版权信息介绍都是中文的。然后再看一眼路径，发现好像跟我预期的英语内容的路径也不一样。这个文章的路径是 &lt;code>/en/posts/2024/nuxt-cannot-init/&lt;/code>，但是预期的应该是 &lt;code>/en/2024/nuxt-cannot-init/&lt;/code>。&lt;/p>
 &lt;p>如此看起来，问题的本质在于英语的内容文件被当成了中文博客的一部份来进行处理，所以在生成标签页和获取相关页面，都出现了英文内容。而出现这个问题的原因在于，我两种语言的目录设置不太妥当，中文的内容目录包含了英文的目录，导致英文的内容被当作是中文的一部份了。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
@@ -705,147 +935,4 @@
 &lt;li>使用 Cloudflare 的 dashboard 可以随时查看运行情况（但是拉历史日志好像比较麻烦？）。&lt;/li>
 &lt;li>可以用在 dashboard 上面修改一些简单的配置，比如定时间隔和环境变量。&lt;/li>
 &lt;li>可以用 D1 数据库的 console 查询数据库情况，并且做些简单的增删改查。&lt;/li>
-&lt;/ul></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/serverless/">serverless</category><category domain="https://scottyeung.top/tags/JavaScript/">JavaScript</category><category domain="https://scottyeung.top/tags/Cloudflare/">Cloudflare</category><category domain="https://scottyeung.top/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1/">云服务</category><category domain="https://scottyeung.top/tags/coding-%E8%AE%B0%E5%BD%95/">coding 记录</category><category domain="https://scottyeung.top/tags/rss/">rss</category><category domain="https://scottyeung.top/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/">自动化</category></item><item><title>Cloudflare 应用开发使用小记</title><link>https://scottyeung.top/2023/cloudflare-app-dev/</link><guid isPermaLink="true">https://scottyeung.top/2023/cloudflare-app-dev/</guid><pubDate>Sun, 29 Oct 2023 16:45:21 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;blockquote>
-&lt;p>能给大众白嫖使用的 serverless 服务，像 Cloudflare 和 Vercel 就是好的服务商。&lt;/p>
-&lt;/blockquote>
-&lt;p>&lt;img src="https://scottyeung.top/my-images/202310291700756.png" alt="">&lt;/p>
-&lt;p>最近因为各种原因，突然想把在服务器上运行的 rss-timeline 记录（详情可以看这里 -- &lt;a href="https://scottyeung.top/2023/my-timeline/">我的动态时间线聚合&lt;/a>）的程序换成在云服务上面部署，最终选择了 Cloudflare，并且实现了一版。下面是实现过程中一些记录。&lt;/p>
-&lt;h2 id="worker">worker&lt;/h2>
-&lt;p>cloudflare 通过 worker 的方式提供服务，worker 有两种触发的方式&lt;/p>
-&lt;ul>
-&lt;li>http trigger. 通过发送 http 请求进行触发，也是最常用的一种，实现 fetch 方法处理请求即可
-&lt;ul>
-&lt;li>在 ChatGPT API 刚出的时候，很多人都因为 API 地址不能直连，所以搞一个 worker 请求转发就可以了。比如&lt;a href="https://github.com/noobnooc/noobnooc/discussions/9">这个&lt;/a>。&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>cron trigger. 通过定时任务的方式来触发任务。通过配置 cron job 来声明执行的周期。&lt;/li>
-&lt;/ul>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
-&lt;/span>&lt;span class="lnt"> 2
-&lt;/span>&lt;span class="lnt"> 3
-&lt;/span>&lt;span class="lnt"> 4
-&lt;/span>&lt;span class="lnt"> 5
-&lt;/span>&lt;span class="lnt"> 6
-&lt;/span>&lt;span class="lnt"> 7
-&lt;/span>&lt;span class="lnt"> 8
-&lt;/span>&lt;span class="lnt"> 9
-&lt;/span>&lt;span class="lnt">10
-&lt;/span>&lt;span class="lnt">11
-&lt;/span>&lt;span class="lnt">12
-&lt;/span>&lt;span class="lnt">13
-&lt;/span>&lt;span class="lnt">14
-&lt;/span>&lt;span class="lnt">15
-&lt;/span>&lt;span class="lnt">16
-&lt;/span>&lt;span class="lnt">17
-&lt;/span>&lt;span class="lnt">18
-&lt;/span>&lt;span class="lnt">19
-&lt;/span>&lt;span class="lnt">20
-&lt;/span>&lt;span class="lnt">21
-&lt;/span>&lt;span class="lnt">22
-&lt;/span>&lt;span class="lnt">23
-&lt;/span>&lt;span class="lnt">24
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-typescript" data-lang="typescript">&lt;span class="line">&lt;span class="cl">&lt;span class="kr">export&lt;/span> &lt;span class="k">default&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// The scheduled handler is invoked at the interval set in our wrangler.toml&amp;#39;s
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="c1">// [[triggers]] configuration.
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="kr">async&lt;/span> &lt;span class="nx">scheduled&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">event&lt;/span>: &lt;span class="kt">ScheduledEvent&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">env&lt;/span>: &lt;span class="kt">Env&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">ctx&lt;/span>: &lt;span class="kt">ExecutionContext&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">Promise&lt;/span>&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">void&lt;/span>&lt;span class="p">&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// A Cron Trigger can make requests to other endpoints on the Internet,
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="c1">// publish to a Queue, query a D1 Database, and much more.
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="c1">//
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="c1">// We&amp;#39;ll keep it simple and make an API call to a Cloudflare API:
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="kd">let&lt;/span> &lt;span class="nx">resp&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">await&lt;/span> &lt;span class="nx">fetch&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;https://api.cloudflare.com/client/v4/ips&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kd">let&lt;/span> &lt;span class="nx">wasSuccessful&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">resp&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">ok&lt;/span> &lt;span class="o">?&lt;/span> &lt;span class="s1">&amp;#39;success&amp;#39;&lt;/span> &lt;span class="o">:&lt;/span> &lt;span class="s1">&amp;#39;fail&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// You could store this result in KV, write to a D1 Database, or publish to a Queue.
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="c1">// In this template, we&amp;#39;ll just log the result:
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="nx">console&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">log&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sb">`trigger fired at &lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nx">event&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">cron&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="sb">: &lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nx">wasSuccessful&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="sb">`&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">},&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// The event handler is invoked whenever an HTTP request is made to your
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="c1">// worker. The request will trigger the event handler regardless of the
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="c1">// request method or URL path.
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="nx">fetch&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">request&lt;/span>: &lt;span class="kt">Request&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">env&lt;/span>: &lt;span class="kt">Env&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">ctx&lt;/span>: &lt;span class="kt">ExecutionContext&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">Promise&lt;/span>&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">Response&lt;/span>&lt;span class="p">&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="nx">Response&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sb">`Hello from the scheduled worker at &lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nx">request&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">url&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="sb">`&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">};&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>可以通过在配置文件 wrangle.toml 或者 dashboard 中的设置中声明环境变量。环境变量通过传递进来的 env 参数使用。&lt;/p>
-&lt;p>免费版主要是限制&lt;/p>
-&lt;ul>
-&lt;li>每次调用的 CPU 执行时间 10ms
-&lt;ul>
-&lt;li>官网中介绍用量很少，基本都不会超&lt;/li>
-&lt;li>但实际跑下来发现好像超了也没事？&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>每天的请求执行次数 100, 000&lt;/li>
-&lt;/ul>
-&lt;p>&lt;img src="https://scottyeung.top/my-images/202310282110476.png" alt="">&lt;/p>
-&lt;h3 id="本地调试">本地调试&lt;/h3>
-&lt;p>本地可以通过 wrangle 来进行开发调试和部署&lt;/p>
-&lt;p>cron worker 可以通过 &lt;code>--test-scheduled&lt;/code> 参数，实现 http 调用 &lt;code>http://localhost:8787/__scheduled?cron=*+*+*+*+*&lt;/code> 触发 trigger.&lt;/p>
-&lt;p>有些时候本地访问一些网站可能因为某些奇怪因素访问不了，可以通过 &lt;code>--remote&lt;/code> 参数，实现本地运行远程调试，这样就可以突破网络限制访问某些网站。另外也可以通过这个方法直接操作数据库，这样就可以直接在网站就看到数据库的更新情况。&lt;/p>
-&lt;h3 id="non-standard-nodejs-runtime">non-standard Node.js runtime&lt;/h3>
-&lt;p>cloudflare worker 本质上其实是 edge function，其实际的运行时并不是正宗的 node 环境，所以一些对于 node api 的使用，是可能会满足不了的。部分到 API cloudflare 的运行时实现了，在自己的代码中可以直接用。但往往通过 npm install 使用的依赖就容易会出现这种兼容性问题。&lt;/p>
-&lt;p>&lt;img src="https://scottyeung.top/my-images/202310291635833.png" alt="">&lt;/p>
-&lt;p>对于这些有兼容性问题的 npm 库，建议在本地运行时看看实际跑到的代码是否真的用到这些 node api，如果没有，只是在文件当中导入的话，可以注释掉。动态语言 js 的一个爽点就是，就算代码有问题，但只要没有跑到有问题的地方，也还是能跑，就算这样注释掉一个依赖导入，但只要调用的代码没有使用它们，照样能跑。&lt;/p>
-&lt;p>如果调用的 node api 在 Cloudflare 中有实现的，通过换个方式导入也可以。&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
-&lt;/span>&lt;span class="lnt">4
-&lt;/span>&lt;span class="lnt">5
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-javascript" data-lang="javascript">&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// Do this:
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="kr">import&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="nx">Buffer&lt;/span> &lt;span class="p">}&lt;/span> &lt;span class="nx">from&lt;/span> &lt;span class="s1">&amp;#39;node:buffer&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// Do not do this:
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="kr">import&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="nx">Buffer&lt;/span> &lt;span class="p">}&lt;/span> &lt;span class="nx">from&lt;/span> &lt;span class="s1">&amp;#39;buffer&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;h2 id="d1">D1&lt;/h2>
-&lt;p>cloudflare 提供的关系型数据库&lt;/p>
-&lt;p>创建数据库后可以在 worker 里面添加绑定，直接访问到数据库&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
-&lt;/span>&lt;span class="lnt">4
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-toml" data-lang="toml">&lt;span class="line">&lt;span class="cl">&lt;span class="p">[[&lt;/span>&lt;span class="nx">d1_databases&lt;/span>&lt;span class="p">]]&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">binding&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;DB&amp;#34;&lt;/span> &lt;span class="c"># available in your Worker on env.DB&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">database_name&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;database&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">database_id&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;database_id&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>实际使用起来就是会在入口处传递 env，然后这个数据库的实例也随着 env 传进来，然后就可以手写 sql 进行数据处理了。&lt;/p>
-&lt;p>数据库操作可以通过&lt;/p>
-&lt;ul>
-&lt;li>官网网页可以创建表，已经修改行数据
-&lt;ul>
-&lt;li>官网也提供一个 console 进行 sql 语句的执行&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>也可以在命令后通过 wrangle 执行 sql 语句，从而更新数据库
-&lt;ul>
-&lt;li>这种方式还可以实现一些表结构的更新，比如增加一列&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;p>免费的用量限制&lt;/p>
-&lt;ul>
-&lt;li>最多创建 10 个数据库&lt;/li>
-&lt;li>单个数据库 500MB&lt;/li>
-&lt;li>每月读 5,000,000 行，写 100,000 行&lt;/li>
-&lt;/ul>
-&lt;p>&lt;img src="https://scottyeung.top/my-images/%E6%88%AA%E5%B1%8F2023-10-28%2021.07.36.png" alt="">&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/serverless/">serverless</category><category domain="https://scottyeung.top/tags/JavaScript/">JavaScript</category><category domain="https://scottyeung.top/tags/Cloudflare/">Cloudflare</category><category domain="https://scottyeung.top/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1/">云服务</category></item></channel></rss>
+&lt;/ul></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/serverless/">serverless</category><category domain="https://scottyeung.top/tags/JavaScript/">JavaScript</category><category domain="https://scottyeung.top/tags/Cloudflare/">Cloudflare</category><category domain="https://scottyeung.top/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1/">云服务</category><category domain="https://scottyeung.top/tags/coding-%E8%AE%B0%E5%BD%95/">coding 记录</category><category domain="https://scottyeung.top/tags/rss/">rss</category><category domain="https://scottyeung.top/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/">自动化</category></item></channel></rss>

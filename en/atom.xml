@@ -1,4 +1,234 @@
-<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah's Blog</title><link>https://scottyeung.top/en/</link><description>Record the YeungYeah's thoughts and actions.</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>en-US</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Fri, 08 Mar 2024 12:47:36 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/en/atom.xml"/><item><title>Hugo English Content Appears on Chinese Pages</title><link>https://scottyeung.top/en/2024/hugo-en-content-exist-in-zh/</link><guid isPermaLink="true">https://scottyeung.top/en/2024/hugo-en-content-exist-in-zh/</guid><pubDate>Mon, 04 Mar 2024 22:32:35 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>After setting up my English blog, I accidentally noticed English content tags appearing on the tag pages during an update yesterday. Initially, I thought there was an issue with the logic of generating the tag pages. The variable used for generation was &lt;code>$.Site.Taxonomies.tags&lt;/code>, which seemed to have no issues. I thought about various filtering methods, but none seemed to solve the problem.&lt;/p>
+<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah's Blog</title><link>https://scottyeung.top/en/</link><description>Record the YeungYeah's thoughts and actions.</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>en-US</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Sun, 10 Mar 2024 12:35:44 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/en/atom.xml"/><item><title>Vue3 Slot</title><link>https://scottyeung.top/en/2024/vue3-slot/</link><guid isPermaLink="true">https://scottyeung.top/en/2024/vue3-slot/</guid><pubDate>Sun, 10 Mar 2024 20:02:50 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>In Vue components can set a slot tag in the template, which is used to pass some content when using this component to replace the slot.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-vue" data-lang="vue">&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">FancyButton&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">Click&lt;/span> &lt;span class="nx">me&lt;/span>&lt;span class="o">!&lt;/span> &lt;span class="c">&amp;lt;!--&lt;/span> &lt;span class="nx">slot&lt;/span> &lt;span class="nx">content&lt;/span> &lt;span class="o">--&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">FancyButton&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">button&lt;/span> &lt;span class="na">class&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;fancy-btn&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">slot&lt;/span>&lt;span class="p">&amp;gt;&amp;lt;/&lt;/span>&lt;span class="nt">slot&lt;/span>&lt;span class="p">&amp;gt;&lt;/span> &lt;span class="c">&amp;lt;!--&lt;/span> &lt;span class="nx">slot&lt;/span> &lt;span class="nx">outlet&lt;/span> &lt;span class="o">--&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">button&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// final output
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">button&lt;/span> &lt;span class="na">class&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;fancy-btn&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>&lt;span class="nx">Click&lt;/span> &lt;span class="nx">me&lt;/span>&lt;span class="o">!&lt;/span>&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">button&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>The content passed to the slot can be text or an HTML element.&lt;/p>
+&lt;h2 id="scope">Scope&lt;/h2>
+&lt;p>The rendering scope of the slot is limited to the parent component. When a variable is passed in, this variable can only access the parent component and cannot access the variables of the child component.&lt;/p>
+&lt;blockquote>
+&lt;p>Expressions in the parent template only have access to the parent scope; expressions in the child template only have access to the child scope.&lt;/p>
+&lt;/blockquote>
+&lt;p>In some cases, the content of the slot needs to be set according to the variables of the component itself. In this case, attributes can be passed to the component like passing props to the component. At this time, the content of the slot can be obtained according to the variables of the child component.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-vue" data-lang="vue">&lt;span class="line">&lt;span class="cl">&lt;span class="c">&amp;lt;!--&lt;/span> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">MyComponent&lt;/span>&lt;span class="p">&amp;gt;&lt;/span> &lt;span class="nx">template&lt;/span> &lt;span class="o">--&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">div&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">slot&lt;/span> &lt;span class="nt">:text&lt;/span>&lt;span class="s">=&amp;#34;greetingMessage&amp;#34;&lt;/span> &lt;span class="nt">:count&lt;/span>&lt;span class="s">=&amp;#34;1&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&amp;lt;/&lt;/span>&lt;span class="nt">slot&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">div&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">MyComponent&lt;/span> &lt;span class="nt">v-slot&lt;/span>&lt;span class="s">=&amp;#34;slotProps&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{{&lt;/span> &lt;span class="na">slotProps.text&lt;/span> &lt;span class="p">}}&lt;/span> &lt;span class="p">{{&lt;/span> &lt;span class="na">slotProps.count&lt;/span> &lt;span class="p">}}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">MyComponent&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Essentially, it can be regarded as passing a function down, which is called by the component.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="line">&lt;span class="cl">&lt;span class="nx">MyComponent&lt;/span>&lt;span class="p">({&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// passing the default slot, but as a function
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="k">default&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">slotProps&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">=&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="sb">`&lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nx">slotProps&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">text&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="sb"> &lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nx">slotProps&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">count&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="sb">`&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">})&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kd">function&lt;/span> &lt;span class="nx">MyComponent&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">slots&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kr">const&lt;/span> &lt;span class="nx">greetingMessage&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;hello&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="sb">`&amp;lt;div&amp;gt;&lt;/span>&lt;span class="si">${&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// call the slot function with props!
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="nx">slots&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="k">default&lt;/span>&lt;span class="p">({&lt;/span> &lt;span class="nx">text&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">greetingMessage&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">count&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="mi">1&lt;/span> &lt;span class="si">}&lt;/span>&lt;span class="sb">)
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="sb"> }&amp;lt;/div&amp;gt;`&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="fallback-content">Fallback Content&lt;/h2>
+&lt;p>Components can set default values for slots.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-vue" data-lang="vue">&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">button&lt;/span> &lt;span class="na">type&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;submit&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">slot&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">Submit&lt;/span> &lt;span class="c">&amp;lt;!--&lt;/span> &lt;span class="nx">fallback&lt;/span> &lt;span class="nx">content&lt;/span> &lt;span class="o">--&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">slot&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">button&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="named-slot">Named Slot&lt;/h2>
+&lt;p>If there are multiple slots in a component, they can be distinguished by the name attribute. When using, you can specify which slot is passed through the attribute &lt;code>v-slot:slotName&lt;/code> or the abbreviation &lt;code>#slotName&lt;/code>, and the default is &lt;code>default&lt;/code> when not filled.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-vue" data-lang="vue">&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">div&lt;/span> &lt;span class="na">class&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;container&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">header&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">slot&lt;/span> &lt;span class="na">name&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;header&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&amp;lt;/&lt;/span>&lt;span class="nt">slot&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">header&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">main&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">slot&lt;/span>&lt;span class="p">&amp;gt;&amp;lt;/&lt;/span>&lt;span class="nt">slot&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">main&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">footer&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">slot&lt;/span> &lt;span class="na">name&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;footer&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&amp;lt;/&lt;/span>&lt;span class="nt">slot&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">footer&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">div&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">BaseLayout&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">template&lt;/span> &lt;span class="na">v&lt;/span>&lt;span class="nt">-slot&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="na">header&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">h1&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>&lt;span class="nx">Here&lt;/span> &lt;span class="nx">might&lt;/span> &lt;span class="nx">be&lt;/span> &lt;span class="nx">a&lt;/span> &lt;span class="nx">page&lt;/span> &lt;span class="nx">title&lt;/span>&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">h1&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">template&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">template&lt;/span> &lt;span class="err">#&lt;/span>&lt;span class="na">default&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">p&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>&lt;span class="nx">A&lt;/span> &lt;span class="nx">paragraph&lt;/span> &lt;span class="k">for&lt;/span> &lt;span class="nx">the&lt;/span> &lt;span class="nx">main&lt;/span> &lt;span class="nx">content&lt;/span>&lt;span class="p">.&amp;lt;/&lt;/span>&lt;span class="nt">p&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">p&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>&lt;span class="nx">And&lt;/span> &lt;span class="nx">another&lt;/span> &lt;span class="nx">one&lt;/span>&lt;span class="p">.&amp;lt;/&lt;/span>&lt;span class="nt">p&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">template&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">template&lt;/span> &lt;span class="err">#&lt;/span>&lt;span class="na">footer&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">p&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>&lt;span class="nx">Here&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="nx">s&lt;/span> &lt;span class="nx">some&lt;/span> &lt;span class="nx">contact&lt;/span> &lt;span class="nx">info&lt;/span>&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">p&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">template&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">BaseLayout&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>The default top-level elements are all passed to the default slot.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-vue" data-lang="vue">&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">BaseLayout&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">template&lt;/span> &lt;span class="err">#&lt;/span>&lt;span class="na">header&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">h1&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>&lt;span class="nx">Here&lt;/span> &lt;span class="nx">might&lt;/span> &lt;span class="nx">be&lt;/span> &lt;span class="nx">a&lt;/span> &lt;span class="nx">page&lt;/span> &lt;span class="nx">title&lt;/span>&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">h1&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">template&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c">&amp;lt;!--&lt;/span> &lt;span class="nx">implicit&lt;/span> &lt;span class="k">default&lt;/span> &lt;span class="nx">slot&lt;/span> &lt;span class="o">--&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">p&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>&lt;span class="nx">A&lt;/span> &lt;span class="nx">paragraph&lt;/span> &lt;span class="k">for&lt;/span> &lt;span class="nx">the&lt;/span> &lt;span class="nx">main&lt;/span> &lt;span class="nx">content&lt;/span>&lt;span class="p">.&amp;lt;/&lt;/span>&lt;span class="nt">p&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">p&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>&lt;span class="nx">And&lt;/span> &lt;span class="nx">another&lt;/span> &lt;span class="nx">one&lt;/span>&lt;span class="p">.&amp;lt;/&lt;/span>&lt;span class="nt">p&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">template&lt;/span> &lt;span class="err">#&lt;/span>&lt;span class="na">footer&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">p&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>&lt;span class="nx">Here&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="nx">s&lt;/span> &lt;span class="nx">some&lt;/span> &lt;span class="nx">contact&lt;/span> &lt;span class="nx">info&lt;/span>&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">p&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">template&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">BaseLayout&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="dynamic-slot-name">Dynamic Slot Name&lt;/h3>
+&lt;p>You can use dynamic variables or expressions as slot names through square brackets.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-vue" data-lang="vue">&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">base-layout&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">template&lt;/span> &lt;span class="na">v&lt;/span>&lt;span class="nt">-slot&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="err">[&lt;/span>&lt;span class="na">dynamicSlotName&lt;/span>&lt;span class="err">]&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">...&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">template&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c">&amp;lt;!--&lt;/span> &lt;span class="kd">with&lt;/span> &lt;span class="nx">shorthand&lt;/span> &lt;span class="o">--&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">template&lt;/span> &lt;span class="err">#[&lt;/span>&lt;span class="na">dynamicSlotName&lt;/span>&lt;span class="err">]&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">...&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">template&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="err">/base-layout&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description><category domain="https://scottyeung.top/en/posts/">posts</category><category domain="https://scottyeung.top/en/tags/Front-end/">Front-end</category><category domain="https://scottyeung.top/en/tags/JavaScript/">JavaScript</category><category domain="https://scottyeung.top/en/tags/Coding-Learning/">Coding Learning</category><category domain="https://scottyeung.top/en/tags/Vue/">Vue</category><category domain="https://scottyeung.top/en/tags/notes/">notes</category></item><item><title>Hugo English Content Appears on Chinese Pages</title><link>https://scottyeung.top/en/2024/hugo-en-content-exist-in-zh/</link><guid isPermaLink="true">https://scottyeung.top/en/2024/hugo-en-content-exist-in-zh/</guid><pubDate>Mon, 04 Mar 2024 22:32:35 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>After setting up my English blog, I accidentally noticed English content tags appearing on the tag pages during an update yesterday. Initially, I thought there was an issue with the logic of generating the tag pages. The variable used for generation was &lt;code>$.Site.Taxonomies.tags&lt;/code>, which seemed to have no issues. I thought about various filtering methods, but none seemed to solve the problem.&lt;/p>
 &lt;p>Then, after writing a new blog post last night, I noticed that English article content started appearing in the similar recommendations. Upon clicking into it, I realized something was off: although the article content was in English, the blog site name and the copyright information below were all in Chinese. Then I took another look at the path and found it didn't match my expected path for English content. The path of this article was &lt;code>/en/posts/2024/nuxt-cannot-init/&lt;/code>, but I expected it to be &lt;code>/en/2024/nuxt-cannot-init/&lt;/code>.&lt;/p>
 &lt;p>From this, it seems that the crux of the problem is that English content files are being treated as part of the Chinese blog and processed as such. Therefore, English content appears when generating tag pages and retrieving related pages. The reason for this issue is that my directory settings for the two languages are not quite appropriate. The Chinese content directory includes the English directory, causing English content to be treated as part of the Chinese content.&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
@@ -21,7 +251,7 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">...&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>So, I changed the path of the English content to &lt;code>contentDir = 'content_en'&lt;/code>, created a directory with the same name, and moved the English content files to this new directory. Problem solved!&lt;/p></description><category domain="https://scottyeung.top/en/posts/">posts</category><category domain="https://scottyeung.top/en/tags/Hugo/">Hugo</category><category domain="https://scottyeung.top/en/tags/blog/">blog</category><category domain="https://scottyeung.top/en/tags/Tools/">Tools</category></item><item><title>Solution to Nuxt3 Project Initialization Failure</title><link>https://scottyeung.top/en/2024/nuxt-cannot-init/</link><guid isPermaLink="true">https://scottyeung.top/en/2024/nuxt-cannot-init/</guid><pubDate>Sun, 03 Mar 2024 21:11:08 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>In China mainland, the project initialization command of Nuxt will encounter the following error.&lt;/p>
+&lt;/div>&lt;p>So, I changed the path of the English content to &lt;code>contentDir = 'content_en'&lt;/code>, created a directory with the same name, and moved the English content files to this new directory. Problem solved!&lt;/p></description><category domain="https://scottyeung.top/en/posts/">posts</category><category domain="https://scottyeung.top/en/tags/Hugo/">Hugo</category><category domain="https://scottyeung.top/en/tags/Blog/">Blog</category><category domain="https://scottyeung.top/en/tags/Tools/">Tools</category></item><item><title>Solution to Nuxt3 Project Initialization Failure</title><link>https://scottyeung.top/en/2024/nuxt-cannot-init/</link><guid isPermaLink="true">https://scottyeung.top/en/2024/nuxt-cannot-init/</guid><pubDate>Sun, 03 Mar 2024 21:11:08 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>In China mainland, the project initialization command of Nuxt will encounter the following error.&lt;/p>
 &lt;blockquote>
 &lt;p>Error: Failed to download template from registry: Failed to download &lt;a href="https://raw.githubusercontent.com/nuxt/starter/templates/templates/v3.json">https://raw.githubusercontent.com/nuxt/starter/templates/templates/v3.json&lt;/a>: TypeError: fetch failed&lt;/p>
 &lt;/blockquote>
@@ -274,7 +504,7 @@
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;h3 id="footer-content">Footer Content&lt;/h3>
-&lt;p>The content of the footer is basically custom-added by myself, and there is basically no multilingual support. If you need to switch for the English blog, you need to add a condition judgment to the hardcoded customization.&lt;/p></description><category domain="https://scottyeung.top/en/posts/">posts</category><category domain="https://scottyeung.top/en/tags/blog/">blog</category><category domain="https://scottyeung.top/en/tags/Writing/">Writing</category><category domain="https://scottyeung.top/en/tags/Output/">Output</category><category domain="https://scottyeung.top/en/tags/Hugo/">Hugo</category><category domain="https://scottyeung.top/en/tags/AI/">AI</category></item><item><title>Rethinking Investment</title><link>https://scottyeung.top/en/2024/think-invest-again/</link><guid isPermaLink="true">https://scottyeung.top/en/2024/think-invest-again/</guid><pubDate>Sun, 21 Jan 2024 22:34:34 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>After reading some of Meng Yan's views on value investing in my senior year, I started consciously considering the matter of investment. Since 2019, I have been regularly investing in domestic funds, from initially buying index funds to track overall development, to later choosing some highly-rated aggressive funds for better returns, my investment philosophy began to gradually shift. However, no matter how I chose, it couldn't resist the overall environment and trend. When the entire domestic market was in poor shape, the choice was essentially meaningless. Coupled with the discovery of various oddities, I became more clearly aware that the domestic stock and investment market is a joke.&lt;/p>
+&lt;p>The content of the footer is basically custom-added by myself, and there is basically no multilingual support. If you need to switch for the English blog, you need to add a condition judgment to the hardcoded customization.&lt;/p></description><category domain="https://scottyeung.top/en/posts/">posts</category><category domain="https://scottyeung.top/en/tags/Blog/">Blog</category><category domain="https://scottyeung.top/en/tags/Writing/">Writing</category><category domain="https://scottyeung.top/en/tags/Output/">Output</category><category domain="https://scottyeung.top/en/tags/Hugo/">Hugo</category><category domain="https://scottyeung.top/en/tags/AI/">AI</category></item><item><title>Rethinking Investment</title><link>https://scottyeung.top/en/2024/think-invest-again/</link><guid isPermaLink="true">https://scottyeung.top/en/2024/think-invest-again/</guid><pubDate>Sun, 21 Jan 2024 22:34:34 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>After reading some of Meng Yan's views on value investing in my senior year, I started consciously considering the matter of investment. Since 2019, I have been regularly investing in domestic funds, from initially buying index funds to track overall development, to later choosing some highly-rated aggressive funds for better returns, my investment philosophy began to gradually shift. However, no matter how I chose, it couldn't resist the overall environment and trend. When the entire domestic market was in poor shape, the choice was essentially meaningless. Coupled with the discovery of various oddities, I became more clearly aware that the domestic stock and investment market is a joke.&lt;/p>
 &lt;p>Why did I gradually lose faith in long-term value investing? In my understanding, value investing is essentially using money to support and accompany a company's growth, and then to gain a portion of the value from this growth. The essence of the stock market should be to help companies raise funds for better development and growth. However, the current domestic stock market seems completely devoid of this sense. Financing is just a part of people trying to get money, more like companies taking money from retail investors and then spending it or distributing it. Simply put, we retail investors are just handing over our money for them to spend. The stock market is like this, and the derived funds naturally aren't much better.&lt;/p>
 &lt;p>In fact, I had a question before, that is, if value investing or so-called long-termism truly waits for a bull market to start profiting and exit, but does it really need to be long-term enough to hold for several years or even decades? If the profits are spread over so many years, is the return rate really good? Secondly, both the money and the profits need to be locked up for so long and cannot be used, greatly reducing the value of having money/assets.&lt;/p>
 &lt;p>Therefore, I plan to switch to the US stock market and stop investing in the domestic market. I couldn't make up my mind before, but today when I was scrolling through Twitter, I realized that I had always lacked the ability to stop losses/take profits. The economy has been bad for a long time, but I was always reluctant to stop, always comforting myself that it would rise back one day. Plus, the money I invested regularly wasn't much, so I kept investing until now, when the total return is almost -20%. Losing some money is one thing, and on the other hand, the money I invested regularly could have been put in other places to make money.&lt;/p>
@@ -324,7 +554,7 @@
 &lt;p>Then, with the appearance of ChatGPT, it completely broke out of the circle, to the point where even my dad asked me if there was a way to use it. ChatGPT is indeed a good thing, and it has now almost become an indispensable tool for many people. I also used the ChatGPT API to create one (thanks to &lt;a href="https://github.com/ChatGPTNextWeb/ChatGPT-Next-Web">ChatGPT-Next-Web&lt;/a>).&lt;/p>
 &lt;p>The emergence of ChatGPT has brought many opportunities and traffic to many people. Although some people may still not accept or even resist the development of AI for various reasons and concepts, I think this is an inevitable trend. The future AI is likely to become a ubiquitous basic resource like water and electricity, integrated into people's daily lives &lt;del>(this sounds a lot like the old cloud computing slogan)&lt;/del>.&lt;/p>
 &lt;hr>
-&lt;p>This year, as the first year after reopening, and also the first year of my transition into society as a worker, everything is in its early stages for me, and everything has new hope. The possibilities are right in front of me. I need to seize the opportunity. If it works, it works. If it doesn't, it doesn't matter. I'll do my best and &lt;strong>go with the flow&lt;/strong>.&lt;/p></description><category domain="https://scottyeung.top/en/posts/">posts</category><category domain="https://scottyeung.top/en/tags/record/">record</category><category domain="https://scottyeung.top/en/tags/summary/">summary</category><category domain="https://scottyeung.top/en/tags/life/">life</category><category domain="https://scottyeung.top/en/tags/AI/">AI</category></item><item><title>Embracing AI with the Arc Browser</title><link>https://scottyeung.top/en/2023/ai-in-arc-browser/</link><guid isPermaLink="true">https://scottyeung.top/en/2023/ai-in-arc-browser/</guid><pubDate>Sun, 15 Oct 2023 08:00:00 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>Despite my previous criticisms of the Arc browser in my usage notes, its unique features and aesthetic appeal are quite attractive to me. Hence, I often find myself switching my default browser to Arc on my computer. Overall, the user experience is quite good, except for the fact that the extension status is not visible and needs to be invoked from the menu when needed.&lt;/p>
+&lt;p>This year, as the first year after reopening, and also the first year of my transition into society as a worker, everything is in its early stages for me, and everything has new hope. The possibilities are right in front of me. I need to seize the opportunity. If it works, it works. If it doesn't, it doesn't matter. I'll do my best and &lt;strong>go with the flow&lt;/strong>.&lt;/p></description><category domain="https://scottyeung.top/en/posts/">posts</category><category domain="https://scottyeung.top/en/tags/Record/">Record</category><category domain="https://scottyeung.top/en/tags/summary/">summary</category><category domain="https://scottyeung.top/en/tags/life/">life</category><category domain="https://scottyeung.top/en/tags/AI/">AI</category></item><item><title>Embracing AI with the Arc Browser</title><link>https://scottyeung.top/en/2023/ai-in-arc-browser/</link><guid isPermaLink="true">https://scottyeung.top/en/2023/ai-in-arc-browser/</guid><pubDate>Sun, 15 Oct 2023 08:00:00 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>Despite my previous criticisms of the Arc browser in my usage notes, its unique features and aesthetic appeal are quite attractive to me. Hence, I often find myself switching my default browser to Arc on my computer. Overall, the user experience is quite good, except for the fact that the extension status is not visible and needs to be invoked from the menu when needed.&lt;/p>
 &lt;p>After this switch and update to the Arc browser, I noticed that there's a new AI tab in the settings called Max, which seems quite interesting.&lt;/p>
 &lt;p>&lt;img src="https://scottyeung.top/my-images/202310142324997.png" alt="">&lt;/p>
 &lt;p>Based on a quick look at this settings page, it has the following main features:&lt;/p>
@@ -724,78 +954,4 @@ sign(publishing.publications[&amp;#34;maven&amp;#34;])
 &lt;li>The mobile application is too simple, it doesn't even have incognito browsing.&lt;/li>
 &lt;/ol>
 &lt;p>As a browser with distinctive features, Arc is fun to play with, but if you want to immerse yourself and use it intensively, you may have to endure various differences and discomforts. Of course, like stinky tofu, there are always people who can accept it, and if you can, its advantages are indeed attractive. Also, Arc seems to have high customizability, allowing you to customize styles and even block layouts, but my exploration time (and interest) was limited, so I didn't bother. However, if you are interested, you can also play around and give it a try.&lt;/p>
-&lt;p>Before I had a MacBook, I always had a special longing for Macos-exclusive applications. However, after really using them, they seem to be just so-so, or just okay. Recently, there have been many new software on Macos, such as Warp Terminal, Raycast, which I have been using. Maybe it's because I haven't used them deeply, or gotten to their essence, so they feel quite ordinary. I'll continue to explore slowly.&lt;/p></description><category domain="https://scottyeung.top/en/posts/">posts</category><category domain="https://scottyeung.top/en/tags/Productivity/">Productivity</category><category domain="https://scottyeung.top/en/tags/Tools/">Tools</category></item><item><title>Umami: A Simpler Self-Hosted Website Statistics Service</title><link>https://scottyeung.top/en/2023/umami/</link><guid isPermaLink="true">https://scottyeung.top/en/2023/umami/</guid><pubDate>Wed, 14 Jun 2023 10:41:12 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>Previously, I used Google Analytics to provide website statistics services, tracking the visits to each page on my blog. It's usable, but Google Analytics offers too much statistical content, which is quite overwhelming. Moreover, Google's services always have accessibility issues. Therefore, after reading other bloggers' introductions to &lt;a href="https://github.com/umami-software/umami">Umami&lt;/a>, I decided to set up my own website statistics service and switch to it.&lt;/p>
-&lt;blockquote>
-&lt;p>Umami is a simple, fast, privacy-focused alternative to Google Analytics.&lt;/p>
-&lt;/blockquote>
-&lt;p>Umami's main selling point is its focus on privacy. After all, it's better not to let big companies handle data like visit statistics. Umami supports multiple deployment methods, such as Docker. However, for a cloud computing enthusiast like me, it's natural to go for cloud services. The Umami service itself can be deployed on Vercel, and you can access it directly by binding a domain name. Umami supports two types of databases, MySQL and Postgresql, and you can find corresponding serverless providers for both. I chose &lt;a href="https://www.pingcap.com/tidb-cloud/">TiDB Cloud&lt;/a> by PingCap, which provides a MySQL database with a maximum capacity of 5G per cluster and 50 million accesses per month.&lt;/p>
-&lt;p>The final deployment result is as follows.&lt;/p>
-&lt;p>&lt;img src="https://scottyeung.top/my-images/202306141051580.png" alt="">&lt;/p>
-&lt;h2 id="setup-process">Setup Process&lt;/h2>
-&lt;ol>
-&lt;li>
-&lt;p>After logging in to TiDB Cloud, create a serverless database cluster.&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>On the cluster's overview page, click connect to get the relevant content for establishing a database connection, including the following in the MySQL CLI connection method:&lt;/p>
-&lt;ul>
-&lt;li>Username -u&lt;/li>
-&lt;li>Host -h&lt;/li>
-&lt;li>Port -P&lt;/li>
-&lt;li>Password -p&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>
-&lt;p>Based on the obtained information, piece together the MySQL connection URL:&lt;/p>
-&lt;ul>
-&lt;li>&lt;code>mysql://&amp;lt;username&amp;gt;:&amp;lt;password&amp;gt;@&amp;lt;host&amp;gt;:&amp;lt;port&amp;gt;/&amp;lt;database_name&amp;gt;?pool_timeout=60&amp;amp;sslaccept=accept_invalid_certs&lt;/code>&lt;/li>
-&lt;li>You need to create a database in advance and specify it.&lt;/li>
-&lt;li>Because TiDB Cloud requires TLS by default, you must add the parameter &lt;code>sslaccept=accept_invalid_certs&lt;/code>, otherwise, you cannot connect (this is a hidden pitfall).&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>
-&lt;p>Fork the Umami project on GitHub and deploy it on Vercel. When deploying, fill in the environment variable &lt;code>DATABASE_URL&lt;/code> with the connection URL from above.&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>After deployment, bind your own domain name on Vercel. Due to DNS pollution, the domain names provided by Vercel cannot be accessed most of the time. You need your own domain name for smoother access.&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>After successful deployment, visit the website through the bound domain name. The default account username and password are 'admin' and 'umami'. After logging in, you can change the password, add websites, and add users.&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>In the settings page, add a website and fill in the relevant information. Umami will assign an ID and a tracking code for the website to be tracked. Simply put this tracking code into the head tag of the webpage to start collecting statistical data and see the corresponding statistics results in the dashboard.&lt;/p>
-&lt;ol>
-&lt;li>For example, in the case of Hugo that I use, find the generation template related to the head tag in the HTML template of the theme and put the tracking code into it. To increase configurability, you can also extract the id in the tracking code into a variable and read it from the configuration.&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
-&lt;/span>&lt;span class="lnt">4
-&lt;/span>&lt;span class="lnt">5
-&lt;/span>&lt;span class="lnt">6
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-html" data-lang="html">&lt;span class="line">&lt;span class="cl"> {{- if and .Site.Params.enableUmami (eq hugo.Environment &amp;#34;production&amp;#34;) }}
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> {{ $id := .Site.Params.umamiTrackingID }}
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> {{ $host := .Site.Params.umamiHost }}
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">script&lt;/span> &lt;span class="na">async&lt;/span> &lt;span class="na">src&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;https://{{ $host }}/script.js&amp;#34;&lt;/span> &lt;span class="na">data-website-id&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;{{ $id }}&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&amp;lt;/&lt;/span>&lt;span class="nt">script&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> {{- end }}
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-toml" data-lang="toml">&lt;span class="line">&lt;span class="cl">&lt;span class="nx">enableUmami&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="kc">true&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">umamiTrackingID&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;your_id&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">umamiHost&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;your_umami_website&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;/li>
-&lt;/ol></description><category domain="https://scottyeung.top/en/posts/">posts</category><category domain="https://scottyeung.top/en/tags/serverless/">serverless</category><category domain="https://scottyeung.top/en/tags/Vercel/">Vercel</category><category domain="https://scottyeung.top/en/tags/blog/">blog</category><category domain="https://scottyeung.top/en/tags/Tools/">Tools</category><category domain="https://scottyeung.top/en/tags/cloud-services/">cloud services</category><category domain="https://scottyeung.top/en/tags/Mysql/">Mysql</category></item></channel></rss>
+&lt;p>Before I had a MacBook, I always had a special longing for Macos-exclusive applications. However, after really using them, they seem to be just so-so, or just okay. Recently, there have been many new software on Macos, such as Warp Terminal, Raycast, which I have been using. Maybe it's because I haven't used them deeply, or gotten to their essence, so they feel quite ordinary. I'll continue to explore slowly.&lt;/p></description><category domain="https://scottyeung.top/en/posts/">posts</category><category domain="https://scottyeung.top/en/tags/Productivity/">Productivity</category><category domain="https://scottyeung.top/en/tags/Tools/">Tools</category></item></channel></rss>
