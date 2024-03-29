@@ -1,4 +1,157 @@
-<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah's Blog</title><link>https://scottyeung.top/en/</link><description>Record the YeungYeah's thoughts and actions.</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>en-US</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Wed, 20 Mar 2024 15:05:02 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/en/atom.xml"/><item><title>Vue3 Slot</title><link>https://scottyeung.top/en/2024/vue3-slot/</link><guid isPermaLink="true">https://scottyeung.top/en/2024/vue3-slot/</guid><pubDate>Sun, 10 Mar 2024 20:02:50 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>In Vue components can set a slot tag in the template, which is used to pass some content when using this component to replace the slot.&lt;/p>
+<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah's Blog</title><link>https://scottyeung.top/en/</link><description>Record the YeungYeah's thoughts and actions.</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>en-US</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Fri, 29 Mar 2024 14:19:41 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/en/atom.xml"/><item><title>Remove Copyright Information from Copied Content in Apple Books</title><link>https://scottyeung.top/en/2024/remove-copyright-from-apple-books/</link><guid isPermaLink="true">https://scottyeung.top/en/2024/remove-copyright-from-apple-books/</guid><pubDate>Thu, 28 Mar 2024 22:38:11 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>Recently, I've been reading on Apple Books on my computer. The experience is decent, but there's one annoying aspect when taking notes: When you copy content from a book, Books automatically adds quotation marks and appends copyright information. This can't be removed through citation settings, which means that every time you paste a note, you have to manually delete this extra information. It's quite a hassle.&lt;/p>
+&lt;blockquote>
+&lt;p>&amp;quot;If there is evidence that allocating empty sets can harm performance, it can be avoided by repeatedly returning the same immutable empty set, because immutable objects can be freely shared (Item 17). The following code does just that&amp;quot;&lt;/p>
+&lt;p>Excerpt From
+effective java 3rd Chinese edition
+wizardforcel
+This material may be protected by copyright.&lt;/p>
+&lt;/blockquote>
+&lt;p>I looked online and found quite a few people complaining about this. Everyone seems to handle it externally, with the main solution being the use of Automator.&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://apple.stackexchange.com/questions/137047/dont-want-ibooks-to-always-paste-the-excerpt-from-of-what-i-have-copied">Don't want iBooks to always paste the &amp;quot;Excerpt From&amp;quot; of what I have copied&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.jianshu.com/p/0e9e5c2cb2a2">[Mac]Remove citation from iBooks copy-paste&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="automator">Automator&lt;/h2>
+&lt;p>Automator is an automation tool that comes with macOS. You can arrange actions inside it to automate operations.&lt;/p>
+&lt;p>For our need to remove copyright information, the overall idea is as follows:&lt;/p>
+&lt;ol>
+&lt;li>Get the text content from the clipboard.&lt;/li>
+&lt;li>Extract the original text content from the text.
+&lt;ol>
+&lt;li>This can be achieved through a JavaScript script.&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="line">&lt;span class="cl">&lt;span class="kd">function&lt;/span> &lt;span class="nx">run&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">input&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">parameters&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// Your script goes here
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="kd">let&lt;/span> &lt;span class="nx">matched&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">input&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">join&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;&amp;#39;&lt;/span>&lt;span class="p">).&lt;/span>&lt;span class="nx">match&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sr">/“([^”]*)”/&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="nx">matched&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">];&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;/li>
+&lt;li>Return the extracted content back to the clipboard.&lt;/li>
+&lt;/ol>
+&lt;p>It sounds simple, just like the three steps to put an elephant into a fridge.&lt;/p>
+&lt;p>&lt;img src="https://scottyeung.top/my-images/202403282257812.png" alt="">&lt;/p>
+&lt;p>After setting up Automator, you can add a shortcut to the new service (Quick Action) in the system's shortcuts, and then trigger it in the application. &lt;strong>However, after setting it up, no matter what shortcut I tried, I couldn't trigger it successfully, so I gave up on this method.&lt;/strong>&lt;/p>
+&lt;h2 id="raycast">Raycast&lt;/h2>
+&lt;p>Since we're using scripts anyway, why not go through an extra process and use Raycast to write a script for the conversion? This way, we don't have to set and remember extra shortcuts.&lt;/p>
+&lt;p>After copying the content from Books, execute the Raycast script to convert the clipboard content. The main trouble here is that Node.js does not natively have an API to directly access the clipboard. Here, I borrowed the implementation of &lt;a href="https://github.com/sindresorhus/clipboardy">clipboardy&lt;/a>, which accesses the clipboard by calling command line commands.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;span class="lnt">29
+&lt;/span>&lt;span class="lnt">30
+&lt;/span>&lt;span class="lnt">31
+&lt;/span>&lt;span class="lnt">32
+&lt;/span>&lt;span class="lnt">33
+&lt;/span>&lt;span class="lnt">34
+&lt;/span>&lt;span class="lnt">35
+&lt;/span>&lt;span class="lnt">36
+&lt;/span>&lt;span class="lnt">37
+&lt;/span>&lt;span class="lnt">38
+&lt;/span>&lt;span class="lnt">39
+&lt;/span>&lt;span class="lnt">40
+&lt;/span>&lt;span class="lnt">41
+&lt;/span>&lt;span class="lnt">42
+&lt;/span>&lt;span class="lnt">43
+&lt;/span>&lt;span class="lnt">44
+&lt;/span>&lt;span class="lnt">45
+&lt;/span>&lt;span class="lnt">46
+&lt;/span>&lt;span class="lnt">47
+&lt;/span>&lt;span class="lnt">48
+&lt;/span>&lt;span class="lnt">49
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="line">&lt;span class="cl">&lt;span class="ch">#!/usr/bin/env node
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="ch">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// Required parameters:
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// @raycast.schemaVersion 1
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// @raycast.title Remove Copyright
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// @raycast.mode silent
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// Optional parameters:
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// @raycast.icon 🤖
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// Documentation:
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// @raycast.author YeungYeah
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kr">const&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="nx">exec&lt;/span> &lt;span class="p">}&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">require&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;child_process&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">exec&lt;/span>&lt;span class="p">(&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;pbpaste&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">env&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="p">...&lt;/span>&lt;span class="nx">process&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">env&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">LANG&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;en_US.UTF-8&amp;#34;&lt;/span> &lt;span class="p">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nx">error&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">stdout&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">stderr&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">=&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">error&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">console&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">error&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sb">`exec error: &lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nx">error&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="sb">`&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// Use regular expression to match the content under Chinese quotation marks
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="kr">const&lt;/span> &lt;span class="nx">match&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">stdout&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">match&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sr">/“([^”]*)”/&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">match&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kr">const&lt;/span> &lt;span class="nx">text&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">match&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// Write to clipboard
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="nx">exec&lt;/span>&lt;span class="p">(&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="sb">`echo &amp;#34;&lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nx">text&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="sb">&amp;#34; | pbcopy`&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">env&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="p">...&lt;/span>&lt;span class="nx">process&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">env&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">LANG&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;en_US.UTF-8&amp;#34;&lt;/span> &lt;span class="p">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">},&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nx">error&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">=&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">error&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">console&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">error&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sb">`exec error: &lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nx">error&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="sb">`&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">console&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">log&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;Text has been copied to clipboard.&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">console&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">log&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;No matching text found.&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>It's straightforward: use exec to execute command line commands to get clipboard content, then use regular expressions to extract the text content, and write it back to the clipboard after successful extraction. What's even better is that the above code was directly written by ChatGPT for me.&lt;/p>
+&lt;p>Although the code looks simple, debugging took me a long time. At first, I directly ran the script in the command line after writing it, and it worked fine. However, when I started it from Raycast, the result was problematic, and I couldn't match it no matter what. After logging the full text output, I found that the output was garbled. Obviously, there was an encoding problem. In the end, I manually added &lt;code>env: { ...process.env, LANG: &amp;quot;en_US.UTF-8&amp;quot; }&lt;/code> to set the environment variable for encoding, and the problem was solved. It seems that AI is still not familiar enough with the Chinese environment 😂&lt;/p>
+&lt;p>After adding this encoding environment variable setting, the problem was solved 🛫, and I can continue to enjoy reading and taking notes on Books.&lt;/p></description><category domain="https://scottyeung.top/en/posts/">posts</category><category domain="https://scottyeung.top/en/tags/Apple/">Apple</category><category domain="https://scottyeung.top/en/tags/AI/">AI</category><category domain="https://scottyeung.top/en/tags/Tools/">Tools</category><category domain="https://scottyeung.top/en/tags/Productivity/">Productivity</category><category domain="https://scottyeung.top/en/tags/JavaScript/">JavaScript</category><category domain="https://scottyeung.top/en/tags/macOS/">macOS</category><category domain="https://scottyeung.top/en/tags/Complaints/">Complaints</category></item><item><title>Vue3 Slot</title><link>https://scottyeung.top/en/2024/vue3-slot/</link><guid isPermaLink="true">https://scottyeung.top/en/2024/vue3-slot/</guid><pubDate>Sun, 10 Mar 2024 20:02:50 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>In Vue components can set a slot tag in the template, which is used to pass some content when using this component to replace the slot.&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -1011,172 +1164,4 @@ sign(publishing.publications[&amp;#34;maven&amp;#34;])
 &lt;p>If executed smoothly, the project will package the compiled output, sign it, and then upload it to the hosting platform. At this time, you can release a release in the &lt;a href="https://central.sonatype.org/publish/release/">hosting platform&lt;/a>.&lt;/p>
 &lt;p>Find the output just published in the staging repositories, check the uploaded files for errors, and click the close button, it will automatically advance to the inspection stage, checking whether the published output meets the standard. This check includes the quality check and information check mentioned above. After the check is passed, an email reminder will be sent, and then you can click the release button to officially publish the output. After publishing, the output will be synchronized to the Maven Central repository, and you can query it on &lt;a href="https://mvnrepository.com/">mvnrepository&lt;/a> or &lt;a href="https://central.sonatype.com/">sonatype central&lt;/a>. However, this staging step seems to be automated through a &lt;a href="https://github.com/Codearte/gradle-nexus-staging-plugin/">plugin&lt;/a>. If it can be automated, it might be simpler.&lt;/p>
 &lt;hr>
-&lt;p>At this point, the gradle project can be successfully published to the Maven Central Repository for everyone to use.&lt;/p></description><category domain="https://scottyeung.top/en/posts/">posts</category><category domain="https://scottyeung.top/en/tags/gradle/">gradle</category><category domain="https://scottyeung.top/en/tags/jvm/">jvm</category><category domain="https://scottyeung.top/en/tags/Java/">Java</category><category domain="https://scottyeung.top/en/tags/kotlin/">kotlin</category><category domain="https://scottyeung.top/en/tags/maven/">maven</category><category domain="https://scottyeung.top/en/tags/coding-record/">coding record</category></item><item><title>Clipboard Access in JVM</title><link>https://scottyeung.top/en/2023/clipboard-access-jvm/</link><guid isPermaLink="true">https://scottyeung.top/en/2023/clipboard-access-jvm/</guid><pubDate>Sun, 10 Sep 2023 20:00:00 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>The idea originated from my desire to write a Kotlin script that reads the content of the clipboard and saves it to a file. However, after searching online, the methods given by Java and Kotlin both access the system clipboard through the awt package in the JDK. Since Kotlin scripts still run on the JVM target, the methods are universal.&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
-&lt;/span>&lt;span class="lnt"> 2
-&lt;/span>&lt;span class="lnt"> 3
-&lt;/span>&lt;span class="lnt"> 4
-&lt;/span>&lt;span class="lnt"> 5
-&lt;/span>&lt;span class="lnt"> 6
-&lt;/span>&lt;span class="lnt"> 7
-&lt;/span>&lt;span class="lnt"> 8
-&lt;/span>&lt;span class="lnt"> 9
-&lt;/span>&lt;span class="lnt">10
-&lt;/span>&lt;span class="lnt">11
-&lt;/span>&lt;span class="lnt">12
-&lt;/span>&lt;span class="lnt">13
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nn">java.awt.*&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="kn">import&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nn">java.awt.datatransfer.DataFlavor&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="kn">import&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nn">java.awt.datatransfer.UnsupportedFlavorException&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="kn">import&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nn">java.io.IOException&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">class&lt;/span> &lt;span class="nc">Test&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">static&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kt">void&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nf">main&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">[]&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">args&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">throws&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">IOException&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">UnsupportedFlavorException&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">var&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">clipboard&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Toolkit&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">getDefaultToolkit&lt;/span>&lt;span class="p">().&lt;/span>&lt;span class="na">getSystemClipboard&lt;/span>&lt;span class="p">();&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">var&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">transferable&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">clipboard&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">getContents&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kc">null&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">System&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">out&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">println&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">transferable&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">getTransferData&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">DataFlavor&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">stringFlavor&lt;/span>&lt;span class="p">));&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-kotlin" data-lang="kotlin">&lt;span class="line">&lt;span class="cl">&lt;span class="k">val&lt;/span> &lt;span class="py">toolkit&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="nc">Toolkit&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">getDefaultToolkit&lt;/span>&lt;span class="p">()&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">val&lt;/span> &lt;span class="py">clipboard&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="n">toolkit&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">systemClipboard&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">val&lt;/span> &lt;span class="py">result&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="n">clipboard&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">getData&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nc">DataFlavor&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">stringFlavor&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">String&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>This method is usable and supports a wide range of data types, not only text but also images. However, there is a drawback: the headless option must be turned off when using it. Kotlin is turned off by default, and it needs to be explicitly configured with &lt;code>kotlin -Djava.awt.headless=false&lt;/code> to disable it.&lt;/p>
-&lt;blockquote>
-&lt;p>Headless mode is a system configuration in which the display device, keyboard, or mouse is lacking. Sounds unexpected, but actually you can perform different operations in this mode, even with graphic data.&lt;/p>
-&lt;/blockquote>
-&lt;p>After disabling the headless mode, the code is usable. However, running it will pull up a JRE program. Although this pulled-up program has no interface, it will still force a window switch, which feels bad. So, I had to find another way and chose to use Node.js. Finally, I found &lt;a href="https://github.com/sindresorhus/clipboardy">clipboardy&lt;/a>, a simple and easy-to-use npm library, which met my needs first. After carefully reading its implementation code, it accesses the system clipboard by calling the command after. However, if you call the system command, the commands in different system environments are different. How to take into account portability and run in different system environments? The solution is also simple and crude: manually write an implementation for each system, and if some systems do not have this operating system clipboard command program, include a binary as a fallback in the npm package. Simple, but usable.&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
-&lt;/span>&lt;span class="lnt"> 2
-&lt;/span>&lt;span class="lnt"> 3
-&lt;/span>&lt;span class="lnt"> 4
-&lt;/span>&lt;span class="lnt"> 5
-&lt;/span>&lt;span class="lnt"> 6
-&lt;/span>&lt;span class="lnt"> 7
-&lt;/span>&lt;span class="lnt"> 8
-&lt;/span>&lt;span class="lnt"> 9
-&lt;/span>&lt;span class="lnt">10
-&lt;/span>&lt;span class="lnt">11
-&lt;/span>&lt;span class="lnt">12
-&lt;/span>&lt;span class="lnt">13
-&lt;/span>&lt;span class="lnt">14
-&lt;/span>&lt;span class="lnt">15
-&lt;/span>&lt;span class="lnt">16
-&lt;/span>&lt;span class="lnt">17
-&lt;/span>&lt;span class="lnt">18
-&lt;/span>&lt;span class="lnt">19
-&lt;/span>&lt;span class="lnt">20
-&lt;/span>&lt;span class="lnt">21
-&lt;/span>&lt;span class="lnt">22
-&lt;/span>&lt;span class="lnt">23
-&lt;/span>&lt;span class="lnt">24
-&lt;/span>&lt;span class="lnt">25
-&lt;/span>&lt;span class="lnt">26
-&lt;/span>&lt;span class="lnt">27
-&lt;/span>&lt;span class="lnt">28
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-javascript" data-lang="javascript">&lt;span class="line">&lt;span class="cl">&lt;span class="kr">import&lt;/span> &lt;span class="nx">process&lt;/span> &lt;span class="nx">from&lt;/span> &lt;span class="s1">&amp;#39;node:process&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kr">import&lt;/span> &lt;span class="nx">isWSL&lt;/span> &lt;span class="nx">from&lt;/span> &lt;span class="s1">&amp;#39;is-wsl&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kr">import&lt;/span> &lt;span class="nx">termux&lt;/span> &lt;span class="nx">from&lt;/span> &lt;span class="s1">&amp;#39;./lib/termux.js&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kr">import&lt;/span> &lt;span class="nx">linux&lt;/span> &lt;span class="nx">from&lt;/span> &lt;span class="s1">&amp;#39;./lib/linux.js&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kr">import&lt;/span> &lt;span class="nx">macos&lt;/span> &lt;span class="nx">from&lt;/span> &lt;span class="s1">&amp;#39;./lib/macos.js&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kr">import&lt;/span> &lt;span class="nx">windows&lt;/span> &lt;span class="nx">from&lt;/span> &lt;span class="s1">&amp;#39;./lib/windows.js&amp;#39;&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kr">const&lt;/span> &lt;span class="nx">platformLib&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">(()&lt;/span> &lt;span class="p">=&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">switch&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">process&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">platform&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">case&lt;/span> &lt;span class="s1">&amp;#39;darwin&amp;#39;&lt;/span>&lt;span class="o">:&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="nx">macos&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">case&lt;/span> &lt;span class="s1">&amp;#39;win32&amp;#39;&lt;/span>&lt;span class="o">:&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="nx">windows&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">case&lt;/span> &lt;span class="s1">&amp;#39;android&amp;#39;&lt;/span>&lt;span class="o">:&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">process&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">env&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">PREFIX&lt;/span> &lt;span class="o">!==&lt;/span> &lt;span class="s1">&amp;#39;/data/data/com.termux/files/usr&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">throw&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="nb">Error&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;You need to install Termux for this module to work on Android: https://termux.com&amp;#39;&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="nx">termux&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">default&lt;/span>&lt;span class="o">:&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// `process.platform === &amp;#39;linux&amp;#39;` for WSL.
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">isWSL&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="nx">windows&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="nx">linux&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">})();&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>So, naturally, I borrowed this idea and implemented a version with Kotlin. The code implementation can be seen at &lt;a href="https://github.com/yeung66/clipboard-jvm">clipboard-jvm&lt;/a>. The idea is to call different shell commands for different operating systems to access and operate the system clipboard. For executing external commands, it's also very simple to use.&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
-&lt;/span>&lt;span class="lnt">4
-&lt;/span>&lt;span class="lnt">5
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-kotlin" data-lang="kotlin">&lt;span class="line">&lt;span class="cl">&lt;span class="k">import&lt;/span> &lt;span class="nn">org.yeungyeah.clipboard.Clipboard&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">val&lt;/span> &lt;span class="py">clipboard&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="nc">Clipboard&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">getClipboard&lt;/span>&lt;span class="p">()&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">println&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">clipboard&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="k">get&lt;/span>&lt;span class="p">())&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">clipboard&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="k">set&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;Hello World&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">println&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">clipboard&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="k">get&lt;/span>&lt;span class="p">())&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>I originally wanted to publish the dependency library to the Maven Central Repository so that the script could be used directly in one line. However, Maven publishing is really troublesome. After studying for a few hours, I was still blocked by some related checks, so I could only install it locally for my own use first. &lt;del>I will update it after uploading it to Maven Central, and also update an article on how to deploy to Maven Central.&lt;/del>&lt;/p>
-&lt;p>After deploying to the Maven Central Repository, you can import the dependency directly through configuration. For example, in a Java project, you can use&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
-&lt;/span>&lt;span class="lnt">4
-&lt;/span>&lt;span class="lnt">5
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-xml" data-lang="xml">&lt;span class="line">&lt;span class="cl">&lt;span class="nt">&amp;lt;dependency&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;lt;groupId&amp;gt;&lt;/span>io.github.yeung66&lt;span class="nt">&amp;lt;/groupId&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;lt;artifactId&amp;gt;&lt;/span>clipboard-jvm&lt;span class="nt">&amp;lt;/artifactId&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nt">&amp;lt;version&amp;gt;&lt;/span>1.0.0&lt;span class="nt">&amp;lt;/version&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nt">&amp;lt;/dependency&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>Or in a Kotlin script, directly&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
-&lt;/span>&lt;span class="lnt">4
-&lt;/span>&lt;span class="lnt">5
-&lt;/span>&lt;span class="lnt">6
-&lt;/span>&lt;span class="lnt">7
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-kotlin" data-lang="kotlin">&lt;span class="line">&lt;span class="cl">&lt;span class="nd">@file&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="n">DependsOn&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;io.github.yeung66:clipboard-jvm:1.0.0&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">import&lt;/span> &lt;span class="nn">org.yeungyeah.clipboard.Clipboard&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">val&lt;/span> &lt;span class="py">clipboard&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="nc">Clipboard&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">getClipboard&lt;/span>&lt;span class="p">()&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">println&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">clipboard&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="k">get&lt;/span>&lt;span class="p">())&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">clipboard&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="k">set&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;Hello World&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">println&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">clipboard&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="k">get&lt;/span>&lt;span class="p">())&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>Lift off🛫️. However, I have only tested it on macOS. In theory, it should work on other systems too. If you're interested, you can give it a try.&lt;/p></description><category domain="https://scottyeung.top/en/posts/">posts</category><category domain="https://scottyeung.top/en/tags/Java/">Java</category><category domain="https://scottyeung.top/en/tags/kotlin/">kotlin</category><category domain="https://scottyeung.top/en/tags/Coding/">Coding</category><category domain="https://scottyeung.top/en/tags/Tools/">Tools</category><category domain="https://scottyeung.top/en/tags/JavaScript/">JavaScript</category></item></channel></rss>
+&lt;p>At this point, the gradle project can be successfully published to the Maven Central Repository for everyone to use.&lt;/p></description><category domain="https://scottyeung.top/en/posts/">posts</category><category domain="https://scottyeung.top/en/tags/gradle/">gradle</category><category domain="https://scottyeung.top/en/tags/jvm/">jvm</category><category domain="https://scottyeung.top/en/tags/Java/">Java</category><category domain="https://scottyeung.top/en/tags/kotlin/">kotlin</category><category domain="https://scottyeung.top/en/tags/maven/">maven</category><category domain="https://scottyeung.top/en/tags/coding-record/">coding record</category></item></channel></rss>
