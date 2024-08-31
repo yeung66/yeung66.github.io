@@ -1,4 +1,88 @@
-<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah 的乱写地</title><link>https://scottyeung.top/</link><description>YeungYeah 的乱写地中记录了作者的所思所想及所为。</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Fri, 05 Jul 2024 13:01:30 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>手动生成 SSL 证书添加到又拍云</title><link>https://scottyeung.top/2024/gen-ssl-for-upyun/</link><guid isPermaLink="true">https://scottyeung.top/2024/gen-ssl-for-upyun/</guid><pubDate>Fri, 05 Jul 2024 20:35:47 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>本站一直用又拍云进行 CDN 加速，因为又拍云有一个又拍云联盟的活动，博主只需要在网站放一个 LOGO 即可获取一定的免费额度。唯一的问题就是需要每年重新申请一下这个又拍云的活动。&lt;/p>
+<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah 的乱写地</title><link>https://scottyeung.top/</link><description>YeungYeah 的乱写地中记录了作者的所思所想及所为。</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Sat, 31 Aug 2024 04:21:40 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title> Make a Square with the Same Color</title><link>https://scottyeung.top/2024/3127-leetcode/</link><guid isPermaLink="true">https://scottyeung.top/2024/3127-leetcode/</guid><pubDate>Sat, 31 Aug 2024 11:25:27 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;h2 id="problem">Problem&lt;/h2>
+&lt;p>source: &lt;a href="https://leetcode.cn/problems/make-a-square-with-the-same-color/description/">3127. Make a Square with the Same Color&lt;/a>&lt;/p>
+&lt;p>difficulty: easy&lt;/p>
+&lt;p>You are given a 2D matrix grid of size 3 x 3 consisting only of characters 'B' and 'W'. Character 'W' represents the white color, and character 'B' represents the black color.&lt;/p>
+&lt;p>Your task is to change the color of at most one cell so that the matrix has a 2 x 2 square where all cells are of the same color.&lt;/p>
+&lt;p>Return true if it is possible to create a 2 x 2 square of the same color, otherwise, return false.&lt;/p>
+&lt;h3 id="constraints">Constraints:&lt;/h3>
+&lt;ul>
+&lt;li>&lt;code>grid.length == 3&lt;/code>&lt;/li>
+&lt;li>``grid[i].length == 3`&lt;/li>
+&lt;li>&lt;code>grid[i][j] is either 'W' or 'B'&lt;/code>.&lt;/li>
+&lt;/ul>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;p>问题可以转化成判断 matrix 是否存在一个 2 * 2 的 matrix，其中包含 3 or 4 个相同的元素。&lt;/p>
+&lt;p>但是再仔细一看 matrix 只有 3 * 3，因此可以直接分成 4 个 block，分别判断 4 个 block 是否存在就行了。&lt;/p>
+&lt;h3 id="kotlin">Kotlin&lt;/h3>
+&lt;p>直接判断每一个点分别在哪些 block 里面，但是这几个 if 判断就写得很丑陋（写了一个之后干脆打开 GitHub Copilot 生成算了）&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-kotlin" data-lang="kotlin">&lt;span class="line">&lt;span class="cl">&lt;span class="k">class&lt;/span> &lt;span class="nc">Solution&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">fun&lt;/span> &lt;span class="nf">canMakeSquare&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">grid&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">Array&lt;/span>&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="n">CharArray&lt;/span>&lt;span class="p">&amp;gt;):&lt;/span> &lt;span class="n">Boolean&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">val&lt;/span> &lt;span class="py">cnt&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="n">IntArray&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="m">4&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">fun&lt;/span> &lt;span class="nf">Char&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="k">value&lt;/span>&lt;span class="p">():&lt;/span> &lt;span class="n">Int&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="k">this&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="sc">&amp;#39;B&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="m">1&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="p">-&lt;/span>&lt;span class="m">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">for&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">i&lt;/span> &lt;span class="k">in&lt;/span> &lt;span class="m">0.&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="m">2&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">for&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">j&lt;/span> &lt;span class="k">in&lt;/span> &lt;span class="m">0.&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="m">2&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="p">&amp;lt;&lt;/span> &lt;span class="m">2&lt;/span> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> &lt;span class="n">j&lt;/span> &lt;span class="p">&amp;lt;&lt;/span> &lt;span class="m">2&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="n">cnt&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="m">0&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">+=&lt;/span> &lt;span class="n">grid&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="n">j&lt;/span>&lt;span class="p">].&lt;/span>&lt;span class="k">value&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="p">&amp;lt;&lt;/span> &lt;span class="m">2&lt;/span> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> &lt;span class="n">j&lt;/span> &lt;span class="p">&amp;gt;&lt;/span> &lt;span class="m">0&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="n">cnt&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="m">1&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">+=&lt;/span> &lt;span class="n">grid&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="n">j&lt;/span>&lt;span class="p">].&lt;/span>&lt;span class="k">value&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="p">&amp;gt;&lt;/span> &lt;span class="m">0&lt;/span> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> &lt;span class="n">j&lt;/span> &lt;span class="p">&amp;lt;&lt;/span> &lt;span class="m">2&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="n">cnt&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="m">2&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">+=&lt;/span> &lt;span class="n">grid&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="n">j&lt;/span>&lt;span class="p">].&lt;/span>&lt;span class="k">value&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="p">&amp;gt;&lt;/span> &lt;span class="m">0&lt;/span> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> &lt;span class="n">j&lt;/span> &lt;span class="p">&amp;gt;&lt;/span> &lt;span class="m">0&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="n">cnt&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="m">3&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">+=&lt;/span> &lt;span class="n">grid&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="n">j&lt;/span>&lt;span class="p">].&lt;/span>&lt;span class="k">value&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="n">cnt&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">any&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="k">it&lt;/span> &lt;span class="k">in&lt;/span> &lt;span class="n">listOf&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="m">2&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="p">-&lt;/span>&lt;span class="m">2&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="m">4&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="p">-&lt;/span>&lt;span class="m">4&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="scala">Scala&lt;/h3>
+&lt;p>最近在学 Scala，于是自然又用 Scala 写一次。相比于此前丑陋的 if 判断，干脆写得更加函数式，试一下 loop free。&lt;/p>
+&lt;p>自己三行搞定&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-Scala" data-lang="Scala">&lt;span class="line">&lt;span class="cl">&lt;span class="k">object&lt;/span> &lt;span class="nc">Solution&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">def&lt;/span> &lt;span class="n">canMakeSquare&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">grid&lt;/span>&lt;span class="k">:&lt;/span> &lt;span class="kt">Array&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="kt">Array&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="kt">Char&lt;/span>&lt;span class="o">]])&lt;/span>&lt;span class="k">:&lt;/span> &lt;span class="kt">Boolean&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="o">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">def&lt;/span> &lt;span class="n">getRange&lt;/span> &lt;span class="k">=&lt;/span> &lt;span class="k">for&lt;/span> &lt;span class="o">{&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="k">&amp;lt;-&lt;/span> &lt;span class="mi">0&lt;/span> &lt;span class="n">to&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="o">;&lt;/span> &lt;span class="n">j&lt;/span> &lt;span class="k">&amp;lt;-&lt;/span> &lt;span class="mi">0&lt;/span> &lt;span class="n">to&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="o">}&lt;/span> &lt;span class="k">yield&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">j&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">def&lt;/span> &lt;span class="n">check&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="k">:&lt;/span> &lt;span class="kt">Int&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">y&lt;/span>&lt;span class="k">:&lt;/span> &lt;span class="kt">Int&lt;/span>&lt;span class="o">)&lt;/span>&lt;span class="k">:&lt;/span> &lt;span class="kt">Boolean&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">getRange&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">count&lt;/span>&lt;span class="o">((&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">j&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="k">=&amp;gt;&lt;/span> &lt;span class="n">grid&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">x&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">i&lt;/span>&lt;span class="o">)(&lt;/span>&lt;span class="n">y&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">j&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="sc">&amp;#39;B&amp;#39;&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">!=&lt;/span> &lt;span class="mi">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">getRange&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">count&lt;/span>&lt;span class="o">((&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">j&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="k">=&amp;gt;&lt;/span> &lt;span class="n">check&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">j&lt;/span>&lt;span class="o">))&lt;/span> &lt;span class="o">&amp;gt;=&lt;/span> &lt;span class="mi">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/LeetCode/">LeetCode</category><category domain="https://scottyeung.top/tags/%E7%AE%97%E6%B3%95/">算法</category><category domain="https://scottyeung.top/tags/kotlin/">kotlin</category><category domain="https://scottyeung.top/tags/Scala/">Scala</category></item><item><title>手动生成 SSL 证书添加到又拍云</title><link>https://scottyeung.top/2024/gen-ssl-for-upyun/</link><guid isPermaLink="true">https://scottyeung.top/2024/gen-ssl-for-upyun/</guid><pubDate>Fri, 05 Jul 2024 20:35:47 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>本站一直用又拍云进行 CDN 加速，因为又拍云有一个又拍云联盟的活动，博主只需要在网站放一个 LOGO 即可获取一定的免费额度。唯一的问题就是需要每年重新申请一下这个又拍云的活动。&lt;/p>
 &lt;p>又拍云还提供 SSL 证书申请与管理，可以一站式管理 HTTPS 的问题。之前一直用他家的 TrustAsia DV SSL 单域名证书，还可以自动续签。然而今年到期后开始收费了，只能转向免费的 Let's Encrypt. 但不知道又拍云还是 Let's Encrypt 这里抽什么风，重复申请好几次都还是失败，提工单来来回回咨询了很多次都没有结果，最后跟我说的厂商 Let's Encrypt 给我限制了。。。&lt;/p>
 &lt;p>&lt;img src="https://scottyeung.top/my-images/202407052046999.png" alt="">&lt;/p>
 &lt;p>没办法，而且我的旧证书马上就要过期了，只能自动动手，丰衣足食。又拍云支持上传自己的证书，干脆我自己去 Let's Encrypt 申请一个证书上传上去。&lt;/p>
@@ -641,229 +725,4 @@ This material may be protected by copyright.&lt;/p>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">npx nuxi@latest init nuxt-blog
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E5%89%8D%E7%AB%AF/">前端</category><category domain="https://scottyeung.top/tags/JavaScript/">JavaScript</category><category domain="https://scottyeung.top/tags/coding-%E5%AD%A6%E4%B9%A0/">coding 学习</category><category domain="https://scottyeung.top/tags/Vue/">Vue</category></item><item><title>开设我的英语博客 By Hugo</title><link>https://scottyeung.top/2024/setup-english-blog/</link><guid isPermaLink="true">https://scottyeung.top/2024/setup-english-blog/</guid><pubDate>Sun, 25 Feb 2024 20:47:21 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>前几天刷推特看到一个挺让人气愤的事情：关注的一个用户所写的博客文章被人翻译成英语搬运到 Medium 上发布，收获了不少的浏览，而且还有一些来自用户认真用心的评论留言。以前见得多中文社区搬运英语社区当中文章翻译成中文变成内容农场的，反向搬中文到英文社区的还真是第一次见，而且看起来更加让人不爽。&lt;/p>
-&lt;p>&lt;img src="https://scottyeung.top/my-images/202402252057093.png" alt="">&lt;/p>
-&lt;p>&lt;img src="https://scottyeung.top/my-images/202402252057572.png" alt="">&lt;/p>
-&lt;p>博主后续很快就举报了这个翻译搬运文章的博主，并且尝试把自己一些博文借助 ChatGPT 的帮助下，把一些文章翻译成英语并发表到 Reddit 上面，反响很不错，甚至登上了频道的 Top1. 作为工作一直都跟国际化相关的人员，我突然意识到除了工作需要紧跟出海的趋势以外，其实个人的东西是不是也可以出海，个人的文字和代码产出是不是也可以发表到海外的英语社区。尤其是现在借助强大的 ChatGPT 下，几乎每个人都可以翻译出不错的英文内容。&lt;/p>
-&lt;p>于是我也把我博客的一些文章，翻译成英语，并通过 Hugo 的多语言，搞出一个&lt;a href="https://scottyeung.top/en">英语版本的博客&lt;/a>。&lt;/p>
-&lt;h2 id="hugo-如何设置多语言">Hugo 如何设置多语言？&lt;/h2>
-&lt;p>一般地使用的 Hugo 主题都有多语言相关的配置，而博客里面需要配置多语言的，主要有以下几个点&lt;/p>
-&lt;ol>
-&lt;li>博客标题&lt;/li>
-&lt;li>导航栏标题&lt;/li>
-&lt;li>评论组件的文本显示&lt;/li>
-&lt;li>自我介绍的关于页面内容&lt;/li>
-&lt;li>博客内容&lt;/li>
-&lt;li>RSS 订阅&lt;/li>
-&lt;li>网页 footer 文本&lt;/li>
-&lt;/ol>
-&lt;h3 id="语言设置">语言设置&lt;/h3>
-&lt;p>Hugo 是支持多语言的，详细的设置可看文档 &lt;a href="https://gohugo.io/content-management/multilingual/">Multilingual mode&lt;/a>. 要支持英语，我们主要要做的是事情是添加语言的配置。这里在添加了新增的 en 后，还得需要把之前使用的默认的中文 zh 语言配置也加上。&lt;/p>
-&lt;p>这里通过 contentDir 来设置不同语言文章所在的目录。我看一般是 &lt;code>content/lang&lt;/code> 这样的格式来设置，但是我之前中文已经把 &lt;code>content&lt;/code> 这个占了，所以就只是为英语设了个 &lt;code>/en&lt;/code> 的路径。后续英语的博客文章放在 &lt;code>content/en/posts/&lt;/code> 下。&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
-&lt;/span>&lt;span class="lnt"> 2
-&lt;/span>&lt;span class="lnt"> 3
-&lt;/span>&lt;span class="lnt"> 4
-&lt;/span>&lt;span class="lnt"> 5
-&lt;/span>&lt;span class="lnt"> 6
-&lt;/span>&lt;span class="lnt"> 7
-&lt;/span>&lt;span class="lnt"> 8
-&lt;/span>&lt;span class="lnt"> 9
-&lt;/span>&lt;span class="lnt">10
-&lt;/span>&lt;span class="lnt">11
-&lt;/span>&lt;span class="lnt">12
-&lt;/span>&lt;span class="lnt">13
-&lt;/span>&lt;span class="lnt">14
-&lt;/span>&lt;span class="lnt">15
-&lt;/span>&lt;span class="lnt">16
-&lt;/span>&lt;span class="lnt">17
-&lt;/span>&lt;span class="lnt">18
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-toml" data-lang="toml">&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="nx">languages&lt;/span>&lt;span class="p">]&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="nx">languages&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">zh&lt;/span>&lt;span class="p">]&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">contentDir&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;content&amp;#39;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">disabled&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="kc">false&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">languageCode&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;zh-CN&amp;#39;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">languageDirection&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;ltr&amp;#39;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">languageName&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;简体中文&amp;#39;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">weight&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="mi">1&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">[&lt;/span>&lt;span class="nx">languages&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">en&lt;/span>&lt;span class="p">]&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">contentDir&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;content_en&amp;#39;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">disabled&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="kc">false&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">languageCode&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;en-US&amp;#39;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">languageDirection&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;ltr&amp;#39;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">languageName&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s1">&amp;#39;English&amp;#39;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">title&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;YeungYeah&amp;#39;s Blog&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">description&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;Record the YeungYeah&amp;#39;s thoughts and actions.&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">siteDescription&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;Record the YeungYeah&amp;#39;s thoughts and actions.&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">weight&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="mi">2&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>这里可以通过 languages 里面的配置来覆盖多语言下博客网站的标题和描述。&lt;/p>
-&lt;h3 id="博客标题--导航栏标题">博客标题 / 导航栏标题&lt;/h3>
-&lt;p>博客标题可以在上面语言配置相关将其覆盖掉，设置成一个英语的标题。导航栏的话可以直接 copy 原有的导航栏设置，然后把 name 修改成英语即可。这里需要注意的是，导航栏需要添加一个新的链接，用于网站中英文的切换。链接添加也很简单，英语的跳转到 &lt;code>/&lt;/code>，中文的跳转到 &lt;code>/en&lt;/code> 即可。&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
-&lt;/span>&lt;span class="lnt"> 2
-&lt;/span>&lt;span class="lnt"> 3
-&lt;/span>&lt;span class="lnt"> 4
-&lt;/span>&lt;span class="lnt"> 5
-&lt;/span>&lt;span class="lnt"> 6
-&lt;/span>&lt;span class="lnt"> 7
-&lt;/span>&lt;span class="lnt"> 8
-&lt;/span>&lt;span class="lnt"> 9
-&lt;/span>&lt;span class="lnt">10
-&lt;/span>&lt;span class="lnt">11
-&lt;/span>&lt;span class="lnt">12
-&lt;/span>&lt;span class="lnt">13
-&lt;/span>&lt;span class="lnt">14
-&lt;/span>&lt;span class="lnt">15
-&lt;/span>&lt;span class="lnt">16
-&lt;/span>&lt;span class="lnt">17
-&lt;/span>&lt;span class="lnt">18
-&lt;/span>&lt;span class="lnt">19
-&lt;/span>&lt;span class="lnt">20
-&lt;/span>&lt;span class="lnt">21
-&lt;/span>&lt;span class="lnt">22
-&lt;/span>&lt;span class="lnt">23
-&lt;/span>&lt;span class="lnt">24
-&lt;/span>&lt;span class="lnt">25
-&lt;/span>&lt;span class="lnt">26
-&lt;/span>&lt;span class="lnt">27
-&lt;/span>&lt;span class="lnt">28
-&lt;/span>&lt;span class="lnt">29
-&lt;/span>&lt;span class="lnt">30
-&lt;/span>&lt;span class="lnt">31
-&lt;/span>&lt;span class="lnt">32
-&lt;/span>&lt;span class="lnt">33
-&lt;/span>&lt;span class="lnt">34
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-toml" data-lang="toml">&lt;span class="line">&lt;span class="cl">&lt;span class="p">[[&lt;/span>&lt;span class="nx">languages&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">en&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">menu&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">main&lt;/span>&lt;span class="p">]]&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">url&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;/en/posts/&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">name&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;Posts&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">weight&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="mi">2&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">pre&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;internal&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">post&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;archive&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[[&lt;/span>&lt;span class="nx">languages&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">en&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">menu&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">main&lt;/span>&lt;span class="p">]]&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">url&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;/en/tags/&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">name&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;Tags&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">weight&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="mi">4&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">pre&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;internal&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">post&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;tags&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[[&lt;/span>&lt;span class="nx">languages&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">en&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">menu&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">main&lt;/span>&lt;span class="p">]]&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">url&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;/en/about/&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">name&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;About&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">weight&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="mi">1&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">pre&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;internal&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">post&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;user-circle&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[[&lt;/span>&lt;span class="nx">languages&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">en&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">menu&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">main&lt;/span>&lt;span class="p">]]&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">url&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;https://www.travellings.cn/go.html&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">name&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;Travel&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">weight&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="mi">5&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">post&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;subway&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[[&lt;/span>&lt;span class="nx">languages&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">en&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">menu&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">main&lt;/span>&lt;span class="p">]]&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">weight&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="mi">7&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">identifier&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;theme-switcher&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">[[&lt;/span>&lt;span class="nx">languages&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">en&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">menu&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">main&lt;/span>&lt;span class="p">]]&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">url&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;/&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">name&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;中文&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">weight&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="mi">6&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">pre&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;internal&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">post&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="s2">&amp;#34;user-circle&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;h3 id="评论组件">评论组件&lt;/h3>
-&lt;p>我的博客是用了 Waline 作为评论组件。Waline 原本就支持多语言，只需要在 Waline 初始化组件时设置 lang 属性即可。我原本用的 Hugo 主题只是提供了参数设置语言，但是并没有可以根据 Hugo 的多语言切换评论组件的语言，于是找到了对应的地方，加了一个判断：如果当前页面的链接中包含 &lt;code>/en/&lt;/code> 则说明是处于英语博客状态。&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
-&lt;/span>&lt;span class="lnt"> 2
-&lt;/span>&lt;span class="lnt"> 3
-&lt;/span>&lt;span class="lnt"> 4
-&lt;/span>&lt;span class="lnt"> 5
-&lt;/span>&lt;span class="lnt"> 6
-&lt;/span>&lt;span class="lnt"> 7
-&lt;/span>&lt;span class="lnt"> 8
-&lt;/span>&lt;span class="lnt"> 9
-&lt;/span>&lt;span class="lnt">10
-&lt;/span>&lt;span class="lnt">11
-&lt;/span>&lt;span class="lnt">12
-&lt;/span>&lt;span class="lnt">13
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="line">&lt;span class="cl">&lt;span class="kr">const&lt;/span> &lt;span class="nx">lang&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{{&lt;/span> &lt;span class="k">if&lt;/span> &lt;span class="k">in&lt;/span> &lt;span class="nx">page&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">RelPermalink&lt;/span> &lt;span class="s2">&amp;#34;/en/&amp;#34;&lt;/span> &lt;span class="p">}}&lt;/span> &lt;span class="s1">&amp;#39;en&amp;#39;&lt;/span> &lt;span class="p">{{&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="p">}}&lt;/span> &lt;span class="p">{{&lt;/span> &lt;span class="p">.&lt;/span>&lt;span class="nx">Site&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">Params&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">walineLang&lt;/span> &lt;span class="p">}}&lt;/span> &lt;span class="p">{{&lt;/span> &lt;span class="nx">end&lt;/span> &lt;span class="p">}};&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">Waline&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">init&lt;/span>&lt;span class="p">({&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">el&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s1">&amp;#39;#wcomments&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">placeholder&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s1">&amp;#39;{{ .Site.Params.walinePlaceholder }}&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">serverURL&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s1">&amp;#39;{{ .Site.Params.walineServerURL }}&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">pageview&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="p">{{&lt;/span> &lt;span class="p">.&lt;/span>&lt;span class="nx">Site&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">Params&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">walineVisitor&lt;/span> &lt;span class="p">}},&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">comment&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="p">{{&lt;/span> &lt;span class="p">.&lt;/span>&lt;span class="nx">Site&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">Params&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">walineVisitor&lt;/span> &lt;span class="p">}},&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">meta&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="p">{{&lt;/span> &lt;span class="p">.&lt;/span>&lt;span class="nx">Site&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">Params&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">walineMeta&lt;/span> &lt;span class="p">}},&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">lang&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">lang&lt;/span>&lt;span class="p">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">requiredMeta&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="p">{{&lt;/span> &lt;span class="p">.&lt;/span>&lt;span class="nx">Site&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">Params&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">walineRequiredMeta&lt;/span> &lt;span class="p">}},&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">pageSize&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="p">{{&lt;/span> &lt;span class="p">.&lt;/span>&lt;span class="nx">Site&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">Params&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">walinePageSize&lt;/span> &lt;span class="p">}},&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">dark&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s1">&amp;#39;html[data-theme=&amp;#34;dark&amp;#34;]&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">})&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;h3 id="关于页面--博客内容">关于页面 / 博客内容&lt;/h3>
-&lt;p>这些文本内容的，直接在 &lt;code>content/en/posts/&lt;/code> 下新建文件即可。这里我基本上是把中文内容丢到 ChatGPT4 翻译就直接拿过来了。除了文本内容以外，标题和标签，都是需要翻译的。&lt;/p>
-&lt;h3 id="rss-订阅">RSS 订阅&lt;/h3>
-&lt;p>Hugo 的多语言在配置后直接就支持生成多语言的 RSS 生成。不过我的主题在页面底部有一个 RSS 订阅的标记，而这个的配置主题也是没有考虑多语言的，所以又改了主题配置，写了个定制，当当前页面链接包含 &lt;code>/en/&lt;/code> 且配置的 id 是 &lt;code>rss&lt;/code>，给他的 url 加一个 &lt;code>/en&lt;/code>。&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
-&lt;/span>&lt;span class="lnt"> 2
-&lt;/span>&lt;span class="lnt"> 3
-&lt;/span>&lt;span class="lnt"> 4
-&lt;/span>&lt;span class="lnt"> 5
-&lt;/span>&lt;span class="lnt"> 6
-&lt;/span>&lt;span class="lnt"> 7
-&lt;/span>&lt;span class="lnt"> 8
-&lt;/span>&lt;span class="lnt"> 9
-&lt;/span>&lt;span class="lnt">10
-&lt;/span>&lt;span class="lnt">11
-&lt;/span>&lt;span class="lnt">12
-&lt;/span>&lt;span class="lnt">13
-&lt;/span>&lt;span class="lnt">14
-&lt;/span>&lt;span class="lnt">15
-&lt;/span>&lt;span class="lnt">16
-&lt;/span>&lt;span class="lnt">17
-&lt;/span>&lt;span class="lnt">18
-&lt;/span>&lt;span class="lnt">19
-&lt;/span>&lt;span class="lnt">20
-&lt;/span>&lt;span class="lnt">21
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="line">&lt;span class="cl">&lt;span class="p">{{&lt;/span> &lt;span class="k">if&lt;/span> &lt;span class="p">.&lt;/span>&lt;span class="nx">Site&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">Params&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">enableSocials&lt;/span> &lt;span class="p">}}&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{{&lt;/span> &lt;span class="kd">with&lt;/span> &lt;span class="p">.&lt;/span>&lt;span class="nx">Site&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">Data&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">Socials&lt;/span> &lt;span class="p">}}&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nx">ul&lt;/span> &lt;span class="kr">class&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;socials&amp;#34;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{{&lt;/span>&lt;span class="o">-&lt;/span> &lt;span class="nx">range&lt;/span> &lt;span class="nx">sort&lt;/span> &lt;span class="p">.&lt;/span>&lt;span class="nx">socials&lt;/span> &lt;span class="s2">&amp;#34;weight&amp;#34;&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="p">}}&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{{&lt;/span> &lt;span class="k">if&lt;/span> &lt;span class="nx">and&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="k">in&lt;/span> &lt;span class="nx">page&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">RelPermalink&lt;/span> &lt;span class="s2">&amp;#34;/en/&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">eq&lt;/span> &lt;span class="p">.&lt;/span>&lt;span class="nx">id&lt;/span> &lt;span class="s2">&amp;#34;rss&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">}}&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nx">li&lt;/span> &lt;span class="kr">class&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;socials-item&amp;#34;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nx">a&lt;/span> &lt;span class="nx">href&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;/en{{ .url }}&amp;#34;&lt;/span> &lt;span class="nx">title&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;{{ .title }}&amp;#34;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{{&lt;/span>&lt;span class="o">-&lt;/span> &lt;span class="nx">partial&lt;/span> &lt;span class="s2">&amp;#34;utils/icon.html&amp;#34;&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">dict&lt;/span> &lt;span class="s2">&amp;#34;$&amp;#34;&lt;/span> &lt;span class="nx">$&lt;/span> &lt;span class="s2">&amp;#34;name&amp;#34;&lt;/span> &lt;span class="p">.&lt;/span>&lt;span class="nx">icon&lt;/span> &lt;span class="s2">&amp;#34;class&amp;#34;&lt;/span> &lt;span class="s2">&amp;#34;social-icon&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="p">}}&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="err">/a&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="err">/li&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{{&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="p">}}&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nx">li&lt;/span> &lt;span class="kr">class&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;socials-item&amp;#34;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="nx">a&lt;/span> &lt;span class="nx">href&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;{{ .url }}&amp;#34;&lt;/span> &lt;span class="nx">target&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;_blank&amp;#34;&lt;/span> &lt;span class="nx">rel&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;external noopener&amp;#34;&lt;/span> &lt;span class="nx">title&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;{{ .title }}&amp;#34;&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{{&lt;/span>&lt;span class="o">-&lt;/span> &lt;span class="nx">partial&lt;/span> &lt;span class="s2">&amp;#34;utils/icon.html&amp;#34;&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">dict&lt;/span> &lt;span class="s2">&amp;#34;$&amp;#34;&lt;/span> &lt;span class="nx">$&lt;/span> &lt;span class="s2">&amp;#34;name&amp;#34;&lt;/span> &lt;span class="p">.&lt;/span>&lt;span class="nx">icon&lt;/span> &lt;span class="s2">&amp;#34;class&amp;#34;&lt;/span> &lt;span class="s2">&amp;#34;social-icon&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="p">}}&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="err">/a&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="err">/li&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{{&lt;/span> &lt;span class="nx">end&lt;/span> &lt;span class="p">}}&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{{&lt;/span>&lt;span class="o">-&lt;/span> &lt;span class="nx">end&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="p">}}&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="err">/ul&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{{&lt;/span> &lt;span class="nx">end&lt;/span> &lt;span class="p">}}&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">{{&lt;/span> &lt;span class="nx">end&lt;/span> &lt;span class="p">}}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;h3 id="footer-内容">footer 内容&lt;/h3>
-&lt;p>footer 的内容基本都是自己定制添加上去的，基本都是没有多语言支持，如果需要给英语博客做切换，就得给硬编码的定制加个条件判断。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E5%8D%9A%E5%AE%A2/">博客</category><category domain="https://scottyeung.top/tags/%E5%86%99%E4%BD%9C/">写作</category><category domain="https://scottyeung.top/tags/%E8%BE%93%E5%87%BA/">输出</category><category domain="https://scottyeung.top/tags/Hugo/">Hugo</category><category domain="https://scottyeung.top/tags/AI/">AI</category></item></channel></rss>
+&lt;/div></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E5%89%8D%E7%AB%AF/">前端</category><category domain="https://scottyeung.top/tags/JavaScript/">JavaScript</category><category domain="https://scottyeung.top/tags/coding-%E5%AD%A6%E4%B9%A0/">coding 学习</category><category domain="https://scottyeung.top/tags/Vue/">Vue</category></item></channel></rss>
