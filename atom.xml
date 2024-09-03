@@ -1,4 +1,68 @@
-<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah 的乱写地</title><link>https://scottyeung.top/</link><description>YeungYeah 的乱写地中记录了作者的所思所想及所为。</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Sat, 31 Aug 2024 04:38:12 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>LeetCode: Make a Square with the Same Color</title><link>https://scottyeung.top/2024/3127-leetcode/</link><guid isPermaLink="true">https://scottyeung.top/2024/3127-leetcode/</guid><pubDate>Sat, 31 Aug 2024 11:25:27 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;h2 id="problem">Problem&lt;/h2>
+<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah 的乱写地</title><link>https://scottyeung.top/</link><description>YeungYeah 的乱写地中记录了作者的所思所想及所为。</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Tue, 03 Sep 2024 15:12:45 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>FoldLeft and FoldRight</title><link>https://scottyeung.top/2024/foldleft-and-foldright/</link><guid isPermaLink="true">https://scottyeung.top/2024/foldleft-and-foldright/</guid><pubDate>Tue, 03 Sep 2024 23:08:35 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>看 [[Scala 函数式编程]] 当中做的练习，还挺有意思。&lt;/p>
+&lt;p>实现了 foldLeft 合 foldRight 之后，如何使用 foldRight / foldLeft 实现 foldRight / foldLeft?&lt;/p>
+&lt;blockquote>
+&lt;p>Hard: Can you write foldRight in terms of foldLeft? How about the other way around? Implementing foldRight via foldLeft is useful because it lets us implement foldRight tail recursively, which means it works even for large lists without overflowing the stack.&lt;/p>
+&lt;/blockquote>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-scala" data-lang="scala">&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="n">foldRight&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="kt">A&lt;/span>,&lt;span class="kt">B&lt;/span>&lt;span class="o">](&lt;/span>&lt;span class="n">as&lt;/span>&lt;span class="k">:&lt;/span> &lt;span class="kt">List&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="kt">A&lt;/span>&lt;span class="o">],&lt;/span> &lt;span class="n">z&lt;/span>&lt;span class="k">:&lt;/span> &lt;span class="kt">B&lt;/span>&lt;span class="o">)(&lt;/span>&lt;span class="n">f&lt;/span>&lt;span class="k">:&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="kt">A&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kt">B&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="k">=&amp;gt;&lt;/span> &lt;span class="n">B&lt;/span>&lt;span class="o">)&lt;/span>&lt;span class="k">:&lt;/span> &lt;span class="kt">B&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">as&lt;/span> &lt;span class="k">match&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">case&lt;/span> &lt;span class="nc">Nil&lt;/span> &lt;span class="k">=&amp;gt;&lt;/span> &lt;span class="n">z&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">case&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="k">:&lt;/span>&lt;span class="kt">:xs&lt;/span> &lt;span class="o">=&amp;gt;&lt;/span> &lt;span class="n">f&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">foldRight&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">xs&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">z&lt;/span>&lt;span class="o">)(&lt;/span>&lt;span class="n">f&lt;/span>&lt;span class="o">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="n">foldLeft&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="kt">A&lt;/span>,&lt;span class="kt">B&lt;/span>&lt;span class="o">](&lt;/span>&lt;span class="n">as&lt;/span>&lt;span class="k">:&lt;/span> &lt;span class="kt">List&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="kt">A&lt;/span>&lt;span class="o">],&lt;/span> &lt;span class="n">z&lt;/span>&lt;span class="k">:&lt;/span>&lt;span class="kt">B&lt;/span>&lt;span class="o">)(&lt;/span>&lt;span class="n">f&lt;/span>&lt;span class="k">:&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="kt">B&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kt">A&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="k">=&amp;gt;&lt;/span> &lt;span class="n">B&lt;/span>&lt;span class="o">)&lt;/span>&lt;span class="k">:&lt;/span> &lt;span class="kt">B&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">as&lt;/span> &lt;span class="k">match&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">case&lt;/span> &lt;span class="nc">Nil&lt;/span> &lt;span class="k">=&amp;gt;&lt;/span> &lt;span class="n">z&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">case&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="k">:&lt;/span>&lt;span class="kt">:xs&lt;/span> &lt;span class="o">=&amp;gt;&lt;/span> &lt;span class="n">foldLeft&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">xs&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">f&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">z&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="o">))(&lt;/span>&lt;span class="n">f&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>看到这个第一反应想到一个很 trick 的想法: foldRight 其实不就等于 reverse 之后再 foldLeft 吗？刚好前面也用 foldLeft 实现了 reverse.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-scala" data-lang="scala">&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="n">reverse&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="kt">A&lt;/span>&lt;span class="o">](&lt;/span>&lt;span class="n">list&lt;/span>&lt;span class="k">:&lt;/span> &lt;span class="kt">List&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="kt">A&lt;/span>&lt;span class="o">])&lt;/span>&lt;span class="k">:&lt;/span> &lt;span class="kt">List&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="kt">A&lt;/span>&lt;span class="o">]&lt;/span> &lt;span class="k">=&lt;/span> &lt;span class="n">foldLeft&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">list&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="nc">List&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">empty&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="kt">A&lt;/span>&lt;span class="o">])((&lt;/span>&lt;span class="n">acc&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">h&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="k">=&amp;gt;&lt;/span> &lt;span class="n">h&lt;/span>&lt;span class="k">:&lt;/span>&lt;span class="kt">:acc&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="n">foldRightViaFoldLeft&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="kt">A&lt;/span>, &lt;span class="kt">B&lt;/span>&lt;span class="o">](&lt;/span>&lt;span class="n">l&lt;/span>&lt;span class="k">:&lt;/span> &lt;span class="kt">List&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="kt">A&lt;/span>&lt;span class="o">],&lt;/span> &lt;span class="n">acc&lt;/span>&lt;span class="k">:&lt;/span> &lt;span class="kt">B&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">f&lt;/span>&lt;span class="k">:&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="kt">A&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kt">B&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="k">=&amp;gt;&lt;/span> &lt;span class="n">B&lt;/span>&lt;span class="o">)&lt;/span>&lt;span class="k">:&lt;/span> &lt;span class="kt">B&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">=&lt;/span> &lt;span class="n">foldLeft&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">reverse&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">l&lt;/span>&lt;span class="o">),&lt;/span> &lt;span class="n">acc&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">f&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>除了这种 trick 以外，还有没其他方法呢？搜了一下官方解答，给的另一种办法是这样的&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-scala" data-lang="scala">&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="n">foldRightViaFoldLeft_1&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="kt">A&lt;/span>, &lt;span class="kt">B&lt;/span>&lt;span class="o">](&lt;/span>&lt;span class="n">l&lt;/span>&lt;span class="k">:&lt;/span> &lt;span class="kt">List&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="kt">A&lt;/span>&lt;span class="o">],&lt;/span> &lt;span class="n">acc&lt;/span>&lt;span class="k">:&lt;/span> &lt;span class="kt">B&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">f&lt;/span>&lt;span class="k">:&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="kt">A&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="kt">B&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="k">=&amp;gt;&lt;/span> &lt;span class="n">B&lt;/span>&lt;span class="o">)&lt;/span>&lt;span class="k">:&lt;/span> &lt;span class="kt">B&lt;/span> &lt;span class="o">=&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">foldLeft&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">l&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="k">:&lt;/span> &lt;span class="kt">B&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="k">=&amp;gt;&lt;/span> &lt;span class="n">b&lt;/span>&lt;span class="o">)((&lt;/span>&lt;span class="n">g&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">a&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="k">=&amp;gt;&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="k">:&lt;/span> &lt;span class="kt">B&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="k">=&amp;gt;&lt;/span> &lt;span class="n">g&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">f&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">b&lt;/span>&lt;span class="o">)))(&lt;/span>&lt;span class="n">acc&lt;/span>&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>看了好一会，然后删掉自己重新一次之后，才理解过来。思路就是在 foldLeft 的过程，维护一个 acc 的函数，然后将前面的元素逐个塞到这个函数里面，越后面的元素塞在越里层，最右面的函数最先开始处理。通过 foldLeft 得到这个函数后，再传初值调用即可。&lt;/p>
+&lt;p>让 gpt 生成的一个例子&lt;/p>
+&lt;ul>
+&lt;li>假设我们有一个列表 &lt;code>List(1, 2, 3)&lt;/code>，一个初始值 &lt;code>0&lt;/code>，和一个函数 &lt;code>f = (a: Int, b: Int) =&amp;gt; a + b&lt;/code>。调用 &lt;code>foldRightViaFoldLeft_1(List(1, 2, 3), 0, (a, b) =&amp;gt; a + b)&lt;/code> 会构建如下的函数链：
+&lt;ul>
+&lt;li>初始值是 &lt;code>(b: Int) =&amp;gt; b&lt;/code>。&lt;/li>
+&lt;li>第一个元素 &lt;code>1&lt;/code>：&lt;code>(g, a) =&amp;gt; b =&amp;gt; g(f(a, b))&lt;/code> 变成 &lt;code>(b: Int) =&amp;gt; (b: Int) =&amp;gt; b + 1&lt;/code>。&lt;/li>
+&lt;li>第二个元素 &lt;code>2&lt;/code>：&lt;code>(b: Int) =&amp;gt; ((b: Int) =&amp;gt; b + 1)(b + 2)&lt;/code>。&lt;/li>
+&lt;li>第三个元素 &lt;code>3&lt;/code> ：&lt;code>(b: Int) =&amp;gt; (((b: Int) =&amp;gt; b + 1)(b + 2))(b + 3)&lt;/code>。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>最终这个链会被应用到初始值 &lt;code>0&lt;/code> 上，得到 &lt;code>0 + 3 + 2 + 1&lt;/code>，即 &lt;code>6&lt;/code>。&lt;/li>
+&lt;/ul>
+&lt;p>说实话有了思路，写起来也还是挺绕的，但是写着写着意识到，其实可以根据类型来判断填什么值，这样就很好写了。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/Scala/">Scala</category><category domain="https://scottyeung.top/tags/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/">函数式编程</category><category domain="https://scottyeung.top/tags/coding-%E5%AD%A6%E4%B9%A0/">coding 学习</category></item><item><title>LeetCode: Make a Square with the Same Color</title><link>https://scottyeung.top/2024/3127-leetcode/</link><guid isPermaLink="true">https://scottyeung.top/2024/3127-leetcode/</guid><pubDate>Sat, 31 Aug 2024 11:25:27 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;h2 id="problem">Problem&lt;/h2>
 &lt;p>source: &lt;a href="https://leetcode.cn/problems/make-a-square-with-the-same-color/description/">3127. Make a Square with the Same Color&lt;/a>&lt;/p>
 &lt;p>difficulty: easy&lt;/p>
 &lt;p>You are given a 2D matrix grid of size 3 x 3 consisting only of characters 'B' and 'W'. Character 'W' represents the white color, and character 'B' represents the black color.&lt;/p>
@@ -697,32 +761,4 @@ This material may be protected by copyright.&lt;/p>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">...&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>于是把英文的内容路径改成 &lt;code>contentDir = 'content_en'&lt;/code>，并且新建同名文件夹，并把英文内容的文件移动到该文件夹，问题解决！&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/Hugo/">Hugo</category><category domain="https://scottyeung.top/tags/%E5%8D%9A%E5%AE%A2/">博客</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category></item><item><title>Nuxt3 无法初始化项目解决</title><link>https://scottyeung.top/2024/nuxt-cannot-init/</link><guid isPermaLink="true">https://scottyeung.top/2024/nuxt-cannot-init/</guid><pubDate>Sun, 03 Mar 2024 21:11:08 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>国内环境下，使用 Nuxt 的项目初始化命令会出现下面错误。&lt;/p>
-&lt;blockquote>
-&lt;p>Error: Failed to download template from registry: Failed to download &lt;a href="https://raw.githubusercontent.com/nuxt/starter/templates/templates/v3.json">https://raw.githubusercontent.com/nuxt/starter/templates/templates/v3.json&lt;/a>: TypeError: fetch failed&lt;/p>
-&lt;/blockquote>
-&lt;p>原因似乎是在项目初始化时，会到 GitHub 上面下载模版信息，而 raw.githubusercontent.com 的下载网址被 DNS 污染是不能够直接访问的，所以访问失败，初始化项目自然也失败了。&lt;/p>
-&lt;p>一般这种情况，很自然地就会想是不是因为没走代理的原因，开个全局代理就可以了吧。试了一下不行，以为是终端没开代理，又加了个 proxy 的环境变量，还是不行。上网一搜，直接在官方 repo 搜到了对应的 &lt;a href="https://github.com/nuxt/cli/issues/159">issue&lt;/a>。挺多人都遇到了这个问题，里面提到大多数可行解决方法，是通过修改 &lt;code>/etc/hosts&lt;/code> 实现的，但不想改系统文件设置，就没尝试这个办法。&lt;/p>
-&lt;p>为什么通过环境变量设置代理不行呢？看了一下 issue 的内容，是因为 Nuxt3 使用 giget 来从 GitHub 仓库下载模版，而这个 giget 仓库使用了原生的 node-fetch 来实现下载功能，而这个原生的 fetch 是不支持使用代理的，所以就算设置了环境变量，也无法使用代理下载，导致项目无法初始化。&lt;/p>
-&lt;p>还好看到 &lt;a href="https://github.com/hzgotb">@hzgotb&lt;/a> 通过翻源码找到了解决办法: 这个文件的下载链接会先在环境变量 &lt;code>NUXI_INIT_REGISTRY&lt;/code> 当中取，所以为了解决下载不了的问题，这个老哥直接 clone 了一个 repo 到 gitee 去，这样就可以确保访问了。&lt;/p>
-&lt;p>&lt;img src="https://scottyeung.top/my-images/202403032137454.png" alt="">&lt;/p>
-&lt;p>所以只需要指定环境变量来初始化项目，问题就能解决了。&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
-&lt;/span>&lt;span class="lnt">4
-&lt;/span>&lt;span class="lnt">5
-&lt;/span>&lt;span class="lnt">6
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># macos &amp;amp; Linux&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">export&lt;/span> &lt;span class="nv">NUXI_INIT_REGISTRY&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;https://gitee.com/hzgotb/nuxt-starter/raw/templates/templates&amp;#34;&lt;/span> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> npx nuxi@latest init nuxt-blog
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># powershell&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">$env&lt;/span>:NUXI_INIT_REGISTRY&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;https://gitee.com/hzgotb/nuxt-starter/raw/templates/templates&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">npx nuxi@latest init nuxt-blog
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E5%89%8D%E7%AB%AF/">前端</category><category domain="https://scottyeung.top/tags/JavaScript/">JavaScript</category><category domain="https://scottyeung.top/tags/coding-%E5%AD%A6%E4%B9%A0/">coding 学习</category><category domain="https://scottyeung.top/tags/Vue/">Vue</category></item></channel></rss>
+&lt;/div>&lt;p>于是把英文的内容路径改成 &lt;code>contentDir = 'content_en'&lt;/code>，并且新建同名文件夹，并把英文内容的文件移动到该文件夹，问题解决！&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/Hugo/">Hugo</category><category domain="https://scottyeung.top/tags/%E5%8D%9A%E5%AE%A2/">博客</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category></item></channel></rss>
