@@ -1,4 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah 的乱写地</title><link>https://scottyeung.top/</link><description>YeungYeah 的乱写地中记录了作者的所思所想及所为。</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Sat, 28 Dec 2024 10:56:42 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>如履薄冰</title><link>https://scottyeung.top/2024/walking-on-thin-ice/</link><guid isPermaLink="true">https://scottyeung.top/2024/walking-on-thin-ice/</guid><pubDate>Sat, 28 Dec 2024 17:20:02 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>因为剩了一点假期的原因，昨天就提前结束了今年的工作日。当然，结束的只是今年不用去上班的日子，有事情还是得干。甚至周六中午还因为时差的原因，需要给美国同事排查问题、回复消息。太久没更新了，就随便总结和吐槽一下工作吧。&lt;/p>
+<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah 的乱写地</title><link>https://scottyeung.top/</link><description>YeungYeah 的乱写地中记录了作者的所思所想及所为。</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Sun, 29 Dec 2024 05:36:38 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>博客 RSS 抓取失败</title><link>https://scottyeung.top/2024/rss-fetch-failed/</link><guid isPermaLink="true">https://scottyeung.top/2024/rss-fetch-failed/</guid><pubDate>Sun, 29 Dec 2024 11:50:22 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>上两周收到 &lt;a href="https://github.com/nju-lug/blogroll">NJU-LUG Blogroll&lt;/a> 维护者的一封邮件，告诉我本博客的 RSS 抓取出了问题，让我有空时看一下。由于最近两个月没更新博客，也没时间关注，所以并未注意到抓取存在问题。昨天更新了一篇文章后，今天发现阅读量依然是零。打开 &lt;a href="https://app.follow.is/share/feeds/55149012216215581">Follow&lt;/a> 一看，才发现 Follow 的抓取也出问题了。&lt;/p>
+&lt;p>收到邮件时，我在本地测试了一下，RSS 是可以正常打开的。随后查看 NJU-LUG Blogroll 提供的失败日志，提示访问超时。初步判断可能是 CDN 出了问题。&lt;/p>
+&lt;p>于是登录又拍云，检查了一下 CDN 的配置，最终发现了一个&lt;strong>加速区域&lt;/strong>的配置项。默认配置是国内加速，这会导致海外的请求被路由到国内的 CDN 节点。看起来问题应该就出在这里——海外访问（比如 GitHub Action）最近可能无法正常访问又拍云的国内 CDN 节点，导致超时，从而无法抓取 RSS。&lt;/p>
+&lt;p>&lt;img src="https://scottyeung.top/my-images/202412291319630.png" alt="">&lt;/p>
+&lt;p>将配置改为全球加速后，我在 Follow 中重新抓取，问题顺利解决。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E5%8D%9A%E5%AE%A2/">博客</category><category domain="https://scottyeung.top/tags/GitHub/">GitHub</category><category domain="https://scottyeung.top/tags/rss/">rss</category><category domain="https://scottyeung.top/tags/%E8%AE%B0%E5%BD%95/">记录</category></item><item><title>如履薄冰</title><link>https://scottyeung.top/2024/walking-on-thin-ice/</link><guid isPermaLink="true">https://scottyeung.top/2024/walking-on-thin-ice/</guid><pubDate>Sat, 28 Dec 2024 17:20:02 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>因为剩了一点假期的原因，昨天就提前结束了今年的工作日。当然，结束的只是今年不用去上班的日子，有事情还是得干。甚至周六中午还因为时差的原因，需要给美国同事排查问题、回复消息。太久没更新了，就随便总结和吐槽一下工作吧。&lt;/p>
 &lt;p>马上就要成为入职一年半的职场练习生了。回想这段时间，最大的感受就是——慌。又慌又焦虑。担心事情搞不定，担心会出什么问题，担心会不会有故障或者资损风险。真的是如履薄冰，每一步都得小心翼翼，生怕踩到一个坑。一方面是因为有许多外部因素不可控，另一方面是业务系统范围实在太大，边边角角太多，很容易忽略一些细节踩坑。真的防不胜防，而且有些问题可能根本不是自己能够避免的。&lt;/p>
 &lt;h2 id="不能犯错的压力">“不能犯错”的压力&lt;/h2>
 &lt;p>之所以这么慌，还是因为“不能犯错”这个点。在大厂里，犯错的代价太高了。一个故障，一个资损，可能直接就得背个低绩效，甚至还有可能被“请走”。即使没到那么严重的地步，在这个竞争激烈、内卷严重的环境中，一次失误也足以影响后续的晋升和发展。&lt;/p>
@@ -379,42 +383,4 @@ export DP_Key=&amp;#34;&amp;lt;key&amp;gt;&amp;#34;
 &lt;p>第二十四章 15 窍门8 饭后动起来&lt;/p>
 &lt;ul>
 &lt;li>现在，你知道吃甜食却不会引起体内葡萄糖激增的神奇组合方法了：餐前喝醋汁，餐后多运动&lt;/li>
-&lt;/ul></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E8%AF%BB%E4%B9%A6/">读书</category><category domain="https://scottyeung.top/tags/notes/">notes</category><category domain="https://scottyeung.top/tags/%E5%81%A5%E5%BA%B7/">健康</category></item><item><title>《金钱心理学》读书摘录笔记</title><link>https://scottyeung.top/2024/psychology-of-money/</link><guid isPermaLink="true">https://scottyeung.top/2024/psychology-of-money/</guid><pubDate>Sun, 31 Mar 2024 13:34:39 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;blockquote>
-&lt;p>读&lt;a href="https://book.douban.com/subject/36415996/?_dtcc=1">《金钱心理学：财富、人性和幸福的永恒真相》&lt;/a>的一些摘录和笔记&lt;/p>
-&lt;/blockquote>
-&lt;h2 id="知道不等于能做到">知道不等于能做到&lt;/h2>
-&lt;p>财务方面的成功并不是一门硬科学，而是一种软技能——你怎么做，比你掌握多少知识更重要。&lt;/p>
-&lt;p>个体投资者承担风险的意愿取决于个人早期的经历。在投资当中起决定作用的不是智力，不是教育或阅历，而是一个人出生的时间和地点——&lt;strong>纯粹靠运气的因素&lt;/strong>。&lt;/p>
-&lt;h2 id="生存第一">生存第一&lt;/h2>
-&lt;p>致富需要的是冒险精神、乐观心态，以及放手一搏的勇气。但守富需要做的却与冒险完全相反。守富需要谦逊和敬畏之心，需要清楚财富来得有多快，去得就有多容易。守富需要节俭，并要承认你获得的财富中一部分源自运气，所以不要指望无限复制过去的成功。&lt;/p>
-&lt;p>生存应该成为你一切策略的基础。&lt;/p>
-&lt;ul>
-&lt;li>没有任何收益值得你冒失去一切的风险。&lt;/li>
-&lt;li>生存下来才能利用复利的价值&lt;/li>
-&lt;/ul>
-&lt;h2 id="尾事件">尾事件&lt;/h2>
-&lt;p>尾事件（tail event）在这些领域中有着巨大的影响。这些低发生率、高影响力的少数事件成了决定结果的主要因素。&lt;/p>
-&lt;p>“重要的不是你对了还是错了，”“金融大鳄”乔治·索罗斯（George Soros）曾说，“而是当你对的时候，你能赚到多少，或者当你错的时候，你会损失多少。”你即使有一半的时间都在犯错，到最后依然能赢。&lt;/p>
-&lt;h2 id="金钱与时间">金钱与时间&lt;/h2>
-&lt;p>金钱最大的内在价值是它能赋予你掌控自己时间的能力——这句话没有任何夸张的成分。你之所以能从财富积累过程中逐步获得一定程度的独立和自主，是因为你积累的财富能让你对可以做什么以及什么时候去做有更强的控制力。&lt;/p>
-&lt;p>如果你对时间没有太多掌控权，你就不得不接受那些不够好的机会，但如果你有足够的时间，你就可以等待更好的机会降临。&lt;/p>
-&lt;h2 id="面对意外">面对意外&lt;/h2>
-&lt;p>你从意外事件中领悟的真理应该是：每天都在发生意料外的事。我们不该将过去的事件当成未来可能性的指南；面对意外事件，我们应该做的是承认这一点——关于未来会发生什么，我们一无所知。&lt;/p>
-&lt;p>面对意外，需要设置安全边际。安全边际的目的在于让预测变得不再必要。&lt;/p>
-&lt;p>如果一件事有95%的概率成功，那么剩下的5%的失败概率就意味着在你人生中的某个时间点，你一定会遭遇失败。&lt;/p>
-&lt;p>存钱。存就是了。存钱不需要什么特定理由。为了车、首付或突发疾病存钱自然是好事，但为那些无法预测或定义的事物也是存钱的最佳理由之一。每个人的生命都是由一连串意外组成的。在生命中最糟糕的时刻，没有特定用途的丰厚储蓄可以为不可避免的意外提供一种对冲。&lt;/p>
-&lt;h2 id="投资的代价">投资的代价&lt;/h2>
-&lt;p>资的成功需要投资者付出相应的代价，但衡量这种代价的不是金钱，而是波动、恐惧、怀疑、不确定感和悔恨——如果你不是那个直接面对它们的人，这些代价都容易被你忽视。&lt;/p>
-&lt;p>几乎所有波动都是一种费用，而非一笔罚款。&lt;/p>
-&lt;p>&lt;strong>理财中要付出的大部分成本是没有标价的。不确定性、疑虑和后悔是金融世界里的常见代价。它们通常是值得你去买单的，但你要把它们看作一笔费用（要为得到好东西而付出的），而不是罚款（要千方百计避免的）。&lt;/strong>&lt;/p>
-&lt;h2 id="选择因人而异">选择因人而异&lt;/h2>
-&lt;p>当美国消费者新闻与商业频道（CNBC）的一名评论员告诉你“你应该买这只股票”时，你要记住，他们并不知道你是谁。你是一个拿炒股当游戏的青少年，一个预算有限又失去了老伴的老人，还是一个想在季度结束前提升一下业绩的对冲基金经理？我们是否应该觉得这三种人考虑问题的优先顺序是一致的，并认为某只股票的交易价无论多高，对他们每个人都是合理的？&lt;/p>
-&lt;h2 id="悲观注意的诱惑">悲观注意的诱惑&lt;/h2>
-&lt;p>如果一个向来头脑聪明的人告诉我，他选的一只股票的价格明年会翻10倍，我会毫不犹豫地将其当作痴人说梦。但如果一个总是糊里糊涂的人告诉我，我持有的一只股票的价格会因为该公司被曝光做假账而大跌，我会放下手头全部工作，认真听他说的每一个字。&lt;/p>
-&lt;p>进步发生得太慢，让人难以发觉，但挫折却出现得太快，让人难以忽视。&lt;/p>
-&lt;p>根据美国国立卫生研究院（National Institute of Health）的数据，自1965年以来，在美国，心脏病的年龄别死亡率 已经下降了70%以上。70%的降幅意味着每年都足足有50万人的生命被挽救。对比一些大城市的人口，来感受一下每年被挽救的生命有多么多吧。但因为这个过程进展得很缓慢，它引起的关注要小于恐怖袭击、飞机失事或自然灾害等突发事件导致的损失所引起的。美国就算每周都遭遇5次卡特里娜飓风 ——想象一下，这会吸引多大的关注度——在一年内的总死亡人数也无法抵消过去半个世纪里这70%的降幅背后每年被挽救的生命数量。&lt;/p>
-&lt;h2 id="作者的理念">作者的理念&lt;/h2>
-&lt;p>当事态朝正确的方向发展时，要保持谦逊；当事态朝错误的方向发展时，要心怀谅解或同情。这是因为任何事都没有表面看来那样美好或糟糕。世界很大，也很复杂。运气和风险真实存在，也难以判别，所以无论是在评价自己还是他人时，都要将这句话牢记于心。你如果能尊重运气和风险的力量，就更容易把注意力投放在你真正能控制的事上，也就更容易找到正确的参照对象。&lt;/p>
-&lt;p>对大多数投资者来说，用平均成本法 去投资低成本的指数基金将是长线投资成功率最高的选择。&lt;/p>
-&lt;p>在投资领域，努力和结果之间几乎没有关系。这是因为世界是由尾事件驱动的——少数几个变量是大部分回报的来源。无论你多么努力地投资，只要你错过了两三个能彻底扭转局势的机会，你的收益就不会太突出。但反过来说，只要你运气好，抓住了这些机会，哪怕平时根本不用心投资，你也能轻松致富。只要你抓住了对策略的成功而言至关重要的几点，再简单的投资策略也会有成效。&lt;/p>
-&lt;p>&lt;strong>高储蓄率、耐心和认为接下来几十年里全球经济将不断创造价值的乐观态度。&lt;/strong>&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E8%AF%BB%E4%B9%A6/">读书</category><category domain="https://scottyeung.top/tags/%E9%87%91%E9%92%B1/">金钱</category><category domain="https://scottyeung.top/tags/%E6%8A%95%E8%B5%84/">投资</category><category domain="https://scottyeung.top/tags/notes/">notes</category><category domain="https://scottyeung.top/tags/%E7%94%9F%E6%B4%BB/">生活</category></item></channel></rss>
+&lt;/ul></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E8%AF%BB%E4%B9%A6/">读书</category><category domain="https://scottyeung.top/tags/notes/">notes</category><category domain="https://scottyeung.top/tags/%E5%81%A5%E5%BA%B7/">健康</category></item></channel></rss>
