@@ -1,4 +1,70 @@
-<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah 的乱写地</title><link>https://scottyeung.top/</link><description>YeungYeah 的乱写地中记录了作者的所思所想及所为。</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Sun, 29 Dec 2024 05:36:38 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>博客 RSS 抓取失败</title><link>https://scottyeung.top/2024/rss-fetch-failed/</link><guid isPermaLink="true">https://scottyeung.top/2024/rss-fetch-failed/</guid><pubDate>Sun, 29 Dec 2024 11:50:22 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>上两周收到 &lt;a href="https://github.com/nju-lug/blogroll">NJU-LUG Blogroll&lt;/a> 维护者的一封邮件，告诉我本博客的 RSS 抓取出了问题，让我有空时看一下。由于最近两个月没更新博客，也没时间关注，所以并未注意到抓取存在问题。昨天更新了一篇文章后，今天发现阅读量依然是零。打开 &lt;a href="https://app.follow.is/share/feeds/55149012216215581">Follow&lt;/a> 一看，才发现 Follow 的抓取也出问题了。&lt;/p>
+<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah 的乱写地</title><link>https://scottyeung.top/</link><description>YeungYeah 的乱写地中记录了作者的所思所想及所为。</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Tue, 31 Dec 2024 05:29:26 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>Ahr999 in TradingView</title><link>https://scottyeung.top/2024/ahr999/</link><guid isPermaLink="true">https://scottyeung.top/2024/ahr999/</guid><pubDate>Tue, 31 Dec 2024 11:34:44 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>近段时间开始关注 BTC 大饼现货，并且在找机会逐步进场持有。其中我主要是通过 Ahr999 指标来判断入场时机，这个指数来自于&lt;a href="https://coxxa.github.io/bitcoin-ahr999-HODL/#/di-shi-wu-zhang">《囤比特币》&lt;/a>。&lt;/p>
+&lt;p>具体的定义可参考&lt;/p>
+&lt;p>&lt;code>Ahr999 = (（比特币价格/200日定投成本) * （比特币价格/指数增长估值）&lt;/code>&lt;/p>
+&lt;ul>
+&lt;li>指数增长估值= 10^[5.84 * log(币龄) - 17.01]&lt;/li>
+&lt;li>币龄 = 当前日期距离2009年1月3日的天数&lt;/li>
+&lt;li>200日定投成本 使用几何平均值&lt;/li>
+&lt;/ul>
+&lt;p>通常认为：&lt;/p>
+&lt;ul>
+&lt;li>Ahr999 &amp;lt; 0.45 时，表示市场极度恐慌，是很好的买入机会&lt;/li>
+&lt;li>Ahr999 &amp;gt; 1.2 时，表示市场可能过热，需要注意风险&lt;/li>
+&lt;li>0.45 &amp;lt; Ahr999 &amp;lt; 1.2 时，属于相对合理区间&lt;/li>
+&lt;/ul>
+&lt;p>最开始打算是直接写个脚本跑在服务器上，定时计算，进入合适的区间就发 tg 消息提醒。写好调试好发现，我的服务器限于网络环境，无法调用 API 拿到数据，只能放弃。又转念一想，其实也算是个交易指标，干脆拿去 TradingView 上搞一个，写个指标画出来，并且加一个通知，如果指标跌破区间，就通过 TradingView 发邮件提醒。通过这个过程，也学习一下 TradingView 的脚本编写。&lt;/p>
+&lt;p>具体效果见下图&lt;/p>
+&lt;p>&lt;img src="https://scottyeung.top/my-images/202412311325330.png" alt="">&lt;/p>
+&lt;p>以下脚本代码主要通过 AI 辅助写出，有需要的话可以自取添加指标。这里指标只能针对日区间数据，需要把变更区间设置成 1d.&lt;/p>
+&lt;pre tabindex="0">&lt;code class="language-pine" data-lang="pine">//@version=6
+indicator(&amp;#39;BTC AHR999 Index&amp;#39;, overlay = false)
+// 确保在日线图表上使用
+if not timeframe.isdaily
+runtime.error(&amp;#39;请在日线图表上使用此指标&amp;#39;)
+// 计算币龄（从2009年1月3日开始）
+GENESIS_TIMESTAMP = timestamp(&amp;#39;2009-01-03&amp;#39;)
+days_since_genesis = (time - GENESIS_TIMESTAMP) / (1000 * 60 * 60 * 24)
+// 计算指数增长估值
+// formula: 10^(5.84 * log(币龄) - 17.01)
+exp_growth = math.pow(10, 5.84 * math.log10(days_since_genesis) - 17.01)
+// 计算200日定投成本（简单移动平均）
+// sma_200 = ta.sma(close, 200)
+f_gma(src, len) =&amp;gt;
+sum_logs = 0.0
+for i = 0 to len - 1 by 1
+sum_logs := sum_logs + math.log(src[i])
+sum_logs
+math.exp(sum_logs / len)
+length = input.int(200, &amp;#39;Length&amp;#39;, minval = 1)
+gma_200 = f_gma(close, length)
+// 计算 AHR999 指数
+// formula: (比特币价格/200日定投成本) * (比特币价格/指数增长估值)
+ahr999 = close / gma_200 * (close / exp_growth)
+// 为了使所有指标在同一个视图中可见，进行数值缩放
+scale_factor = 1000 // 可以根据需要调整这个缩放因子
+scaled_close = close / scale_factor
+scaled_gma_200 = gma_200 / scale_factor
+scaled_exp_growth = exp_growth / scale_factor
+// 绘制所有指标
+plot(ahr999, &amp;#39;AHR999&amp;#39;, color = color.blue, linewidth = 2, precision=3)
+plot(scaled_close, &amp;#39;当日收盘价&amp;#39;, color = color.green, linewidth = 1, precision=3)
+plot(scaled_gma_200, &amp;#39;200日定投成本&amp;#39;, color = color.orange, linewidth = 1, precision=3)
+plot(scaled_exp_growth, &amp;#39;指数增长估值&amp;#39;, color = color.purple, linewidth = 1, precision=3)
+// 添加 AHR999 的参考线
+hline(0.45, &amp;#39;极度抄底区&amp;#39;, color = color.green, linestyle = hline.style_dashed)
+hline(1.2, &amp;#39;中性&amp;#39;, color = color.gray)
+hline(4, &amp;#39;极度卖出区&amp;#39;, color = color.red, linestyle = hline.style_dashed)
+// 添加图例说明
+var tbl = table.new(position.top_right, 4, 2, bgcolor = color.new(color.black, 70))
+table.cell(tbl, 0, 0, &amp;#39;指标&amp;#39;, text_color = color.white)
+table.cell(tbl, 0, 1, &amp;#39;实际值&amp;#39;, text_color = color.white)
+table.cell(tbl, 1, 0, &amp;#39;收盘价&amp;#39;, text_color = color.green)
+table.cell(tbl, 1, 1, str.tostring(close, format.volume), text_color = color.green)
+table.cell(tbl, 2, 0, &amp;#39;200MA&amp;#39;, text_color = color.orange)
+table.cell(tbl, 2, 1, str.tostring(gma_200, format.volume), text_color = color.orange)
+table.cell(tbl, 3, 0, &amp;#39;指数估值&amp;#39;, text_color = color.purple)
+table.cell(tbl, 3, 1, str.tostring(exp_growth, format.volume), text_color = color.purple)
+&lt;/code>&lt;/pre></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E6%8A%95%E8%B5%84/">投资</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category><category domain="https://scottyeung.top/tags/%E5%AD%A6%E4%B9%A0/">学习</category></item><item><title>博客 RSS 抓取失败</title><link>https://scottyeung.top/2024/rss-fetch-failed/</link><guid isPermaLink="true">https://scottyeung.top/2024/rss-fetch-failed/</guid><pubDate>Sun, 29 Dec 2024 11:50:22 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>上两周收到 &lt;a href="https://github.com/nju-lug/blogroll">NJU-LUG Blogroll&lt;/a> 维护者的一封邮件，告诉我本博客的 RSS 抓取出了问题，让我有空时看一下。由于最近两个月没更新博客，也没时间关注，所以并未注意到抓取存在问题。昨天更新了一篇文章后，今天发现阅读量依然是零。打开 &lt;a href="https://app.follow.is/share/feeds/55149012216215581">Follow&lt;/a> 一看，才发现 Follow 的抓取也出问题了。&lt;/p>
 &lt;p>收到邮件时，我在本地测试了一下，RSS 是可以正常打开的。随后查看 NJU-LUG Blogroll 提供的失败日志，提示访问超时。初步判断可能是 CDN 出了问题。&lt;/p>
 &lt;p>于是登录又拍云，检查了一下 CDN 的配置，最终发现了一个&lt;strong>加速区域&lt;/strong>的配置项。默认配置是国内加速，这会导致海外的请求被路由到国内的 CDN 节点。看起来问题应该就出在这里——海外访问（比如 GitHub Action）最近可能无法正常访问又拍云的国内 CDN 节点，导致超时，从而无法抓取 RSS。&lt;/p>
 &lt;p>&lt;img src="https://scottyeung.top/my-images/202412291319630.png" alt="">&lt;/p>
@@ -325,62 +391,4 @@ export DP_Key=&amp;#34;&amp;lt;key&amp;gt;&amp;#34;
 &lt;p>听到同学的回答后，第一时间想到的是，这些东西，只能适用于这个系统中，如果离开了这个系统，岂不是通通作废？但为什么会离开这个系统呢？正如同学所说，一进了单位，基本不会被开，直接管你的生老病死。这种状况下，直接将个人与集体稳稳绑定，集体承诺不会抛下个人，个人也不会愿意离开集体。&lt;/p>
 &lt;p>工作不到一年，说实话已经对于互联网工作有点心生厌倦，草台班子，干着没啥意思的活，还得常顶着大压力。不确定是公司的问题还是行业的问题，但反正流动率是真的高。同期进来的也已经有跑路的了。跑能跑去哪呢？但起码还能跑。&lt;/p>
 &lt;p>国企单位体制很香，这些我都知道，但是实在无法接受没用退出机制的工作，真的遇到什么不合适的情况，该怎么办呢？退出来后还能找到工作吗？&lt;/p>
-&lt;p>不过实在不行都还有公务员可以兜底，会不会最终的归宿都是公务员呢？看来可以开始刷一刷题了。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E9%9A%8F%E7%AC%94/">随笔</category><category domain="https://scottyeung.top/tags/%E5%90%90%E6%A7%BD/">吐槽</category><category domain="https://scottyeung.top/tags/%E6%9D%82%E8%B0%88/">杂谈</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E4%BD%9C/">工作</category></item><item><title>《控糖革命》读书笔记</title><link>https://scottyeung.top/2024/control-sugar/</link><guid isPermaLink="true">https://scottyeung.top/2024/control-sugar/</guid><pubDate>Sun, 05 May 2024 16:25:47 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>&lt;a href="https://book.douban.com/subject/36707112/?_dtcc=1">豆瓣：控糖革命&lt;/a>&lt;/p>
-&lt;p>&lt;strong>核心：控制及减缓血糖峰值的出现，需要保持血糖水平的平稳，减少较大的波动&lt;/strong>&lt;/p>
-&lt;p>危害&lt;/p>
-&lt;ul>
-&lt;li>糖化与炎症&lt;/li>
-&lt;li>对肝脏和胰岛的损耗&lt;/li>
-&lt;/ul>
-&lt;p>一些小技巧&lt;/p>
-&lt;ul>
-&lt;li>进食顺序：蔬菜，蛋白质和脂肪，最后才吃碳水&lt;/li>
-&lt;li>进食前或进食前可以喝一点醋&lt;/li>
-&lt;li>进食后简单运动可以抑制血糖峰值的出现&lt;/li>
-&lt;li>穿上外衣：进食碳水时混一点蛋白质和脂肪也有帮助&lt;/li>
-&lt;/ul>
-&lt;!--more-->
-&lt;h2 id="notes">notes&lt;/h2>
-&lt;p>第一十三章 第二部分 出现葡萄糖峰值有哪些危害&lt;/p>
-&lt;ul>
-&lt;li>降低葡萄糖峰值可以预防炎症的产生，继而降低患炎症类疾病的风险。&lt;/li>
-&lt;/ul>
-&lt;p>第一十五章 7 从头到脚 葡萄糖峰值是如何让我们生病的&lt;/p>
-&lt;ul>
-&lt;li>
-&lt;p>长期来看，葡萄糖峰值的形成过程会造成氧化应激、糖化、炎症和胰岛素过量反应，会导致多种慢性疾病，包括2型糖尿病、关节炎、抑郁症等的发生。&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>太多的葡萄糖会使线粒体停止工作，然后能量生产就会受到影响，结果就是我们会感到疲惫不堪。&lt;/p>
-&lt;/li>
-&lt;/ul>
-&lt;p>第一十七章 8 窍门1 正确的饮食顺序&lt;/p>
-&lt;ul>
-&lt;li>
-&lt;p>如果按照一定顺序来食用含有淀粉、纤维、糖、蛋白质和脂肪的食物，那么你不仅可以使自己的整体葡萄糖峰值下降73%，还可以使自己的胰岛素峰值下降48%。而且，不管你是否患有糖尿病，结果都是如此。&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>那么，正确的饮食顺序是什么呢？那就是，先吃纤维，然后吃蛋白质和脂肪，最后吃淀粉和糖类。&lt;/p>
-&lt;/li>
-&lt;/ul>
-&lt;p>第一十八章 9 窍门2 在每餐前增加一道绿色开胃菜&lt;/p>
-&lt;ul>
-&lt;li>如果确实要等，间隔时间不要超过3小时。这是因为纤维通过胃部和小肠上端通常需要2小时。&lt;/li>
-&lt;/ul>
-&lt;p>第二十章 11 窍门4 平稳早餐后的血糖曲线&lt;/p>
-&lt;ul>
-&lt;li>早餐最不适合吃糖类和淀粉类食物，但是，大多数人早餐只吃糖类和淀粉类食物。&lt;/li>
-&lt;/ul>
-&lt;p>第二十三章 14 窍门7 吃饭之前喝点儿醋&lt;/p>
-&lt;ul>
-&lt;li>
-&lt;p>在一大杯水中加入一汤匙醋混合而成的醋汁，在吃甜食前的几分钟先喝它，就会使随后出现的葡萄糖和果糖曲线变得平稳。通过这种方式，食欲会被抑制，同时还会燃烧更多的脂肪。&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>饭前20分钟之内或者饭后20分钟喝醋汁，也可以边吃饭边喝，效果接近。&lt;/p>
-&lt;/li>
-&lt;/ul>
-&lt;p>第二十四章 15 窍门8 饭后动起来&lt;/p>
-&lt;ul>
-&lt;li>现在，你知道吃甜食却不会引起体内葡萄糖激增的神奇组合方法了：餐前喝醋汁，餐后多运动&lt;/li>
-&lt;/ul></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E8%AF%BB%E4%B9%A6/">读书</category><category domain="https://scottyeung.top/tags/notes/">notes</category><category domain="https://scottyeung.top/tags/%E5%81%A5%E5%BA%B7/">健康</category></item></channel></rss>
+&lt;p>不过实在不行都还有公务员可以兜底，会不会最终的归宿都是公务员呢？看来可以开始刷一刷题了。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E9%9A%8F%E7%AC%94/">随笔</category><category domain="https://scottyeung.top/tags/%E5%90%90%E6%A7%BD/">吐槽</category><category domain="https://scottyeung.top/tags/%E6%9D%82%E8%B0%88/">杂谈</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E4%BD%9C/">工作</category></item></channel></rss>
