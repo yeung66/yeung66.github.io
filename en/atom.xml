@@ -1,4 +1,84 @@
-<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah's Blog</title><link>https://scottyeung.top/en/</link><description>Record the YeungYeah's thoughts and actions.</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>en-US</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Sat, 15 Mar 2025 09:24:36 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/en/atom.xml"/><item><title>Blog RSS Fetch Failed</title><link>https://scottyeung.top/en/2024/rss-fetch-failed/</link><guid isPermaLink="true">https://scottyeung.top/en/2024/rss-fetch-failed/</guid><pubDate>Sun, 29 Dec 2024 11:50:22 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>Two weeks ago, I received an email from the maintainer of &lt;a href="https://github.com/nju-lug/blogroll">NJU-LUG Blogroll&lt;/a>, informing me that the RSS feed of my blog was not being fetched properly and suggesting I take a look when I had time. Since I hadn't updated my blog in the past two months and was too busy to check, I hadn't noticed the issue. After publishing a new post yesterday, I realized today that the view count was still zero. I opened &lt;a href="https://app.follow.is/share/feeds/55149012216215581">Follow&lt;/a> and found that Follow was also having trouble fetching the RSS feed.&lt;/p>
+<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah's Blog</title><link>https://scottyeung.top/en/</link><description>Record the YeungYeah's thoughts and actions.</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>en-US</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Sat, 15 Mar 2025 09:53:09 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/en/atom.xml"/><item><title>Downgrade to a Specific Version of an Application in Homebrew</title><link>https://scottyeung.top/en/2025/degrade-homebrew-app-version/</link><guid isPermaLink="true">https://scottyeung.top/en/2025/degrade-homebrew-app-version/</guid><pubDate>Sat, 15 Mar 2025 15:21:17 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>I always have the habit of updating all software to the latest version. However, while writing a blog, I discovered that after updating Hugo, there were issues running it locally.&lt;/p>
+&lt;pre tabindex="0">&lt;code class="language-log" data-lang="log">ERROR deprecated: site config key paginate was deprecated in Hugo v0.128.0 and subsequently removed. Use pagination.pagerSize instead.
+ERROR deprecated: resources.ToCSS was deprecated in Hugo v0.128.0 and subsequently removed. Use css.Sass instead.
+ERROR deprecated: .Site.IsMultiLingual was deprecated in Hugo v0.124.0 and subsequently removed. Use hugo.IsMultilingual instead.
+ERROR deprecated: .Site.Author was deprecated in Hugo v0.124.0 and subsequently removed. Implement taxonomy &amp;#39;author&amp;#39; or use .Site.Params.Author instead.
+&lt;/code>&lt;/pre>&lt;p>From the error messages, it’s clear that Hugo introduced breaking changes in the update. After the upgrade, some fields and methods were directly removed. At first glance, the error messages seemed helpful, offering alternative fields. However, after making those replacements, I realized it wasn’t as simple as it seemed. The site wouldn’t run. So, I had to downgrade Hugo to its previous version.&lt;/p>
+&lt;p>Here are the steps I followed:&lt;/p>
+&lt;ol>
+&lt;li>Run &lt;code>brew info hugo&lt;/code> to find the repository and path of the application you want to downgrade.
+&lt;ol>
+&lt;li>&lt;img src="https://scottyeung.top/my-images/202503151706238.png" alt="">&lt;/li>
+&lt;li>In my case, I used a mirror. The original repo is hosted on GitHub.&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>Go to the corresponding repository on GitHub and locate the relevant file.
+&lt;ol>
+&lt;li>The file path can be referenced here: &lt;a href="https://github.com/Homebrew/homebrew-core/blob/master/Formula/h/hugo.rb">https://github.com/Homebrew/homebrew-core/blob/master/Formula/h/hugo.rb&lt;/a>&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>Check the commit history of this file and find the commit ID of the version you want to downgrade to.
+&lt;ol>
+&lt;li>Based on the commit ID, you can identify the version, which is usually submitted by the bot &lt;code>BrewTestBot&lt;/code>.&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>Once you have the commit ID, you can retrieve the URL of the formula file and its content.
+&lt;ol>
+&lt;li>Example: &lt;a href="https://github.com/Homebrew/homebrew-core/blob/2fd8dba871a6a5412fa7c00b12ac99b5738cd199/Formula/h/hugo.rb">https://github.com/Homebrew/homebrew-core/blob/2fd8dba871a6a5412fa7c00b12ac99b5738cd199/Formula/h/hugo.rb&lt;/a>&lt;/li>
+&lt;li>Raw content: &lt;a href="https://raw.githubusercontent.com/Homebrew/homebrew-core/2fd8dba871a6a5412fa7c00b12ac99b5738cd199/Formula/h/hugo.rb">https://raw.githubusercontent.com/Homebrew/homebrew-core/2fd8dba871a6a5412fa7c00b12ac99b5738cd199/Formula/h/hugo.rb&lt;/a>&lt;/li>
+&lt;li>Replace the commit ID and app name accordingly to get the correct URL.&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>According to some online guides, you can directly install using the URL with &lt;code>brew install url&lt;/code>.
+&lt;ol>
+&lt;li>However, when I tried this, I encountered an error: &lt;code>Error: Non-checksummed download of hugo formula file from an arbitrary URL is unsupported! brew extract or brew create and brew tap-new to create a formula file in a tap on GitHub instead.&lt;/code>&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>Instead, I copied the formula file’s content, saved it locally, and then installed it using &lt;code>brew install ./hugo.rb&lt;/code>. The installation was successful.&lt;/li>
+&lt;/ol>
+&lt;p>After successfully downgrading the Homebrew application, you can lock the version using &lt;code>brew pin hugo&lt;/code> to prevent future upgrades.&lt;/p>
+&lt;hr>
+&lt;p>After encountering the failure with the &lt;code>install url&lt;/code> method, I found &lt;a href="https://www.ericbariaux.com/posts/brew_rollback/">another approach&lt;/a> for downgrading, which also seemed feasible. However, I ran into errors while executing the build script locally. Still, it might be worth referencing.&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">brew tap-new &lt;span class="nv">$USER&lt;/span>/local-cmake
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">brew tap homebrew/core --force
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">brew extract --version&lt;span class="o">=&lt;/span>3.31.1 cmake &lt;span class="nv">$USER&lt;/span>/local-cmake
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">brew install &lt;span class="nv">$USER&lt;/span>/local-cmake/cmake@3.31.1
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Here’s an explanation of these commands:&lt;/p>
+&lt;p>These four Homebrew commands aim to create a local tap and install a specific version of CMake. Let me explain each command:&lt;/p>
+&lt;h2 id="1-brew-tap-new-userlocal-cmake">1. &lt;code>brew tap-new $USER/local-cmake&lt;/code>&lt;/h2>
+&lt;p>This command creates a new tap (software repository). &lt;code>$USER&lt;/code> is an environment variable representing the current username, so the tap will be named &amp;quot;your-username/local-cmake.&amp;quot;&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Purpose&lt;/strong>: Create a new local tap to store custom formulae.&lt;/li>
+&lt;li>&lt;strong>Result&lt;/strong>: A new tap structure is created at &lt;code>$(brew --repo)/Library/Taps/$USER/homebrew-local-cmake&lt;/code>.&lt;/li>
+&lt;/ul>
+&lt;h2 id="2-brew-tap-homebrewcore---force">2. &lt;code>brew tap homebrew/core --force&lt;/code>&lt;/h2>
+&lt;p>This command forcibly taps Homebrew's core repository.&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Purpose&lt;/strong>: Ensure the homebrew/core repository (which contains official formulae) is properly tapped. The &lt;code>--force&lt;/code> flag ensures the action is performed even if the tap already exists.&lt;/li>
+&lt;li>&lt;strong>Result&lt;/strong>: Ensures access to the formulae in homebrew/core, which is necessary for extracting the CMake formula.&lt;/li>
+&lt;/ul>
+&lt;h2 id="3-brew-extract---version3311-cmake-userlocal-cmake">3. &lt;code>brew extract --version=3.31.1 cmake $USER/local-cmake&lt;/code>&lt;/h2>
+&lt;p>This command extracts a specific version of the CMake formula from homebrew/core to your local tap.&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Purpose&lt;/strong>: Extract the CMake formula for version 3.31.1 from the official repository and place it in your newly created local tap.&lt;/li>
+&lt;li>&lt;strong>Result&lt;/strong>: A &lt;code>cmake@3.31.1.rb&lt;/code> formula file is created in your local tap.&lt;/li>
+&lt;/ul>
+&lt;h2 id="4-brew-install-userlocal-cmakecmake3311">4. &lt;code>brew install $USER/local-cmake/cmake@3.31.1&lt;/code>&lt;/h2>
+&lt;p>This command installs the specific version of CMake from your local tap.&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Purpose&lt;/strong>: Use the extracted formula to install CMake version 3.31.1.&lt;/li>
+&lt;li>&lt;strong>Result&lt;/strong>: CMake version 3.31.1 is installed on your system.&lt;/li>
+&lt;/ul></description><category domain="https://scottyeung.top/en/posts/">posts</category><category domain="https://scottyeung.top/en/tags/Tools/">Tools</category><category domain="https://scottyeung.top/en/tags/Tutorial/">Tutorial</category><category domain="https://scottyeung.top/en/tags/Experience/">Experience</category><category domain="https://scottyeung.top/en/tags/macOS/">macOS</category><category domain="https://scottyeung.top/en/tags/Hugo/">Hugo</category></item><item><title>Blog RSS Fetch Failed</title><link>https://scottyeung.top/en/2024/rss-fetch-failed/</link><guid isPermaLink="true">https://scottyeung.top/en/2024/rss-fetch-failed/</guid><pubDate>Sun, 29 Dec 2024 11:50:22 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>Two weeks ago, I received an email from the maintainer of &lt;a href="https://github.com/nju-lug/blogroll">NJU-LUG Blogroll&lt;/a>, informing me that the RSS feed of my blog was not being fetched properly and suggesting I take a look when I had time. Since I hadn't updated my blog in the past two months and was too busy to check, I hadn't noticed the issue. After publishing a new post yesterday, I realized today that the view count was still zero. I opened &lt;a href="https://app.follow.is/share/feeds/55149012216215581">Follow&lt;/a> and found that Follow was also having trouble fetching the RSS feed.&lt;/p>
 &lt;p>When I received the email, I tested the RSS feed locally, and it opened without any issues. Then I checked the error logs provided by NJU-LUG Blogroll, which indicated a timeout error. My initial guess was that there might be an issue with the CDN.&lt;/p>
 &lt;p>I logged into Upyun to inspect the CDN settings and eventually discovered a configuration option for &lt;strong>Acceleration Regions&lt;/strong>. The default setting was &amp;quot;Domestic Acceleration,&amp;quot; which routes overseas requests to domestic CDN nodes. It seemed the problem lay here—overseas access (e.g., GitHub Action) might have been unable to reach Upyun's domestic CDN nodes recently, resulting in timeouts and the inability to fetch the RSS feed.&lt;/p>
 &lt;p>&lt;img src="https://scottyeung.top/my-images/202412291319630.png" alt="">&lt;/p>
@@ -364,234 +444,4 @@ This material may be protected by copyright.&lt;/p>
 &lt;/div>
 &lt;/div>&lt;p>It's straightforward: use exec to execute command line commands to get clipboard content, then use regular expressions to extract the text content, and write it back to the clipboard after successful extraction. What's even better is that the above code was directly written by ChatGPT for me.&lt;/p>
 &lt;p>Although the code looks simple, debugging took me a long time. At first, I directly ran the script in the command line after writing it, and it worked fine. However, when I started it from Raycast, the result was problematic, and I couldn't match it no matter what. After logging the full text output, I found that the output was garbled. Obviously, there was an encoding problem. In the end, I manually added &lt;code>env: { ...process.env, LANG: &amp;quot;en_US.UTF-8&amp;quot; }&lt;/code> to set the environment variable for encoding, and the problem was solved. It seems that AI is still not familiar enough with the Chinese environment 😂&lt;/p>
-&lt;p>After adding this encoding environment variable setting, the problem was solved 🛫, and I can continue to enjoy reading and taking notes on Books.&lt;/p></description><category domain="https://scottyeung.top/en/posts/">posts</category><category domain="https://scottyeung.top/en/tags/Apple/">Apple</category><category domain="https://scottyeung.top/en/tags/AI/">AI</category><category domain="https://scottyeung.top/en/tags/Tools/">Tools</category><category domain="https://scottyeung.top/en/tags/Productivity/">Productivity</category><category domain="https://scottyeung.top/en/tags/JavaScript/">JavaScript</category><category domain="https://scottyeung.top/en/tags/macOS/">macOS</category><category domain="https://scottyeung.top/en/tags/Complaints/">Complaints</category></item><item><title>Vue3 Slot</title><link>https://scottyeung.top/en/2024/vue3-slot/</link><guid isPermaLink="true">https://scottyeung.top/en/2024/vue3-slot/</guid><pubDate>Sun, 10 Mar 2024 20:02:50 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>In Vue components can set a slot tag in the template, which is used to pass some content when using this component to replace the slot.&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
-&lt;/span>&lt;span class="lnt"> 2
-&lt;/span>&lt;span class="lnt"> 3
-&lt;/span>&lt;span class="lnt"> 4
-&lt;/span>&lt;span class="lnt"> 5
-&lt;/span>&lt;span class="lnt"> 6
-&lt;/span>&lt;span class="lnt"> 7
-&lt;/span>&lt;span class="lnt"> 8
-&lt;/span>&lt;span class="lnt"> 9
-&lt;/span>&lt;span class="lnt">10
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-vue" data-lang="vue">&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">FancyButton&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">Click&lt;/span> &lt;span class="nx">me&lt;/span>&lt;span class="o">!&lt;/span> &lt;span class="c">&amp;lt;!--&lt;/span> &lt;span class="nx">slot&lt;/span> &lt;span class="nx">content&lt;/span> &lt;span class="o">--&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">FancyButton&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">button&lt;/span> &lt;span class="na">class&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;fancy-btn&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">slot&lt;/span>&lt;span class="p">&amp;gt;&amp;lt;/&lt;/span>&lt;span class="nt">slot&lt;/span>&lt;span class="p">&amp;gt;&lt;/span> &lt;span class="c">&amp;lt;!--&lt;/span> &lt;span class="nx">slot&lt;/span> &lt;span class="nx">outlet&lt;/span> &lt;span class="o">--&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">button&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// final output
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">button&lt;/span> &lt;span class="na">class&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;fancy-btn&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>&lt;span class="nx">Click&lt;/span> &lt;span class="nx">me&lt;/span>&lt;span class="o">!&lt;/span>&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">button&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>The content passed to the slot can be text or an HTML element.&lt;/p>
-&lt;h2 id="scope">Scope&lt;/h2>
-&lt;p>The rendering scope of the slot is limited to the parent component. When a variable is passed in, this variable can only access the parent component and cannot access the variables of the child component.&lt;/p>
-&lt;blockquote>
-&lt;p>Expressions in the parent template only have access to the parent scope; expressions in the child template only have access to the child scope.&lt;/p>
-&lt;/blockquote>
-&lt;p>In some cases, the content of the slot needs to be set according to the variables of the component itself. In this case, attributes can be passed to the component like passing props to the component. At this time, the content of the slot can be obtained according to the variables of the child component.&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
-&lt;/span>&lt;span class="lnt">4
-&lt;/span>&lt;span class="lnt">5
-&lt;/span>&lt;span class="lnt">6
-&lt;/span>&lt;span class="lnt">7
-&lt;/span>&lt;span class="lnt">8
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-vue" data-lang="vue">&lt;span class="line">&lt;span class="cl">&lt;span class="c">&amp;lt;!--&lt;/span> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">MyComponent&lt;/span>&lt;span class="p">&amp;gt;&lt;/span> &lt;span class="nx">template&lt;/span> &lt;span class="o">--&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">div&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">slot&lt;/span> &lt;span class="nt">:text&lt;/span>&lt;span class="s">=&amp;#34;greetingMessage&amp;#34;&lt;/span> &lt;span class="nt">:count&lt;/span>&lt;span class="s">=&amp;#34;1&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&amp;lt;/&lt;/span>&lt;span class="nt">slot&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">div&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">MyComponent&lt;/span> &lt;span class="nt">v-slot&lt;/span>&lt;span class="s">=&amp;#34;slotProps&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{{&lt;/span> &lt;span class="na">slotProps.text&lt;/span> &lt;span class="p">}}&lt;/span> &lt;span class="p">{{&lt;/span> &lt;span class="na">slotProps.count&lt;/span> &lt;span class="p">}}&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">MyComponent&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>Essentially, it can be regarded as passing a function down, which is called by the component.&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
-&lt;/span>&lt;span class="lnt"> 2
-&lt;/span>&lt;span class="lnt"> 3
-&lt;/span>&lt;span class="lnt"> 4
-&lt;/span>&lt;span class="lnt"> 5
-&lt;/span>&lt;span class="lnt"> 6
-&lt;/span>&lt;span class="lnt"> 7
-&lt;/span>&lt;span class="lnt"> 8
-&lt;/span>&lt;span class="lnt"> 9
-&lt;/span>&lt;span class="lnt">10
-&lt;/span>&lt;span class="lnt">11
-&lt;/span>&lt;span class="lnt">12
-&lt;/span>&lt;span class="lnt">13
-&lt;/span>&lt;span class="lnt">14
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="line">&lt;span class="cl">&lt;span class="nx">MyComponent&lt;/span>&lt;span class="p">({&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// passing the default slot, but as a function
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="k">default&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">slotProps&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">=&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="sb">`&lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nx">slotProps&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">text&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="sb"> &lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nx">slotProps&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">count&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="sb">`&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">})&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kd">function&lt;/span> &lt;span class="nx">MyComponent&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">slots&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kr">const&lt;/span> &lt;span class="nx">greetingMessage&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;hello&amp;#39;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="sb">`&amp;lt;div&amp;gt;&lt;/span>&lt;span class="si">${&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// call the slot function with props!
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="nx">slots&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="k">default&lt;/span>&lt;span class="p">({&lt;/span> &lt;span class="nx">text&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">greetingMessage&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">count&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="mi">1&lt;/span> &lt;span class="si">}&lt;/span>&lt;span class="sb">)
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="sb"> }&amp;lt;/div&amp;gt;`&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;h2 id="fallback-content">Fallback Content&lt;/h2>
-&lt;p>Components can set default values for slots.&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
-&lt;/span>&lt;span class="lnt">4
-&lt;/span>&lt;span class="lnt">5
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-vue" data-lang="vue">&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">button&lt;/span> &lt;span class="na">type&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;submit&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">slot&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">Submit&lt;/span> &lt;span class="c">&amp;lt;!--&lt;/span> &lt;span class="nx">fallback&lt;/span> &lt;span class="nx">content&lt;/span> &lt;span class="o">--&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">slot&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">button&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;h2 id="named-slot">Named Slot&lt;/h2>
-&lt;p>If there are multiple slots in a component, they can be distinguished by the name attribute. When using, you can specify which slot is passed through the attribute &lt;code>v-slot:slotName&lt;/code> or the abbreviation &lt;code>#slotName&lt;/code>, and the default is &lt;code>default&lt;/code> when not filled.&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
-&lt;/span>&lt;span class="lnt"> 2
-&lt;/span>&lt;span class="lnt"> 3
-&lt;/span>&lt;span class="lnt"> 4
-&lt;/span>&lt;span class="lnt"> 5
-&lt;/span>&lt;span class="lnt"> 6
-&lt;/span>&lt;span class="lnt"> 7
-&lt;/span>&lt;span class="lnt"> 8
-&lt;/span>&lt;span class="lnt"> 9
-&lt;/span>&lt;span class="lnt">10
-&lt;/span>&lt;span class="lnt">11
-&lt;/span>&lt;span class="lnt">12
-&lt;/span>&lt;span class="lnt">13
-&lt;/span>&lt;span class="lnt">14
-&lt;/span>&lt;span class="lnt">15
-&lt;/span>&lt;span class="lnt">16
-&lt;/span>&lt;span class="lnt">17
-&lt;/span>&lt;span class="lnt">18
-&lt;/span>&lt;span class="lnt">19
-&lt;/span>&lt;span class="lnt">20
-&lt;/span>&lt;span class="lnt">21
-&lt;/span>&lt;span class="lnt">22
-&lt;/span>&lt;span class="lnt">23
-&lt;/span>&lt;span class="lnt">24
-&lt;/span>&lt;span class="lnt">25
-&lt;/span>&lt;span class="lnt">26
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-vue" data-lang="vue">&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">div&lt;/span> &lt;span class="na">class&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;container&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">header&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">slot&lt;/span> &lt;span class="na">name&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;header&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&amp;lt;/&lt;/span>&lt;span class="nt">slot&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">header&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">main&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">slot&lt;/span>&lt;span class="p">&amp;gt;&amp;lt;/&lt;/span>&lt;span class="nt">slot&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">main&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">footer&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">slot&lt;/span> &lt;span class="na">name&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;footer&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&amp;lt;/&lt;/span>&lt;span class="nt">slot&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">footer&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">div&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">BaseLayout&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">template&lt;/span> &lt;span class="na">v&lt;/span>&lt;span class="nt">-slot&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="na">header&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">h1&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>&lt;span class="nx">Here&lt;/span> &lt;span class="nx">might&lt;/span> &lt;span class="nx">be&lt;/span> &lt;span class="nx">a&lt;/span> &lt;span class="nx">page&lt;/span> &lt;span class="nx">title&lt;/span>&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">h1&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">template&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">template&lt;/span> &lt;span class="err">#&lt;/span>&lt;span class="na">default&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">p&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>&lt;span class="nx">A&lt;/span> &lt;span class="nx">paragraph&lt;/span> &lt;span class="k">for&lt;/span> &lt;span class="nx">the&lt;/span> &lt;span class="nx">main&lt;/span> &lt;span class="nx">content&lt;/span>&lt;span class="p">.&amp;lt;/&lt;/span>&lt;span class="nt">p&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">p&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>&lt;span class="nx">And&lt;/span> &lt;span class="nx">another&lt;/span> &lt;span class="nx">one&lt;/span>&lt;span class="p">.&amp;lt;/&lt;/span>&lt;span class="nt">p&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">template&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">template&lt;/span> &lt;span class="err">#&lt;/span>&lt;span class="na">footer&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">p&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>&lt;span class="nx">Here&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="nx">s&lt;/span> &lt;span class="nx">some&lt;/span> &lt;span class="nx">contact&lt;/span> &lt;span class="nx">info&lt;/span>&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">p&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">template&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">BaseLayout&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>The default top-level elements are all passed to the default slot.&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
-&lt;/span>&lt;span class="lnt"> 2
-&lt;/span>&lt;span class="lnt"> 3
-&lt;/span>&lt;span class="lnt"> 4
-&lt;/span>&lt;span class="lnt"> 5
-&lt;/span>&lt;span class="lnt"> 6
-&lt;/span>&lt;span class="lnt"> 7
-&lt;/span>&lt;span class="lnt"> 8
-&lt;/span>&lt;span class="lnt"> 9
-&lt;/span>&lt;span class="lnt">10
-&lt;/span>&lt;span class="lnt">11
-&lt;/span>&lt;span class="lnt">12
-&lt;/span>&lt;span class="lnt">13
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-vue" data-lang="vue">&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">BaseLayout&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">template&lt;/span> &lt;span class="err">#&lt;/span>&lt;span class="na">header&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">h1&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>&lt;span class="nx">Here&lt;/span> &lt;span class="nx">might&lt;/span> &lt;span class="nx">be&lt;/span> &lt;span class="nx">a&lt;/span> &lt;span class="nx">page&lt;/span> &lt;span class="nx">title&lt;/span>&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">h1&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">template&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c">&amp;lt;!--&lt;/span> &lt;span class="nx">implicit&lt;/span> &lt;span class="k">default&lt;/span> &lt;span class="nx">slot&lt;/span> &lt;span class="o">--&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">p&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>&lt;span class="nx">A&lt;/span> &lt;span class="nx">paragraph&lt;/span> &lt;span class="k">for&lt;/span> &lt;span class="nx">the&lt;/span> &lt;span class="nx">main&lt;/span> &lt;span class="nx">content&lt;/span>&lt;span class="p">.&amp;lt;/&lt;/span>&lt;span class="nt">p&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">p&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>&lt;span class="nx">And&lt;/span> &lt;span class="nx">another&lt;/span> &lt;span class="nx">one&lt;/span>&lt;span class="p">.&amp;lt;/&lt;/span>&lt;span class="nt">p&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">template&lt;/span> &lt;span class="err">#&lt;/span>&lt;span class="na">footer&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">p&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>&lt;span class="nx">Here&lt;/span>&lt;span class="err">&amp;#39;&lt;/span>&lt;span class="nx">s&lt;/span> &lt;span class="nx">some&lt;/span> &lt;span class="nx">contact&lt;/span> &lt;span class="nx">info&lt;/span>&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">p&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">template&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">BaseLayout&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;h3 id="dynamic-slot-name">Dynamic Slot Name&lt;/h3>
-&lt;p>You can use dynamic variables or expressions as slot names through square brackets.&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
-&lt;/span>&lt;span class="lnt"> 2
-&lt;/span>&lt;span class="lnt"> 3
-&lt;/span>&lt;span class="lnt"> 4
-&lt;/span>&lt;span class="lnt"> 5
-&lt;/span>&lt;span class="lnt"> 6
-&lt;/span>&lt;span class="lnt"> 7
-&lt;/span>&lt;span class="lnt"> 8
-&lt;/span>&lt;span class="lnt"> 9
-&lt;/span>&lt;span class="lnt">10
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-vue" data-lang="vue">&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">base-layout&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">template&lt;/span> &lt;span class="na">v&lt;/span>&lt;span class="nt">-slot&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="err">[&lt;/span>&lt;span class="na">dynamicSlotName&lt;/span>&lt;span class="err">]&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">...&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">template&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c">&amp;lt;!--&lt;/span> &lt;span class="kd">with&lt;/span> &lt;span class="nx">shorthand&lt;/span> &lt;span class="o">--&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">template&lt;/span> &lt;span class="err">#[&lt;/span>&lt;span class="na">dynamicSlotName&lt;/span>&lt;span class="err">]&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">...&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">template&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="err">/base-layout&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div></description><category domain="https://scottyeung.top/en/posts/">posts</category><category domain="https://scottyeung.top/en/tags/Front-end/">Front-end</category><category domain="https://scottyeung.top/en/tags/JavaScript/">JavaScript</category><category domain="https://scottyeung.top/en/tags/Coding-Learning/">Coding Learning</category><category domain="https://scottyeung.top/en/tags/Vue/">Vue</category><category domain="https://scottyeung.top/en/tags/Notes/">Notes</category></item></channel></rss>
+&lt;p>After adding this encoding environment variable setting, the problem was solved 🛫, and I can continue to enjoy reading and taking notes on Books.&lt;/p></description><category domain="https://scottyeung.top/en/posts/">posts</category><category domain="https://scottyeung.top/en/tags/Apple/">Apple</category><category domain="https://scottyeung.top/en/tags/AI/">AI</category><category domain="https://scottyeung.top/en/tags/Tools/">Tools</category><category domain="https://scottyeung.top/en/tags/Productivity/">Productivity</category><category domain="https://scottyeung.top/en/tags/JavaScript/">JavaScript</category><category domain="https://scottyeung.top/en/tags/macOS/">macOS</category><category domain="https://scottyeung.top/en/tags/Complaints/">Complaints</category></item></channel></rss>
