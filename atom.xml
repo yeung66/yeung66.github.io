@@ -1,4 +1,84 @@
-<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah 的乱写地</title><link>https://scottyeung.top/</link><description>YeungYeah 的乱写地中记录了作者的所思所想及所为。</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Sat, 15 Mar 2025 07:20:53 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>退掉佳明手表</title><link>https://scottyeung.top/2025/refund-garmin/</link><guid isPermaLink="true">https://scottyeung.top/2025/refund-garmin/</guid><pubDate>Sat, 15 Mar 2025 13:06:54 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>之前就一直心动想要摆脱苹果生态，尝试使用其他的设备，&lt;a href="https://scottyeung.top/2025/kidnapped-by-data/">避免被生态绑架住&lt;/a>。首当其冲的，就是电量有点不太行的 Apple Watch。原本想要换一个安卓的手表，但是看了一下各家的安卓手表，基本也需要绑定自家的手机和软件生态。然后现在使用 iPhone 的情况下，支持也不太好，很多功能会缺失掉，因此迟迟没挑好。&lt;/p>
+<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah 的乱写地</title><link>https://scottyeung.top/</link><description>YeungYeah 的乱写地中记录了作者的所思所想及所为。</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Sat, 15 Mar 2025 09:24:35 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>Homebrew 降级安装指定版本应用</title><link>https://scottyeung.top/2025/degrade-homebrew-app-version/</link><guid isPermaLink="true">https://scottyeung.top/2025/degrade-homebrew-app-version/</guid><pubDate>Sat, 15 Mar 2025 15:21:17 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>总是习惯性地把所有软件都更新到最新，然后在写博客的时候发现，Hugo 更新后，本地运行出问题了。&lt;/p>
+&lt;pre tabindex="0">&lt;code class="language-log" data-lang="log">ERROR deprecated: site config key paginate was deprecated in Hugo v0.128.0 and subsequently removed. Use pagination.pagerSize instead.
+ERROR deprecated: resources.ToCSS was deprecated in Hugo v0.128.0 and subsequently removed. Use css.Sass instead.
+ERROR deprecated: .Site.IsMultiLingual was deprecated in Hugo v0.124.0 and subsequently removed. Use hugo.IsMultilingual instead.
+ERROR deprecated: .Site.Author was deprecated in Hugo v0.124.0 and subsequently removed. Implement taxonomy &amp;#39;author&amp;#39; or use .Site.Params.Author instead.
+&lt;/code>&lt;/pre>&lt;p>从报错提示来看，就是 Hugo 更新搞出了 breaking changes，升级后直接一些把字段和方法移除掉了。一开始看它的提示，还很贴心地给出替代的字段，然后直接简单替换后发现，跑不起来，并不是那么简单替换就行。于是只能把 Hugo 的版本降回原来的版本。&lt;/p>
+&lt;p>具体操作如下&lt;/p>
+&lt;ol>
+&lt;li>&lt;code>brew info hugo&lt;/code>. 找出需要降级应用所在的 repo 和路径
+&lt;ol>
+&lt;li>&lt;img src="https://scottyeung.top/my-images/202503151706238.png" alt="">&lt;/li>
+&lt;li>我这里用了镜像，原始的 repo 在 GitHub 上&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>到 GitHub 上找到对应 repo 的对应文件
+&lt;ol>
+&lt;li>路径可以参考 &lt;a href="https://github.com/Homebrew/homebrew-core/blob/master/Formula/h/hugo.rb">https://github.com/Homebrew/homebrew-core/blob/master/Formula/h/hugo.rb&lt;/a>&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>找这个文件的提交历史，找到需要降级版本的提交 id
+&lt;ol>
+&lt;li>根据 commit 的 id 可以判断出来版本，是由 bot BrewTestBot 提交的&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>拿到 commit id 后可以拿到这个安装文件的 url，同时也可以拿到文件的内容
+&lt;ol>
+&lt;li>&lt;a href="https://github.com/Homebrew/homebrew-core/blob/2fd8dba871a6a5412fa7c00b12ac99b5738cd199/Formula/h/hugo.rb">https://github.com/Homebrew/homebrew-core/blob/2fd8dba871a6a5412fa7c00b12ac99b5738cd199/Formula/h/hugo.rb&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://raw.githubusercontent.com/Homebrew/homebrew-core/2fd8dba871a6a5412fa7c00b12ac99b5738cd199/Formula/h/hugo.rb">https://raw.githubusercontent.com/Homebrew/homebrew-core/2fd8dba871a6a5412fa7c00b12ac99b5738cd199/Formula/h/hugo.rb&lt;/a>&lt;/li>
+&lt;li>把 commit id 和 app 的名字替换一下就可以了&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>按照网上看到的办法，可以直接根据 url 来安装 &lt;code>brew install url&lt;/code>
+&lt;ol>
+&lt;li>但实际试了一把后发现，会报错 &lt;code>Error: Non-checksummed download of hugo formula file from an arbitrary URL is unsupported! brew extract or brew create and brew tap-new to create a formula file in a tap on GitHub instead.&lt;/code>&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>于是直接把文件内容 copy 下来保存到本地，然后 &lt;code>brew install ./hugo.rb&lt;/code>，安装成功&lt;/li>
+&lt;/ol>
+&lt;p>brew 应用降级成功之后，可以通过 &lt;code>brew pin hugo&lt;/code> 锁定版本，避免后续又把它升级了。&lt;/p>
+&lt;hr>
+&lt;p>在通过 install url 失败之后，又看到&lt;a href="https://www.ericbariaux.com/posts/brew_rollback/">一个办法&lt;/a>可以降级，看着也很可行，但是构建脚本本地执行的时候出错了，也可以参考下。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">brew tap-new &lt;span class="nv">$USER&lt;/span>/local-cmake
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">brew tap homebrew/core --force
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">brew extract --version&lt;span class="o">=&lt;/span>3.31.1 cmake &lt;span class="nv">$USER&lt;/span>/local-cmake
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">brew install &lt;span class="nv">$USER&lt;/span>/local-cmake/cmake@3.31.1
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>以下是 AI 的解释：&lt;/p>
+&lt;p>这四条 Homebrew 命令的目的是创建一个本地 tap 并安装特定版本的 CMake。我来逐条解释每个命令的作用：&lt;/p>
+&lt;h2 id="1-brew-tap-new-userlocal-cmake">1. &lt;code>brew tap-new $USER/local-cmake&lt;/code>&lt;/h2>
+&lt;p>这条命令创建一个新的 tap（软件仓库）。&lt;code>$USER&lt;/code> 是当前用户名的环境变量，所以这个 tap 的名称会是 &amp;quot;你的用户名/local-cmake&amp;quot;。&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>作用&lt;/strong>：创建一个新的本地 tap，用于存放自定义的软件包公式&lt;/li>
+&lt;li>&lt;strong>结果&lt;/strong>：在 &lt;code>$(brew --repo)/Library/Taps/$USER/homebrew-local-cmake&lt;/code> 目录下创建一个新的 tap 结构&lt;/li>
+&lt;/ul>
+&lt;h2 id="2-brew-tap-homebrewcore---force">2. &lt;code>brew tap homebrew/core --force&lt;/code>&lt;/h2>
+&lt;p>这条命令强制重新 tap Homebrew 的核心仓库。&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>作用&lt;/strong>：确保 homebrew/core 仓库（包含官方软件包公式的主仓库）被正确 tap，&lt;code>--force&lt;/code> 参数强制执行，即使该 tap 已经存在&lt;/li>
+&lt;li>&lt;strong>结果&lt;/strong>：确保可以访问 homebrew/core 中的软件包公式，这是后续提取 CMake 公式所必需的&lt;/li>
+&lt;/ul>
+&lt;h2 id="3-brew-extract---version3311-cmake-userlocal-cmake">3. &lt;code>brew extract --version=3.31.1 cmake $USER/local-cmake&lt;/code>&lt;/h2>
+&lt;p>这条命令从 homebrew/core 中提取特定版本的 CMake 公式到你的本地 tap 中。&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>作用&lt;/strong>：从官方仓库提取 CMake 3.31.1 版本的公式，并将其放入你刚创建的本地 tap 中&lt;/li>
+&lt;li>&lt;strong>结果&lt;/strong>：在你的本地 tap 中创建一个 &lt;code>cmake@3.31.1.rb&lt;/code> 公式文件&lt;/li>
+&lt;/ul>
+&lt;h2 id="4-brew-install-userlocal-cmakecmake3311">4. &lt;code>brew install $USER/local-cmake/cmake@3.31.1&lt;/code>&lt;/h2>
+&lt;p>这条命令安装你本地 tap 中的特定版本 CMake。&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>作用&lt;/strong>：使用刚刚提取的公式安装 CMake 3.31.1 版本&lt;/li>
+&lt;li>&lt;strong>结果&lt;/strong>：在你的系统上安装 CMake 3.31.1 版本&lt;/li>
+&lt;/ul></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category><category domain="https://scottyeung.top/tags/%E6%95%99%E7%A8%8B/">教程</category><category domain="https://scottyeung.top/tags/%E7%BB%8F%E9%AA%8C/">经验</category><category domain="https://scottyeung.top/tags/macOS/">macOS</category><category domain="https://scottyeung.top/tags/Hugo/">Hugo</category></item><item><title>退掉佳明手表</title><link>https://scottyeung.top/2025/refund-garmin/</link><guid isPermaLink="true">https://scottyeung.top/2025/refund-garmin/</guid><pubDate>Sat, 15 Mar 2025 13:06:54 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>之前就一直心动想要摆脱苹果生态，尝试使用其他的设备，&lt;a href="https://scottyeung.top/2025/kidnapped-by-data/">避免被生态绑架住&lt;/a>。首当其冲的，就是电量有点不太行的 Apple Watch。原本想要换一个安卓的手表，但是看了一下各家的安卓手表，基本也需要绑定自家的手机和软件生态。然后现在使用 iPhone 的情况下，支持也不太好，很多功能会缺失掉，因此迟迟没挑好。&lt;/p>
 &lt;p>既然各家的安卓手表挑不中，干脆挑一个运动手表，不绑定手机厂商，安卓与 IOS 阵营都能通用。于是刷了几天小红书，选中了几乎是最多人用的佳明，挑了一个价格和 Apple Watch 差不多价格的&lt;a href="https://www.garmin.com.cn/products/wearables/forerunner-265-black/">手表&lt;/a>下单。&lt;/p>
 &lt;p>用了几天之后发现，从 Apple Watch 转向运动手表，真的像是从现代社会退化为原始社会，运动手表，可谓是与智能没有一点关系。运动手表，尤其是像佳明这种专业的运动手表，其实是 for 专业运动水平的人和跑者使用。而我对手表更需要的，可能还是因其智能性能在生活当中带来的便利，我更需要的，还是智能性，能够帮我在日常生活在手表上完成一些很方便的操作，而不是在运动上的专业性。尤其是手表不能控制手机闹钟，没有了我才意识到这个对我来说，其实是个刚需。就运动记录上，感觉佳明和我之前的 Apple Watch 差不了多少，该有的，我能看懂的好像大家都有，对我来说好像也没有太大的提升和意义。&lt;/p>
 &lt;p>看来还是逃离不了苹果生态，逃离不了 Apple Watch，只能乖乖退掉佳明手表，重新戴上 Apple Watch。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E7%94%9F%E6%B4%BB/">生活</category><category domain="https://scottyeung.top/tags/%E9%9A%8F%E7%AC%94/">随笔</category><category domain="https://scottyeung.top/tags/%E8%BD%AF%E4%BB%B6/">软件</category><category domain="https://scottyeung.top/tags/%E6%95%B0%E7%A0%81/">数码</category><category domain="https://scottyeung.top/tags/%E5%90%90%E6%A7%BD/">吐槽</category></item><item><title>2024 年度记录</title><link>https://scottyeung.top/2025/record-of-2024/</link><guid isPermaLink="true">https://scottyeung.top/2025/record-of-2024/</guid><pubDate>Sat, 04 Jan 2025 10:06:50 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>度过作为纯种打工人完整的一年，简单地写点流水账，记录下今年的一些事情与想法。&lt;/p>
@@ -206,88 +286,4 @@ table.cell(tbl, 3, 1, str.tostring(exp_growth, format.volume), text_color = colo
 &lt;/li>
 &lt;li>最终这个链会被应用到初始值 &lt;code>0&lt;/code> 上，得到 &lt;code>0 + 3 + 2 + 1&lt;/code>，即 &lt;code>6&lt;/code>。&lt;/li>
 &lt;/ul>
-&lt;p>说实话有了思路，写起来也还是挺绕的，但是写着写着意识到，其实可以根据类型来判断填什么值，这样就很好写了。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/Scala/">Scala</category><category domain="https://scottyeung.top/tags/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/">函数式编程</category><category domain="https://scottyeung.top/tags/coding-%E5%AD%A6%E4%B9%A0/">coding 学习</category></item><item><title>LeetCode: Make a Square with the Same Color</title><link>https://scottyeung.top/2024/3127-leetcode/</link><guid isPermaLink="true">https://scottyeung.top/2024/3127-leetcode/</guid><pubDate>Sat, 31 Aug 2024 11:25:27 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;h2 id="problem">Problem&lt;/h2>
-&lt;p>source: &lt;a href="https://leetcode.cn/problems/make-a-square-with-the-same-color/description/">3127. Make a Square with the Same Color&lt;/a>&lt;/p>
-&lt;p>difficulty: easy&lt;/p>
-&lt;p>You are given a 2D matrix grid of size 3 x 3 consisting only of characters 'B' and 'W'. Character 'W' represents the white color, and character 'B' represents the black color.&lt;/p>
-&lt;p>Your task is to change the color of at most one cell so that the matrix has a 2 x 2 square where all cells are of the same color.&lt;/p>
-&lt;p>Return true if it is possible to create a 2 x 2 square of the same color, otherwise, return false.&lt;/p>
-&lt;h3 id="constraints">Constraints:&lt;/h3>
-&lt;ul>
-&lt;li>&lt;code>grid.length == 3&lt;/code>&lt;/li>
-&lt;li>``grid[i].length == 3`&lt;/li>
-&lt;li>&lt;code>grid[i][j] is either 'W' or 'B'&lt;/code>.&lt;/li>
-&lt;/ul>
-&lt;h2 id="solution">Solution&lt;/h2>
-&lt;p>问题可以转化成判断 matrix 是否存在一个 2 * 2 的 matrix，其中包含 3 or 4 个相同的元素。&lt;/p>
-&lt;p>但是再仔细一看 matrix 只有 3 * 3，因此可以直接分成 4 个 block，分别判断 4 个 block 是否存在就行了。&lt;/p>
-&lt;h3 id="kotlin">Kotlin&lt;/h3>
-&lt;p>直接判断每一个点分别在哪些 block 里面，但是这几个 if 判断就写得很丑陋（写了一个之后干脆打开 GitHub Copilot 生成算了）&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
-&lt;/span>&lt;span class="lnt"> 2
-&lt;/span>&lt;span class="lnt"> 3
-&lt;/span>&lt;span class="lnt"> 4
-&lt;/span>&lt;span class="lnt"> 5
-&lt;/span>&lt;span class="lnt"> 6
-&lt;/span>&lt;span class="lnt"> 7
-&lt;/span>&lt;span class="lnt"> 8
-&lt;/span>&lt;span class="lnt"> 9
-&lt;/span>&lt;span class="lnt">10
-&lt;/span>&lt;span class="lnt">11
-&lt;/span>&lt;span class="lnt">12
-&lt;/span>&lt;span class="lnt">13
-&lt;/span>&lt;span class="lnt">14
-&lt;/span>&lt;span class="lnt">15
-&lt;/span>&lt;span class="lnt">16
-&lt;/span>&lt;span class="lnt">17
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-kotlin" data-lang="kotlin">&lt;span class="line">&lt;span class="cl">&lt;span class="k">class&lt;/span> &lt;span class="nc">Solution&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">fun&lt;/span> &lt;span class="nf">canMakeSquare&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">grid&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="n">Array&lt;/span>&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="n">CharArray&lt;/span>&lt;span class="p">&amp;gt;):&lt;/span> &lt;span class="n">Boolean&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">val&lt;/span> &lt;span class="py">cnt&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="n">IntArray&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="m">4&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">fun&lt;/span> &lt;span class="nf">Char&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="k">value&lt;/span>&lt;span class="p">():&lt;/span> &lt;span class="n">Int&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="k">this&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="sc">&amp;#39;B&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="m">1&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="p">-&lt;/span>&lt;span class="m">1&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">for&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">i&lt;/span> &lt;span class="k">in&lt;/span> &lt;span class="m">0.&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="m">2&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">for&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">j&lt;/span> &lt;span class="k">in&lt;/span> &lt;span class="m">0.&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="m">2&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="p">&amp;lt;&lt;/span> &lt;span class="m">2&lt;/span> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> &lt;span class="n">j&lt;/span> &lt;span class="p">&amp;lt;&lt;/span> &lt;span class="m">2&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="n">cnt&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="m">0&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">+=&lt;/span> &lt;span class="n">grid&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="n">j&lt;/span>&lt;span class="p">].&lt;/span>&lt;span class="k">value&lt;/span>&lt;span class="p">()&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="p">&amp;lt;&lt;/span> &lt;span class="m">2&lt;/span> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> &lt;span class="n">j&lt;/span> &lt;span class="p">&amp;gt;&lt;/span> &lt;span class="m">0&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="n">cnt&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="m">1&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">+=&lt;/span> &lt;span class="n">grid&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="n">j&lt;/span>&lt;span class="p">].&lt;/span>&lt;span class="k">value&lt;/span>&lt;span class="p">()&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="p">&amp;gt;&lt;/span> &lt;span class="m">0&lt;/span> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> &lt;span class="n">j&lt;/span> &lt;span class="p">&amp;lt;&lt;/span> &lt;span class="m">2&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="n">cnt&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="m">2&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">+=&lt;/span> &lt;span class="n">grid&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="n">j&lt;/span>&lt;span class="p">].&lt;/span>&lt;span class="k">value&lt;/span>&lt;span class="p">()&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="p">&amp;gt;&lt;/span> &lt;span class="m">0&lt;/span> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> &lt;span class="n">j&lt;/span> &lt;span class="p">&amp;gt;&lt;/span> &lt;span class="m">0&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="n">cnt&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="m">3&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">+=&lt;/span> &lt;span class="n">grid&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="n">j&lt;/span>&lt;span class="p">].&lt;/span>&lt;span class="k">value&lt;/span>&lt;span class="p">()&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="n">cnt&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">any&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="k">it&lt;/span> &lt;span class="k">in&lt;/span> &lt;span class="n">listOf&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="m">2&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="p">-&lt;/span>&lt;span class="m">2&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="m">4&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="p">-&lt;/span>&lt;span class="m">4&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;h3 id="scala">Scala&lt;/h3>
-&lt;p>最近在学 Scala，于是自然又用 Scala 写一次。相比于此前丑陋的 if 判断，干脆写得更加函数式，试一下 loop free。&lt;/p>
-&lt;p>直接三行搞定。&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
-&lt;/span>&lt;span class="lnt">4
-&lt;/span>&lt;span class="lnt">5
-&lt;/span>&lt;span class="lnt">6
-&lt;/span>&lt;span class="lnt">7
-&lt;/span>&lt;span class="lnt">8
-&lt;/span>&lt;span class="lnt">9
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-Scala" data-lang="Scala">&lt;span class="line">&lt;span class="cl">&lt;span class="k">object&lt;/span> &lt;span class="nc">Solution&lt;/span> &lt;span class="o">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">def&lt;/span> &lt;span class="n">canMakeSquare&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">grid&lt;/span>&lt;span class="k">:&lt;/span> &lt;span class="kt">Array&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="kt">Array&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="kt">Char&lt;/span>&lt;span class="o">]])&lt;/span>&lt;span class="k">:&lt;/span> &lt;span class="kt">Boolean&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="o">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">def&lt;/span> &lt;span class="n">getRange&lt;/span> &lt;span class="k">=&lt;/span> &lt;span class="k">for&lt;/span> &lt;span class="o">{&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="k">&amp;lt;-&lt;/span> &lt;span class="mi">0&lt;/span> &lt;span class="n">to&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="o">;&lt;/span> &lt;span class="n">j&lt;/span> &lt;span class="k">&amp;lt;-&lt;/span> &lt;span class="mi">0&lt;/span> &lt;span class="n">to&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="o">}&lt;/span> &lt;span class="k">yield&lt;/span> &lt;span class="o">(&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">j&lt;/span>&lt;span class="o">)&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">def&lt;/span> &lt;span class="n">check&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="k">:&lt;/span> &lt;span class="kt">Int&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">y&lt;/span>&lt;span class="k">:&lt;/span> &lt;span class="kt">Int&lt;/span>&lt;span class="o">)&lt;/span>&lt;span class="k">:&lt;/span> &lt;span class="kt">Boolean&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">getRange&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">count&lt;/span>&lt;span class="o">((&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">j&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="k">=&amp;gt;&lt;/span> &lt;span class="n">grid&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">x&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">i&lt;/span>&lt;span class="o">)(&lt;/span>&lt;span class="n">y&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">j&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="sc">&amp;#39;B&amp;#39;&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="o">!=&lt;/span> &lt;span class="mi">2&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">getRange&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">count&lt;/span>&lt;span class="o">((&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">j&lt;/span>&lt;span class="o">)&lt;/span> &lt;span class="k">=&amp;gt;&lt;/span> &lt;span class="n">check&lt;/span>&lt;span class="o">(&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="o">,&lt;/span> &lt;span class="n">j&lt;/span>&lt;span class="o">))&lt;/span> &lt;span class="o">&amp;gt;=&lt;/span> &lt;span class="mi">1&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="o">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/LeetCode/">LeetCode</category><category domain="https://scottyeung.top/tags/%E7%AE%97%E6%B3%95/">算法</category><category domain="https://scottyeung.top/tags/kotlin/">kotlin</category><category domain="https://scottyeung.top/tags/Scala/">Scala</category></item></channel></rss>
+&lt;p>说实话有了思路，写起来也还是挺绕的，但是写着写着意识到，其实可以根据类型来判断填什么值，这样就很好写了。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/Scala/">Scala</category><category domain="https://scottyeung.top/tags/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/">函数式编程</category><category domain="https://scottyeung.top/tags/coding-%E5%AD%A6%E4%B9%A0/">coding 学习</category></item></channel></rss>
