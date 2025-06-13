@@ -1,11 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah 的乱写地</title><link>https://scottyeung.top/</link><description>YeungYeah 的乱写地中记录了作者的所思所想及所为。</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Fri, 13 Jun 2025 14:40:43 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>Logseq 如何同步</title><link>https://scottyeung.top/2025/logseq-sync/</link><guid isPermaLink="true">https://scottyeung.top/2025/logseq-sync/</guid><pubDate>Fri, 13 Jun 2025 22:30:09 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>Logseq 是一个与 Obsidian 类似的双链笔记软件，断断续续地用了应该有几年了，但是同步/备份比较麻烦，尤其是在不同系统类型的设备多个设备上。Logseq 与 Obsidian 都是通过加载一个本地文件夹作为笔记仓库的形式来运行的，因此笔记的同步，本质上还是同步这个文件夹，但是这样的同步，在不同的系统和设备上，达到完美的体验，实际也有点烦的。&lt;/p>
+<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah 的乱写地</title><link>https://scottyeung.top/</link><description>YeungYeah 的乱写地中记录了作者的所思所想及所为。</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Fri, 13 Jun 2025 15:21:46 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>Logseq 如何同步</title><link>https://scottyeung.top/2025/logseq-sync/</link><guid isPermaLink="true">https://scottyeung.top/2025/logseq-sync/</guid><pubDate>Fri, 13 Jun 2025 22:30:09 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>Logseq 是一个与 Obsidian 类似的双链笔记软件，断断续续地用了应该有几年了，但是同步/备份比较麻烦，尤其是在不同系统类型的设备多个设备上。Logseq 与 Obsidian 都是通过加载一个本地文件夹作为笔记仓库的形式来运行的，因此笔记的同步，本质上还是同步这个文件夹，但是这样的同步，在不同的系统和设备上，达到完美的体验，实际也有点烦的。&lt;/p>
 &lt;p>总结下来有几个阶段，每个阶段基本都尝试了一些方式，然后都不太好搞。因此最后的我现在还是选择官方的同步功能，每月 $5.&lt;/p>
-&lt;ul>
-&lt;li>IOS 与 Windows 同步&lt;/li>
-&lt;li>IOS 与 MacOS 同步&lt;/li>
-&lt;li>Android 与 MacOS 同步&lt;/li>
-&lt;li>全设备同步&lt;/li>
-&lt;/ul>
 &lt;h2 id="pc-间通过-onedrive-同步文件夹实现同步">PC 间通过 OneDrive 同步文件夹实现同步&lt;/h2>
 &lt;p>最开始使用的时候只在电脑上面使用，甚至都没想过用手机查看或者记录，因此最开始的时候只有在两台 PC 之间同步笔记的需求。这样就比较简单，选择一个可以实时同步文件夹内容的云盘，比如 OneDrive 或者坚果云都可以。当时用的就是 OneDrive，同步流畅度还可以，再加上基本有不会有同时在两台设备上编辑的情况出现，基本没出过什么问题。&lt;/p>
 &lt;h2 id="icloud-同步文件夹实现同步">iCloud 同步文件夹实现同步&lt;/h2>

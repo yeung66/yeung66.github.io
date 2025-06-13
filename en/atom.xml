@@ -1,4 +1,82 @@
-<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah's Blog</title><link>https://scottyeung.top/en/</link><description>Record the YeungYeah's thoughts and actions.</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>en-US</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Fri, 13 Jun 2025 14:40:44 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/en/atom.xml"/><item><title>Downgrade to a Specific Version of an Application in Homebrew</title><link>https://scottyeung.top/en/2025/degrade-homebrew-app-version/</link><guid isPermaLink="true">https://scottyeung.top/en/2025/degrade-homebrew-app-version/</guid><pubDate>Sat, 15 Mar 2025 15:21:17 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>I always have the habit of updating all software to the latest version. However, while writing a blog, I discovered that after updating Hugo, there were issues running it locally.&lt;/p>
+<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah's Blog</title><link>https://scottyeung.top/en/</link><description>Record the YeungYeah's thoughts and actions.</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>en-US</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Fri, 13 Jun 2025 15:21:47 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/en/atom.xml"/><item><title>How to Sync Logseq</title><link>https://scottyeung.top/en/2025/logseq-sync/</link><guid isPermaLink="true">https://scottyeung.top/en/2025/logseq-sync/</guid><pubDate>Fri, 13 Jun 2025 22:30:09 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>Logseq is a bi-directional note-taking software similar to Obsidian. I've been using it sporadically for several years, but syncing/backup can be quite troublesome, especially across multiple devices of different system types. Both Logseq and Obsidian operate by loading a local folder as the note repository, so syncing notes essentially means syncing this folder. However, achieving a seamless experience across different systems and devices can be a bit of a hassle.&lt;/p>
+&lt;p>Here’s a summary of the various stages I’ve gone through, trying different methods at each stage, none of which worked perfectly. In the end, I opted for the official sync feature, which costs $5 per month.&lt;/p>
+&lt;h2 id="syncing-between-pcs-using-onedrive">Syncing Between PCs Using OneDrive&lt;/h2>
+&lt;p>When I first started using Logseq, I only used it on my computer and didn’t even think about checking or taking notes on my phone. At that time, I only needed to sync notes between two PCs. This was relatively simple—just choose a cloud storage service that supports real-time folder syncing, such as OneDrive or Nutstore. I used OneDrive back then, and the syncing was smooth. Since I rarely edited notes on both devices simultaneously, I didn’t encounter major issues.&lt;/p>
+&lt;h2 id="syncing-using-icloud">Syncing Using iCloud&lt;/h2>
+&lt;p>Later, I switched to an iPhone and needed to sync notes between my iPhone and PC. Naturally, I considered using iCloud for syncing, as iCloud can also be installed on Windows for syncing. Initially, I used iCloud to sync between my iPhone and Windows PC.&lt;/p>
+&lt;p>However, iCloud syncing often caused issues, especially on Windows devices. Sometimes, files would have multiple versions due to sync problems during normal use. Occasionally, a file version would fail to download for unknown reasons. When this happened, Logseq would get stuck trying to download the file, freezing the interface and crashing the program.&lt;/p>
+&lt;p>To resolve this, I had to manually locate and delete the problematic files in the iCloud storage directory. Obsidian also faces similar issues, but these freezes only occur when opening the software, not during use. Additionally, identifying and deleting duplicate files in the iCloud directory is nearly impossible on mobile devices. If this issue arises while using the app on a phone, it’s essentially unresolvable.&lt;/p>
+&lt;p>After switching my PC to a Mac, these sync conflicts and multi-version issues largely disappeared. However, I encountered another issue during actual use: file syncing and retrieval could be delayed. For example, if I wrote a journal entry on the computer today, the phone might not detect the update before opening the app. When the app opens, it might create a new note for today, overwriting the computer's entry. Fortunately, Logseq has a &lt;code>bak&lt;/code> folder for backups, so the data can be recovered, but it requires manual intervention outside the program.&lt;/p>
+&lt;h2 id="git-syncing">Git Syncing&lt;/h2>
+&lt;p>Before switching to a Mac, I tried another approach using Git to sync notes due to iCloud’s issues on Windows:&lt;/p>
+&lt;ul>
+&lt;li>Logseq has built-in Git version control capabilities, automatically committing changes at regular intervals (e.g., every minute). On the PC, you can configure Git hooks to automatically push commits to a remote repository.&lt;/li>
+&lt;li>On iOS, I used a-shell and Shortcuts to pull and sync files. Specifically, I used Shortcuts to pull changes when opening Logseq and to commit and push changes when closing the app.&lt;/li>
+&lt;/ul>
+&lt;p>This method allowed syncing notes across devices, but simultaneous edits could still cause issues.&lt;/p>
+&lt;p>Although the workflow seemed feasible, the actual experience was subpar due to various issues:&lt;/p>
+&lt;ul>
+&lt;li>My remote repository was on GitHub, and pulling changes on mobile often failed due to network issues, preventing the mobile app from syncing to the latest version.&lt;/li>
+&lt;li>Conflicts could arise, requiring manual resolution using Git, which necessitated user intervention.&lt;/li>
+&lt;/ul>
+&lt;h2 id="syncing-between-android-and-pc-using-google-drive">Syncing Between Android and PC Using Google Drive&lt;/h2>
+&lt;p>When I switched back to an Android phone, iCloud was no longer an option, so I turned to Google Drive. That’s when I realized that most cloud storage services on Android don’t offer native two-way folder syncing like iCloud. To achieve this, I had to use third-party apps (e.g., AutoSync). However, these services had significant drawbacks. First, they required granting full read/write permissions for cloud storage, raising security concerns. Additionally, syncing was slow and prone to failure, as it relied on periodic syncing tasks to fetch the latest files from Drive. After a few attempts, I uninstalled the app and revoked its permissions.&lt;/p>
+&lt;h2 id="official-sync-feature">Official Sync Feature&lt;/h2>
+&lt;p>All the aforementioned methods essentially rely on external systems or software to sync the contents of the note folder. This inevitably creates a problem: Logseq itself is unaware of the syncing process or whether the files have been fully synced. Each time the app is opened, it assumes the files are already synced and processes them accordingly. This can lead to simultaneous read/write operations between Logseq and the external system, causing issues. This is the root cause of many of the sync problems mentioned above.&lt;/p>
+&lt;blockquote>
+&lt;p>Side note: Obsidian has many internal plugins for syncing. Could Logseq provide a similar plugin-based syncing solution? Why are there so few sync-related plugins for Logseq? Perhaps the developers haven’t opened up the necessary APIs for such capabilities?&lt;/p>
+&lt;/blockquote>
+&lt;p>After struggling with syncing on Android, I finally decided to pay for the official sync feature. Logseq now offers a sync service that, although still in beta, works seamlessly across devices (Android, Mac, iPad). For just $5 per month, you can enable it. Detailed setup instructions are available in the &lt;a href="https://blog.logseq.com/how-to-setup-and-use-logseq-sync/">official documentation&lt;/a>. Payment options include credit cards (Visa/Master), Google Pay, or PayPal.&lt;/p>
+&lt;p>The official sync feature supports syncing up to 10 graphs. On forums like v2ex, some users share their sync slots to save money. While each graph is encrypted with a separate password, sharing slots poses security risks. For instance, creating a graph for someone else requires sharing your account credentials. Additionally, it seems that removing a remote graph doesn’t require a password, potentially allowing malicious deletion of data.&lt;/p>
+&lt;h2 id="summary">Summary&lt;/h2>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Sync Method&lt;/th>
+&lt;th>Use Case&lt;/th>
+&lt;th>Advantages&lt;/th>
+&lt;th>Disadvantages&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;strong>OneDrive Sync&lt;/strong>&lt;/td>
+&lt;td>PC-to-PC Sync&lt;/td>
+&lt;td>• Smooth syncing&lt;br>• Easy to set up&lt;br>• Minimal conflict issues&lt;/td>
+&lt;td>• Limited to PC devices&lt;br>• Limited support for mobile devices&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;strong>iCloud Sync&lt;/strong>&lt;/td>
+&lt;td>iPhone + PC/Mac&lt;/td>
+&lt;td>• Relatively stable in Mac environments&lt;br>• Native iOS support&lt;/td>
+&lt;td>• Prone to file conflicts on Windows&lt;br>• Sync delays may cause data overwrites&lt;br>• Difficult to resolve conflicts on mobile&lt;br>• App may freeze&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;strong>Git Sync&lt;/strong>&lt;/td>
+&lt;td>Cross-Platform Users&lt;/td>
+&lt;td>• Strong version control&lt;br>• Supports auto-commits&lt;br>• Theoretically supports all platforms&lt;/td>
+&lt;td>• Sync failures due to network issues&lt;br>• Requires manual conflict resolution&lt;br>• Complex setup&lt;br>• Difficult for mobile use&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;strong>Google Drive + Third-Party Sync&lt;/strong>&lt;/td>
+&lt;td>Android + PC&lt;/td>
+&lt;td>• Supports Android platform&lt;/td>
+&lt;td>• Requires third-party app permissions&lt;br>• High security risks&lt;br>• Slow and unreliable syncing&lt;br>• Only periodic syncing&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;strong>Official Sync Feature&lt;/strong>&lt;/td>
+&lt;td>All Devices&lt;/td>
+&lt;td>• Built-in, seamless experience&lt;br>• Supports multiple devices (Android, Mac, iPad)&lt;br>• Encrypted and secure&lt;br>• Syncs up to 10 graphs&lt;/td>
+&lt;td>• Requires payment ($5/month)&lt;br>• Still in beta&lt;br>• Slot-sharing poses security risks&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;ol>
+&lt;li>&lt;strong>For PC-only use&lt;/strong>: Cloud storage services like OneDrive are sufficient.&lt;/li>
+&lt;li>&lt;strong>For Mac + iOS environments&lt;/strong>: iCloud is generally usable but watch out for sync delays.&lt;/li>
+&lt;li>&lt;strong>For cross-platform use involving Android&lt;/strong>: The official sync feature is the best choice. Although it requires payment, it offers the best experience.&lt;/li>
+&lt;li>&lt;strong>For tech-savvy users&lt;/strong>: Git syncing is an option but requires expertise in conflict resolution.&lt;/li>
+&lt;/ol></description><category domain="https://scottyeung.top/en/posts/">posts</category><category domain="https://scottyeung.top/en/tags/Tools/">Tools</category><category domain="https://scottyeung.top/en/tags/Software/">Software</category><category domain="https://scottyeung.top/en/tags/Productivity/">Productivity</category><category domain="https://scottyeung.top/en/tags/Notes/">Notes</category></item><item><title>Downgrade to a Specific Version of an Application in Homebrew</title><link>https://scottyeung.top/en/2025/degrade-homebrew-app-version/</link><guid isPermaLink="true">https://scottyeung.top/en/2025/degrade-homebrew-app-version/</guid><pubDate>Sat, 15 Mar 2025 15:21:17 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>I always have the habit of updating all software to the latest version. However, while writing a blog, I discovered that after updating Hugo, there were issues running it locally.&lt;/p>
 &lt;pre tabindex="0">&lt;code class="language-log" data-lang="log">ERROR deprecated: site config key paginate was deprecated in Hugo v0.128.0 and subsequently removed. Use pagination.pagerSize instead.
 ERROR deprecated: resources.ToCSS was deprecated in Hugo v0.128.0 and subsequently removed. Use css.Sass instead.
 ERROR deprecated: .Site.IsMultiLingual was deprecated in Hugo v0.124.0 and subsequently removed. Use hugo.IsMultilingual instead.
@@ -291,157 +369,4 @@ ERROR deprecated: .Site.Author was deprecated in Hugo v0.124.0 and subsequently 
 &lt;p>Be humble when things are going in the right direction; be understanding or sympathetic when things are going in the wrong direction. This is because nothing is as good or bad as it seems. The world is big and complex. Luck and risk are real and hard to discern, so keep this in mind whether you're evaluating yourself or others. If you can respect the power of luck and risk, you're more likely to focus on what you can really control and find the right reference points.&lt;/p>
 &lt;p>For most investors, dollar-cost averaging into low-cost index funds will be the highest probability of long-term investment success.&lt;/p>
 &lt;p>In the field of investment, there is almost no relationship between effort and results. This is because the world is driven by tail events - a few variables are the source of most returns. No matter how hard you invest, as long as you miss two or three opportunities that can completely turn the situation around, your returns won't be too outstanding. But on the other hand, as long as you're lucky and seize these opportunities, even if you don't invest seriously at ordinary times, you can easily get rich. As long as you grasp a few key points that are crucial to the success of your strategy, even the simplest investment strategy will work.&lt;/p>
-&lt;p>&lt;strong>High savings rate, patience, and an optimistic attitude that the global economy will continue to create value over the next few decades.&lt;/strong>&lt;/p></description><category domain="https://scottyeung.top/en/posts/">posts</category><category domain="https://scottyeung.top/en/tags/Reading/">Reading</category><category domain="https://scottyeung.top/en/tags/Money/">Money</category><category domain="https://scottyeung.top/en/tags/Investment/">Investment</category><category domain="https://scottyeung.top/en/tags/Notes/">Notes</category><category domain="https://scottyeung.top/en/tags/Life/">Life</category></item><item><title>Remove Copyright Information from Copied Content in Apple Books</title><link>https://scottyeung.top/en/2024/remove-copyright-from-apple-books/</link><guid isPermaLink="true">https://scottyeung.top/en/2024/remove-copyright-from-apple-books/</guid><pubDate>Thu, 28 Mar 2024 22:38:11 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>Recently, I've been reading on Apple Books on my computer. The experience is decent, but there's one annoying aspect when taking notes: When you copy content from a book, Books automatically adds quotation marks and appends copyright information. This can't be removed through citation settings, which means that every time you paste a note, you have to manually delete this extra information. It's quite a hassle.&lt;/p>
-&lt;blockquote>
-&lt;p>&amp;quot;If there is evidence that allocating empty sets can harm performance, it can be avoided by repeatedly returning the same immutable empty set, because immutable objects can be freely shared (Item 17). The following code does just that&amp;quot;&lt;/p>
-&lt;p>Excerpt From
-effective java 3rd Chinese edition
-wizardforcel
-This material may be protected by copyright.&lt;/p>
-&lt;/blockquote>
-&lt;p>I looked online and found quite a few people complaining about this. Everyone seems to handle it externally, with the main solution being the use of Automator.&lt;/p>
-&lt;ul>
-&lt;li>&lt;a href="https://apple.stackexchange.com/questions/137047/dont-want-ibooks-to-always-paste-the-excerpt-from-of-what-i-have-copied">Don't want iBooks to always paste the &amp;quot;Excerpt From&amp;quot; of what I have copied&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://www.jianshu.com/p/0e9e5c2cb2a2">[Mac]Remove citation from iBooks copy-paste&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;h2 id="automator">Automator&lt;/h2>
-&lt;p>Automator is an automation tool that comes with macOS. You can arrange actions inside it to automate operations.&lt;/p>
-&lt;p>For our need to remove copyright information, the overall idea is as follows:&lt;/p>
-&lt;ol>
-&lt;li>Get the text content from the clipboard.&lt;/li>
-&lt;li>Extract the original text content from the text.
-&lt;ol>
-&lt;li>This can be achieved through a JavaScript script.&lt;/li>
-&lt;/ol>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
-&lt;/span>&lt;span class="lnt">4
-&lt;/span>&lt;span class="lnt">5
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="line">&lt;span class="cl">&lt;span class="kd">function&lt;/span> &lt;span class="nx">run&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">input&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">parameters&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// Your script goes here
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="kd">let&lt;/span> &lt;span class="nx">matched&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">input&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">join&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;&amp;#39;&lt;/span>&lt;span class="p">).&lt;/span>&lt;span class="nx">match&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sr">/“([^”]*)”/&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="nx">matched&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">];&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;/li>
-&lt;li>Return the extracted content back to the clipboard.&lt;/li>
-&lt;/ol>
-&lt;p>It sounds simple, just like the three steps to put an elephant into a fridge.&lt;/p>
-&lt;p>&lt;img src="https://scottyeung.top/my-images/202403282257812.png" alt="">&lt;/p>
-&lt;p>After setting up Automator, you can add a shortcut to the new service (Quick Action) in the system's shortcuts, and then trigger it in the application. &lt;strong>However, after setting it up, no matter what shortcut I tried, I couldn't trigger it successfully, so I gave up on this method.&lt;/strong>&lt;/p>
-&lt;h2 id="raycast">Raycast&lt;/h2>
-&lt;p>Since we're using scripts anyway, why not go through an extra process and use Raycast to write a script for the conversion? This way, we don't have to set and remember extra shortcuts.&lt;/p>
-&lt;p>After copying the content from Books, execute the Raycast script to convert the clipboard content. The main trouble here is that Node.js does not natively have an API to directly access the clipboard. Here, I borrowed the implementation of &lt;a href="https://github.com/sindresorhus/clipboardy">clipboardy&lt;/a>, which accesses the clipboard by calling command line commands.&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
-&lt;/span>&lt;span class="lnt"> 2
-&lt;/span>&lt;span class="lnt"> 3
-&lt;/span>&lt;span class="lnt"> 4
-&lt;/span>&lt;span class="lnt"> 5
-&lt;/span>&lt;span class="lnt"> 6
-&lt;/span>&lt;span class="lnt"> 7
-&lt;/span>&lt;span class="lnt"> 8
-&lt;/span>&lt;span class="lnt"> 9
-&lt;/span>&lt;span class="lnt">10
-&lt;/span>&lt;span class="lnt">11
-&lt;/span>&lt;span class="lnt">12
-&lt;/span>&lt;span class="lnt">13
-&lt;/span>&lt;span class="lnt">14
-&lt;/span>&lt;span class="lnt">15
-&lt;/span>&lt;span class="lnt">16
-&lt;/span>&lt;span class="lnt">17
-&lt;/span>&lt;span class="lnt">18
-&lt;/span>&lt;span class="lnt">19
-&lt;/span>&lt;span class="lnt">20
-&lt;/span>&lt;span class="lnt">21
-&lt;/span>&lt;span class="lnt">22
-&lt;/span>&lt;span class="lnt">23
-&lt;/span>&lt;span class="lnt">24
-&lt;/span>&lt;span class="lnt">25
-&lt;/span>&lt;span class="lnt">26
-&lt;/span>&lt;span class="lnt">27
-&lt;/span>&lt;span class="lnt">28
-&lt;/span>&lt;span class="lnt">29
-&lt;/span>&lt;span class="lnt">30
-&lt;/span>&lt;span class="lnt">31
-&lt;/span>&lt;span class="lnt">32
-&lt;/span>&lt;span class="lnt">33
-&lt;/span>&lt;span class="lnt">34
-&lt;/span>&lt;span class="lnt">35
-&lt;/span>&lt;span class="lnt">36
-&lt;/span>&lt;span class="lnt">37
-&lt;/span>&lt;span class="lnt">38
-&lt;/span>&lt;span class="lnt">39
-&lt;/span>&lt;span class="lnt">40
-&lt;/span>&lt;span class="lnt">41
-&lt;/span>&lt;span class="lnt">42
-&lt;/span>&lt;span class="lnt">43
-&lt;/span>&lt;span class="lnt">44
-&lt;/span>&lt;span class="lnt">45
-&lt;/span>&lt;span class="lnt">46
-&lt;/span>&lt;span class="lnt">47
-&lt;/span>&lt;span class="lnt">48
-&lt;/span>&lt;span class="lnt">49
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="line">&lt;span class="cl">&lt;span class="ch">#!/usr/bin/env node
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="ch">&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// Required parameters:
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// @raycast.schemaVersion 1
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// @raycast.title Remove Copyright
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// @raycast.mode silent
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// Optional parameters:
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// @raycast.icon 🤖
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// Documentation:
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// @raycast.author YeungYeah
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kr">const&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="nx">exec&lt;/span> &lt;span class="p">}&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">require&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;child_process&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">exec&lt;/span>&lt;span class="p">(&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s2">&amp;#34;pbpaste&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">env&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="p">...&lt;/span>&lt;span class="nx">process&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">env&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">LANG&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;en_US.UTF-8&amp;#34;&lt;/span> &lt;span class="p">},&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">},&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nx">error&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">stdout&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">stderr&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">=&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">error&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">console&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">error&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sb">`exec error: &lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nx">error&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="sb">`&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// Use regular expression to match the content under Chinese quotation marks
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="kr">const&lt;/span> &lt;span class="nx">match&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">stdout&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">match&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sr">/“([^”]*)”/&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">match&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kr">const&lt;/span> &lt;span class="nx">text&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">match&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">]&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// Write to clipboard
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="nx">exec&lt;/span>&lt;span class="p">(&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="sb">`echo &amp;#34;&lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nx">text&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="sb">&amp;#34; | pbcopy`&lt;/span>&lt;span class="p">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">env&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="p">...&lt;/span>&lt;span class="nx">process&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">env&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">LANG&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">&amp;#34;en_US.UTF-8&amp;#34;&lt;/span> &lt;span class="p">},&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">},&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">(&lt;/span>&lt;span class="nx">error&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">=&amp;gt;&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">error&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">console&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">error&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sb">`exec error: &lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nx">error&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="sb">`&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">console&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">log&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;Text has been copied to clipboard.&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">)&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="p">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nx">console&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">log&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;No matching text found.&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">)&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>It's straightforward: use exec to execute command line commands to get clipboard content, then use regular expressions to extract the text content, and write it back to the clipboard after successful extraction. What's even better is that the above code was directly written by ChatGPT for me.&lt;/p>
-&lt;p>Although the code looks simple, debugging took me a long time. At first, I directly ran the script in the command line after writing it, and it worked fine. However, when I started it from Raycast, the result was problematic, and I couldn't match it no matter what. After logging the full text output, I found that the output was garbled. Obviously, there was an encoding problem. In the end, I manually added &lt;code>env: { ...process.env, LANG: &amp;quot;en_US.UTF-8&amp;quot; }&lt;/code> to set the environment variable for encoding, and the problem was solved. It seems that AI is still not familiar enough with the Chinese environment 😂&lt;/p>
-&lt;p>After adding this encoding environment variable setting, the problem was solved 🛫, and I can continue to enjoy reading and taking notes on Books.&lt;/p></description><category domain="https://scottyeung.top/en/posts/">posts</category><category domain="https://scottyeung.top/en/tags/Apple/">Apple</category><category domain="https://scottyeung.top/en/tags/AI/">AI</category><category domain="https://scottyeung.top/en/tags/Tools/">Tools</category><category domain="https://scottyeung.top/en/tags/Productivity/">Productivity</category><category domain="https://scottyeung.top/en/tags/JavaScript/">JavaScript</category><category domain="https://scottyeung.top/en/tags/macOS/">macOS</category><category domain="https://scottyeung.top/en/tags/Complaints/">Complaints</category></item></channel></rss>
+&lt;p>&lt;strong>High savings rate, patience, and an optimistic attitude that the global economy will continue to create value over the next few decades.&lt;/strong>&lt;/p></description><category domain="https://scottyeung.top/en/posts/">posts</category><category domain="https://scottyeung.top/en/tags/Reading/">Reading</category><category domain="https://scottyeung.top/en/tags/Money/">Money</category><category domain="https://scottyeung.top/en/tags/Investment/">Investment</category><category domain="https://scottyeung.top/en/tags/Notes/">Notes</category><category domain="https://scottyeung.top/en/tags/Life/">Life</category></item></channel></rss>
