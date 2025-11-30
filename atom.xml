@@ -1,4 +1,40 @@
-<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah 的乱写地</title><link>https://scottyeung.top/</link><description>YeungYeah 的乱写地中记录了作者的所思所想及所为。</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Fri, 12 Sep 2025 15:21:26 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>注销网站备案</title><link>https://scottyeung.top/2025/cancel-website-registration/</link><guid isPermaLink="true">https://scottyeung.top/2025/cancel-website-registration/</guid><pubDate>Fri, 12 Sep 2025 23:04:48 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>之前为了境内能够流畅地访问博客，给网站做了 ICP 备案，用上了又拍云赠送的 CDN 加速。境内访问非常丝滑，而且因为备案的原因，在微信内分享也可以直接打开，不会提示未知网站，需要多点一次才能访问。&lt;/p>
+<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah 的乱写地</title><link>https://scottyeung.top/</link><description>YeungYeah 的乱写地中记录了作者的所思所想及所为。</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Sun, 30 Nov 2025 09:25:25 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>Scoop 安装指定版本应用</title><link>https://scottyeung.top/2025/scoop-install-specific-version-app/</link><guid isPermaLink="true">https://scottyeung.top/2025/scoop-install-specific-version-app/</guid><pubDate>Sun, 30 Nov 2025 16:36:07 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>切换到 Windows 环境，重新设置一些软件，在拉回博客设置 hugo 的时候，又遇到了&lt;a href="https://scottyeung.top/2025/degrade-homebrew-app-version/">之前的 hugo 版本过高与本地博客主题不适配的问题&lt;/a>，需要降级 hugo 的版本到指定版本。macOS 环境通过 Homebrew 管理应用，在 Windows 中通过 Scoop 来完成。&lt;/p>
+&lt;p>问了一下 Gemini，给的回复是 Scoop 也像 Homebrew 一样不支持安装指定版本的应用，但是可以通过指定 url 指定安装的配置文件，来安装旧版本的应用。&lt;/p>
+&lt;p>于是只要到 Scoop 的软件仓库，找到对应应用的配置文件，查看提交历史，找到历史版本的源文件 url 就可以了。&lt;/p>
+&lt;ul>
+&lt;li>去 Scoop 的 GitHub 仓库（通常是 &lt;a href="https://github.com/ScoopInstaller/Main/tree/master/bucket">ScoopMain&lt;/a> 或 &lt;a href="https://github.com/ScoopInstaller/Extras/tree/master/bucket">ScoopExtras&lt;/a>）。&lt;/li>
+&lt;li>找到对应软件的 &lt;code>.json&lt;/code> 文件（例如 &lt;code>nodejs.json&lt;/code>）。&lt;/li>
+&lt;li>点击右上角的 &lt;strong>History&lt;/strong> 查看提交历史。&lt;/li>
+&lt;li>找到你想要的那个版本的提交记录，点击查看文件。&lt;/li>
+&lt;li>点击 &lt;strong>Raw&lt;/strong> 按钮，复制浏览器地址栏中的 URL。&lt;/li>
+&lt;li>&lt;em>URL 看起来像这样：&lt;/em> &lt;code>https://raw.githubusercontent.com/.../commit_hash/.../app.json&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>然后根据这个 url 进行安装。这样通过指定配置的 url 来安装，安装下来的 app 也没有办法更新，自动就锁了版本了。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">scoop install https://raw.githubusercontent.com/ScoopInstaller/Main/4e72c5167244e249bbb063a93c28bb8aac034682/bucket/hugo-extended.json
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>但是这样找配置文件的历史版本，实际上是非常麻烦的，需要一页一页往后翻，如果版本旧点，得翻挺久。搜了一下，发现实际上 Scoop 是支持下载应用的指定版本的。下载指定版本后，可以通过 hold 命令禁止更新。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Install specific version&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">scoop install &amp;lt;app&amp;gt;@&amp;lt;version&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># The scoop hold command prevents apps from being updated. &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">scoop hold &amp;lt;apps&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>实际上这个命令在 Scoop 的 help 命令里面都能看到，Gemini 有点不太靠谱，在后面我发现了可以下载后，还是嘴硬不承认。&lt;/p>
+&lt;p>&lt;img src="https://scottyeung.top/my-images/%7B0C842582-CFE1-488E-A12E-C0A4F71AA517%7D.png" alt="">&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category><category domain="https://scottyeung.top/tags/Windows/">Windows</category><category domain="https://scottyeung.top/tags/%E7%BB%8F%E9%AA%8C/">经验</category></item><item><title>注销网站备案</title><link>https://scottyeung.top/2025/cancel-website-registration/</link><guid isPermaLink="true">https://scottyeung.top/2025/cancel-website-registration/</guid><pubDate>Fri, 12 Sep 2025 23:04:48 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>之前为了境内能够流畅地访问博客，给网站做了 ICP 备案，用上了又拍云赠送的 CDN 加速。境内访问非常丝滑，而且因为备案的原因，在微信内分享也可以直接打开，不会提示未知网站，需要多点一次才能访问。&lt;/p>
 &lt;p>然而备案后还是时不时有问题找过来。备案的要求也非常奇怪，网站备案除了要求域名备案，还需要有一个授权码，而授权码又来自于购买云服务器。导致即使只是部署一个在 GitHub 上的静态页面，还要额外掏钱买个云服务器，基本上就是闲置了。&lt;/p>
 &lt;p>突然昨天直接网警打电话过来了，因为网站之前只做了 ICP 备案，没有做公安备案。当时没有公安备案也不影响访问，而且做公安备案也比较麻烦，还有说法是甚至还要去派出所面谈做备案，干脆就没有做公安备案。现在籍贯地的网警直接打电话来问网站还用不？用的话要去做公安备案。&lt;/p>
 &lt;p>原本还想坚持下，把公安备案做了。后面想了想，还是算了，还是放弃备案。申请备案麻烦，各种材料，还要手写申请书，备案材料层层上交审批，搞一次得几天。然而撤销就干脆利落得多了。十一点提交的撤销申请，过十来分钟直接撤销完成了。&lt;/p>
@@ -332,70 +368,4 @@ ERROR deprecated: .Site.Author was deprecated in Hugo v0.124.0 and subsequently 
 &lt;p>其实有点好笑，我用他们的产品产生的属于我自己的数据，却无法对其拥有绝对的掌控权。某种程度上，这些数据存在他们的 APP 中，似乎就成了他们的数据。但这并不是华为一家会这样，几乎所有安卓厂商都有自己的健康 APP和手表，生成的各种监测数据也只能同步到各自的 APP 和生态当中。&lt;/p>
 &lt;p>不过，现在在用的苹果也一样。如果我不用 iPhone，健康与健身的所有数据，我同样没有办法迁移出来继续使用。这也是一直阻碍我换手机回归安卓的一大原因。&lt;/p>
 &lt;p>科技越发展，数码生态越完善，反而越建立起了生态上的壁垒。生态之间的迁移太过痛苦，甚至可以说是必然会有成本。迁移必须做出取舍（trade-off），选择任何一方都会有不足之处，无非是看自己能接受哪些问题作为妥协点。但其实这种取舍一直都存在，只是以前生态未完善时积累的数据还不够多。而现在，工作之后，时间和精力也不像以前那样充裕，去适应新的生态变得更加困难。&lt;/p>
-&lt;p>所以要换啥呢？一直在想，却始终想不出一个结果，这样就一直拖着不换了吧😂。然而，想换的心已经有了，拖着其实并不能打消这个念头。看什么时候彻底忍不了了吧。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E5%90%90%E6%A7%BD/">吐槽</category><category domain="https://scottyeung.top/tags/%E7%94%9F%E6%B4%BB/">生活</category><category domain="https://scottyeung.top/tags/Apple/">Apple</category><category domain="https://scottyeung.top/tags/%E6%95%B0%E7%A0%81/">数码</category></item><item><title>Ahr999 in TradingView</title><link>https://scottyeung.top/2024/ahr999/</link><guid isPermaLink="true">https://scottyeung.top/2024/ahr999/</guid><pubDate>Tue, 31 Dec 2024 11:34:44 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>近段时间开始关注 BTC 大饼现货，并且在找机会逐步进场持有。其中我主要是通过 Ahr999 指标来判断入场时机，这个指数来自于&lt;a href="https://coxxa.github.io/bitcoin-ahr999-HODL/#/di-shi-wu-zhang">《囤比特币》&lt;/a>。&lt;/p>
-&lt;p>具体的定义可参考&lt;/p>
-&lt;p>&lt;code>Ahr999 = (（比特币价格/200日定投成本) * （比特币价格/指数增长估值）&lt;/code>&lt;/p>
-&lt;ul>
-&lt;li>指数增长估值= 10^[5.84 * log(币龄) - 17.01]&lt;/li>
-&lt;li>币龄 = 当前日期距离2009年1月3日的天数&lt;/li>
-&lt;li>200日定投成本 使用几何平均值&lt;/li>
-&lt;/ul>
-&lt;p>通常认为：&lt;/p>
-&lt;ul>
-&lt;li>Ahr999 &amp;lt; 0.45 时，表示市场极度恐慌，是很好的买入机会&lt;/li>
-&lt;li>Ahr999 &amp;gt; 1.2 时，表示市场可能过热，需要注意风险&lt;/li>
-&lt;li>0.45 &amp;lt; Ahr999 &amp;lt; 1.2 时，属于相对合理区间&lt;/li>
-&lt;/ul>
-&lt;p>最开始打算是直接写个脚本跑在服务器上，定时计算，进入合适的区间就发 tg 消息提醒。写好调试好发现，我的服务器限于网络环境，无法调用 API 拿到数据，只能放弃。又转念一想，其实也算是个交易指标，干脆拿去 TradingView 上搞一个，写个指标画出来，并且加一个通知，如果指标跌破区间，就通过 TradingView 发邮件提醒。通过这个过程，也学习一下 TradingView 的脚本编写。&lt;/p>
-&lt;p>具体效果见下图&lt;/p>
-&lt;p>&lt;img src="https://scottyeung.top/my-images/202412311325330.png" alt="">&lt;/p>
-&lt;p>以下脚本代码主要通过 AI 辅助写出，有需要的话可以自取添加指标。这里指标只能针对日区间数据，需要把变更区间设置成 1d.&lt;/p>
-&lt;pre tabindex="0">&lt;code class="language-pine" data-lang="pine">//@version=6
-indicator(&amp;#39;BTC AHR999 Index&amp;#39;, overlay = false)
-// 确保在日线图表上使用
-if not timeframe.isdaily
-runtime.error(&amp;#39;请在日线图表上使用此指标&amp;#39;)
-// 计算币龄（从2009年1月3日开始）
-GENESIS_TIMESTAMP = timestamp(&amp;#39;2009-01-03&amp;#39;)
-days_since_genesis = (time - GENESIS_TIMESTAMP) / (1000 * 60 * 60 * 24)
-// 计算指数增长估值
-// formula: 10^(5.84 * log(币龄) - 17.01)
-exp_growth = math.pow(10, 5.84 * math.log10(days_since_genesis) - 17.01)
-// 计算200日定投成本（简单移动平均）
-// sma_200 = ta.sma(close, 200)
-f_gma(src, len) =&amp;gt;
-sum_logs = 0.0
-for i = 0 to len - 1 by 1
-sum_logs := sum_logs + math.log(src[i])
-sum_logs
-math.exp(sum_logs / len)
-length = input.int(200, &amp;#39;Length&amp;#39;, minval = 1)
-gma_200 = f_gma(close, length)
-// 计算 AHR999 指数
-// formula: (比特币价格/200日定投成本) * (比特币价格/指数增长估值)
-ahr999 = close / gma_200 * (close / exp_growth)
-// 为了使所有指标在同一个视图中可见，进行数值缩放
-scale_factor = 1000 // 可以根据需要调整这个缩放因子
-scaled_close = close / scale_factor
-scaled_gma_200 = gma_200 / scale_factor
-scaled_exp_growth = exp_growth / scale_factor
-// 绘制所有指标
-plot(ahr999, &amp;#39;AHR999&amp;#39;, color = color.blue, linewidth = 2, precision=3)
-plot(scaled_close, &amp;#39;当日收盘价&amp;#39;, color = color.green, linewidth = 1, precision=3)
-plot(scaled_gma_200, &amp;#39;200日定投成本&amp;#39;, color = color.orange, linewidth = 1, precision=3)
-plot(scaled_exp_growth, &amp;#39;指数增长估值&amp;#39;, color = color.purple, linewidth = 1, precision=3)
-// 添加 AHR999 的参考线
-hline(0.45, &amp;#39;极度抄底区&amp;#39;, color = color.green, linestyle = hline.style_dashed)
-hline(1.2, &amp;#39;中性&amp;#39;, color = color.gray)
-hline(4, &amp;#39;极度卖出区&amp;#39;, color = color.red, linestyle = hline.style_dashed)
-// 添加图例说明
-var tbl = table.new(position.top_right, 4, 2, bgcolor = color.new(color.black, 70))
-table.cell(tbl, 0, 0, &amp;#39;指标&amp;#39;, text_color = color.white)
-table.cell(tbl, 0, 1, &amp;#39;实际值&amp;#39;, text_color = color.white)
-table.cell(tbl, 1, 0, &amp;#39;收盘价&amp;#39;, text_color = color.green)
-table.cell(tbl, 1, 1, str.tostring(close, format.volume), text_color = color.green)
-table.cell(tbl, 2, 0, &amp;#39;200MA&amp;#39;, text_color = color.orange)
-table.cell(tbl, 2, 1, str.tostring(gma_200, format.volume), text_color = color.orange)
-table.cell(tbl, 3, 0, &amp;#39;指数估值&amp;#39;, text_color = color.purple)
-table.cell(tbl, 3, 1, str.tostring(exp_growth, format.volume), text_color = color.purple)
-&lt;/code>&lt;/pre></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E6%8A%95%E8%B5%84/">投资</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category><category domain="https://scottyeung.top/tags/%E5%AD%A6%E4%B9%A0/">学习</category></item></channel></rss>
+&lt;p>所以要换啥呢？一直在想，却始终想不出一个结果，这样就一直拖着不换了吧😂。然而，想换的心已经有了，拖着其实并不能打消这个念头。看什么时候彻底忍不了了吧。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E5%90%90%E6%A7%BD/">吐槽</category><category domain="https://scottyeung.top/tags/%E7%94%9F%E6%B4%BB/">生活</category><category domain="https://scottyeung.top/tags/Apple/">Apple</category><category domain="https://scottyeung.top/tags/%E6%95%B0%E7%A0%81/">数码</category></item></channel></rss>
