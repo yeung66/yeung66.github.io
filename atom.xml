@@ -1,4 +1,100 @@
-<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah 的乱写地</title><link>https://scottyeung.top/</link><description>YeungYeah 的乱写地中记录了作者的所思所想及所为。</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Thu, 01 Jan 2026 13:41:38 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>2025 年度记录</title><link>https://scottyeung.top/2026/record-of-2025/</link><guid isPermaLink="true">https://scottyeung.top/2026/record-of-2025/</guid><pubDate>Thu, 01 Jan 2026 21:00:00 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>依旧是年度惯例，通过写流水账的方式回顾一下 2025 年，并记录一些想法。&lt;/p>
+<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah 的乱写地</title><link>https://scottyeung.top/</link><description>YeungYeah 的乱写地中记录了作者的所思所想及所为。</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Fri, 09 Jan 2026 16:16:05 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>跟着 Alpha Picks 来投资</title><link>https://scottyeung.top/2026/use-alpha-picks-invest/</link><guid isPermaLink="true">https://scottyeung.top/2026/use-alpha-picks-invest/</guid><pubDate>Thu, 08 Jan 2026 22:51:10 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>之前的个股投资一直都没有什么章法，去年年中学习了一下价值投资的相关理念，了解了公司估值分析和选股的方法，但是精力与时间有限，也可能是水平有限，最终也没有花太多的时间去仔细研究个股。然后就演变成看 YouTube 或者其他平台，谁聊到某个股票，看一下凭感觉就入手了。什么时候买，买多少，什么时候加仓，什么时候卖，全凭感觉。&lt;/p>
+&lt;p>意识到需要创建一个自己的交易系统，无论好坏，总比乱来强。国内的基金定投这些基本已经形成固定的计划，不需要操心了。美股这里，在之前黑五的时候，入手了一个 Seeking Alpha 的 premium 会员以及他们家的 Alpha Picks 服务。本文正是这段时间尝试摸索使用 Alpha Picks 来进行投资的记录。&lt;/p>
+&lt;h2 id="什么是-alpha-picks">什么是 Alpha Picks？&lt;/h2>
+&lt;p>Alpha Picks 是 Seeking Alpha 家推出的一个收费选股服务，会根据其收集的数据，通过量化的方式，每个月挑选出两支股票给用户。当前其挑选出的股票，运行至今收益已经到 270+%，是标普 500 指数的 3 倍多。&lt;/p>
+&lt;p>&lt;img src="https://scottyeung.top/my-images/20260109231402620.png" alt="">&lt;/p>
+&lt;p>官方持仓的运行思路是，每个月月初和月中，会分别新加一支 STRONG BUY 的股票，购入定额持仓，然后等到股票的量化评级调到 SELL 以下，或者降到 HOLD 180 天之后，就会卖出。&lt;/p>
+&lt;h2 id="新加入用户如何用">新加入用户如何用？&lt;/h2>
+&lt;p>现在新用户开通 Alpha Picks 的时候，持仓里面已经有几十个股票了。官方的建议是挑 5 个 STRONG BUY 的购入或者直接入手全部持仓。&lt;/p>
+&lt;p>通过与 Gemini 的沟通，最后 Gemini 给了一个操作指南，供大家参考下。&lt;/p>
+&lt;p>&lt;a href="https://docs.google.com/document/d/1fZ_0du3qfKGU_5BtFEgDxOBwa5TEQMjC5yLwj_wXsc0/edit?usp=sharing">https://docs.google.com/document/d/1fZ_0du3qfKGU_5BtFEgDxOBwa5TEQMjC5yLwj_wXsc0/edit?usp=sharing&lt;/a>&lt;/p>
+&lt;hr>
+&lt;p>作为一个普通投资者，如果想要通过跟随 Alpha Picks 赚钱，&lt;strong>不应该追求 100% 完美的机械复制，而应该掌握其核心逻辑，并采用简化的执行方案&lt;/strong>。&lt;/p>
+&lt;p>以下是针对普通投资者的最佳实践指南：&lt;/p>
+&lt;h3 id="1-核心心态像机器一样执行-trust-the-system">1. 核心心态：像机器一样执行 (Trust the System)&lt;/h3>
+&lt;p>这是最难的一点。Alpha Picks 是基于量化数据（Quant Ratings）的，它的选股逻辑往往反直觉。&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>你可能会遇到的情况：&lt;/strong> 它推荐了一只你从未听过的冷门股，或者是你觉得已经涨太多、甚至是你个人很讨厌的行业的股票（比如煤炭、甚至某些消费股）。&lt;/li>
+&lt;li>&lt;strong>怎么做：&lt;/strong> &lt;strong>“捏着鼻子买”（Pinch your nose and buy）。&lt;/strong> 如果你订阅了这个服务，就请信任它的算法。普通投资者最大的亏损来源往往是“我感觉这只股不行”或者“这只股涨太高了我不敢买”。&lt;/li>
+&lt;/ul>
+&lt;h3 id="2-建仓阶段如何开始-getting-started">2. 建仓阶段：如何开始？ (Getting Started)&lt;/h3>
+&lt;p>如果你今天刚订阅，面对 30 多只历史持仓，怎么买？&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>官方/理想建议：&lt;/strong> 按照当前权重买入整个投资组合（Buy the entire portfolio）。&lt;/li>
+&lt;li>&lt;strong>普通人/现实建议：&lt;/strong> 资金有限，别买那 30 只。&lt;/li>
+&lt;li>&lt;strong>策略：&lt;/strong> 只买目前评级为 &lt;strong>“Strong Buy”（强力买入）&lt;/strong> 的前 5-10 只股票。&lt;/li>
+&lt;li>&lt;strong>理由：&lt;/strong> 那些早期的“赢家”虽然涨了很多，但如果它们现在的评级降到了“Hold”（持有），你就没必要现在去追高建仓。只买当下数据最硬的。&lt;/li>
+&lt;/ul>
+&lt;h3 id="3-日常操作每月两次的新股日-the-monthly-routine">3. 日常操作：每月两次的“新股日” (The Monthly Routine)&lt;/h3>
+&lt;p>Alpha Picks 通常每月会有两个新的推荐（Pick）。&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>资金分配：&lt;/strong> 尽量保证每次投入的资金量大致相同（Equal Weighting）。&lt;/li>
+&lt;li>&lt;em>错误做法：&lt;/em> 这个月我有钱，买 $2000；下个月没钱了，只买 $200。这会导致你的业绩被大仓位的那只股左右。&lt;/li>
+&lt;li>&lt;em>正确做法：&lt;/em> 设定一个固定的“月供”金额。例如每月定投 $1000，每只新股分 $500。如果有结余，就存着等下一次。&lt;/li>
+&lt;/ul>
+&lt;h3 id="4-卖出规则严格遵守纪律-selling-rules">4. 卖出规则：严格遵守纪律 (Selling Rules)&lt;/h3>
+&lt;p>这是 Alpha Picks 能够跑赢大盘的关键——&lt;strong>“让利润奔跑，截断亏损”&lt;/strong>。&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>何时卖出？&lt;/strong> 只有在收到官方邮件通知时才卖。通常有两种情况：&lt;/li>
+&lt;/ul>
+&lt;ol>
+&lt;li>&lt;strong>评级暴跌：&lt;/strong> 股票评级直接降为 &lt;strong>Sell（卖出）&lt;/strong> 或 &lt;strong>Strong Sell（强力卖出）&lt;/strong> —— &lt;strong>立即卖出&lt;/strong>。&lt;/li>
+&lt;li>&lt;strong>评级滞涨：&lt;/strong> 股票评级降为 &lt;strong>Hold（持有）&lt;/strong>，并且&lt;strong>连续 180 天&lt;/strong>都维持在 Hold 状态 —— &lt;strong>卖出&lt;/strong>。&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;em>注意：&lt;/em> 很多普通投资者看到变成“Hold”就慌了想卖，这是错的。Alpha Picks 允许股票在“Hold”状态下调整半年，这往往能吃到后续的涨幅。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>无论赚赔都要卖：&lt;/strong> 即使这只股票你亏了 40%，如果系统说卖，必须卖（止损）；即使这只股票你赚了 200%，如果系统没说卖，千万别为了“落袋为安”而卖出（不仅是让利润奔跑，更是为了避免错过主升浪）。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="5-资金再投资简化你的生活-simplifying-reinvestment">5. 资金再投资：简化你的生活 (Simplifying Reinvestment)&lt;/h3>
+&lt;p>回到你最关心的资金处理问题。&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>不要：&lt;/strong> 每次卖出一只股票，就拿着计算器把几百美元平分给剩下 20 只股票。这会让你产生大量碎股和税务麻烦。&lt;/li>
+&lt;li>&lt;strong>要：&lt;/strong> &lt;strong>“资金池”策略&lt;/strong>。&lt;/li>
+&lt;li>当你卖出一只股票（比如回笼了 $1000），或者收到一笔股息（比如 $50），把这些钱&lt;strong>全部视为“下一次买入的弹药”&lt;/strong>。&lt;/li>
+&lt;li>直接把这笔钱投入到&lt;strong>下一次推荐的新股&lt;/strong>中，或者加仓目前&lt;strong>排名前 3 的 Strong Buy&lt;/strong> 股票。&lt;/li>
+&lt;/ul>
+&lt;h3 id="总结普通投资者的懒人协议">总结：普通投资者的“懒人协议”&lt;/h3>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>操作环节&lt;/th>
+&lt;th>官方复杂指令&lt;/th>
+&lt;th>&lt;strong>普通人推荐做法&lt;/strong>&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;strong>买入什么&lt;/strong>&lt;/td>
+&lt;td>整个组合按权重配置&lt;/td>
+&lt;td>只买&lt;strong>最新的推荐&lt;/strong> + 当前评级最高的 &lt;strong>Strong Buys&lt;/strong>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;strong>买入多少&lt;/strong>&lt;/td>
+&lt;td>严格均分&lt;/td>
+&lt;td>尽量&lt;strong>固定金额&lt;/strong>（如每只股投入 $500），不用太精确&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;strong>卖出资金&lt;/strong>&lt;/td>
+&lt;td>平分给剩余所有持仓&lt;/td>
+&lt;td>&lt;strong>攒着&lt;/strong>，全额买入下两只新推荐的股票&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;strong>股息分红&lt;/strong>&lt;/td>
+&lt;td>平分给剩余所有持仓&lt;/td>
+&lt;td>&lt;strong>攒着&lt;/strong>，凑够一手再买新股，或者开启自动再投资（DRIP）&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;strong>心态&lt;/strong>&lt;/td>
+&lt;td>理性量化&lt;/td>
+&lt;td>哪怕这只股很丑、你不认识，&lt;strong>闭眼买&lt;/strong>&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>按照这个简化版策略，你能够获得 Alpha Picks 95% 以上的收益，但操作复杂度会降低 90%。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E6%8A%95%E8%B5%84/">投资</category><category domain="https://scottyeung.top/tags/notes/">notes</category></item><item><title>2025 年度记录</title><link>https://scottyeung.top/2026/record-of-2025/</link><guid isPermaLink="true">https://scottyeung.top/2026/record-of-2025/</guid><pubDate>Thu, 01 Jan 2026 21:00:00 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>依旧是年度惯例，通过写流水账的方式回顾一下 2025 年，并记录一些想法。&lt;/p>
 &lt;p>&lt;img src="https://scottyeung.top/my-images/Gemini_Generated_Image_6z6pef6z6pef6z6p.png" alt="">&lt;/p>
 &lt;h2 id="timeline">Timeline&lt;/h2>
 &lt;h3 id="一月">一月&lt;/h3>
@@ -27,9 +123,9 @@
 &lt;p>随着工作越来越忙碌和大压力之后，工作在生活中比重和对生活的入侵也越来越多。比如今年的年度回顾，大部分其实都是工作或者与工作相关的事情，自己的或者生活上的事情其实没多少，甚至下半年也主要是因为巴西差旅的缘故。比较可悲，工作使我逐渐异化，元旦前的这几天其实请了三天假凑了一个八天的小长假，但是各种项目放心不下，即使关掉了通知，仍然担心工作事情问题或者有没有人找，时不时就点进去看看，回复下消息。&lt;/p>
 &lt;p>工作越来越没有意思，不只是因为上面吐槽到的种种。在工作的过程中，也会越发感到技术在其中的螺丝钉属性，业务才是核心，BD 比技术重要多了，技术做出花都没有用，没有业务的话还是没有人用，比如在收单支付领域你提供再多的功能和 feature，都不如费用再降低一点。技术在这时变成了 basic 的东西，而 basic 的东西自然也很难 argue 出什么价值，毕竟是人有我有的东西。可能大厂打工这类型的工作都这样，希望能有点不同的工作环境体验下。如果有好工作的话，也欢迎联系我🤣&lt;/p>
 &lt;h3 id="money--investment">Money &amp;amp; Investment&lt;/h3>
-&lt;p>&lt;img src="https://scottyeung.top/my-images/20260101211346636.png" alt="">&lt;/p>
 &lt;p>工作没意思，搞钱才是核心。去年开了美股账号之后，趁着整体上涨的势头，在股票上也是赚了一点。今年投入的本金也开始加大，并且在各种账户搞不同策略在攒钱投资。然而在股票交易上，始终没有形成一个交易系统，可能看了几个视频对某个股票的分析说是低估就买进，结果越低越加仓，然后狠狠套牢。投资还是一个很专业的事情，还是需要投入时间不断学习，但是在现在高强度工作的情况下，对于美股投入的时间和精力反而越来越少，可能最终归属还是变成通过指数基金攒钱的路子了。&lt;/p>
 &lt;p>除了美股个股以外，这一年还在不断调整对于指数 ETF 的定投方式。最开始的时候只是在支付宝上随便定投纳指和标普 500，后面美股账户开了之后，在美股账户也有买点场内的 ETF。但是后面想到要定投指数的话，其实通过国内的 QDII 基金都可以了，在美股账户就没必要了。然后下半年的时候纳指突然又火到了公众的眼中，每个人都开始定投纳指。场外基金纷纷开始限额，限额到五十一百，甚至有限额到每天 10 元的，非常离谱。然后还有些直接停止申购了，于是这两个月开始转向场内基金了。&lt;/p>
+&lt;p>&lt;img src="https://scottyeung.top/my-images/20260101211346636.png" alt="">&lt;/p>
 &lt;p>回顾一下整体的回报率，支付宝基金赚了 9 个点，美股还亏了 2 个点，无论哪个都是跑输大市，明年还需要更加努力和用心调整。&lt;/p>
 &lt;p>在这个过程中，今年开始对所有资产进行定时记录，每个账号有多少钱，加起来多少钱，搞了一个 Google Sheet 每个月记一次。通过这样数字记录的方式，可以非常清晰地看到自己攒钱的变化。攒钱确实不容易，可能还是赚得不够多吧，还在向攒出自己的第一个一百万努力中，希望今年能够早日达成。&lt;/p>
 &lt;hr>
@@ -313,84 +409,4 @@
 &lt;/li>
 &lt;/ul>
 &lt;/li>
-&lt;/ul></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/Apple/">Apple</category><category domain="https://scottyeung.top/tags/%E7%94%9F%E6%B4%BB/">生活</category><category domain="https://scottyeung.top/tags/%E6%95%B0%E7%A0%81/">数码</category><category domain="https://scottyeung.top/tags/%E5%AE%89%E5%8D%93/">安卓</category></item><item><title>Homebrew 降级安装指定版本应用</title><link>https://scottyeung.top/2025/degrade-homebrew-app-version/</link><guid isPermaLink="true">https://scottyeung.top/2025/degrade-homebrew-app-version/</guid><pubDate>Sat, 15 Mar 2025 15:21:17 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>总是习惯性地把所有软件都更新到最新，然后在写博客的时候发现，Hugo 更新后，本地运行出问题了。&lt;/p>
-&lt;pre tabindex="0">&lt;code class="language-log" data-lang="log">ERROR deprecated: site config key paginate was deprecated in Hugo v0.128.0 and subsequently removed. Use pagination.pagerSize instead.
-ERROR deprecated: resources.ToCSS was deprecated in Hugo v0.128.0 and subsequently removed. Use css.Sass instead.
-ERROR deprecated: .Site.IsMultiLingual was deprecated in Hugo v0.124.0 and subsequently removed. Use hugo.IsMultilingual instead.
-ERROR deprecated: .Site.Author was deprecated in Hugo v0.124.0 and subsequently removed. Implement taxonomy &amp;#39;author&amp;#39; or use .Site.Params.Author instead.
-&lt;/code>&lt;/pre>&lt;p>从报错提示来看，就是 Hugo 更新搞出了 breaking changes，升级后直接一些把字段和方法移除掉了。一开始看它的提示，还很贴心地给出替代的字段，然后直接简单替换后发现，跑不起来，并不是那么简单替换就行。于是只能把 Hugo 的版本降回原来的版本。&lt;/p>
-&lt;p>具体操作如下&lt;/p>
-&lt;ol>
-&lt;li>&lt;code>brew info hugo&lt;/code>. 找出需要降级应用所在的 repo 和路径
-&lt;ol>
-&lt;li>&lt;img src="https://scottyeung.top/my-images/202503151706238.png" alt="">&lt;/li>
-&lt;li>我这里用了镜像，原始的 repo 在 GitHub 上&lt;/li>
-&lt;/ol>
-&lt;/li>
-&lt;li>到 GitHub 上找到对应 repo 的对应文件
-&lt;ol>
-&lt;li>路径可以参考 &lt;a href="https://github.com/Homebrew/homebrew-core/blob/master/Formula/h/hugo.rb">https://github.com/Homebrew/homebrew-core/blob/master/Formula/h/hugo.rb&lt;/a>&lt;/li>
-&lt;/ol>
-&lt;/li>
-&lt;li>找这个文件的提交历史，找到需要降级版本的提交 id
-&lt;ol>
-&lt;li>根据 commit 的 id 可以判断出来版本，是由 bot BrewTestBot 提交的&lt;/li>
-&lt;/ol>
-&lt;/li>
-&lt;li>拿到 commit id 后可以拿到这个安装文件的 url，同时也可以拿到文件的内容
-&lt;ol>
-&lt;li>&lt;a href="https://github.com/Homebrew/homebrew-core/blob/2fd8dba871a6a5412fa7c00b12ac99b5738cd199/Formula/h/hugo.rb">https://github.com/Homebrew/homebrew-core/blob/2fd8dba871a6a5412fa7c00b12ac99b5738cd199/Formula/h/hugo.rb&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://raw.githubusercontent.com/Homebrew/homebrew-core/2fd8dba871a6a5412fa7c00b12ac99b5738cd199/Formula/h/hugo.rb">https://raw.githubusercontent.com/Homebrew/homebrew-core/2fd8dba871a6a5412fa7c00b12ac99b5738cd199/Formula/h/hugo.rb&lt;/a>&lt;/li>
-&lt;li>把 commit id 和 app 的名字替换一下就可以了&lt;/li>
-&lt;/ol>
-&lt;/li>
-&lt;li>按照网上看到的办法，可以直接根据 url 来安装 &lt;code>brew install url&lt;/code>
-&lt;ol>
-&lt;li>但实际试了一把后发现，会报错 &lt;code>Error: Non-checksummed download of hugo formula file from an arbitrary URL is unsupported! brew extract or brew create and brew tap-new to create a formula file in a tap on GitHub instead.&lt;/code>&lt;/li>
-&lt;/ol>
-&lt;/li>
-&lt;li>于是直接把文件内容 copy 下来保存到本地，然后 &lt;code>brew install ./hugo.rb&lt;/code>，安装成功&lt;/li>
-&lt;/ol>
-&lt;p>brew 应用降级成功之后，可以通过 &lt;code>brew pin hugo&lt;/code> 锁定版本，避免后续又把它升级了。&lt;/p>
-&lt;hr>
-&lt;p>在通过 install url 失败之后，又看到&lt;a href="https://www.ericbariaux.com/posts/brew_rollback/">一个办法&lt;/a>可以降级，看着也很可行，但是构建脚本本地执行的时候出错了，也可以参考下。&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
-&lt;/span>&lt;span class="lnt">4
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">brew tap-new &lt;span class="nv">$USER&lt;/span>/local-cmake
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">brew tap homebrew/core --force
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">brew extract --version&lt;span class="o">=&lt;/span>3.31.1 cmake &lt;span class="nv">$USER&lt;/span>/local-cmake
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">brew install &lt;span class="nv">$USER&lt;/span>/local-cmake/cmake@3.31.1
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>以下是 AI 的解释：&lt;/p>
-&lt;p>这四条 Homebrew 命令的目的是创建一个本地 tap 并安装特定版本的 CMake。我来逐条解释每个命令的作用：&lt;/p>
-&lt;h2 id="1-brew-tap-new-userlocal-cmake">1. &lt;code>brew tap-new $USER/local-cmake&lt;/code>&lt;/h2>
-&lt;p>这条命令创建一个新的 tap（软件仓库）。&lt;code>$USER&lt;/code> 是当前用户名的环境变量，所以这个 tap 的名称会是 &amp;quot;你的用户名/local-cmake&amp;quot;。&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>作用&lt;/strong>：创建一个新的本地 tap，用于存放自定义的软件包公式&lt;/li>
-&lt;li>&lt;strong>结果&lt;/strong>：在 &lt;code>$(brew --repo)/Library/Taps/$USER/homebrew-local-cmake&lt;/code> 目录下创建一个新的 tap 结构&lt;/li>
-&lt;/ul>
-&lt;h2 id="2-brew-tap-homebrewcore---force">2. &lt;code>brew tap homebrew/core --force&lt;/code>&lt;/h2>
-&lt;p>这条命令强制重新 tap Homebrew 的核心仓库。&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>作用&lt;/strong>：确保 homebrew/core 仓库（包含官方软件包公式的主仓库）被正确 tap，&lt;code>--force&lt;/code> 参数强制执行，即使该 tap 已经存在&lt;/li>
-&lt;li>&lt;strong>结果&lt;/strong>：确保可以访问 homebrew/core 中的软件包公式，这是后续提取 CMake 公式所必需的&lt;/li>
-&lt;/ul>
-&lt;h2 id="3-brew-extract---version3311-cmake-userlocal-cmake">3. &lt;code>brew extract --version=3.31.1 cmake $USER/local-cmake&lt;/code>&lt;/h2>
-&lt;p>这条命令从 homebrew/core 中提取特定版本的 CMake 公式到你的本地 tap 中。&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>作用&lt;/strong>：从官方仓库提取 CMake 3.31.1 版本的公式，并将其放入你刚创建的本地 tap 中&lt;/li>
-&lt;li>&lt;strong>结果&lt;/strong>：在你的本地 tap 中创建一个 &lt;code>cmake@3.31.1.rb&lt;/code> 公式文件&lt;/li>
-&lt;/ul>
-&lt;h2 id="4-brew-install-userlocal-cmakecmake3311">4. &lt;code>brew install $USER/local-cmake/cmake@3.31.1&lt;/code>&lt;/h2>
-&lt;p>这条命令安装你本地 tap 中的特定版本 CMake。&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>作用&lt;/strong>：使用刚刚提取的公式安装 CMake 3.31.1 版本&lt;/li>
-&lt;li>&lt;strong>结果&lt;/strong>：在你的系统上安装 CMake 3.31.1 版本&lt;/li>
-&lt;/ul></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category><category domain="https://scottyeung.top/tags/%E6%95%99%E7%A8%8B/">教程</category><category domain="https://scottyeung.top/tags/%E7%BB%8F%E9%AA%8C/">经验</category><category domain="https://scottyeung.top/tags/macOS/">macOS</category><category domain="https://scottyeung.top/tags/Hugo/">Hugo</category></item></channel></rss>
+&lt;/ul></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/Apple/">Apple</category><category domain="https://scottyeung.top/tags/%E7%94%9F%E6%B4%BB/">生活</category><category domain="https://scottyeung.top/tags/%E6%95%B0%E7%A0%81/">数码</category><category domain="https://scottyeung.top/tags/%E5%AE%89%E5%8D%93/">安卓</category></item></channel></rss>
