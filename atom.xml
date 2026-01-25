@@ -1,4 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah 的乱写地</title><link>https://scottyeung.top/</link><description>YeungYeah 的乱写地中记录了作者的所思所想及所为。</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Fri, 09 Jan 2026 16:16:05 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>跟着 Alpha Picks 来投资</title><link>https://scottyeung.top/2026/use-alpha-picks-invest/</link><guid isPermaLink="true">https://scottyeung.top/2026/use-alpha-picks-invest/</guid><pubDate>Thu, 08 Jan 2026 22:51:10 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>之前的个股投资一直都没有什么章法，去年年中学习了一下价值投资的相关理念，了解了公司估值分析和选股的方法，但是精力与时间有限，也可能是水平有限，最终也没有花太多的时间去仔细研究个股。然后就演变成看 YouTube 或者其他平台，谁聊到某个股票，看一下凭感觉就入手了。什么时候买，买多少，什么时候加仓，什么时候卖，全凭感觉。&lt;/p>
+<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah 的乱写地</title><link>https://scottyeung.top/</link><description>YeungYeah 的乱写地中记录了作者的所思所想及所为。</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Sun, 25 Jan 2026 14:48:22 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>真.拥抱 AI</title><link>https://scottyeung.top/2026/embrace-ai-again/</link><guid isPermaLink="true">https://scottyeung.top/2026/embrace-ai-again/</guid><pubDate>Sun, 25 Jan 2026 10:50:08 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>Claude Code 出现并且火其实也有一段时间了，刚出的时候自己其实也拿 API 模式体验过，但是刚出的时候觉得还比较笨，当时 CC 被常见网络问题卡住安装依赖了，直接流程第一步就中断了，加上烧 token 实在太厉害，自费的话顶不住，后面就没怎么关注了。&lt;/p>
+&lt;p>最近应该是公司内部开始也在推广 Claude Code，内部提供了每月的免费 token 额度以及相应的内部 API 使用，在工作中也可以使用 Claude Code，加上也有一些其他团队成员在分享 Claude Code 的使用情况，于是这周在工作中也尝试使用了一下 Claude Code，但是内部限流太厉害了，能感觉到强，但是使用体验实在一般。&lt;/p>
+&lt;p>于是这两天开始在自己项目使用 Claude Code。一开始想的是有没办法白嫖，学习公司内部的方式，找一些免费的 token，然后通过 API 的方式来使用 Claude Code。豆包和千问都可以，现在基本上各家新开账号创建 API Key 都会送一些 token 额度。豆包送 50w，然后搞些任务最后能有几百万 token。千问是送 100w token。用起来其实体验也还可以，但是烧 token 还是有点快，用了两天豆包就用了差不多 600w 的 token，再搞下去得付费了。&lt;/p>
+&lt;p>既然要付费，就干脆一步到位，不如试下正版原生的 Claude Code 了。正好之前才换了比较好的梯子，有能比较好地支持美国的节点，用起来应该也没什么问题。于是就找办法开通。比较可惜的是 Anthropic 不知道国内信用卡支付，要支付只能通过第三方的虚拟卡，或者是礼品卡。最后选择的是 &lt;a href="https://meiguo.app/">Meiguo&lt;/a> 家的服务，一开始是知道他们有提供信用卡的服务，后面发现直接有提供礼品卡的服务，Claude Code Pro 只需要 +$4 服务费，而且支持微信支付，非常方便。入手了一个，通过收邮件自主使用礼品卡开通会员即可。有兴趣的话可以试试，使用我的&lt;a href="https://meiguo.app?ref=O63O3">推荐码 O63O3&lt;/a>。&lt;/p>
+&lt;p>切换到正版原生的 Claude Code，体验再上了一个级别。正版的感觉模型更加智能，开发能力更强了，输出的开发思路和计划更加清晰明确。&lt;/p>
+&lt;p>对于 AI 和大模型，其实很早就开始接触，在 ChatGPT 刚出的时候，其实就已经在用了，可以说是一直都是接触跟上最新东西了。但是感觉一直都在浅尝辄止，对于新东西，试了一下，觉得牛逼，惊叹一下，或者不好用，吐槽两句，然后就没有然后了。牛逼的好用的，也没有继续用下去，将其融入于工作生活当中，不好用的，也没有想一想怎么才能变得好用，能够用上。隐隐有点感觉是不是在当前这个智能时代逐渐落后了。尤其是看到身边越来越多人都在开始 vibe coding，又或者是利用 AI 或者大模型做各种事情，会开始比较，开始焦虑。还是得多点用，各种用，用于日常，用于工作，融入生活。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/AI/">AI</category><category domain="https://scottyeung.top/tags/coding/">coding</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category><category domain="https://scottyeung.top/tags/%E8%BD%AF%E4%BB%B6/">软件</category></item><item><title>跟着 Alpha Picks 来投资</title><link>https://scottyeung.top/2026/use-alpha-picks-invest/</link><guid isPermaLink="true">https://scottyeung.top/2026/use-alpha-picks-invest/</guid><pubDate>Thu, 08 Jan 2026 22:51:10 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>之前的个股投资一直都没有什么章法，去年年中学习了一下价值投资的相关理念，了解了公司估值分析和选股的方法，但是精力与时间有限，也可能是水平有限，最终也没有花太多的时间去仔细研究个股。然后就演变成看 YouTube 或者其他平台，谁聊到某个股票，看一下凭感觉就入手了。什么时候买，买多少，什么时候加仓，什么时候卖，全凭感觉。&lt;/p>
 &lt;p>意识到需要创建一个自己的交易系统，无论好坏，总比乱来强。国内的基金定投这些基本已经形成固定的计划，不需要操心了。美股这里，在之前黑五的时候，入手了一个 Seeking Alpha 的 premium 会员以及他们家的 Alpha Picks 服务。本文正是这段时间尝试摸索使用 Alpha Picks 来进行投资的记录。&lt;/p>
 &lt;h2 id="什么是-alpha-picks">什么是 Alpha Picks？&lt;/h2>
 &lt;p>Alpha Picks 是 Seeking Alpha 家推出的一个收费选股服务，会根据其收集的数据，通过量化的方式，每个月挑选出两支股票给用户。当前其挑选出的股票，运行至今收益已经到 270+%，是标普 500 指数的 3 倍多。&lt;/p>
@@ -315,98 +320,4 @@
 &lt;li>&lt;strong>Mac + iOS 环境&lt;/strong>：iCloud 基本可用，但需注意同步延迟问题&lt;/li>
 &lt;li>&lt;strong>涉及 Android 的跨平台多设备&lt;/strong>：官方同步功能是最佳选择，虽然需要付费但体验最好&lt;/li>
 &lt;li>&lt;strong>技术用户&lt;/strong>：可以试试 Git 方案，但需要有处理冲突的能力&lt;/li>
-&lt;/ol></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category><category domain="https://scottyeung.top/tags/%E8%BD%AF%E4%BB%B6/">软件</category><category domain="https://scottyeung.top/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/">生产力</category><category domain="https://scottyeung.top/tags/%E8%AE%B0%E5%BD%95/">记录</category><category domain="https://scottyeung.top/tags/Logseq/">Logseq</category></item><item><title>从 IOS 迁移到 Android</title><link>https://scottyeung.top/2025/ios-to-android/</link><guid isPermaLink="true">https://scottyeung.top/2025/ios-to-android/</guid><pubDate>Tue, 29 Apr 2025 10:17:04 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>这两年一直有把 iPhone 换成安卓手机的想法，去年尝试过换成小米 14，但坚持了不到一周，就因种种问题和不习惯而放弃，退掉后又换回了 iPhone。这次选择换成 OPPO X8 Pro，已经使用了两周多，逐渐适应，没有感觉有什么问题，算是暂时迁移成功了。这里记录一下迁移相关的一些细节。&lt;/p>
-&lt;hr>
-&lt;h2 id="替代">替代&lt;/h2>
-&lt;ul>
-&lt;li>iCloud -&amp;gt; Google Photos/Drive
-&lt;ul>
-&lt;li>需要特殊网络环境&lt;/li>
-&lt;li>Google Photos 后台不能自动同步照片，需手动进入应用才会开始备份&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>Apple Notes -&amp;gt; OPPO Notes
-&lt;ul>
-&lt;li>原本就用得很少，OPPO 的体验也不错&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>iCost -&amp;gt; 钱迹
-&lt;ul>
-&lt;li>后者支持导入前者导出的数据&lt;/li>
-&lt;li>没有了自动记账&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>Apple Watch -&amp;gt; OPPO Watch X2&lt;/li>
-&lt;li>Apple Pay -&amp;gt; Google Pay&lt;/li>
-&lt;li>旅客八达通 -&amp;gt; 安卓八达通
-&lt;ul>
-&lt;li>只能用香港手机号注册&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>AirPods -&amp;gt; 附送的不知名耳机
-&lt;ul>
-&lt;li>失去了苹果生态中耳机无缝接力的丝滑能力，现在日常带两个耳机上班&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>iMessage -&amp;gt; ❌
-&lt;ul>
-&lt;li>原本基本只和堂哥聊天用，现在只能回到微信&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;p>有些替代方案算是降级，但还是可以接受。&lt;/p>
-&lt;h2 id="迁移">迁移&lt;/h2>
-&lt;ul>
-&lt;li>通过 O+ 互传可以将 iPhone 上的 live 图传到 OPPO 上
-&lt;ul>
-&lt;li>这个功能可以算是促使我选择 OPPO 的最大原因了，之前在 iPhone 拍照基本都开 live 模式，当时换小米的时候就没有办法转移过来&lt;/li>
-&lt;li>一次最多只能传 1000 张，因此需要手动分批选择传输&lt;/li>
-&lt;li>手机初始化换机时已经把照片传过去了一遍，后面再传 live 图时会重复
-&lt;ul>
-&lt;li>需要手动一张一张删除&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>健康/健身数据导出的数据，OPPO 的健康软件不支持导入，只能重新开始
-&lt;ul>
-&lt;li>历史数据可以参考下面的方法导出和查看，但不能导入当前健康软件使用，后续估计也会逐渐废弃遗忘
-&lt;ul>
-&lt;li>&lt;a href="https://sspai.com/post/66163">https://sspai.com/post/66163&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://www.ericwolter.com/projects/apple-health-export/">https://www.ericwolter.com/projects/apple-health-export/&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>软件：手动从软件商店和 Google Play 一个个下载
-&lt;ul>
-&lt;li>内外软件分开下载，感觉比之前两个不同区 Apple ID 在 App Store 切换方便多了&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;p>其余基本没有什么 loss&lt;/p>
-&lt;h2 id="一些体验">一些体验&lt;/h2>
-&lt;ul>
-&lt;li>充电速度真的快&lt;/li>
-&lt;li>电量明显增大，续航能力提升&lt;/li>
-&lt;li>所谓的信号变好其实没什么感觉
-&lt;ul>
-&lt;li>但 iPhone 的信号确实差，换安卓其中一个重要原因就是在某些地方真的没有一点信号，比如在深圳中心区的网咖里竟然完全没有信号&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>通知推送有点不给力，可能是安卓通病
-&lt;ul>
-&lt;li>通知类型不准确：
-&lt;ul>
-&lt;li>系统有分不同的通知类型，但实际应用发来的通知感觉都是一个类型的，导致系统想对不同类型通知设置不同的处理（声音还是震动还是静默）没有效果&lt;/li>
-&lt;li>比如钉钉通知要么全开声音，来一条消息都要响一下，要么全关声音，电话打过来都听不到也不震动&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>通知收不到
-&lt;ul>
-&lt;li>某些应用的通知收不到或者有延迟，偶尔需要打开应用通知才推送过来&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/Apple/">Apple</category><category domain="https://scottyeung.top/tags/%E7%94%9F%E6%B4%BB/">生活</category><category domain="https://scottyeung.top/tags/%E6%95%B0%E7%A0%81/">数码</category><category domain="https://scottyeung.top/tags/%E5%AE%89%E5%8D%93/">安卓</category></item></channel></rss>
+&lt;/ol></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category><category domain="https://scottyeung.top/tags/%E8%BD%AF%E4%BB%B6/">软件</category><category domain="https://scottyeung.top/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/">生产力</category><category domain="https://scottyeung.top/tags/%E8%AE%B0%E5%BD%95/">记录</category><category domain="https://scottyeung.top/tags/Logseq/">Logseq</category></item></channel></rss>
