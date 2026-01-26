@@ -1,4 +1,39 @@
-<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah 的乱写地</title><link>https://scottyeung.top/</link><description>YeungYeah 的乱写地中记录了作者的所思所想及所为。</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Sun, 25 Jan 2026 14:48:22 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>真.拥抱 AI</title><link>https://scottyeung.top/2026/embrace-ai-again/</link><guid isPermaLink="true">https://scottyeung.top/2026/embrace-ai-again/</guid><pubDate>Sun, 25 Jan 2026 10:50:08 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>Claude Code 出现并且火其实也有一段时间了，刚出的时候自己其实也拿 API 模式体验过，但是刚出的时候觉得还比较笨，当时 CC 被常见网络问题卡住安装依赖了，直接流程第一步就中断了，加上烧 token 实在太厉害，自费的话顶不住，后面就没怎么关注了。&lt;/p>
+<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah 的乱写地</title><link>https://scottyeung.top/</link><description>YeungYeah 的乱写地中记录了作者的所思所想及所为。</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Mon, 26 Jan 2026 14:52:26 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>用 Claude Skills 翻译博客</title><link>https://scottyeung.top/2026/claude-skills-to-translate/</link><guid isPermaLink="true">https://scottyeung.top/2026/claude-skills-to-translate/</guid><pubDate>Mon, 26 Jan 2026 22:28:54 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>之前给博客设了一个&lt;a href="https://scottyeung.top/en/">英语版&lt;/a>（过程可见 &lt;a href="https://scottyeung.top/2024/setup-english-blog/">开设我的英语博客 By Hugo&lt;/a>，会把一些文章通过 AI 翻译成英语来发布。当时的工作流是写好了一篇文章，会丢进大模型的 Chat 窗口，通过固定的 prompt 来将其翻译成英语，并且保持一样的 md 格式直接输出。然后将其复制到英文内容的相同目录下，创建一个新的文件。这样每次都复制粘贴几次，还要手动创建新文件，快是也挺快，但是现在接触到 Claude Code 后，就想到能不能再便捷一点。&lt;/p>
+&lt;p>于是选择使用 &lt;a href="https://code.claude.com/docs/en/skills#create-your-first-skill">Claude Skills&lt;/a>。&lt;/p>
+&lt;blockquote>
+&lt;p>Claude Skill 是什么?
+Skill(技能)是一种模块化、独立的扩展包,用于扩展 Claude 的能力,提供专业化的知识、工作流程和工具。可以把它们理解为特定领域或任务的&amp;quot;入职指南&amp;quot;——它们将 Claude 从通用型智能体转变为配备了程序性知识的专业化智能体。&lt;/p>
+&lt;/blockquote>
+&lt;p>通过定义一个 SKILL.md 的文档，可以创建一个技能，通过描述执行的指令步骤，以及可以参考的外部可执行代码和可参考的材料。通过可以通过一个命令，就让 Claude Code 执行相应的操作。以翻译博客为例，我在项目的 &lt;code>./claude/skills/translate-post&lt;/code> 目录下新建了一个 SKILL.md 文件，然后输入下面的内容&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-md" data-lang="md">&lt;span class="line">&lt;span class="cl">---
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">name: translate-post
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">description: transalte post&amp;#39;s content from Chinese into English
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">disable-model-invocation: true
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">---
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">transalte the specific post file $ARGUMENTS content into English
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">1.&lt;/span> read file $ARGUMENTS all text content
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">2.&lt;/span> translate all content into English. cannot drop any content
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">3.&lt;/span> create a text file in content_en directory but with the same path with original file in content
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>非常简单的指令，读文件内容，翻译成英语，在指定目录下创建文件。这里 $ARGUMENTS 是输入的参数。实际运行的时候，只需要输入命令&lt;code>/translate-post @content/posts/2026/post.md&lt;/code>，Claude Code 就可以自动在 &lt;code>content_en/posts/2026/&lt;/code> 下创建同名的文件，并且里面的内容是翻译好的。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/AI/">AI</category><category domain="https://scottyeung.top/tags/%E5%8D%9A%E5%AE%A2/">博客</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category><category domain="https://scottyeung.top/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/">自动化</category></item><item><title>真.拥抱 AI</title><link>https://scottyeung.top/2026/embrace-ai-again/</link><guid isPermaLink="true">https://scottyeung.top/2026/embrace-ai-again/</guid><pubDate>Sun, 25 Jan 2026 10:50:08 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>Claude Code 出现并且火其实也有一段时间了，刚出的时候自己其实也拿 API 模式体验过，但是刚出的时候觉得还比较笨，当时 CC 被常见网络问题卡住安装依赖了，直接流程第一步就中断了，加上烧 token 实在太厉害，自费的话顶不住，后面就没怎么关注了。&lt;/p>
 &lt;p>最近应该是公司内部开始也在推广 Claude Code，内部提供了每月的免费 token 额度以及相应的内部 API 使用，在工作中也可以使用 Claude Code，加上也有一些其他团队成员在分享 Claude Code 的使用情况，于是这周在工作中也尝试使用了一下 Claude Code，但是内部限流太厉害了，能感觉到强，但是使用体验实在一般。&lt;/p>
 &lt;p>于是这两天开始在自己项目使用 Claude Code。一开始想的是有没办法白嫖，学习公司内部的方式，找一些免费的 token，然后通过 API 的方式来使用 Claude Code。豆包和千问都可以，现在基本上各家新开账号创建 API Key 都会送一些 token 额度。豆包送 50w，然后搞些任务最后能有几百万 token。千问是送 100w token。用起来其实体验也还可以，但是烧 token 还是有点快，用了两天豆包就用了差不多 600w 的 token，再搞下去得付费了。&lt;/p>
 &lt;p>既然要付费，就干脆一步到位，不如试下正版原生的 Claude Code 了。正好之前才换了比较好的梯子，有能比较好地支持美国的节点，用起来应该也没什么问题。于是就找办法开通。比较可惜的是 Anthropic 不知道国内信用卡支付，要支付只能通过第三方的虚拟卡，或者是礼品卡。最后选择的是 &lt;a href="https://meiguo.app/">Meiguo&lt;/a> 家的服务，一开始是知道他们有提供信用卡的服务，后面发现直接有提供礼品卡的服务，Claude Code Pro 只需要 +$4 服务费，而且支持微信支付，非常方便。入手了一个，通过收邮件自主使用礼品卡开通会员即可。有兴趣的话可以试试，使用我的&lt;a href="https://meiguo.app?ref=O63O3">推荐码 O63O3&lt;/a>。&lt;/p>
@@ -242,82 +277,4 @@
 &lt;p>然而，当我尝试在腾讯云后台修改域名的 NS (Name Server) 记录时，发现这个选项是锁定的！想要修改，必须通过一个独立的“DNS 服务器修改”入口，比较隐蔽。&lt;/p>
 &lt;p>然后迁移后发现其实也没有作用，拦截实际上是发生在服务器上而不是 dns 解析上（也可能是两边都会有拦截）&lt;/p>
 &lt;h2 id="四最终的解决方案">四、最终的解决方案&lt;/h2>
-&lt;p>最后为了稳定性和省心，选择了付费订阅 Bitwarden 高级会员，$10 一年，不再折腾。这境内的个人云服务器感觉用处越来越小，要不是博客需要备案号需要云服务器，绝对停掉转用境外的云服务器。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E5%90%90%E6%A7%BD/">吐槽</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category><category domain="https://scottyeung.top/tags/%E8%AE%B0%E5%BD%95/">记录</category><category domain="https://scottyeung.top/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1/">云服务</category><category domain="https://scottyeung.top/tags/Cloudflare/">Cloudflare</category></item><item><title>Logseq 如何同步</title><link>https://scottyeung.top/2025/logseq-sync/</link><guid isPermaLink="true">https://scottyeung.top/2025/logseq-sync/</guid><pubDate>Fri, 13 Jun 2025 22:30:09 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>Logseq 是一个与 Obsidian 类似的双链笔记软件，断断续续地用了应该有几年了，但是同步/备份比较麻烦，尤其是在不同系统类型的设备多个设备上。Logseq 与 Obsidian 都是通过加载一个本地文件夹作为笔记仓库的形式来运行的，因此笔记的同步，本质上还是同步这个文件夹，但是这样的同步，在不同的系统和设备上，达到完美的体验，实际也有点烦的。&lt;/p>
-&lt;p>总结下来有几个阶段，每个阶段基本都尝试了一些方式，然后都不太好搞。因此最后的我现在还是选择官方的同步功能，每月 $5.&lt;/p>
-&lt;h2 id="pc-间通过-onedrive-同步文件夹实现同步">PC 间通过 OneDrive 同步文件夹实现同步&lt;/h2>
-&lt;p>最开始使用的时候只在电脑上面使用，甚至都没想过用手机查看或者记录，因此最开始的时候只有在两台 PC 之间同步笔记的需求。这样就比较简单，选择一个可以实时同步文件夹内容的云盘，比如 OneDrive 或者坚果云都可以。当时用的就是 OneDrive，同步流畅度还可以，再加上基本有不会有同时在两台设备上编辑的情况出现，基本没出过什么问题。&lt;/p>
-&lt;h2 id="icloud-同步文件夹实现同步">iCloud 同步文件夹实现同步&lt;/h2>
-&lt;p>后面换了 iPhone，需要在 iPhone 和 PC 上同步笔记。iPhone 上很自然就考虑选择使用 iCloud 同步，而且 Windows 实际上也是可以安装 iCloud 进行同步的，最开始的时候我就是使用 iCloud 在 iPhone 和 Windows 上面同步。&lt;/p>
-&lt;p>然而 iCloud 同步实际上很容易出现问题，尤其是在 Windows 设备上。有些时候文件在正常使用的时候，会因为同步问题而出现多个版本。有时候文件的某个版本因为莫名的原因无法下载，这个时候 logseq 就会一直卡在下载文件阶段，然后阻塞界面，卡死程序。&lt;/p>
-&lt;p>这种情况需要手动地去 iCloud 的存储位置把多出来的同步不成功的文件删掉才好。Obsidian 也有这个问题，但是这种卡死的情况只会出现在打开软件的时候，在使用过程好像还没见过。而这个在 iCloud 目录找出重复文件并删除的操作，在移动端上基本搞不了，因此如果是在外面手机打开出现了这个问题，基本等于无解。&lt;/p>
-&lt;p>后面电脑换成了 Mac，这种同步出现冲突多版本的问题基本没有出现过了。但是后面在实际使用的时候也发现了一个另一个问题：文件的同步和拉取可能会有延迟，导致有可能电脑记了今天的日记，然后手机在打开前没有识别到今天实际上是有更新的，在打开软件的时候默认会创建今天的笔记，而这个新创建的笔记日期更新，就会直接把电脑端的笔记给覆盖掉。不过原来logseq里面有个bak文件夹可以做备份，找还是能找回来的，但是就得手动在程序外操作。&lt;/p>
-&lt;h2 id="git-同步">Git 同步&lt;/h2>
-&lt;p>在换到 Mac 之前使用，Windows 使用 iCloud 同步容易出问题，当时还尝试了另一个通过 Git 同步的办法：&lt;/p>
-&lt;ul>
-&lt;li>Logseq 原生就带有 Git 版本管理能力，定时（比如每分钟）会自动提交。PC 端可以通过配置 Git Hooks，实现提交的时候自动 push 到一个 remote repo.&lt;/li>
-&lt;li>移动端的话当时使用 IOS，通过 a-shell 和快捷指令的方式实现文件的拉取和同步。具体是通过快捷指令，在打开 Logseq 的时候先 pull 一把，然后在关闭应用的时候提交并 push 到 remote 上面&lt;/li>
-&lt;/ul>
-&lt;p>这样的方式只能做到笔记文件在不同设备上面同步，但如果真的出现同时修改的情况，感觉会出问题。&lt;/p>
-&lt;p>流程看着很可行，但实际用下来体验也很差，很多问题&lt;/p>
-&lt;ul>
-&lt;li>remote repo 我是放在 GitHub 上面，移动端拉取很容易有网络问题而拉取失败，导致移动端笔记不能同步到最新&lt;/li>
-&lt;li>有可能会出现冲突，冲突还必须要 Git 解冲突，这就必须人工介入操作了&lt;/li>
-&lt;/ul>
-&lt;h2 id="android-与-pc-通过-google-drive-同步">Android 与 PC 通过 Google Drive 同步&lt;/h2>
-&lt;p>后面手机换回 Android 了，移动端用不了 iCloud，换到了 Google Drive 上面。这时候才发现各家云服务商在安卓上面原来都没有像 iCloud 这种实现文件夹在本地与云服务上双向同步的能力，需要的话，必须使用第三方的软件（比如 AutoSync）来实现双向同步。而这些服务用下来体验也很一般，首先使用前必须将云端存储的读写权限全部授权给三方软件，这样就已经有点担心了，然后实际的同步也只是通过周期性执行同步任务，调用 Drive 获取最新文件的方式来同步的，同步很慢，也容易失败。试了几次我就删掉，并且撤回授权了。&lt;/p>
-&lt;h2 id="官方同步功能">官方同步功能&lt;/h2>
-&lt;p>上面提到的各种同步方式，本质上还是在程序外通过系统或者软件，同步更新存放笔记的文件夹内容。这样无可避免一个问题：Logseq 本身是感知不到这个同步过程，以及文件内容是否已经同步好了的。每次打开其实都会是当作一个已经同步好的状态来处理，读写文件。这样 logseq 和外部就可能会出现对文件的同时读写，继而出现问题。这也是上面出现各种同步问题的主要原因。&lt;/p>
-&lt;blockquote>
-&lt;p>题外话：obsidian 上面有很多内部插件实现同步的能力，logseq 是否可以提供像 obsidian 一样，基于内部插件的方式来进行同步呢？为什么 logseq 上面基本都没有同步的插件？有可能官方对这能力依赖的口子没有打开？&lt;/p>
-&lt;/blockquote>
-&lt;p>在 Android 上折腾同步实在是折腾不动了，最后选择了氪金。现在 Logseq 提供了同步功能，虽然还是 beta 阶段，但是实际用下来已经非常丝滑，各个设备轻松同步（Android+Mac+iPad）。现在最低只需 donate 5$ 每月，就可以启用，详细的方法可以看&lt;a href="https://blog.logseq.com/how-to-setup-and-use-logseq-sync/">官方文档&lt;/a>，支持通过银行卡（Visa/Master），Google Pay，或者 PayPal 付款。&lt;/p>
-&lt;p>官方的同步功能支持最多 10 个 graph 的同步，我看 v2ex 上面也有出合租车位的，只要几块钱。虽然说每个 graph 都有单独的密码加密，但是感觉这种出租空位的方式，还是有点安全问题，因为给别人创建 graph，需要把帐号给别人登陆才能创建，而试了一下，remove 远程的 graph，好像是不需要密码的，可能有数据被恶意删掉的可能性，有点危险。&lt;/p>
-&lt;h2 id="汇总">汇总&lt;/h2>
-&lt;table>
-&lt;thead>
-&lt;tr>
-&lt;th>同步方法&lt;/th>
-&lt;th>适用场景&lt;/th>
-&lt;th>优点&lt;/th>
-&lt;th>缺点&lt;/th>
-&lt;/tr>
-&lt;/thead>
-&lt;tbody>
-&lt;tr>
-&lt;td>&lt;strong>OneDrive 同步&lt;/strong>&lt;/td>
-&lt;td>PC 间同步&lt;/td>
-&lt;td>• 同步流畅&lt;br>• 操作简单&lt;br>• 基本无冲突问题&lt;/td>
-&lt;td>• 仅限 PC 设备&lt;br>• 移动端支持有限&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;strong>iCloud 同步&lt;/strong>&lt;/td>
-&lt;td>iPhone + PC/Mac&lt;/td>
-&lt;td>• Mac 环境下相对稳定&lt;br>• 原生 iOS 支持&lt;/td>
-&lt;td>• Windows 上容易出现文件冲突&lt;br>• 同步延迟可能导致数据覆盖&lt;br>• 移动端难以处理冲突文件&lt;br>• 程序可能卡死&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;strong>Git 同步&lt;/strong>&lt;/td>
-&lt;td>跨平台技术方案&lt;/td>
-&lt;td>• 版本控制能力强&lt;br>• 支持自动提交&lt;br>• 理论上支持所有平台&lt;/td>
-&lt;td>• 网络问题导致同步失败&lt;br>• 需要手动解决冲突&lt;br>• 配置复杂&lt;br>• 移动端操作困难&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;strong>Google Drive + 第三方同步&lt;/strong>&lt;/td>
-&lt;td>Android + PC&lt;/td>
-&lt;td>• 支持 Android 平台&lt;/td>
-&lt;td>• 需要授权第三方软件&lt;br>• 安全风险较高&lt;br>• 同步慢且容易失败&lt;br>• 只能周期性同步&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;strong>官方同步功能&lt;/strong>&lt;/td>
-&lt;td>全设备同步&lt;/td>
-&lt;td>• 程序内置，体验丝滑&lt;br>• 支持多设备（Android+Mac+iPad）&lt;br>• 数据加密安全&lt;br>• 支持最多 10 个 graph&lt;/td>
-&lt;td>• 需要付费（$5/月）&lt;br>• 仍处于 beta 阶段&lt;br>• 合租存在安全风险&lt;/td>
-&lt;/tr>
-&lt;/tbody>
-&lt;/table>
-&lt;ol>
-&lt;li>&lt;strong>单纯 PC 使用&lt;/strong>：OneDrive 等云盘同步即可满足需求&lt;/li>
-&lt;li>&lt;strong>Mac + iOS 环境&lt;/strong>：iCloud 基本可用，但需注意同步延迟问题&lt;/li>
-&lt;li>&lt;strong>涉及 Android 的跨平台多设备&lt;/strong>：官方同步功能是最佳选择，虽然需要付费但体验最好&lt;/li>
-&lt;li>&lt;strong>技术用户&lt;/strong>：可以试试 Git 方案，但需要有处理冲突的能力&lt;/li>
-&lt;/ol></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category><category domain="https://scottyeung.top/tags/%E8%BD%AF%E4%BB%B6/">软件</category><category domain="https://scottyeung.top/tags/%E7%94%9F%E4%BA%A7%E5%8A%9B/">生产力</category><category domain="https://scottyeung.top/tags/%E8%AE%B0%E5%BD%95/">记录</category><category domain="https://scottyeung.top/tags/Logseq/">Logseq</category></item></channel></rss>
+&lt;p>最后为了稳定性和省心，选择了付费订阅 Bitwarden 高级会员，$10 一年，不再折腾。这境内的个人云服务器感觉用处越来越小，要不是博客需要备案号需要云服务器，绝对停掉转用境外的云服务器。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E5%90%90%E6%A7%BD/">吐槽</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category><category domain="https://scottyeung.top/tags/%E8%AE%B0%E5%BD%95/">记录</category><category domain="https://scottyeung.top/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1/">云服务</category><category domain="https://scottyeung.top/tags/Cloudflare/">Cloudflare</category></item></channel></rss>
