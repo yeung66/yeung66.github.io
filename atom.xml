@@ -1,5 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Yeung's Context</title><link>https://scottyeung.top/</link><description>热爱折腾代码与工具，偶尔在焦虑中寻找平衡。
-这里没有标准答案，只有关于技术、阅读与生活感悟的真实上下文。</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (Scott Yeung)</managingEditor><webMaster>yeungyeah@qq.com (Scott Yeung)</webMaster><lastBuildDate>Fri, 13 Feb 2026 08:48:07 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>更换博客名字和网络身份标识</title><link>https://scottyeung.top/2026/rebrand-me-and-blog/</link><guid isPermaLink="true">https://scottyeung.top/2026/rebrand-me-and-blog/</guid><pubDate>Fri, 13 Feb 2026 09:33:45 +0800</pubDate><author>yeungyeah@qq.com (Scott Yeung)</author><description>&lt;p>之前在网络上冲浪的身份一直是 YeungYeah，这个名字的来源是姓氏杨的粤语拼音 + 英文 Yeah，连起来读实际上是“杨爷”的发音。杨爷这个称呼，还得来源于中学时期比较狂傲时自取的名号了，实际上后面也比较少人这样叫我，现在回过来看只觉得中二。然后博客的名字，最开始叫做 Scott Yeung's 的博客，后面为了更加突出个人的标识，改成了全网使用的网络身份，然后也是带点中二的自嘲，随笔随心写写，干脆就叫乱写地，都是乱写的，写得怎样都行，现在回过头看，也显得很中二。&lt;/p>
+这里没有标准答案，只有关于技术、阅读与生活感悟的真实上下文。</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (Scott Yeung)</managingEditor><webMaster>yeungyeah@qq.com (Scott Yeung)</webMaster><lastBuildDate>Thu, 19 Feb 2026 01:49:58 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>Superpower Agent Skills in Gemini</title><link>https://scottyeung.top/2026/superpower-skills-gemini/</link><guid isPermaLink="true">https://scottyeung.top/2026/superpower-skills-gemini/</guid><pubDate>Wed, 18 Feb 2026 00:42:07 +0800</pubDate><author>yeungyeah@qq.com (Scott Yeung)</author><description>&lt;p>在使用 Claude Code 的过程中，&lt;a href="https://github.com/obra/superpowers">superpowers&lt;/a> 提供的 Skills 套件实在太好用了，尤其是其中的 Brainstorming、Writing-plans 和 Executing-plans。用上这些技能后，明显能感觉到 AI 干起活来更有章法，逻辑性提升显著。&lt;/p>
+&lt;p>最近我也在研究 Claude Code 以外的代码 Agent CLI 工具。既然开了 Gemini 的会员，就顺手试了试 Google 官方提供的 CLI 工具。虽然 Gemini CLI 也支持 Agent Skills，但在命令格式和规则细节上与 Claude 存在一些差异。目前官方的 &lt;a href="https://github.com/obra/superpowers">superpowers&lt;/a> 尚未正式支持 Gemini（尽管我在 Issue 列表中看到似乎有相关分支正在开发中）。&lt;/p>
+&lt;p>与其被动等待，不如自己动手。于是我决定以 Claude Code 为蓝本，动手迁移并复刻一个 Gemini 版的 &lt;code>superpowers&lt;/code>。&lt;/p>
+&lt;p>项目仓库现已开源：&lt;a href="https://github.com/yeung66/gemini-superpowers">gemini-superpowers&lt;/a>&lt;/p>
+&lt;p>如果你也想体验，可以通过以下命令快速安装：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">gemini skills install &lt;span class="o">[&lt;/span>https://github.com/yeung66/gemini-superpowers.git&lt;span class="o">](&lt;/span>https://github.com/yeung66/gemini-superpowers.git&lt;span class="o">)&lt;/span> --path skills
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="迁移核心内容">迁移核心内容&lt;/h2>
+&lt;p>这次迁移主要涉及两部分工作：一是工具名称（Tools）的对齐，二是核心术语（Terminology）的映射，以确保 Gemini 能够正确理解和执行原有的 Agent 逻辑。&lt;/p>
+&lt;h3 id="1-工具名称映射-tools-mapping">1. 工具名称映射 (Tools Mapping)&lt;/h3>
+&lt;p>我们需要将 Claude Code 的工具指令转换为 Gemini CLI 能够识别的等效指令：&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Claude Code&lt;/th>
+&lt;th>Gemini CLI&lt;/th>
+&lt;th>处理方式&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;code>Task&lt;/code> (subagent dispatch)&lt;/td>
+&lt;td>流程描述&lt;/td>
+&lt;td>改为&amp;quot;分步执行&amp;quot;或&amp;quot;按任务逐个处理&amp;quot;&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>TaskCreate&lt;/code>/&lt;code>TaskUpdate&lt;/code>/&lt;code>TaskList&lt;/code>/&lt;code>TaskGet&lt;/code>&lt;/td>
+&lt;td>&lt;code>write_todos&lt;/code>&lt;/td>
+&lt;td>直接替换&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>TodoWrite&lt;/code>&lt;/td>
+&lt;td>&lt;code>write_todos&lt;/code>&lt;/td>
+&lt;td>直接替换&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>Skill&lt;/code> tool&lt;/td>
+&lt;td>&lt;code>@skill-name&lt;/code> 或直接引用&lt;/td>
+&lt;td>适配 Gemini 语法&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>Read&lt;/code>&lt;/td>
+&lt;td>&lt;code>ReadFile&lt;/code>&lt;/td>
+&lt;td>直接替换&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>Edit&lt;/code>&lt;/td>
+&lt;td>&lt;code>Edit&lt;/code>&lt;/td>
+&lt;td>保持不变&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>Write&lt;/code>&lt;/td>
+&lt;td>&lt;code>WriteFile&lt;/code>&lt;/td>
+&lt;td>直接替换&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>Bash&lt;/code>&lt;/td>
+&lt;td>&lt;code>Shell&lt;/code>&lt;/td>
+&lt;td>直接替换&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>Glob&lt;/code>&lt;/td>
+&lt;td>&lt;code>FindFiles&lt;/code>&lt;/td>
+&lt;td>直接替换&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>Grep&lt;/code>&lt;/td>
+&lt;td>&lt;code>SearchText&lt;/code>&lt;/td>
+&lt;td>直接替换&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>WebFetch&lt;/code>&lt;/td>
+&lt;td>&lt;code>WebFetch&lt;/code>&lt;/td>
+&lt;td>保持不变&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>WebSearch&lt;/code>&lt;/td>
+&lt;td>&lt;code>GoogleSearch&lt;/code>&lt;/td>
+&lt;td>直接替换&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>AskUserQuestion&lt;/code>&lt;/td>
+&lt;td>&lt;code>ask_user&lt;/code>&lt;/td>
+&lt;td>直接替换&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h3 id="2-术语映射-terminology-mapping">2. 术语映射 (Terminology Mapping)&lt;/h3>
+&lt;p>为了让 Prompt 更符合 Gemini 的上下文，部分名词也做了相应的本地化调整：&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Claude Code&lt;/th>
+&lt;th>Gemini CLI&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;code>your human partner&lt;/code>&lt;/td>
+&lt;td>&lt;code>the user&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>CLAUDE.md&lt;/code>&lt;/td>
+&lt;td>&lt;code>GEMINI.md&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>~/.claude/skills&lt;/code>&lt;/td>
+&lt;td>&lt;code>~/.gemini/skills&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>superpowers:skill-name&lt;/code>&lt;/td>
+&lt;td>&lt;code>skill-name&lt;/code> (去掉前缀)&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h2 id="使用效果">使用效果&lt;/h2>
+&lt;p>迁移完成后，在 Gemini CLI 中已经可以完美加载这些 Skills。在实际对话中，Gemini 能够准确识别我的开发意图，并自动调用相应的工具来辅助工作，体验与 Claude Code 上的 &lt;code>superpowers&lt;/code> 基本一致。&lt;/p>
+&lt;p>如果你也是 Gemini 用户，欢迎尝试并提出反馈！&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/AI/">AI</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category></item><item><title>更换博客名字和网络身份标识</title><link>https://scottyeung.top/2026/rebrand-me-and-blog/</link><guid isPermaLink="true">https://scottyeung.top/2026/rebrand-me-and-blog/</guid><pubDate>Fri, 13 Feb 2026 09:33:45 +0800</pubDate><author>yeungyeah@qq.com (Scott Yeung)</author><description>&lt;p>之前在网络上冲浪的身份一直是 YeungYeah，这个名字的来源是姓氏杨的粤语拼音 + 英文 Yeah，连起来读实际上是“杨爷”的发音。杨爷这个称呼，还得来源于中学时期比较狂傲时自取的名号了，实际上后面也比较少人这样叫我，现在回过来看只觉得中二。然后博客的名字，最开始叫做 Scott Yeung's 的博客，后面为了更加突出个人的标识，改成了全网使用的网络身份，然后也是带点中二的自嘲，随笔随心写写，干脆就叫乱写地，都是乱写的，写得怎样都行，现在回过头看，也显得很中二。&lt;/p>
 &lt;p>于是乎，我考虑改名字了，身份标识回归此前的 Scott Yeung，英文名 + 姓氏，正式一点，稍微不那么正式点的，也可以叫我斯科特。&lt;/p>
 &lt;p>博客的名字，通过和 AI 多轮沟通后，最终选择了 Yeung's Context。&lt;/p>
 &lt;blockquote>
@@ -294,9 +417,4 @@ Skill(技能)是一种模块化、独立的扩展包,用于扩展 Claude 的能�
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>实际上这个命令在 Scoop 的 help 命令里面都能看到，Gemini 有点不太靠谱，在后面我发现了可以下载后，还是嘴硬不承认。&lt;/p>
-&lt;p>&lt;img src="https://scottyeung.top/my-images/%7B0C842582-CFE1-488E-A12E-C0A4F71AA517%7D.png" alt="">&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category><category domain="https://scottyeung.top/tags/Windows/">Windows</category><category domain="https://scottyeung.top/tags/%E7%BB%8F%E9%AA%8C/">经验</category></item><item><title>注销网站备案</title><link>https://scottyeung.top/2025/cancel-website-registration/</link><guid isPermaLink="true">https://scottyeung.top/2025/cancel-website-registration/</guid><pubDate>Fri, 12 Sep 2025 23:04:48 +0800</pubDate><author>yeungyeah@qq.com (Scott Yeung)</author><description>&lt;p>之前为了境内能够流畅地访问博客，给网站做了 ICP 备案，用上了又拍云赠送的 CDN 加速。境内访问非常丝滑，而且因为备案的原因，在微信内分享也可以直接打开，不会提示未知网站，需要多点一次才能访问。&lt;/p>
-&lt;p>然而备案后还是时不时有问题找过来。备案的要求也非常奇怪，网站备案除了要求域名备案，还需要有一个授权码，而授权码又来自于购买云服务器。导致即使只是部署一个在 GitHub 上的静态页面，还要额外掏钱买个云服务器，基本上就是闲置了。&lt;/p>
-&lt;p>突然昨天直接网警打电话过来了，因为网站之前只做了 ICP 备案，没有做公安备案。当时没有公安备案也不影响访问，而且做公安备案也比较麻烦，还有说法是甚至还要去派出所面谈做备案，干脆就没有做公安备案。现在籍贯地的网警直接打电话来问网站还用不？用的话要去做公安备案。&lt;/p>
-&lt;p>原本还想坚持下，把公安备案做了。后面想了想，还是算了，还是放弃备案。申请备案麻烦，各种材料，还要手写申请书，备案材料层层上交审批，搞一次得几天。然而撤销就干脆利落得多了。十一点提交的撤销申请，过十来分钟直接撤销完成了。&lt;/p>
-&lt;p>放弃备案之后，又拍云的 CDN 加速用不了了，应该基本国内平台的 CDN 都用不了。于是干脆迁到 Cloudflare 上，整个域名都迁到 Cloudflare 上来解析，静态内容都可以走它家的 CDN。&lt;/p>
-&lt;p>至此，所有域名都迁移到 Cloudflare 这个赛博菩萨上。自己试验了一下，访问速度也还好，不知道看到这边文章的大家感觉如何？&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E5%8D%9A%E5%AE%A2/">博客</category><category domain="https://scottyeung.top/tags/Cloudflare/">Cloudflare</category></item></channel></rss>
+&lt;p>&lt;img src="https://scottyeung.top/my-images/%7B0C842582-CFE1-488E-A12E-C0A4F71AA517%7D.png" alt="">&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category><category domain="https://scottyeung.top/tags/Windows/">Windows</category><category domain="https://scottyeung.top/tags/%E7%BB%8F%E9%AA%8C/">经验</category></item></channel></rss>

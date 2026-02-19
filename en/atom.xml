@@ -1,5 +1,168 @@
 <?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Yeung's Context</title><link>https://scottyeung.top/en/</link><description>Tinkering with code and tools, finding balance in anxiety.
-No standard answers here, just the honest context of tech, reading, and life.</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>en-US</language><managingEditor>yeungyeah@qq.com (Scott Yeung)</managingEditor><webMaster>yeungyeah@qq.com (Scott Yeung)</webMaster><lastBuildDate>Fri, 13 Feb 2026 08:48:08 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/en/atom.xml"/><item><title>Translating Blog Posts with Claude Skills</title><link>https://scottyeung.top/en/2026/claude-skills-to-translate/</link><guid isPermaLink="true">https://scottyeung.top/en/2026/claude-skills-to-translate/</guid><pubDate>Mon, 26 Jan 2026 22:28:54 +0800</pubDate><author>yeungyeah@qq.com (Scott Yeung)</author><description>&lt;p>I previously set up an &lt;a href="https://scottyeung.top/en/">English version&lt;/a> of my blog (the process is documented in &lt;a href="https://scottyeung.top/2024/setup-english-blog/">Setting Up My English Blog with Hugo&lt;/a>), where I publish some articles translated into English using AI. The original workflow was: after writing an article, I would paste it into a large language model's chat window, use a fixed prompt to translate it into English while maintaining the same markdown format, then copy the output and create a new file in the corresponding directory for English content. This involved copying and pasting several times and manually creating new files each time. It was fairly quick, but after getting familiar with Claude Code, I wondered if I could make it even more convenient.&lt;/p>
+No standard answers here, just the honest context of tech, reading, and life.</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>en-US</language><managingEditor>yeungyeah@qq.com (Scott Yeung)</managingEditor><webMaster>yeungyeah@qq.com (Scott Yeung)</webMaster><lastBuildDate>Thu, 19 Feb 2026 01:49:59 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/en/atom.xml"/><item><title>Superpower Agent Skills in Gemini</title><link>https://scottyeung.top/en/2026/superpower-skills-gemini/</link><guid isPermaLink="true">https://scottyeung.top/en/2026/superpower-skills-gemini/</guid><pubDate>Wed, 18 Feb 2026 00:42:07 +0800</pubDate><author>yeungyeah@qq.com (Scott Yeung)</author><description>&lt;p>While using Claude Code, the Skills suite provided by &lt;a href="https://github.com/obra/superpowers">superpowers&lt;/a> has been incredibly useful, especially Brainstorming, Writing-plans, and Executing-plans. After using these skills, you can clearly feel that the AI works more methodically with significantly improved logic.&lt;/p>
+&lt;p>Recently, I've also been researching code Agent CLI tools beyond Claude Code. Since I have a Gemini subscription, I decided to try out Google's official CLI tool. Although Gemini CLI also supports Agent Skills, there are some differences in command formats and rule details compared to Claude. Currently, the official &lt;a href="https://github.com/obra/superpowers">superpowers&lt;/a> doesn't formally support Gemini (though I noticed there seems to be a related branch in development in the issue list).&lt;/p>
+&lt;p>Rather than waiting passively, I decided to take matters into my own hands. So I decided to use Claude Code as a blueprint and migrate to create a Gemini version of &lt;code>superpowers&lt;/code>.&lt;/p>
+&lt;p>The project repository is now open source: &lt;a href="https://github.com/yeung66/gemini-superpowers">gemini-superpowers&lt;/a>&lt;/p>
+&lt;p>If you'd like to try it out, you can quickly install it with the following command:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">gemini skills install &lt;span class="o">[&lt;/span>https://github.com/yeung66/gemini-superpowers.git&lt;span class="o">](&lt;/span>https://github.com/yeung66/gemini-superpowers.git&lt;span class="o">)&lt;/span> --path skills
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="core-migration-content">Core Migration Content&lt;/h2>
+&lt;p>This migration mainly involved two parts of work: aligning tool names (Tools) and mapping core terminology (Terminology) to ensure Gemini can correctly understand and execute the original Agent logic.&lt;/p>
+&lt;h3 id="1-tools-mapping">1. Tools Mapping&lt;/h3>
+&lt;p>We need to convert Claude Code's tool commands to equivalent commands that Gemini CLI can recognize:&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Claude Code&lt;/th>
+&lt;th>Gemini CLI&lt;/th>
+&lt;th>Handling Method&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;code>Task&lt;/code> (subagent dispatch)&lt;/td>
+&lt;td>Process description&lt;/td>
+&lt;td>Change to &amp;quot;step-by-step execution&amp;quot; or &amp;quot;process tasks one by one&amp;quot;&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>TaskCreate&lt;/code>/&lt;code>TaskUpdate&lt;/code>/&lt;code>TaskList&lt;/code>/&lt;code>TaskGet&lt;/code>&lt;/td>
+&lt;td>&lt;code>write_todos&lt;/code>&lt;/td>
+&lt;td>Direct replacement&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>TodoWrite&lt;/code>&lt;/td>
+&lt;td>&lt;code>write_todos&lt;/code>&lt;/td>
+&lt;td>Direct replacement&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>Skill&lt;/code> tool&lt;/td>
+&lt;td>&lt;code>@skill-name&lt;/code> or direct reference&lt;/td>
+&lt;td>Adapt to Gemini syntax&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>Read&lt;/code>&lt;/td>
+&lt;td>&lt;code>ReadFile&lt;/code>&lt;/td>
+&lt;td>Direct replacement&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>Edit&lt;/code>&lt;/td>
+&lt;td>&lt;code>Edit&lt;/code>&lt;/td>
+&lt;td>No change&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>Write&lt;/code>&lt;/td>
+&lt;td>&lt;code>WriteFile&lt;/code>&lt;/td>
+&lt;td>Direct replacement&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>Bash&lt;/code>&lt;/td>
+&lt;td>&lt;code>Shell&lt;/code>&lt;/td>
+&lt;td>Direct replacement&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>Glob&lt;/code>&lt;/td>
+&lt;td>&lt;code>FindFiles&lt;/code>&lt;/td>
+&lt;td>Direct replacement&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>Grep&lt;/code>&lt;/td>
+&lt;td>&lt;code>SearchText&lt;/code>&lt;/td>
+&lt;td>Direct replacement&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>WebFetch&lt;/code>&lt;/td>
+&lt;td>&lt;code>WebFetch&lt;/code>&lt;/td>
+&lt;td>No change&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>WebSearch&lt;/code>&lt;/td>
+&lt;td>&lt;code>GoogleSearch&lt;/code>&lt;/td>
+&lt;td>Direct replacement&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>AskUserQuestion&lt;/code>&lt;/td>
+&lt;td>&lt;code>ask_user&lt;/code>&lt;/td>
+&lt;td>Direct replacement&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h3 id="2-terminology-mapping">2. Terminology Mapping&lt;/h3>
+&lt;p>To make the prompts more suitable for Gemini's context, some terms were also localized accordingly:&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Claude Code&lt;/th>
+&lt;th>Gemini CLI&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;code>your human partner&lt;/code>&lt;/td>
+&lt;td>&lt;code>the user&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>CLAUDE.md&lt;/code>&lt;/td>
+&lt;td>&lt;code>GEMINI.md&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>~/.claude/skills&lt;/code>&lt;/td>
+&lt;td>&lt;code>~/.gemini/skills&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>superpowers:skill-name&lt;/code>&lt;/td>
+&lt;td>&lt;code>skill-name&lt;/code> (remove prefix)&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h2 id="usage-results">Usage Results&lt;/h2>
+&lt;p>After the migration was completed, these Skills can be perfectly loaded in Gemini CLI. In actual conversations, Gemini can accurately identify my development intentions and automatically invoke the corresponding tools to assist with work. The experience is basically consistent with &lt;code>superpowers&lt;/code> on Claude Code.&lt;/p>
+&lt;p>If you're also a Gemini user, feel free to try it out and provide feedback!&lt;/p></description><category domain="https://scottyeung.top/en/posts/">posts</category><category domain="https://scottyeung.top/en/tags/AI/">AI</category><category domain="https://scottyeung.top/en/tags/Tools/">Tools</category></item><item><title>Cyber "Multiple Nationalities": A Record of Account Hassles</title><link>https://scottyeung.top/en/2026/apple-google-multiple-accounts/</link><guid isPermaLink="true">https://scottyeung.top/en/2026/apple-google-multiple-accounts/</guid><pubDate>Sun, 01 Feb 2026 12:18:02 +0800</pubDate><author>yeungyeah@qq.com (Scott Yeung)</author><description>&lt;p>I've been wanting to talk about accounts lately.&lt;/p>
+&lt;p>This thing was originally just an identity marker, but in today's internet environment, it has forced us into becoming &amp;quot;cunning rabbits with three burrows.&amp;quot;&lt;/p>
+&lt;p>As a mainland China user, in the early years, to download some apps not available in the CN region, most of us probably prepared a Hong Kong region Apple ID as backup. Back then, I thought the HK ID was pretty perfect—Chinese interface, convenient payment (just link an Alipay HK or a Hong Kong bank card), and most of the services you'd need were available.&lt;/p>
+&lt;p>But in the past two years, the AI era has arrived, and the situation has changed again. Many AI services (like Claude, ChatGPT's iOS clients) are not only locked in the CN region, but even HK region has been categorized as &amp;quot;not supported.&amp;quot; No choice—to keep up with the times, I had to bite the bullet and get a US region Apple ID.&lt;/p>
+&lt;p>This isn't just happening on iOS; Android isn't any better.&lt;/p>
+&lt;p>I originally thought having a Hong Kong region Google account would be enough—the Play Store has complete content, and there are no payment obstacles. But then Google's own child Gemini came out and immediately imposed regional restrictions. To smoothly use Gemini, I was forced to register a new US region Google account to subscribe to the membership.&lt;/p>
+&lt;p>So now the situation has become quite surreal:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>iOS side&lt;/strong>: CN ID for storing photos, HK ID for downloading games, US ID for serving those picky AI Apps.&lt;/li>
+&lt;li>&lt;strong>Android side&lt;/strong>: HK account for downloading daily apps and using various Google services, US account specifically to serve Gemini.&lt;/li>
+&lt;/ul>
+&lt;p>Daily use is absolutely schizophrenic. On iPhone, to update an app I have to switch accounts, typing passwords until my fingers go numb; on Android, although switching is slightly more convenient, constantly switching back and forth for different service permissions, I often can't figure out which &amp;quot;country&amp;quot; I'm currently in.&lt;/p>
+&lt;h3 id="the-ip-address-thing-is-even-more-mystical-than-accounts">The IP Address Thing Is Even More Mystical Than Accounts&lt;/h3>
+&lt;p>Having a US region account doesn't mean you can use US region services.&lt;/p>
+&lt;p>Your network environment must be &amp;quot;clean.&amp;quot; This forces us to set up dedicated proxy rules for specific services. Before, one node could handle everything, but not anymore: this service requires a native US IP, that streaming service must use a residential broadband IP, another AI service blocks common data center IP ranges...&lt;/p>
+&lt;p>One slight slip of the hand, a routing rule written wrong, or a node drifting to a risk-controlled network segment, and at best the service becomes unavailable, at worst it directly triggers the risk control system. The worst case scenario is that due to IP changes being too frequent or locations being abnormal, your painstakingly registered account gets banned along with it.&lt;/p>
+&lt;p>Every time before opening these apps, I have to nervously confirm the proxy status, afraid of stepping into thin air and losing the account.&lt;/p>
+&lt;h3 id="apple-id-registration-pitfall-guide">Apple ID Registration Pitfall Guide&lt;/h3>
+&lt;p>Google account registration is relatively forgiving, but the US Apple ID registration process is now practically a &amp;quot;battlefield.&amp;quot;&lt;/p>
+&lt;p>First is the email issue. Apple ID is tightly bound to email, so three IDs take up three slots. After digging up some obscure email to register with, filling out a bunch of information, at the final step a popup directly appears:&lt;/p>
+&lt;blockquote>
+&lt;p>&lt;strong>&amp;quot;Your account cannot be created at this time.&amp;quot;&lt;/strong>&lt;/p>
+&lt;/blockquote>
+&lt;p>No error code, no specific reason, just telling you &amp;quot;no.&amp;quot;&lt;/p>
+&lt;p>Unwilling to give up, changing the time, changing the IP, changing the browser—most likely still the same message. After searching online for a while, I found this is almost a common problem, probably triggering some mystical risk control mechanism of Apple's.&lt;/p>
+&lt;p>After an afternoon of tinkering with no results, I later saw a folk remedy in some corner: &lt;strong>register using WeChat Mini Program&lt;/strong>.&lt;/p>
+&lt;p>With a &amp;quot;dead horse as a living horse doctor&amp;quot; mentality, I tried it, and it actually passed in one go! The path is roughly: search for Apple's official Mini Program (or related service entry) in WeChat, go through the account creation process inside. The risk control here seems much more lenient than the webpage and phone settings, no errors at all, smoothly passed.&lt;/p>
+&lt;h4 id="the-pitfall-of-region-switching">The Pitfall of Region Switching&lt;/h4>
+&lt;p>The ID registered through the Mini Program defaults to &lt;strong>Mainland China&lt;/strong> region.&lt;/p>
+&lt;p>I thought this would be easy—just change the region on the Apple ID webpage? But I hit another wall—modifying the region on the webpage, selecting United States, filling in the information, clicking save, error. Still an error without any reason given.&lt;/p>
+&lt;p>At this point, the only option is to resort to the &amp;quot;hard change&amp;quot; method: &lt;strong>log into the new account directly in the App Store on your phone&lt;/strong>. The system will prompt you that this account has never been used and needs to be reviewed. After clicking review, on this interface select region as United States, agree to the terms. Magically, there's no obstacle here at all, and it directly lets you proceed to fill in the address.&lt;/p>
+&lt;p>At the address filling step, don't just fill in randomly. Although they don't verify actual residence, the zip code and state need to match.&lt;/p>
+&lt;p>Two Tips:&lt;/p>
+&lt;ol>
+&lt;li>&lt;strong>Use a generator&lt;/strong>: Google &amp;quot;US Address Generator,&amp;quot; there are tons of them, capable of generating complete information including street, phone number, and zip code.&lt;/li>
+&lt;li>&lt;strong>Choose a tax-free state&lt;/strong>: This step is very critical. If you plan to buy apps or subscribe to services in the future, make sure to choose an address in a &lt;strong>Tax-Free State&lt;/strong>. For example, &lt;strong>Oregon (OR)&lt;/strong>, &lt;strong>Delaware (DE)&lt;/strong>, &lt;strong>Montana (MT)&lt;/strong>, etc. Otherwise, buying a $19.99 software, you'll have to pay extra tax. Although it's not much money, it's annoying.&lt;/li>
+&lt;/ol>
+&lt;h3 id="heading">&lt;/h3>
+&lt;p>After going through all this hassle, looking at those accounts from different regions on my phone, I let out a long sigh of relief.&lt;/p>
+&lt;p>In this digital age, wanting to get a bit of convenience that should have been there all along (like using Gemini, downloading ChatGPT), often requires a disproportionate amount of time investment. The four or five accounts clutched in hand, plus that pile of complex network rules, is probably the most authentic portrait of our generation of netizens.&lt;/p>
+&lt;p>Sometimes I wonder, these should be the most basic services, why do they have to be made so complicated? But wondering is wondering, the tinkering that needs to be done still needs to be done. After all, in this era, not tinkering means falling behind.&lt;/p></description><category domain="https://scottyeung.top/en/posts/">posts</category><category domain="https://scottyeung.top/en/tags/Apple/">Apple</category><category domain="https://scottyeung.top/en/tags/Google/">Google</category><category domain="https://scottyeung.top/en/tags/Rant/">Rant</category><category domain="https://scottyeung.top/en/tags/Tinkering/">Tinkering</category></item><item><title>Translating Blog Posts with Claude Skills</title><link>https://scottyeung.top/en/2026/claude-skills-to-translate/</link><guid isPermaLink="true">https://scottyeung.top/en/2026/claude-skills-to-translate/</guid><pubDate>Mon, 26 Jan 2026 22:28:54 +0800</pubDate><author>yeungyeah@qq.com (Scott Yeung)</author><description>&lt;p>I previously set up an &lt;a href="https://scottyeung.top/en/">English version&lt;/a> of my blog (the process is documented in &lt;a href="https://scottyeung.top/2024/setup-english-blog/">Setting Up My English Blog with Hugo&lt;/a>), where I publish some articles translated into English using AI. The original workflow was: after writing an article, I would paste it into a large language model's chat window, use a fixed prompt to translate it into English while maintaining the same markdown format, then copy the output and create a new file in the corresponding directory for English content. This involved copying and pasting several times and manually creating new files each time. It was fairly quick, but after getting familiar with Claude Code, I wondered if I could make it even more convenient.&lt;/p>
 &lt;p>So I decided to use &lt;a href="https://code.claude.com/docs/en/skills#create-your-first-skill">Claude Skills&lt;/a>.&lt;/p>
 &lt;blockquote>
 &lt;p>What is a Claude Skill?
@@ -370,34 +533,4 @@ ERROR deprecated: .Site.Author was deprecated in Hugo v0.124.0 and subsequently 
 &lt;ul>
 &lt;li>&lt;strong>Purpose&lt;/strong>: Use the extracted formula to install CMake version 3.31.1.&lt;/li>
 &lt;li>&lt;strong>Result&lt;/strong>: CMake version 3.31.1 is installed on your system.&lt;/li>
-&lt;/ul></description><category domain="https://scottyeung.top/en/posts/">posts</category><category domain="https://scottyeung.top/en/tags/Tools/">Tools</category><category domain="https://scottyeung.top/en/tags/Tutorial/">Tutorial</category><category domain="https://scottyeung.top/en/tags/Experience/">Experience</category><category domain="https://scottyeung.top/en/tags/macOS/">macOS</category><category domain="https://scottyeung.top/en/tags/Hugo/">Hugo</category></item><item><title>2024 Annual Record</title><link>https://scottyeung.top/en/2025/record-of-2024/</link><guid isPermaLink="true">https://scottyeung.top/en/2025/record-of-2024/</guid><pubDate>Sat, 04 Jan 2025 10:06:50 +0800</pubDate><author>yeungyeah@qq.com (Scott Yeung)</author><description>&lt;p>Having completed a full year as a pure worker, I'm writing a simple journal to record some events and thoughts from this year.&lt;/p>
-&lt;h2 id="january">January&lt;/h2>
-&lt;p>I finally went to Hong Kong to open a bank account. Although I encountered some unexpected problems - I discovered that &lt;a href="http://xhslink.com/a/Rb3xDU5JTPY2">my China Telecom SIM card had no signal when roaming in Hong Kong&lt;/a> - it was a close call, but I managed to successfully open the account and got the card on the spot.&lt;/p>
-&lt;p>From this moment on, I also began my US stock investment journey. Through the channel of US stocks, I've had more thoughts about investing and making money. After starting work last year, I felt that making money was the most important thing, but I didn't have many ideas about how exactly to make money or how to have income outside of work. Now after getting into US stock investing, although it's impossible to make big money immediately through investing, at least I can see hope - especially after seeing some peers who switched careers to become full-time traders and are still able to support themselves and live well. This makes me feel that this path has potential.&lt;/p>
-&lt;p>&lt;strong>The core is still: prepare well and wait for opportunities.&lt;/strong> Save more money, actively look for opportunities, be open, and don't limit yourself to just one path.&lt;/p>
-&lt;p>Taking advantage of the bank account opening trip, I also spent a day playing in Hong Kong. The last time I went to Hong Kong was probably during middle school. As a Cantonese person, although I've been exposed to a lot of information about Hong Kong and seem very familiar with it, this was actually only my second time there. However, knowing Cantonese and being familiar with Hong Kong culture meant I didn't encounter any problems while visiting. Hong Kong as a city still has many aspects that attract me, reminding me of my middle school aspiration to study at the University of Hong Kong. Now I actually have the opportunity to get an HKID and work in Hong Kong, but various factors make me hesitate, especially the &amp;quot;stay for seven years&amp;quot; threshold being too high. However, while living there might not work out, visiting more often is definitely possible. After my first trip to Hong Kong, I immediately updated my endorsement to multiple-entry upon returning.&lt;/p>
-&lt;h2 id="february">February&lt;/h2>
-&lt;p>Chinese New Year - it feels less and less festive, maybe because I'm getting older and have less and less anticipation for it. New Year has gradually evolved into going back to the countryside to eat, visiting relatives and eating with them - various template-like scenes of eating meals everywhere. I don't really like it.&lt;/p>
-&lt;h2 id="march--april">March &amp;amp; April&lt;/h2>
-&lt;p>A project I owned was finally launching. During this period, external partner organizations caused all sorts of trouble and problems. Even after launch, there was still a lot of follow-up work needed. However, the final business results were extremely good - the launch brought in extremely high TPV for the year. Although technology is meant to serve business, a very realistic point is: after achieving good business results, will the credit really go to the technical staff? This reminds me of a complaint post I once saw on the internal network - at the celebration banquet, all kinds of people were present, except technical staff were nowhere to be seen.&lt;/p>
-&lt;p>Combined with the year-end bonus and salary adjustment after the annual performance review came out, it made me want to laugh even more &lt;del>(As a newcomer, I didn't even get that 500)&lt;/del> and made me realize even more that being a worker has no future.&lt;/p>
-&lt;p>&lt;img src="https://scottyeung.top/my-images/202501041125963.jpeg" alt="">&lt;/p>
-&lt;hr>
-&lt;p>My girlfriend's graduate school entrance exam results also came out - high scores on the initial test, and after two weeks of preparation, she successfully passed the interview as well. Finally made it ashore - congratulations! This made up for the regret from back then.&lt;/p>
-&lt;h2 id="may">May&lt;/h2>
-&lt;p>Checked in to Shantou. Although I had many Chaoshan classmates in high school, this was my first time actually going there. My impression of Shantou is all about beef hotpot and licorice fruit.&lt;/p>
-&lt;h2 id="june">June&lt;/h2>
-&lt;p>Went to Malaysia for a team building trip. Seven years since my last time abroad, and it was also to Malaysia again. The island scenery was indeed quite nice, and snorkeling was very interesting.&lt;/p>
-&lt;p>Traveling in Southeast Asia is really affordable - the round-trip airfare all-inclusive was only 900+. I'm gradually realizing that going abroad to travel isn't as complicated as I imagined, and the value for money is quite good. In the new year, I hope to have more opportunities to unlock different countries (but I'll need to unlock various countries' visas first).&lt;/p>
-&lt;h2 id="september---november">September - November&lt;/h2>
-&lt;p>In three months, I attended three classmates' weddings. Friends and classmates around me are gradually getting married and starting families. I have quite a lot of feelings about this - witnessing peers around me enter the next stage of life, occasionally I also wonder: when will it be my turn? I'm not afraid of marriage or having children; on the contrary, I actually look forward to marriage, family, and kids. However, getting married isn't that simple. Marriage means the union of two families - it's not just two people getting a marriage certificate and calling it done. There are all kinds of factors to consider. But troublesome as it may be, it still needs to be faced, and I won't run away from it. I hope this happy event can happen in the next couple of years.&lt;/p>
-&lt;h2 id="december">December&lt;/h2>
-&lt;p>I put off the company's annual health checkup until the end of the year. Fortunately, the results showed no major problems. Since starting work, I feel like my body isn't as good as before. I used to often self-deprecatingly tell others that in our industry, we trade our lives for high salaries. Now that I'm actually working, I've found that work really is a form of wear and tear, both physiologically and psychologically. How to face this wear and tear and minimize its impact is the most important subject in my work life.&lt;/p>
-&lt;p>The biggest physiological impact is having less time for exercise. During school, I had plenty of time and exercised almost every day. Even if I didn't exercise, my daily walking was sufficient. But after starting work, it's easy to go a whole week without exercising (of course, part of the reason is that I'm too tired from work and too lazy to move). So I've been looking for an efficient exercise method that I can stick to, to get myself moving. I previously bought a kettlebell, and the exercise effect was indeed good - it could even be used as HIIT - but after persisting for a month, it was left idle.&lt;/p>
-&lt;p>Recently this month I've picked up swimming again. Actually, I've loved swimming since I was little. During childhood summers, as soon as vacation started, my family would take me swimming, and I developed what I considered pretty good swimming skills. After starting university, I basically stopped swimming. Now after resuming swimming, I've started swimming in professional pools with lanes (the pools I swam in as a kid were really just big pools). After being around more swimmers and using my watch to record my swimming sessions, I've realized that I'm not actually that good at swimming.&lt;/p>
-&lt;p>In a small city, not that many people know how to swim, and the pools aren't that professional - most people going to &amp;quot;swim&amp;quot; are actually just playing in the water. Being the best swimmer in such an environment doesn't really mean anything. But when you're in it, your vision and thoughts are still limited by the environment and platform.&lt;/p>
-&lt;p>My former self was a bit like a frog at the bottom of a well - and this isn't just about swimming, but many other aspects too. I was limited by my own thinking, ideas, or various factors. I still need to open myself up, be open and keep exploring.&lt;/p></description><category domain="https://scottyeung.top/en/posts/">posts</category><category domain="https://scottyeung.top/en/tags/Record/">Record</category><category domain="https://scottyeung.top/en/tags/Summary/">Summary</category><category domain="https://scottyeung.top/en/tags/Life/">Life</category><category domain="https://scottyeung.top/en/tags/Investment/">Investment</category><category domain="https://scottyeung.top/en/tags/Work/">Work</category></item><item><title>Blog RSS Fetch Failed</title><link>https://scottyeung.top/en/2024/rss-fetch-failed/</link><guid isPermaLink="true">https://scottyeung.top/en/2024/rss-fetch-failed/</guid><pubDate>Sun, 29 Dec 2024 11:50:22 +0800</pubDate><author>yeungyeah@qq.com (Scott Yeung)</author><description>&lt;p>Two weeks ago, I received an email from the maintainer of &lt;a href="https://github.com/nju-lug/blogroll">NJU-LUG Blogroll&lt;/a>, informing me that the RSS feed of my blog was not being fetched properly and suggesting I take a look when I had time. Since I hadn't updated my blog in the past two months and was too busy to check, I hadn't noticed the issue. After publishing a new post yesterday, I realized today that the view count was still zero. I opened &lt;a href="https://app.follow.is/share/feeds/55149012216215581">Follow&lt;/a> and found that Follow was also having trouble fetching the RSS feed.&lt;/p>
-&lt;p>When I received the email, I tested the RSS feed locally, and it opened without any issues. Then I checked the error logs provided by NJU-LUG Blogroll, which indicated a timeout error. My initial guess was that there might be an issue with the CDN.&lt;/p>
-&lt;p>I logged into Upyun to inspect the CDN settings and eventually discovered a configuration option for &lt;strong>Acceleration Regions&lt;/strong>. The default setting was &amp;quot;Domestic Acceleration,&amp;quot; which routes overseas requests to domestic CDN nodes. It seemed the problem lay here—overseas access (e.g., GitHub Action) might have been unable to reach Upyun's domestic CDN nodes recently, resulting in timeouts and the inability to fetch the RSS feed.&lt;/p>
-&lt;p>&lt;img src="https://scottyeung.top/my-images/202412291319630.png" alt="">&lt;/p>
-&lt;p>After changing the configuration to &amp;quot;Global Acceleration,&amp;quot; I retried fetching the RSS feed in Follow, and the issue was resolved successfully.&lt;/p></description><category domain="https://scottyeung.top/en/posts/">posts</category><category domain="https://scottyeung.top/en/tags/Blog/">Blog</category><category domain="https://scottyeung.top/en/tags/GitHub/">GitHub</category><category domain="https://scottyeung.top/en/tags/rss/">rss</category><category domain="https://scottyeung.top/en/tags/Notes/">Notes</category></item></channel></rss>
+&lt;/ul></description><category domain="https://scottyeung.top/en/posts/">posts</category><category domain="https://scottyeung.top/en/tags/Tools/">Tools</category><category domain="https://scottyeung.top/en/tags/Tutorial/">Tutorial</category><category domain="https://scottyeung.top/en/tags/Experience/">Experience</category><category domain="https://scottyeung.top/en/tags/macOS/">macOS</category><category domain="https://scottyeung.top/en/tags/Hugo/">Hugo</category></item></channel></rss>
