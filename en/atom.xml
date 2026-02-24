@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah's Context</title><link>https://scottyeung.top/en/</link><description>Tinkering with code and tools, finding balance in anxiety.
-No standard answers here, just the honest context of tech, reading, and life.</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>en-US</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Tue, 24 Feb 2026 14:50:11 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/en/atom.xml"/><item><title>From Typing to Talking: My Adventures and Pitfalls with Voice Input</title><link>https://scottyeung.top/en/2026/voice-input-experience/</link><guid isPermaLink="true">https://scottyeung.top/en/2026/voice-input-experience/</guid><pubDate>Tue, 24 Feb 2026 15:52:18 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>During the Spring Festival holiday, I came across a lot of posts about voice input. I decided to take the plunge and embrace AI even further, to see if I could max out my efficiency and productivity.&lt;/p>
+No standard answers here, just the honest context of tech, reading, and life.</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>en-US</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Tue, 24 Feb 2026 18:05:32 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/en/atom.xml"/><item><title>From Typing to Talking: My Adventures and Pitfalls with Voice Input</title><link>https://scottyeung.top/en/2026/voice-input-experience/</link><guid isPermaLink="true">https://scottyeung.top/en/2026/voice-input-experience/</guid><pubDate>Tue, 24 Feb 2026 15:52:18 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>During the Spring Festival holiday, I came across a lot of posts about voice input. I decided to take the plunge and embrace AI even further, to see if I could max out my efficiency and productivity.&lt;/p>
 &lt;p>So I started trying out various voice input tools, forcing myself to switch my everyday input to &amp;quot;talking&amp;quot; mode. My current workflow mainly involves: using &lt;strong>&amp;quot;Lightning Say&amp;quot; (闪电说)&lt;/strong> combined with &lt;strong>&amp;quot;Doubao&amp;quot; (豆包)&lt;/strong> or &lt;strong>&amp;quot;Tongyi Qianwen&amp;quot; (通义千问)&lt;/strong>'s streaming voice models for recognition and transcription.&lt;/p>
 &lt;p>For different output needs, my approach is as follows:&lt;/p>
 &lt;ul>
@@ -421,82 +421,42 @@ Skills are modular, self-contained extension packages that expand Claude's capab
 &lt;p>At first, I thought about simply writing a script to scan for blank markdown files in the directory, but when I opened the local directory, I found that blank Journal pages don't necessarily create blank files. Later, I searched online and discovered that there's actually a built-in removal function for this, and the removal scope isn't limited to just blank Journals - all blank Pages can be scanned and removed.&lt;/p>
 &lt;p>Specific path to the feature: All pages -&amp;gt; ... -&amp;gt; Remove orphaned pages&lt;/p>
 &lt;p>&lt;img src="https://scottyeung.top/my-images/202508311310890.png" alt="">&lt;/p>
-&lt;p>&lt;img src="https://scottyeung.top/my-images/202508311310930.png" alt="">&lt;/p></description><category domain="https://scottyeung.top/en/posts/">posts</category><category domain="https://scottyeung.top/en/tags/Tools/">Tools</category><category domain="https://scottyeung.top/en/tags/Software/">Software</category><category domain="https://scottyeung.top/en/tags/Logseq/">Logseq</category></item><item><title>How to Sync Logseq</title><link>https://scottyeung.top/en/2025/logseq-sync/</link><guid isPermaLink="true">https://scottyeung.top/en/2025/logseq-sync/</guid><pubDate>Fri, 13 Jun 2025 22:30:09 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>Logseq is a bi-directional note-taking software similar to Obsidian. I've been using it sporadically for several years, but syncing/backup can be quite troublesome, especially across multiple devices of different system types. Both Logseq and Obsidian operate by loading a local folder as the note repository, so syncing notes essentially means syncing this folder. However, achieving a seamless experience across different systems and devices can be a bit of a hassle.&lt;/p>
-&lt;p>Here’s a summary of the various stages I’ve gone through, trying different methods at each stage, none of which worked perfectly. In the end, I opted for the official sync feature, which costs $5 per month.&lt;/p>
-&lt;h2 id="syncing-between-pcs-using-onedrive">Syncing Between PCs Using OneDrive&lt;/h2>
-&lt;p>When I first started using Logseq, I only used it on my computer and didn’t even think about checking or taking notes on my phone. At that time, I only needed to sync notes between two PCs. This was relatively simple—just choose a cloud storage service that supports real-time folder syncing, such as OneDrive or Nutstore. I used OneDrive back then, and the syncing was smooth. Since I rarely edited notes on both devices simultaneously, I didn’t encounter major issues.&lt;/p>
-&lt;h2 id="syncing-using-icloud">Syncing Using iCloud&lt;/h2>
-&lt;p>Later, I switched to an iPhone and needed to sync notes between my iPhone and PC. Naturally, I considered using iCloud for syncing, as iCloud can also be installed on Windows for syncing. Initially, I used iCloud to sync between my iPhone and Windows PC.&lt;/p>
-&lt;p>However, iCloud syncing often caused issues, especially on Windows devices. Sometimes, files would have multiple versions due to sync problems during normal use. Occasionally, a file version would fail to download for unknown reasons. When this happened, Logseq would get stuck trying to download the file, freezing the interface and crashing the program.&lt;/p>
-&lt;p>To resolve this, I had to manually locate and delete the problematic files in the iCloud storage directory. Obsidian also faces similar issues, but these freezes only occur when opening the software, not during use. Additionally, identifying and deleting duplicate files in the iCloud directory is nearly impossible on mobile devices. If this issue arises while using the app on a phone, it’s essentially unresolvable.&lt;/p>
-&lt;p>After switching my PC to a Mac, these sync conflicts and multi-version issues largely disappeared. However, I encountered another issue during actual use: file syncing and retrieval could be delayed. For example, if I wrote a journal entry on the computer today, the phone might not detect the update before opening the app. When the app opens, it might create a new note for today, overwriting the computer's entry. Fortunately, Logseq has a &lt;code>bak&lt;/code> folder for backups, so the data can be recovered, but it requires manual intervention outside the program.&lt;/p>
-&lt;h2 id="git-syncing">Git Syncing&lt;/h2>
-&lt;p>Before switching to a Mac, I tried another approach using Git to sync notes due to iCloud’s issues on Windows:&lt;/p>
+&lt;p>&lt;img src="https://scottyeung.top/my-images/202508311310930.png" alt="">&lt;/p></description><category domain="https://scottyeung.top/en/posts/">posts</category><category domain="https://scottyeung.top/en/tags/Tools/">Tools</category><category domain="https://scottyeung.top/en/tags/Software/">Software</category><category domain="https://scottyeung.top/en/tags/Logseq/">Logseq</category></item><item><title>Self-hosted Bitwarden Suddenly Unavailable</title><link>https://scottyeung.top/en/2025/bitwarden-self-host-problem/</link><guid isPermaLink="true">https://scottyeung.top/en/2025/bitwarden-self-host-problem/</guid><pubDate>Sat, 19 Jul 2025 14:46:50 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;h2 id="foreword-my-configuration">Foreword: My Configuration&lt;/h2>
+&lt;p>I have always been a loyal Bitwarden user. For data freedom, controllability, and to save money, I chose to self-host the service. My entire configuration was as follows:&lt;/p>
 &lt;ul>
-&lt;li>Logseq has built-in Git version control capabilities, automatically committing changes at regular intervals (e.g., every minute). On the PC, you can configure Git hooks to automatically push commits to a remote repository.&lt;/li>
-&lt;li>On iOS, I used a-shell and Shortcuts to pull and sync files. Specifically, I used Shortcuts to pull changes when opening Logseq and to commit and push changes when closing the app.&lt;/li>
+&lt;li>&lt;strong>Server&lt;/strong>: Tencent Cloud Server&lt;/li>
+&lt;li>&lt;strong>Password Service&lt;/strong>: Vaultwarden (Rust implementation of Bitwarden) Docker image&lt;/li>
+&lt;li>&lt;strong>Domain&lt;/strong>: Personal domain hosted on Tencent Cloud&lt;/li>
+&lt;li>&lt;strong>Client&lt;/strong>: Bitwarden clients across all platforms&lt;/li>
+&lt;li>&lt;strong>Reverse Proxy&lt;/strong>: Caddy, handling HTTPS automatically&lt;/li>
 &lt;/ul>
-&lt;p>This method allowed syncing notes across devices, but simultaneous edits could still cause issues.&lt;/p>
-&lt;p>Although the workflow seemed feasible, the actual experience was subpar due to various issues:&lt;/p>
+&lt;p>This combination had been running stably until today...&lt;/p>
+&lt;h2 id="1-discovery-of-the-problem">1. Discovery of the Problem&lt;/h2>
+&lt;p>Today, as usual, I opened the Bitwarden App on my phone to add a new login item. But strangely, after I clicked save, I couldn't find the newly added item in the list no matter how I looked.&lt;/p>
+&lt;p>At first, I thought it was a bug in the App, but to be safe, I opened the desktop client to try adding it. The client directly prompted me that the &lt;strong>save failed&lt;/strong>.&lt;/p>
+&lt;p>At this point, I realized the problem might not be that simple; it was highly likely that the interface communication between the client and my server had gone wrong.&lt;/p>
+&lt;h2 id="2-the-path-of-investigation">2. The Path of Investigation&lt;/h2>
+&lt;h3 id="1-preliminary-diagnosis-certificate-expiration">1. Preliminary Diagnosis: Certificate Expiration&lt;/h3>
+&lt;p>The first thing I thought of was to check my Vaultwarden management page. I accessed it via the domain name and found the first problem:&lt;/p>
 &lt;ul>
-&lt;li>My remote repository was on GitHub, and pulling changes on mobile often failed due to network issues, preventing the mobile app from syncing to the latest version.&lt;/li>
-&lt;li>Conflicts could arise, requiring manual resolution using Git, which necessitated user intervention.&lt;/li>
+&lt;li>&lt;strong>HTTP Access&lt;/strong>: Directly intercepted by Tencent Cloud, with a prompt saying &amp;quot;This website is not registered according to the relevant legal rules of the Ministry of Industry and Information Technology.&amp;quot;&lt;/li>
+&lt;li>&lt;strong>HTTPS Access&lt;/strong>: The page could be opened, but the browser address bar clearly displayed an &amp;quot;Insecure&amp;quot; warning—the SSL certificate had expired.&lt;/li>
 &lt;/ul>
-&lt;h2 id="syncing-between-android-and-pc-using-google-drive">Syncing Between Android and PC Using Google Drive&lt;/h2>
-&lt;p>When I switched back to an Android phone, iCloud was no longer an option, so I turned to Google Drive. That’s when I realized that most cloud storage services on Android don’t offer native two-way folder syncing like iCloud. To achieve this, I had to use third-party apps (e.g., AutoSync). However, these services had significant drawbacks. First, they required granting full read/write permissions for cloud storage, raising security concerns. Additionally, syncing was slow and prone to failure, as it relied on periodic syncing tasks to fetch the latest files from Drive. After a few attempts, I uninstalled the app and revoked its permissions.&lt;/p>
-&lt;h2 id="official-sync-feature">Official Sync Feature&lt;/h2>
-&lt;p>All the aforementioned methods essentially rely on external systems or software to sync the contents of the note folder. This inevitably creates a problem: Logseq itself is unaware of the syncing process or whether the files have been fully synced. Each time the app is opened, it assumes the files are already synced and processes them accordingly. This can lead to simultaneous read/write operations between Logseq and the external system, causing issues. This is the root cause of many of the sync problems mentioned above.&lt;/p>
+&lt;p>&lt;img src="https://scottyeung.top/my-images/202507191449467.png" alt="Browser certificate expiration warning">
+&lt;em>(Image: Tencent Cloud intercepting the page due to lack of registration)&lt;/em>&lt;/p>
+&lt;p>Case closed? It seemed quite likely. The expired certificate caused the HTTPS request of the API interface to fail, so the client naturally couldn't save data normally.&lt;/p>
+&lt;h3 id="2-deep-dive-why-didnt-caddy-auto-renew">2. Deep Dive: Why Didn't Caddy Auto-renew?&lt;/h3>
+&lt;p>But a new question followed: I use Caddy precisely because it can automatically implement HTTPS, applying for and renewing certificates. Why did it fail this time? Even stranger, other service domains on the same server could be accessed normally with valid certificates; only the Bitwarden domain had an issue.&lt;/p>
+&lt;p>I tried restarting the Caddy service and reloading the configuration, but to no avail. Helplessly, I had to check Caddy's execution logs.&lt;/p>
+&lt;p>The error message in the logs revealed the truth: &lt;strong>When Caddy tried to apply for a new HTTPS certificate, it needed to verify through the HTTP port (HTTP-01 challenge). However, this verification request was directly intercepted by Tencent Cloud, which returned a page with a non-registration prompt.&lt;/strong>&lt;/p>
 &lt;blockquote>
-&lt;p>Side note: Obsidian has many internal plugins for syncing. Could Logseq provide a similar plugin-based syncing solution? Why are there so few sync-related plugins for Logseq? Perhaps the developers haven’t opened up the necessary APIs for such capabilities?&lt;/p>
+&lt;p>So, the core reason was found: &lt;strong>Tencent Cloud upgraded its firewall policy. Previously, for unregistered domains, only access to port 80 was intercepted. Now, it intercepts all ports for external services.&lt;/strong>&lt;/p>
 &lt;/blockquote>
-&lt;p>After struggling with syncing on Android, I finally decided to pay for the official sync feature. Logseq now offers a sync service that, although still in beta, works seamlessly across devices (Android, Mac, iPad). For just $5 per month, you can enable it. Detailed setup instructions are available in the &lt;a href="https://blog.logseq.com/how-to-setup-and-use-logseq-sync/">official documentation&lt;/a>. Payment options include credit cards (Visa/Master), Google Pay, or PayPal.&lt;/p>
-&lt;p>The official sync feature supports syncing up to 10 graphs. On forums like v2ex, some users share their sync slots to save money. While each graph is encrypted with a separate password, sharing slots poses security risks. For instance, creating a graph for someone else requires sharing your account credentials. Additionally, it seems that removing a remote graph doesn’t require a password, potentially allowing malicious deletion of data.&lt;/p>
-&lt;h2 id="summary">Summary&lt;/h2>
-&lt;table>
-&lt;thead>
-&lt;tr>
-&lt;th>Sync Method&lt;/th>
-&lt;th>Use Case&lt;/th>
-&lt;th>Advantages&lt;/th>
-&lt;th>Disadvantages&lt;/th>
-&lt;/tr>
-&lt;/thead>
-&lt;tbody>
-&lt;tr>
-&lt;td>&lt;strong>OneDrive Sync&lt;/strong>&lt;/td>
-&lt;td>PC-to-PC Sync&lt;/td>
-&lt;td>• Smooth syncing&lt;br>• Easy to set up&lt;br>• Minimal conflict issues&lt;/td>
-&lt;td>• Limited to PC devices&lt;br>• Limited support for mobile devices&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;strong>iCloud Sync&lt;/strong>&lt;/td>
-&lt;td>iPhone + PC/Mac&lt;/td>
-&lt;td>• Relatively stable in Mac environments&lt;br>• Native iOS support&lt;/td>
-&lt;td>• Prone to file conflicts on Windows&lt;br>• Sync delays may cause data overwrites&lt;br>• Difficult to resolve conflicts on mobile&lt;br>• App may freeze&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;strong>Git Sync&lt;/strong>&lt;/td>
-&lt;td>Cross-Platform Users&lt;/td>
-&lt;td>• Strong version control&lt;br>• Supports auto-commits&lt;br>• Theoretically supports all platforms&lt;/td>
-&lt;td>• Sync failures due to network issues&lt;br>• Requires manual conflict resolution&lt;br>• Complex setup&lt;br>• Difficult for mobile use&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;strong>Google Drive + Third-Party Sync&lt;/strong>&lt;/td>
-&lt;td>Android + PC&lt;/td>
-&lt;td>• Supports Android platform&lt;/td>
-&lt;td>• Requires third-party app permissions&lt;br>• High security risks&lt;br>• Slow and unreliable syncing&lt;br>• Only periodic syncing&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;strong>Official Sync Feature&lt;/strong>&lt;/td>
-&lt;td>All Devices&lt;/td>
-&lt;td>• Built-in, seamless experience&lt;br>• Supports multiple devices (Android, Mac, iPad)&lt;br>• Encrypted and secure&lt;br>• Syncs up to 10 graphs&lt;/td>
-&lt;td>• Requires payment ($5/month)&lt;br>• Still in beta&lt;br>• Slot-sharing poses security risks&lt;/td>
-&lt;/tr>
-&lt;/tbody>
-&lt;/table>
-&lt;ol>
-&lt;li>&lt;strong>For PC-only use&lt;/strong>: Cloud storage services like OneDrive are sufficient.&lt;/li>
-&lt;li>&lt;strong>For Mac + iOS environments&lt;/strong>: iCloud is generally usable but watch out for sync delays.&lt;/li>
-&lt;li>&lt;strong>For cross-platform use involving Android&lt;/strong>: The official sync feature is the best choice. Although it requires payment, it offers the best experience.&lt;/li>
-&lt;li>&lt;strong>For tech-savvy users&lt;/strong>: Git syncing is an option but requires expertise in conflict resolution.&lt;/li>
-&lt;/ol></description><category domain="https://scottyeung.top/en/posts/">posts</category><category domain="https://scottyeung.top/en/tags/Tools/">Tools</category><category domain="https://scottyeung.top/en/tags/Software/">Software</category><category domain="https://scottyeung.top/en/tags/Productivity/">Productivity</category><category domain="https://scottyeung.top/en/tags/Notes/">Notes</category></item></channel></rss>
+&lt;p>This policy directly caused Caddy's certificate renewal/application mechanism to fail completely.&lt;/p>
+&lt;h2 id="3-struggle-and-abandonment">3. Struggle and Abandonment&lt;/h2>
+&lt;h3 id="attempting-to-migrate-the-domain">Attempting to Migrate the Domain&lt;/h3>
+&lt;p>Since it was a Tencent Cloud issue, I thought, could I migrate the domain resolution to Cloudflare and use Cloudflare's DNS service to bypass this restriction?&lt;/p>
+&lt;p>However, when I tried to modify the domain's NS (Name Server) records in the Tencent Cloud console, I found that this option was locked! To modify it, I had to go through an independent and somewhat hidden &amp;quot;DNS Server Modification&amp;quot; entry.&lt;/p>
+&lt;p>After the migration, I found it was actually useless. The interception actually happened on the server rather than at the DNS resolution level (or perhaps there were interceptions on both sides).&lt;/p>
+&lt;h2 id="4-final-solution">4. Final Solution&lt;/h2>
+&lt;p>In the end, for stability and peace of mind, I chose to pay for a Bitwarden Premium subscription ($10 a year) and stopped tinkering. These domestic personal cloud servers feel less and less useful. If it weren't for the blog needing an ICP registration number which requires a domestic cloud server, I would definitely shut it down and switch to overseas cloud servers.&lt;/p></description><category domain="https://scottyeung.top/en/posts/">posts</category><category domain="https://scottyeung.top/en/tags/Rant/">Rant</category><category domain="https://scottyeung.top/en/tags/Tools/">Tools</category><category domain="https://scottyeung.top/en/tags/Notes/">Notes</category><category domain="https://scottyeung.top/en/tags/Cloud-Services/">Cloud Services</category><category domain="https://scottyeung.top/en/tags/Cloudflare/">Cloudflare</category></item></channel></rss>
