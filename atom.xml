@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah's Context</title><link>https://scottyeung.top/</link><description>热爱折腾代码与工具，偶尔在焦虑中寻找平衡。
-这里没有标准答案，只有关于技术、阅读与生活感悟的真实上下文。</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Tue, 24 Feb 2026 08:18:20 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>从打字到动嘴：我的语音输入踩坑与探索</title><link>https://scottyeung.top/2026/voice-input-experience/</link><guid isPermaLink="true">https://scottyeung.top/2026/voice-input-experience/</guid><pubDate>Tue, 24 Feb 2026 15:52:18 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>春节假期刷了不少关于语音输入的帖子，这颗安利我吃下了，决定更进一步拥抱 AI，看看能不能把效率和生产力拉满。&lt;/p>
-&lt;p>于是，我开始试用各种语音输入软件，强迫自己将日常输入场景切换到“动嘴”模式。目前的这套工作流主要是：使用**“闪电说”** 配合 &lt;strong>“豆包”&lt;/strong> 或 &lt;strong>“通义千问”&lt;/strong> 的流式语音模型进行识别转写。&lt;/p>
+这里没有标准答案，只有关于技术、阅读与生活感悟的真实上下文。</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Tue, 24 Feb 2026 13:32:31 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>从打字到动嘴：我的语音输入踩坑与探索</title><link>https://scottyeung.top/2026/voice-input-experience/</link><guid isPermaLink="true">https://scottyeung.top/2026/voice-input-experience/</guid><pubDate>Tue, 24 Feb 2026 15:52:18 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>春节假期刷了不少关于语音输入的帖子，这颗安利我吃下了，决定更进一步拥抱 AI，看看能不能把效率和生产力拉满。&lt;/p>
+&lt;p>于是，我开始试用各种语音输入软件，强迫自己将日常输入场景切换到“动嘴”模式。目前的这套工作流主要是：使用 &lt;strong>“闪电说”&lt;/strong> 配合 &lt;strong>“豆包”&lt;/strong> 或 &lt;strong>“通义千问”&lt;/strong> 的流式语音模型进行识别转写。&lt;/p>
 &lt;p>针对不同的输出需求，我的处理方式如下：&lt;/p>
 &lt;ul>
 &lt;li>&lt;strong>大段文字&lt;/strong>：我在 Gemini 中自定义了一个 Gem，将转写后的“生肉”扔给它，让它帮忙去除口语废话、修正错词。之后，我会再人工过一遍。&lt;/li>
@@ -20,7 +20,7 @@
 &lt;p>这意味着即使“输入”快了，我后期还得花大量时间去用 AI 二次加工，或者手动“捉虫”确认，省下的时间又被消耗掉了。&lt;/p>
 &lt;h3 id="3-废话文学与-ai-的过度加戏">3. “废话文学”与 AI 的过度加戏&lt;/h3>
 &lt;p>语音输入的本质决定了它带有浓重的口语特征。说话时的思考停顿、逻辑跳跃、口误，软件都会照单全收。不像打字时，我们在落指前脑子里已经过了一遍逻辑。&lt;/p>
-&lt;p>虽然可以用大模型来“洗稿”，但这本身也是个折腾过程。以“闪电说”为例，它提供了一个基于大模型的原生文本润色功能。但在实际体验中，这个 AI 表现得**“过分积极”**了。&lt;/p>
+&lt;p>虽然可以用大模型来“洗稿”，但这本身也是个折腾过程。以“闪电说”为例，它提供了一个基于大模型的原生文本润色功能。但在实际体验中，这个 AI 表现得 **“过分积极”**了。&lt;/p>
 &lt;p>举个例子：&lt;/p>
 &lt;blockquote>
 &lt;p>我原本只是想转写一句：“我想让你做某些事情，排查某个问题。”
@@ -33,7 +33,7 @@
 &lt;/ul>
 &lt;h3 id="4-缺乏流式的安全感">4. 缺乏“流式”的安全感&lt;/h3>
 &lt;p>尽管底层的模型是流式的，但软件交互却不支持流式上屏。
-这导致我必须说完一大段话，才能看到最终结果。这过程就像**“开盲盒”**——如果开头就识别错了，我无法像打字那样及时发现并纠正，只能硬着头皮说完，最后面对一堆乱码更是崩溃。&lt;/p>
+这导致我必须说完一大段话，才能看到最终结果。这过程就像 &lt;strong>“开盲盒”&lt;/strong>——如果开头就识别错了，我无法像打字那样及时发现并纠正，只能硬着头皮说完，最后面对一堆乱码更是崩溃。&lt;/p>
 &lt;hr>
 &lt;h3 id="总结痛并快乐着">总结：痛并快乐着&lt;/h3>
 &lt;p>尽管吐槽了这么多，但必须承认：&lt;strong>在特定条件下，效率提升是碾压级的。&lt;/strong>&lt;/p>
