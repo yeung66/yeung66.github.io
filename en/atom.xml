@@ -1,5 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah's Context</title><link>https://scottyeung.top/en/</link><description>Tinkering with code and tools, finding balance in anxiety.
-No standard answers here, just the honest context of tech, reading, and life.</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>en-US</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Fri, 20 Feb 2026 04:06:56 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/en/atom.xml"/><item><title>Superpower Agent Skills in Gemini</title><link>https://scottyeung.top/en/2026/superpower-skills-gemini/</link><guid isPermaLink="true">https://scottyeung.top/en/2026/superpower-skills-gemini/</guid><pubDate>Wed, 18 Feb 2026 00:42:07 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>While using Claude Code, the Skills suite provided by &lt;a href="https://github.com/obra/superpowers">superpowers&lt;/a> has been incredibly useful, especially Brainstorming, Writing-plans, and Executing-plans. After using these skills, you can clearly feel that the AI works more methodically with significantly improved logic.&lt;/p>
+No standard answers here, just the honest context of tech, reading, and life.</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>en-US</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Tue, 24 Feb 2026 08:18:22 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/en/atom.xml"/><item><title>From Typing to Talking: My Adventures and Pitfalls with Voice Input</title><link>https://scottyeung.top/en/2026/voice-input-experience/</link><guid isPermaLink="true">https://scottyeung.top/en/2026/voice-input-experience/</guid><pubDate>Tue, 24 Feb 2026 15:52:18 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>During the Spring Festival holiday, I came across a lot of posts about voice input. I decided to take the plunge and embrace AI even further, to see if I could max out my efficiency and productivity.&lt;/p>
+&lt;p>So I started trying out various voice input tools, forcing myself to switch my everyday input to &amp;quot;talking&amp;quot; mode. My current workflow mainly involves: using &lt;strong>&amp;quot;Lightning Say&amp;quot; (闪电说)&lt;/strong> combined with &lt;strong>&amp;quot;Doubao&amp;quot; (豆包)&lt;/strong> or &lt;strong>&amp;quot;Tongyi Qianwen&amp;quot; (通义千问)&lt;/strong>'s streaming voice models for recognition and transcription.&lt;/p>
+&lt;p>For different output needs, my approach is as follows:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Long-form text&lt;/strong>: I created a custom Gem in Gemini, and feed it the raw transcription to remove filler words and fix misrecognized words. Then I do a manual pass.&lt;/li>
+&lt;li>&lt;strong>Short phrases/fragmented thoughts&lt;/strong>: Usually edit manually.&lt;/li>
+&lt;/ul>
+&lt;p>My current verdict is: &lt;strong>accuracy is acceptable, but we're still far from true &amp;quot;productivity freedom.&amp;quot;&lt;/strong> In many scenarios, it's in a state of &amp;quot;unusable&amp;quot; or &amp;quot;not great.&amp;quot; Of course, this might be because the tools I'm using aren't powerful enough, or my technique is off.&lt;/p>
+&lt;p>From my trial so far, here are the most strongly &amp;quot;discouraging&amp;quot; experiences:&lt;/p>
+&lt;h3 id="1-scene-pickiness-not-just-about-environment-but-also-about-people">1. Scene Pickiness: Not Just About Environment, But Also About People&lt;/h3>
+&lt;p>Voice input is very &amp;quot;delicate.&amp;quot; If the environment is noisy, or there's video audio playing in the background, it captures all the noise indiscriminately, causing recognition to fall apart.&lt;/p>
+&lt;p>Additionally, &lt;strong>social awkwardness&lt;/strong> is a major obstacle. Talking to your phone in public or outdoors involves privacy concerns and can disturb others. Compared to silently typing, typing is the most appropriate choice in those situations. For now, voice input seems limited to the absolute comfort zone of &amp;quot;home alone&amp;quot; or &amp;quot;private room&amp;quot; with no one around to interrupt.&lt;/p>
+&lt;h3 id="2-recognition-accuracy-still-falls-short-of-think-it-get-it">2. Recognition Accuracy: Still Falls Short of &amp;quot;Think It, Get It&amp;quot;&lt;/h3>
+&lt;p>Even with powerful large language models integrated, the recognition rate still hasn't reached the level where I can fully trust it.&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Mixed Chinese-English input&lt;/strong> is a major pain point.&lt;/li>
+&lt;li>&lt;strong>Proper nouns&lt;/strong> (names, places) are frequently misidentified.&lt;/li>
+&lt;/ul>
+&lt;p>This means even though &amp;quot;input&amp;quot; is faster, I still have to spend a lot of time on AI post-processing or manually &amp;quot;bug-hunting,&amp;quot; and the time saved gets eaten up again.&lt;/p>
+&lt;h3 id="3-filler-word-literature-and-ai-over-dramatization">3. &amp;quot;Filler Word Literature&amp;quot; and AI Over-Dramatization&lt;/h3>
+&lt;p>The nature of voice input means it carries heavy colloquial characteristics. The thinking pauses, logical leaps, and slips of the tongue while speaking are all faithfully recorded by the software. Unlike typing, where we've already processed the logic mentally before our fingers hit the keys.&lt;/p>
+&lt;p>While large models can be used to &amp;quot;clean up&amp;quot; the text, that process itself is also a hassle. Take &amp;quot;Lightning Say&amp;quot; (闪电说) as an example — it provides a native text polishing feature based on large models. But in actual use, this AI was &lt;strong>&amp;quot;overly enthusiastic.&amp;quot;&lt;/strong>&lt;/p>
+&lt;p>For example:&lt;/p>
+&lt;blockquote>
+&lt;p>I originally just wanted to transcribe: &amp;quot;I want you to do certain things, investigate a certain problem.&amp;quot;
+The AI took it upon itself to brainstorm and write out &amp;quot;the specific investigation steps&amp;quot; for me!&lt;/p>
+&lt;/blockquote>
+&lt;p>This kind of &amp;quot;fabricating from nothing&amp;quot; &lt;strong>hallucination&lt;/strong> is unacceptable to me.&lt;/p>
+&lt;ul>
+&lt;li>I later tried modifying the prompt, emphasizing &amp;quot;absolutely do not add or remove content,&amp;quot; which helped somewhat, but it still can't be 100% faithful to the original words.&lt;/li>
+&lt;li>Furthermore, since it's a packaged feature, I can't see exactly what it changed (no diff comparison), and I can't fine-tune parameters, making this feature feel quite useless.&lt;/li>
+&lt;/ul>
+&lt;h3 id="4-lack-of-streaming-security">4. Lack of &amp;quot;Streaming&amp;quot; Security&lt;/h3>
+&lt;p>Despite the underlying model being streaming, the software interaction doesn't support streaming display.
+This forces me to speak a large chunk before seeing the final result. The process is like &lt;strong>&amp;quot;opening a mystery box&amp;quot;&lt;/strong> — if the beginning was misrecognized, I can't catch and correct it in time like I would when typing, and can only push through to the end, then face a pile of gibberish in utter despair.&lt;/p>
+&lt;hr>
+&lt;h3 id="summary-bittersweet">Summary: Bittersweet&lt;/h3>
+&lt;p>Despite all these complaints, I have to admit: &lt;strong>in specific conditions, the efficiency boost is overwhelming.&lt;/strong>&lt;/p>
+&lt;p>Today I tried using OneNote to record my Spring Festival retrospective and produced over 1,000 characters. If typed by hand, it would take at least 30-40 minutes, but through voice dictation, &lt;strong>it only took about ten minutes&lt;/strong>. That rush of speed is genuinely addictive.&lt;/p>
+&lt;p>Among the issues above:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Recognition, interaction, over-processing&lt;/strong>: These are fundamentally issues of immature software and models. In theory, they can all be solved with future technological iteration (for example, once voiceprint recognition matures, it'll be able to only listen to the owner's voice and filter out background noise).&lt;/li>
+&lt;li>&lt;strong>Environmental limitations&lt;/strong>: This is a physical reality — just like sending voice messages on WeChat, you have to read the room.&lt;/li>
+&lt;/ul>
+&lt;p>In this era of large language models, I increasingly feel that &lt;strong>&amp;quot;content&amp;quot; itself matters more than &amp;quot;input perfection.&amp;quot;&lt;/strong>
+As long as the core ideas can be thrown out quickly, grammar, typos, and polish can all be left to AI to clean up. Especially in scenarios like writing diaries and weekly reviews that don't require intense logical construction, voice input is simply a godsend.&lt;/p>
+&lt;p>For the foreseeable future, I expect to continue &amp;quot;grinding&amp;quot; with this workflow. If anyone has a better solution, or is using some great voice input tool, feel free to recommend it in the comments!&lt;/p></description><category domain="https://scottyeung.top/en/posts/">posts</category><category domain="https://scottyeung.top/en/tags/AI/">AI</category><category domain="https://scottyeung.top/en/tags/Tools/">Tools</category><category domain="https://scottyeung.top/en/tags/Complaints/">Complaints</category></item><item><title>Superpower Agent Skills in Gemini</title><link>https://scottyeung.top/en/2026/superpower-skills-gemini/</link><guid isPermaLink="true">https://scottyeung.top/en/2026/superpower-skills-gemini/</guid><pubDate>Wed, 18 Feb 2026 00:42:07 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>While using Claude Code, the Skills suite provided by &lt;a href="https://github.com/obra/superpowers">superpowers&lt;/a> has been incredibly useful, especially Brainstorming, Writing-plans, and Executing-plans. After using these skills, you can clearly feel that the AI works more methodically with significantly improved logic.&lt;/p>
 &lt;p>Recently, I've also been researching code Agent CLI tools beyond Claude Code. Since I have a Gemini subscription, I decided to try out Google's official CLI tool. Although Gemini CLI also supports Agent Skills, there are some differences in command formats and rule details compared to Claude. Currently, the official &lt;a href="https://github.com/obra/superpowers">superpowers&lt;/a> doesn't formally support Gemini (though I noticed there seems to be a related branch in development in the issue list).&lt;/p>
 &lt;p>Rather than waiting passively, I decided to take matters into my own hands. So I decided to use Claude Code as a blueprint and migrate to create a Gemini version of &lt;code>superpowers&lt;/code>.&lt;/p>
 &lt;p>The project repository is now open source: &lt;a href="https://github.com/yeung66/gemini-superpowers">gemini-superpowers&lt;/a>&lt;/p>
@@ -453,84 +499,4 @@ Skills are modular, self-contained extension packages that expand Claude's capab
 &lt;li>&lt;strong>For Mac + iOS environments&lt;/strong>: iCloud is generally usable but watch out for sync delays.&lt;/li>
 &lt;li>&lt;strong>For cross-platform use involving Android&lt;/strong>: The official sync feature is the best choice. Although it requires payment, it offers the best experience.&lt;/li>
 &lt;li>&lt;strong>For tech-savvy users&lt;/strong>: Git syncing is an option but requires expertise in conflict resolution.&lt;/li>
-&lt;/ol></description><category domain="https://scottyeung.top/en/posts/">posts</category><category domain="https://scottyeung.top/en/tags/Tools/">Tools</category><category domain="https://scottyeung.top/en/tags/Software/">Software</category><category domain="https://scottyeung.top/en/tags/Productivity/">Productivity</category><category domain="https://scottyeung.top/en/tags/Notes/">Notes</category></item><item><title>Downgrade to a Specific Version of an Application in Homebrew</title><link>https://scottyeung.top/en/2025/degrade-homebrew-app-version/</link><guid isPermaLink="true">https://scottyeung.top/en/2025/degrade-homebrew-app-version/</guid><pubDate>Sat, 15 Mar 2025 15:21:17 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>I always have the habit of updating all software to the latest version. However, while writing a blog, I discovered that after updating Hugo, there were issues running it locally.&lt;/p>
-&lt;pre tabindex="0">&lt;code class="language-log" data-lang="log">ERROR deprecated: site config key paginate was deprecated in Hugo v0.128.0 and subsequently removed. Use pagination.pagerSize instead.
-ERROR deprecated: resources.ToCSS was deprecated in Hugo v0.128.0 and subsequently removed. Use css.Sass instead.
-ERROR deprecated: .Site.IsMultiLingual was deprecated in Hugo v0.124.0 and subsequently removed. Use hugo.IsMultilingual instead.
-ERROR deprecated: .Site.Author was deprecated in Hugo v0.124.0 and subsequently removed. Implement taxonomy &amp;#39;author&amp;#39; or use .Site.Params.Author instead.
-&lt;/code>&lt;/pre>&lt;p>From the error messages, it’s clear that Hugo introduced breaking changes in the update. After the upgrade, some fields and methods were directly removed. At first glance, the error messages seemed helpful, offering alternative fields. However, after making those replacements, I realized it wasn’t as simple as it seemed. The site wouldn’t run. So, I had to downgrade Hugo to its previous version.&lt;/p>
-&lt;p>Here are the steps I followed:&lt;/p>
-&lt;ol>
-&lt;li>Run &lt;code>brew info hugo&lt;/code> to find the repository and path of the application you want to downgrade.
-&lt;ol>
-&lt;li>&lt;img src="https://scottyeung.top/my-images/202503151706238.png" alt="">&lt;/li>
-&lt;li>In my case, I used a mirror. The original repo is hosted on GitHub.&lt;/li>
-&lt;/ol>
-&lt;/li>
-&lt;li>Go to the corresponding repository on GitHub and locate the relevant file.
-&lt;ol>
-&lt;li>The file path can be referenced here: &lt;a href="https://github.com/Homebrew/homebrew-core/blob/master/Formula/h/hugo.rb">https://github.com/Homebrew/homebrew-core/blob/master/Formula/h/hugo.rb&lt;/a>&lt;/li>
-&lt;/ol>
-&lt;/li>
-&lt;li>Check the commit history of this file and find the commit ID of the version you want to downgrade to.
-&lt;ol>
-&lt;li>Based on the commit ID, you can identify the version, which is usually submitted by the bot &lt;code>BrewTestBot&lt;/code>.&lt;/li>
-&lt;/ol>
-&lt;/li>
-&lt;li>Once you have the commit ID, you can retrieve the URL of the formula file and its content.
-&lt;ol>
-&lt;li>Example: &lt;a href="https://github.com/Homebrew/homebrew-core/blob/2fd8dba871a6a5412fa7c00b12ac99b5738cd199/Formula/h/hugo.rb">https://github.com/Homebrew/homebrew-core/blob/2fd8dba871a6a5412fa7c00b12ac99b5738cd199/Formula/h/hugo.rb&lt;/a>&lt;/li>
-&lt;li>Raw content: &lt;a href="https://raw.githubusercontent.com/Homebrew/homebrew-core/2fd8dba871a6a5412fa7c00b12ac99b5738cd199/Formula/h/hugo.rb">https://raw.githubusercontent.com/Homebrew/homebrew-core/2fd8dba871a6a5412fa7c00b12ac99b5738cd199/Formula/h/hugo.rb&lt;/a>&lt;/li>
-&lt;li>Replace the commit ID and app name accordingly to get the correct URL.&lt;/li>
-&lt;/ol>
-&lt;/li>
-&lt;li>According to some online guides, you can directly install using the URL with &lt;code>brew install url&lt;/code>.
-&lt;ol>
-&lt;li>However, when I tried this, I encountered an error: &lt;code>Error: Non-checksummed download of hugo formula file from an arbitrary URL is unsupported! brew extract or brew create and brew tap-new to create a formula file in a tap on GitHub instead.&lt;/code>&lt;/li>
-&lt;/ol>
-&lt;/li>
-&lt;li>Instead, I copied the formula file’s content, saved it locally, and then installed it using &lt;code>brew install ./hugo.rb&lt;/code>. The installation was successful.&lt;/li>
-&lt;/ol>
-&lt;p>After successfully downgrading the Homebrew application, you can lock the version using &lt;code>brew pin hugo&lt;/code> to prevent future upgrades.&lt;/p>
-&lt;hr>
-&lt;p>After encountering the failure with the &lt;code>install url&lt;/code> method, I found &lt;a href="https://www.ericbariaux.com/posts/brew_rollback/">another approach&lt;/a> for downgrading, which also seemed feasible. However, I ran into errors while executing the build script locally. Still, it might be worth referencing.&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;span class="lnt">3
-&lt;/span>&lt;span class="lnt">4
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">brew tap-new &lt;span class="nv">$USER&lt;/span>/local-cmake
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">brew tap homebrew/core --force
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">brew extract --version&lt;span class="o">=&lt;/span>3.31.1 cmake &lt;span class="nv">$USER&lt;/span>/local-cmake
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">brew install &lt;span class="nv">$USER&lt;/span>/local-cmake/cmake@3.31.1
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>Here’s an explanation of these commands:&lt;/p>
-&lt;p>These four Homebrew commands aim to create a local tap and install a specific version of CMake. Let me explain each command:&lt;/p>
-&lt;h2 id="1-brew-tap-new-userlocal-cmake">1. &lt;code>brew tap-new $USER/local-cmake&lt;/code>&lt;/h2>
-&lt;p>This command creates a new tap (software repository). &lt;code>$USER&lt;/code> is an environment variable representing the current username, so the tap will be named &amp;quot;your-username/local-cmake.&amp;quot;&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>Purpose&lt;/strong>: Create a new local tap to store custom formulae.&lt;/li>
-&lt;li>&lt;strong>Result&lt;/strong>: A new tap structure is created at &lt;code>$(brew --repo)/Library/Taps/$USER/homebrew-local-cmake&lt;/code>.&lt;/li>
-&lt;/ul>
-&lt;h2 id="2-brew-tap-homebrewcore---force">2. &lt;code>brew tap homebrew/core --force&lt;/code>&lt;/h2>
-&lt;p>This command forcibly taps Homebrew's core repository.&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>Purpose&lt;/strong>: Ensure the homebrew/core repository (which contains official formulae) is properly tapped. The &lt;code>--force&lt;/code> flag ensures the action is performed even if the tap already exists.&lt;/li>
-&lt;li>&lt;strong>Result&lt;/strong>: Ensures access to the formulae in homebrew/core, which is necessary for extracting the CMake formula.&lt;/li>
-&lt;/ul>
-&lt;h2 id="3-brew-extract---version3311-cmake-userlocal-cmake">3. &lt;code>brew extract --version=3.31.1 cmake $USER/local-cmake&lt;/code>&lt;/h2>
-&lt;p>This command extracts a specific version of the CMake formula from homebrew/core to your local tap.&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>Purpose&lt;/strong>: Extract the CMake formula for version 3.31.1 from the official repository and place it in your newly created local tap.&lt;/li>
-&lt;li>&lt;strong>Result&lt;/strong>: A &lt;code>cmake@3.31.1.rb&lt;/code> formula file is created in your local tap.&lt;/li>
-&lt;/ul>
-&lt;h2 id="4-brew-install-userlocal-cmakecmake3311">4. &lt;code>brew install $USER/local-cmake/cmake@3.31.1&lt;/code>&lt;/h2>
-&lt;p>This command installs the specific version of CMake from your local tap.&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>Purpose&lt;/strong>: Use the extracted formula to install CMake version 3.31.1.&lt;/li>
-&lt;li>&lt;strong>Result&lt;/strong>: CMake version 3.31.1 is installed on your system.&lt;/li>
-&lt;/ul></description><category domain="https://scottyeung.top/en/posts/">posts</category><category domain="https://scottyeung.top/en/tags/Tools/">Tools</category><category domain="https://scottyeung.top/en/tags/Tutorial/">Tutorial</category><category domain="https://scottyeung.top/en/tags/Experience/">Experience</category><category domain="https://scottyeung.top/en/tags/macOS/">macOS</category><category domain="https://scottyeung.top/en/tags/Hugo/">Hugo</category></item></channel></rss>
+&lt;/ol></description><category domain="https://scottyeung.top/en/posts/">posts</category><category domain="https://scottyeung.top/en/tags/Tools/">Tools</category><category domain="https://scottyeung.top/en/tags/Software/">Software</category><category domain="https://scottyeung.top/en/tags/Productivity/">Productivity</category><category domain="https://scottyeung.top/en/tags/Notes/">Notes</category></item></channel></rss>
