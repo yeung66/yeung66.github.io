@@ -1,5 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah's Context</title><link>https://scottyeung.top/en/</link><description>Tinkering with code and tools, finding balance in anxiety.
-No standard answers here, just the honest context of tech, reading, and life.</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>en-US</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Tue, 24 Feb 2026 18:05:32 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/en/atom.xml"/><item><title>From Typing to Talking: My Adventures and Pitfalls with Voice Input</title><link>https://scottyeung.top/en/2026/voice-input-experience/</link><guid isPermaLink="true">https://scottyeung.top/en/2026/voice-input-experience/</guid><pubDate>Tue, 24 Feb 2026 15:52:18 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>During the Spring Festival holiday, I came across a lot of posts about voice input. I decided to take the plunge and embrace AI even further, to see if I could max out my efficiency and productivity.&lt;/p>
+No standard answers here, just the honest context of tech, reading, and life.</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>en-US</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Thu, 26 Feb 2026 12:33:19 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/en/atom.xml"/><item><title>Vibe Coding: ccpclean - Residual Process Cleaner</title><link>https://scottyeung.top/en/2026/ccpclean/</link><guid isPermaLink="true">https://scottyeung.top/en/2026/ccpclean/</guid><pubDate>Thu, 26 Feb 2026 11:50:16 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>Recently, I've been heavily using Claude Code for Vibe Coding and have built quite a few personal projects and small tools. These tools often start local servers to provide Web or API services. Local debugging is very convenient, but the problem is that they don't always get properly shut down after use.&lt;/p>
+&lt;p>Sometimes even when you explicitly ask it to exit, the process doesn't actually terminate; other times, closing the session window directly leaves the service still running in the background. Over time, the system accumulates a bunch of leftover web service processes, occupying memory and ports.&lt;/p>
+&lt;p>These residual processes cause several annoying issues:&lt;/p>
+&lt;h3 id="1-ai-misjudges-service-status">1. AI Misjudges Service Status&lt;/h3>
+&lt;p>In AI Coding scenarios, AI typically determines whether a service is running by simply scanning whether a port is occupied.
+If a port is already taken by an old project, the AI is likely to assume the current service has started successfully, when in fact the target process isn't running at all.&lt;/p>
+&lt;p>The result: &lt;strong>Everything looks normal, but nothing is actually running.&lt;/strong>&lt;/p>
+&lt;h3 id="2-port-conflicts-lead-to-repeated-configuration-changes">2. Port Conflicts Lead to Repeated Configuration Changes&lt;/h3>
+&lt;p>When a port is occupied, AI needs to restart the service. But in many projects, the port is hardcoded in configuration files, so it has to read the file, modify the port, and then run the service again.&lt;/p>
+&lt;p>Since the conflicting port is different each time, the configuration needs to be changed almost every time.
+This cycle of &amp;quot;change port — restart — change port again&amp;quot; really disrupts the workflow.&lt;/p>
+&lt;h3 id="3-auto-killing-processes-can-cause-collateral-damage">3. Auto-killing Processes Can Cause Collateral Damage&lt;/h3>
+&lt;p>If you let the AI &amp;quot;clean up port usage,&amp;quot; things get even more complicated.
+It typically just scans for processes occupying ports and terminates them directly.&lt;/p>
+&lt;p>But the AI doesn't know which processes belong to the current project and which are important services you're running.
+A blanket kill approach can easily take out innocent processes.&lt;/p>
+&lt;hr>
+&lt;p>Based on these frustrations, I simply built a small tool to manually and quickly clean up these leftover port processes.&lt;/p>
+&lt;p>It can list all processes occupying ports with one click, letting me judge and clean up on my own.&lt;/p>
+&lt;p>Since this is a small tool I'd use frequently in daily work, I decided to make it a command-line tool for one-click invocation.
+So I wrote a TUI (Terminal UI) program in Rust. From start to finish, it took less than a day to develop and publish to both GitHub and Cargo.&lt;/p>
+&lt;p>If you're interested, give it a try:&lt;/p>
+&lt;p>👉 &lt;a href="https://github.com/yeung66/ccpclean">https://github.com/yeung66/ccpclean&lt;/a>
+You can install it via &lt;code>cargo install&lt;/code>, or directly download the binary to run.&lt;/p>
+&lt;hr>
+&lt;h2 id="core-logic">Core Logic&lt;/h2>
+&lt;p>The program's logic is very straightforward:&lt;/p>
+&lt;ul>
+&lt;li>Scan current system processes&lt;/li>
+&lt;li>Find all processes occupying ports&lt;/li>
+&lt;li>Display relevant information, including:
+&lt;ul>
+&lt;li>Execution command&lt;/li>
+&lt;li>Parent process information&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Support manual selection and process termination&lt;/li>
+&lt;/ul>
+&lt;p>Through parent process and command information, you can generally determine which project a service belongs to.&lt;/p>
+&lt;p>Additionally, I added some simple rules to assess whether a process might have been started by Claude Code or other AI Agents, providing a reference score to help decide whether it's worth cleaning up.&lt;/p>
+&lt;hr>
+&lt;h2 id="relaxed-mode">Relaxed Mode&lt;/h2>
+&lt;p>Besides the default mode, there's also a &amp;quot;relaxed mode.&amp;quot;&lt;/p>
+&lt;p>Because leftover services don't only happen in AI scenarios.
+Often we start a service from the command line, and it keeps running in the background after we close the terminal.&lt;/p>
+&lt;p>Relaxed mode lists all services occupying ports, making it convenient to browse, filter, and clean up one by one.&lt;/p>
+&lt;hr>
+&lt;p>Of course, all of this can be accomplished with native command-line tools, such as:&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>lsof&lt;/code>&lt;/li>
+&lt;li>&lt;code>netstat&lt;/code>&lt;/li>
+&lt;li>&lt;code>ss&lt;/code>&lt;/li>
+&lt;li>&lt;code>kill&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>But when you need to do this frequently, a dedicated small tool is more efficient.&lt;/p>
+&lt;p>Moreover, the experience of writing a TUI in Rust is quite enjoyable.
+With AI assistance, going from idea to a usable version is practically effortless.&lt;/p>
+&lt;p>Since it improves efficiency and costs almost no effort, why not use a small tool?&lt;/p></description><category domain="https://scottyeung.top/en/posts/">posts</category><category domain="https://scottyeung.top/en/tags/AI/">AI</category><category domain="https://scottyeung.top/en/tags/Tools/">Tools</category><category domain="https://scottyeung.top/en/tags/Rust/">Rust</category><category domain="https://scottyeung.top/en/tags/Tools/">Tools</category></item><item><title>From Typing to Talking: My Adventures and Pitfalls with Voice Input</title><link>https://scottyeung.top/en/2026/voice-input-experience/</link><guid isPermaLink="true">https://scottyeung.top/en/2026/voice-input-experience/</guid><pubDate>Tue, 24 Feb 2026 15:52:18 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>During the Spring Festival holiday, I came across a lot of posts about voice input. I decided to take the plunge and embrace AI even further, to see if I could max out my efficiency and productivity.&lt;/p>
 &lt;p>So I started trying out various voice input tools, forcing myself to switch my everyday input to &amp;quot;talking&amp;quot; mode. My current workflow mainly involves: using &lt;strong>&amp;quot;Lightning Say&amp;quot; (闪电说)&lt;/strong> combined with &lt;strong>&amp;quot;Doubao&amp;quot; (豆包)&lt;/strong> or &lt;strong>&amp;quot;Tongyi Qianwen&amp;quot; (通义千问)&lt;/strong>'s streaming voice models for recognition and transcription.&lt;/p>
 &lt;p>For different output needs, my approach is as follows:&lt;/p>
 &lt;ul>
@@ -421,42 +478,4 @@ Skills are modular, self-contained extension packages that expand Claude's capab
 &lt;p>At first, I thought about simply writing a script to scan for blank markdown files in the directory, but when I opened the local directory, I found that blank Journal pages don't necessarily create blank files. Later, I searched online and discovered that there's actually a built-in removal function for this, and the removal scope isn't limited to just blank Journals - all blank Pages can be scanned and removed.&lt;/p>
 &lt;p>Specific path to the feature: All pages -&amp;gt; ... -&amp;gt; Remove orphaned pages&lt;/p>
 &lt;p>&lt;img src="https://scottyeung.top/my-images/202508311310890.png" alt="">&lt;/p>
-&lt;p>&lt;img src="https://scottyeung.top/my-images/202508311310930.png" alt="">&lt;/p></description><category domain="https://scottyeung.top/en/posts/">posts</category><category domain="https://scottyeung.top/en/tags/Tools/">Tools</category><category domain="https://scottyeung.top/en/tags/Software/">Software</category><category domain="https://scottyeung.top/en/tags/Logseq/">Logseq</category></item><item><title>Self-hosted Bitwarden Suddenly Unavailable</title><link>https://scottyeung.top/en/2025/bitwarden-self-host-problem/</link><guid isPermaLink="true">https://scottyeung.top/en/2025/bitwarden-self-host-problem/</guid><pubDate>Sat, 19 Jul 2025 14:46:50 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;h2 id="foreword-my-configuration">Foreword: My Configuration&lt;/h2>
-&lt;p>I have always been a loyal Bitwarden user. For data freedom, controllability, and to save money, I chose to self-host the service. My entire configuration was as follows:&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>Server&lt;/strong>: Tencent Cloud Server&lt;/li>
-&lt;li>&lt;strong>Password Service&lt;/strong>: Vaultwarden (Rust implementation of Bitwarden) Docker image&lt;/li>
-&lt;li>&lt;strong>Domain&lt;/strong>: Personal domain hosted on Tencent Cloud&lt;/li>
-&lt;li>&lt;strong>Client&lt;/strong>: Bitwarden clients across all platforms&lt;/li>
-&lt;li>&lt;strong>Reverse Proxy&lt;/strong>: Caddy, handling HTTPS automatically&lt;/li>
-&lt;/ul>
-&lt;p>This combination had been running stably until today...&lt;/p>
-&lt;h2 id="1-discovery-of-the-problem">1. Discovery of the Problem&lt;/h2>
-&lt;p>Today, as usual, I opened the Bitwarden App on my phone to add a new login item. But strangely, after I clicked save, I couldn't find the newly added item in the list no matter how I looked.&lt;/p>
-&lt;p>At first, I thought it was a bug in the App, but to be safe, I opened the desktop client to try adding it. The client directly prompted me that the &lt;strong>save failed&lt;/strong>.&lt;/p>
-&lt;p>At this point, I realized the problem might not be that simple; it was highly likely that the interface communication between the client and my server had gone wrong.&lt;/p>
-&lt;h2 id="2-the-path-of-investigation">2. The Path of Investigation&lt;/h2>
-&lt;h3 id="1-preliminary-diagnosis-certificate-expiration">1. Preliminary Diagnosis: Certificate Expiration&lt;/h3>
-&lt;p>The first thing I thought of was to check my Vaultwarden management page. I accessed it via the domain name and found the first problem:&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>HTTP Access&lt;/strong>: Directly intercepted by Tencent Cloud, with a prompt saying &amp;quot;This website is not registered according to the relevant legal rules of the Ministry of Industry and Information Technology.&amp;quot;&lt;/li>
-&lt;li>&lt;strong>HTTPS Access&lt;/strong>: The page could be opened, but the browser address bar clearly displayed an &amp;quot;Insecure&amp;quot; warning—the SSL certificate had expired.&lt;/li>
-&lt;/ul>
-&lt;p>&lt;img src="https://scottyeung.top/my-images/202507191449467.png" alt="Browser certificate expiration warning">
-&lt;em>(Image: Tencent Cloud intercepting the page due to lack of registration)&lt;/em>&lt;/p>
-&lt;p>Case closed? It seemed quite likely. The expired certificate caused the HTTPS request of the API interface to fail, so the client naturally couldn't save data normally.&lt;/p>
-&lt;h3 id="2-deep-dive-why-didnt-caddy-auto-renew">2. Deep Dive: Why Didn't Caddy Auto-renew?&lt;/h3>
-&lt;p>But a new question followed: I use Caddy precisely because it can automatically implement HTTPS, applying for and renewing certificates. Why did it fail this time? Even stranger, other service domains on the same server could be accessed normally with valid certificates; only the Bitwarden domain had an issue.&lt;/p>
-&lt;p>I tried restarting the Caddy service and reloading the configuration, but to no avail. Helplessly, I had to check Caddy's execution logs.&lt;/p>
-&lt;p>The error message in the logs revealed the truth: &lt;strong>When Caddy tried to apply for a new HTTPS certificate, it needed to verify through the HTTP port (HTTP-01 challenge). However, this verification request was directly intercepted by Tencent Cloud, which returned a page with a non-registration prompt.&lt;/strong>&lt;/p>
-&lt;blockquote>
-&lt;p>So, the core reason was found: &lt;strong>Tencent Cloud upgraded its firewall policy. Previously, for unregistered domains, only access to port 80 was intercepted. Now, it intercepts all ports for external services.&lt;/strong>&lt;/p>
-&lt;/blockquote>
-&lt;p>This policy directly caused Caddy's certificate renewal/application mechanism to fail completely.&lt;/p>
-&lt;h2 id="3-struggle-and-abandonment">3. Struggle and Abandonment&lt;/h2>
-&lt;h3 id="attempting-to-migrate-the-domain">Attempting to Migrate the Domain&lt;/h3>
-&lt;p>Since it was a Tencent Cloud issue, I thought, could I migrate the domain resolution to Cloudflare and use Cloudflare's DNS service to bypass this restriction?&lt;/p>
-&lt;p>However, when I tried to modify the domain's NS (Name Server) records in the Tencent Cloud console, I found that this option was locked! To modify it, I had to go through an independent and somewhat hidden &amp;quot;DNS Server Modification&amp;quot; entry.&lt;/p>
-&lt;p>After the migration, I found it was actually useless. The interception actually happened on the server rather than at the DNS resolution level (or perhaps there were interceptions on both sides).&lt;/p>
-&lt;h2 id="4-final-solution">4. Final Solution&lt;/h2>
-&lt;p>In the end, for stability and peace of mind, I chose to pay for a Bitwarden Premium subscription ($10 a year) and stopped tinkering. These domestic personal cloud servers feel less and less useful. If it weren't for the blog needing an ICP registration number which requires a domestic cloud server, I would definitely shut it down and switch to overseas cloud servers.&lt;/p></description><category domain="https://scottyeung.top/en/posts/">posts</category><category domain="https://scottyeung.top/en/tags/Rant/">Rant</category><category domain="https://scottyeung.top/en/tags/Tools/">Tools</category><category domain="https://scottyeung.top/en/tags/Notes/">Notes</category><category domain="https://scottyeung.top/en/tags/Cloud-Services/">Cloud Services</category><category domain="https://scottyeung.top/en/tags/Cloudflare/">Cloudflare</category></item></channel></rss>
+&lt;p>&lt;img src="https://scottyeung.top/my-images/202508311310930.png" alt="">&lt;/p></description><category domain="https://scottyeung.top/en/posts/">posts</category><category domain="https://scottyeung.top/en/tags/Tools/">Tools</category><category domain="https://scottyeung.top/en/tags/Software/">Software</category><category domain="https://scottyeung.top/en/tags/Logseq/">Logseq</category></item></channel></rss>
