@@ -1,5 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah's Context</title><link>https://scottyeung.top/en/</link><description>Tinkering with code and tools, finding balance in anxiety.
-No standard answers here, just the honest context of tech, reading, and life.</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>en-US</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Tue, 12 May 2026 13:31:53 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/en/atom.xml"/><item><title>Migrating Waline's Data Source</title><link>https://scottyeung.top/en/2026/waline-datasource-migration/</link><guid isPermaLink="true">https://scottyeung.top/en/2026/waline-datasource-migration/</guid><pubDate>Tue, 12 May 2026 20:33:20 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;h2 id="the-origin-valine--leancloud">The Origin: Valine + LeanCloud&lt;/h2>
+No standard answers here, just the honest context of tech, reading, and life.</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>en-US</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Thu, 04 Jun 2026 07:13:13 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/en/atom.xml"/><item><title>When AI Starts Reading My Health Data</title><link>https://scottyeung.top/en/2026/apple-health-data-analysis/</link><guid isPermaLink="true">https://scottyeung.top/en/2026/apple-health-data-analysis/</guid><pubDate>Fri, 15 May 2026 11:46:30 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;h2 id="starting-from-doubts-about-data-recording">Starting From Doubts About Data Recording&lt;/h2>
+&lt;p>A few years ago, I wrote a &lt;a href="https://scottyeung.top/2021/%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89%E7%9A%84%E7%94%9F%E6%B4%BB/">blog post&lt;/a> complaining about my own obsession with recording all kinds of data. Back then I recorded a lot: wearing a sports watch to track my body data, using time-tracking tools to log daily behaviors and work, and paying attention to various health metrics. The more I recorded, the more I doubted the value of these data. Once saved, they seemed to rarely get used, and it was hard to extract anything valuable from them.&lt;/p>
+&lt;p>Looking back now, that complaint had its context. Data being recorded doesn't automatically mean it produces value. The truly difficult part is: how to read, organize, and analyze these data, and find some patterns useful to yourself. But as AI gradually became more accessible, the meaning of this began to change.&lt;/p>
+&lt;h2 id="ai-makes-health-data-usable-again">AI Makes Health Data Usable Again&lt;/h2>
+&lt;p>What first gave me this idea was seeing someone on Twitter export all their Apple Health data and use AI to analyze their sleep. The AI identified their sleep problems from the data and offered relevant suggestions, which eventually helped improve their sleep quality.&lt;/p>
+&lt;p>This example made me realize that the value of health data may have been there all along — it's just that individuals previously had a hard time efficiently mining it.&lt;/p>
+&lt;p>In the past, I would also periodically check the data in Apple Health, but the whole process was tedious. Each time I had to click into a specific metric, manually switch between week, month, and year views, then observe trends, maxima, minima, and changes across stages on my own. This could surface some surface-level changes, but the observation scope was limited and very much dependent on subjective judgment.&lt;/p>
+&lt;p>More importantly, although Apple's health data is recorded quite completely, it's also relatively closed in some sense. There was a period when I switched to an Android phone, and the health data from that time was hard to migrate back completely. After I returned to the Apple ecosystem, there was a gap in the middle, like a broken segment. Because of this, I started feeling that if these long-term records just stayed inside devices and systems, they would likely be forgotten, or even gradually lost after some future device or system switch.&lt;/p>
+&lt;h2 id="exporting-apple-health-data">Exporting Apple Health Data&lt;/h2>
+&lt;p>So I started trying to export my own health data and hand it to AI for further analysis.&lt;/p>
+&lt;p>At first I looked for some existing software to do this, but after trying a few, I found that many tools only do basic visualization. The ones that are truly usable, support incremental sync, and offer deeper analysis are often paid — and not cheap, often subscription-based.&lt;/p>
+&lt;p>In the end I just used Xcode and Claude to write a simple iOS app to export Apple Health data. This app is crude and has some limitations — for example, it can't sync data directly through iCloud, and the free signing requires periodic rebuilding and reinstallation. But for me, I don't use it frequently — mainly for manual exports and periodic analysis — so it's enough.&lt;/p>
+&lt;h2 id="my-analysis-approach">My Analysis Approach&lt;/h2>
+&lt;p>My analysis approach is also fairly straightforward.&lt;/p>
+&lt;p>First, I export the raw data from Apple Health into NDJSON files. They contain various health and exercise data, like heart rate, weight, step count, activity levels, and exercise data recorded through Apple Watch.&lt;/p>
+&lt;p>Then I hand these data to an AI Agent and let it dig out as many valuable findings as possible from the historical data. Things like observing long-term trends in metrics, finding data points worth attention, analyzing what problems these changes might reflect, and what adjustments could be made.&lt;/p>
+&lt;p>Finally, based on the analysis results, I distill some rules. The first round of analysis is mainly about extracting as much information as possible. Subsequent rounds adjust the analysis approach based on what I care about — which metrics I actually care about, which historical data needs correction, which changes are worth continuously tracking, and which situations should be flagged.&lt;/p>
+&lt;p>After the first round of analysis, I did get some interesting — and somewhat alarming — findings.&lt;/p>
+&lt;h2 id="findings-from-the-first-round-of-analysis">Findings From the First Round of Analysis&lt;/h2>
+&lt;h3 id="weight-a-steadily-rising-curve">Weight: A Steadily Rising Curve&lt;/h3>
+&lt;p>Since I started using Apple devices to record data in 2022, through starting work in 2023, and up to now, my weight has gone up by more than 10 kg. Although I subjectively knew I was getting heavier, actually seeing the data curve was still a bit surprising. It wasn't a sudden jump at some specific stage, but a continuously rising curve — just rising faster during phases when work intensity was higher and exercise was less.&lt;/p>
+&lt;p>What's more worth noting is that most of this added weight came from fat, while muscle mass barely grew in parallel. In other words, this wasn't weight gain from training, but the combined result of long-term lifestyle, diet, and insufficient exercise.&lt;/p>
+&lt;h3 id="heart-rate-a-signal-of-increasing-strain">Heart Rate: A Signal of Increasing Strain&lt;/h3>
+&lt;p>As my weight increased, both my resting heart rate and walking heart rate changed noticeably. When I first started working, my resting heart rate was around the low to mid 50s to 60. After nearly two years of work, the average had risen to 63–64. Last year, when work pressure peaked, my resting heart rate even reached around 65 at one point. Looking at the multi-year average, resting heart rate has risen by about 8 bpm, which is a very noticeable change.&lt;/p>
+&lt;p>Walking heart rate showed a similar trend. After weight gain, reduced activity, and less aerobic exercise, heart rate during everyday walking also became higher. Looking at these metrics together, they actually reflect a fairly clear issue: my body is under more strain, and aerobic capacity is declining.&lt;/p>
+&lt;h3 id="hrv-long-term-changes-in-stress-and-recovery">HRV: Long-Term Changes in Stress and Recovery&lt;/h3>
+&lt;p>The third one is HRV, or heart rate variability.&lt;/p>
+&lt;p>HRV usually reflects stress and recovery. As work intensity increased, my average HRV trended lower overall, even hitting a low point last year. Looking at any single day might not mean much, but stretched over time, this trend becomes clear. It seems to have some relationship with work stress, sleep, exercise volume, and weight changes.&lt;/p>
+&lt;h3 id="recent-positive-signs">Recent Positive Signs&lt;/h3>
+&lt;p>A more positive note is that since I left my job in late March / early April this year, I've had more time to get back to exercising. I've been doing quite a bit of Zone 2 aerobic training recently, and heart-rate-related metrics have started showing signs of recovery. It hasn't been very long yet, but from the data, my body's state is indeed changing for the better.&lt;/p>
+&lt;h2 id="rethinking-the-meaning-of-data-recording">Rethinking the Meaning of Data Recording&lt;/h2>
+&lt;p>This is another reason I find the spread of AI quite valuable.&lt;/p>
+&lt;p>In the past, facing large, complex personal data, ordinary people had a hard time really processing it. We could only rely on the basic charts provided by the software itself, or go by feel. But now with AI, as long as you can export the data, you can have an Agent help read, clean, analyze, plot, write reports, and even distill long-term observation rules.&lt;/p>
+&lt;p>This made me rethink the meaning of &amp;quot;recording data.&amp;quot;&lt;/p>
+&lt;p>Data itself doesn't automatically change your life, but it leaves a trail. Many records that once seemed trivial may, over a long enough time scale, become important clues to understanding yourself. Weight, heart rate, exercise, sleep, stress — these things are easy to overlook in daily life, but data preserves them honestly.&lt;/p>
+&lt;p>From this perspective, data really is a precious personal asset. It helps me better understand myself, spot long-term changes, identify patterns in my body's state, and gives me more reliable grounding when planning exercise, fat loss, or lifestyle adjustments.&lt;/p>
+&lt;p>So now I actually feel that my old &amp;quot;recording is useless&amp;quot; mindset is a bit out of date. The real question is whether what's recorded can be effectively used. In the past this barrier was high, but now AI is greatly lowering it. Going forward, I'll continue to keep and record these data, and keep handing them to AI to analyze, putting these data to use — letting them become a long-term archive that reflects my real state, and continuously mining and squeezing value out of them.&lt;/p></description><category domain="https://scottyeung.top/en/posts/">posts</category><category domain="https://scottyeung.top/en/tags/Apple/">Apple</category><category domain="https://scottyeung.top/en/tags/tools/">tools</category><category domain="https://scottyeung.top/en/tags/life/">life</category><category domain="https://scottyeung.top/en/tags/AI/">AI</category><category domain="https://scottyeung.top/en/tags/rant/">rant</category></item><item><title>Migrating Waline's Data Source</title><link>https://scottyeung.top/en/2026/waline-datasource-migration/</link><guid isPermaLink="true">https://scottyeung.top/en/2026/waline-datasource-migration/</guid><pubDate>Tue, 12 May 2026 20:33:20 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;h2 id="the-origin-valine--leancloud">The Origin: Valine + LeanCloud&lt;/h2>
 &lt;p>The earliest comment system on my blog was Valine.js. The whole setup was purely frontend, with a SaaS provider handling object storage on the backend. Around 2017–2018, most blog systems recommended the Valine.js + LeanCloud combination — storage was free, it did the job, it worked well, and pretty much everyone used LeanCloud.&lt;/p>
 &lt;p>At some point a vulnerability surfaced in Valine. Since it was a pure frontend solution, sensitive information like tokens was written directly into the page and easy to leak. Once leaked, anyone could use your token to read and write data — worse still, they could write whatever they wanted, flooding your blog comments with junk or even dangerous content.&lt;/p>
 &lt;p>Not long after the vulnerability went public, someone built a new framework on top of Valine — Waline. The main improvements were a few things: it added a web service layer over Valine that could run directly on Vercel; it moved all sensitive information to the backend, with all data operations going through the backend service; and it shipped with an admin dashboard for easier content management.&lt;/p>
@@ -400,100 +436,4 @@ Skills are modular, self-contained extension packages that expand Claude's capab
 &lt;p>So these past two days I started using Claude Code on my personal projects. At first, I was thinking about whether I could use it for free, learning from the company's approach by finding some free tokens and then using Claude Code through the API. Both Doubao and Qianwen work for this - basically every provider now gives some token quota when you create a new account and generate an API Key. Doubao gives 500K, and then you can get several million tokens by completing some tasks. Qianwen gives 1 million tokens. The experience is actually quite decent, but the token consumption is still pretty fast. After two days with Doubao, I had already used about 6 million tokens, and continuing would require payment.&lt;/p>
 &lt;p>Since I'd have to pay anyway, I might as well go all in and try the genuine, native Claude Code. I had just switched to a better VPN service with good US nodes, so using it shouldn't be a problem. So I looked for ways to subscribe. Unfortunately, Anthropic doesn't support domestic credit cards for payment - you can only pay through third-party virtual cards or gift cards. I ended up choosing services from &lt;a href="https://meiguo.app/">Meiguo&lt;/a>. Initially, I knew they offered credit card services, but later I found out they also provide gift card services directly. Claude Code Pro only requires a +$4 service fee and supports WeChat payment, which is very convenient. I got one, received the gift card via email, and used it to activate the membership myself. If you're interested, give it a try using my &lt;a href="https://meiguo.app?ref=O63O3">referral code O63O3&lt;/a>.&lt;/p>
 &lt;p>After switching to the genuine native Claude Code, the experience went up another level. The official version feels like a smarter model with stronger development capabilities, and the development ideas and plans it outputs are clearer and more precise.&lt;/p>
-&lt;p>I've actually been in contact with AI and large language models for quite some time. When ChatGPT first came out, I was already using it - you could say I've been keeping up with the latest developments all along. But I feel like I've always just been scratching the surface. For new things, I try them once, think they're amazing, marvel at them for a moment, or find them not useful and complain a bit, and then that's it. Even the amazing and useful ones, I don't continue using them or integrate them into my work and life. The not-so-useful ones, I don't think about how to make them useful or how to actually use them. I vaguely sense that I might be gradually falling behind in this era of intelligence. Especially when I see more and more people around me starting to do vibe coding, or using AI and large language models for various things, I start comparing and getting anxious. I really need to use it more, use it in all kinds of ways, use it in daily life, use it at work, and integrate it into life.&lt;/p></description><category domain="https://scottyeung.top/en/posts/">posts</category><category domain="https://scottyeung.top/en/tags/AI/">AI</category><category domain="https://scottyeung.top/en/tags/coding/">coding</category><category domain="https://scottyeung.top/en/tags/tools/">tools</category><category domain="https://scottyeung.top/en/tags/software/">software</category></item><item><title>Investing with Alpha Picks</title><link>https://scottyeung.top/en/2026/use-alpha-picks-invest/</link><guid isPermaLink="true">https://scottyeung.top/en/2026/use-alpha-picks-invest/</guid><pubDate>Thu, 08 Jan 2026 22:51:10 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>My previous individual stock investments have always lacked a proper methodology. In the middle of last year, I studied some concepts of value investing and learned about company valuation analysis and stock selection methods, but with limited energy and time, and perhaps limited skill level, I ultimately didn't spend much time carefully researching individual stocks. It then evolved into watching YouTube or other platforms - whoever mentioned a certain stock, I'd take a look and buy it based on feeling. When to buy, how much to buy, when to add to positions, when to sell - all based on feeling.&lt;/p>
-&lt;p>I realized I needed to create my own trading system. No matter how good or bad, it's better than doing things randomly. The domestic fund DCA investments have basically formed a fixed plan and don't need much attention anymore. For US stocks, during last year's Black Friday, I purchased a Seeking Alpha premium membership and their Alpha Picks service. This post is a record of my attempts to explore and use Alpha Picks for investing during this period.&lt;/p>
-&lt;h2 id="what-is-alpha-picks">What is Alpha Picks?&lt;/h2>
-&lt;p>Alpha Picks is a paid stock-picking service launched by Seeking Alpha. Based on collected data, it uses quantitative methods to select two stocks per month for users. The stocks it has selected have achieved returns of 270+% to date, which is more than 3 times the S&amp;amp;P 500 index.&lt;/p>
-&lt;p>&lt;img src="https://scottyeung.top/my-images/20260109231402620.png" alt="">&lt;/p>
-&lt;p>The official portfolio operation logic is: at the beginning and middle of each month, a new STRONG BUY stock is added with a fixed position size purchased. Then when the stock's quantitative rating drops to below SELL, or drops to HOLD for 180 days, it will be sold.&lt;/p>
-&lt;h2 id="how-should-new-users-use-it">How Should New Users Use It?&lt;/h2>
-&lt;p>When new users now activate Alpha Picks, there are already dozens of stocks in the portfolio. The official recommendation is to pick 5 STRONG BUY stocks to purchase, or directly buy the entire portfolio.&lt;/p>
-&lt;p>Through communication with Gemini, Gemini provided an operation guide for reference.&lt;/p>
-&lt;p>&lt;a href="https://docs.google.com/document/d/1fZ_0du3qfKGU_5BtFEgDxOBwa5TEQMjC5yLwj_wXsc0/edit?usp=sharing">https://docs.google.com/document/d/1fZ_0du3qfKGU_5BtFEgDxOBwa5TEQMjC5yLwj_wXsc0/edit?usp=sharing&lt;/a>&lt;/p>
-&lt;hr>
-&lt;p>As an ordinary investor, if you want to make money by following Alpha Picks, &lt;strong>you shouldn't pursue 100% perfect mechanical replication, but rather grasp its core logic and adopt a simplified execution plan&lt;/strong>.&lt;/p>
-&lt;p>Here is a best practices guide for ordinary investors:&lt;/p>
-&lt;h3 id="1-core-mindset-execute-like-a-machine-trust-the-system">1. Core Mindset: Execute Like a Machine (Trust the System)&lt;/h3>
-&lt;p>This is the hardest part. Alpha Picks is based on quantitative data (Quant Ratings), and its stock selection logic is often counterintuitive.&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>Situations you may encounter:&lt;/strong> It recommends an obscure stock you've never heard of, or a stock that you think has already risen too much, or even from an industry you personally dislike (such as coal, or even certain consumer stocks).&lt;/li>
-&lt;li>&lt;strong>What to do:&lt;/strong> &lt;strong>&amp;quot;Pinch your nose and buy.&amp;quot;&lt;/strong> If you've subscribed to this service, trust its algorithm. The biggest source of losses for ordinary investors often comes from &amp;quot;I feel this stock isn't good&amp;quot; or &amp;quot;This stock has risen too high, I dare not buy.&amp;quot;&lt;/li>
-&lt;/ul>
-&lt;h3 id="2-position-building-phase-how-to-start-getting-started">2. Position Building Phase: How to Start? (Getting Started)&lt;/h3>
-&lt;p>If you just subscribed today, facing 30+ historical holdings, how do you buy?&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>Official/Ideal advice:&lt;/strong> Buy the entire portfolio according to current weights.&lt;/li>
-&lt;li>&lt;strong>Ordinary person/Realistic advice:&lt;/strong> With limited funds, don't buy all 30.&lt;/li>
-&lt;li>&lt;strong>Strategy:&lt;/strong> Only buy the top 5-10 stocks currently rated &lt;strong>&amp;quot;Strong Buy&amp;quot;&lt;/strong>.&lt;/li>
-&lt;li>&lt;strong>Reason:&lt;/strong> Although those early &amp;quot;winners&amp;quot; have risen a lot, if their current rating has dropped to &amp;quot;Hold&amp;quot;, there's no need to chase highs to build positions now. Only buy those with the strongest current data.&lt;/li>
-&lt;/ul>
-&lt;h3 id="3-daily-operations-twice-monthly-new-stock-day-the-monthly-routine">3. Daily Operations: Twice-Monthly &amp;quot;New Stock Day&amp;quot; (The Monthly Routine)&lt;/h3>
-&lt;p>Alpha Picks usually has two new recommendations (Picks) per month.&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>Capital allocation:&lt;/strong> Try to ensure that the amount invested each time is roughly the same (Equal Weighting).&lt;/li>
-&lt;li>&lt;em>Wrong approach:&lt;/em> This month I have money, buy $2000; next month I don't have money, only buy $200. This will cause your performance to be dominated by the stock with the large position.&lt;/li>
-&lt;li>&lt;em>Correct approach:&lt;/em> Set a fixed &amp;quot;monthly contribution&amp;quot; amount. For example, DCA $1000 per month, $500 for each new stock. If there's surplus, save it for the next time.&lt;/li>
-&lt;/ul>
-&lt;h3 id="4-selling-rules-strictly-follow-discipline-selling-rules">4. Selling Rules: Strictly Follow Discipline (Selling Rules)&lt;/h3>
-&lt;p>This is the key to Alpha Picks outperforming the market — &lt;strong>&amp;quot;Let profits run, cut losses short.&amp;quot;&lt;/strong>&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>When to sell?&lt;/strong> Only sell when you receive an official email notification. There are usually two situations:&lt;/li>
-&lt;/ul>
-&lt;ol>
-&lt;li>&lt;strong>Rating plunge:&lt;/strong> The stock rating directly drops to &lt;strong>Sell&lt;/strong> or &lt;strong>Strong Sell&lt;/strong> — &lt;strong>Sell immediately&lt;/strong>.&lt;/li>
-&lt;li>&lt;strong>Rating stagnation:&lt;/strong> The stock rating drops to &lt;strong>Hold&lt;/strong>, and &lt;strong>remains at Hold for 180 consecutive days&lt;/strong> — &lt;strong>Sell&lt;/strong>.&lt;/li>
-&lt;/ol>
-&lt;ul>
-&lt;li>
-&lt;p>&lt;em>Note:&lt;/em> Many ordinary investors panic and want to sell when they see it become &amp;quot;Hold&amp;quot; - this is wrong. Alpha Picks allows stocks to adjust in &amp;quot;Hold&amp;quot; status for half a year, which often captures subsequent gains.&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>&lt;strong>Sell regardless of profit or loss:&lt;/strong> Even if you've lost 40% on this stock, if the system says sell, you must sell (stop loss); even if you've made 200% on this stock, if the system hasn't said sell, don't sell just to &amp;quot;lock in gains&amp;quot; (not only to let profits run, but also to avoid missing the main upward wave).&lt;/p>
-&lt;/li>
-&lt;/ul>
-&lt;h3 id="5-capital-reinvestment-simplify-your-life-simplifying-reinvestment">5. Capital Reinvestment: Simplify Your Life (Simplifying Reinvestment)&lt;/h3>
-&lt;p>Back to the capital handling issue you're most concerned about.&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>Don't:&lt;/strong> Every time you sell a stock, take out your calculator and split a few hundred dollars evenly among the remaining 20 stocks. This will create a lot of fractional shares and tax headaches.&lt;/li>
-&lt;li>&lt;strong>Do:&lt;/strong> &lt;strong>&amp;quot;Capital pool&amp;quot; strategy&lt;/strong>.&lt;/li>
-&lt;li>When you sell a stock (say you recoup $1000), or receive a dividend (say $50), treat all this money as &lt;strong>&amp;quot;ammunition for the next purchase&amp;quot;&lt;/strong>.&lt;/li>
-&lt;li>Directly invest this money into the &lt;strong>next recommended new stock&lt;/strong>, or add to the current &lt;strong>top 3 Strong Buy&lt;/strong> stocks.&lt;/li>
-&lt;/ul>
-&lt;h3 id="summary-the-lazy-protocol-for-ordinary-investors">Summary: The &amp;quot;Lazy Protocol&amp;quot; for Ordinary Investors&lt;/h3>
-&lt;table>
-&lt;thead>
-&lt;tr>
-&lt;th>Operation Step&lt;/th>
-&lt;th>Official Complex Instructions&lt;/th>
-&lt;th>&lt;strong>Recommended Approach for Ordinary People&lt;/strong>&lt;/th>
-&lt;/tr>
-&lt;/thead>
-&lt;tbody>
-&lt;tr>
-&lt;td>&lt;strong>What to buy&lt;/strong>&lt;/td>
-&lt;td>Configure entire portfolio by weight&lt;/td>
-&lt;td>Only buy &lt;strong>latest recommendations&lt;/strong> + current highest-rated &lt;strong>Strong Buys&lt;/strong>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;strong>How much to buy&lt;/strong>&lt;/td>
-&lt;td>Strictly equal split&lt;/td>
-&lt;td>Try to use &lt;strong>fixed amounts&lt;/strong> (e.g., $500 per stock), no need to be too precise&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;strong>Sale proceeds&lt;/strong>&lt;/td>
-&lt;td>Split evenly among all remaining holdings&lt;/td>
-&lt;td>&lt;strong>Save it&lt;/strong>, buy the next two newly recommended stocks in full&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;strong>Dividends&lt;/strong>&lt;/td>
-&lt;td>Split evenly among all remaining holdings&lt;/td>
-&lt;td>&lt;strong>Save it&lt;/strong>, accumulate enough to buy new stocks, or enable automatic reinvestment (DRIP)&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;strong>Mindset&lt;/strong>&lt;/td>
-&lt;td>Rational quantitative&lt;/td>
-&lt;td>Even if the stock is ugly or you don't know it, &lt;strong>buy with eyes closed&lt;/strong>&lt;/td>
-&lt;/tr>
-&lt;/tbody>
-&lt;/table>
-&lt;p>Following this simplified strategy, you can capture 95%+ of Alpha Picks' returns, but reduce operational complexity by 90%.&lt;/p></description><category domain="https://scottyeung.top/en/posts/">posts</category><category domain="https://scottyeung.top/en/tags/investment/">investment</category><category domain="https://scottyeung.top/en/tags/notes/">notes</category></item></channel></rss>
+&lt;p>I've actually been in contact with AI and large language models for quite some time. When ChatGPT first came out, I was already using it - you could say I've been keeping up with the latest developments all along. But I feel like I've always just been scratching the surface. For new things, I try them once, think they're amazing, marvel at them for a moment, or find them not useful and complain a bit, and then that's it. Even the amazing and useful ones, I don't continue using them or integrate them into my work and life. The not-so-useful ones, I don't think about how to make them useful or how to actually use them. I vaguely sense that I might be gradually falling behind in this era of intelligence. Especially when I see more and more people around me starting to do vibe coding, or using AI and large language models for various things, I start comparing and getting anxious. I really need to use it more, use it in all kinds of ways, use it in daily life, use it at work, and integrate it into life.&lt;/p></description><category domain="https://scottyeung.top/en/posts/">posts</category><category domain="https://scottyeung.top/en/tags/AI/">AI</category><category domain="https://scottyeung.top/en/tags/coding/">coding</category><category domain="https://scottyeung.top/en/tags/tools/">tools</category><category domain="https://scottyeung.top/en/tags/software/">software</category></item></channel></rss>

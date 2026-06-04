@@ -1,5 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah's Context</title><link>https://scottyeung.top/</link><description>热爱折腾代码与工具，偶尔在焦虑中寻找平衡。
-这里没有标准答案，只有关于技术、阅读与生活感悟的真实上下文。</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Tue, 12 May 2026 13:31:52 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>Waline 数据源迁移记</title><link>https://scottyeung.top/2026/waline-datasource-migration/</link><guid isPermaLink="true">https://scottyeung.top/2026/waline-datasource-migration/</guid><pubDate>Tue, 12 May 2026 20:33:20 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;h2 id="起源valine--leancloud">起源：Valine + LeanCloud&lt;/h2>
+这里没有标准答案，只有关于技术、阅读与生活感悟的真实上下文。</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Thu, 04 Jun 2026 07:13:12 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>当 AI 开始读懂我的健康数据</title><link>https://scottyeung.top/2026/apple-health-data-analysis/</link><guid isPermaLink="true">https://scottyeung.top/2026/apple-health-data-analysis/</guid><pubDate>Fri, 15 May 2026 11:46:30 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;h2 id="从怀疑数据记录开始">从怀疑数据记录开始&lt;/h2>
+&lt;p>几年前，我曾经写过一篇&lt;a href="https://scottyeung.top/2021/%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89%E7%9A%84%E7%94%9F%E6%B4%BB/">博客&lt;/a>，吐槽自己对各种数据记录的执念。那时候我会记录很多东西：戴运动手表记录身体数据，用时间记录工具记录每天的行为和工作，也会关注一些健康指标。记录得越多，我反而越怀疑这些数据的价值。它们被保存下来之后，似乎很少真正被使用，也很难从中看出什么有价值的信息。&lt;/p>
+&lt;p>现在回头看，当时的吐槽有它的背景。数据本身被记录下来，并不等于它能自动产生价值。真正困难的地方在于：如何读取、整理、分析这些数据，并从里面发现一些对自己有用的规律。但在 AI 逐渐普及之后，这件事情的意义开始变得不一样了。&lt;/p>
+&lt;h2 id="ai-让健康数据重新变得可用">AI 让健康数据重新变得可用&lt;/h2>
+&lt;p>最开始让我产生这个想法的，是在推特上看到有人把自己的 Apple Health 数据全部导出，然后用 AI 分析睡眠情况。AI 根据这些数据发现了他的睡眠问题，并给出了相关的建议，最后成功改善了睡眠质量。&lt;/p>
+&lt;p>这个例子让我意识到，健康数据的价值可能一直都在那里，只是过去个人很难高效地挖掘出来。&lt;/p>
+&lt;p>过去我也会定期查看 Apple Health 里的数据，但整个过程比较繁琐。每次都要点进某个单项指标，手动切换周、月、年等不同时间范围，再自己观察趋势、最大值、最小值和阶段变化。这样确实能看出一些表面变化，但观察范围很有限，也很依赖主观判断。&lt;/p>
+&lt;p>更重要的是，苹果的健康数据虽然记录得很完整，但某种程度上也相对封闭。之前我有一段时间换过安卓手机，那段时间的健康数据很难完整迁移回来。等我重新回到苹果生态之后，中间的数据就像断掉了一截。也正因为如此，我开始觉得，如果这些长期记录的数据只是停留在设备和系统里面，最后很可能会被遗忘，甚至在某次换设备、换系统之后逐渐丢失。&lt;/p>
+&lt;h2 id="把-apple-health-数据导出来">把 Apple Health 数据导出来&lt;/h2>
+&lt;p>于是我开始尝试把自己的健康数据导出来，交给 AI 做进一步分析。&lt;/p>
+&lt;p>一开始我想找一些现成软件来完成这件事，但试了一圈之后发现，很多工具只能做基础展示，真正好用、支持增量同步和深度分析的工具往往需要付费，而且价格并不便宜，很多还是订阅制。&lt;/p>
+&lt;p>最后我干脆借助 Xcode 和 Claude，写了一个简单的 iOS App，用来导出 Apple Health 数据。这个 App 很简陋，也有一些限制，比如不能直接用 iCloud 同步数据，免费签名也需要定期重新构建和安装。但对我来说，它的使用频率并不高，主要是手动导出和阶段性分析，所以已经够用了。&lt;/p>
+&lt;h2 id="我的分析方法">我的分析方法&lt;/h2>
+&lt;p>我的分析方法也比较直接。&lt;/p>
+&lt;p>首先，我把 Apple Health 里的原始数据导出成 NDJSON 文件。里面包含了各种健康和运动数据，比如心率、体重、步数、活动量，以及通过 Apple Watch 记录的运动数据。&lt;/p>
+&lt;p>然后，我把这些数据交给 AI Agent，让它尽可能从历史数据中挖掘有价值的发现。比如观察指标的长期变化趋势，寻找值得关注的数据点，分析这些变化可能反映的问题，以及后续可以采取哪些调整。&lt;/p>
+&lt;p>最后，我会基于这些分析结果沉淀一些规则。第一次分析主要是尽可能多地挖掘信息，后续再根据自己的关注点不断调整分析方式。比如我到底关心哪些指标，哪些历史数据需要修正，哪些变化值得持续追踪，哪些情况需要被标记出来。&lt;/p>
+&lt;p>经过第一轮分析，我确实得到了一些很有意思，甚至有点警醒的发现。&lt;/p>
+&lt;h2 id="第一轮分析带来的发现">第一轮分析带来的发现&lt;/h2>
+&lt;h3 id="体重持续上升的曲线">体重：持续上升的曲线&lt;/h3>
+&lt;p>从 2022 年开始使用苹果设备记录数据，到 2023 年参加工作，再到现在，我的体重增加了 10kg 以上。虽然我主观上一直知道自己在变胖，但真正看到数据曲线时，还是有些意外。它并不是某一个阶段突然上升，而是一条持续向上的曲线，只是在某些工作强度更高、运动更少的阶段，上升速度更快。&lt;/p>
+&lt;p>更值得注意的是，这些增加的体重大部分来自脂肪，肌肉量几乎没有同步增长。也就是说，这并不是训练带来的体重上升，而是长期生活节奏、饮食和运动不足共同作用的结果。&lt;/p>
+&lt;h3 id="心率身体负担变重的信号">心率：身体负担变重的信号&lt;/h3>
+&lt;p>随着体重增加，我的静息心率和步行心率都有明显变化。刚参加工作时，我的静息心率大约在 50 多到 60 左右。工作近两年后，均值已经上升到 63–64。去年工作压力最大的时候，静息心率甚至一度达到 65 左右。从几年的均值来看，静息心率上升了大约 8 次/分钟，这个变化非常明显。&lt;/p>
+&lt;p>步行心率也有类似趋势。体重增加、活动量下降、有氧运动减少之后，日常走路时的心率也变得更高。这些指标放在一起看，其实反映的是一个很清晰的问题：身体负担变重了，有氧能力也在下降。&lt;/p>
+&lt;h3 id="hrv压力和恢复的长期变化">HRV：压力和恢复的长期变化&lt;/h3>
+&lt;p>第三个是 HRV，也就是心率变异性。&lt;/p>
+&lt;p>HRV 通常可以反映压力和身体恢复情况。随着工作强度增加，我的 HRV 均值整体走低，去年甚至达到最低点。单看某一天的数据可能没有太大意义，但把时间拉长之后，这个趋势就很明显。它和工作压力、睡眠、运动量、体重变化之间，似乎都有一定关系。&lt;/p>
+&lt;h3 id="近期的正面迹象">近期的正面迹象&lt;/h3>
+&lt;p>比较积极的一点是，从今年三月底、四月初离职之后，我有了更多时间恢复运动。最近我做了不少 Zone 2 有氧训练，心率相关指标已经开始出现回落迹象。虽然时间还不算长，但从数据上看，身体状态确实在往更好的方向变化。&lt;/p>
+&lt;h2 id="重新理解数据记录的意义">重新理解数据记录的意义&lt;/h2>
+&lt;p>这也是我觉得 AI 普及之后很有价值的一点。&lt;/p>
+&lt;p>以前面对数量庞大、类型复杂的个人数据，普通人很难真正处理它们。我们只能依赖软件本身提供的基础图表，或者凭感觉去看趋势。但现在有了 AI 之后，只要能把数据导出来，就可以让 Agent 帮忙读取、清洗、分析、画图、写报告，甚至提炼长期观察规则。&lt;/p>
+&lt;p>这件事让我重新理解了“记录数据”的意义。&lt;/p>
+&lt;p>数据本身不会自动改变生活，但它能留下轨迹。过去很多看起来琐碎的记录，在足够长的时间尺度下，可能会变成理解自己的重要线索。体重、心率、运动、睡眠、压力，这些东西在日常生活中很容易被忽略，但数据会把它们诚实地保留下来。&lt;/p>
+&lt;p>从这个角度看，数据确实是一种很珍贵的个人资产。它帮助我更好地了解自己，发现长期变化，识别身体状态的规律，也能让我在制定运动、减脂和生活调整计划时，有更可靠的依据。&lt;/p>
+&lt;p>所以我现在反而觉得，当年那种“记录了也没什么用”的想法已经有些过时了。真正的问题是，记录之后能不能被有效使用。过去这个门槛很高，而现在 AI 正在把这个门槛大幅降低。后续我也继续保留和持续记录这些数据，然后利用这些数据去交给 AI 去不断地分析，把这些数据用起来，让它变成一个能反应真实状态的长期档案，不断挖掘、榨干它的价值。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/Apple/">Apple</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category><category domain="https://scottyeung.top/tags/%E7%94%9F%E6%B4%BB/">生活</category><category domain="https://scottyeung.top/tags/AI/">AI</category><category domain="https://scottyeung.top/tags/%E5%90%90%E6%A7%BD/">吐槽</category></item><item><title>Waline 数据源迁移记</title><link>https://scottyeung.top/2026/waline-datasource-migration/</link><guid isPermaLink="true">https://scottyeung.top/2026/waline-datasource-migration/</guid><pubDate>Tue, 12 May 2026 20:33:20 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;h2 id="起源valine--leancloud">起源：Valine + LeanCloud&lt;/h2>
 &lt;p>博客最早期用的评论系统是 Valine.js。当时整套方案完全是前端操作，后端找一个 SaaS 提供对象存储服务。在 2017、2018 年左右，大部分博客系统推荐的都是 Valine.js + LeanCloud 这套组合 —— 存储免费、够用也好用，基本上大家都用 LeanCloud。&lt;/p>
 &lt;p>中途 Valine 爆出过漏洞。毕竟它是纯前端的，Token 之类的敏感信息都直接写在页面里，很容易泄露。一旦泄露，别人就能拿你的 Token 去读写数据 —— 更恶心的是，可以往里面乱写一通，直接把你的博客评论刷满无意义内容甚至危险内容。&lt;/p>
 &lt;p>漏洞出来后没多久，就有人在 Valine 的基础上做了一个新框架 —— Waline。主要改进有几点：在 Valine 上套了一层 Web 服务，可以直接跑在 Vercel 上；把敏感信息都放到了后端，所有数据操作都通过后端服务完成；另外还提供了一个管理后台，方便内容管理。&lt;/p>
@@ -406,39 +442,4 @@
 &lt;h3 id="heading">&lt;/h3>
 &lt;p>折腾完这一圈，看着手机里那几个不同地区的账号，长舒一口气。&lt;/p>
 &lt;p>在这个数字时代，想要获取一点本来就该有的便利（比如用个 Gemini，下个 ChatGPT），往往需要付出不成比例的时间成本。手里攥着的四五个账号，还有那一堆复杂的网络规则，大概就是我们这代网民最真实的写照了。&lt;/p>
-&lt;p>有时候会想，这些本该是最基本的服务，为什么要搞得这么复杂呢？但想归想，该折腾的还是得折腾。毕竟在这个时代，不折腾，就意味着落后。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/Apple/">Apple</category><category domain="https://scottyeung.top/tags/Google/">Google</category><category domain="https://scottyeung.top/tags/%E5%90%90%E6%A7%BD/">吐槽</category><category domain="https://scottyeung.top/tags/%E6%8A%98%E8%85%BE/">折腾</category><category domain="https://scottyeung.top/tags/%E5%AE%89%E5%8D%93/">安卓</category></item><item><title>用 Claude Skills 翻译博客</title><link>https://scottyeung.top/2026/claude-skills-to-translate/</link><guid isPermaLink="true">https://scottyeung.top/2026/claude-skills-to-translate/</guid><pubDate>Mon, 26 Jan 2026 22:28:54 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>之前给博客设了一个&lt;a href="https://scottyeung.top/en/">英语版&lt;/a>（过程可见 &lt;a href="https://scottyeung.top/2024/setup-english-blog/">开设我的英语博客 By Hugo&lt;/a>），会把一些文章通过 AI 翻译成英语来发布。当时的工作流是写好了一篇文章，会丢进大模型的 Chat 窗口，通过固定的 prompt 来将其翻译成英语，并且保持一样的 md 格式直接输出。然后将其复制到英文内容的相同目录下，创建一个新的文件。这样每次都复制粘贴几次，还要手动创建新文件，快是也挺快，但是现在接触到 Claude Code 后，就想到能不能再便捷一点。&lt;/p>
-&lt;p>于是选择使用 &lt;a href="https://code.claude.com/docs/en/skills#create-your-first-skill">Claude Skills&lt;/a>。&lt;/p>
-&lt;blockquote>
-&lt;p>Claude Skill 是什么?
-Skill(技能)是一种模块化、独立的扩展包,用于扩展 Claude 的能力,提供专业化的知识、工作流程和工具。可以把它们理解为特定领域或任务的&amp;quot;入职指南&amp;quot;——它们将 Claude 从通用型智能体转变为配备了程序性知识的专业化智能体。&lt;/p>
-&lt;/blockquote>
-&lt;p>通过定义一个 SKILL.md 的文档，可以创建一个技能，通过描述执行的指令步骤，以及可以参考的外部可执行代码和可参考的材料。通过可以通过一个命令，就让 Claude Code 执行相应的操作。以翻译博客为例，我在项目的 &lt;code>./claude/skills/translate-post&lt;/code> 目录下新建了一个 SKILL.md 文件，然后输入下面的内容&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
-&lt;/span>&lt;span class="lnt"> 2
-&lt;/span>&lt;span class="lnt"> 3
-&lt;/span>&lt;span class="lnt"> 4
-&lt;/span>&lt;span class="lnt"> 5
-&lt;/span>&lt;span class="lnt"> 6
-&lt;/span>&lt;span class="lnt"> 7
-&lt;/span>&lt;span class="lnt"> 8
-&lt;/span>&lt;span class="lnt"> 9
-&lt;/span>&lt;span class="lnt">10
-&lt;/span>&lt;span class="lnt">11
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-md" data-lang="md">&lt;span class="line">&lt;span class="cl">---
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">name: translate-post
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">description: transalte post&amp;#39;s content from Chinese into English
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">disable-model-invocation: true
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">---
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">transalte the specific post file $ARGUMENTS content into English
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">1.&lt;/span> read file $ARGUMENTS all text content
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">2.&lt;/span> translate all content into English. cannot drop any content
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">3.&lt;/span> create a text file in content_en directory but with the same path with original file in content
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>非常简单的指令，读文件内容，翻译成英语，在指定目录下创建文件。这里 $ARGUMENTS 是输入的参数。实际运行的时候，只需要输入命令&lt;code>/translate-post @content/posts/2026/post.md&lt;/code>，Claude Code 就可以自动在 &lt;code>content_en/posts/2026/&lt;/code> 下创建同名的文件，并且里面的内容是翻译好的。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/AI/">AI</category><category domain="https://scottyeung.top/tags/%E5%8D%9A%E5%AE%A2/">博客</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category><category domain="https://scottyeung.top/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/">自动化</category></item></channel></rss>
+&lt;p>有时候会想，这些本该是最基本的服务，为什么要搞得这么复杂呢？但想归想，该折腾的还是得折腾。毕竟在这个时代，不折腾，就意味着落后。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/Apple/">Apple</category><category domain="https://scottyeung.top/tags/Google/">Google</category><category domain="https://scottyeung.top/tags/%E5%90%90%E6%A7%BD/">吐槽</category><category domain="https://scottyeung.top/tags/%E6%8A%98%E8%85%BE/">折腾</category><category domain="https://scottyeung.top/tags/%E5%AE%89%E5%8D%93/">安卓</category></item></channel></rss>
