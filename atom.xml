@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah's Context</title><link>https://scottyeung.top/</link><description>热爱折腾代码与工具，偶尔在焦虑中寻找平衡。
-这里没有标准答案，只有关于技术、阅读与生活感悟的真实上下文。</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Sun, 21 Jun 2026 13:26:02 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>当 AI 开始读懂我的健康数据</title><link>https://scottyeung.top/2026/apple-health-data-analysis/</link><guid isPermaLink="true">https://scottyeung.top/2026/apple-health-data-analysis/</guid><pubDate>Thu, 04 Jun 2026 11:46:30 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;h2 id="从怀疑数据记录开始">从怀疑数据记录开始&lt;/h2>
+这里没有标准答案，只有关于技术、阅读与生活感悟的真实上下文。</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Sun, 16 Aug 2026 08:38:06 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>给所有 Agent 加一层共享记忆</title><link>https://scottyeung.top/2026/shared-agent-memory/</link><guid isPermaLink="true">https://scottyeung.top/2026/shared-agent-memory/</guid><pubDate>Sun, 16 Aug 2026 12:47:51 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>最近重新上班之后，在公司里大量使用 AI 进行工作和开发，使用强度上来后，消耗也多了很多。眼下最头疼的是：公司虽然提供工具和额度，但多且杂，没有一个足够好用、也足够用的。公司层面有自己的 AI 平台，部门又单独搞了一个，限额、可用性、排队都经常碰到。为了补这些缺口，我自己也自费买了一些订阅，可即便切到最高档的 Codex 猛用，一个账号也完全不够，还是得在多种工具之间来回切。日常工作里同时面对多个 AI 工具、多个模型和不同供应商，管理起来很乱。往后可能还是得用回公司内部的各种工具和模型；再加上公司所谓的保密要求，以后对外部模型大概也会有所限制——真要是自己的订阅用不了，切换只会更频繁。&lt;/p>
+&lt;p>更麻烦的是，对话内容、记忆和工作进展很难在这些工具之间同步。之前试过靠落文档来同步，每个内容都还得再通过对话传递一遍，效率很低。所以现在很需要一种能在不同 AI 平台和工具之间把这些东西带着走的办法。刷推特时看到有人在讲 Nowledge Mem，了解了一下，看起来还行。它的本质是在各个 Agent 之外建一层 Memory：Agent 启动执行前先通过 hook 去查 Memory，执行完再用 post hook 把内容更新回去。大家共用这一层，跟建一个统一的文档仓库有点像，但不用每次都手动决定该落下什么；有些内容也算不上知识，硬落只会又多又乱。&lt;/p>
+&lt;p>最近打算先在各个 Agent 里启用、安装一些 hooks 脚本，或者导入配置。这一步比较简单，直接丢给 Agent 做就行。配置完之后，先让它根据历史会话扫一遍、抽出一些 memory，把历史记忆建起来，后面再维护更新。先试用一段时间，工作上和个人这边都用一下。刚好最近也开了 Grok 的 Super Grok 订阅，挺期待几个 Agent 共用同一层 memory 会是什么效果。&lt;/p>
+&lt;p>之前我有点太过依赖 A 社（Anthropic）和 Claude Code 了，基本有段时间只用 Claude Code，尤其偏好它的 Opus 模型。好用是好用，恶心也是真的恶心，最近还莫名其妙喜提封号了。所以这样搞最大的好处，就是不用绑死在某一家平台、某一个模型或某一个工具上。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/AI/">AI</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category><category domain="https://scottyeung.top/tags/coding/">coding</category><category domain="https://scottyeung.top/tags/%E8%AE%B0%E5%BD%95/">记录</category></item><item><title>当 AI 开始读懂我的健康数据</title><link>https://scottyeung.top/2026/apple-health-data-analysis/</link><guid isPermaLink="true">https://scottyeung.top/2026/apple-health-data-analysis/</guid><pubDate>Thu, 04 Jun 2026 11:46:30 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;h2 id="从怀疑数据记录开始">从怀疑数据记录开始&lt;/h2>
 &lt;p>几年前，我曾经写过一篇&lt;a href="https://scottyeung.top/2021/%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89%E7%9A%84%E7%94%9F%E6%B4%BB/">博客&lt;/a>，吐槽自己对各种数据记录的执念。那时候我会记录很多东西：戴运动手表记录身体数据，用时间记录工具记录每天的行为和工作，也会关注一些健康指标。记录得越多，我反而越怀疑这些数据的价值。它们被保存下来之后，似乎很少真正被使用，也很难从中看出什么有价值的信息。&lt;/p>
 &lt;p>现在回头看，当时的吐槽有它的背景。数据本身被记录下来，并不等于它能自动产生价值。真正困难的地方在于：如何读取、整理、分析这些数据，并从里面发现一些对自己有用的规律。但在 AI 逐渐普及之后，这件事情的意义开始变得不一样了。&lt;/p>
 &lt;h2 id="ai-让健康数据重新变得可用">AI 让健康数据重新变得可用&lt;/h2>
@@ -402,44 +405,4 @@
 &lt;blockquote>
 &lt;p>热爱折腾代码与工具，偶尔在焦虑中寻找平衡。&lt;br>
 这里没有标准答案，只有关于技术、阅读与生活感悟的真实上下文。&lt;/p>
-&lt;/blockquote></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E5%8D%9A%E5%AE%A2/">博客</category><category domain="https://scottyeung.top/tags/%E8%AE%B0%E5%BD%95/">记录</category></item><item><title>赛博"多重国籍"：账号折腾实录</title><link>https://scottyeung.top/2026/apple-google-multiple-accounts/</link><guid isPermaLink="true">https://scottyeung.top/2026/apple-google-multiple-accounts/</guid><pubDate>Sun, 01 Feb 2026 12:18:02 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>最近想聊聊账号的事。&lt;/p>
-&lt;p>这东西本来只是个身份标识，但在当下的网络环境里，硬生生把我们逼成了&amp;quot;狡兔三窟&amp;quot;。&lt;/p>
-&lt;p>作为中国大陆用户，早些年为了下一些国区没有的 App，大概率都会备一个 HK 地区的 Apple ID。那时候觉得 HK ID 挺完美的，中文界面，支付方便（绑个 Alipay HK 或者港卡），大部分该有的服务也都有。&lt;/p>
-&lt;p>但这两年 AI 时代来了，局面又变了。很多 AI 服务（比如 Claude、ChatGPT 的 iOS 客户端）不仅锁国区，连 HK 区也被划到了&amp;quot;不受支持&amp;quot;的范畴。没办法，为了跟上时代的步伐，只能再硬着头皮去搞一个 US 地区的 Apple ID。&lt;/p>
-&lt;p>这事儿还不止发生在 iOS 上，安卓那边也没好到哪去。&lt;/p>
-&lt;p>原本以为 Google 账号有一个港区的也就够用了，Play Store 内容全，支付也没障碍。结果 Google 亲儿子 Gemini 一出来，直接对地区设限。为了能顺利用上 Gemini，我又被迫新注册了一个美区的 Google 账号来开通会员。&lt;/p>
-&lt;p>于是现在的局面变得非常魔幻：&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>iOS 端&lt;/strong>：CN ID 存照片，HK ID 下游戏，US ID 用来供着那些傲娇的 AI App。&lt;/li>
-&lt;li>&lt;strong>Android 端&lt;/strong>：HK 账号下日常应用和使用 Google 家各种服务，US 账号专门伺候 Gemini。&lt;/li>
-&lt;/ul>
-&lt;p>日常使用起来那叫一个精神分裂。在 iPhone 上为了更个 App 要切账号，输密码输到手软；在安卓上虽然切换稍微方便点，但为了不同服务的权限切来切去，经常搞不清现在自己到底身在&amp;quot;哪国&amp;quot;。&lt;/p>
-&lt;h3 id="ip-地址这茬事儿比账号还玄学">IP 地址这茬事儿，比账号还玄学&lt;/h3>
-&lt;p>有了美区账号不代表能用美区服务。&lt;/p>
-&lt;p>你的网络环境必须得&amp;quot;纯净&amp;quot;。这就逼着我们必须给特定的服务设置专门的代理规则。以前可能一个节点走天下，现在不行了：这个服务要求美国原生 IP，那个流媒体限制必须是家庭宽带 IP，另一个 AI 服务又屏蔽了常见的机房 IP 段……&lt;/p>
-&lt;p>稍微手抖一下，分流规则没写对，或者节点抽风飘到了被风控的网段，轻则服务不可用，重则直接触发风控系统。最惨的情况是，因为 IP 变动过于频繁或者位置异常，连带着你辛辛苦苦注册的账号也一起被封禁。&lt;/p>
-&lt;p>每次打开这些 App 前，都得战战兢兢地确认一眼代理状态，生怕一脚踩空，号就没了。&lt;/p>
-&lt;h3 id="apple-id-注册避坑指北">Apple ID 注册避坑指北&lt;/h3>
-&lt;p>Google 账号注册相对还算宽容，但美区 Apple ID 的注册流程现在简直是&amp;quot;修罗场&amp;quot;。&lt;/p>
-&lt;p>首先是邮箱问题。Apple ID 强绑定邮箱，三个 ID 就得占三个坑。好不容易翻出个冷门邮箱去注册，填完一堆资料，最后一步直接弹窗提示：&lt;/p>
-&lt;blockquote>
-&lt;p>&lt;strong>&amp;quot;此时无法创建你的账户。&amp;quot;&lt;/strong>&lt;/p>
-&lt;/blockquote>
-&lt;p>没有任何错误代码，没有任何具体原因，就是告诉你&amp;quot;不行&amp;quot;。&lt;/p>
-&lt;p>不死心换个时间、换个 IP、换个浏览器，大概率还是这句话。上网搜了一圈，发现这几乎是通病，大概率是触发了苹果某种玄学的风控机制。&lt;/p>
-&lt;p>折腾了一下午没结果，后来在某个角落看到个偏方：&lt;strong>用微信小程序注册&lt;/strong>。&lt;/p>
-&lt;p>抱着死马当活马医的心态试了一下，居然一次过了！路径大概是：在微信里搜 Apple 的官方小程序（或者相关服务入口），走里面的账户创建流程。这里的风控似乎比网页端和手机设置里要宽松得多，没有任何报错，丝滑通过。&lt;/p>
-&lt;h4 id="地区切换的坑">地区切换的坑&lt;/h4>
-&lt;p>小程序注册出来的 ID，默认地区还是&lt;strong>中国大陆&lt;/strong>。&lt;/p>
-&lt;p>我想着这好办，去 Apple ID 网页版改个地区不就行了？结果又撞墙了——在网页版里修改地区，选好美国，填好资料，点击保存，报错。依然是不给原因的错误。&lt;/p>
-&lt;p>这时候只能祭出&amp;quot;硬改&amp;quot;大法：&lt;strong>直接在手机的 App Store 里登录这个新账号&lt;/strong>。系统会提示你这个账号从未使用过，需要检查。点击检查后，在这个界面里选择地区为 United States，同意条款。神奇的事情发生了，这里居然没有任何阻碍，直接让你进入下一步填写地址。&lt;/p>
-&lt;p>到了填地址这一步，千万别瞎填。虽然不验证真实居住权，但邮编和州得对应上。&lt;/p>
-&lt;p>两个 Tips：&lt;/p>
-&lt;ol>
-&lt;li>&lt;strong>善用生成器&lt;/strong>：Google 一下&amp;quot;US Address Generator&amp;quot;，一抓一大把，能生成包含街道、电话、邮编的全套信息。&lt;/li>
-&lt;li>&lt;strong>选免税州&lt;/strong>：这一步非常关键。如果你以后打算买 App 或者订阅服务，一定要选**免税州（Tax-Free States）**的地址。比如 &lt;strong>Oregon (OR)&lt;/strong>、&lt;strong>Delaware (DE)&lt;/strong>、&lt;strong>Montana (MT)&lt;/strong> 等。不然你买个 $19.99 的软件，还得额外多交一笔税。虽然钱不多，但心里膈应。&lt;/li>
-&lt;/ol>
-&lt;h3 id="heading">&lt;/h3>
-&lt;p>折腾完这一圈，看着手机里那几个不同地区的账号，长舒一口气。&lt;/p>
-&lt;p>在这个数字时代，想要获取一点本来就该有的便利（比如用个 Gemini，下个 ChatGPT），往往需要付出不成比例的时间成本。手里攥着的四五个账号，还有那一堆复杂的网络规则，大概就是我们这代网民最真实的写照了。&lt;/p>
-&lt;p>有时候会想，这些本该是最基本的服务，为什么要搞得这么复杂呢？但想归想，该折腾的还是得折腾。毕竟在这个时代，不折腾，就意味着落后。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/Apple/">Apple</category><category domain="https://scottyeung.top/tags/Google/">Google</category><category domain="https://scottyeung.top/tags/%E5%90%90%E6%A7%BD/">吐槽</category><category domain="https://scottyeung.top/tags/%E6%8A%98%E8%85%BE/">折腾</category><category domain="https://scottyeung.top/tags/%E5%AE%89%E5%8D%93/">安卓</category></item></channel></rss>
+&lt;/blockquote></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E5%8D%9A%E5%AE%A2/">博客</category><category domain="https://scottyeung.top/tags/%E8%AE%B0%E5%BD%95/">记录</category></item></channel></rss>
