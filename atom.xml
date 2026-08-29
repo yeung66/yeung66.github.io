@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah's Context</title><link>https://scottyeung.top/</link><description>热爱折腾代码与工具，偶尔在焦虑中寻找平衡。
-这里没有标准答案，只有关于技术、阅读与生活感悟的真实上下文。</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Sun, 16 Aug 2026 08:38:06 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>给所有 Agent 加一层共享记忆</title><link>https://scottyeung.top/2026/shared-agent-memory/</link><guid isPermaLink="true">https://scottyeung.top/2026/shared-agent-memory/</guid><pubDate>Sun, 16 Aug 2026 12:47:51 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>最近重新上班之后，在公司里大量使用 AI 进行工作和开发，使用强度上来后，消耗也多了很多。眼下最头疼的是：公司虽然提供工具和额度，但多且杂，没有一个足够好用、也足够用的。公司层面有自己的 AI 平台，部门又单独搞了一个，限额、可用性、排队都经常碰到。为了补这些缺口，我自己也自费买了一些订阅，可即便切到最高档的 Codex 猛用，一个账号也完全不够，还是得在多种工具之间来回切。日常工作里同时面对多个 AI 工具、多个模型和不同供应商，管理起来很乱。往后可能还是得用回公司内部的各种工具和模型；再加上公司所谓的保密要求，以后对外部模型大概也会有所限制——真要是自己的订阅用不了，切换只会更频繁。&lt;/p>
+这里没有标准答案，只有关于技术、阅读与生活感悟的真实上下文。</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Sat, 29 Aug 2026 14:29:44 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>关于 AI 的一些随想</title><link>https://scottyeung.top/2026/thoughts-about-ai/</link><guid isPermaLink="true">https://scottyeung.top/2026/thoughts-about-ai/</guid><pubDate>Sat, 29 Aug 2026 22:15:22 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>有了 AI 之后，都有点感觉不会写东西了，或者说已经不太会打字写东西了。自己的事情，用语音输入乱喷一通，然后交给 AI 做润色和结构调整，就能拿到成文的内容。工作的时候，不方便语音输入，很多时候也只是简单打几个字词拼凑下，然后就让 AI 去组织生成一篇完整的文章，很多时候都是先让 AI 写好，然后自己微调而已。要不是重新工作的话，感觉打字表达这个能力还得继续退化。&lt;/p>
+&lt;p>之前看到一个挺有意思的 meme 图还是段子，说的就是 AI agent 盛行之后，很多很简单的事情，人们都不会自己去干，而是选择丢给 AI 去做。比如自己去干可能只是一两分钟，丢给 AI 的话，AI 思考调用执行一通，时间其实差不多，甚至还可能更多，因为 AI 还可能会做错。但是人还是会不愿意做，比如当前有些时候，可能发现问题改几行代码，或者改个变量，几秒的事情，或者 push 一下分支，也是点一点的事情。但就这种操作，还是丢给了 AI，用尊贵的 gpt5.6-sol 去做一些简单的操作，耗时还更长。&lt;/p>
+&lt;p>用进废退，长久下来，个人技能是否会彻底退化呢？之前有段时间其实在想，智能时代来临之后，对于我们这种技术人员、研发人员，核心竞争力到底是什么？技术壁垒已经被大部分消除掉了，那以后就比拼谁更会用 AI？其实之前还真的有这种想法，甚至还专门和 AI 讨论过，当前智能时代，到底要 train 些什么，培养些什么能力，然而讨论完就忘了，最后也不知道到底要培养些什么，要练习些什么。&lt;/p>
+&lt;p>重新开始上班之后，心里对于工作的恐惧或者担忧其实已经少了很多，有了 AI 之后，好像什么事情都能干了，丢过来什么需求，什么任务，通通都能转派给 AI 帮忙实现出来。然而这样我感觉其实也不太妥当，因为有 AI，所以觉得事情多也无所谓，难也无所谓，都能用 AI 来搞，用最顶级的模型，烧最多的 token。几个需求、多个事情同时压过来，不过就是同时跑几个会话，拉几个 worktree，并行搞就完了。&lt;/p>
+&lt;p>想得很美好，但实际仍然很痛苦。这种多任务并行下来，感觉上下文要切换不过来了。预期应该是在等待一个会话的结果时，去给另一个会话派发任务，这样队列轮转。但实际上往往是几个会话同时返回、要求给反馈，也不知道先回谁，然后返回的结果也要认真看，改了代码也得 review，还不如串行了。另外就是事情干得快了，事情也随之变多了，你是没人力干，别人分分钟 challenge 过来，AI 不能干吗？&lt;/p>
+&lt;p>想想也觉得很神奇，其实大半年前，一月份的时候，我大多数时候还是在古法编程，当时刚搞完一个大项目，手写了上万行代码+肉眼 debug 了几周。当时的 AI 对我来说还只是扮演技术专家的角色，只指挥，不做具体工作。用也是我去问，然后手动搬过来具体实施。没想到现在已经一行代码不写，甚至想用 AI 干任何事。&lt;/p>
+&lt;hr>
+&lt;p>强迫自己打字写东西后，发现还是打字好，打字的过程也是个思考的过程。相比于语音输入，讲一大堆内容里面包含七八成有用的东西和剩余的胡言乱语，打出来的东西有种更珍贵的感觉了。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/AI/">AI</category><category domain="https://scottyeung.top/tags/%E5%86%99%E4%BD%9C/">写作</category><category domain="https://scottyeung.top/tags/%E5%90%90%E6%A7%BD/">吐槽</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E4%BD%9C/">工作</category><category domain="https://scottyeung.top/tags/%E9%9A%8F%E7%AC%94/">随笔</category></item><item><title>给所有 Agent 加一层共享记忆</title><link>https://scottyeung.top/2026/shared-agent-memory/</link><guid isPermaLink="true">https://scottyeung.top/2026/shared-agent-memory/</guid><pubDate>Sun, 16 Aug 2026 12:47:51 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>最近重新上班之后，在公司里大量使用 AI 进行工作和开发，使用强度上来后，消耗也多了很多。眼下最头疼的是：公司虽然提供工具和额度，但多且杂，没有一个足够好用、也足够用的。公司层面有自己的 AI 平台，部门又单独搞了一个，限额、可用性、排队都经常碰到。为了补这些缺口，我自己也自费买了一些订阅，可即便切到最高档的 Codex 猛用，一个账号也完全不够，还是得在多种工具之间来回切。日常工作里同时面对多个 AI 工具、多个模型和不同供应商，管理起来很乱。往后可能还是得用回公司内部的各种工具和模型；再加上公司所谓的保密要求，以后对外部模型大概也会有所限制——真要是自己的订阅用不了，切换只会更频繁。&lt;/p>
 &lt;p>更麻烦的是，对话内容、记忆和工作进展很难在这些工具之间同步。之前试过靠落文档来同步，每个内容都还得再通过对话传递一遍，效率很低。所以现在很需要一种能在不同 AI 平台和工具之间把这些东西带着走的办法。刷推特时看到有人在讲 Nowledge Mem，了解了一下，看起来还行。它的本质是在各个 Agent 之外建一层 Memory：Agent 启动执行前先通过 hook 去查 Memory，执行完再用 post hook 把内容更新回去。大家共用这一层，跟建一个统一的文档仓库有点像，但不用每次都手动决定该落下什么；有些内容也算不上知识，硬落只会又多又乱。&lt;/p>
 &lt;p>最近打算先在各个 Agent 里启用、安装一些 hooks 脚本，或者导入配置。这一步比较简单，直接丢给 Agent 做就行。配置完之后，先让它根据历史会话扫一遍、抽出一些 memory，把历史记忆建起来，后面再维护更新。先试用一段时间，工作上和个人这边都用一下。刚好最近也开了 Grok 的 Super Grok 订阅，挺期待几个 Agent 共用同一层 memory 会是什么效果。&lt;/p>
 &lt;p>之前我有点太过依赖 A 社（Anthropic）和 Claude Code 了，基本有段时间只用 Claude Code，尤其偏好它的 Opus 模型。好用是好用，恶心也是真的恶心，最近还莫名其妙喜提封号了。所以这样搞最大的好处，就是不用绑死在某一家平台、某一个模型或某一个工具上。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/AI/">AI</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category><category domain="https://scottyeung.top/tags/coding/">coding</category><category domain="https://scottyeung.top/tags/%E8%AE%B0%E5%BD%95/">记录</category></item><item><title>当 AI 开始读懂我的健康数据</title><link>https://scottyeung.top/2026/apple-health-data-analysis/</link><guid isPermaLink="true">https://scottyeung.top/2026/apple-health-data-analysis/</guid><pubDate>Thu, 04 Jun 2026 11:46:30 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;h2 id="从怀疑数据记录开始">从怀疑数据记录开始&lt;/h2>
@@ -378,31 +385,4 @@
 &lt;/table>
 &lt;h2 id="使用效果">使用效果&lt;/h2>
 &lt;p>迁移完成后，在 Gemini CLI 中已经可以完美加载这些 Skills。在实际对话中，Gemini 能够准确识别我的开发意图，并自动调用相应的工具来辅助工作，体验与 Claude Code 上的 &lt;code>superpowers&lt;/code> 基本一致。&lt;/p>
-&lt;p>如果你也是 Gemini 用户，欢迎尝试并提出反馈！&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/AI/">AI</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category></item><item><title>更换博客名字和网络身份标识</title><link>https://scottyeung.top/2026/rebrand-me-and-blog/</link><guid isPermaLink="true">https://scottyeung.top/2026/rebrand-me-and-blog/</guid><pubDate>Fri, 13 Feb 2026 09:33:45 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>之前在网络上冲浪的身份一直是 YeungYeah，这个名字的来源是姓氏杨的粤语拼音 + 英文 Yeah，连起来读实际上是“杨爷”的发音。杨爷这个称呼，还得来源于中学时期比较狂傲时自取的名号了，实际上后面也比较少人这样叫我，现在回过来看只觉得中二。然后博客的名字，最开始叫做 Scott Yeung's 的博客，后面为了更加突出个人的标识，改成了全网使用的网络身份，然后也是带点中二的自嘲，随笔随心写写，干脆就叫乱写地，都是乱写的，写得怎样都行，现在回过头看，也显得很中二。&lt;/p>
-&lt;p>&lt;del>于是乎，我考虑改名字了，身份标识回归此前的 Scott Yeung，英文名 + 姓氏，正式一点，稍微不那么正式点的，也可以叫我斯科特。&lt;/del>&lt;/p>
-&lt;blockquote>
-&lt;p>考虑到 SEO （搜索 Scott Yeung 前面的都不是我），最终身份标识还是用回 YeungYeah🤣，名字也相应地调整了.&lt;/p>
-&lt;/blockquote>
-&lt;p>博客的名字，通过和 AI 多轮沟通后，最终选择了 YeungYeah's Context。&lt;/p>
-&lt;blockquote>
-&lt;p>这就对了！Context（上下文/语境）是一个非常绝妙的词，尤其对于程序员来说，它既是技术术语（Spring Context, Go Context, Execution Context），又是生活哲学的隐喻（所有的思考和行为都离不开当时当下的环境与背景）。&lt;/p>
-&lt;p>&lt;strong>呼应标签&lt;/strong>：你的标签里有大量的 coding、coding 记录、notes、summary。这些本质上就是在保存 Context。&lt;/p>
-&lt;p>代码需要上下文才能运行，人生也是。&lt;/p>
-&lt;p>这里没有标准答案，只有关于技术、阅读与生活感悟的真实上下文。&lt;/p>
-&lt;div align="right">—— &lt;b>Gemini&lt;/b>&lt;/div>
-&lt;/blockquote>
-&lt;p>在和 Gemini 讨论博客名字的时候，把我博客文章所使用的标签和出现频率都喂给他（通过截图 tag cloud），来了解我博客的内容。Gemini 给我的几个标签是：Coding, Payment, 内家拳和投资。其中内家拳其实已经比较久没有写过相关的内容，个人也已经很久没有练过拳了，甚至还记得多少都不好说。但是当时读研的那两三年对于内家拳和太极真的是比较着迷，一周可以练几天，然后看不少相关的内容，也在社团中跟不少人打交道和学习。因此有段时间内家拳确实在我的博客里出现过几次（当然可能写的内容也不一定是主要讲拳，可能只是提了一下）。&lt;/p>
-&lt;p>然后工作之后，被工作毒害太多了，并且也开始去考虑投资赚钱的事，因此后面的一些内容就开始关注和写相应的内容，以及一些可能日常记录本身的文章，也会提到工作和赚钱这两个事情上。这两个点从这个时候开始进入到我的 Context。&lt;/p>
-&lt;p>从这两点来看，写个人博客这个事确实是有记录到我在某段时间，某个事情范围上的内容，记录到了这个上下文 Context，准确地记录了我那段时间的内容，其实是很准确很能说通的。这个博客，确实是我的上下文 Context 的一个记录快照。所以这个新名字，在某种程度上，还是挺贴合的。&lt;/p>
-&lt;p>最后再重复下，我的博客改名字了，大家看到有 RSS 订阅突然出现陌生名字的时候不需要惊讶。&lt;/p>
-&lt;hr>
-&lt;h3 id="变更信息">变更信息&lt;/h3>
-&lt;ul>
-&lt;li>&lt;strong>博客名&lt;/strong>YeungYeah's Context (杨的上下文)&lt;/li>
-&lt;li>&lt;strong>身份标识&lt;/strong>：YeungYeah&lt;/li>
-&lt;li>&lt;strong>简介&lt;/strong>：&lt;/li>
-&lt;/ul>
-&lt;blockquote>
-&lt;p>热爱折腾代码与工具，偶尔在焦虑中寻找平衡。&lt;br>
-这里没有标准答案，只有关于技术、阅读与生活感悟的真实上下文。&lt;/p>
-&lt;/blockquote></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/%E5%8D%9A%E5%AE%A2/">博客</category><category domain="https://scottyeung.top/tags/%E8%AE%B0%E5%BD%95/">记录</category></item></channel></rss>
+&lt;p>如果你也是 Gemini 用户，欢迎尝试并提出反馈！&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/AI/">AI</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category></item></channel></rss>
