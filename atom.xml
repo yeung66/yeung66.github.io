@@ -1,5 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>YeungYeah's Context</title><link>https://scottyeung.top/</link><description>热爱折腾代码与工具，偶尔在焦虑中寻找平衡。
-这里没有标准答案，只有关于技术、阅读与生活感悟的真实上下文。</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Sat, 29 Aug 2026 14:29:44 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>关于 AI 的一些随想</title><link>https://scottyeung.top/2026/thoughts-about-ai/</link><guid isPermaLink="true">https://scottyeung.top/2026/thoughts-about-ai/</guid><pubDate>Sat, 29 Aug 2026 22:15:22 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>有了 AI 之后，都有点感觉不会写东西了，或者说已经不太会打字写东西了。自己的事情，用语音输入乱喷一通，然后交给 AI 做润色和结构调整，就能拿到成文的内容。工作的时候，不方便语音输入，很多时候也只是简单打几个字词拼凑下，然后就让 AI 去组织生成一篇完整的文章，很多时候都是先让 AI 写好，然后自己微调而已。要不是重新工作的话，感觉打字表达这个能力还得继续退化。&lt;/p>
+这里没有标准答案，只有关于技术、阅读与生活感悟的真实上下文。</description><generator>Hugo 0.122.0 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>yeungyeah@qq.com (YeungYeah)</managingEditor><webMaster>yeungyeah@qq.com (YeungYeah)</webMaster><lastBuildDate>Wed, 14 Oct 2026 12:29:19 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://scottyeung.top/atom.xml"/><item><title>共享记忆，最后还是落回了文档</title><link>https://scottyeung.top/2026/doc-based-ai-memory/</link><guid isPermaLink="true">https://scottyeung.top/2026/doc-based-ai-memory/</guid><pubDate>Wed, 14 Oct 2026 19:00:00 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>上次写了篇&lt;a href="https://scottyeung.top/2026/shared-agent-memory/">给所有 Agent 加一层共享记忆&lt;/a>，当时还挺期待几个 Agent 共用一层 Nowledge Mem 会是什么效果。结果用了一段时间，还是放弃了，最后又绕回了比较土的办法，就是写文档、搭个知识库，感觉反而更方便一些。&lt;/p>
+&lt;h2 id="nowledge-mem-没用起来">Nowledge Mem 没用起来&lt;/h2>
+&lt;p>Nowledge Mem 的思路其实是没问题的，每次对话前先去查一下 Memory，执行完再把内容写回去，专门搞一层来管记忆。但实际用下来，经常断连，有时候 hook 根本没生效，说好的自动写入也没怎么写，基本上没感觉到有什么效果。而且整个东西有点重，每轮对话都要先查再写，对话节奏被拖慢了，任务跑起来也慢。用着用着就觉得没必要了，干脆卸掉。&lt;/p>
+&lt;p>卸掉之后问题还在，还是得找个办法。想了想，其实工作上一直在用的办法就挺好使的。&lt;/p>
+&lt;h2 id="工作上让-agent-写成飞书文档">工作上：让 Agent 写成飞书文档&lt;/h2>
+&lt;p>回到最开始的问题，其实就是多个平台、多个 Agent 之间，上下文和记忆怎么共享。工作上现在的做法比较简单，就是让 Agent 把它知道的东西写出来，整理成飞书文档分享出去，写得足够细，不管是人还是别的 Agent 拿到，照着文档走就能复现。公司里有飞书的 Skill，AI 工具配上之后就能直接读飞书文档。飞书在这里只是个载体，里面装的大多是一些经验、方法和指引，某件事怎么做、某个平台怎么用、某个流程是怎么走的，传来传去，比在对话里一遍遍重新讲要省事很多。&lt;/p>
+&lt;p>工作上这么搞下来还挺顺，回到自己这边，发现其实也卡在一样的地方。&lt;/p>
+&lt;h2 id="自己这边grok-bot-不在本地换成-notion">自己这边：Grok Bot 不在本地，换成 Notion&lt;/h2>
+&lt;p>现在个人主要在用 Grok Bot 和 Codex，Codex 跑在本地，Grok Bot 很多时候是在云电脑上跑的，不在我本地，本地的那些东西它都碰不到。如果知识和技能共享不过去，Grok Bot 就干不了太多事，基本等于浪费了。所以这块对我来说也是个核心问题。&lt;/p>
+&lt;p>刚好那阵子刷推特，看到一些大佬在讨论这个事情，提到了 Notion，加上 Notion 本身功能也挺丰富的，飞书个人版又有些限制，就没用飞书，直接用 Notion 搞了。具体就是建了个知识库，让 Codex 把我之前跟 AI 来回折腾积累下来的知识和记忆整理、导出进去，之后再不定期维护一下，新的会话就能从里面检索已有的东西。&lt;/p>
+&lt;p>大概分了这么几块：&lt;/p>
+&lt;pre tabindex="0">&lt;code>AI Memory &amp;amp; Knowledge
+├── Start Here # 使用说明，Agent 先读这个
+├── Rules # 已经确认的规则和偏好
+├── Memory # 发生过的事、当时为什么这么决定、还没做完的事
+├── Knowledge # 可以反复用的知识和结论
+└── Skills # 可以复用的做事方法
+&lt;/code>&lt;/pre>&lt;h2 id="现在是怎么跑的">现在是怎么跑的&lt;/h2>
+&lt;p>光有个库还不够，还得让 AI 知道怎么用它。用起来大概是这样，Agent 先看 Start Here，然后去 Rules 里找当前生效、跟这次任务相关的规则，再按需要翻一下 Memory 和 Knowledge，碰到重复的流程再去看 Skills。写回去的时候，先搜一下有没有同一个主题的，有的话就直接更新原来那条，不要每次都新建；没确认的先标个待确认，过时的就标废止。密钥这些不往里放，完整的聊天记录也不贴。&lt;/p>
+&lt;p>现在本地 Codex 的全局 &lt;code>AGENTS.md&lt;/code> 里配了这套规则，干活的时候会自己去查、自己写回去；Grok Bot 也接了自己的 Notion，按同一套规则读写。跟之前 Nowledge Mem 不一样的地方在于，不是每轮对话都强制先查后写，碰到相关的任务才去查，有了值得留下的结论才写，没什么变化就不写，所以没那么重。&lt;/p>
+&lt;h2 id="先这么用着">先这么用着&lt;/h2>
+&lt;p>不过说实话，这套东西也才刚搭起来，到底好不好用还说不准。什么时候该查、什么时候该写，全靠规则里那几句话管着，会不会漏写、会不会越写越乱，都还不知道。至少现在它就是一份我看得见、也改得动的文档，不是一个黑盒，先这么用着看看吧。&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/AI/">AI</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category><category domain="https://scottyeung.top/tags/%E8%AE%B0%E5%BD%95/">记录</category></item><item><title>关于 AI 的一些随想</title><link>https://scottyeung.top/2026/thoughts-about-ai/</link><guid isPermaLink="true">https://scottyeung.top/2026/thoughts-about-ai/</guid><pubDate>Sat, 29 Aug 2026 22:15:22 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>有了 AI 之后，都有点感觉不会写东西了，或者说已经不太会打字写东西了。自己的事情，用语音输入乱喷一通，然后交给 AI 做润色和结构调整，就能拿到成文的内容。工作的时候，不方便语音输入，很多时候也只是简单打几个字词拼凑下，然后就让 AI 去组织生成一篇完整的文章，很多时候都是先让 AI 写好，然后自己微调而已。要不是重新工作的话，感觉打字表达这个能力还得继续退化。&lt;/p>
 &lt;p>之前看到一个挺有意思的 meme 图还是段子，说的就是 AI agent 盛行之后，很多很简单的事情，人们都不会自己去干，而是选择丢给 AI 去做。比如自己去干可能只是一两分钟，丢给 AI 的话，AI 思考调用执行一通，时间其实差不多，甚至还可能更多，因为 AI 还可能会做错。但是人还是会不愿意做，比如当前有些时候，可能发现问题改几行代码，或者改个变量，几秒的事情，或者 push 一下分支，也是点一点的事情。但就这种操作，还是丢给了 AI，用尊贵的 gpt5.6-sol 去做一些简单的操作，耗时还更长。&lt;/p>
 &lt;p>用进废退，长久下来，个人技能是否会彻底退化呢？之前有段时间其实在想，智能时代来临之后，对于我们这种技术人员、研发人员，核心竞争力到底是什么？技术壁垒已经被大部分消除掉了，那以后就比拼谁更会用 AI？其实之前还真的有这种想法，甚至还专门和 AI 讨论过，当前智能时代，到底要 train 些什么，培养些什么能力，然而讨论完就忘了，最后也不知道到底要培养些什么，要练习些什么。&lt;/p>
 &lt;p>重新开始上班之后，心里对于工作的恐惧或者担忧其实已经少了很多，有了 AI 之后，好像什么事情都能干了，丢过来什么需求，什么任务，通通都能转派给 AI 帮忙实现出来。然而这样我感觉其实也不太妥当，因为有 AI，所以觉得事情多也无所谓，难也无所谓，都能用 AI 来搞，用最顶级的模型，烧最多的 token。几个需求、多个事情同时压过来，不过就是同时跑几个会话，拉几个 worktree，并行搞就完了。&lt;/p>
@@ -262,127 +283,4 @@
 &lt;/ul>
 &lt;p>在这个大模型时代，我越来越觉得 &lt;strong>“内容”本身比“输入的完美度”更重要&lt;/strong>。
 只要能把核心想法快速抛出来，语法、错字、润色完全可以交给 AI 兜底。特别是在写日记、周记这种不需要高强度逻辑构建的场景下，语音输入简直是神器。&lt;/p>
-&lt;p>未来一段时间，我预计还会继续“死磕”这套工作流。如果大家有更好的方案，或者正在用什么顺手的语音输入神器，欢迎在评论区给我种草！&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/AI/">AI</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category><category domain="https://scottyeung.top/tags/%E5%90%90%E6%A7%BD/">吐槽</category><category domain="https://scottyeung.top/tags/%E8%BE%93%E5%85%A5%E6%B3%95/">输入法</category><category domain="https://scottyeung.top/tags/%E4%BA%A7%E5%93%81/">产品</category></item><item><title>Superpower Agent Skills in Gemini</title><link>https://scottyeung.top/2026/superpower-skills-gemini/</link><guid isPermaLink="true">https://scottyeung.top/2026/superpower-skills-gemini/</guid><pubDate>Wed, 18 Feb 2026 00:42:07 +0800</pubDate><author>yeungyeah@qq.com (YeungYeah)</author><description>&lt;p>在使用 Claude Code 的过程中，&lt;a href="https://github.com/obra/superpowers">superpowers&lt;/a> 提供的 Skills 套件实在太好用了，尤其是其中的 Brainstorming、Writing-plans 和 Executing-plans。用上这些技能后，明显能感觉到 AI 干起活来更有章法，逻辑性提升显著。&lt;/p>
-&lt;p>最近我也在研究 Claude Code 以外的代码 Agent CLI 工具。既然开了 Gemini 的会员，就顺手试了试 Google 官方提供的 CLI 工具。虽然 Gemini CLI 也支持 Agent Skills，但在命令格式和规则细节上与 Claude 存在一些差异。目前官方的 &lt;a href="https://github.com/obra/superpowers">superpowers&lt;/a> 尚未正式支持 Gemini（尽管我在 Issue 列表中看到似乎有相关分支正在开发中）。&lt;/p>
-&lt;p>与其被动等待，不如自己动手。于是我决定以 Claude Code 为蓝本，动手迁移并复刻一个 Gemini 版的 &lt;code>superpowers&lt;/code>。&lt;/p>
-&lt;p>项目仓库现已开源：&lt;a href="https://github.com/yeung66/gemini-superpowers">gemini-superpowers&lt;/a>&lt;/p>
-&lt;p>如果你也想体验，可以通过以下命令快速安装：&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">gemini skills install https://github.com/yeung66/gemini-superpowers.git --path skills
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;h2 id="迁移核心内容">迁移核心内容&lt;/h2>
-&lt;p>这次迁移主要涉及两部分工作：一是工具名称（Tools）的对齐，二是核心术语（Terminology）的映射，以确保 Gemini 能够正确理解和执行原有的 Agent 逻辑。&lt;/p>
-&lt;h3 id="1-工具名称映射-tools-mapping">1. 工具名称映射 (Tools Mapping)&lt;/h3>
-&lt;p>我们需要将 Claude Code 的工具指令转换为 Gemini CLI 能够识别的等效指令：&lt;/p>
-&lt;table>
-&lt;thead>
-&lt;tr>
-&lt;th>Claude Code&lt;/th>
-&lt;th>Gemini CLI&lt;/th>
-&lt;th>处理方式&lt;/th>
-&lt;/tr>
-&lt;/thead>
-&lt;tbody>
-&lt;tr>
-&lt;td>&lt;code>Task&lt;/code> (subagent dispatch)&lt;/td>
-&lt;td>流程描述&lt;/td>
-&lt;td>改为&amp;quot;分步执行&amp;quot;或&amp;quot;按任务逐个处理&amp;quot;&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;code>TaskCreate&lt;/code>/&lt;code>TaskUpdate&lt;/code>/&lt;code>TaskList&lt;/code>/&lt;code>TaskGet&lt;/code>&lt;/td>
-&lt;td>&lt;code>write_todos&lt;/code>&lt;/td>
-&lt;td>直接替换&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;code>TodoWrite&lt;/code>&lt;/td>
-&lt;td>&lt;code>write_todos&lt;/code>&lt;/td>
-&lt;td>直接替换&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;code>Skill&lt;/code> tool&lt;/td>
-&lt;td>&lt;code>@skill-name&lt;/code> 或直接引用&lt;/td>
-&lt;td>适配 Gemini 语法&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;code>Read&lt;/code>&lt;/td>
-&lt;td>&lt;code>ReadFile&lt;/code>&lt;/td>
-&lt;td>直接替换&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;code>Edit&lt;/code>&lt;/td>
-&lt;td>&lt;code>Edit&lt;/code>&lt;/td>
-&lt;td>保持不变&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;code>Write&lt;/code>&lt;/td>
-&lt;td>&lt;code>WriteFile&lt;/code>&lt;/td>
-&lt;td>直接替换&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;code>Bash&lt;/code>&lt;/td>
-&lt;td>&lt;code>Shell&lt;/code>&lt;/td>
-&lt;td>直接替换&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;code>Glob&lt;/code>&lt;/td>
-&lt;td>&lt;code>FindFiles&lt;/code>&lt;/td>
-&lt;td>直接替换&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;code>Grep&lt;/code>&lt;/td>
-&lt;td>&lt;code>SearchText&lt;/code>&lt;/td>
-&lt;td>直接替换&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;code>WebFetch&lt;/code>&lt;/td>
-&lt;td>&lt;code>WebFetch&lt;/code>&lt;/td>
-&lt;td>保持不变&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;code>WebSearch&lt;/code>&lt;/td>
-&lt;td>&lt;code>GoogleSearch&lt;/code>&lt;/td>
-&lt;td>直接替换&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;code>AskUserQuestion&lt;/code>&lt;/td>
-&lt;td>&lt;code>ask_user&lt;/code>&lt;/td>
-&lt;td>直接替换&lt;/td>
-&lt;/tr>
-&lt;/tbody>
-&lt;/table>
-&lt;h3 id="2-术语映射-terminology-mapping">2. 术语映射 (Terminology Mapping)&lt;/h3>
-&lt;p>为了让 Prompt 更符合 Gemini 的上下文，部分名词也做了相应的本地化调整：&lt;/p>
-&lt;table>
-&lt;thead>
-&lt;tr>
-&lt;th>Claude Code&lt;/th>
-&lt;th>Gemini CLI&lt;/th>
-&lt;/tr>
-&lt;/thead>
-&lt;tbody>
-&lt;tr>
-&lt;td>&lt;code>your human partner&lt;/code>&lt;/td>
-&lt;td>&lt;code>the user&lt;/code>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;code>CLAUDE.md&lt;/code>&lt;/td>
-&lt;td>&lt;code>GEMINI.md&lt;/code>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;code>~/.claude/skills&lt;/code>&lt;/td>
-&lt;td>&lt;code>~/.gemini/skills&lt;/code>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;code>superpowers:skill-name&lt;/code>&lt;/td>
-&lt;td>&lt;code>skill-name&lt;/code> (去掉前缀)&lt;/td>
-&lt;/tr>
-&lt;/tbody>
-&lt;/table>
-&lt;h2 id="使用效果">使用效果&lt;/h2>
-&lt;p>迁移完成后，在 Gemini CLI 中已经可以完美加载这些 Skills。在实际对话中，Gemini 能够准确识别我的开发意图，并自动调用相应的工具来辅助工作，体验与 Claude Code 上的 &lt;code>superpowers&lt;/code> 基本一致。&lt;/p>
-&lt;p>如果你也是 Gemini 用户，欢迎尝试并提出反馈！&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/AI/">AI</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category></item></channel></rss>
+&lt;p>未来一段时间，我预计还会继续“死磕”这套工作流。如果大家有更好的方案，或者正在用什么顺手的语音输入神器，欢迎在评论区给我种草！&lt;/p></description><category domain="https://scottyeung.top/posts/">posts</category><category domain="https://scottyeung.top/tags/AI/">AI</category><category domain="https://scottyeung.top/tags/%E5%B7%A5%E5%85%B7/">工具</category><category domain="https://scottyeung.top/tags/%E5%90%90%E6%A7%BD/">吐槽</category><category domain="https://scottyeung.top/tags/%E8%BE%93%E5%85%A5%E6%B3%95/">输入法</category><category domain="https://scottyeung.top/tags/%E4%BA%A7%E5%93%81/">产品</category></item></channel></rss>
